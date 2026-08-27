@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-333-p-tier",
+  "configuration_id": "JD-333P-NAM-STD-T450-FB-CANDIDATE",
+  "freeze_date": "2026-08-27",
+  "repository_policy": {
+    "source_binaries_committed": false,
+    "manufacturer_geometry_committed": false,
+    "manual_illustrations_are_scale_drawings": false,
+    "verification": "Private binaries are verified separately with npm run check:sources."
+  },
+  "sources": [
+    {
+      "id": "JD-333P-MK333CAU",
+      "publisher": "John Deere",
+      "kind": "product_brochure_and_specification",
+      "title": "333 P-Tier Compact Track Loader",
+      "publication": "MK333CAU",
+      "market": "North America",
+      "pages": 8,
+      "retrieved": "2026-08-27",
+      "official_url": "https://www.deere.com/assets/pdfs/common/products/sync/MK333CAU-333-p-tier-compact-track-loader.pdf",
+      "local_path": "research/private/john-deere-333-p-tier/deere-333-p-tier-mk333cau.pdf",
+      "sha256": "9c214b9253ba073f685935e44a4c73f42db766d346c7041dde73880a7a5c55fe",
+      "bytes": 4332816,
+      "admission": "primary"
+    },
+    {
+      "id": "JD-333P-PRODUCT-PAGE",
+      "publisher": "John Deere",
+      "kind": "official_product_page",
+      "title": "333 P-Tier Compact Track Loader",
+      "retrieved": "2026-08-27",
+      "official_url": "https://www.deere.com/en-us/products-and-solutions/loaders/compact-track-loaders/333-p-tier-compact-track-loader-mdbwmfq",
+      "admission": "reference_only"
+    }
+  ]
+}

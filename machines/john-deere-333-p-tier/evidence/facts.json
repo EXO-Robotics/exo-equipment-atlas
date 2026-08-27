@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-333-p-tier",
+  "configuration_id": "JD-333P-NAM-STD-T450-FB-CANDIDATE",
+  "facts": [
+    {"id": "length-no-bucket", "subject": "length without bucket", "value": 3.17, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-333P-MK333CAU", "location": "PDF page 6, dimension A"},
+    {"id": "length-foundry-bucket", "subject": "length with foundry bucket", "value": 3.84, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-333P-MK333CAU", "location": "PDF page 6, dimension B"},
+    {"id": "width-450-track", "subject": "width without bucket with 450 mm track", "value": 2.05, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-333P-MK333CAU", "location": "PDF page 6, dimension C"},
+    {"id": "rops-height", "subject": "height to top of ROPS", "value": 2.22, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-333P-MK333CAU", "location": "PDF page 6, dimension D"},
+    {"id": "hinge-pin-height", "subject": "height to hinge pin", "value": 3.35, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-333P-MK333CAU", "location": "PDF page 6, dimension E"},
+    {"id": "dump-height", "subject": "dump height with foundry bucket", "value": 2.69, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-333P-MK333CAU", "location": "PDF page 6, dimension F"},
+    {"id": "dump-reach", "subject": "dump reach with foundry bucket", "value": 0.74, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-333P-MK333CAU", "location": "PDF page 6, dimension G"},
+    {"id": "ground-clearance", "subject": "ground clearance", "value": 0.25, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-333P-MK333CAU", "location": "PDF page 6, dimension H"},
+    {"id": "dump-angle", "subject": "bucket dump angle at full lift", "value": 48, "unit": "deg", "authority": "manufacturer_published", "source_id": "JD-333P-MK333CAU", "location": "PDF page 6, dimension K"},
+    {"id": "rollback-angle", "subject": "bucket rollback at ground level", "value": 35, "unit": "deg", "authority": "manufacturer_published", "source_id": "JD-333P-MK333CAU", "location": "PDF page 6, dimension L"}
+  ],
+  "issues": [
+    {"id": "lift-linkage", "status": "unresolved", "detail": "The admitted publication establishes vertical-lift behavior and endpoint dimensions but not lift-arm pivot coordinates, link lengths, cylinder strokes, or attachment-interface geometry."},
+    {"id": "bucket-identity", "status": "unresolved", "detail": "The dimension table uses a foundry bucket basis, but an exact bucket part/configuration has not been frozen."}
+  ]
+}

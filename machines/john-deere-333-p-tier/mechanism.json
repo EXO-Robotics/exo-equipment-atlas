@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-333-p-tier",
+  "configuration_id": "JD-333P-NAM-STD-T450-FB-CANDIDATE",
+  "coordinate_system": {"longitudinal": "+X toward bucket", "vertical": "+Y", "lateral": "+Z machine right"},
+  "joints": [
+    {"id": "lift_group", "type": "coupled_vertical_lift_linkage", "axis": "+Z", "authority": "reconstructed", "source_ids": ["JD-333P-MK333CAU"], "published_constraints": ["ground pose", "3.35 m hinge-pin endpoint", "2.69 m dump height", "0.74 m dump reach"], "unresolved": ["pivot coordinates, link lengths, cylinder anchors and stroke"]},
+    {"id": "bucket_tilt", "type": "revolute_linkage", "axis": "+Z", "authority": "reconstructed", "source_ids": ["JD-333P-MK333CAU"], "published_constraints": ["35 degree ground rollback", "48 degree full-height dump"], "unresolved": ["linkage topology dimensions and cylinder anchors"]},
+    {"id": "left_track", "type": "looped_visual", "authority": "reconstructed", "source_ids": ["JD-333P-MK333CAU"], "unresolved": ["link pitch, sprocket phase, idler and roller centers"]},
+    {"id": "right_track", "type": "looped_visual", "authority": "reconstructed", "source_ids": ["JD-333P-MK333CAU"], "unresolved": ["link pitch, sprocket phase, idler and roller centers"]},
+    {"id": "cab_quick_pivot", "type": "inspection_only", "authority": "manufacturer_published", "source_ids": ["JD-333P-MK333CAU"], "unresolved": ["service opening angle and exact hinge axis"]}
+  ],
+  "required_gates": ["stowed_envelope", "full_lift_hinge_height", "dump_height_and_reach", "lift_linkage_closure", "bucket_linkage_closure", "cylinder_length_continuity", "ground_collision", "self_collision", "track_phase_continuity"],
+  "release_state": "no_geometry_no_solver_no_claim"
+}

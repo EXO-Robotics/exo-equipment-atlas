@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "platform": "EXO Equipment Atlas",
+  "catalog_status": "research_foundation",
+  "machines": [
+    {
+      "id": "john-deere-333-p-tier",
+      "priority": 1,
+      "role": "first_production_candidate",
+      "configuration_status": "research_candidate",
+      "release_status": "not_started"
+    },
+    {
+      "id": "cat-320",
+      "priority": 2,
+      "role": "flagship_mechanism_candidate",
+      "configuration_status": "research_candidate",
+      "release_status": "not_started"
+    },
+    {
+      "id": "john-deere-310-p-tier",
+      "priority": 3,
+      "role": "later_multi_mechanism_hero",
+      "configuration_status": "research_candidate",
+      "release_status": "not_started"
+    }
+  ]
+}

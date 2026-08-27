@@ -1,0 +1,13 @@
+node_modules/
+dist/
+_site/
+.DS_Store
+
+# Manufacturer publications and reference imagery are research inputs only.
+research/private/**
+!research/private/.gitkeep
+
+# Independently authored production assets are admitted only through a release receipt.
+assets/models/*.glb
+source/blender/*.blend
+review/captures/

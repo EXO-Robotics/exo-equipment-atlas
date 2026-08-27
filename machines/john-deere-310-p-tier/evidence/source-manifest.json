@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-310-p-tier",
+  "configuration_id": "JD-310P-NAM-FT4-MFWD-STD-DIPPER-CANDIDATE",
+  "freeze_date": "2026-08-27",
+  "repository_policy": {
+    "source_binaries_committed": false,
+    "manufacturer_geometry_committed": false,
+    "manual_illustrations_are_scale_drawings": false,
+    "verification": "Private binaries are verified separately with npm run check:sources."
+  },
+  "sources": [
+    {
+      "id": "JD-310P-MB310PAU",
+      "publisher": "John Deere",
+      "kind": "product_brochure_and_specification",
+      "title": "310 P-Tier Backhoe Loader",
+      "publication": "MB310PAU",
+      "market": "North America and listed regional variants",
+      "pages": 12,
+      "retrieved": "2026-08-27",
+      "official_url": "https://www.deere.com/assets/pdfs/common/products/sync/MB310PAU-310-p-tier-backhoe-loader.pdf",
+      "local_path": "research/private/john-deere-310-p-tier/deere-310-p-tier-mb310pau.pdf",
+      "sha256": "c0c2d6b6cfbe0da36080e43863e126cdff5e8e732e7c39588716f0cd215995bc",
+      "bytes": 2564686,
+      "admission": "primary"
+    }
+  ]
+}

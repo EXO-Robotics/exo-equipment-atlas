@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://exo-robotics.example/schemas/facts.schema.json",
+  "title": "Equipment Atlas fact register",
+  "type": "object",
+  "required": ["schema_version", "machine_id", "configuration_id", "facts", "issues"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "facts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "subject", "value", "unit", "authority", "source_id", "location"]
+      }
+    },
+    "issues": {"type": "array"}
+  },
+  "additionalProperties": true
+}

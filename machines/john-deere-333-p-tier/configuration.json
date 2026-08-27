@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-333-p-tier",
+  "configuration_id": "JD-333P-NAM-STD-T450-FB-CANDIDATE",
+  "status": "research_candidate",
+  "identity": {
+    "manufacturer": "John Deere",
+    "brand": "John Deere",
+    "model": "333 P-Tier",
+    "product_class": "compact_track_loader",
+    "market": "North America"
+  },
+  "choices": {
+    "undercarriage": "standard",
+    "tracks": "450_mm_17.7_in",
+    "bucket_dimension_basis": "foundry_bucket",
+    "lift_path": "vertical_lift",
+    "smartgrade": "not_selected_for_base_candidate"
+  },
+  "unresolved_choices": [
+    "foundry bucket exact part and cutting edge",
+    "quick attachment interface geometry",
+    "cab door and lighting package",
+    "anti-vibration undercarriage option",
+    "counterweight quantity",
+    "public material and branding authorization"
+  ],
+  "boundary": "Research candidate only. Published dimensions constrain an independent visualization; linkage pivots, hydraulic anchors, track geometry, and lift-path interpolation remain unresolved."
+}

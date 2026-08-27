@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-310-p-tier",
+  "configuration_id": "JD-310P-NAM-FT4-MFWD-STD-DIPPER-CANDIDATE",
+  "facts": [
+    {"id": "overall-length", "subject": "overall transport length", "value": 7.24, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-310P-MB310PAU", "location": "PDF page 8, dimension B"},
+    {"id": "overall-width", "subject": "width over tires", "value": 2.2, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-310P-MB310PAU", "location": "PDF page 8, dimension C"},
+    {"id": "cab-height", "subject": "height to top of ROPS or cab", "value": 2.81, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-310P-MB310PAU", "location": "PDF page 8, dimension D"},
+    {"id": "mfwd-wheelbase", "subject": "axle-to-axle length with MFWD", "value": 2.19, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-310P-MB310PAU", "location": "PDF page 8, dimension E"},
+    {"id": "loader-boom-cylinder-stroke", "subject": "loader boom cylinder stroke", "value": 0.79, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-310P-MB310PAU", "location": "PDF page 7"},
+    {"id": "loader-bucket-cylinder-stroke", "subject": "loader bucket cylinder stroke", "value": 0.744, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-310P-MB310PAU", "location": "PDF page 7"},
+    {"id": "backhoe-boom-cylinder-stroke", "subject": "backhoe boom cylinder stroke", "value": 0.821, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-310P-MB310PAU", "location": "PDF page 7"},
+    {"id": "backhoe-crowd-cylinder-stroke", "subject": "backhoe crowd cylinder stroke", "value": 0.553, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-310P-MB310PAU", "location": "PDF page 7"},
+    {"id": "backhoe-bucket-cylinder-stroke", "subject": "backhoe bucket cylinder stroke", "value": 0.892, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-310P-MB310PAU", "location": "PDF page 7"},
+    {"id": "backhoe-swing", "subject": "backhoe swing arc", "value": 180, "unit": "deg", "authority": "manufacturer_published", "source_id": "JD-310P-MB310PAU", "location": "PDF page 8"},
+    {"id": "backhoe-bucket-rotation", "subject": "backhoe bucket rotation", "value": 190, "unit": "deg", "authority": "manufacturer_published", "source_id": "JD-310P-MB310PAU", "location": "PDF page 8, dimension N"},
+    {"id": "loader-dump-angle", "subject": "front bucket maximum dump angle", "value": 45, "unit": "deg", "authority": "manufacturer_published", "source_id": "JD-310P-MB310PAU", "location": "PDF page 8, dimension P"},
+    {"id": "loader-rollback-angle", "subject": "front bucket rollback at ground", "value": 40, "unit": "deg", "authority": "manufacturer_published", "source_id": "JD-310P-MB310PAU", "location": "PDF page 8, dimension Q"}
+  ],
+  "issues": [
+    {"id": "front-bucket-branch", "status": "unresolved", "detail": "The specification publishes multiple loader bucket capacities; performance dimensions cannot be bound until one exact bucket is chosen."},
+    {"id": "dipperstick-branch", "status": "documented", "detail": "Standard and extendable dipperstick working ranges coexist in the source. The current candidate selects standard, but the production choice remains subject to review."},
+    {"id": "hidden-pivots", "status": "unresolved", "detail": "Published cylinder strokes do not establish loader, backhoe, stabilizer, steering, or cylinder anchor coordinates."}
+  ]
+}

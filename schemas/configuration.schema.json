@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://exo-robotics.example/schemas/configuration.schema.json",
+  "title": "Equipment Atlas configuration",
+  "type": "object",
+  "required": ["schema_version", "machine_id", "configuration_id", "status", "identity", "choices", "unresolved_choices", "boundary"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "machine_id": {"type": "string", "minLength": 1},
+    "configuration_id": {"type": "string", "minLength": 1},
+    "status": {"enum": ["research_candidate", "frozen", "retired"]},
+    "identity": {"type": "object"},
+    "choices": {"type": "object"},
+    "unresolved_choices": {"type": "array", "items": {"type": "string"}},
+    "boundary": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": true
+}

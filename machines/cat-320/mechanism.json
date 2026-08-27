@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "cat-320",
+  "configuration_id": "CAT-320-07H-NAM-RB57-R29-HD119-LU-TG790-CW42-CANDIDATE",
+  "coordinate_system": {"longitudinal": "+X toward bucket", "vertical": "+Y", "lateral": "+Z machine right"},
+  "joints": [
+    {"id": "upper_swing", "type": "revolute", "axis": "+Y", "authority": "observed", "source_ids": ["CAT-320-PRODUCT-PAGE"], "unresolved": ["bearing center and vertical elevation"]},
+    {"id": "boom", "type": "revolute", "axis": "+Z", "authority": "reconstructed", "source_ids": ["CAT-320-AEXQ3758-01-NAM"], "published_constraints": ["boom length", "boom cylinder stroke", "working envelope"], "unresolved": ["pivot and cylinder anchors"]},
+    {"id": "stick", "type": "revolute", "axis": "+Z", "authority": "reconstructed", "source_ids": ["CAT-320-AEXQ3758-01-NAM"], "published_constraints": ["stick length", "stick cylinder stroke", "working envelope"], "unresolved": ["pivot and cylinder anchors"]},
+    {"id": "bucket", "type": "revolute_linkage", "axis": "+Z", "authority": "reconstructed", "source_ids": ["CAT-320-AEXQ3758-01-NAM"], "published_constraints": ["bucket tip radius", "bucket cylinder stroke"], "unresolved": ["bucket linkage topology dimensions and anchors"]},
+    {"id": "left_track", "type": "looped_visual", "authority": "reconstructed", "source_ids": ["CAT-320-AEXQ3758-01-NAM"], "unresolved": ["link pitch, sprocket phase, roller centers"]},
+    {"id": "right_track", "type": "looped_visual", "authority": "reconstructed", "source_ids": ["CAT-320-AEXQ3758-01-NAM"], "unresolved": ["link pitch, sprocket phase, roller centers"]}
+  ],
+  "required_gates": ["stowed_transport_envelope", "published_working_envelope", "cylinder_length_continuity", "bucket_linkage_closure", "upper_to_undercarriage_clearance", "ground_collision", "self_collision", "track_phase_continuity"],
+  "release_state": "no_geometry_no_solver_no_claim"
+}

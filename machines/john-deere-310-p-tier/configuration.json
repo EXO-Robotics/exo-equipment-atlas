@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-310-p-tier",
+  "configuration_id": "JD-310P-NAM-FT4-MFWD-STD-DIPPER-CANDIDATE",
+  "status": "research_candidate",
+  "identity": {
+    "manufacturer": "John Deere",
+    "brand": "John Deere",
+    "model": "310 P-Tier",
+    "product_class": "backhoe_loader",
+    "market": "North America",
+    "emissions": "EPA Final Tier 4"
+  },
+  "choices": {
+    "front_axle": "MFWD",
+    "backhoe": "standard_dipperstick",
+    "rear_bucket_dimension_basis": "610_mm_0.18_m3",
+    "operator_station": "cab_candidate"
+  },
+  "unresolved_choices": [
+    "front loader bucket family and capacity",
+    "front and rear couplers",
+    "counterweight",
+    "tire selection",
+    "loader auxiliary hydraulics",
+    "backhoe pilot control options",
+    "public material and branding authorization"
+  ],
+  "boundary": "Research candidate only. Multiple machine and attachment options coexist in the admitted publication; no final geometry or performance configuration is claimed."
+}

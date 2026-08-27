@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://exo-robotics.example/schemas/source-manifest.schema.json",
+  "title": "Equipment Atlas source manifest",
+  "type": "object",
+  "required": ["schema_version", "machine_id", "configuration_id", "freeze_date", "repository_policy", "sources"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "machine_id": {"type": "string"},
+    "configuration_id": {"type": "string"},
+    "freeze_date": {"type": "string", "format": "date"},
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "publisher", "kind", "title", "official_url", "admission"]
+      }
+    }
+  },
+  "additionalProperties": true
+}

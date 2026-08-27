@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-310-p-tier",
+  "configuration_id": "JD-310P-NAM-FT4-MFWD-STD-DIPPER-CANDIDATE",
+  "coordinate_system": {"longitudinal": "+X toward front loader", "vertical": "+Y", "lateral": "+Z machine right"},
+  "joints": [
+    {"id": "front_loader_boom", "type": "coupled_revolute", "axis": "+Z", "authority": "reconstructed", "source_ids": ["JD-310P-MB310PAU"], "published_constraints": ["loader boom cylinder stroke"], "unresolved": ["pivots, links and cylinder anchors"]},
+    {"id": "front_loader_bucket", "type": "revolute_linkage", "axis": "+Z", "authority": "reconstructed", "source_ids": ["JD-310P-MB310PAU"], "published_constraints": ["loader bucket cylinder stroke", "45 degree dump", "40 degree rollback"], "unresolved": ["bucket selection, links and cylinder anchors"]},
+    {"id": "backhoe_swing", "type": "revolute", "axis": "+Y", "authority": "reconstructed", "source_ids": ["JD-310P-MB310PAU"], "published_constraints": ["180 degree swing arc"], "unresolved": ["swing post axis and actuator geometry"]},
+    {"id": "backhoe_boom", "type": "revolute", "axis": "+Z", "authority": "reconstructed", "source_ids": ["JD-310P-MB310PAU"], "published_constraints": ["boom cylinder stroke", "working ranges"], "unresolved": ["pivots and cylinder anchors"]},
+    {"id": "backhoe_dipper", "type": "revolute", "axis": "+Z", "authority": "reconstructed", "source_ids": ["JD-310P-MB310PAU"], "published_constraints": ["crowd cylinder stroke", "working ranges"], "unresolved": ["pivots and cylinder anchors"]},
+    {"id": "backhoe_bucket", "type": "revolute_linkage", "axis": "+Z", "authority": "reconstructed", "source_ids": ["JD-310P-MB310PAU"], "published_constraints": ["bucket cylinder stroke", "190 degree rotation"], "unresolved": ["linkage and cylinder anchors"]},
+    {"id": "left_stabilizer", "type": "coupled_revolute", "authority": "reconstructed", "source_ids": ["JD-310P-MB310PAU"], "unresolved": ["pivots, cylinder and foot geometry"]},
+    {"id": "right_stabilizer", "type": "coupled_revolute", "authority": "reconstructed", "source_ids": ["JD-310P-MB310PAU"], "unresolved": ["pivots, cylinder and foot geometry"]},
+    {"id": "front_steering", "type": "paired_revolute", "axis": "+Y", "authority": "reconstructed", "source_ids": ["JD-310P-MB310PAU"], "unresolved": ["knuckle, tie-rod and cylinder geometry"]}
+  ],
+  "required_gates": ["transport_envelope", "front_loader_linkage_closure", "backhoe_linkage_closure", "backhoe_swing_arc", "stabilizer_continuity", "steering_continuity", "all_cylinder_length_continuity", "ground_collision", "self_collision", "front_rear_pose_interference"],
+  "release_state": "no_geometry_no_solver_no_claim"
+}

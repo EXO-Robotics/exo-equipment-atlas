@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "cat-320",
+  "configuration_id": "CAT-320-07H-NAM-RB57-R29-HD119-LU-TG790-CW42-CANDIDATE",
+  "freeze_date": "2026-08-27",
+  "repository_policy": {
+    "source_binaries_committed": false,
+    "manufacturer_geometry_committed": false,
+    "manual_illustrations_are_scale_drawings": false,
+    "verification": "Private binaries are verified separately with npm run check:sources."
+  },
+  "sources": [
+    {
+      "id": "CAT-320-AEXQ3758-01-NAM",
+      "publisher": "Caterpillar",
+      "kind": "technical_specification",
+      "title": "320 Hydraulic Excavator Technical Specifications",
+      "publication": "AEXQ3758-01",
+      "market": "North America",
+      "pages": 24,
+      "retrieved": "2026-08-27",
+      "official_url": "https://s7d2.scene7.com/is/content/Caterpillar/CM20240927-d80d6-c6a9b",
+      "local_path": "research/private/cat-320/cat-320-aexq3758-01-na-technical-specifications.pdf",
+      "sha256": "3c8a3801febde2f7728ba13d3b9cfe59528bc08394f9cf57dfd0e618ef158a98",
+      "bytes": 2285842,
+      "admission": "primary"
+    },
+    {
+      "id": "CAT-320-PRODUCT-PAGE",
+      "publisher": "Caterpillar",
+      "kind": "official_product_page",
+      "title": "320 Hydraulic Excavator",
+      "retrieved": "2026-08-27",
+      "official_url": "https://www.cat.com/en_AU/products/new/equipment/excavators/medium-excavators/126532.html",
+      "admission": "reference_only",
+      "note": "Index for regional publications, official gallery, video, and 360-degree presentation."
+    }
+  ]
+}

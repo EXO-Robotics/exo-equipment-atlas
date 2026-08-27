@@ -29,7 +29,8 @@ export async function validateRepository({ requirePrivateSources = false } = {})
   const seenMachines = new Set();
   let factCount = 0;
   let sourceCount = 0;
-  let privateSourceCount = 0;
+  let privateSourceDeclaredCount = 0;
+  let privateSourceCheckedCount = 0;
 
   if (catalog.schema_version !== "1.0.0") errors.push("catalog: unsupported schema_version");
   if (!Array.isArray(catalog.machines) || catalog.machines.length === 0) errors.push("catalog: machines must be non-empty");
@@ -85,12 +86,13 @@ export async function validateRepository({ requirePrivateSources = false } = {})
         errors.push(`${machineId}/${source.id}: incomplete source identity`);
       }
       if (source.local_path) {
-        privateSourceCount += 1;
+        privateSourceDeclaredCount += 1;
         try {
           const sourceStat = await stat(path.join(ROOT, source.local_path));
           if (sourceStat.size !== source.bytes) errors.push(`${machineId}/${source.id}: byte count mismatch`);
           const digest = await sha256(source.local_path);
           if (digest !== source.sha256) errors.push(`${machineId}/${source.id}: SHA-256 mismatch`);
+          privateSourceCheckedCount += 1;
         } catch (error) {
           const message = `${machineId}/${source.id}: private source unavailable (${source.local_path})`;
           if (requirePrivateSources) errors.push(message);
@@ -137,7 +139,8 @@ export async function validateRepository({ requirePrivateSources = false } = {})
     summary: {
       machines: seenMachines.size,
       sources: sourceCount,
-      private_sources_checked: privateSourceCount,
+      private_sources_declared: privateSourceDeclaredCount,
+      private_sources_checked: privateSourceCheckedCount,
       facts: factCount
     }
   };
@@ -149,5 +152,5 @@ if (invokedDirectly) {
   for (const warning of result.warnings) console.warn(`WARN ${warning}`);
   for (const error of result.errors) console.error(`FAIL ${error}`);
   if (result.errors.length > 0) process.exitCode = 1;
-  else console.log(`PASS ${result.summary.machines} machines, ${result.summary.sources} sources, ${result.summary.facts} facts, ${result.summary.private_sources_checked} private source hashes checked`);
+  else console.log(`PASS ${result.summary.machines} machines, ${result.summary.sources} sources, ${result.summary.facts} facts, ${result.summary.private_sources_checked}/${result.summary.private_sources_declared} private source hashes checked`);
 }

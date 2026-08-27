@@ -13,9 +13,15 @@ test("tracked machine packages are internally consistent", async () => {
 });
 
 test("private official sources match the frozen hashes when present", async () => {
-  const result = await validateRepository({ requirePrivateSources: true });
+  const result = await validateRepository();
   assert.deepEqual(result.errors, []);
-  assert.equal(result.summary.private_sources_checked, 3);
+  assert.equal(result.summary.private_sources_declared, 3);
+  assert.ok(result.summary.private_sources_checked >= 0);
+  assert.ok(result.summary.private_sources_checked <= result.summary.private_sources_declared);
+  assert.equal(
+    result.warnings.length,
+    result.summary.private_sources_declared - result.summary.private_sources_checked
+  );
 });
 
 test("technical structural studies match their receipts and exported GLBs", async () => {

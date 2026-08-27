@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { validateRepository } from "../scripts/validate-repository.mjs";
 import { validateProductionAssets } from "../scripts/validate-production-assets.mjs";
+import { spawnSync } from "node:child_process";
 
 test("tracked machine packages are internally consistent", async () => {
   const result = await validateRepository();
@@ -25,4 +26,12 @@ test("technical structural studies match their receipts and exported GLBs", asyn
   assert.equal(result.summary.glbs, 3);
   assert.equal(result.summary.renders, 18);
   assert.ok(result.summary.glb_nodes >= 900);
+});
+
+test("static atlas entrypoint and Pages bundle validate", () => {
+  const result = spawnSync(process.execPath, ["scripts/validate-site.mjs"], {
+    cwd: new URL("..", import.meta.url),
+    encoding: "utf8"
+  });
+  assert.equal(result.status, 0, result.stderr || result.stdout);
 });

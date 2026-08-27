@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#11110f" />
+    <meta
+      name="description"
+      content="EXO Equipment Atlas — evidence-bound, independently authored interactive heavy-equipment studies."
+    />
+    <title>EXO Equipment Atlas</title>
+    <link rel="stylesheet" href="assets/site/styles.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#evidence">Skip to evidence</a>
+
+    <header class="site-header" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="EXO Equipment Atlas home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>EXO</span>
+        <span class="brand-quiet">Equipment Atlas</span>
+      </a>
+      <nav>
+        <a href="#fleet">Machines</a>
+        <a href="#evidence">Evidence</a>
+        <a href="#method">Method</a>
+      </nav>
+      <span class="study-badge">Structural studies · v0.1</span>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="machine-title">
+        <div id="scene" class="scene" aria-hidden="true"></div>
+        <div class="scene-vignette" aria-hidden="true"></div>
+
+        <div class="hero-copy">
+          <p class="eyebrow" id="machine-class">Hydraulic excavator</p>
+          <h1 id="machine-title">Cat 320</h1>
+          <p class="hero-statement">Evidence-bound machinery,<br />rendered as a system.</p>
+          <p class="hero-boundary" id="machine-boundary">
+            Independently authored structural study. Not engineering authority.
+          </p>
+        </div>
+
+        <div class="viewer-status" role="status" aria-live="polite">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span id="load-status">Loading Cat 320</span>
+        </div>
+
+        <div class="viewer-actions" aria-label="3D viewer controls">
+          <button id="orbit-toggle" class="text-button" type="button" aria-pressed="true">Auto orbit</button>
+          <button id="reset-view" class="text-button" type="button">Reset view</button>
+        </div>
+
+        <p class="gesture-hint">Drag to orbit · scroll to zoom</p>
+
+        <div class="hero-metrics" aria-label="Selected model metrics">
+          <div><span id="metric-triangles">47,672</span><small>Triangles</small></div>
+          <div><span id="metric-nodes">—</span><small>Scene nodes</small></div>
+          <div><span id="metric-gates">15 / 0</span><small>Pass / fail</small></div>
+        </div>
+      </section>
+
+      <section class="fleet" id="fleet" aria-labelledby="fleet-title">
+        <div class="section-intro">
+          <p class="eyebrow">Machine index</p>
+          <h2 id="fleet-title">Three mechanisms.<br />One evidence contract.</h2>
+        </div>
+
+        <div class="machine-index" role="tablist" aria-label="Choose a machine">
+          <button class="machine-row is-active" type="button" role="tab" aria-selected="true" data-machine="cat-320">
+            <span class="machine-number">01</span>
+            <span class="machine-name">Cat 320</span>
+            <span class="machine-type">Hydraulic excavator</span>
+            <span class="machine-action">Explore ↗</span>
+          </button>
+          <button class="machine-row" type="button" role="tab" aria-selected="false" data-machine="john-deere-333-p-tier">
+            <span class="machine-number">02</span>
+            <span class="machine-name">333 P-Tier</span>
+            <span class="machine-type">Compact track loader</span>
+            <span class="machine-action">Explore ↗</span>
+          </button>
+          <button class="machine-row" type="button" role="tab" aria-selected="false" data-machine="john-deere-310-p-tier">
+            <span class="machine-number">03</span>
+            <span class="machine-name">310 P-Tier</span>
+            <span class="machine-type">Backhoe loader</span>
+            <span class="machine-action">Explore ↗</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="evidence" id="evidence" aria-labelledby="evidence-title">
+        <div class="evidence-heading">
+          <p class="eyebrow">Selected study</p>
+          <h2 id="evidence-title">What is known.<br />What is reconstructed.</h2>
+        </div>
+
+        <div class="evidence-body">
+          <p class="evidence-lede" id="evidence-lede">
+            Published dimensions constrain the silhouette. Hidden pivots, anchors, and linkage geometry remain explicit reconstructions.
+          </p>
+          <dl class="fact-list" id="fact-list"></dl>
+          <div class="evidence-state">
+            <span>Current classification</span>
+            <strong>Technical structural study</strong>
+            <p id="unresolved-count">Configuration choices remain unresolved.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="method" id="method" aria-labelledby="method-title">
+        <div class="method-sticky">
+          <p class="eyebrow">The EXO method</p>
+          <h2 id="method-title">Trust is part<br />of the model.</h2>
+        </div>
+        <ol class="method-steps">
+          <li><span>01</span><div><h3>Freeze the machine</h3><p>Market, attachment, undercarriage, operator station, and exact configuration are named before release geometry.</p></div></li>
+          <li><span>02</span><div><h3>Bind every claim</h3><p>Manufacturer facts, observed form, derived values, reconstructions, and unresolved gaps remain distinct.</p></div></li>
+          <li><span>03</span><div><h3>Prove the artifact</h3><p>Deterministic Blender builds, exact hashes, semantic hierarchy, geometry gates, and direct visual review travel together.</p></div></li>
+          <li><span>04</span><div><h3>Publish honestly</h3><p>A structural study is not a solver, collision proof, digital twin, training tool, or manufacturer endorsement.</p></div></li>
+        </ol>
+      </section>
+
+      <section class="closing" aria-label="Project boundary">
+        <p class="eyebrow">EXO Equipment Atlas</p>
+        <h2>Mechanically meaningful.<br />Explicitly bounded.</h2>
+        <a href="#top">Return to the machine <span aria-hidden="true">↑</span></a>
+      </section>
+    </main>
+
+    <footer>
+      <span>Unofficial, independently authored, and not endorsed by represented manufacturers.</span>
+      <span>Visualization only · Not safety or operating guidance</span>
+    </footer>
+
+    <noscript>This experience requires JavaScript to display the interactive machine studies.</noscript>
+    <script type="module" src="assets/site/app.js"></script>
+  </body>
+</html>

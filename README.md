@@ -48,6 +48,8 @@ docs/                            evidence, rights, and platform policies
 npm run check
 npm test
 npm run check:sources
+npm run check:production
+npm run check:site
 ```
 
 The first two commands validate tracked contracts. `check:sources` additionally
@@ -55,8 +57,8 @@ requires the private PDFs to exist locally and match the tracked SHA-256 hashes.
 
 ## Current state
 
-This is a research foundation, not a viewer release. All three machine packages
-are intentionally marked `research_candidate`. Blender work created before an
-exact configuration freeze is classified as a technical structural study under
-`docs/BLENDER_PRODUCTION_STANDARD.md`; it is not solver, browser, human-review,
-or deployment proof.
+This is a research foundation with a public-facing structural-study gallery, not
+a mechanical release. All three machine packages remain `research_candidate`.
+The web viewer presents the admitted neutral GLBs and evidence boundaries; it
+does not promote them to solved mechanisms, engineering data, or manufacturer
+authority.

@@ -1,0 +1,460 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-310-p-tier",
+  "configuration_id": "JD-310P-NAM-FT4-MFWD-STD-DIPPER-CANDIDATE",
+  "candidate_class": "technical_structural_study",
+  "status": "research_candidate",
+  "authority_boundary": "Independently authored technical structural study; not engineering data, operator training, or manufacturer authority.",
+  "blender_version": "5.1.1",
+  "deterministic_builder": {
+    "path": "machines/john-deere-310-p-tier/source/blender/build_john_deere_310_p_tier.py",
+    "sha256": "6f192641d0398a382031840a4b88b6b448460db6b73f106399c99848eb94d6d3",
+    "bytes": 52844
+  },
+  "artifacts": {
+    "blend": {
+      "path": "machines/john-deere-310-p-tier/source/blender/john-deere-310-p-tier-structural-study.blend",
+      "sha256": "8928d9f990c27d7832750ce06830980661e560022e21252ffe273824dcca7a72",
+      "bytes": 344976
+    },
+    "glb": {
+      "path": "machines/john-deere-310-p-tier/assets/john-deere-310-p-tier-structural-study.glb",
+      "sha256": "1f6507604d64ee8354356811778c81342d0fa11b32d47cd199713b7f54b3937d",
+      "bytes": 4361460
+    }
+  },
+  "scene": {
+    "units": "meters",
+    "axes": {
+      "longitudinal": "+X toward front loader",
+      "vertical": "+Y",
+      "lateral": "+Z machine right"
+    },
+    "object_count": 392,
+    "mesh_count": 370,
+    "triangle_count": 64580,
+    "material_count": 9,
+    "bounds_m": {
+      "min_xyz": [
+        -4.125,
+        -0.0003,
+        -1.1
+      ],
+      "max_xyz": [
+        3.115,
+        3.3898,
+        1.1
+      ],
+      "dimensions_xyz": [
+        7.24,
+        3.3901,
+        2.2
+      ]
+    }
+  },
+  "required_semantic_nodes": {
+    "ROOT_310P_CANDIDATE": true,
+    "Mainframe_Unitized": true,
+    "MFWD_Front_Axle": true,
+    "Rear_Axle": true,
+    "Pivot_FrontSteer_Left": true,
+    "Pivot_FrontSteer_Right": true,
+    "Pivot_FrontLoaderBoom": true,
+    "Pivot_FrontLoaderBucket": true,
+    "Pivot_BackhoeSwing": true,
+    "Pivot_BackhoeBoom": true,
+    "Pivot_BackhoeDipper": true,
+    "Pivot_BackhoeBucket": true,
+    "Pivot_Stabilizer_Left": true,
+    "Pivot_Stabilizer_Right": true,
+    "LoaderBoomCylinder_-1_Barrel": true,
+    "LoaderBoomCylinder_+1_Barrel": true,
+    "LoaderBucketCylinder_Barrel": true,
+    "BackhoeBoomCylinder_Barrel": true,
+    "BackhoeCrowdCylinder_Barrel": true,
+    "BackhoeBucketCylinder_Barrel": true,
+    "StabilizerCylinder_Left_Barrel": true,
+    "StabilizerCylinder_Right_Barrel": true,
+    "COL_Chassis": true,
+    "INSP_OperatorStation": true
+  },
+  "manufacturer_published_constraints_used": [
+    {
+      "id": "overall-length",
+      "value": 7.24,
+      "unit": "m",
+      "source": "JD-310P-MB310PAU",
+      "location": "PDF page 8 dimension B"
+    },
+    {
+      "id": "overall-width",
+      "value": 2.2,
+      "unit": "m",
+      "source": "JD-310P-MB310PAU",
+      "location": "PDF page 8 dimension C"
+    },
+    {
+      "id": "cab-height",
+      "value": 2.81,
+      "unit": "m",
+      "source": "JD-310P-MB310PAU",
+      "location": "PDF page 8 dimension D"
+    },
+    {
+      "id": "mfwd-wheelbase",
+      "value": 2.19,
+      "unit": "m",
+      "source": "JD-310P-MB310PAU",
+      "location": "PDF page 8 dimension E"
+    },
+    {
+      "id": "loader-boom-cylinder-stroke",
+      "value": 0.79,
+      "unit": "m",
+      "source": "JD-310P-MB310PAU",
+      "location": "PDF page 7"
+    },
+    {
+      "id": "loader-bucket-cylinder-stroke",
+      "value": 0.744,
+      "unit": "m",
+      "source": "JD-310P-MB310PAU",
+      "location": "PDF page 7"
+    },
+    {
+      "id": "backhoe-boom-cylinder-stroke",
+      "value": 0.821,
+      "unit": "m",
+      "source": "JD-310P-MB310PAU",
+      "location": "PDF page 7"
+    },
+    {
+      "id": "backhoe-crowd-cylinder-stroke",
+      "value": 0.553,
+      "unit": "m",
+      "source": "JD-310P-MB310PAU",
+      "location": "PDF page 7"
+    },
+    {
+      "id": "backhoe-bucket-cylinder-stroke",
+      "value": 0.892,
+      "unit": "m",
+      "source": "JD-310P-MB310PAU",
+      "location": "PDF page 7"
+    },
+    {
+      "id": "backhoe-swing",
+      "value": 180,
+      "unit": "deg",
+      "source": "JD-310P-MB310PAU",
+      "location": "PDF page 8"
+    },
+    {
+      "id": "backhoe-bucket-rotation",
+      "value": 190,
+      "unit": "deg",
+      "source": "JD-310P-MB310PAU",
+      "location": "PDF page 8 dimension N"
+    },
+    {
+      "id": "loader-dump-angle",
+      "value": 45,
+      "unit": "deg",
+      "source": "JD-310P-MB310PAU",
+      "location": "PDF page 8 dimension P"
+    },
+    {
+      "id": "loader-rollback-angle",
+      "value": 40,
+      "unit": "deg",
+      "source": "JD-310P-MB310PAU",
+      "location": "PDF page 8 dimension Q"
+    },
+    {
+      "id": "backhoe-transport-height",
+      "value": 3.39,
+      "unit": "m",
+      "source": "JD-310P-MB310PAU",
+      "location": "PDF page 8 dimension O"
+    },
+    {
+      "id": "stabilizer-spread-operating",
+      "value": 3.1,
+      "unit": "m",
+      "source": "JD-310P-MB310PAU",
+      "location": "PDF page 8 dimension L"
+    },
+    {
+      "id": "stabilizer-overall-width-operating",
+      "value": 3.53,
+      "unit": "m",
+      "source": "JD-310P-MB310PAU",
+      "location": "PDF page 8 dimension M"
+    },
+    {
+      "id": "loader-boom-cylinder-bore",
+      "value": 0.08,
+      "unit": "m",
+      "source": "JD-310P-MB310PAU",
+      "location": "PDF page 7"
+    },
+    {
+      "id": "loader-boom-cylinder-rod",
+      "value": 0.05,
+      "unit": "m",
+      "source": "JD-310P-MB310PAU",
+      "location": "PDF page 7"
+    },
+    {
+      "id": "loader-bucket-cylinder-bore",
+      "value": 0.09,
+      "unit": "m",
+      "source": "JD-310P-MB310PAU",
+      "location": "PDF page 7"
+    },
+    {
+      "id": "loader-bucket-cylinder-rod",
+      "value": 0.05,
+      "unit": "m",
+      "source": "JD-310P-MB310PAU",
+      "location": "PDF page 7"
+    },
+    {
+      "id": "backhoe-boom-cylinder-bore",
+      "value": 0.11,
+      "unit": "m",
+      "source": "JD-310P-MB310PAU",
+      "location": "PDF page 7"
+    },
+    {
+      "id": "backhoe-boom-cylinder-rod",
+      "value": 0.056,
+      "unit": "m",
+      "source": "JD-310P-MB310PAU",
+      "location": "PDF page 7"
+    },
+    {
+      "id": "backhoe-crowd-cylinder-bore",
+      "value": 0.11,
+      "unit": "m",
+      "source": "JD-310P-MB310PAU",
+      "location": "PDF page 7"
+    },
+    {
+      "id": "backhoe-crowd-cylinder-rod",
+      "value": 0.063,
+      "unit": "m",
+      "source": "JD-310P-MB310PAU",
+      "location": "PDF page 7"
+    },
+    {
+      "id": "backhoe-bucket-cylinder-bore",
+      "value": 0.08,
+      "unit": "m",
+      "source": "JD-310P-MB310PAU",
+      "location": "PDF page 7"
+    },
+    {
+      "id": "backhoe-bucket-cylinder-rod",
+      "value": 0.05,
+      "unit": "m",
+      "source": "JD-310P-MB310PAU",
+      "location": "PDF page 7"
+    },
+    {
+      "id": "backhoe-swing-cylinder-bore",
+      "value": 0.08,
+      "unit": "m",
+      "source": "JD-310P-MB310PAU",
+      "location": "PDF page 7"
+    },
+    {
+      "id": "backhoe-swing-cylinder-rod",
+      "value": 0.045,
+      "unit": "m",
+      "source": "JD-310P-MB310PAU",
+      "location": "PDF page 7"
+    },
+    {
+      "id": "standard-stabilizer-cylinder-bore",
+      "value": 0.08,
+      "unit": "m",
+      "source": "JD-310P-MB310PAU",
+      "location": "PDF page 7"
+    },
+    {
+      "id": "standard-stabilizer-cylinder-rod",
+      "value": 0.05,
+      "unit": "m",
+      "source": "JD-310P-MB310PAU",
+      "location": "PDF page 7"
+    },
+    {
+      "id": "mfwd-steering-cylinder-bore",
+      "value": 0.065,
+      "unit": "m",
+      "source": "JD-310P-MB310PAU",
+      "location": "PDF page 7"
+    },
+    {
+      "id": "mfwd-steering-cylinder-rod",
+      "value": 0.04,
+      "unit": "m",
+      "source": "JD-310P-MB310PAU",
+      "location": "PDF page 7"
+    }
+  ],
+  "reconstructed_values": {
+    "coordinate_system": "+X front loader, +Y up, +Z machine right",
+    "axle_centers_m": {
+      "front": [
+        1.095,
+        0.54,
+        0.0
+      ],
+      "rear": [
+        -1.095,
+        0.72,
+        0.0
+      ]
+    },
+    "tire_geometry_m": {
+      "front_radius": 0.54,
+      "rear_radius": 0.72,
+      "front_width": 0.4,
+      "rear_width": 0.48
+    },
+    "transport_extents_m": {
+      "rear_bucket_tip_x": -4.125,
+      "front_bucket_edge_x": 3.115,
+      "left_z": -1.1,
+      "right_z": 1.1,
+      "roof_y": 2.81
+    },
+    "front_loader_pivots_m": {
+      "boom": [
+        0.22,
+        1.58,
+        0.0
+      ],
+      "bucket": [
+        2.66,
+        0.52,
+        0.0
+      ]
+    },
+    "backhoe_pivots_m": {
+      "swing": [
+        -1.73,
+        1.05,
+        0.0
+      ],
+      "boom": [
+        -1.88,
+        1.25,
+        0.0
+      ],
+      "dipper": [
+        -2.68,
+        3.2,
+        0.0
+      ],
+      "bucket": [
+        -3.58,
+        1.55,
+        0.0
+      ]
+    },
+    "stabilizer_pivots_m": {
+      "left": [
+        -1.58,
+        0.72,
+        -0.5
+      ],
+      "right": [
+        -1.58,
+        0.72,
+        0.5
+      ]
+    },
+    "stabilizer_operating_pose": "reconstructed rotation reaches 3.53 m overall foot width; published 3.10 m spread retained as a separate constraint",
+    "front_bucket": "generic unbranded 2.18 m shell placeholder; exact published bucket branch unresolved",
+    "rear_bucket": "generic 610 mm class shell placeholder; exact coupler and tooth pattern unresolved",
+    "cylinder_anchor_coordinates": "all visible cylinder endpoints are reconstructed for visual closure only",
+    "steering_pose_deg": 0,
+    "backhoe_swing_pose_deg": 0,
+    "articulated_review_pose": "separate collection shows a reconstructed inspection pose, not a solved endpoint"
+  },
+  "reconstructed_pose_measurements": {
+    "stabilizers": {
+      "overall_width_m": 3.53,
+      "foot_center_spread_m": 3.1,
+      "foot_extents": {
+        "Review_StabilizerFoot_Left": {
+          "min_z_m": -1.7649999856948853,
+          "max_z_m": -1.334999918937683
+        },
+        "Review_StabilizerFoot_Right": {
+          "min_z_m": 1.334999918937683,
+          "max_z_m": 1.7649999856948853
+        }
+      },
+      "witness_nodes": [
+        "Review_StabilizerFoot_Left",
+        "Review_StabilizerFoot_Right"
+      ],
+      "classification": "non-exported reconstructed review pose constrained by manufacturer-published spread and overall width"
+    }
+  },
+  "unresolved_choices": [
+    "front loader bucket family and capacity",
+    "front and rear couplers",
+    "counterweight",
+    "tire selection and tread pattern",
+    "loader auxiliary hydraulics",
+    "backhoe pilot control options",
+    "all hidden pivots, linkage dimensions, and cylinder anchors",
+    "public material and branding authorization"
+  ],
+  "mechanical_gaps": [
+    "No configuration-frozen mechanical solver.",
+    "No measured or manufacturer-published pivot and cylinder anchor coordinates.",
+    "No linkage closure, swept collision, or interference qualification.",
+    "Cylinder strokes are documented but not used to imply an authoritative endpoint curve."
+  ],
+  "renders": [
+    {
+      "path": "machines/john-deere-310-p-tier/review/renders/transport-front-three-quarter.png",
+      "sha256": "e626dc4359405fb7db0e46ff91174fc177c4b84ba380d2c7c308ce8f6bea6adf",
+      "bytes": 532069
+    },
+    {
+      "path": "machines/john-deere-310-p-tier/review/renders/transport-rear-three-quarter.png",
+      "sha256": "da95f2b3e9fcb4debe4a22e5d376a7e21803ff883e9b71facb4e7e10219f94a8",
+      "bytes": 545984
+    },
+    {
+      "path": "machines/john-deere-310-p-tier/review/renders/technical-side.png",
+      "sha256": "1a988fa0162df36bf6de1f1c8fbaf4ec470bb802df4de4d495766e52e567626e",
+      "bytes": 470904
+    },
+    {
+      "path": "machines/john-deere-310-p-tier/review/renders/articulated-inspection.png",
+      "sha256": "285167c3d83b60d40bd303ae3c04b3ebce93e6520d187e931a11da3d44801992",
+      "bytes": 590519
+    },
+    {
+      "path": "machines/john-deere-310-p-tier/review/renders/linkage-stabilizer-detail.png",
+      "sha256": "2892b20b54bfc377f43d4b2651da1e363ea5ab9ea7fd2b20e6e6f5b8b1839e59",
+      "bytes": 653624
+    }
+  ],
+  "validation": {
+    "path": "machines/john-deere-310-p-tier/production/validation.json",
+    "sha256": "0ab91cd157b7d26f167a327653605b2e8a715513130126f2b5fac86efb0239db",
+    "bytes": 6600
+  },
+  "build_verdict": "PASS",
+  "validation_verdict": "PASS",
+  "publication_gate": "PENDING_OVERALL_CRITIC_AND_FULL_PROOF_LADDER"
+}

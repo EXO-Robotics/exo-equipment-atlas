@@ -27,6 +27,12 @@ Acquire first-party orthographic-like views, mechanism poses, attachment views,
 and service/parts evidence where publicly and lawfully available. Record hidden
 pivots and anchors as unresolved until applicable evidence exists.
 
+Deterministic Blender studies may begin in parallel under
+`BLENDER_PRODUCTION_STANDARD.md`, but remain `technical_structural_study`
+artifacts until Gate 1 is complete. They may establish silhouette, hierarchy,
+review questions, and reconstructed mechanisms; they cannot freeze unresolved
+configuration choices or satisfy mechanical release gates.
+
 ## Gate 3 — first machine production
 
 Build the independently authored 333 P-Tier hierarchy and structural blockout,

@@ -1,0 +1,227 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "cat-320",
+  "configuration_id": "CAT-320-07H-NAM-RB57-R29-HD119-LU-TG790-CW42-CANDIDATE",
+  "configuration_status": "research_candidate",
+  "candidate_class": "technical_structural_study",
+  "authority_boundary": "Independently authored technical structural study. Not manufacturer CAD, engineering authority, load guidance, operator training, safety guidance, a digital twin, or a mechanically validated candidate.",
+  "blender": {
+    "version": "5.1.1",
+    "factory_startup_required": true,
+    "background_required": true
+  },
+  "builder": {
+    "path": "source/blender/build_cat_320.py",
+    "sha256": "974afef5553d84924a19e6c08e00f4079b566c9630c4a56577c3ae4a8d3dfa07",
+    "deterministic": true,
+    "network_used": false,
+    "downloaded_geometry_used": false,
+    "manufacturer_cad_used": false,
+    "copied_textures_used": false,
+    "opaque_addons_used": false
+  },
+  "artifacts": {
+    "blend": {
+      "path": "source/blender/cat-320-structural-study.blend",
+      "sha256": "044341e25cd178fbbbea319f6c44b21f8de6f00e242b6affac9c6f895f020f9b",
+      "bytes": 273733
+    },
+    "glb": {
+      "path": "assets/cat-320-structural-study.glb",
+      "sha256": "5de7a8296fd8c49d99e92aeed30a2767e1bcad59fbe6ac231ac529dba3bc1a7d",
+      "bytes": 2980080
+    }
+  },
+  "scene": {
+    "units": "meters",
+    "axes": {
+      "longitudinal": "+X toward bucket",
+      "vertical": "+Y",
+      "lateral": "+Z machine right"
+    },
+    "bounds": {
+      "min_m": [
+        -2.355,
+        0.0009,
+        -1.585
+      ],
+      "max_m": [
+        7.2263,
+        3.1558,
+        1.585
+      ],
+      "size_m": [
+        9.5813,
+        3.1549,
+        3.17
+      ]
+    },
+    "objects": 284,
+    "meshes": 253,
+    "empties": 31,
+    "triangles": 47672,
+    "materials": 9
+  },
+  "required_semantic_nodes": {
+    "Machine_Root": true,
+    "Undercarriage_ROOT": true,
+    "Track_L_ROOT": true,
+    "Track_R_ROOT": true,
+    "Upper_Swing_Pivot": true,
+    "Upper_ROOT": true,
+    "Boom_Pivot": true,
+    "Boom_ROOT": true,
+    "Stick_Pivot": true,
+    "Stick_ROOT": true,
+    "Bucket_Pivot": true,
+    "Bucket_ROOT": true,
+    "Hydraulics_ROOT": true,
+    "Linkage_ROOT": true,
+    "Inspection_Volumes": true,
+    "PIVOT_Attachment_Pin": true,
+    "INSPECT_Transport_Envelope": true
+  },
+  "manufacturer_published_constraints_used": [
+    "boom-length",
+    "stick-length",
+    "boom-cylinder-stroke",
+    "stick-cylinder-stroke",
+    "bucket-cylinder-stroke",
+    "transport-length",
+    "transport-height",
+    "undercarriage-width",
+    "upperframe-width",
+    "tail-swing-radius",
+    "counterweight-clearance",
+    "ground-clearance",
+    "track-length",
+    "roller-center-length",
+    "track-gauge",
+    "track-shoes-per-side",
+    "track-rollers-per-side",
+    "carrier-rollers-per-side",
+    "top-cab-height",
+    "bucket-tip-radius"
+  ],
+  "reconstructed_values": {
+    "scene_transport_pose": {
+      "upper_swing_deg": 0.0,
+      "boom_deg": 0.0,
+      "stick_relative_deg": -64.0,
+      "bucket_relative_deg": 224.0,
+      "note": "Visualization pose selected to fit the published transport envelope; not a manufacturer pose definition."
+    },
+    "review_articulated_pose": {
+      "upper_swing_deg": -18.0,
+      "boom_deg": 28.0,
+      "stick_relative_deg": -83.0,
+      "bucket_relative_deg": -42.0,
+      "note": "Review-only pose; it is not retained in the saved asset and is not a validated working endpoint."
+    },
+    "slew_center_m": [
+      -0.18,
+      1.08,
+      0.0
+    ],
+    "slew_ring_diameter_m": 1.65,
+    "boom_pivot_m": [
+      0.1,
+      1.98,
+      0.0
+    ],
+    "boom_centerline_polyline_local_m": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        1.91,
+        1.1
+      ],
+      [
+        3.91,
+        0.995
+      ],
+      [
+        5.38,
+        0.735
+      ]
+    ],
+    "stick_pivot_local_m": [
+      5.38,
+      0.735,
+      0.0
+    ],
+    "stick_modeled_pin_distance_m": 2.9,
+    "bucket_pivot_local_m": [
+      2.9,
+      0.09,
+      0.0
+    ],
+    "bucket_shell_width_m": 1.2,
+    "bucket_shell_note": "Width is a compatible published HD 1.19 m3 table option, but pin-on/coupler identity remains unresolved; shell curvature and volume are not engineering-validated.",
+    "track_loop_radius_m": 0.39,
+    "track_shoe_modeled_pitch_m": 0.199,
+    "track_shoe_thickness_m": 0.075,
+    "wheel_and_roller_centers": "Reconstructed from the published track length, roller-center length, counts, and visible first-party illustrations.",
+    "cab_house_counterweight_panels": "Independently authored from first-party illustration observations; no hidden internal assembly is represented.",
+    "hydraulic_anchors": "All base and rod anchor coordinates are reconstructed. Published strokes constrain future solver work only.",
+    "bucket_linkage": "Bellcrank, dogbone, bucket lug, and all pin locations are reconstructed visual closure cues only.",
+    "inspection_volumes": "Envelope and component volumes are non-authoritative visualization aids.",
+    "material_colors": "Neutral unbranded ochre, graphite, steel, rubber, and glass; not a claim to protected manufacturer livery."
+  },
+  "unresolved_choices": [
+    "exact serial or order family",
+    "quick coupler selection",
+    "thumb selection",
+    "cab OPG selection",
+    "grade-control and camera options",
+    "public material and branding authorization"
+  ],
+  "mechanical_gaps": [
+    "slew bearing center and elevation authority",
+    "boom/stick/bucket pivot authority",
+    "all hydraulic anchor coordinates",
+    "bucket linkage topology dimensions",
+    "track link pitch and roller centers",
+    "motion limits and solver",
+    "collision and swept-volume validation",
+    "published working envelope reproduction"
+  ],
+  "renders": [
+    {
+      "path": "review/renders/cat-320-operator-side.png",
+      "sha256": "fea9a0b309fffdf457929873e93f504a7d90eaf30d8d69af5cec94892e69c900",
+      "bytes": 321916
+    },
+    {
+      "path": "review/renders/cat-320-right-three-quarter.png",
+      "sha256": "5faf2376a3480856e37e812915255584241030acd682c347fa7b290390f20a48",
+      "bytes": 315307
+    },
+    {
+      "path": "review/renders/cat-320-rear-three-quarter.png",
+      "sha256": "04d337095b62c758b551821a7b810ef7bf5c135491c946156c147b59a54de91e",
+      "bytes": 361955
+    },
+    {
+      "path": "review/renders/cat-320-front-equipment.png",
+      "sha256": "de11dd93c17b07a6d2dc705a585f9b27e34b1d0101d7b9111494aeba924952c4",
+      "bytes": 349102
+    },
+    {
+      "path": "review/renders/cat-320-linkage-detail.png",
+      "sha256": "69df5cb4d8a795a6fc290127c768a5def4ceffc5bb333fd87bc85bd988ca2525",
+      "bytes": 385587
+    },
+    {
+      "path": "review/renders/cat-320-articulated-review.png",
+      "sha256": "4897fe02e6dd4384e392b517b6959186a0eff83c76965d6d600292999ffc5888",
+      "bytes": 323404
+    }
+  ],
+  "build_verdict": "PASS",
+  "validation_verdict": "PASS",
+  "validation_path": "production/validation.json",
+  "higher_stage_gates": "PENDING"
+}

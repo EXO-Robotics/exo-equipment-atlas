@@ -1,0 +1,218 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-310-p-tier",
+  "configuration_id": "JD-310P-NAM-FT4-MFWD-STD-DIPPER-CANDIDATE",
+  "candidate_class": "technical_structural_study",
+  "verdict": "PASS",
+  "not_engineering_authority": true,
+  "gates": [
+    {
+      "id": "builder-completed",
+      "status": "PASS",
+      "detail": "Factory-startup deterministic builder completed."
+    },
+    {
+      "id": "source-and-rights-boundary",
+      "status": "PASS",
+      "detail": "Independently authored neutral geometry; no logos, copied textures, CAD, or manufacturer binaries embedded."
+    },
+    {
+      "id": "required-semantic-nodes",
+      "status": "PASS",
+      "detail": {
+        "ROOT_310P_CANDIDATE": true,
+        "Mainframe_Unitized": true,
+        "MFWD_Front_Axle": true,
+        "Rear_Axle": true,
+        "Pivot_FrontSteer_Left": true,
+        "Pivot_FrontSteer_Right": true,
+        "Pivot_FrontLoaderBoom": true,
+        "Pivot_FrontLoaderBucket": true,
+        "Pivot_BackhoeSwing": true,
+        "Pivot_BackhoeBoom": true,
+        "Pivot_BackhoeDipper": true,
+        "Pivot_BackhoeBucket": true,
+        "Pivot_Stabilizer_Left": true,
+        "Pivot_Stabilizer_Right": true,
+        "LoaderBoomCylinder_-1_Barrel": true,
+        "LoaderBoomCylinder_+1_Barrel": true,
+        "LoaderBucketCylinder_Barrel": true,
+        "BackhoeBoomCylinder_Barrel": true,
+        "BackhoeCrowdCylinder_Barrel": true,
+        "BackhoeBucketCylinder_Barrel": true,
+        "StabilizerCylinder_Left_Barrel": true,
+        "StabilizerCylinder_Right_Barrel": true,
+        "COL_Chassis": true,
+        "INSP_OperatorStation": true
+      }
+    },
+    {
+      "id": "published-transport-length-witness",
+      "status": "PASS",
+      "detail": {
+        "expected_m": 7.24,
+        "reconstructed_endpoints_m": [
+          -4.125,
+          3.115
+        ]
+      }
+    },
+    {
+      "id": "published-width-witness",
+      "status": "PASS",
+      "detail": {
+        "expected_m": 2.2,
+        "reconstructed_tire_outer_planes_m": [
+          -1.1,
+          1.1
+        ]
+      }
+    },
+    {
+      "id": "published-cab-height-witness",
+      "status": "PASS",
+      "detail": {
+        "expected_m": 2.81,
+        "ground_y_m": 0.0,
+        "roof_top_y_m": 2.81
+      }
+    },
+    {
+      "id": "published-mfwd-wheelbase",
+      "status": "PASS",
+      "detail": {
+        "expected_m": 2.19,
+        "front_axle_x_m": 1.095,
+        "rear_axle_x_m": -1.095
+      }
+    },
+    {
+      "id": "visible-mesh-transport-envelope",
+      "status": "PASS",
+      "detail": {
+        "expected_xyz_m": [
+          7.24,
+          3.39,
+          2.2
+        ],
+        "actual_xyz_m": [
+          7.24,
+          3.3901,
+          2.2
+        ],
+        "tolerance_m": 0.01,
+        "height_basis": "published standard-backhoe transport height; cab roof separately constrained to 2.81 m"
+      }
+    },
+    {
+      "id": "reconstructed-stabilizer-operating-width",
+      "status": "PASS",
+      "detail": {
+        "published_overall_width_m": 3.53,
+        "published_spread_m": 3.1,
+        "measured_pose": {
+          "overall_width_m": 3.53,
+          "foot_center_spread_m": 3.1,
+          "foot_extents": {
+            "Review_StabilizerFoot_Left": {
+              "min_z_m": -1.7649999856948853,
+              "max_z_m": -1.334999918937683
+            },
+            "Review_StabilizerFoot_Right": {
+              "min_z_m": 1.334999918937683,
+              "max_z_m": 1.7649999856948853
+            }
+          },
+          "witness_nodes": [
+            "Review_StabilizerFoot_Left",
+            "Review_StabilizerFoot_Right"
+          ],
+          "classification": "non-exported reconstructed review pose constrained by manufacturer-published spread and overall width"
+        },
+        "tolerance_m": 0.01,
+        "authority": "reconstructed pose constrained by published endpoints"
+      }
+    },
+    {
+      "id": "triangle-budget",
+      "status": "PASS",
+      "detail": {
+        "maximum": 125000,
+        "actual": 64580
+      }
+    },
+    {
+      "id": "render-files-nonempty",
+      "status": "PASS",
+      "detail": {
+        "machines/john-deere-310-p-tier/review/renders/transport-front-three-quarter.png": 532069,
+        "machines/john-deere-310-p-tier/review/renders/transport-rear-three-quarter.png": 545984,
+        "machines/john-deere-310-p-tier/review/renders/technical-side.png": 470904,
+        "machines/john-deere-310-p-tier/review/renders/articulated-inspection.png": 590519,
+        "machines/john-deere-310-p-tier/review/renders/linkage-stabilizer-detail.png": 653624
+      }
+    },
+    {
+      "id": "front-loader-linkage-closure",
+      "status": "PENDING",
+      "detail": "Visible closure only; no configuration-frozen solver or published anchors."
+    },
+    {
+      "id": "backhoe-linkage-closure",
+      "status": "PENDING",
+      "detail": "Visible closure only; no configuration-frozen solver or published anchors."
+    },
+    {
+      "id": "backhoe-swing-arc",
+      "status": "PENDING",
+      "detail": "Published 180 degree arc recorded; reconstructed swing pivot is not solver-qualified."
+    },
+    {
+      "id": "stabilizer-continuity",
+      "status": "PENDING",
+      "detail": "Stowed hierarchy exists; no solver-qualified deployment motion."
+    },
+    {
+      "id": "steering-continuity",
+      "status": "PENDING",
+      "detail": "Straight-pose knuckle hierarchy exists; no steering solver."
+    },
+    {
+      "id": "all-cylinder-length-continuity",
+      "status": "PENDING",
+      "detail": "Published strokes are constraints, not current cylinder anchor proof."
+    },
+    {
+      "id": "ground-collision",
+      "status": "PENDING",
+      "detail": "Collision proxies authored but no swept mechanical gate run."
+    },
+    {
+      "id": "self-collision",
+      "status": "PENDING",
+      "detail": "Collision proxies authored but no swept mechanical gate run."
+    },
+    {
+      "id": "front-rear-pose-interference",
+      "status": "PENDING",
+      "detail": "No multi-mechanism swept-volume solver."
+    },
+    {
+      "id": "human-critic-review",
+      "status": "PENDING",
+      "detail": "Exact render hashes await overall critic."
+    },
+    {
+      "id": "browser-accessibility-mobile-performance",
+      "status": "PENDING",
+      "detail": "No shared viewer admission in this lane."
+    },
+    {
+      "id": "publication-and-deployment",
+      "status": "PENDING",
+      "detail": "Only overall publisher may admit or publish this artifact."
+    }
+  ],
+  "blocking_failures": [],
+  "higher_stage_gates_pending": true
+}

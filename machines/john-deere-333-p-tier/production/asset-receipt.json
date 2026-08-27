@@ -1,0 +1,329 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-333-p-tier",
+  "configuration_id": "JD-333P-NAM-STD-T450-FB-CANDIDATE",
+  "configuration_status": "research_candidate",
+  "candidate_class": "technical_structural_study",
+  "engineering_authority": false,
+  "authority_statement": "Independent technical structural study only; not manufacturer CAD, engineering data, training material, or operational guidance.",
+  "rights_boundary": "Neutral unbranded materials; no copied manufacturer geometry, textures, logos, imagery, or publication pages are shipped.",
+  "blender": {
+    "version": "5.1.1",
+    "factory_startup_background_required": true,
+    "builder_path": "source/blender/build_john_deere_333_p_tier.py",
+    "builder_sha256": "66abfba85d5a77cab783b4c371fb8b3d510b52203d8ab266f56adba32070b6f0"
+  },
+  "artifacts": {
+    "blend": {
+      "path": "source/blender/john-deere-333-p-tier-structural-study.blend",
+      "sha256": "81329d8f4e51496fa61ab1a3477ec4513d7dd777c9376b3e55db008d2903222f",
+      "bytes": 222117
+    },
+    "glb": {
+      "path": "assets/john-deere-333-p-tier-structural-study.glb",
+      "sha256": "21eaf89b4b83b6ff6847d064d670b14a72bed604225e65e69942012913f0a434",
+      "bytes": 2645108
+    },
+    "validation": {
+      "path": "production/validation.json",
+      "sha256": "049422268fd5a2a10fa233a44d4a117634daa8834b2156e9801e369c8adee6b3",
+      "bytes": 11203
+    }
+  },
+  "scene": {
+    "units": "meters",
+    "machine_axes": "+X toward bucket, +Y vertical, +Z machine right",
+    "blender_storage_mapping": "machine (X,Y,Z) -> Blender (X,Z,Y)",
+    "glb_export_y_up": true,
+    "bounds": {
+      "machine_axes_m": {
+        "fixed_machine_without_bucket": {
+          "min": [
+            -1.77,
+            0.0,
+            -1.025
+          ],
+          "max": [
+            1.4,
+            2.22,
+            1.025
+          ],
+          "size": [
+            3.17,
+            2.22,
+            2.05
+          ]
+        },
+        "stowed_with_reconstructed_foundry_bucket": {
+          "min": [
+            -1.77,
+            0.0,
+            -1.04
+          ],
+          "max": [
+            2.07,
+            2.22,
+            1.04
+          ],
+          "size": [
+            3.84,
+            2.22,
+            2.08
+          ]
+        }
+      },
+      "note": "Explicit constraint references; not a claim that brochure art is a scale drawing."
+    },
+    "counts": {
+      "objects": 273,
+      "meshes": 254,
+      "triangles": 40312,
+      "vertices": 20664,
+      "materials": 12
+    }
+  },
+  "semantic_nodes": {
+    "JD333P_Root": true,
+    "MainFrame_Lower": true,
+    "Cab_ROPS_Root_Reconstructed": true,
+    "TrackBelt_L": true,
+    "TrackBelt_R": true,
+    "VerticalLift_LowerArm_L": true,
+    "VerticalLift_LowerArm_R": true,
+    "VerticalLift_UpperArm_L": true,
+    "VerticalLift_UpperArm_R": true,
+    "LiftCrossmember": true,
+    "LiftCylinder_Barrel_L": true,
+    "LiftCylinder_Rod_L": true,
+    "LiftCylinder_Barrel_R": true,
+    "LiftCylinder_Rod_R": true,
+    "BucketTiltCylinder_Barrel": true,
+    "BucketTiltCylinder_Rod": true,
+    "BucketTiltLink_Reconstructed": true,
+    "QuickAttach_Interface_Reconstructed": true,
+    "BucketPivot_Root": true,
+    "FoundryBucket_VisualBasis": true,
+    "Chassis_Hit": true,
+    "Cab_Hit": true,
+    "LeftTrack_Hit": true,
+    "RightTrack_Hit": true,
+    "LiftSystem_Inspect": true,
+    "Bucket_Inspect": true,
+    "OperatorStation_Inspect": true
+  },
+  "manufacturer_published_constraints_used": [
+    {
+      "id": "length-no-bucket",
+      "value": 3.17,
+      "source_id": "JD-333P-MK333CAU",
+      "location": "PDF page 6",
+      "use": "geometry_constraint"
+    },
+    {
+      "id": "length-foundry-bucket",
+      "value": 3.84,
+      "source_id": "JD-333P-MK333CAU",
+      "location": "PDF page 6",
+      "use": "geometry_constraint"
+    },
+    {
+      "id": "width-450-track",
+      "value": 2.05,
+      "source_id": "JD-333P-MK333CAU",
+      "location": "PDF page 6",
+      "use": "geometry_constraint"
+    },
+    {
+      "id": "rops-height",
+      "value": 2.22,
+      "source_id": "JD-333P-MK333CAU",
+      "location": "PDF page 6",
+      "use": "geometry_constraint"
+    },
+    {
+      "id": "hinge-pin-height",
+      "value": 3.35,
+      "source_id": "JD-333P-MK333CAU",
+      "location": "PDF page 6",
+      "use": "geometry_constraint"
+    },
+    {
+      "id": "dump-height",
+      "value": 2.69,
+      "source_id": "JD-333P-MK333CAU",
+      "location": "PDF page 6",
+      "use": "geometry_constraint"
+    },
+    {
+      "id": "dump-reach",
+      "value": 0.74,
+      "source_id": "JD-333P-MK333CAU",
+      "location": "PDF page 6",
+      "use": "geometry_constraint"
+    },
+    {
+      "id": "ground-clearance",
+      "value": 0.25,
+      "source_id": "JD-333P-MK333CAU",
+      "location": "PDF page 6",
+      "use": "geometry_constraint"
+    },
+    {
+      "id": "dump-angle",
+      "value": 48.0,
+      "source_id": "JD-333P-MK333CAU",
+      "location": "PDF page 6",
+      "use": "geometry_constraint"
+    },
+    {
+      "id": "rollback-angle",
+      "value": 35.0,
+      "source_id": "JD-333P-MK333CAU",
+      "location": "PDF page 6",
+      "use": "geometry_constraint"
+    },
+    {
+      "id": "departure-angle",
+      "value": 30.0,
+      "unit": "deg",
+      "source_id": "JD-333P-MK333CAU",
+      "location": "PDF page 6, dimension I",
+      "use": "retained_constraint_geometry_qualification_pending"
+    },
+    {
+      "id": "front-turn-radius",
+      "value": 2.18,
+      "unit": "m",
+      "source_id": "JD-333P-MK333CAU",
+      "location": "PDF page 6, dimension J",
+      "use": "retained_motion_constraint_solver_pending"
+    },
+    {
+      "id": "track-rollers-per-side",
+      "value": 5,
+      "unit": "count",
+      "source_id": "JD-333P-MK333CAU",
+      "location": "PDF page 6",
+      "use": "component_count; centers and flange geometry reconstructed"
+    },
+    {
+      "id": "track-idlers-per-side",
+      "value": 2,
+      "unit": "count",
+      "source_id": "JD-333P-MK333CAU",
+      "location": "PDF page 6",
+      "use": "component_count; centers and flange geometry reconstructed"
+    }
+  ],
+  "reconstructed_values": {
+    "rear_reference_x_m": -1.77,
+    "front_machine_reference_x_m": 1.4,
+    "dump_reach_reference_x_m": 1.0,
+    "stowed_hinge_xyz_m": [
+      1.3427,
+      0.5634,
+      0.0
+    ],
+    "full_lift_hinge_xyz_m": [
+      1.146,
+      3.35,
+      0.0
+    ],
+    "bucket_hinge_to_lip_m": 0.8882,
+    "bucket_visual_width_m": 2.08,
+    "track_center_z_m": 0.8,
+    "track_visual_path_length_m": 2.42,
+    "track_visual_height_m": 0.66,
+    "track_tread_count_per_side": 46,
+    "rear_lower_lift_pivot_xyz_m": [
+      -0.92,
+      1.03,
+      0.0
+    ],
+    "rear_upper_lift_pivot_xyz_m": [
+      -0.72,
+      1.48,
+      0.0
+    ],
+    "lift_cylinder_base_xyz_m": [
+      -0.98,
+      0.55,
+      0.0
+    ],
+    "stowed_carriage_lower_xyz_m": [
+      1.15,
+      0.53,
+      0.0
+    ],
+    "stowed_carriage_upper_xyz_m": [
+      1.26,
+      0.88,
+      0.0
+    ],
+    "full_carriage_lower_xyz_m": [
+      1.03,
+      3.02,
+      0.0
+    ],
+    "full_carriage_upper_xyz_m": [
+      1.146,
+      3.35,
+      0.0
+    ],
+    "quick_attach_plate_thickness_m": 0.08,
+    "structural_triangle_budget": 100000
+  },
+  "unresolved_choices_and_mechanical_gaps": [
+    "foundry bucket exact part and cutting edge",
+    "quick attachment interface geometry",
+    "cab door and lighting package",
+    "anti-vibration undercarriage option",
+    "counterweight quantity",
+    "public material and branding authorization",
+    "lift-arm pivot coordinates and link lengths",
+    "lift-cylinder anchors and stroke",
+    "bucket tilt-linkage topology and cylinder anchors",
+    "track link pitch, sprocket phase, idler and roller centers",
+    "service-opening angle and exact cab quick-pivot axis"
+  ],
+  "renders": [
+    {
+      "path": "review/renders/333p-front-three-quarter-stowed.png",
+      "sha256": "ebd1c3bd6ff54e18e3e2e4daa9ff7c1751749d1d14f0078a3bc9d8d130ec20d3",
+      "bytes": 994733
+    },
+    {
+      "path": "review/renders/333p-side-stowed.png",
+      "sha256": "2d808c7876d2fab88ec471c8837ae19f94c581630b938fe2ce5c2e2e80603392",
+      "bytes": 908013
+    },
+    {
+      "path": "review/renders/333p-rear-three-quarter-stowed.png",
+      "sha256": "b69966460a11fd743a1f41231275e8fdb0f1f6e72e1130872baa7c998d43944e",
+      "bytes": 1119878
+    },
+    {
+      "path": "review/renders/333p-undercarriage-detail.png",
+      "sha256": "a38ff3c595173db037ece9b7993ebf82b6b227252d4e17e4dd429d1c7d635a6f",
+      "bytes": 988291
+    },
+    {
+      "path": "review/renders/333p-linkage-detail-stowed.png",
+      "sha256": "71cc481b0b7c1160cc682dbd1111dcfe2bffba66e8b3b5b65387b5953c64dd06",
+      "bytes": 1227621
+    },
+    {
+      "path": "review/renders/333p-side-full-lift-dump.png",
+      "sha256": "5d98386de28245c6fbab9a43c7f6be62d7c861a92aae64f68307d5d52bc06fb6",
+      "bytes": 872722
+    },
+    {
+      "path": "review/renders/333p-front-three-quarter-full-lift.png",
+      "sha256": "348c804a392b7826e8d2130c36cfb543b4877bccc15428b5d81563f2cb08d708",
+      "bytes": 919596
+    }
+  ],
+  "build_verdict": "PASS",
+  "validation_verdict": "PASS",
+  "higher_stage_gates": "PENDING"
+}

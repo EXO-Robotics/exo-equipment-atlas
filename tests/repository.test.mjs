@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { validateRepository } from "../scripts/validate-repository.mjs";
+import { validateProductionAssets } from "../scripts/validate-production-assets.mjs";
 
 test("tracked machine packages are internally consistent", async () => {
   const result = await validateRepository();
@@ -14,4 +15,14 @@ test("private official sources match the frozen hashes when present", async () =
   const result = await validateRepository({ requirePrivateSources: true });
   assert.deepEqual(result.errors, []);
   assert.equal(result.summary.private_sources_checked, 3);
+});
+
+test("technical structural studies match their receipts and exported GLBs", async () => {
+  const result = await validateProductionAssets();
+  assert.deepEqual(result.errors, []);
+  assert.equal(result.summary.machines, 3);
+  assert.equal(result.summary.blends, 3);
+  assert.equal(result.summary.glbs, 3);
+  assert.equal(result.summary.renders, 18);
+  assert.ok(result.summary.glb_nodes >= 900);
 });

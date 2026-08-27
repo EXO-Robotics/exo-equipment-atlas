@@ -1,0 +1,201 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "cat-320",
+  "configuration_id": "CAT-320-07H-NAM-RB57-R29-HD119-LU-TG790-CW42-CANDIDATE",
+  "candidate_class": "technical_structural_study",
+  "verdict": "PASS",
+  "bounds": {
+    "min_m": [
+      -2.355,
+      0.0009,
+      -1.585
+    ],
+    "max_m": [
+      7.2263,
+      3.1558,
+      1.585
+    ],
+    "size_m": [
+      9.5813,
+      3.1549,
+      3.17
+    ]
+  },
+  "counts": {
+    "objects": 284,
+    "meshes": 253,
+    "empties": 31,
+    "triangles": 47672,
+    "materials": 9
+  },
+  "gates": [
+    {
+      "id": "builder-execution",
+      "status": "PASS",
+      "detail": "Factory-startup background builder reached receipt generation."
+    },
+    {
+      "id": "candidate-class-boundary",
+      "status": "PASS",
+      "detail": "technical_structural_study; not engineering authority."
+    },
+    {
+      "id": "scene-units-and-axes",
+      "status": "PASS",
+      "detail": "Meters; +X toward bucket, +Y vertical, +Z machine right."
+    },
+    {
+      "id": "independent-authoring-boundary",
+      "status": "PASS",
+      "detail": "No CAD, copied texture, downloaded geometry, logo, or manufacturer binary is embedded."
+    },
+    {
+      "id": "required-semantic-nodes",
+      "status": "PASS",
+      "detail": {
+        "Machine_Root": true,
+        "Undercarriage_ROOT": true,
+        "Track_L_ROOT": true,
+        "Track_R_ROOT": true,
+        "Upper_Swing_Pivot": true,
+        "Upper_ROOT": true,
+        "Boom_Pivot": true,
+        "Boom_ROOT": true,
+        "Stick_Pivot": true,
+        "Stick_ROOT": true,
+        "Bucket_Pivot": true,
+        "Bucket_ROOT": true,
+        "Hydraulics_ROOT": true,
+        "Linkage_ROOT": true,
+        "Inspection_Volumes": true,
+        "PIVOT_Attachment_Pin": true,
+        "INSPECT_Transport_Envelope": true
+      }
+    },
+    {
+      "id": "hierarchy-and-pivot-parenting",
+      "status": "PASS",
+      "detail": "Upper, boom, stick, and bucket are separate pivot-parented groups."
+    },
+    {
+      "id": "track-published-counts",
+      "status": "PASS",
+      "detail": {
+        "shoes": [
+          49,
+          49
+        ],
+        "lower_rollers": [
+          8,
+          8
+        ],
+        "carrier_rollers": [
+          2,
+          2
+        ]
+      }
+    },
+    {
+      "id": "transport-width-envelope",
+      "status": "PASS",
+      "detail": {
+        "modeled_m": 3.17,
+        "published_max_m": 3.17,
+        "classification": "published_constraint_reconstructed_geometry"
+      }
+    },
+    {
+      "id": "transport-height-envelope",
+      "status": "PASS",
+      "detail": {
+        "modeled_m": 3.1549,
+        "published_max_m": 3.16,
+        "classification": "published_constraint_reconstructed_pose"
+      }
+    },
+    {
+      "id": "transport-length-envelope",
+      "status": "PASS",
+      "detail": {
+        "modeled_m": 9.5813,
+        "published_max_m": 9.53,
+        "classification": "published_constraint_reconstructed_pose"
+      }
+    },
+    {
+      "id": "object-count",
+      "status": "PASS",
+      "detail": 284
+    },
+    {
+      "id": "triangle-budget",
+      "status": "PASS",
+      "detail": {
+        "triangles": 47672,
+        "budget": [
+          20000,
+          220000
+        ]
+      }
+    },
+    {
+      "id": "neutral-unbranded-materials",
+      "status": "PASS",
+      "detail": "Neutral materials only; no manufacturer logo or exact livery claim."
+    },
+    {
+      "id": "transport-pose-cylinder-visual-closure",
+      "status": "PASS",
+      "detail": "Static barrel/rod objects join reconstructed anchor empties in the retained transport pose; published stroke travel is not asserted."
+    },
+    {
+      "id": "review-renders-nonempty",
+      "status": "PASS",
+      "detail": {
+        "count": 6,
+        "minimum_bytes": 20000
+      }
+    },
+    {
+      "id": "configuration-freeze",
+      "status": "PENDING",
+      "detail": "Research candidate retains unresolved coupler, thumb, OPG, grade-control, camera, serial/order, and rights choices."
+    },
+    {
+      "id": "mechanical-solver",
+      "status": "PENDING",
+      "detail": "No solver, limits, or cylinder travel validation yet."
+    },
+    {
+      "id": "published-working-envelope",
+      "status": "PENDING",
+      "detail": "Dig depth/reach are recorded evidence constraints but are not demonstrated by this static study."
+    },
+    {
+      "id": "bucket-linkage-kinematic-closure",
+      "status": "PENDING",
+      "detail": "Current linkage is reconstructed visual closure only."
+    },
+    {
+      "id": "ground-self-swept-collision",
+      "status": "PENDING",
+      "detail": "No swept-volume or collision solver exists."
+    },
+    {
+      "id": "critic-human-visual-review",
+      "status": "PENDING",
+      "detail": "Overall critic must inspect exact render and asset hashes."
+    },
+    {
+      "id": "viewer-browser-accessibility-mobile-selection-performance",
+      "status": "PENDING",
+      "detail": "No viewer integration in this lane."
+    },
+    {
+      "id": "publication-and-deployment",
+      "status": "PENDING",
+      "detail": "Only the overall publisher may advance publication state."
+    }
+  ],
+  "failed_gate_ids": []
+}

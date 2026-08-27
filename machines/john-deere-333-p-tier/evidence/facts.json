@@ -12,7 +12,11 @@
     {"id": "dump-reach", "subject": "dump reach with foundry bucket", "value": 0.74, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-333P-MK333CAU", "location": "PDF page 6, dimension G"},
     {"id": "ground-clearance", "subject": "ground clearance", "value": 0.25, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-333P-MK333CAU", "location": "PDF page 6, dimension H"},
     {"id": "dump-angle", "subject": "bucket dump angle at full lift", "value": 48, "unit": "deg", "authority": "manufacturer_published", "source_id": "JD-333P-MK333CAU", "location": "PDF page 6, dimension K"},
-    {"id": "rollback-angle", "subject": "bucket rollback at ground level", "value": 35, "unit": "deg", "authority": "manufacturer_published", "source_id": "JD-333P-MK333CAU", "location": "PDF page 6, dimension L"}
+    {"id": "rollback-angle", "subject": "bucket rollback at ground level", "value": 35, "unit": "deg", "authority": "manufacturer_published", "source_id": "JD-333P-MK333CAU", "location": "PDF page 6, dimension L"},
+    {"id": "departure-angle", "subject": "angle of departure", "value": 30, "unit": "deg", "authority": "manufacturer_published", "source_id": "JD-333P-MK333CAU", "location": "PDF page 6, dimension I"},
+    {"id": "front-turn-radius", "subject": "front turn radius with foundry bucket", "value": 2.18, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-333P-MK333CAU", "location": "PDF page 6, dimension J"},
+    {"id": "track-rollers-per-side", "subject": "triple-flange track rollers on each side", "value": 5, "unit": "count", "authority": "manufacturer_published", "source_id": "JD-333P-MK333CAU", "location": "PDF page 6"},
+    {"id": "track-idlers-per-side", "subject": "double-flange track idlers on each side", "value": 2, "unit": "count", "authority": "manufacturer_published", "source_id": "JD-333P-MK333CAU", "location": "PDF page 6"}
   ],
   "issues": [
     {"id": "lift-linkage", "status": "unresolved", "detail": "The admitted publication establishes vertical-lift behavior and endpoint dimensions but not lift-arm pivot coordinates, link lengths, cylinder strokes, or attachment-interface geometry."},

@@ -1,0 +1,367 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-333-p-tier",
+  "configuration_id": "JD-333P-NAM-STD-T450-FB-CANDIDATE",
+  "candidate_class": "technical_structural_study",
+  "engineering_authority": false,
+  "verdict": "PASS",
+  "verdict_scope": "technical_structural_study_only",
+  "higher_stage_gates": "PENDING",
+  "failed_gates": [],
+  "gates": [
+    {
+      "id": "published-length-no-bucket",
+      "status": "PASS",
+      "detail": "Published constraint represented by explicit dimensional references; hidden geometry remains reconstructed.",
+      "expected": {
+        "value": 3.17,
+        "tolerance": 0.005
+      },
+      "actual": {
+        "value": 3.17,
+        "absolute_delta": 0.0
+      }
+    },
+    {
+      "id": "published-length-foundry-bucket",
+      "status": "PASS",
+      "detail": "Published constraint represented by explicit dimensional references; hidden geometry remains reconstructed.",
+      "expected": {
+        "value": 3.84,
+        "tolerance": 0.008
+      },
+      "actual": {
+        "value": 3.84027,
+        "absolute_delta": 0.00027
+      }
+    },
+    {
+      "id": "published-width-450-track",
+      "status": "PASS",
+      "detail": "Published constraint represented by explicit dimensional references; hidden geometry remains reconstructed.",
+      "expected": {
+        "value": 2.05,
+        "tolerance": 0.005
+      },
+      "actual": {
+        "value": 2.05,
+        "absolute_delta": 0.0
+      }
+    },
+    {
+      "id": "published-rops-height",
+      "status": "PASS",
+      "detail": "Published constraint represented by explicit dimensional references; hidden geometry remains reconstructed.",
+      "expected": {
+        "value": 2.22,
+        "tolerance": 0.005
+      },
+      "actual": {
+        "value": 2.22,
+        "absolute_delta": 0.0
+      }
+    },
+    {
+      "id": "published-hinge-pin-height",
+      "status": "PASS",
+      "detail": "Published constraint represented by explicit dimensional references; hidden geometry remains reconstructed.",
+      "expected": {
+        "value": 3.35,
+        "tolerance": 0.005
+      },
+      "actual": {
+        "value": 3.35,
+        "absolute_delta": 0.0
+      }
+    },
+    {
+      "id": "published-dump-height",
+      "status": "PASS",
+      "detail": "Published constraint represented by explicit dimensional references; hidden geometry remains reconstructed.",
+      "expected": {
+        "value": 2.69,
+        "tolerance": 0.008
+      },
+      "actual": {
+        "value": 2.68994,
+        "absolute_delta": 6e-05
+      }
+    },
+    {
+      "id": "published-dump-reach",
+      "status": "PASS",
+      "detail": "Published constraint represented by explicit dimensional references; hidden geometry remains reconstructed.",
+      "expected": {
+        "value": 0.74,
+        "tolerance": 0.008
+      },
+      "actual": {
+        "value": 0.74032,
+        "absolute_delta": 0.00032
+      }
+    },
+    {
+      "id": "published-ground-clearance",
+      "status": "PASS",
+      "detail": "Published constraint represented by explicit dimensional references; hidden geometry remains reconstructed.",
+      "expected": {
+        "value": 0.25,
+        "tolerance": 0.005
+      },
+      "actual": {
+        "value": 0.25,
+        "absolute_delta": 0.0
+      }
+    },
+    {
+      "id": "published-dump-angle",
+      "status": "PASS",
+      "detail": "Measured hinge-to-cutting-edge baseline angle below machine +X toward machine -Y; this is a visualization convention, not a claim about unpublished bucket datum geometry.",
+      "expected": {
+        "value": 48.0,
+        "tolerance": 0.1
+      },
+      "actual": {
+        "value": 48.0,
+        "absolute_delta": 0.0,
+        "measurement_convention": "atan2(hinge_y - lip_y, lip_x - hinge_x), degrees below +X",
+        "hinge_xyz_m": [
+          1.146,
+          3.35,
+          0.0
+        ],
+        "cutting_edge_lip_xyz_m": [
+          1.74032,
+          2.68994,
+          0.0
+        ]
+      }
+    },
+    {
+      "id": "published-rollback-angle",
+      "status": "PASS",
+      "detail": "Measured hinge-to-cutting-edge baseline angle below machine +X toward machine -Y; this is a visualization convention, not a claim about unpublished bucket datum geometry.",
+      "expected": {
+        "value": 35.0,
+        "tolerance": 0.1
+      },
+      "actual": {
+        "value": 35.0,
+        "absolute_delta": 0.0,
+        "measurement_convention": "atan2(hinge_y - lip_y, lip_x - hinge_x), degrees below +X",
+        "hinge_xyz_m": [
+          1.3427,
+          0.5634,
+          0.0
+        ],
+        "cutting_edge_lip_xyz_m": [
+          2.07027,
+          0.05395,
+          0.0
+        ]
+      }
+    },
+    {
+      "id": "semantic-node-presence",
+      "status": "PASS",
+      "detail": "Required technical-study semantic hierarchy is present.",
+      "expected": [
+        "JD333P_Root",
+        "MainFrame_Lower",
+        "Cab_ROPS_Root_Reconstructed",
+        "TrackBelt_L",
+        "TrackBelt_R",
+        "VerticalLift_LowerArm_L",
+        "VerticalLift_LowerArm_R",
+        "VerticalLift_UpperArm_L",
+        "VerticalLift_UpperArm_R",
+        "LiftCrossmember",
+        "LiftCylinder_Barrel_L",
+        "LiftCylinder_Rod_L",
+        "LiftCylinder_Barrel_R",
+        "LiftCylinder_Rod_R",
+        "BucketTiltCylinder_Barrel",
+        "BucketTiltCylinder_Rod",
+        "BucketTiltLink_Reconstructed",
+        "QuickAttach_Interface_Reconstructed",
+        "BucketPivot_Root",
+        "FoundryBucket_VisualBasis",
+        "Chassis_Hit",
+        "Cab_Hit",
+        "LeftTrack_Hit",
+        "RightTrack_Hit",
+        "LiftSystem_Inspect",
+        "Bucket_Inspect",
+        "OperatorStation_Inspect"
+      ],
+      "actual": {
+        "missing": []
+      }
+    },
+    {
+      "id": "published-undercarriage-component-counts",
+      "status": "PASS",
+      "detail": "Published roller/idler counts represented; centers and flange geometry reconstructed.",
+      "expected": {
+        "track_rollers_per_side": 5,
+        "track_idlers_per_side": 2
+      },
+      "actual": {
+        "left_rollers": [
+          "TrackRoller_L_01",
+          "TrackRoller_L_02",
+          "TrackRoller_L_03",
+          "TrackRoller_L_04",
+          "TrackRoller_L_05"
+        ],
+        "right_rollers": [
+          "TrackRoller_R_01",
+          "TrackRoller_R_02",
+          "TrackRoller_R_03",
+          "TrackRoller_R_04",
+          "TrackRoller_R_05"
+        ],
+        "left_idlers": [
+          "TrackIdler_L_01",
+          "TrackIdler_L_02"
+        ],
+        "right_idlers": [
+          "TrackIdler_R_01",
+          "TrackIdler_R_02"
+        ]
+      }
+    },
+    {
+      "id": "structural-triangle-budget",
+      "status": "PASS",
+      "detail": "Study is detailed enough for review and remains inside the reconstructed web-study budget.",
+      "expected": {
+        "minimum": 5000,
+        "maximum": 100000
+      },
+      "actual": 40312
+    },
+    {
+      "id": "render-non-emptiness",
+      "status": "PASS",
+      "detail": "Seven deterministic review renders have non-trivial bytes and luminance range; human visual review remains pending.",
+      "expected": {
+        "minimum_views": 7,
+        "minimum_bytes": 30000,
+        "minimum_luminance_range": 0.15
+      },
+      "actual": {
+        "review/renders/333p-front-three-quarter-stowed.png": {
+          "bytes": 994733,
+          "sampled_luminance_min": 0.0,
+          "sampled_luminance_max": 1.0,
+          "sampled_luminance_range": 1.0
+        },
+        "review/renders/333p-side-stowed.png": {
+          "bytes": 908013,
+          "sampled_luminance_min": 0.0,
+          "sampled_luminance_max": 0.999166,
+          "sampled_luminance_range": 0.999166
+        },
+        "review/renders/333p-rear-three-quarter-stowed.png": {
+          "bytes": 1119878,
+          "sampled_luminance_min": 0.0,
+          "sampled_luminance_max": 0.991323,
+          "sampled_luminance_range": 0.991323
+        },
+        "review/renders/333p-undercarriage-detail.png": {
+          "bytes": 988291,
+          "sampled_luminance_min": 0.0,
+          "sampled_luminance_max": 0.99386,
+          "sampled_luminance_range": 0.99386
+        },
+        "review/renders/333p-linkage-detail-stowed.png": {
+          "bytes": 1227621,
+          "sampled_luminance_min": 0.003088,
+          "sampled_luminance_max": 0.982595,
+          "sampled_luminance_range": 0.979507
+        },
+        "review/renders/333p-side-full-lift-dump.png": {
+          "bytes": 872722,
+          "sampled_luminance_min": 0.0,
+          "sampled_luminance_max": 1.0,
+          "sampled_luminance_range": 1.0
+        },
+        "review/renders/333p-front-three-quarter-full-lift.png": {
+          "bytes": 919596,
+          "sampled_luminance_min": 0.0,
+          "sampled_luminance_max": 1.0,
+          "sampled_luminance_range": 1.0
+        }
+      }
+    },
+    {
+      "id": "published-departure-angle-envelope",
+      "status": "PENDING",
+      "detail": "The 30 degree published value is retained, but the brochure is not a scale drawing and the complete rear swept envelope has not been qualified.",
+      "expected": {
+        "value": 30.0,
+        "unit": "deg"
+      }
+    },
+    {
+      "id": "published-front-turn-radius-motion",
+      "status": "PENDING",
+      "detail": "The 2.18 m foundry-bucket turn radius is retained as a motion constraint; no travel/steering swept-volume solver exists in this structural study.",
+      "expected": {
+        "value": 2.18,
+        "unit": "m"
+      }
+    },
+    {
+      "id": "lift-linkage-closure",
+      "status": "PENDING",
+      "detail": "Exact pivot and link geometry is unresolved; structural-study beams are not a qualified solver."
+    },
+    {
+      "id": "bucket-linkage-closure",
+      "status": "PENDING",
+      "detail": "Exact tilt-linkage topology and anchors are unresolved."
+    },
+    {
+      "id": "cylinder-length-continuity",
+      "status": "PENDING",
+      "detail": "Cylinder anchors and strokes are reconstructed and not yet mechanically qualified."
+    },
+    {
+      "id": "ground-collision",
+      "status": "PENDING",
+      "detail": "Collision proxies exist but no swept-pose collision solver has run."
+    },
+    {
+      "id": "self-collision",
+      "status": "PENDING",
+      "detail": "No swept-volume self-collision qualification has run."
+    },
+    {
+      "id": "track-phase-continuity",
+      "status": "PENDING",
+      "detail": "Track path is a static visual reconstruction; pitch and phase remain unresolved."
+    },
+    {
+      "id": "exact-attachment-interface",
+      "status": "PENDING",
+      "detail": "Quick-attach and exact foundry bucket identity are unresolved."
+    },
+    {
+      "id": "human-visual-critic",
+      "status": "PENDING",
+      "detail": "Overall critic has not yet approved the exact render and artifact hashes."
+    },
+    {
+      "id": "viewer-browser-accessibility-mobile-performance-selection",
+      "status": "PENDING",
+      "detail": "No shared-viewer integration or browser qualification is claimed."
+    },
+    {
+      "id": "publication-release-deployment",
+      "status": "PENDING",
+      "detail": "Only the overall publisher may advance or deploy this study."
+    }
+  ]
+}

@@ -33,6 +33,9 @@ machines/<machine>/
   mechanism.json                joints, motion authority, and solver gates
   evidence/source-manifest.json official sources and frozen binary identity
   evidence/facts.json           page-bound fact register
+  source/blender/               deterministic independent authoring scripts
+  production/                   asset receipts and explicit gate results
+  review/renders/               direct visual-review evidence
 schemas/                         documented JSON contracts
 scripts/validate-repository.mjs  fail-closed repository and source validator
 research/private/                gitignored manufacturer research inputs
@@ -53,5 +56,7 @@ requires the private PDFs to exist locally and match the tracked SHA-256 hashes.
 ## Current state
 
 This is a research foundation, not a viewer release. All three machine packages
-are intentionally marked `research_candidate`; no GLB, solver, browser proof,
-human visual approval, or deployment receipt exists yet.
+are intentionally marked `research_candidate`. Blender work created before an
+exact configuration freeze is classified as a technical structural study under
+`docs/BLENDER_PRODUCTION_STANDARD.md`; it is not solver, browser, human-review,
+or deployment proof.

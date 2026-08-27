@@ -13,6 +13,18 @@
     {"id": "undercarriage-width", "subject": "undercarriage width with 790 mm shoes", "value": 3.17, "unit": "m", "authority": "manufacturer_published", "source_id": "CAT-320-AEXQ3758-01-NAM", "location": "PDF page 4"},
     {"id": "maximum-digging-depth", "subject": "maximum digging depth with selected reach equipment", "value": 6.73, "unit": "m", "authority": "manufacturer_published", "source_id": "CAT-320-AEXQ3758-01-NAM", "location": "PDF page 5"},
     {"id": "maximum-ground-reach", "subject": "maximum reach at ground line", "value": 9.87, "unit": "m", "authority": "manufacturer_published", "source_id": "CAT-320-AEXQ3758-01-NAM", "location": "PDF page 5"},
+    {"id": "top-cab-height", "subject": "height to top of cab", "value": 2.96, "unit": "m", "authority": "manufacturer_published", "source_id": "CAT-320-AEXQ3758-01-NAM", "location": "PDF page 4, dimension 1"},
+    {"id": "upperframe-width", "subject": "upperframe width", "value": 2.78, "unit": "m", "authority": "manufacturer_published", "source_id": "CAT-320-AEXQ3758-01-NAM", "location": "PDF page 4, dimension 3"},
+    {"id": "tail-swing-radius", "subject": "tail swing radius", "value": 2.83, "unit": "m", "authority": "manufacturer_published", "source_id": "CAT-320-AEXQ3758-01-NAM", "location": "PDF page 4, dimension 4"},
+    {"id": "counterweight-clearance", "subject": "counterweight clearance", "value": 1.05, "unit": "m", "authority": "manufacturer_published", "source_id": "CAT-320-AEXQ3758-01-NAM", "location": "PDF page 4, dimension 5"},
+    {"id": "ground-clearance", "subject": "ground clearance", "value": 0.47, "unit": "m", "authority": "manufacturer_published", "source_id": "CAT-320-AEXQ3758-01-NAM", "location": "PDF page 4, dimension 6"},
+    {"id": "track-length", "subject": "track length", "value": 4.45, "unit": "m", "authority": "manufacturer_published", "source_id": "CAT-320-AEXQ3758-01-NAM", "location": "PDF page 4, dimension 7"},
+    {"id": "roller-center-length", "subject": "length to center of rollers", "value": 3.65, "unit": "m", "authority": "manufacturer_published", "source_id": "CAT-320-AEXQ3758-01-NAM", "location": "PDF page 4, dimension 8"},
+    {"id": "track-gauge", "subject": "track gauge", "value": 2.38, "unit": "m", "authority": "manufacturer_published", "source_id": "CAT-320-AEXQ3758-01-NAM", "location": "PDF page 4, dimension 9"},
+    {"id": "bucket-tip-radius", "subject": "HD bucket tip radius", "value": 1.57, "unit": "m", "authority": "manufacturer_published", "source_id": "CAT-320-AEXQ3758-01-NAM", "location": "PDF page 4"},
+    {"id": "track-shoes-per-side", "subject": "track shoes on each side", "value": 49, "unit": "count", "authority": "manufacturer_published", "source_id": "CAT-320-AEXQ3758-01-NAM", "location": "PDF page 2"},
+    {"id": "track-rollers-per-side", "subject": "track rollers on each side", "value": 8, "unit": "count", "authority": "manufacturer_published", "source_id": "CAT-320-AEXQ3758-01-NAM", "location": "PDF page 2"},
+    {"id": "carrier-rollers-per-side", "subject": "carrier rollers on each side", "value": 2, "unit": "count", "authority": "manufacturer_published", "source_id": "CAT-320-AEXQ3758-01-NAM", "location": "PDF page 2"},
     {"id": "upper-swing", "subject": "upper-structure visual rotation", "value": 360, "unit": "deg", "authority": "reconstructed", "source_id": "CAT-320-AEXQ3758-01-NAM", "location": "visualization boundary; publication gives swing speed, not UI travel"}
   ],
   "issues": [

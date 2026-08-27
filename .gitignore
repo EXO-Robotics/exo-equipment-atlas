@@ -1,6 +1,9 @@
 node_modules/
 dist/
 _site/
+tmp/
+machines/*/tmp/
+*.blend1
 .DS_Store
 
 # Manufacturer publications and reference imagery are research inputs only.

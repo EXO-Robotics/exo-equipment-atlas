@@ -7,6 +7,7 @@
   "description": "Evidence-bound, manufacturer-neutral interactive equipment explorer platform",
   "scripts": {
     "check": "node scripts/validate-repository.mjs",
+    "check:production": "node scripts/validate-production-assets.mjs",
     "check:sources": "node scripts/validate-repository.mjs --require-private-sources",
     "test": "node --test tests/*.test.mjs"
   },

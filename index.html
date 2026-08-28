@@ -62,16 +62,25 @@
           </p>
         </div>
 
-        <div class="viewer-status" role="status" aria-live="polite">
-          <span class="status-dot" aria-hidden="true"></span>
-          <span id="load-status">Loading Cat 320</span>
-        </div>
+        <section class="viewer-panel" aria-labelledby="viewer-panel-title">
+          <div class="viewer-panel-heading">
+            <div>
+              <span>Explore</span>
+              <h2 id="viewer-panel-title">Machine view</h2>
+            </div>
+          </div>
 
-        <div class="viewer-actions" aria-label="3D viewer controls">
-          <button id="orbit-toggle" class="text-button" type="button" aria-pressed="true">Auto orbit</button>
-          <button id="technical-view" class="text-button" type="button">Technical side</button>
-          <button id="reset-view" class="text-button" type="button">Reset view</button>
-        </div>
+          <div class="viewer-status" role="status" aria-live="polite">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span id="load-status">Loading Cat 320</span>
+          </div>
+
+          <div class="viewer-actions" aria-label="3D viewer controls">
+            <button id="orbit-toggle" class="text-button" type="button" aria-pressed="true">Auto orbit</button>
+            <button id="technical-view" class="text-button" type="button">Technical side</button>
+            <button id="reset-view" class="text-button" type="button">Reset view</button>
+          </div>
+        </section>
 
         <p class="gesture-hint" id="viewer-help">
           <span class="legend-desktop" aria-hidden="true">Drag to orbit · scroll to zoom · arrows, +, −, Home</span>

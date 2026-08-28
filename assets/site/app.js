@@ -230,7 +230,9 @@ function fitCamera(root, definition, immediate = false) {
     fittedSize.y * 0.38,
     0
   );
-  const narrowViewportScale = Math.max(1, 0.72 / Math.max(0.1, camera.aspect));
+  // Tall mobile canvases need extra horizontal breathing room so long machines
+  // remain fully visible between the compact identity and control panel.
+  const narrowViewportScale = Math.max(1, 1.08 / Math.max(0.1, camera.aspect));
   const distance = dominant * definition.cameraBias.distance * narrowViewportScale;
   const azimuth = definition.cameraBias.azimuth;
   const elevation = definition.cameraBias.elevation;

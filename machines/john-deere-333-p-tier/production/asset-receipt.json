@@ -11,23 +11,23 @@
     "version": "5.1.1",
     "factory_startup_background_required": true,
     "builder_path": "source/blender/build_john_deere_333_p_tier.py",
-    "builder_sha256": "66abfba85d5a77cab783b4c371fb8b3d510b52203d8ab266f56adba32070b6f0"
+    "builder_sha256": "9b3a52146bc583a685c6a49050a738f968bc1be853d968abfeb27a09863e4155"
   },
   "artifacts": {
     "blend": {
       "path": "source/blender/john-deere-333-p-tier-structural-study.blend",
-      "sha256": "81329d8f4e51496fa61ab1a3477ec4513d7dd777c9376b3e55db008d2903222f",
-      "bytes": 222117
+      "sha256": "6fabf259bb92156304aa66e0aadafa9911d059a69e17cd82c70a700dd9f13942",
+      "bytes": 231018
     },
     "glb": {
       "path": "assets/john-deere-333-p-tier-structural-study.glb",
-      "sha256": "21eaf89b4b83b6ff6847d064d670b14a72bed604225e65e69942012913f0a434",
-      "bytes": 2645108
+      "sha256": "547cf9c6027629bfb64342b2ca71e35caab1bead30fe6f9753bb45687c05a9ac",
+      "bytes": 2114560
     },
     "validation": {
       "path": "production/validation.json",
-      "sha256": "049422268fd5a2a10fa233a44d4a117634daa8834b2156e9801e369c8adee6b3",
-      "bytes": 11203
+      "sha256": "0e31e127867eb7f575f44c675e6d87238eb21512cae3461aa065d3c1784cfd6e",
+      "bytes": 23083
     }
   },
   "scene": {
@@ -36,6 +36,30 @@
     "blender_storage_mapping": "machine (X,Y,Z) -> Blender (X,Z,Y)",
     "glb_export_y_up": true,
     "bounds": {
+      "evaluated_public_visible_retained_pose": {
+        "axis_order": [
+          "machine_X_longitudinal",
+          "machine_Y_vertical",
+          "machine_Z_right"
+        ],
+        "min_m": [
+          -1.77,
+          0.001172,
+          -1.06
+        ],
+        "max_m": [
+          2.079393,
+          2.22,
+          1.06
+        ],
+        "size_m": [
+          3.849393,
+          2.218828,
+          2.12
+        ],
+        "measured_object_count": 274,
+        "method": "evaluated visible production mesh and curve vertices in retained stowed pose; Studio, Markers, Collision, Inspection, cameras, lights, and hidden helpers excluded"
+      },
       "machine_axes_m": {
         "fixed_machine_without_bucket": {
           "min": [
@@ -55,31 +79,286 @@
           ]
         },
         "stowed_with_reconstructed_foundry_bucket": {
-          "min": [
+          "axis_order": [
+            "machine_X_longitudinal",
+            "machine_Y_vertical",
+            "machine_Z_right"
+          ],
+          "min_m": [
             -1.77,
-            0.0,
-            -1.04
+            0.001172,
+            -1.06
           ],
-          "max": [
-            2.07,
+          "max_m": [
+            2.079393,
             2.22,
-            1.04
+            1.06
           ],
-          "size": [
-            3.84,
-            2.22,
-            2.08
-          ]
+          "size_m": [
+            3.849393,
+            2.218828,
+            2.12
+          ],
+          "measured_object_count": 274,
+          "method": "evaluated visible production mesh and curve vertices in retained stowed pose; Studio, Markers, Collision, Inspection, cameras, lights, and hidden helpers excluded"
         }
       },
-      "note": "Explicit constraint references; not a claim that brochure art is a scale drawing."
+      "note": "Expected references are shown separately from evaluated visible production geometry; brochure art is not treated as a scale drawing."
     },
     "counts": {
-      "objects": 273,
-      "meshes": 254,
-      "triangles": 40312,
-      "vertices": 20664,
+      "classification": "public_glb_decoded_geometry",
+      "nodes": 281,
+      "mesh_nodes": 274,
+      "mesh_resources": 274,
+      "primitives": 274,
+      "position_vertices": 79616,
+      "triangles": 42688,
+      "triangle_method": "decoded glTF accessor element counts; TRIANGLES count/3, strips/fans count-2"
+    },
+    "blend_source_counts": {
+      "classification": "blend_source_scene_evaluated_including_nonpublic_helpers",
+      "objects": 301,
+      "meshes": 278,
+      "triangles": 42904,
+      "vertices": 22008,
       "materials": 12
+    },
+    "count_boundary": "scene.counts is decoded shipped public GLB geometry; scene.blend_source_counts is the independently retained Blender source scene including nonpublic helpers.",
+    "public_glb_contract": {
+      "status": "PASS",
+      "asset_version": "2.0",
+      "scene_direct_root_count": 1,
+      "scene_direct_root_names": [
+        "JD333P_Root"
+      ],
+      "root_identity_trs": true,
+      "node_count": 281,
+      "helper_nodes_present": [],
+      "public_mesh_node_scale_status": "PASS",
+      "public_mesh_node_count": 274,
+      "public_mesh_nodes_non_identity_scale": [],
+      "public_glb_decoded_counts": {
+        "classification": "public_glb_decoded_geometry",
+        "nodes": 281,
+        "mesh_nodes": 274,
+        "mesh_resources": 274,
+        "primitives": 274,
+        "position_vertices": 79616,
+        "triangles": 42688,
+        "triangle_method": "decoded glTF accessor element counts; TRIANGLES count/3, strips/fans count-2"
+      },
+      "unsupported_primitive_modes": [],
+      "glb_y_up": true
+    },
+    "articulated_cylinder_scale_application": {
+      "status": "PASS",
+      "before": {
+        "LiftCylinder_Barrel_L": [
+          0.07,
+          0.07,
+          0.342648
+        ],
+        "LiftCylinder_Barrel_R": [
+          0.07,
+          0.07,
+          0.342648
+        ],
+        "LiftCylinder_Rod_L": [
+          0.042,
+          0.042,
+          0.327271
+        ],
+        "LiftCylinder_Rod_R": [
+          0.042,
+          0.042,
+          0.327271
+        ],
+        "BucketTiltCylinder_Barrel": [
+          0.075,
+          0.075,
+          0.234253
+        ],
+        "BucketTiltCylinder_Rod": [
+          0.043,
+          0.043,
+          0.145942
+        ]
+      },
+      "after": {
+        "LiftCylinder_Barrel_L": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "LiftCylinder_Barrel_R": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "LiftCylinder_Rod_L": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "LiftCylinder_Rod_R": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "BucketTiltCylinder_Barrel": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "BucketTiltCylinder_Rod": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    },
+    "public_scale_application": {
+      "status": "PASS",
+      "public_export_geometry_nodes": 274,
+      "baked_node_count": 14,
+      "before_non_identity": {
+        "AttachmentCarriage_Side_L": [
+          0.183439,
+          0.07,
+          0.08
+        ],
+        "AttachmentCarriage_Side_R": [
+          0.183439,
+          0.07,
+          0.08
+        ],
+        "BucketTiltLink_Reconstructed": [
+          0.024811,
+          0.045,
+          0.055
+        ],
+        "LiftCrossmember": [
+          0.72,
+          0.1,
+          0.1
+        ],
+        "ROPS_FrontPillar_L": [
+          0.655534,
+          0.0425,
+          0.0475
+        ],
+        "ROPS_FrontPillar_R": [
+          0.655534,
+          0.0425,
+          0.0475
+        ],
+        "ROPS_RearPillar_L": [
+          0.65873,
+          0.0425,
+          0.0475
+        ],
+        "ROPS_RearPillar_R": [
+          0.65873,
+          0.0425,
+          0.0475
+        ],
+        "VerticalLift_LowerArm_L": [
+          1.064765,
+          0.065,
+          0.095
+        ],
+        "VerticalLift_LowerArm_R": [
+          1.064765,
+          0.065,
+          0.095
+        ],
+        "VerticalLift_RearRiser_L": [
+          0.246221,
+          0.08,
+          0.085
+        ],
+        "VerticalLift_RearRiser_R": [
+          0.246221,
+          0.08,
+          0.085
+        ],
+        "VerticalLift_UpperArm_L": [
+          1.034456,
+          0.065,
+          0.095
+        ],
+        "VerticalLift_UpperArm_R": [
+          1.034456,
+          0.065,
+          0.095
+        ]
+      },
+      "after_non_identity": {},
+      "before_bounds_m": {
+        "axis_order": [
+          "machine_X_longitudinal",
+          "machine_Y_vertical",
+          "machine_Z_right"
+        ],
+        "min_m": [
+          -1.77,
+          0.001172,
+          -1.06
+        ],
+        "max_m": [
+          2.079393,
+          2.22,
+          1.06
+        ],
+        "size_m": [
+          3.849393,
+          2.218828,
+          2.12
+        ],
+        "measured_object_count": 274,
+        "method": "evaluated visible production mesh and curve vertices in retained stowed pose; Studio, Markers, Collision, Inspection, cameras, lights, and hidden helpers excluded"
+      },
+      "after_bounds_m": {
+        "axis_order": [
+          "machine_X_longitudinal",
+          "machine_Y_vertical",
+          "machine_Z_right"
+        ],
+        "min_m": [
+          -1.77,
+          0.001172,
+          -1.06
+        ],
+        "max_m": [
+          2.079393,
+          2.22,
+          1.06
+        ],
+        "size_m": [
+          3.849393,
+          2.218828,
+          2.12
+        ],
+        "measured_object_count": 274,
+        "method": "evaluated visible production mesh and curve vertices in retained stowed pose; Studio, Markers, Collision, Inspection, cameras, lights, and hidden helpers excluded"
+      },
+      "envelope_delta_m": {
+        "min_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "max_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "size_m": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
     }
   },
   "semantic_nodes": {
@@ -103,13 +382,40 @@
     "QuickAttach_Interface_Reconstructed": true,
     "BucketPivot_Root": true,
     "FoundryBucket_VisualBasis": true,
-    "Chassis_Hit": true,
-    "Cab_Hit": true,
-    "LeftTrack_Hit": true,
-    "RightTrack_Hit": true,
-    "LiftSystem_Inspect": true,
-    "Bucket_Inspect": true,
-    "OperatorStation_Inspect": true
+    "HydraulicHoseBundle_L_01": true,
+    "HydraulicHoseBundle_L_02": true,
+    "HydraulicHoseBundle_R_01": true,
+    "HydraulicHoseBundle_R_02": true
+  },
+  "source_only_helper_nodes": {
+    "Chassis_Hit": {
+      "present_in_blend_source": true,
+      "present_in_public_glb": false
+    },
+    "Cab_Hit": {
+      "present_in_blend_source": true,
+      "present_in_public_glb": false
+    },
+    "LeftTrack_Hit": {
+      "present_in_blend_source": true,
+      "present_in_public_glb": false
+    },
+    "RightTrack_Hit": {
+      "present_in_blend_source": true,
+      "present_in_public_glb": false
+    },
+    "LiftSystem_Inspect": {
+      "present_in_blend_source": true,
+      "present_in_public_glb": false
+    },
+    "Bucket_Inspect": {
+      "present_in_blend_source": true,
+      "present_in_public_glb": false
+    },
+    "OperatorStation_Inspect": {
+      "present_in_blend_source": true,
+      "present_in_public_glb": false
+    }
   },
   "manufacturer_published_constraints_used": [
     {
@@ -159,7 +465,7 @@
       "value": 0.74,
       "source_id": "JD-333P-MK333CAU",
       "location": "PDF page 6",
-      "use": "geometry_constraint"
+      "use": "retained_constraint_reconstructed_datum_pending"
     },
     {
       "id": "ground-clearance",
@@ -230,7 +536,8 @@
       0.0
     ],
     "bucket_hinge_to_lip_m": 0.8882,
-    "bucket_visual_width_m": 2.08,
+    "bucket_core_visual_width_m": 2.08,
+    "bucket_cutting_edge_visual_width_m": 2.12,
     "track_center_z_m": 0.8,
     "track_visual_path_length_m": 2.42,
     "track_visual_height_m": 0.66,
@@ -271,6 +578,11 @@
       0.0
     ],
     "quick_attach_plate_thickness_m": 0.08,
+    "foundry_bucket_visible_x_tolerance_m": 0.012,
+    "dump_reach_datum_x_m": 1.0,
+    "dump_reach_datum_authority": "reconstructed_unbound_reference_plane",
+    "sprocket_visual_teeth_per_side": 12,
+    "hydraulic_hose_visual_diameter_m": 0.024,
     "structural_triangle_budget": 100000
   },
   "unresolved_choices_and_mechanical_gaps": [
@@ -284,43 +596,44 @@
     "lift-cylinder anchors and stroke",
     "bucket tilt-linkage topology and cylinder anchors",
     "track link pitch, sprocket phase, idler and roller centers",
-    "service-opening angle and exact cab quick-pivot axis"
+    "service-opening angle and exact cab quick-pivot axis",
+    "manufacturer datum/origin for the published dump-reach dimension"
   ],
   "renders": [
     {
       "path": "review/renders/333p-front-three-quarter-stowed.png",
-      "sha256": "ebd1c3bd6ff54e18e3e2e4daa9ff7c1751749d1d14f0078a3bc9d8d130ec20d3",
-      "bytes": 994733
+      "sha256": "cee05f929fcf54323208c3f63b8c2652f5f5a7cfe039188d2a2baeca6dc844cc",
+      "bytes": 680893
     },
     {
       "path": "review/renders/333p-side-stowed.png",
-      "sha256": "2d808c7876d2fab88ec471c8837ae19f94c581630b938fe2ce5c2e2e80603392",
-      "bytes": 908013
+      "sha256": "86cdd112ca531fb20cba06acebb13ad4d0b8b3d130d80cd69b6a8671579d059e",
+      "bytes": 551119
     },
     {
       "path": "review/renders/333p-rear-three-quarter-stowed.png",
-      "sha256": "b69966460a11fd743a1f41231275e8fdb0f1f6e72e1130872baa7c998d43944e",
-      "bytes": 1119878
+      "sha256": "b4ec519d21dc7ddb6b7c4c318ff054ed3d40716f7280de59e00ec24c7adabbac",
+      "bytes": 788154
     },
     {
       "path": "review/renders/333p-undercarriage-detail.png",
-      "sha256": "a38ff3c595173db037ece9b7993ebf82b6b227252d4e17e4dd429d1c7d635a6f",
-      "bytes": 988291
+      "sha256": "5bbf4a8f7344429b4c853ad0a106cb67267ff8e28e9d39a752521bdf40b91c8d",
+      "bytes": 761708
     },
     {
       "path": "review/renders/333p-linkage-detail-stowed.png",
-      "sha256": "71cc481b0b7c1160cc682dbd1111dcfe2bffba66e8b3b5b65387b5953c64dd06",
-      "bytes": 1227621
+      "sha256": "89fa9e53fb4512714ce1c80f981b603f8faa0ef7c5dc4220514417714468ae2c",
+      "bytes": 947438
     },
     {
       "path": "review/renders/333p-side-full-lift-dump.png",
-      "sha256": "5d98386de28245c6fbab9a43c7f6be62d7c861a92aae64f68307d5d52bc06fb6",
-      "bytes": 872722
+      "sha256": "735e4c0348474d0614d2e6b2278441c8976fdf52d601d5f6acdd8e2f03ea6e25",
+      "bytes": 451158
     },
     {
       "path": "review/renders/333p-front-three-quarter-full-lift.png",
-      "sha256": "348c804a392b7826e8d2130c36cfb543b4877bccc15428b5d81563f2cb08d708",
-      "bytes": 919596
+      "sha256": "13a0e619f93bb3e930a2e6e6c4c812264bc6e6fdede01e16a75fc1a7090f52d2",
+      "bytes": 521124
     }
   ],
   "build_verdict": "PASS",

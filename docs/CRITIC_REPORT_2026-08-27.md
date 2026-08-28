@@ -1,6 +1,17 @@
-# Overall critic report - 2026-08-27
+# Superseded overall critic report - 2026-08-27
 
-## Decision
+> **Historical evidence only.** This report approved the exact original GLB
+> hashes listed in its table; those files have since been replaced by rebuilt
+> structural-study candidates. It does not approve the current GLBs, website,
+> or deployment. The current artifacts remain `PENDING` for human critic review.
+
+| Current machine candidate | Current decoded geometry | Current GLB SHA-256 | Human critic state |
+| --- | ---: | --- | --- |
+| Cat 320 | 57,892 triangles | `bda1fab910f0d8692eea416910c2f00625061963d5744a20110f05350c51b060` | PENDING |
+| John Deere 333 P-Tier | 42,688 triangles | `547cf9c6027629bfb64342b2ca71e35caab1bead30fe6f9753bb45687c05a9ac` | PENDING |
+| John Deere 310 P-Tier | 74,208 triangles | `25575aae094384da4e2bc3c64e301dcca22506f067175c3b39c241797e890106` | PENDING |
+
+## Historical decision (superseded)
 
 The Cat 320, John Deere 333 P-Tier, and John Deere 310 P-Tier artifacts are
 approved for admission to the private repository as

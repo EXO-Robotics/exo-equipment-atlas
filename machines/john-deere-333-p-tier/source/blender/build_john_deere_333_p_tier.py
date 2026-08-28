@@ -16,6 +16,7 @@ import hashlib
 import json
 import math
 import os
+import struct
 from pathlib import Path
 
 import bpy
@@ -68,7 +69,8 @@ RECONSTRUCTED = {
     "stowed_hinge_xyz_m": [1.3427, 0.5634, 0.0],
     "full_lift_hinge_xyz_m": [1.1460, 3.3500, 0.0],
     "bucket_hinge_to_lip_m": 0.8882,
-    "bucket_visual_width_m": 2.08,
+    "bucket_core_visual_width_m": 2.08,
+    "bucket_cutting_edge_visual_width_m": 2.12,
     "track_center_z_m": 0.80,
     "track_visual_path_length_m": 2.42,
     "track_visual_height_m": 0.66,
@@ -81,6 +83,11 @@ RECONSTRUCTED = {
     "full_carriage_lower_xyz_m": [1.03, 3.02, 0.0],
     "full_carriage_upper_xyz_m": [1.146, 3.35, 0.0],
     "quick_attach_plate_thickness_m": 0.08,
+    "foundry_bucket_visible_x_tolerance_m": 0.012,
+    "dump_reach_datum_x_m": 1.00,
+    "dump_reach_datum_authority": "reconstructed_unbound_reference_plane",
+    "sprocket_visual_teeth_per_side": 12,
+    "hydraulic_hose_visual_diameter_m": 0.024,
     "structural_triangle_budget": 100000,
 }
 
@@ -96,6 +103,7 @@ UNRESOLVED = [
     "bucket tilt-linkage topology and cylinder anchors",
     "track link pitch, sprocket phase, idler and roller centers",
     "service-opening angle and exact cab quick-pivot axis",
+    "manufacturer datum/origin for the published dump-reach dimension",
 ]
 
 COLLECTIONS: dict[str, bpy.types.Collection] = {}
@@ -139,6 +147,23 @@ def reset_scene() -> None:
     scene.render.image_settings.file_format = "PNG"
     scene.render.film_transparent = False
     scene.render.image_settings.color_mode = "RGBA"
+    # The study uses flat procedural materials with no texture maps. Disable
+    # display dithering so repeat review renders are byte-stable when the
+    # renderer otherwise produces the same pixels.
+    if hasattr(scene.render, "dither_intensity"):
+        scene.render.dither_intensity = 0.0
+    # Blender embeds date/render-time/camera fields in PNG metadata even when
+    # the visible stamp is disabled. Turn every metadata stamp toggle off so
+    # identical review pixels also produce identical PNG bytes.
+    for stamp_property in (
+        "use_stamp_camera", "use_stamp_date", "use_stamp_filename",
+        "use_stamp_frame", "use_stamp_frame_range", "use_stamp_hostname",
+        "use_stamp_labels", "use_stamp_lens", "use_stamp_marker",
+        "use_stamp_memory", "use_stamp_note", "use_stamp_render_time",
+        "use_stamp_scene", "use_stamp_sequencer_strip", "use_stamp_time",
+    ):
+        if hasattr(scene.render, stamp_property):
+            setattr(scene.render, stamp_property, False)
     scene.view_settings.look = "AgX - Medium High Contrast"
     scene.world.color = (0.025, 0.03, 0.04)
 
@@ -324,7 +349,8 @@ def add_prism_xy(name: str, polygon: list[tuple[float, float]],
 
 def add_polyline_tube(name: str, points: list[tuple[float, float, float]],
                       bevel_depth: float, mat_name: str, collection: str,
-                      cyclic=True, resolution=1) -> bpy.types.Object:
+                      cyclic=True, resolution=1,
+                      parent=None) -> bpy.types.Object:
     curve = bpy.data.curves.new(name=f"{name}_Curve", type="CURVE")
     curve.dimensions = "3D"
     curve.resolution_u = resolution
@@ -339,14 +365,26 @@ def add_polyline_tube(name: str, points: list[tuple[float, float, float]],
     obj = bpy.data.objects.new(name, curve)
     COLLECTIONS[collection].objects.link(obj)
     obj.data.materials.append(MATERIALS[mat_name])
+    if parent:
+        set_parent(obj, parent)
     return obj
+
+
+def set_polyline_points(obj: bpy.types.Object,
+                        points: list[tuple[float, float, float]]) -> None:
+    spline = obj.data.splines[0]
+    if len(spline.points) != len(points):
+        raise ValueError(f"{obj.name}: expected {len(spline.points)} hose points, got {len(points)}")
+    for point, coord in zip(spline.points, points):
+        p = mv(*coord)
+        point.co = (p.x, p.y, p.z, 1.0)
 
 
 def make_track_path(z: float) -> list[tuple[float, float, float]]:
     # Reconstructed smooth long-life rubber track outline.
     return [
-        (-1.47, 0.17, z), (-1.33, 0.05, z), (0.95, 0.05, z),
-        (1.13, 0.17, z), (1.12, 0.55, z), (0.92, 0.67, z),
+        (-1.47, 0.20, z), (-1.33, 0.105, z), (0.95, 0.105, z),
+        (1.13, 0.20, z), (1.12, 0.55, z), (0.92, 0.67, z),
         (-1.25, 0.67, z), (-1.47, 0.51, z),
     ]
 
@@ -403,11 +441,15 @@ def build_root_and_fixed_structure() -> bpy.types.Object:
         "Reference_TrackOuter_Right": (0.0, 0.35, 1.025),
         "Reference_ROPS_Top": (-0.27, 2.22, 0.0),
         "Reference_Frame_Underside": (-0.10, 0.25, 0.0),
-        "Reference_DumpReachPlane": (1.00, 2.69, 0.0),
+        "Reference_DumpReachPlane_Reconstructed": (1.00, 2.69, 0.0),
     }
     for name, xyz in references.items():
         empty = add_empty(name, xyz, size=0.075, parent=root)
-        empty["authority"] = "manufacturer_published_constraint_reference"
+        empty["authority"] = (
+            "reconstructed_unbound_reference_plane"
+            if name == "Reference_DumpReachPlane_Reconstructed"
+            else "manufacturer_published_constraint_reference"
+        )
 
     # Lower frame and rear counterweight envelope.
     add_box("MainFrame_Lower", (-0.16, 0.49, 0.0), (2.68, 0.48, 1.10),
@@ -416,10 +458,10 @@ def build_root_and_fixed_structure() -> bpy.types.Object:
             "NeutralSteel", "Fixed_Structure", 0.018, root)
     add_box("RearCounterweight_Core", (-1.57, 0.89, 0.0), (0.40, 0.92, 1.54),
             "NeutralPanel", "Fixed_Structure", 0.10, root)
-    add_box("RearServiceDoor", (-1.762, 1.04, 0.0), (0.035, 0.64, 1.25),
+    add_box("RearServiceDoor", (-1.7525, 1.04, 0.0), (0.035, 0.64, 1.25),
             "NeutralGraphite", "Fixed_Structure", 0.012, root)
     for i, y in enumerate((0.83, 0.94, 1.05, 1.16, 1.27)):
-        add_box(f"RearGrille_Slat_{i:02d}", (-1.79, y, 0.0), (0.022, 0.035, 0.94),
+        add_box(f"RearGrille_Slat_{i:02d}", (-1.759, y, 0.0), (0.022, 0.035, 0.94),
                 "NeutralSteel", "Fixed_Structure", 0.006, root)
     add_box("FrontBulkhead", (0.99, 0.91, 0.0), (0.20, 0.82, 1.26),
             "NeutralPanel", "Fixed_Structure", 0.04, root)
@@ -443,7 +485,8 @@ def build_undercarriage(root: bpy.types.Object) -> None:
     for side, suffix in ((-1, "L"), (1, "R")):
         z_center = side * RECONSTRUCTED["track_center_z_m"]
         path = make_track_path(z_center)
-        add_polyline_tube(f"TrackBelt_{suffix}", path, 0.105, "Rubber", "Undercarriage")
+        add_polyline_tube(f"TrackBelt_{suffix}", path, 0.105, "Rubber", "Undercarriage",
+                          parent=root)
 
         # Five triple-flange visual roller assemblies per side (published count,
         # reconstructed centers and flange details).
@@ -470,11 +513,21 @@ def build_undercarriage(root: bpy.types.Object) -> None:
                              (x, y, z_center + offset), 0.285, 0.025, "z",
                              "NeutralGraphite", "Undercarriage", 28, root)
 
-        # Reconstructed drive sprocket and hub.
-        add_cylinder(f"DriveSprocket_{suffix}", (-1.20, 0.47, z_center), 0.245,
-                     0.22, "z", "NeutralGraphite", "Undercarriage", 28, root)
-        add_cylinder(f"FinalDriveHub_{suffix}", (-1.20, 0.47, z_center), 0.115,
-                     0.34, "z", "CylinderRod", "Undercarriage", 28, root)
+        # Reconstructed outer-face drive sprocket study. The brochure proves
+        # neither tooth count nor pitch; these twelve teeth are visual-only.
+        sprocket_z = side * 0.995
+        add_cylinder(f"DriveSprocket_{suffix}", (-1.20, 0.47, sprocket_z), 0.245,
+                     0.05, "z", "NeutralGraphite", "Undercarriage", 28, root)
+        add_cylinder(f"FinalDriveHub_{suffix}", (-1.20, 0.47, sprocket_z), 0.115,
+                     0.055, "z", "CylinderRod", "Undercarriage", 28, root)
+        for tooth_index in range(RECONSTRUCTED["sprocket_visual_teeth_per_side"]):
+            angle = math.tau * tooth_index / RECONSTRUCTED["sprocket_visual_teeth_per_side"]
+            tooth = add_box(
+                f"DriveSprocketTooth_{suffix}_{tooth_index + 1:02d}",
+                (-1.20 + 0.285 * math.cos(angle),
+                 0.47 + 0.285 * math.sin(angle), sprocket_z),
+                (0.105, 0.070, 0.060), "SafetyAccent", "Undercarriage", 0.009, root)
+            tooth.rotation_euler[1] = -angle
 
         for index, (pos, angle) in enumerate(sample_loop(path, 46)):
             tread = add_box(f"TrackTread_{suffix}_{index + 1:02d}", pos,
@@ -556,6 +609,7 @@ def build_cab(root: bpy.types.Object) -> None:
                              (-1.00, 0.87, side * 0.50), 0.07, 0.10, "z",
                              "Marker", "Markers", 24, cab_root)
         pivot["authority"] = "manufacturer_published_presence_reconstructed_axis"
+        pivot.hide_render = True
 
 
 def setup_articulation(root: bpy.types.Object) -> None:
@@ -604,22 +658,35 @@ def setup_articulation(root: bpy.types.Object) -> None:
     ARTICULATED["bucket_root"] = bucket_root
     # Bucket local section: independently authored foundry-bucket study.
     bucket = add_prism_xy("FoundryBucket_VisualBasis",
-                          [(0.00, -0.02), (0.8882, -0.02), (0.76, 0.23),
-                           (0.54, 0.52), (0.08, 0.62), (-0.08, 0.38)],
-                          0.0, RECONSTRUCTED["bucket_visual_width_m"],
+                          [(0.00, -0.02), (0.8882, -0.02), (0.71, 0.20),
+                           (0.50, 0.48), (0.08, 0.58), (-0.08, 0.36)],
+                          0.0, RECONSTRUCTED["bucket_core_visual_width_m"],
                           "NeutralPanel", "Attachment", bucket_root, local=True)
     ARTICULATED["bucket_mesh"] = bucket
-    add_box("BucketCuttingEdge", (0.84, 0.00, 0.0), (0.18, 0.08, 2.14),
+    add_box("BucketCuttingEdge", (0.78, 0.02, 0.0), (0.14, 0.06, 2.12),
             "NeutralSteel", "Attachment", 0.015, bucket_root, parent_local=True)
     for side in (-1, 1):
         add_box(f"BucketSideCheek_{'L' if side < 0 else 'R'}",
-                (0.38, 0.25, side * 1.03), (0.78, 0.42, 0.045),
+                (0.34, 0.22, side * 1.03), (0.54, 0.24, 0.045),
                 "NeutralGraphite", "Attachment", 0.018, bucket_root, parent_local=True)
     for index, z in enumerate((-0.82, -0.41, 0.0, 0.41, 0.82)):
-        tooth = add_box(f"BucketTooth_{index + 1:02d}", (0.92, -0.03, z),
-                        (0.22, 0.07, 0.13), "NeutralSteel", "Attachment", 0.012,
-                        bucket_root, parent_local=True)
-        tooth.rotation_euler[1] = math.radians(-5)
+        add_box(f"BucketTooth_{index + 1:02d}", (0.76, 0.055, z),
+                (0.12, 0.07, 0.13), "NeutralSteel", "Attachment", 0.012,
+                bucket_root, parent_local=True)
+
+    # Reconstructed hose bundles provide readable hydraulic routing without
+    # claiming unpublished hose lengths, fittings, pressures, or clamp points.
+    for side, suffix in ((-1, "L"), (1, "R")):
+        z = side * 0.61
+        for bundle_index, z_offset in enumerate((-0.018, 0.018), start=1):
+            hose = add_polyline_tube(
+                f"HydraulicHoseBundle_{suffix}_{bundle_index:02d}",
+                [(-1.20, 0.79, z + z_offset), (-0.86, 1.04, z + z_offset),
+                 (0.08, 0.92, z + z_offset), (0.92, 0.72, z + z_offset)],
+                RECONSTRUCTED["hydraulic_hose_visual_diameter_m"] * 0.5,
+                "Rubber", "Hydraulics", cyclic=False, resolution=2, parent=root)
+            hose["authority"] = "reconstructed_visual_routing"
+            ARTICULATED[f"hose_{suffix}_{bundle_index}"] = hose
 
 
 def apply_pose(pose: str) -> dict[str, tuple[float, float, float]]:
@@ -655,6 +722,16 @@ def apply_pose(pose: str) -> dict[str, tuple[float, float, float]]:
         mid_m = (mid[0], mid[2], mid[1])
         place_cylinder(ARTICULATED[f"lift_barrel_{suffix}"], cyl_base, mid_m, 0.070)
         place_cylinder(ARTICULATED[f"lift_rod_{suffix}"], mid_m, cyl_end, 0.042)
+
+        hose_z = side * 0.61
+        for bundle_index, z_offset in enumerate((-0.018, 0.018), start=1):
+            set_polyline_points(ARTICULATED[f"hose_{suffix}_{bundle_index}"], [
+                (-1.20, 0.79, hose_z + z_offset),
+                (-0.86, 1.04, hose_z + z_offset),
+                ((p_upper[0] + c_upper[0]) * 0.48,
+                 (p_upper[1] + c_upper[1]) * 0.48 + 0.06, hose_z + z_offset),
+                (c_upper[0] - 0.14, c_upper[1] + 0.02, hose_z + z_offset),
+            ])
 
     place_beam(ARTICULATED["crossmember"],
                (upper[0], upper[1], -0.72), (upper[0], upper[1], 0.72), 0.20, 0.20)
@@ -820,6 +897,307 @@ def evaluated_counts() -> dict:
     }
 
 
+def is_descendant_of(obj: bpy.types.Object, root: bpy.types.Object) -> bool:
+    current = obj
+    while current is not None:
+        if current == root:
+            return True
+        current = current.parent
+    return False
+
+
+def is_public_export_object(obj: bpy.types.Object, root: bpy.types.Object) -> bool:
+    if not is_descendant_of(obj, root):
+        return False
+    collection_names = {collection.name for collection in obj.users_collection}
+    if collection_names & {"Studio", "Collision", "Inspection"}:
+        return False
+    if obj.name.startswith("Reference_") or obj.name.startswith("CabQuickPivot_"):
+        return False
+    if "Markers" in collection_names and not obj.name.startswith("Pivot_Lift"):
+        return False
+    return obj.type not in {"CAMERA", "LIGHT"}
+
+
+def evaluated_public_visible_bounds(root: bpy.types.Object) -> dict:
+    depsgraph = bpy.context.evaluated_depsgraph_get()
+    coordinates = []
+    measured_objects = []
+    for obj in bpy.context.scene.objects:
+        if not is_public_export_object(obj, root) or obj.type not in {"MESH", "CURVE"}:
+            continue
+        if obj.hide_render:
+            continue
+        evaluated = obj.evaluated_get(depsgraph)
+        mesh = evaluated.to_mesh()
+        for vertex in mesh.vertices:
+            world = evaluated.matrix_world @ vertex.co
+            # Report in declared machine-axis order, not Blender storage order.
+            coordinates.append((world.x, world.z, world.y))
+        evaluated.to_mesh_clear()
+        measured_objects.append(obj.name)
+    if not coordinates:
+        raise RuntimeError("No public visible geometry available for evaluated bounds")
+    minimum = [min(point[axis] for point in coordinates) for axis in range(3)]
+    maximum = [max(point[axis] for point in coordinates) for axis in range(3)]
+    return {
+        "axis_order": ["machine_X_longitudinal", "machine_Y_vertical", "machine_Z_right"],
+        "min_m": [round(value, 6) for value in minimum],
+        "max_m": [round(value, 6) for value in maximum],
+        "size_m": [round(maximum[i] - minimum[i], 6) for i in range(3)],
+        "measured_object_count": len(measured_objects),
+        "method": "evaluated visible production mesh and curve vertices in retained stowed pose; Studio, Markers, Collision, Inspection, cameras, lights, and hidden helpers excluded",
+    }
+
+
+def apply_articulated_cylinder_scales() -> dict:
+    names = sorted(name for name in ARTICULATED
+                   if name.startswith("lift_barrel_") or name.startswith("lift_rod_")
+                   or name in {"tilt_barrel", "tilt_rod"})
+    before = {}
+    for key in names:
+        obj = ARTICULATED[key]
+        before[obj.name] = [round(value, 6) for value in obj.scale]
+        bpy.ops.object.select_all(action="DESELECT")
+        obj.select_set(True)
+        bpy.context.view_layer.objects.active = obj
+        bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+    bpy.ops.object.select_all(action="DESELECT")
+    after = {ARTICULATED[key].name: [round(value, 6) for value in ARTICULATED[key].scale]
+             for key in names}
+    passed = all(all(abs(value - 1.0) <= 1e-6 for value in scale)
+                 for scale in after.values())
+    return {"status": "PASS" if passed else "FAIL", "before": before, "after": after}
+
+
+def hierarchy_depth(obj: bpy.types.Object) -> int:
+    depth = 0
+    current = obj.parent
+    while current is not None:
+        depth += 1
+        current = current.parent
+    return depth
+
+
+def apply_public_export_scales(root: bpy.types.Object) -> dict:
+    """Bake public mesh/curve object scales while preserving world geometry."""
+    before_bounds = evaluated_public_visible_bounds(root)
+    export_geometry = sorted(
+        (obj for obj in bpy.context.scene.objects
+         if is_public_export_object(obj, root) and obj.type in {"MESH", "CURVE"}),
+        key=lambda obj: (hierarchy_depth(obj), obj.name),
+    )
+    before_non_identity = {
+        obj.name: [round(value, 6) for value in obj.scale]
+        for obj in export_geometry
+        if any(abs(value - 1.0) > 1e-7 for value in obj.scale)
+    }
+    for obj in export_geometry:
+        if all(abs(value - 1.0) <= 1e-7 for value in obj.scale):
+            continue
+        # Applying a parent mesh scale must not drag or shear articulated
+        # descendants. Snapshot their world matrices, bake the current node,
+        # then restore descendants parent-first before processing their scales.
+        descendants = sorted(
+            (candidate for candidate in bpy.context.scene.objects
+             if candidate != obj and is_descendant_of(candidate, obj)),
+            key=lambda candidate: (hierarchy_depth(candidate), candidate.name),
+        )
+        descendant_world = {candidate: candidate.matrix_world.copy()
+                            for candidate in descendants}
+        bpy.ops.object.select_all(action="DESELECT")
+        obj.select_set(True)
+        bpy.context.view_layer.objects.active = obj
+        bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+        for descendant in descendants:
+            descendant.matrix_world = descendant_world[descendant]
+        bpy.context.view_layer.update()
+    bpy.ops.object.select_all(action="DESELECT")
+    after_non_identity = {
+        obj.name: [round(value, 6) for value in obj.scale]
+        for obj in export_geometry
+        if any(abs(value - 1.0) > 1e-7 for value in obj.scale)
+    }
+    after_bounds = evaluated_public_visible_bounds(root)
+    envelope_delta = {
+        key: [round(after_bounds[key][axis] - before_bounds[key][axis], 9)
+              for axis in range(3)]
+        for key in ("min_m", "max_m", "size_m")
+    }
+    envelope_stable = all(
+        abs(value) <= 1e-6
+        for values in envelope_delta.values()
+        for value in values
+    )
+    return {
+        "status": "PASS" if not after_non_identity and envelope_stable else "FAIL",
+        "public_export_geometry_nodes": len(export_geometry),
+        "baked_node_count": len(before_non_identity),
+        "before_non_identity": before_non_identity,
+        "after_non_identity": after_non_identity,
+        "before_bounds_m": before_bounds,
+        "after_bounds_m": after_bounds,
+        "envelope_delta_m": envelope_delta,
+    }
+
+
+def read_glb_json(path: Path) -> dict:
+    with path.open("rb") as stream:
+        magic, version, length = struct.unpack("<4sII", stream.read(12))
+        if magic != b"glTF" or version != 2 or length != path.stat().st_size:
+            raise RuntimeError("Invalid GLB 2.0 header")
+        chunk_length, chunk_type = struct.unpack("<II", stream.read(8))
+        if chunk_type != 0x4E4F534A:
+            raise RuntimeError("GLB first chunk is not JSON")
+        return json.loads(stream.read(chunk_length).decode("utf-8").rstrip(" \t\r\n\x00"))
+
+
+def inspect_public_glb_contract() -> dict:
+    document = read_glb_json(GLB_PATH)
+    scene_index = document.get("scene", 0)
+    direct_roots = document["scenes"][scene_index].get("nodes", [])
+    nodes = document.get("nodes", [])
+    root_names = [nodes[index].get("name") for index in direct_roots]
+    helper_prefixes = ("Reference_", "CabQuickPivot_", "Chassis_Hit", "Cab_Hit",
+                       "LeftTrack_Hit", "RightTrack_Hit", "LiftSystem_Inspect",
+                       "Bucket_Inspect", "OperatorStation_Inspect", "Camera_",
+                       "KeyLight", "FillLight", "RimLight", "StudioFloor")
+    helper_nodes = sorted(node.get("name", "") for node in nodes
+                          if node.get("name", "").startswith(helper_prefixes))
+    root_node = nodes[direct_roots[0]] if len(direct_roots) == 1 else {}
+    identity = (
+        root_node.get("translation", [0.0, 0.0, 0.0]) == [0.0, 0.0, 0.0]
+        and root_node.get("rotation", [0.0, 0.0, 0.0, 1.0]) == [0.0, 0.0, 0.0, 1.0]
+        and root_node.get("scale", [1.0, 1.0, 1.0]) == [1.0, 1.0, 1.0]
+        and "matrix" not in root_node
+    )
+    mesh_nodes = [(index, node) for index, node in enumerate(nodes) if "mesh" in node]
+    non_identity_mesh_scales = []
+    for index, node in mesh_nodes:
+        if "matrix" in node:
+            matrix = node["matrix"]
+            scale = [
+                math.sqrt(sum(matrix[column * 4 + row] ** 2 for row in range(3)))
+                for column in range(3)
+            ]
+            representation = "matrix"
+        else:
+            scale = node.get("scale", [1.0, 1.0, 1.0])
+            representation = "trs"
+        if any(abs(value - 1.0) > 1e-6 for value in scale):
+            non_identity_mesh_scales.append({
+                "node_index": index,
+                "name": node.get("name"),
+                "scale": [round(value, 9) for value in scale],
+                "representation": representation,
+            })
+
+    triangle_count = 0
+    primitive_count = 0
+    position_vertex_count = 0
+    unsupported_modes = []
+    for mesh_index, mesh in enumerate(document.get("meshes", [])):
+        for primitive_index, primitive in enumerate(mesh.get("primitives", [])):
+            primitive_count += 1
+            position_accessor = primitive.get("attributes", {}).get("POSITION")
+            if position_accessor is not None:
+                position_vertex_count += document["accessors"][position_accessor]["count"]
+            count_accessor = primitive.get("indices", position_accessor)
+            element_count = document["accessors"][count_accessor]["count"] if count_accessor is not None else 0
+            mode = primitive.get("mode", 4)
+            if mode == 4:
+                triangle_count += element_count // 3
+            elif mode in {5, 6}:
+                triangle_count += max(0, element_count - 2)
+            else:
+                unsupported_modes.append({
+                    "mesh_index": mesh_index,
+                    "primitive_index": primitive_index,
+                    "mode": mode,
+                })
+    decoded_counts = {
+        "classification": "public_glb_decoded_geometry",
+        "nodes": len(nodes),
+        "mesh_nodes": len(mesh_nodes),
+        "mesh_resources": len(document.get("meshes", [])),
+        "primitives": primitive_count,
+        "position_vertices": position_vertex_count,
+        "triangles": triangle_count,
+        "triangle_method": "decoded glTF accessor element counts; TRIANGLES count/3, strips/fans count-2",
+    }
+    return {
+        "status": "PASS" if len(direct_roots) == 1 and root_names == ["JD333P_Root"]
+                               and identity and not helper_nodes else "FAIL",
+        "asset_version": document.get("asset", {}).get("version"),
+        "scene_direct_root_count": len(direct_roots),
+        "scene_direct_root_names": root_names,
+        "root_identity_trs": identity,
+        "node_count": len(nodes),
+        "helper_nodes_present": helper_nodes,
+        "public_mesh_node_scale_status": "PASS" if not non_identity_mesh_scales else "FAIL",
+        "public_mesh_node_count": len(mesh_nodes),
+        "public_mesh_nodes_non_identity_scale": non_identity_mesh_scales,
+        "public_glb_decoded_counts": decoded_counts,
+        "unsupported_primitive_modes": unsupported_modes,
+        "glb_y_up": True,
+    }
+
+
+def append_post_export_gates(validation: dict, cylinder_scales: dict,
+                             public_scale_application: dict,
+                             glb_contract: dict) -> None:
+    bounds = validation["evaluated_visible_bounds_m"]
+    height = bounds["size_m"][1]
+    width = bounds["size_m"][2]
+    secondary_ok = abs(height - PUBLISHED["rops-height"]) <= 0.04 and abs(width - PUBLISHED["width-450-track"]) <= 0.08
+    validation["gates"].extend([
+        make_gate(
+            "public-visible-secondary-envelope", "PASS" if secondary_ok else "FAIL",
+            "Evaluated public visible geometry stays within explicit structural-study height and lateral tolerances.",
+            {"height_m": PUBLISHED["rops-height"], "height_tolerance_m": 0.04,
+             "width_m": PUBLISHED["width-450-track"], "width_tolerance_m": 0.08},
+            {"height_m": height, "width_m": width},
+        ),
+        make_gate(
+            "articulated-cylinder-scales-applied", cylinder_scales["status"],
+            "Lift and bucket-tilt cylinder object scales are applied before save/export.",
+            {"all_scales": [1.0, 1.0, 1.0]}, cylinder_scales,
+        ),
+        make_gate(
+            "public-source-export-scales-applied", public_scale_application["status"],
+            "Every public Blender mesh/curve export object has scale applied without changing the retained visible envelope.",
+            {"all_scales": [1.0, 1.0, 1.0], "maximum_envelope_delta_m": 0.000001},
+            public_scale_application,
+        ),
+        make_gate(
+            "public-glb-mesh-node-scales-identity",
+            glb_contract["public_mesh_node_scale_status"],
+            "Every shipped public GLB node that references a mesh must decode to identity local scale.",
+            {"non_identity_mesh_nodes": [], "identity_scale": [1.0, 1.0, 1.0]},
+            {"mesh_node_count": glb_contract["public_mesh_node_count"],
+             "non_identity_mesh_nodes": glb_contract["public_mesh_nodes_non_identity_scale"]},
+        ),
+        make_gate(
+            "public-glb-decoded-triangle-budget",
+            "PASS" if 5000 <= glb_contract["public_glb_decoded_counts"]["triangles"] <= RECONSTRUCTED["structural_triangle_budget"]
+            and not glb_contract["unsupported_primitive_modes"] else "FAIL",
+            "Shipped public GLB triangle count is independently decoded from accessors and kept separate from Blend source counts.",
+            {"minimum": 5000, "maximum": RECONSTRUCTED["structural_triangle_budget"],
+             "unsupported_primitive_modes": []},
+            glb_contract["public_glb_decoded_counts"],
+        ),
+        make_gate(
+            "public-glb-single-root-helper-free", glb_contract["status"],
+            "Y-up GLB must have one identity scene root and no studio, reference, quick-pivot, collision, inspection, camera, or light helpers.",
+            {"root_name": "JD333P_Root", "direct_root_count": 1,
+             "root_identity_trs": True, "helper_nodes_present": []}, glb_contract,
+        ),
+    ])
+    failures = [gate["id"] for gate in validation["gates"] if gate["status"] == "FAIL"]
+    validation["failed_gates"] = failures
+    validation["verdict"] = "FAIL" if failures else "PASS"
+
+
 def semantic_nodes() -> list[str]:
     return [
         "JD333P_Root", "MainFrame_Lower", "Cab_ROPS_Root_Reconstructed",
@@ -835,6 +1213,29 @@ def semantic_nodes() -> list[str]:
     ]
 
 
+def public_semantic_nodes() -> list[str]:
+    """Semantic production nodes expected in the public helper-free GLB."""
+    return [
+        "JD333P_Root", "MainFrame_Lower", "Cab_ROPS_Root_Reconstructed",
+        "TrackBelt_L", "TrackBelt_R", "VerticalLift_LowerArm_L",
+        "VerticalLift_LowerArm_R", "VerticalLift_UpperArm_L",
+        "VerticalLift_UpperArm_R", "LiftCrossmember", "LiftCylinder_Barrel_L",
+        "LiftCylinder_Rod_L", "LiftCylinder_Barrel_R", "LiftCylinder_Rod_R",
+        "BucketTiltCylinder_Barrel", "BucketTiltCylinder_Rod",
+        "BucketTiltLink_Reconstructed", "QuickAttach_Interface_Reconstructed",
+        "BucketPivot_Root", "FoundryBucket_VisualBasis",
+        "HydraulicHoseBundle_L_01", "HydraulicHoseBundle_L_02",
+        "HydraulicHoseBundle_R_01", "HydraulicHoseBundle_R_02",
+    ]
+
+
+def source_only_helper_nodes() -> list[str]:
+    return [
+        "Chassis_Hit", "Cab_Hit", "LeftTrack_Hit", "RightTrack_Hit",
+        "LiftSystem_Inspect", "Bucket_Inspect", "OperatorStation_Inspect",
+    ]
+
+
 def add_metadata() -> None:
     scene = bpy.context.scene
     scene["machine_id"] = MACHINE_ID
@@ -846,27 +1247,32 @@ def add_metadata() -> None:
     scene["rights_boundary"] = "independently authored, neutral, unbranded"
 
 
-def save_and_export() -> None:
-    apply_pose("stowed")
+def save_and_export(root: bpy.types.Object) -> None:
     bpy.ops.wm.save_as_mainfile(filepath=str(BLEND_PATH), compress=True)
-    # Studio elements are not part of the machine asset.
-    studio = COLLECTIONS["Studio"]
-    studio.hide_viewport = True
-    for obj in studio.objects:
-        obj.hide_set(True)
+    # Explicit selection prevents studio, marker, quick-pivot, collision, and
+    # inspection helpers from leaking into the public GLB. All selected
+    # production objects descend from one identity root.
+    bpy.ops.object.select_all(action="DESELECT")
+    public_objects = [obj for obj in bpy.context.scene.objects
+                      if is_public_export_object(obj, root)]
+    for obj in public_objects:
+        obj.select_set(True)
+    bpy.context.view_layer.objects.active = root
     bpy.ops.export_scene.gltf(
         filepath=str(GLB_PATH),
         export_format="GLB",
-        use_visible=True,
+        use_selection=True,
         export_apply=True,
         export_yup=True,
         export_extras=True,
+        # No public material uses a texture. Generated primitive UVs can vary
+        # in least-significant bits between clean Blender processes, so omit
+        # that semantically unused channel from the deterministic GLB.
+        export_texcoords=False,
         export_cameras=False,
         export_lights=False,
     )
-    studio.hide_viewport = False
-    for obj in studio.objects:
-        obj.hide_set(False)
+    bpy.ops.object.select_all(action="DESELECT")
 
 
 def make_gate(gate_id: str, status: str, detail: str, expected=None, actual=None):
@@ -878,15 +1284,17 @@ def make_gate(gate_id: str, status: str, detail: str, expected=None, actual=None
     return item
 
 
-def validate(counts: dict) -> dict:
+def validate(counts: dict, root: bpy.types.Object) -> dict:
     stowed = apply_pose("stowed")
     full = apply_pose("full_dump")
     apply_pose("stowed")
-    # Dimensional references are deliberately explicit; they avoid treating
-    # decorative geometry or reconstructed bucket width as source authority.
+    visible_bounds = evaluated_public_visible_bounds(root)
+    # The retained foundry-bucket length is measured from evaluated visible
+    # production geometry. Other facts remain endpoint/reference constraints
+    # at this structural-study stage unless their gate says otherwise.
     actual = {
         "length-no-bucket": 1.40 - (-1.77),
-        "length-foundry-bucket": stowed["lip"][0] - (-1.77),
+        "length-foundry-bucket": visible_bounds["size_m"][0],
         "width-450-track": 1.025 - (-1.025),
         "rops-height": 2.22,
         "hinge-pin-height": full["hinge"][1],
@@ -901,7 +1309,7 @@ def validate(counts: dict) -> dict:
     gates = []
     tolerances = {
         "length-no-bucket": 0.005,
-        "length-foundry-bucket": 0.008,
+        "length-foundry-bucket": RECONSTRUCTED["foundry_bucket_visible_x_tolerance_m"],
         "width-450-track": 0.005,
         "rops-height": 0.005,
         "hinge-pin-height": 0.005,
@@ -922,8 +1330,17 @@ def validate(counts: dict) -> dict:
             gate_actual["measurement_convention"] = "atan2(hinge_y - lip_y, lip_x - hinge_x), degrees below +X"
             gate_actual["hinge_xyz_m"] = [round(v, 5) for v in pose["hinge"]]
             gate_actual["cutting_edge_lip_xyz_m"] = [round(v, 5) for v in pose["lip"]]
+        gate_status = "PASS" if delta <= tolerances[fact_id] else "FAIL"
+        if fact_id == "length-foundry-bucket":
+            detail = "Measured from evaluated visible production vertices in the retained foundry-bucket pose; no reference empties or helper volumes participate."
+            gate_actual["evaluated_visible_bounds_m"] = visible_bounds
+        if fact_id == "dump-reach":
+            gate_status = "PENDING"
+            detail = "The published 0.74 m value is retained, but its manufacturer datum is not bound by the admitted source. The displayed X=1.00 m plane is reconstructed and cannot prove this fact."
+            gate_actual["datum_authority"] = RECONSTRUCTED["dump_reach_datum_authority"]
+            gate_actual["qualification"] = "representation_only_not_manufacturer_proof"
         gates.append(make_gate(
-            f"published-{fact_id}", "PASS" if delta <= tolerances[fact_id] else "FAIL",
+            f"published-{fact_id}", gate_status,
             detail,
             {"value": expected, "tolerance": tolerances[fact_id]},
             gate_actual,
@@ -945,6 +1362,39 @@ def validate(counts: dict) -> dict:
                            {"track_rollers_per_side": 5, "track_idlers_per_side": 2},
                            {"left_rollers": sorted(roller_nodes), "right_rollers": sorted(roller_nodes_r),
                             "left_idlers": sorted(idlers_l), "right_idlers": sorted(idlers_r)}))
+
+    sprocket_teeth = sorted(name for name in objects if name.startswith("DriveSprocketTooth_"))
+    expected_sprocket_teeth = 2 * RECONSTRUCTED["sprocket_visual_teeth_per_side"]
+    gates.append(make_gate(
+        "reconstructed-sprocket-teeth",
+        "PASS" if len(sprocket_teeth) == expected_sprocket_teeth else "FAIL",
+        "Readable reconstructed visual teeth; count and pitch are not manufacturer facts.",
+        {"total_visual_teeth": expected_sprocket_teeth, "authority": "reconstructed"},
+        {"nodes": sprocket_teeth},
+    ))
+
+    hose_nodes = sorted(name for name in objects if name.startswith("HydraulicHoseBundle_"))
+    gates.append(make_gate(
+        "reconstructed-hose-bundles", "PASS" if len(hose_nodes) == 4 else "FAIL",
+        "Pose-following visual hose routing is reconstructed; lengths, fittings, pressures, and clamp points remain unresolved.",
+        {"expected_visual_bundles": 4, "authority": "reconstructed"},
+        {"nodes": hose_nodes},
+    ))
+
+    depsgraph = bpy.context.evaluated_depsgraph_get()
+    tooth_min_y = math.inf
+    for name in (f"BucketTooth_{index:02d}" for index in range(1, 6)):
+        obj = bpy.data.objects[name].evaluated_get(depsgraph)
+        mesh = obj.to_mesh()
+        tooth_min_y = min(tooth_min_y, *((obj.matrix_world @ vertex.co).z
+                                         for vertex in mesh.vertices))
+        obj.to_mesh_clear()
+    gates.append(make_gate(
+        "retained-bucket-tooth-grade-clearance",
+        "PASS" if tooth_min_y >= -0.001 else "FAIL",
+        "Evaluated retained-pose bucket-tooth vertices must not penetrate the Y=0 grade plane.",
+        {"minimum_machine_y_m": -0.001}, {"minimum_machine_y_m": round(tooth_min_y, 6)},
+    ))
 
     budget = RECONSTRUCTED["structural_triangle_budget"]
     tri_ok = 5000 <= counts["triangles"] <= budget
@@ -985,30 +1435,29 @@ def validate(counts: dict) -> dict:
         "verdict_scope": "technical_structural_study_only",
         "higher_stage_gates": "PENDING",
         "failed_gates": failures,
+        "evaluated_visible_bounds_m": visible_bounds,
         "gates": gates,
     }
 
 
-def bounds_from_reference() -> dict:
-    # Published fixed envelope plus independently authored bucket study bounds.
+def bounds_for_receipt(visible_bounds: dict) -> dict:
     return {
+        "evaluated_public_visible_retained_pose": visible_bounds,
         "machine_axes_m": {
             "fixed_machine_without_bucket": {
                 "min": [-1.77, 0.0, -1.025],
                 "max": [1.40, 2.22, 1.025],
                 "size": [3.17, 2.22, 2.05],
             },
-            "stowed_with_reconstructed_foundry_bucket": {
-                "min": [-1.77, 0.0, -1.04],
-                "max": [2.07, 2.22, 1.04],
-                "size": [3.84, 2.22, 2.08],
-            },
+            "stowed_with_reconstructed_foundry_bucket": visible_bounds,
         },
-        "note": "Explicit constraint references; not a claim that brochure art is a scale drawing.",
+        "note": "Expected references are shown separately from evaluated visible production geometry; brochure art is not treated as a scale drawing.",
     }
 
 
-def write_outputs(counts: dict, validation: dict) -> None:
+def write_outputs(counts: dict, validation: dict, cylinder_scales: dict,
+                  public_scale_application: dict,
+                  glb_contract: dict) -> None:
     VALIDATION_PATH.write_text(json.dumps(validation, indent=2) + "\n", encoding="utf-8")
     render_entries = []
     for path in RENDER_PATHS:
@@ -1017,7 +1466,15 @@ def write_outputs(counts: dict, validation: dict) -> None:
             "sha256": sha256(path),
             "bytes": path.stat().st_size,
         })
-    present_nodes = {name: bpy.data.objects.get(name) is not None for name in semantic_nodes()}
+    present_nodes = {name: bpy.data.objects.get(name) is not None
+                     for name in public_semantic_nodes()}
+    source_helpers = {
+        name: {
+            "present_in_blend_source": bpy.data.objects.get(name) is not None,
+            "present_in_public_glb": False,
+        }
+        for name in source_only_helper_nodes()
+    }
     receipt = {
         "schema_version": "1.0.0",
         "machine_id": MACHINE_ID,
@@ -1043,17 +1500,29 @@ def write_outputs(counts: dict, validation: dict) -> None:
             "machine_axes": "+X toward bucket, +Y vertical, +Z machine right",
             "blender_storage_mapping": "machine (X,Y,Z) -> Blender (X,Z,Y)",
             "glb_export_y_up": True,
-            "bounds": bounds_from_reference(),
-            "counts": counts,
+            "bounds": bounds_for_receipt(validation["evaluated_visible_bounds_m"]),
+            "counts": glb_contract["public_glb_decoded_counts"],
+            "blend_source_counts": {
+                "classification": "blend_source_scene_evaluated_including_nonpublic_helpers",
+                **counts,
+            },
+            "count_boundary": "scene.counts is decoded shipped public GLB geometry; scene.blend_source_counts is the independently retained Blender source scene including nonpublic helpers.",
+            "public_glb_contract": glb_contract,
+            "articulated_cylinder_scale_application": cylinder_scales,
+            "public_scale_application": public_scale_application,
         },
         "semantic_nodes": present_nodes,
+        "source_only_helper_nodes": source_helpers,
         "manufacturer_published_constraints_used": [
             {
                 "id": fact_id,
                 "value": value,
                 "source_id": "JD-333P-MK333CAU",
                 "location": "PDF page 6",
-                "use": "geometry_constraint",
+                "use": (
+                    "retained_constraint_reconstructed_datum_pending"
+                    if fact_id == "dump-reach" else "geometry_constraint"
+                ),
             }
             for fact_id, value in PUBLISHED.items()
         ] + [
@@ -1116,10 +1585,16 @@ def main() -> None:
     build_studio()
     add_metadata()
     render_review_set()
-    save_and_export()
     counts = evaluated_counts()
-    validation = validate(counts)
-    write_outputs(counts, validation)
+    validation = validate(counts, root)
+    cylinder_scales = apply_articulated_cylinder_scales()
+    public_scale_application = apply_public_export_scales(root)
+    save_and_export(root)
+    glb_contract = inspect_public_glb_contract()
+    append_post_export_gates(validation, cylinder_scales,
+                             public_scale_application, glb_contract)
+    write_outputs(counts, validation, cylinder_scales,
+                  public_scale_application, glb_contract)
     if validation["verdict"] == "FAIL":
         raise RuntimeError(f"Validation failed: {validation['failed_gates']}")
     print(json.dumps({

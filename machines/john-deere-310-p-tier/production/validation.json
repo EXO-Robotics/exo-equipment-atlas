@@ -17,7 +17,7 @@
       "detail": "Independently authored neutral geometry; no logos, copied textures, CAD, or manufacturer binaries embedded."
     },
     {
-      "id": "required-semantic-nodes",
+      "id": "required-public-semantic-nodes",
       "status": "PASS",
       "detail": {
         "ROOT_310P_CANDIDATE": true,
@@ -41,9 +41,122 @@
         "BackhoeCrowdCylinder_Barrel": true,
         "BackhoeBucketCylinder_Barrel": true,
         "StabilizerCylinder_Left_Barrel": true,
-        "StabilizerCylinder_Right_Barrel": true,
-        "COL_Chassis": true,
-        "INSP_OperatorStation": true
+        "StabilizerCylinder_Right_Barrel": true
+      }
+    },
+    {
+      "id": "authoring-helper-scene-inventory",
+      "status": "PASS",
+      "detail": {
+        "present_in_blend": {
+          "COL_Chassis": true,
+          "COL_Cab": true,
+          "COL_FrontBucket": true,
+          "COL_BackhoeTransport": true,
+          "INSP_OperatorStation": true,
+          "INSP_FrontLoaderLinkage": true,
+          "INSP_RearBackhoeLinkage": true
+        },
+        "public_glb_expected_count": 0
+      }
+    },
+    {
+      "id": "public-glb-helper-exclusion",
+      "status": "PASS",
+      "detail": {
+        "forbidden_prefixes": [
+          "COL_",
+          "INSP_",
+          "Envelope_",
+          "Witness_",
+          "Review_",
+          "Render_"
+        ],
+        "inspection": {
+          "asset_version": "2.0",
+          "coordinate_system": "glTF 2.0 Y-up; authored +Y preserved with export_yup=False",
+          "scene_count": 1,
+          "direct_scene_root_count": 1,
+          "root_name": "ROOT_310P_CANDIDATE",
+          "root_identity_trs": true,
+          "helper_nodes": [],
+          "camera_count": 0,
+          "light_extension_present": false,
+          "mesh_node_count": 407,
+          "primitive_count": 407,
+          "decoded_shipped_triangle_count": 74208,
+          "unsupported_primitive_modes": [],
+          "non_identity_public_mesh_scales": [],
+          "visible_aabb_min_xyz_m": [
+            -4.125,
+            0.0,
+            -1.1
+          ],
+          "visible_aabb_max_xyz_m": [
+            3.115,
+            3.3898,
+            1.1
+          ],
+          "visible_aabb_dimensions_xyz_m": [
+            7.24,
+            3.3898,
+            2.2
+          ]
+        }
+      }
+    },
+    {
+      "id": "platform-gltf-y-up-single-root",
+      "status": "PASS",
+      "detail": {
+        "asset_version": "2.0",
+        "coordinate_system": "glTF 2.0 Y-up; authored +Y preserved with export_yup=False",
+        "scene_count": 1,
+        "direct_scene_root_count": 1,
+        "root_name": "ROOT_310P_CANDIDATE",
+        "root_identity_trs": true,
+        "helper_nodes": [],
+        "camera_count": 0,
+        "light_extension_present": false,
+        "mesh_node_count": 407,
+        "primitive_count": 407,
+        "decoded_shipped_triangle_count": 74208,
+        "unsupported_primitive_modes": [],
+        "non_identity_public_mesh_scales": [],
+        "visible_aabb_min_xyz_m": [
+          -4.125,
+          0.0,
+          -1.1
+        ],
+        "visible_aabb_max_xyz_m": [
+          3.115,
+          3.3898,
+          1.1
+        ],
+        "visible_aabb_dimensions_xyz_m": [
+          7.24,
+          3.3898,
+          2.2
+        ]
+      }
+    },
+    {
+      "id": "public-glb-mesh-identity-scales",
+      "status": "PASS",
+      "detail": {
+        "mesh_node_count": 407,
+        "non_identity_mesh_scales": [],
+        "tolerance": 1e-06
+      }
+    },
+    {
+      "id": "shipped-glb-triangle-accounting",
+      "status": "PASS",
+      "detail": {
+        "decoded_triangle_count": 74208,
+        "primitive_count": 407,
+        "unsupported_primitive_modes": [],
+        "basis": "independent GLB JSON accessor/index decoding"
       }
     },
     {
@@ -97,7 +210,7 @@
         ],
         "actual_xyz_m": [
           7.24,
-          3.3901,
+          3.3898,
           2.2
         ],
         "tolerance_m": 0.01,
@@ -105,31 +218,54 @@
       }
     },
     {
-      "id": "reconstructed-stabilizer-operating-width",
+      "id": "reconstructed-loader-bucket-width",
+      "status": "PASS",
+      "detail": {
+        "published_over_tires_width_m": 2.2,
+        "measured_reconstructed_bucket": {
+          "node_count": 9,
+          "min_z_m": -1.09,
+          "max_z_m": 1.09,
+          "outer_width_m": 2.18
+        },
+        "rule": "unresolved generic bucket placeholder must not exceed published over-tires width",
+        "authority": "reconstructed; exact bucket branch unresolved"
+      }
+    },
+    {
+      "id": "reconstructed-stabilizer-operating-width-and-grade",
       "status": "PASS",
       "detail": {
         "published_overall_width_m": 3.53,
         "published_spread_m": 3.1,
+        "required_pad_bottom_y_m": 0.0,
         "measured_pose": {
           "overall_width_m": 3.53,
           "foot_center_spread_m": 3.1,
           "foot_extents": {
             "Review_StabilizerFoot_Left": {
               "min_z_m": -1.7649999856948853,
-              "max_z_m": -1.334999918937683
+              "max_z_m": -1.334999918937683,
+              "min_y_m": 0.0,
+              "max_y_m": 0.11999999731779099
             },
             "Review_StabilizerFoot_Right": {
               "min_z_m": 1.334999918937683,
-              "max_z_m": 1.7649999856948853
+              "max_z_m": 1.7649999856948853,
+              "min_y_m": 0.0,
+              "max_y_m": 0.11999999731779099
             }
           },
           "witness_nodes": [
             "Review_StabilizerFoot_Left",
             "Review_StabilizerFoot_Right"
           ],
+          "pad_bottom_y_m": 0.0,
+          "grade_y_m": 0.0,
           "classification": "non-exported reconstructed review pose constrained by manufacturer-published spread and overall width"
         },
-        "tolerance_m": 0.01,
+        "width_tolerance_m": 0.01,
+        "grade_tolerance_m": 0.001,
         "authority": "reconstructed pose constrained by published endpoints"
       }
     },
@@ -138,18 +274,19 @@
       "status": "PASS",
       "detail": {
         "maximum": 125000,
-        "actual": 64580
+        "actual_shipped_glb": 74208,
+        "source_blend_evaluated": 74016
       }
     },
     {
       "id": "render-files-nonempty",
       "status": "PASS",
       "detail": {
-        "machines/john-deere-310-p-tier/review/renders/transport-front-three-quarter.png": 532069,
-        "machines/john-deere-310-p-tier/review/renders/transport-rear-three-quarter.png": 545984,
-        "machines/john-deere-310-p-tier/review/renders/technical-side.png": 470904,
-        "machines/john-deere-310-p-tier/review/renders/articulated-inspection.png": 590519,
-        "machines/john-deere-310-p-tier/review/renders/linkage-stabilizer-detail.png": 653624
+        "machines/john-deere-310-p-tier/review/renders/transport-front-three-quarter.png": 535325,
+        "machines/john-deere-310-p-tier/review/renders/transport-rear-three-quarter.png": 549388,
+        "machines/john-deere-310-p-tier/review/renders/technical-side.png": 472633,
+        "machines/john-deere-310-p-tier/review/renders/articulated-inspection.png": 593437,
+        "machines/john-deere-310-p-tier/review/renders/linkage-stabilizer-detail.png": 649396
       }
     },
     {

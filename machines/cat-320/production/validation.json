@@ -6,27 +6,120 @@
   "verdict": "PASS",
   "bounds": {
     "min_m": [
-      -2.355,
-      0.0009,
+      -2.7755,
+      0.0,
       -1.585
     ],
     "max_m": [
-      7.2263,
-      3.1558,
+      6.7729,
+      3.1538,
       1.585
     ],
     "size_m": [
-      9.5813,
-      3.1549,
+      9.5484,
+      3.1538,
       3.17
     ]
   },
   "counts": {
-    "objects": 284,
-    "meshes": 253,
+    "objects": 361,
+    "meshes": 330,
     "empties": 31,
-    "triangles": 47672,
-    "materials": 9
+    "triangles": 57892,
+    "materials": 10
+  },
+  "round_1_repair_metrics": {
+    "tail_swing_radius_m": 2.831034718608382,
+    "counterweight_clearance_agl_m": 1.0440000295639038,
+    "counterweight_evaluated_bounds_m": {
+      "min_m": [
+        -2.7549872398376465,
+        1.0440000295639038,
+        -1.25
+      ],
+      "max_m": [
+        -0.9412156343460083,
+        2.5663111209869385,
+        1.25
+      ],
+      "size_m": [
+        1.8137716054916382,
+        1.5223110914230347,
+        2.5
+      ]
+    },
+    "engine_house_length_m": 2.5781678557395935,
+    "engine_house_height_m": 1.0200001001358032,
+    "engine_house_evaluated_bounds_m": {
+      "min_m": [
+        -2.3781678676605225,
+        1.5600000619888306,
+        -1.227500081062317
+      ],
+      "max_m": [
+        0.19999998807907104,
+        2.580000162124634,
+        1.227500081062317
+      ],
+      "size_m": [
+        2.5781678557395935,
+        1.0200001001358032,
+        2.455000162124634
+      ]
+    },
+    "drive_sprocket_teeth_left": 14,
+    "drive_sprocket_teeth_right": 14,
+    "reconstructed_hose_meshes": 24,
+    "track_contact_min_y_m": 0.0,
+    "track_contact_authored_root_correction_m": -0.0723232850432396,
+    "undercarriage_center_frame_underside_agl_m": 0.4699999690055847,
+    "cab_roof_top_agl_m": 2.9600000381469727,
+    "lowest_visible_geometry_y_m": 0.0,
+    "lowest_visible_objects": [
+      "Track_L_Shoe_19",
+      "Track_R_Shoe_19"
+    ],
+    "export_mesh_scale_offenders": {},
+    "hydraulic_linkage_owner_parents": {
+      "Boom_Cylinder_L_Barrel": "Boom_Hydraulics_ROOT",
+      "Boom_Cylinder_L_Rod": "Boom_Hydraulics_ROOT",
+      "Boom_Cylinder_R_Barrel": "Boom_Hydraulics_ROOT",
+      "Boom_Cylinder_R_Rod": "Boom_Hydraulics_ROOT",
+      "Stick_Cylinder_Barrel": "Stick_Hydraulics_ROOT",
+      "Stick_Cylinder_Rod": "Stick_Hydraulics_ROOT",
+      "Bucket_Cylinder_Barrel": "Bucket_Hydraulics_ROOT",
+      "Bucket_Cylinder_Rod": "Bucket_Hydraulics_ROOT",
+      "Bucket_Link_Dogbone": "Bucket_Linkage_ROOT"
+    },
+    "bucket_rod_to_bellcrank_error_m": 5.962897962683199e-07,
+    "dogbone_to_bellcrank_error_m": 8.350158375268972e-07,
+    "dogbone_to_bucket_lug_error_m": 8.472907394624193e-07
+  },
+  "round_2_repair_metrics": {
+    "track_contact_min_y_m": 0.0,
+    "track_contact_authored_root_correction_m": -0.0723232850432396,
+    "undercarriage_center_frame_underside_agl_m": 0.4699999690055847,
+    "cab_roof_top_agl_m": 2.9600000381469727,
+    "lowest_visible_geometry_y_m": 0.0,
+    "lowest_visible_objects": [
+      "Track_L_Shoe_19",
+      "Track_R_Shoe_19"
+    ],
+    "inspection_helper_nodes_in_public_glb": []
+  },
+  "glb_contract": {
+    "scene_count": 1,
+    "scene_roots": [
+      {
+        "index": 360,
+        "name": "Machine_Root",
+        "transform": {}
+      }
+    ],
+    "camera_count": 0,
+    "punctual_light_extension_present": false,
+    "inspection_helper_nodes": [],
+    "platform_axes": "+X longitudinal, +Y vertical, +Z machine right"
   },
   "gates": [
     {
@@ -66,10 +159,13 @@
         "Bucket_Pivot": true,
         "Bucket_ROOT": true,
         "Hydraulics_ROOT": true,
+        "Boom_Hydraulics_ROOT": true,
+        "Stick_Hydraulics_ROOT": true,
+        "Bucket_Hydraulics_ROOT": true,
         "Linkage_ROOT": true,
-        "Inspection_Volumes": true,
-        "PIVOT_Attachment_Pin": true,
-        "INSPECT_Transport_Envelope": true
+        "Bucket_Linkage_ROOT": true,
+        "Bucket_Bellcrank_ROOT": true,
+        "PIVOT_Attachment_Pin": true
       }
     },
     {
@@ -96,11 +192,55 @@
       }
     },
     {
+      "id": "authored-track-contact-ground-plane",
+      "status": "PASS",
+      "detail": {
+        "measured_shoe_bottom_y_m": 0.0,
+        "authored_ground_y_m": 0.0,
+        "absolute_tolerance_m": 0.001,
+        "classification": "evaluated_visible_reconstructed_track_geometry"
+      }
+    },
+    {
+      "id": "published-center-frame-ground-clearance",
+      "status": "PASS",
+      "detail": {
+        "measured_underside_agl_m": 0.4699999690055847,
+        "published_m": 0.47,
+        "absolute_tolerance_m": 0.005,
+        "classification": "published_constraint_reconstructed_geometry"
+      }
+    },
+    {
+      "id": "visible-grade-integrity",
+      "status": "PASS",
+      "detail": {
+        "lowest_visible_y_m": 0.0,
+        "track_contact_y_m": 0.0,
+        "lowest_visible_objects": [
+          "Track_L_Shoe_19",
+          "Track_R_Shoe_19"
+        ],
+        "nonvisual_grade_witness_used": false
+      }
+    },
+    {
+      "id": "cab-roof-published-height",
+      "status": "PASS",
+      "detail": {
+        "measured_roof_top_agl_m": 2.9600000381469727,
+        "published_m": 2.96,
+        "absolute_tolerance_m": 0.025,
+        "classification": "published_constraint_reconstructed_geometry"
+      }
+    },
+    {
       "id": "transport-width-envelope",
       "status": "PASS",
       "detail": {
         "modeled_m": 3.17,
-        "published_max_m": 3.17,
+        "published_m": 3.17,
+        "absolute_tolerance_m": 0.04,
         "classification": "published_constraint_reconstructed_geometry"
       }
     },
@@ -108,8 +248,9 @@
       "id": "transport-height-envelope",
       "status": "PASS",
       "detail": {
-        "modeled_m": 3.1549,
-        "published_max_m": 3.16,
+        "modeled_m": 3.1538,
+        "published_m": 3.16,
+        "absolute_tolerance_m": 0.05,
         "classification": "published_constraint_reconstructed_pose"
       }
     },
@@ -117,21 +258,162 @@
       "id": "transport-length-envelope",
       "status": "PASS",
       "detail": {
-        "modeled_m": 9.5813,
-        "published_max_m": 9.53,
+        "modeled_m": 9.5484,
+        "published_m": 9.53,
+        "absolute_tolerance_m": 0.08,
         "classification": "published_constraint_reconstructed_pose"
+      }
+    },
+    {
+      "id": "tail-swing-radius-evaluated-mesh",
+      "status": "PASS",
+      "detail": {
+        "baseline_m": 2.4167622706023075,
+        "modeled_m": 2.831034718608382,
+        "published_m": 2.83,
+        "absolute_tolerance_m": 0.015,
+        "classification": "published_constraint_reconstructed_geometry"
+      }
+    },
+    {
+      "id": "counterweight-clearance-evaluated-mesh",
+      "status": "PASS",
+      "detail": {
+        "baseline_m": 1.4858722686767578,
+        "modeled_m": 1.0440000295639038,
+        "published_m": 1.05,
+        "absolute_tolerance_m": 0.015,
+        "classification": "published_constraint_reconstructed_geometry"
+      }
+    },
+    {
+      "id": "engine-house-reconstructed-proportion",
+      "status": "PASS",
+      "detail": {
+        "baseline_m": {
+          "length": 1.8363363146781921,
+          "height": 1.2400001287460327
+        },
+        "modeled_m": {
+          "length": 2.5781678557395935,
+          "height": 1.0200001001358032
+        },
+        "reconstructed_target_m": {
+          "length_range": [
+            2.35,
+            2.65
+          ],
+          "height_range": [
+            0.95,
+            1.15
+          ]
+        },
+        "classification": "reconstructed_visual_proportion_not_manufacturer_fact"
+      }
+    },
+    {
+      "id": "drive-sprocket-teeth-readable",
+      "status": "PASS",
+      "detail": {
+        "left": 14,
+        "right": 14,
+        "expected_reconstructed_each_side": 14,
+        "classification": "reconstructed_readability_cue"
+      }
+    },
+    {
+      "id": "hydraulic-linkage-owner-hierarchy",
+      "status": "PASS",
+      "detail": {
+        "expected": {
+          "Boom_Cylinder_L_Barrel": "Boom_Hydraulics_ROOT",
+          "Boom_Cylinder_L_Rod": "Boom_Hydraulics_ROOT",
+          "Boom_Cylinder_R_Barrel": "Boom_Hydraulics_ROOT",
+          "Boom_Cylinder_R_Rod": "Boom_Hydraulics_ROOT",
+          "Stick_Cylinder_Barrel": "Stick_Hydraulics_ROOT",
+          "Stick_Cylinder_Rod": "Stick_Hydraulics_ROOT",
+          "Bucket_Cylinder_Barrel": "Bucket_Hydraulics_ROOT",
+          "Bucket_Cylinder_Rod": "Bucket_Hydraulics_ROOT",
+          "Bucket_Link_Dogbone": "Bucket_Linkage_ROOT"
+        },
+        "actual": {
+          "Boom_Cylinder_L_Barrel": "Boom_Hydraulics_ROOT",
+          "Boom_Cylinder_L_Rod": "Boom_Hydraulics_ROOT",
+          "Boom_Cylinder_R_Barrel": "Boom_Hydraulics_ROOT",
+          "Boom_Cylinder_R_Rod": "Boom_Hydraulics_ROOT",
+          "Stick_Cylinder_Barrel": "Stick_Hydraulics_ROOT",
+          "Stick_Cylinder_Rod": "Stick_Hydraulics_ROOT",
+          "Bucket_Cylinder_Barrel": "Bucket_Hydraulics_ROOT",
+          "Bucket_Cylinder_Rod": "Bucket_Hydraulics_ROOT",
+          "Bucket_Link_Dogbone": "Bucket_Linkage_ROOT"
+        },
+        "classification": "structural_ownership_not_engineering_authority"
+      }
+    },
+    {
+      "id": "bucket-cylinder-bellcrank-static-closure",
+      "status": "PASS",
+      "detail": {
+        "errors_m": {
+          "bucket_rod_to_bellcrank_error_m": 5.962897962683199e-07,
+          "dogbone_to_bellcrank_error_m": 8.350158375268972e-07,
+          "dogbone_to_bucket_lug_error_m": 8.472907394624193e-07
+        },
+        "tolerance_m": 1e-05,
+        "classification": "static_reconstructed_visual_closure_not_kinematic_validation"
+      }
+    },
+    {
+      "id": "export-mesh-scales-applied",
+      "status": "PASS",
+      "detail": {
+        "offenders": {}
+      }
+    },
+    {
+      "id": "reconstructed-hose-bundles",
+      "status": "PASS",
+      "detail": {
+        "segment_meshes": 24,
+        "classification": "reconstructed_exterior_routing_cues_only"
+      }
+    },
+    {
+      "id": "glb-platform-contract",
+      "status": "PASS",
+      "detail": {
+        "scene_count": 1,
+        "scene_roots": [
+          {
+            "index": 360,
+            "name": "Machine_Root",
+            "transform": {}
+          }
+        ],
+        "camera_count": 0,
+        "punctual_light_extension_present": false,
+        "inspection_helper_nodes": [],
+        "platform_axes": "+X longitudinal, +Y vertical, +Z machine right"
+      }
+    },
+    {
+      "id": "public-glb-inspection-helpers-stripped",
+      "status": "PASS",
+      "detail": {
+        "exported_inspection_helper_nodes": [],
+        "private_blend_inspection_nodes_retained": true
       }
     },
     {
       "id": "object-count",
       "status": "PASS",
-      "detail": 284
+      "detail": 361
     },
     {
       "id": "triangle-budget",
       "status": "PASS",
       "detail": {
-        "triangles": 47672,
+        "triangles": 57892,
         "budget": [
           20000,
           220000
@@ -146,13 +428,20 @@
     {
       "id": "transport-pose-cylinder-visual-closure",
       "status": "PASS",
-      "detail": "Static barrel/rod objects join reconstructed anchor empties in the retained transport pose; published stroke travel is not asserted."
+      "detail": {
+        "static_bucket_closure_errors_m": {
+          "bucket_rod_to_bellcrank_error_m": 5.962897962683199e-07,
+          "dogbone_to_bellcrank_error_m": 8.350158375268972e-07,
+          "dogbone_to_bucket_lug_error_m": 8.472907394624193e-07
+        },
+        "published_stroke_travel_asserted": false
+      }
     },
     {
       "id": "review-renders-nonempty",
       "status": "PASS",
       "detail": {
-        "count": 6,
+        "count": 8,
         "minimum_bytes": 20000
       }
     },

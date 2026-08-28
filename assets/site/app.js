@@ -15,7 +15,6 @@ const MACHINE_DEFINITIONS = {
     evidenceLede: "Published 07H dimensions constrain the transport envelope and front equipment. Hidden pivot and cylinder geometry remains reconstructed.",
     factIds: ["transport-length", "transport-height", "undercarriage-width", "maximum-ground-reach"],
     cameraBias: { azimuth: 0.62, elevation: 0.34, distance: 1.48 },
-    gltfRotationX: Math.PI / 2,
     accent: "#d6943d"
   },
   "john-deere-333-p-tier": {
@@ -30,7 +29,6 @@ const MACHINE_DEFINITIONS = {
     evidenceLede: "Published endpoints establish hinge height, dump height, reach, rollback, and dump angle. The path between them is not yet solver-qualified.",
     factIds: ["length-foundry-bucket", "width-450-track", "hinge-pin-height", "dump-height"],
     cameraBias: { azimuth: 0.72, elevation: 0.34, distance: 1.62 },
-    gltfRotationX: 0,
     accent: "#c8a45b"
   },
   "john-deere-310-p-tier": {
@@ -45,7 +43,6 @@ const MACHINE_DEFINITIONS = {
     evidenceLede: "The transport envelope, wheelbase, cylinder dimensions, and standard-backhoe ranges are published. Multi-mechanism motion remains reconstructed.",
     factIds: ["overall-length", "overall-width", "cab-height", "mfwd-wheelbase"],
     cameraBias: { azimuth: 0.68, elevation: 0.33, distance: 1.58 },
-    gltfRotationX: Math.PI / 2,
     accent: "#bda575"
   }
 };
@@ -62,7 +59,10 @@ const dom = {
   triangles: document.querySelector("#metric-triangles"),
   nodes: document.querySelector("#metric-nodes"),
   gates: document.querySelector("#metric-gates"),
+  releaseState: document.querySelector("#release-state"),
+  validationSummary: document.querySelector("#validation-summary"),
   orbitToggle: document.querySelector("#orbit-toggle"),
+  technicalView: document.querySelector("#technical-view"),
   resetView: document.querySelector("#reset-view"),
   rows: [...document.querySelectorAll("[data-machine]")]
 };
@@ -126,6 +126,7 @@ const loader = new GLTFLoader();
 let currentModel = null;
 let currentMachineId = "cat-320";
 let currentCamera = null;
+let currentTechnicalCamera = null;
 let loadToken = 0;
 
 function formatNumber(value) {
@@ -143,7 +144,7 @@ function normalizeReceiptCounts(receipt) {
   const counts = sceneData.counts ?? {};
   return {
     triangles: sceneData.triangles ?? sceneData.triangle_count ?? counts.triangles ?? 0,
-    nodes: sceneData.objects ?? sceneData.object_count ?? counts.objects ?? 0
+    nodes: sceneData.objects ?? sceneData.object_count ?? counts.objects ?? counts.nodes ?? 0
   };
 }
 
@@ -151,12 +152,19 @@ function updateEvidence(definition, configuration, factsDocument, receipt, valid
   const factsById = new Map((factsDocument.facts ?? []).map((fact) => [fact.id, fact]));
   const counts = normalizeReceiptCounts(receipt);
   const passed = (validation.gates ?? []).filter((gate) => gate.status === "PASS").length;
+  const pending = (validation.gates ?? []).filter((gate) => gate.status === "PENDING").length;
   const failed = (validation.gates ?? []).filter((gate) => gate.status === "FAIL").length;
 
   dom.triangles.textContent = formatNumber(counts.triangles);
   dom.nodes.textContent = formatNumber(counts.nodes);
-  dom.gates.textContent = `${passed} / ${failed}`;
+  dom.gates.textContent = `${passed} / ${pending} / ${failed}`;
   dom.evidenceLede.textContent = definition.evidenceLede;
+  const configurationStatus = String(configuration.status ?? "unknown").replaceAll("_", " ");
+  const candidateClass = String(validation.candidate_class ?? receipt.candidate_class ?? "unclassified").replaceAll("_", " ");
+  dom.releaseState.textContent = `${configurationStatus} · ${candidateClass}`;
+  dom.validationSummary.textContent =
+    `Declared ${candidateClass} input verdict ${validation.verdict ?? "PENDING"}; ` +
+    `${passed} pass, ${pending} pending, ${failed} fail. Higher-stage PENDING gates are not release approval.`;
   dom.unresolved.textContent = `${configuration.unresolved_choices?.length ?? 0} configuration choices remain unresolved.`;
   dom.factList.replaceChildren();
 
@@ -179,6 +187,18 @@ function setModelShadows(root) {
     object.castShadow = true;
     object.receiveShadow = true;
   });
+}
+
+function assertViewerContract(gltf) {
+  const roots = gltf.scene?.children ?? [];
+  if (roots.length !== 1) throw new Error(`Viewer contract requires one scene root; found ${roots.length}`);
+  const root = roots[0];
+  const identity =
+    root.position.length() < 1e-7 &&
+    root.quaternion.angleTo(new THREE.Quaternion()) < 1e-7 &&
+    root.scale.distanceTo(new THREE.Vector3(1, 1, 1)) < 1e-7;
+  if (!identity) throw new Error(`Viewer contract requires an identity model root (${root.name || "unnamed"})`);
+  if ((gltf.cameras?.length ?? 0) > 0) throw new Error("Viewer contract rejects embedded cameras");
 }
 
 function disposeModel(root) {
@@ -220,12 +240,22 @@ function fitCamera(root, definition, immediate = false) {
     Math.sin(azimuth) * Math.cos(elevation) * distance
   );
 
+  const verticalFov = THREE.MathUtils.degToRad(camera.fov);
+  const horizontalFov = 2 * Math.atan(Math.tan(verticalFov / 2) * Math.max(camera.aspect, 0.1));
+  const technicalDistance = Math.max(
+    (fittedSize.y * 0.5) / Math.tan(verticalFov / 2),
+    (fittedSize.x * 0.5) / Math.tan(horizontalFov / 2)
+  ) * 1.22;
+  const technicalTarget = new THREE.Vector3(0, fittedSize.y * 0.5, 0);
+  const technicalPosition = new THREE.Vector3(0, technicalTarget.y + fittedSize.y * 0.08, technicalDistance);
+
   camera.near = Math.max(0.01, distance / 1000);
   camera.far = distance * 20;
   camera.updateProjectionMatrix();
   controls.minDistance = distance * 0.38;
   controls.maxDistance = distance * 2.2;
   currentCamera = { position: destination, target };
+  currentTechnicalCamera = { position: technicalPosition, target: technicalTarget };
 
   if (immediate) {
     camera.position.copy(destination);
@@ -271,6 +301,8 @@ async function selectMachine(machineId, { scrollToHero = false } = {}) {
   currentMachineId = machineId;
   const definition = MACHINE_DEFINITIONS[machineId];
   const token = ++loadToken;
+  disposeModel(currentModel);
+  currentModel = null;
 
   document.documentElement.style.setProperty("--accent", definition.accent);
   document.body.classList.remove("is-ready");
@@ -278,12 +310,21 @@ async function selectMachine(machineId, { scrollToHero = false } = {}) {
   dom.className.textContent = definition.className;
   dom.boundary.textContent = definition.boundary;
   dom.status.textContent = `Loading ${definition.name}`;
+  dom.triangles.textContent = "—";
+  dom.nodes.textContent = "—";
+  dom.gates.textContent = "— / — / —";
+  dom.releaseState.textContent = "Loading bounded study classification";
+  dom.validationSummary.textContent = "Loading PASS, PENDING, and FAIL gate states.";
+  dom.unresolved.textContent = "Loading unresolved configuration choices.";
+  dom.factList.replaceChildren();
 
   for (const row of dom.rows) {
     const active = row.dataset.machine === machineId;
     row.classList.toggle("is-active", active);
     row.setAttribute("aria-selected", String(active));
+    row.setAttribute("tabindex", active ? "0" : "-1");
   }
+  document.querySelector("#machine-panel")?.setAttribute("aria-labelledby", `machine-tab-${machineId} machine-title`);
 
   if (scrollToHero) document.querySelector("#top")?.scrollIntoView({ behavior: "smooth" });
 
@@ -297,16 +338,14 @@ async function selectMachine(machineId, { scrollToHero = false } = {}) {
     ]);
     if (token !== loadToken) return;
 
-    disposeModel(currentModel);
+    updateEvidence(definition, configuration, facts, receipt, validation);
+    assertViewerContract(gltf);
     currentModel = gltf.scene;
     currentModel.name = `${machineId}-viewer-root`;
-    currentModel.rotation.x = definition.gltfRotationX;
     currentModel.updateMatrixWorld(true);
     setModelShadows(currentModel);
     scene.add(currentModel);
     fitCamera(currentModel, definition, !currentCamera);
-    updateEvidence(definition, configuration, facts, receipt, validation);
-
     dom.status.textContent = `${definition.name} · study loaded`;
     document.body.classList.add("is-ready");
   } catch (error) {
@@ -334,17 +373,53 @@ dom.resetView.addEventListener("click", () => {
   animateCamera(currentCamera.position, currentCamera.target);
 });
 
-for (const row of dom.rows) {
-  row.addEventListener("click", () => selectMachine(row.dataset.machine, { scrollToHero: true }));
-}
+dom.technicalView.addEventListener("click", () => {
+  if (!currentTechnicalCamera) return;
+  controls.autoRotate = false;
+  dom.orbitToggle.setAttribute("aria-pressed", "false");
+  animateCamera(currentTechnicalCamera.position, currentTechnicalCamera.target);
+});
 
-window.addEventListener("keydown", (event) => {
-  if (!event.key.startsWith("Arrow")) return;
+function selectAdjacentTab(event) {
+  if (!["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home", "End"].includes(event.key)) return;
+  event.preventDefault();
   const ids = Object.keys(MACHINE_DEFINITIONS);
   const currentIndex = ids.indexOf(currentMachineId);
-  const offset = event.key === "ArrowRight" || event.key === "ArrowDown" ? 1 : -1;
-  const next = ids[(currentIndex + offset + ids.length) % ids.length];
+  const nextIndex = event.key === "Home"
+    ? 0
+    : event.key === "End"
+      ? ids.length - 1
+      : (currentIndex + (event.key === "ArrowRight" || event.key === "ArrowDown" ? 1 : -1) + ids.length) % ids.length;
+  const next = ids[nextIndex];
+  const nextTab = dom.rows.find((row) => row.dataset.machine === next);
+  nextTab?.focus();
   selectMachine(next);
+}
+
+for (const row of dom.rows) {
+  row.addEventListener("click", () => selectMachine(row.dataset.machine, { scrollToHero: true }));
+  row.addEventListener("keydown", selectAdjacentTab);
+}
+
+dom.scene.addEventListener("keydown", (event) => {
+  const keys = new Set(["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "+", "=", "-", "_", "Home"]);
+  if (!keys.has(event.key) || !currentCamera) return;
+  event.preventDefault();
+  if (event.key === "Home") {
+    const view = currentTechnicalCamera ?? currentCamera;
+    animateCamera(view.position, view.target);
+    return;
+  }
+  const offset = camera.position.clone().sub(controls.target);
+  const spherical = new THREE.Spherical().setFromVector3(offset);
+  if (event.key === "ArrowLeft") spherical.theta -= 0.12;
+  if (event.key === "ArrowRight") spherical.theta += 0.12;
+  if (event.key === "ArrowUp") spherical.phi = Math.max(controls.minPolarAngle, spherical.phi - 0.08);
+  if (event.key === "ArrowDown") spherical.phi = Math.min(controls.maxPolarAngle, spherical.phi + 0.08);
+  if (event.key === "+" || event.key === "=") spherical.radius = Math.max(controls.minDistance, spherical.radius * 0.9);
+  if (event.key === "-" || event.key === "_") spherical.radius = Math.min(controls.maxDistance, spherical.radius * 1.1);
+  camera.position.copy(controls.target).add(new THREE.Vector3().setFromSpherical(spherical));
+  controls.update();
 });
 
 window.addEventListener("resize", resize);

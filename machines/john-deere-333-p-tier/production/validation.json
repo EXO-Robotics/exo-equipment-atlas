@@ -8,6 +8,30 @@
   "verdict_scope": "technical_structural_study_only",
   "higher_stage_gates": "PENDING",
   "failed_gates": [],
+  "evaluated_visible_bounds_m": {
+    "axis_order": [
+      "machine_X_longitudinal",
+      "machine_Y_vertical",
+      "machine_Z_right"
+    ],
+    "min_m": [
+      -1.77,
+      0.001172,
+      -1.06
+    ],
+    "max_m": [
+      2.079393,
+      2.22,
+      1.06
+    ],
+    "size_m": [
+      3.849393,
+      2.218828,
+      2.12
+    ],
+    "measured_object_count": 274,
+    "method": "evaluated visible production mesh and curve vertices in retained stowed pose; Studio, Markers, Collision, Inspection, cameras, lights, and hidden helpers excluded"
+  },
   "gates": [
     {
       "id": "published-length-no-bucket",
@@ -25,14 +49,38 @@
     {
       "id": "published-length-foundry-bucket",
       "status": "PASS",
-      "detail": "Published constraint represented by explicit dimensional references; hidden geometry remains reconstructed.",
+      "detail": "Measured from evaluated visible production vertices in the retained foundry-bucket pose; no reference empties or helper volumes participate.",
       "expected": {
         "value": 3.84,
-        "tolerance": 0.008
+        "tolerance": 0.012
       },
       "actual": {
-        "value": 3.84027,
-        "absolute_delta": 0.00027
+        "value": 3.84939,
+        "absolute_delta": 0.00939,
+        "evaluated_visible_bounds_m": {
+          "axis_order": [
+            "machine_X_longitudinal",
+            "machine_Y_vertical",
+            "machine_Z_right"
+          ],
+          "min_m": [
+            -1.77,
+            0.001172,
+            -1.06
+          ],
+          "max_m": [
+            2.079393,
+            2.22,
+            1.06
+          ],
+          "size_m": [
+            3.849393,
+            2.218828,
+            2.12
+          ],
+          "measured_object_count": 274,
+          "method": "evaluated visible production mesh and curve vertices in retained stowed pose; Studio, Markers, Collision, Inspection, cameras, lights, and hidden helpers excluded"
+        }
       }
     },
     {
@@ -89,15 +137,17 @@
     },
     {
       "id": "published-dump-reach",
-      "status": "PASS",
-      "detail": "Published constraint represented by explicit dimensional references; hidden geometry remains reconstructed.",
+      "status": "PENDING",
+      "detail": "The published 0.74 m value is retained, but its manufacturer datum is not bound by the admitted source. The displayed X=1.00 m plane is reconstructed and cannot prove this fact.",
       "expected": {
         "value": 0.74,
         "tolerance": 0.008
       },
       "actual": {
         "value": 0.74032,
-        "absolute_delta": 0.00032
+        "absolute_delta": 0.00032,
+        "datum_authority": "reconstructed_unbound_reference_plane",
+        "qualification": "representation_only_not_manufacturer_proof"
       }
     },
     {
@@ -232,6 +282,71 @@
       }
     },
     {
+      "id": "reconstructed-sprocket-teeth",
+      "status": "PASS",
+      "detail": "Readable reconstructed visual teeth; count and pitch are not manufacturer facts.",
+      "expected": {
+        "total_visual_teeth": 24,
+        "authority": "reconstructed"
+      },
+      "actual": {
+        "nodes": [
+          "DriveSprocketTooth_L_01",
+          "DriveSprocketTooth_L_02",
+          "DriveSprocketTooth_L_03",
+          "DriveSprocketTooth_L_04",
+          "DriveSprocketTooth_L_05",
+          "DriveSprocketTooth_L_06",
+          "DriveSprocketTooth_L_07",
+          "DriveSprocketTooth_L_08",
+          "DriveSprocketTooth_L_09",
+          "DriveSprocketTooth_L_10",
+          "DriveSprocketTooth_L_11",
+          "DriveSprocketTooth_L_12",
+          "DriveSprocketTooth_R_01",
+          "DriveSprocketTooth_R_02",
+          "DriveSprocketTooth_R_03",
+          "DriveSprocketTooth_R_04",
+          "DriveSprocketTooth_R_05",
+          "DriveSprocketTooth_R_06",
+          "DriveSprocketTooth_R_07",
+          "DriveSprocketTooth_R_08",
+          "DriveSprocketTooth_R_09",
+          "DriveSprocketTooth_R_10",
+          "DriveSprocketTooth_R_11",
+          "DriveSprocketTooth_R_12"
+        ]
+      }
+    },
+    {
+      "id": "reconstructed-hose-bundles",
+      "status": "PASS",
+      "detail": "Pose-following visual hose routing is reconstructed; lengths, fittings, pressures, and clamp points remain unresolved.",
+      "expected": {
+        "expected_visual_bundles": 4,
+        "authority": "reconstructed"
+      },
+      "actual": {
+        "nodes": [
+          "HydraulicHoseBundle_L_01",
+          "HydraulicHoseBundle_L_02",
+          "HydraulicHoseBundle_R_01",
+          "HydraulicHoseBundle_R_02"
+        ]
+      }
+    },
+    {
+      "id": "retained-bucket-tooth-grade-clearance",
+      "status": "PASS",
+      "detail": "Evaluated retained-pose bucket-tooth vertices must not penetrate the Y=0 grade plane.",
+      "expected": {
+        "minimum_machine_y_m": -0.001
+      },
+      "actual": {
+        "minimum_machine_y_m": 0.114345
+      }
+    },
+    {
       "id": "structural-triangle-budget",
       "status": "PASS",
       "detail": "Study is detailed enough for review and remains inside the reconstructed web-study budget.",
@@ -239,7 +354,7 @@
         "minimum": 5000,
         "maximum": 100000
       },
-      "actual": 40312
+      "actual": 42904
     },
     {
       "id": "render-non-emptiness",
@@ -252,43 +367,43 @@
       },
       "actual": {
         "review/renders/333p-front-three-quarter-stowed.png": {
-          "bytes": 994733,
+          "bytes": 680893,
           "sampled_luminance_min": 0.0,
           "sampled_luminance_max": 1.0,
           "sampled_luminance_range": 1.0
         },
         "review/renders/333p-side-stowed.png": {
-          "bytes": 908013,
+          "bytes": 551119,
           "sampled_luminance_min": 0.0,
           "sampled_luminance_max": 0.999166,
           "sampled_luminance_range": 0.999166
         },
         "review/renders/333p-rear-three-quarter-stowed.png": {
-          "bytes": 1119878,
+          "bytes": 788154,
           "sampled_luminance_min": 0.0,
           "sampled_luminance_max": 0.991323,
           "sampled_luminance_range": 0.991323
         },
         "review/renders/333p-undercarriage-detail.png": {
-          "bytes": 988291,
+          "bytes": 761708,
           "sampled_luminance_min": 0.0,
-          "sampled_luminance_max": 0.99386,
-          "sampled_luminance_range": 0.99386
+          "sampled_luminance_max": 0.991056,
+          "sampled_luminance_range": 0.991056
         },
         "review/renders/333p-linkage-detail-stowed.png": {
-          "bytes": 1227621,
-          "sampled_luminance_min": 0.003088,
-          "sampled_luminance_max": 0.982595,
-          "sampled_luminance_range": 0.979507
+          "bytes": 947438,
+          "sampled_luminance_min": 0.004205,
+          "sampled_luminance_max": 0.981761,
+          "sampled_luminance_range": 0.977556
         },
         "review/renders/333p-side-full-lift-dump.png": {
-          "bytes": 872722,
+          "bytes": 451158,
           "sampled_luminance_min": 0.0,
           "sampled_luminance_max": 1.0,
           "sampled_luminance_range": 1.0
         },
         "review/renders/333p-front-three-quarter-full-lift.png": {
-          "bytes": 919596,
+          "bytes": 521124,
           "sampled_luminance_min": 0.0,
           "sampled_luminance_max": 1.0,
           "sampled_luminance_range": 1.0
@@ -362,6 +477,330 @@
       "id": "publication-release-deployment",
       "status": "PENDING",
       "detail": "Only the overall publisher may advance or deploy this study."
+    },
+    {
+      "id": "public-visible-secondary-envelope",
+      "status": "PASS",
+      "detail": "Evaluated public visible geometry stays within explicit structural-study height and lateral tolerances.",
+      "expected": {
+        "height_m": 2.22,
+        "height_tolerance_m": 0.04,
+        "width_m": 2.05,
+        "width_tolerance_m": 0.08
+      },
+      "actual": {
+        "height_m": 2.218828,
+        "width_m": 2.12
+      }
+    },
+    {
+      "id": "articulated-cylinder-scales-applied",
+      "status": "PASS",
+      "detail": "Lift and bucket-tilt cylinder object scales are applied before save/export.",
+      "expected": {
+        "all_scales": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "actual": {
+        "status": "PASS",
+        "before": {
+          "LiftCylinder_Barrel_L": [
+            0.07,
+            0.07,
+            0.342648
+          ],
+          "LiftCylinder_Barrel_R": [
+            0.07,
+            0.07,
+            0.342648
+          ],
+          "LiftCylinder_Rod_L": [
+            0.042,
+            0.042,
+            0.327271
+          ],
+          "LiftCylinder_Rod_R": [
+            0.042,
+            0.042,
+            0.327271
+          ],
+          "BucketTiltCylinder_Barrel": [
+            0.075,
+            0.075,
+            0.234253
+          ],
+          "BucketTiltCylinder_Rod": [
+            0.043,
+            0.043,
+            0.145942
+          ]
+        },
+        "after": {
+          "LiftCylinder_Barrel_L": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "LiftCylinder_Barrel_R": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "LiftCylinder_Rod_L": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "LiftCylinder_Rod_R": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "BucketTiltCylinder_Barrel": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "BucketTiltCylinder_Rod": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      }
+    },
+    {
+      "id": "public-source-export-scales-applied",
+      "status": "PASS",
+      "detail": "Every public Blender mesh/curve export object has scale applied without changing the retained visible envelope.",
+      "expected": {
+        "all_scales": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "maximum_envelope_delta_m": 1e-06
+      },
+      "actual": {
+        "status": "PASS",
+        "public_export_geometry_nodes": 274,
+        "baked_node_count": 14,
+        "before_non_identity": {
+          "AttachmentCarriage_Side_L": [
+            0.183439,
+            0.07,
+            0.08
+          ],
+          "AttachmentCarriage_Side_R": [
+            0.183439,
+            0.07,
+            0.08
+          ],
+          "BucketTiltLink_Reconstructed": [
+            0.024811,
+            0.045,
+            0.055
+          ],
+          "LiftCrossmember": [
+            0.72,
+            0.1,
+            0.1
+          ],
+          "ROPS_FrontPillar_L": [
+            0.655534,
+            0.0425,
+            0.0475
+          ],
+          "ROPS_FrontPillar_R": [
+            0.655534,
+            0.0425,
+            0.0475
+          ],
+          "ROPS_RearPillar_L": [
+            0.65873,
+            0.0425,
+            0.0475
+          ],
+          "ROPS_RearPillar_R": [
+            0.65873,
+            0.0425,
+            0.0475
+          ],
+          "VerticalLift_LowerArm_L": [
+            1.064765,
+            0.065,
+            0.095
+          ],
+          "VerticalLift_LowerArm_R": [
+            1.064765,
+            0.065,
+            0.095
+          ],
+          "VerticalLift_RearRiser_L": [
+            0.246221,
+            0.08,
+            0.085
+          ],
+          "VerticalLift_RearRiser_R": [
+            0.246221,
+            0.08,
+            0.085
+          ],
+          "VerticalLift_UpperArm_L": [
+            1.034456,
+            0.065,
+            0.095
+          ],
+          "VerticalLift_UpperArm_R": [
+            1.034456,
+            0.065,
+            0.095
+          ]
+        },
+        "after_non_identity": {},
+        "before_bounds_m": {
+          "axis_order": [
+            "machine_X_longitudinal",
+            "machine_Y_vertical",
+            "machine_Z_right"
+          ],
+          "min_m": [
+            -1.77,
+            0.001172,
+            -1.06
+          ],
+          "max_m": [
+            2.079393,
+            2.22,
+            1.06
+          ],
+          "size_m": [
+            3.849393,
+            2.218828,
+            2.12
+          ],
+          "measured_object_count": 274,
+          "method": "evaluated visible production mesh and curve vertices in retained stowed pose; Studio, Markers, Collision, Inspection, cameras, lights, and hidden helpers excluded"
+        },
+        "after_bounds_m": {
+          "axis_order": [
+            "machine_X_longitudinal",
+            "machine_Y_vertical",
+            "machine_Z_right"
+          ],
+          "min_m": [
+            -1.77,
+            0.001172,
+            -1.06
+          ],
+          "max_m": [
+            2.079393,
+            2.22,
+            1.06
+          ],
+          "size_m": [
+            3.849393,
+            2.218828,
+            2.12
+          ],
+          "measured_object_count": 274,
+          "method": "evaluated visible production mesh and curve vertices in retained stowed pose; Studio, Markers, Collision, Inspection, cameras, lights, and hidden helpers excluded"
+        },
+        "envelope_delta_m": {
+          "min_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "size_m": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "id": "public-glb-mesh-node-scales-identity",
+      "status": "PASS",
+      "detail": "Every shipped public GLB node that references a mesh must decode to identity local scale.",
+      "expected": {
+        "non_identity_mesh_nodes": [],
+        "identity_scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "actual": {
+        "mesh_node_count": 274,
+        "non_identity_mesh_nodes": []
+      }
+    },
+    {
+      "id": "public-glb-decoded-triangle-budget",
+      "status": "PASS",
+      "detail": "Shipped public GLB triangle count is independently decoded from accessors and kept separate from Blend source counts.",
+      "expected": {
+        "minimum": 5000,
+        "maximum": 100000,
+        "unsupported_primitive_modes": []
+      },
+      "actual": {
+        "classification": "public_glb_decoded_geometry",
+        "nodes": 281,
+        "mesh_nodes": 274,
+        "mesh_resources": 274,
+        "primitives": 274,
+        "position_vertices": 79616,
+        "triangles": 42688,
+        "triangle_method": "decoded glTF accessor element counts; TRIANGLES count/3, strips/fans count-2"
+      }
+    },
+    {
+      "id": "public-glb-single-root-helper-free",
+      "status": "PASS",
+      "detail": "Y-up GLB must have one identity scene root and no studio, reference, quick-pivot, collision, inspection, camera, or light helpers.",
+      "expected": {
+        "root_name": "JD333P_Root",
+        "direct_root_count": 1,
+        "root_identity_trs": true,
+        "helper_nodes_present": []
+      },
+      "actual": {
+        "status": "PASS",
+        "asset_version": "2.0",
+        "scene_direct_root_count": 1,
+        "scene_direct_root_names": [
+          "JD333P_Root"
+        ],
+        "root_identity_trs": true,
+        "node_count": 281,
+        "helper_nodes_present": [],
+        "public_mesh_node_scale_status": "PASS",
+        "public_mesh_node_count": 274,
+        "public_mesh_nodes_non_identity_scale": [],
+        "public_glb_decoded_counts": {
+          "classification": "public_glb_decoded_geometry",
+          "nodes": 281,
+          "mesh_nodes": 274,
+          "mesh_resources": 274,
+          "primitives": 274,
+          "position_vertices": 79616,
+          "triangles": 42688,
+          "triangle_method": "decoded glTF accessor element counts; TRIANGLES count/3, strips/fans count-2"
+        },
+        "unsupported_primitive_modes": [],
+        "glb_y_up": true
+      }
     }
   ]
 }

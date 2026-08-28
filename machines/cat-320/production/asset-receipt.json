@@ -12,7 +12,7 @@
   },
   "builder": {
     "path": "source/blender/build_cat_320.py",
-    "sha256": "974afef5553d84924a19e6c08e00f4079b566c9630c4a56577c3ae4a8d3dfa07",
+    "sha256": "9f70c658c441aaf11d4068ed3789cac56f88d54dbcbf3c7115638555b00d2292",
     "deterministic": true,
     "network_used": false,
     "downloaded_geometry_used": false,
@@ -23,13 +23,13 @@
   "artifacts": {
     "blend": {
       "path": "source/blender/cat-320-structural-study.blend",
-      "sha256": "044341e25cd178fbbbea319f6c44b21f8de6f00e242b6affac9c6f895f020f9b",
-      "bytes": 273733
+      "sha256": "579e477a33b9fd3336f616d85b53a0970c9541485707a6bcff7ee31fb2e52555",
+      "bytes": 308837
     },
     "glb": {
       "path": "assets/cat-320-structural-study.glb",
-      "sha256": "5de7a8296fd8c49d99e92aeed30a2767e1bcad59fbe6ac231ac529dba3bc1a7d",
-      "bytes": 2980080
+      "sha256": "bda1fab910f0d8692eea416910c2f00625061963d5744a20110f05350c51b060",
+      "bytes": 3684052
     }
   },
   "scene": {
@@ -39,29 +39,169 @@
       "vertical": "+Y",
       "lateral": "+Z machine right"
     },
+    "visible_aabb_xyz_m": [
+      9.5484,
+      3.1538,
+      3.17
+    ],
     "bounds": {
       "min_m": [
-        -2.355,
-        0.0009,
+        -2.7755,
+        0.0,
         -1.585
       ],
       "max_m": [
-        7.2263,
-        3.1558,
+        6.7729,
+        3.1538,
         1.585
       ],
       "size_m": [
-        9.5813,
-        3.1549,
+        9.5484,
+        3.1538,
         3.17
       ]
     },
-    "objects": 284,
-    "meshes": 253,
+    "objects": 361,
+    "meshes": 330,
     "empties": 31,
-    "triangles": 47672,
-    "materials": 9
+    "triangles": 57892,
+    "materials": 10
   },
+  "glb_contract": {
+    "scene_count": 1,
+    "scene_roots": [
+      {
+        "index": 360,
+        "name": "Machine_Root",
+        "transform": {}
+      }
+    ],
+    "camera_count": 0,
+    "punctual_light_extension_present": false,
+    "inspection_helper_nodes": [],
+    "platform_axes": "+X longitudinal, +Y vertical, +Z machine right"
+  },
+  "repair_round_1": {
+    "finding_ids": [
+      "F-001",
+      "F-006",
+      "F-007",
+      "F-008",
+      "F-017",
+      "F-018",
+      "F-019"
+    ],
+    "baseline": {
+      "tail_swing_radius_m": 2.4167622706023075,
+      "counterweight_clearance_agl_m": 1.4858722686767578,
+      "engine_house_length_m": 1.8363363146781921,
+      "engine_house_height_m": 1.2400001287460327,
+      "unapplied_hydraulic_linkage_handrail_meshes": 11,
+      "glb_scene_roots": [
+        "Machine_Root"
+      ]
+    },
+    "after": {
+      "tail_swing_radius_m": 2.831034718608382,
+      "counterweight_clearance_agl_m": 1.0440000295639038,
+      "counterweight_evaluated_bounds_m": {
+        "min_m": [
+          -2.7549872398376465,
+          1.0440000295639038,
+          -1.25
+        ],
+        "max_m": [
+          -0.9412156343460083,
+          2.5663111209869385,
+          1.25
+        ],
+        "size_m": [
+          1.8137716054916382,
+          1.5223110914230347,
+          2.5
+        ]
+      },
+      "engine_house_length_m": 2.5781678557395935,
+      "engine_house_height_m": 1.0200001001358032,
+      "engine_house_evaluated_bounds_m": {
+        "min_m": [
+          -2.3781678676605225,
+          1.5600000619888306,
+          -1.227500081062317
+        ],
+        "max_m": [
+          0.19999998807907104,
+          2.580000162124634,
+          1.227500081062317
+        ],
+        "size_m": [
+          2.5781678557395935,
+          1.0200001001358032,
+          2.455000162124634
+        ]
+      },
+      "drive_sprocket_teeth_left": 14,
+      "drive_sprocket_teeth_right": 14,
+      "reconstructed_hose_meshes": 24,
+      "track_contact_min_y_m": 0.0,
+      "track_contact_authored_root_correction_m": -0.0723232850432396,
+      "undercarriage_center_frame_underside_agl_m": 0.4699999690055847,
+      "cab_roof_top_agl_m": 2.9600000381469727,
+      "lowest_visible_geometry_y_m": 0.0,
+      "lowest_visible_objects": [
+        "Track_L_Shoe_19",
+        "Track_R_Shoe_19"
+      ],
+      "export_mesh_scale_offenders": {},
+      "hydraulic_linkage_owner_parents": {
+        "Boom_Cylinder_L_Barrel": "Boom_Hydraulics_ROOT",
+        "Boom_Cylinder_L_Rod": "Boom_Hydraulics_ROOT",
+        "Boom_Cylinder_R_Barrel": "Boom_Hydraulics_ROOT",
+        "Boom_Cylinder_R_Rod": "Boom_Hydraulics_ROOT",
+        "Stick_Cylinder_Barrel": "Stick_Hydraulics_ROOT",
+        "Stick_Cylinder_Rod": "Stick_Hydraulics_ROOT",
+        "Bucket_Cylinder_Barrel": "Bucket_Hydraulics_ROOT",
+        "Bucket_Cylinder_Rod": "Bucket_Hydraulics_ROOT",
+        "Bucket_Link_Dogbone": "Bucket_Linkage_ROOT"
+      },
+      "bucket_rod_to_bellcrank_error_m": 5.962897962683199e-07,
+      "dogbone_to_bellcrank_error_m": 8.350158375268972e-07,
+      "dogbone_to_bucket_lug_error_m": 8.472907394624193e-07
+    }
+  },
+  "repair_round_2": {
+    "finding_ids": [
+      "R2-001",
+      "R2-005",
+      "R2-006"
+    ],
+    "measured": {
+      "track_contact_min_y_m": 0.0,
+      "track_contact_authored_root_correction_m": -0.0723232850432396,
+      "undercarriage_center_frame_underside_agl_m": 0.4699999690055847,
+      "cab_roof_top_agl_m": 2.9600000381469727,
+      "lowest_visible_geometry_y_m": 0.0,
+      "lowest_visible_objects": [
+        "Track_L_Shoe_19",
+        "Track_R_Shoe_19"
+      ],
+      "inspection_helper_nodes_in_public_glb": []
+    },
+    "track_contact_authored_root_correction_m": -0.0723232850432396,
+    "visual_repairs": [
+      "tapered three-volume boom box section",
+      "stepped lower house and upper hood volumes",
+      "bilateral service-door and counterweight cheek volumes",
+      "outboard thickened reconstructed hose bundles"
+    ]
+  },
+  "private_nonexport_inspection_nodes": [
+    "Inspection_Volumes",
+    "INSPECT_Transport_Envelope",
+    "INSPECT_Upper_Clearance",
+    "INSPECT_Boom_Swept_Study",
+    "INSPECT_Attachment_Volume"
+  ],
   "required_semantic_nodes": {
     "Machine_Root": true,
     "Undercarriage_ROOT": true,
@@ -76,10 +216,13 @@
     "Bucket_Pivot": true,
     "Bucket_ROOT": true,
     "Hydraulics_ROOT": true,
+    "Boom_Hydraulics_ROOT": true,
+    "Stick_Hydraulics_ROOT": true,
+    "Bucket_Hydraulics_ROOT": true,
     "Linkage_ROOT": true,
-    "Inspection_Volumes": true,
-    "PIVOT_Attachment_Pin": true,
-    "INSPECT_Transport_Envelope": true
+    "Bucket_Linkage_ROOT": true,
+    "Bucket_Bellcrank_ROOT": true,
+    "PIVOT_Attachment_Pin": true
   },
   "manufacturer_published_constraints_used": [
     "boom-length",
@@ -107,8 +250,8 @@
     "scene_transport_pose": {
       "upper_swing_deg": 0.0,
       "boom_deg": 0.0,
-      "stick_relative_deg": -64.0,
-      "bucket_relative_deg": 224.0,
+      "stick_relative_deg": -67.6,
+      "bucket_relative_deg": 232.0,
       "note": "Visualization pose selected to fit the published transport envelope; not a manufacturer pose definition."
     },
     "review_articulated_pose": {
@@ -126,7 +269,7 @@
     "slew_ring_diameter_m": 1.65,
     "boom_pivot_m": [
       0.1,
-      1.98,
+      1.86,
       0.0
     ],
     "boom_centerline_polyline_local_m": [
@@ -135,27 +278,31 @@
         0.0
       ],
       [
-        1.91,
-        1.1
+        1.15,
+        0.85
       ],
       [
-        3.91,
-        0.995
+        2.25,
+        1.22
       ],
       [
-        5.38,
-        0.735
+        4.05,
+        0.82
+      ],
+      [
+        5.32,
+        0.95
       ]
     ],
     "stick_pivot_local_m": [
-      5.38,
-      0.735,
+      5.32,
+      0.95,
       0.0
     ],
     "stick_modeled_pin_distance_m": 2.9,
     "bucket_pivot_local_m": [
       2.9,
-      0.09,
+      0.15,
       0.0
     ],
     "bucket_shell_width_m": 1.2,
@@ -165,6 +312,18 @@
     "track_shoe_thickness_m": 0.075,
     "wheel_and_roller_centers": "Reconstructed from the published track length, roller-center length, counts, and visible first-party illustrations.",
     "cab_house_counterweight_panels": "Independently authored from first-party illustration observations; no hidden internal assembly is represented.",
+    "engine_house_visible_target_m": {
+      "length_range": [
+        2.35,
+        2.65
+      ],
+      "height_range": [
+        0.95,
+        1.15
+      ]
+    },
+    "drive_sprocket_teeth_each_side": 14,
+    "hose_bundle_paths": "Reconstructed exterior routing cues only; no hose diameter, pressure, fitting, or service authority.",
     "hydraulic_anchors": "All base and rod anchor coordinates are reconstructed. Published strokes constrain future solver work only.",
     "bucket_linkage": "Bellcrank, dogbone, bucket lug, and all pin locations are reconstructed visual closure cues only.",
     "inspection_volumes": "Envelope and component volumes are non-authoritative visualization aids.",
@@ -191,33 +350,43 @@
   "renders": [
     {
       "path": "review/renders/cat-320-operator-side.png",
-      "sha256": "fea9a0b309fffdf457929873e93f504a7d90eaf30d8d69af5cec94892e69c900",
-      "bytes": 321916
+      "sha256": "0ceb0b416460be7e43820ef8163f485f94df00e63c1e451a04cd4ba09c626b55",
+      "bytes": 325653
     },
     {
       "path": "review/renders/cat-320-right-three-quarter.png",
-      "sha256": "5faf2376a3480856e37e812915255584241030acd682c347fa7b290390f20a48",
-      "bytes": 315307
+      "sha256": "f4037e493fe50f95a8d79fedb1697a666f302a06204a21966b22391577cd86fe",
+      "bytes": 317996
     },
     {
       "path": "review/renders/cat-320-rear-three-quarter.png",
-      "sha256": "04d337095b62c758b551821a7b810ef7bf5c135491c946156c147b59a54de91e",
-      "bytes": 361955
+      "sha256": "43a2fb4e26ef114971d02c37b25574662fd75f7e779a8376a8d911b18050a346",
+      "bytes": 367573
     },
     {
       "path": "review/renders/cat-320-front-equipment.png",
-      "sha256": "de11dd93c17b07a6d2dc705a585f9b27e34b1d0101d7b9111494aeba924952c4",
-      "bytes": 349102
+      "sha256": "d15836aef12f8bcb5c925a5ef610bb16d6883ae5172ec014458b23dca6783e61",
+      "bytes": 351905
     },
     {
       "path": "review/renders/cat-320-linkage-detail.png",
-      "sha256": "69df5cb4d8a795a6fc290127c768a5def4ceffc5bb333fd87bc85bd988ca2525",
-      "bytes": 385587
+      "sha256": "18249dac8bb0a9775a7cbdf258801ecdbc2cf598c544073f37b6d3411c3c4977",
+      "bytes": 439851
+    },
+    {
+      "path": "review/renders/cat-320-drive-sprocket-detail.png",
+      "sha256": "6c547b52b49524dc71e8a9b1619363f613cd45d5d20a414af3b766671606c445",
+      "bytes": 573644
+    },
+    {
+      "path": "review/renders/cat-320-hydraulic-routing-detail.png",
+      "sha256": "94788616b0b83e5fe8cf9249d98b400467b04177e67990bfff05bb069b255433",
+      "bytes": 379593
     },
     {
       "path": "review/renders/cat-320-articulated-review.png",
-      "sha256": "4897fe02e6dd4384e392b517b6959186a0eff83c76965d6d600292999ffc5888",
-      "bytes": 323404
+      "sha256": "1e3d3837243b1eb40a9242c8e8ac3b058ce90b9b42d6191545a762fad503c57e",
+      "bytes": 327662
     }
   ],
   "build_verdict": "PASS",

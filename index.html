@@ -13,14 +13,14 @@
     <script type="importmap">
       {
         "imports": {
-          "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js",
-          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+          "three": "./assets/vendor/three-r160/build/three.module.min.js",
+          "three/addons/": "./assets/vendor/three-r160/examples/jsm/"
         }
       }
     </script>
   </head>
   <body>
-    <a class="skip-link" href="#evidence">Skip to evidence</a>
+    <a class="skip-link" href="#scene">Skip to interactive viewer</a>
 
     <header class="site-header" aria-label="Primary navigation">
       <a class="brand" href="#top" aria-label="EXO Equipment Atlas home">
@@ -37,8 +37,20 @@
     </header>
 
     <main id="top">
-      <section class="hero" aria-labelledby="machine-title">
-        <div id="scene" class="scene" aria-hidden="true"></div>
+      <section
+        class="hero"
+        id="machine-panel"
+        role="tabpanel"
+        aria-labelledby="machine-tab-cat-320 machine-title"
+      >
+        <div
+          id="scene"
+          class="scene"
+          role="region"
+          tabindex="0"
+          aria-label="Interactive full-machine 3D viewer"
+          aria-describedby="viewer-help"
+        ></div>
         <div class="scene-vignette" aria-hidden="true"></div>
 
         <div class="hero-copy">
@@ -57,15 +69,20 @@
 
         <div class="viewer-actions" aria-label="3D viewer controls">
           <button id="orbit-toggle" class="text-button" type="button" aria-pressed="true">Auto orbit</button>
+          <button id="technical-view" class="text-button" type="button">Technical side</button>
           <button id="reset-view" class="text-button" type="button">Reset view</button>
         </div>
 
-        <p class="gesture-hint">Drag to orbit · scroll to zoom</p>
+        <p class="gesture-hint" id="viewer-help">
+          <span class="legend-desktop" aria-hidden="true">Drag to orbit · scroll to zoom · arrows, +, −, Home</span>
+          <span class="legend-mobile" aria-hidden="true">Drag · pinch to zoom</span>
+          <span class="sr-only">Drag to orbit, scroll or pinch to zoom, or focus the viewer and use arrow keys, plus, minus, and Home.</span>
+        </p>
 
         <div class="hero-metrics" aria-label="Selected model metrics">
-          <div><span id="metric-triangles">47,672</span><small>Triangles</small></div>
+          <div><span id="metric-triangles">—</span><small>Triangles</small></div>
           <div><span id="metric-nodes">—</span><small>Scene nodes</small></div>
-          <div><span id="metric-gates">15 / 0</span><small>Pass / fail</small></div>
+          <div><span id="metric-gates">— / — / —</span><small>Pass / pending / fail</small></div>
         </div>
       </section>
 
@@ -76,19 +93,19 @@
         </div>
 
         <div class="machine-index" role="tablist" aria-label="Choose a machine">
-          <button class="machine-row is-active" type="button" role="tab" aria-selected="true" data-machine="cat-320">
+          <button class="machine-row is-active" id="machine-tab-cat-320" type="button" role="tab" aria-selected="true" aria-controls="machine-panel" tabindex="0" data-machine="cat-320">
             <span class="machine-number">01</span>
             <span class="machine-name">Cat 320</span>
             <span class="machine-type">Hydraulic excavator</span>
             <span class="machine-action">Explore ↗</span>
           </button>
-          <button class="machine-row" type="button" role="tab" aria-selected="false" data-machine="john-deere-333-p-tier">
+          <button class="machine-row" id="machine-tab-john-deere-333-p-tier" type="button" role="tab" aria-selected="false" aria-controls="machine-panel" tabindex="-1" data-machine="john-deere-333-p-tier">
             <span class="machine-number">02</span>
             <span class="machine-name">333 P-Tier</span>
             <span class="machine-type">Compact track loader</span>
             <span class="machine-action">Explore ↗</span>
           </button>
-          <button class="machine-row" type="button" role="tab" aria-selected="false" data-machine="john-deere-310-p-tier">
+          <button class="machine-row" id="machine-tab-john-deere-310-p-tier" type="button" role="tab" aria-selected="false" aria-controls="machine-panel" tabindex="-1" data-machine="john-deere-310-p-tier">
             <span class="machine-number">03</span>
             <span class="machine-name">310 P-Tier</span>
             <span class="machine-type">Backhoe loader</span>
@@ -110,8 +127,13 @@
           <dl class="fact-list" id="fact-list"></dl>
           <div class="evidence-state">
             <span>Current classification</span>
-            <strong>Technical structural study</strong>
+            <strong id="release-state">Research candidate · technical structural study</strong>
+            <p id="validation-summary">Structural-study gates are loading.</p>
             <p id="unresolved-count">Configuration choices remain unresolved.</p>
+            <p class="release-boundary">
+              Not released: no solver, collision, human-review, browser-release, deployment,
+              engineering, safety, training, or manufacturer-endorsement claim.
+            </p>
           </div>
         </div>
       </section>

@@ -11,6 +11,7 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+import struct
 from pathlib import Path
 
 import bpy
@@ -28,6 +29,15 @@ RENDER_DIR = MACHINE_DIR / "review" / "renders"
 MACHINE_ID = "cat-320"
 CONFIGURATION_ID = "CAT-320-07H-NAM-RB57-R29-HD119-LU-TG790-CW42-CANDIDATE"
 CANDIDATE_CLASS = "technical_structural_study"
+
+ROUND_1_BASELINE = {
+    "tail_swing_radius_m": 2.4167622706023075,
+    "counterweight_clearance_agl_m": 1.4858722686767578,
+    "engine_house_length_m": 1.8363363146781921,
+    "engine_house_height_m": 1.2400001287460327,
+    "unapplied_hydraulic_linkage_handrail_meshes": 11,
+    "glb_scene_roots": ["Machine_Root"],
+}
 
 PUBLISHED = {
     "boom_length_m": 5.7,
@@ -58,8 +68,8 @@ RECONSTRUCTED = {
     "scene_transport_pose": {
         "upper_swing_deg": 0.0,
         "boom_deg": 0.0,
-        "stick_relative_deg": -64.0,
-        "bucket_relative_deg": 224.0,
+        "stick_relative_deg": -67.6,
+        "bucket_relative_deg": 232.0,
         "note": "Visualization pose selected to fit the published transport envelope; not a manufacturer pose definition.",
     },
     "review_articulated_pose": {
@@ -71,11 +81,11 @@ RECONSTRUCTED = {
     },
     "slew_center_m": [-0.18, 1.08, 0.0],
     "slew_ring_diameter_m": 1.65,
-    "boom_pivot_m": [0.10, 1.98, 0.0],
-    "boom_centerline_polyline_local_m": [[0.0, 0.0], [1.91, 1.10], [3.91, 0.995], [5.38, 0.735]],
-    "stick_pivot_local_m": [5.38, 0.735, 0.0],
+    "boom_pivot_m": [0.10, 1.86, 0.0],
+    "boom_centerline_polyline_local_m": [[0.0, 0.0], [1.15, 0.85], [2.25, 1.22], [4.05, 0.82], [5.32, 0.95]],
+    "stick_pivot_local_m": [5.32, 0.95, 0.0],
     "stick_modeled_pin_distance_m": 2.90,
-    "bucket_pivot_local_m": [2.90, 0.09, 0.0],
+    "bucket_pivot_local_m": [2.90, 0.15, 0.0],
     "bucket_shell_width_m": 1.20,
     "bucket_shell_note": "Width is a compatible published HD 1.19 m3 table option, but pin-on/coupler identity remains unresolved; shell curvature and volume are not engineering-validated.",
     "track_loop_radius_m": 0.39,
@@ -83,6 +93,9 @@ RECONSTRUCTED = {
     "track_shoe_thickness_m": 0.075,
     "wheel_and_roller_centers": "Reconstructed from the published track length, roller-center length, counts, and visible first-party illustrations.",
     "cab_house_counterweight_panels": "Independently authored from first-party illustration observations; no hidden internal assembly is represented.",
+    "engine_house_visible_target_m": {"length_range": [2.35, 2.65], "height_range": [0.95, 1.15]},
+    "drive_sprocket_teeth_each_side": 14,
+    "hose_bundle_paths": "Reconstructed exterior routing cues only; no hose diameter, pressure, fitting, or service authority.",
     "hydraulic_anchors": "All base and rod anchor coordinates are reconstructed. Published strokes constrain future solver work only.",
     "bucket_linkage": "Bellcrank, dogbone, bucket lug, and all pin locations are reconstructed visual closure cues only.",
     "inspection_volumes": "Envelope and component volumes are non-authoritative visualization aids.",
@@ -103,10 +116,13 @@ REQUIRED_NODES = [
     "Bucket_Pivot",
     "Bucket_ROOT",
     "Hydraulics_ROOT",
+    "Boom_Hydraulics_ROOT",
+    "Stick_Hydraulics_ROOT",
+    "Bucket_Hydraulics_ROOT",
     "Linkage_ROOT",
-    "Inspection_Volumes",
+    "Bucket_Linkage_ROOT",
+    "Bucket_Bellcrank_ROOT",
     "PIVOT_Attachment_Pin",
-    "INSPECT_Transport_Envelope",
 ]
 
 
@@ -182,6 +198,13 @@ def empty(name, location=(0, 0, 0), parent=None, role="pivot", display="PLAIN_AX
     if parent:
         obj.parent = parent
     return tag(obj, role=role, export=export)
+
+
+def parent_keep_world(obj, parent):
+    matrix = obj.matrix_world.copy()
+    obj.parent = parent
+    obj.matrix_world = matrix
+    return obj
 
 
 def bevel(obj, width=0.025, segments=2):
@@ -334,6 +357,16 @@ def build_track(side, z_center, root, mats):
                 (x + math.cos(theta)*0.105, 0.54 + math.sin(theta)*0.105, z_center - 0.352),
                 0.020, 0.025, mats["bolt"], root, vertices=12,
             )
+        if label == "Rear_Sprocket":
+            # Reconstructed visible tooth cues. Count/shape are not manufacturer authority.
+            for tooth_index in range(RECONSTRUCTED["drive_sprocket_teeth_each_side"]):
+                theta = tooth_index * math.tau / RECONSTRUCTED["drive_sprocket_teeth_each_side"]
+                tooth = box(
+                    f"{prefix}_Drive_Sprocket_Tooth_{tooth_index+1:02d}",
+                    (x + math.cos(theta)*0.355, 0.54 + math.sin(theta)*0.355, z_center),
+                    (0.135, 0.070, 0.56), mats["steel"], root, 0.012, "drive_sprocket_tooth",
+                )
+                tooth.rotation_euler[2] = theta
 
     for index in range(PUBLISHED["track_rollers_each_side"]):
         x = -1.46 + index * (2.92 / 7)
@@ -366,10 +399,73 @@ def place_between(obj, start, end, radius):
     start, end = Vector(start), Vector(end)
     vector = end - start
     length = vector.length
-    obj.location = (start + end) / 2
-    obj.rotation_mode = "QUATERNION"
-    obj.rotation_quaternion = Vector((0, 0, 1)).rotation_difference(vector.normalized())
-    obj.scale = (radius, radius, length)
+    rotation = Vector((0, 0, 1)).rotation_difference(vector.normalized())
+    obj.matrix_world = Matrix.LocRotScale((start + end) / 2, rotation, (radius, radius, length))
+
+
+def apply_export_mesh_scales(objects):
+    bpy.ops.object.select_all(action="DESELECT")
+    for obj in objects:
+        if obj.type != "MESH":
+            continue
+        obj.select_set(True)
+        bpy.context.view_layer.objects.active = obj
+        bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+        obj.select_set(False)
+
+
+def evaluated_world_points(objects):
+    depsgraph = bpy.context.evaluated_depsgraph_get()
+    points = []
+    for obj in objects:
+        evaluated = obj.evaluated_get(depsgraph)
+        mesh = evaluated.to_mesh()
+        points.extend(evaluated.matrix_world @ vertex.co for vertex in mesh.vertices)
+        evaluated.to_mesh_clear()
+    return points
+
+
+def endpoint_error(obj, anchors):
+    local_z = [corner[2] for corner in obj.bound_box]
+    endpoints = [obj.matrix_world @ Vector((0, 0, min(local_z))), obj.matrix_world @ Vector((0, 0, max(local_z)))]
+    targets = [world(anchor) for anchor in anchors]
+    return max(min((endpoint-target).length for endpoint in endpoints) for target in targets)
+
+
+def inspect_glb_contract(path):
+    data = path.read_bytes()
+    offset = 12
+    json_chunk = None
+    while offset < len(data):
+        length, kind = struct.unpack_from("<II", data, offset)
+        offset += 8
+        chunk = data[offset:offset+length]
+        offset += length
+        if kind == 0x4E4F534A:
+            json_chunk = chunk
+            break
+    if json_chunk is None:
+        raise RuntimeError("GLB JSON chunk missing")
+    document = json.loads(json_chunk.decode("utf-8").rstrip("\x00 "))
+    scene = document["scenes"][document.get("scene", 0)]
+    root_indices = scene.get("nodes", [])
+    roots = []
+    for index in root_indices:
+        node = document["nodes"][index]
+        transform = {key: node[key] for key in ("translation", "rotation", "scale", "matrix") if key in node}
+        roots.append({"index": index, "name": node.get("name"), "transform": transform})
+    return {
+        "scene_count": len(document.get("scenes", [])),
+        "scene_roots": roots,
+        "camera_count": len(document.get("cameras", [])),
+        "punctual_light_extension_present": "KHR_lights_punctual" in document.get("extensions", {}),
+        "inspection_helper_nodes": sorted(
+            node.get("name", "")
+            for node in document.get("nodes", [])
+            if node.get("name", "").startswith("INSPECT_") or node.get("name") == "Inspection_Volumes"
+        ),
+        "platform_axes": "+X longitudinal, +Y vertical, +Z machine right",
+    }
 
 
 def world(anchor):
@@ -402,9 +498,18 @@ def create_model():
     right_root = empty("Track_R_ROOT", parent=under, role="track_group", size=0.18)
     build_track("L", -PUBLISHED["track_gauge_m"] / 2, left_root, mats)
     build_track("R", PUBLISHED["track_gauge_m"] / 2, right_root, mats)
+    # Author the visible track contact surface at Y=0. This correction is
+    # derived from the evaluated reconstructed shoe meshes, not from an empty
+    # witness or a viewer-side offset.
+    bpy.context.view_layer.update()
+    track_shoes = [obj for obj in bpy.data.objects if obj.get("exo_role") == "track_shoe"]
+    contact_before = min(point.y for point in evaluated_world_points(track_shoes))
+    left_root.location.y -= contact_before
+    right_root.location.y -= contact_before
+    machine["track_contact_correction_m"] = -contact_before
 
     # Published 470 mm clearance is represented beneath the center carbody.
-    box("Undercarriage_Center_Frame", (0.0, 0.78, 0.0), (2.35, 0.33, 1.70), mats["steel_dark"], under, 0.06, "fixed_structure")
+    box("Undercarriage_Center_Frame", (0.0, 0.635, 0.0), (2.35, 0.33, 1.70), mats["steel_dark"], under, 0.06, "fixed_structure")
     box("Undercarriage_Crossmember_Front", (1.22, 0.73, 0.0), (0.30, 0.29, 2.55), mats["steel"], under, 0.035, "fixed_structure")
     box("Undercarriage_Crossmember_Rear", (-1.22, 0.73, 0.0), (0.30, 0.29, 2.55), mats["steel"], under, 0.035, "fixed_structure")
 
@@ -419,24 +524,37 @@ def create_model():
     box("Upper_Deck_Walkway_R", (-0.10, 0.46, 1.28), (3.55, 0.10, 0.20), mats["track"], upper, 0.018, "upper_structure")
 
     # Rear house and counterweight. Locations are local to the swing pivot.
-    side_profile("Counterweight_Core", [(-2.12,0.40),(-1.92,1.35),(-1.25,1.58),(-0.78,1.32),(-0.76,0.48)], 2.56, mats["ochre"], upper, bevel_width=0.10, role="counterweight")
-    side_profile("Engine_House_Main", [(-1.48,0.48),(-1.42,1.54),(-0.55,1.72),(0.35,1.47),(0.36,0.48)], 2.42, mats["ochre"], upper, bevel_width=0.055, role="upper_structure")
-    box("Engine_House_Top", (-0.65, 1.62, 0.30), (1.60, 0.12, 2.10), mats["ochre_dark"], upper, 0.035, "upper_structure")
-    box("Engine_House_Service_Door_R", (-0.56, 1.02, 1.235), (1.20, 0.78, 0.045), mats["ochre"], upper, 0.015, "service_panel")
+    side_profile("Counterweight_Core", [(-2.578,-0.036),(-2.548,0.76),(-2.24,1.28),(-1.42,1.50),(-0.78,1.28),(-0.76,-0.036)], 2.50, mats["ochre"], upper, bevel_width=0.08, role="counterweight")
+    side_profile("Engine_House_Lower_Body", [(-2.20,0.48),(-2.18,1.08),(-1.94,1.20),(0.30,1.20),(0.38,1.05),(0.38,0.48)], 2.36, mats["ochre"], upper, bevel_width=0.055, role="engine_house")
+    side_profile("Engine_House_Upper_Hood", [(-2.08,1.06),(-1.92,1.34),(-1.54,1.45),(-0.52,1.48),(0.24,1.31),(0.30,1.06)], 2.18, mats["ochre"], upper, bevel_width=0.045, role="engine_house")
+    box("Engine_Hood_Crown", (-0.86, 1.455, 0.16), (2.24, 0.09, 1.72), mats["ochre_dark"], upper, 0.025, "engine_house")
+    box("Engine_Hood_Center_Access", (-0.86, 1.505, 0.16), (1.12, 0.035, 0.86), mats["ochre"], upper, 0.012, "hood_access_panel")
+    box("Engine_House_Service_Door_R", (-0.78, 0.92, 1.205), (1.72, 0.70, 0.045), mats["ochre"], upper, 0.015, "engine_house")
+    box("Engine_House_Service_Door_L", (-0.78, 0.92, -1.205), (1.72, 0.70, 0.045), mats["ochre"], upper, 0.015, "engine_house")
+    for seam_index, seam_x in enumerate((-1.57, -0.78, 0.02), start=1):
+        box(f"Engine_House_Panel_Seam_R_{seam_index}", (seam_x,0.92,1.232),(0.018,0.68,0.012),mats["ochre_dark"],upper,0.002,"service_panel_seam")
+        box(f"Engine_House_Panel_Seam_L_{seam_index}", (seam_x,0.92,-1.232),(0.018,0.68,0.012),mats["ochre_dark"],upper,0.002,"service_panel_seam")
+    for side, z in (("L",-1.238),("R",1.238)):
+        box(f"Engine_House_Door_Handle_{side}", (-0.08,1.02,z),(0.18,0.035,0.018),mats["steel_dark"],upper,0.003,"service_panel_latch")
+    box("Counterweight_Left_Cheek", (-1.82,0.92,-1.272),(1.28,0.74,0.065),mats["ochre_dark"],upper,0.018,"counterweight_panel")
+    box("Counterweight_Right_Cheek", (-1.82,0.92,1.272),(1.28,0.74,0.065),mats["ochre_dark"],upper,0.018,"counterweight_panel")
     for index in range(7):
-        box(f"Engine_Vent_R_{index+1:02d}", (-0.78 + index*0.17, 1.20, 1.263), (0.11, 0.025, 0.018), mats["steel_dark"], upper, 0.003, "vent")
+        box(f"Engine_Vent_R_{index+1:02d}", (-1.54 + index*0.18, 1.16, 1.236), (0.12, 0.025, 0.018), mats["steel_dark"], upper, 0.003, "vent")
     for index in range(6):
-        box(f"Counterweight_Rear_Vent_{index+1:02d}", (-2.135, 0.80 + index*0.095, 0.0), (0.025, 0.052, 0.76), mats["steel_dark"], upper, 0.004, "vent")
-    box("Exhaust_Muffler", (-0.72, 1.47, 0.72), (0.28, 0.44, 0.30), mats["steel_dark"], upper, 0.04, "exhaust")
-    cylinder("Exhaust_Stack", (-0.72, 1.77, 0.72), 0.075, 0.34, mats["steel_dark"], upper, vertices=24, rotation=(math.pi/2,0,0), role="exhaust")
-    cylinder("Air_Intake_Stack", (-0.34, 1.71, 0.90), 0.065, 0.30, mats["steel_dark"], upper, vertices=24, rotation=(math.pi/2,0,0), role="intake")
+        box(f"Counterweight_Rear_Vent_{index+1:02d}", (-2.583, 0.70 + index*0.090, 0.0), (0.025, 0.048, 0.72), mats["steel_dark"], upper, 0.004, "vent")
+    box("Exhaust_Muffler", (-0.88, 1.31, 0.68), (0.28, 0.38, 0.30), mats["steel_dark"], upper, 0.04, "exhaust")
+    cylinder("Exhaust_Stack", (-0.88, 1.58, 0.68), 0.075, 0.30, mats["steel_dark"], upper, vertices=24, rotation=(math.pi/2,0,0), role="exhaust")
+    cylinder("Air_Intake_Stack", (-0.48, 1.54, 0.88), 0.065, 0.27, mats["steel_dark"], upper, vertices=24, rotation=(math.pi/2,0,0), role="intake")
 
     # Cab on machine left (-Z), with distinct frame and glass boundaries.
     cab = empty("Cab_ROOT", (0,0,0), upper, "fixed_group", size=0.16)
     side_profile("Cab_Interior_Block", [(-0.15,0.48),(-0.10,1.68),(0.55,1.82),(1.08,1.48),(1.04,0.48)], 0.98, mats["interior"], cab, z_center=-0.78, bevel_width=0.05, role="cab_interior")
     side_profile("Cab_Left_Glass", [(-0.04,0.88),(0.00,1.60),(0.50,1.72),(0.94,1.43),(0.92,0.87)], 0.035, mats["glass"], cab, z_center=-1.285, bevel_width=0.012, role="glass")
+    side_profile("Cab_Right_Glass", [(-0.02,0.90),(0.02,1.57),(0.48,1.68),(0.90,1.41),(0.88,0.90)], 0.030, mats["glass"], cab, z_center=-0.275, bevel_width=0.010, role="glass")
     side_profile("Cab_Front_Glass", [(0.91,0.88),(0.94,1.43),(1.06,1.31),(1.04,0.86)], 0.90, mats["glass"], cab, z_center=-0.78, bevel_width=0.012, role="glass")
-    box("Cab_Roof", (0.38, 1.78, -0.78), (1.20, 0.12, 1.05), mats["ochre_dark"], cab, 0.045, "cab_frame")
+    side_profile("Cab_Lower_Front_Glass", [(0.91,0.58),(0.92,0.84),(1.04,0.82),(1.03,0.58)], 0.88, mats["glass"], cab, z_center=-0.78, bevel_width=0.010, role="glass")
+    box("Cab_Rear_Glass", (-0.095,1.25,-0.78),(0.035,0.58,0.86),mats["glass"],cab,0.010,"glass")
+    box("Cab_Roof", (0.38, 1.82, -0.78), (1.20, 0.12, 1.05), mats["ochre_dark"], cab, 0.045, "cab_frame")
     box("Cab_Floor", (0.42, 0.55, -0.78), (1.28, 0.16, 1.08), mats["steel_dark"], cab, 0.025, "cab_frame")
     for name, loc, dims in [
         ("Cab_A_Pillar", (1.00,1.22,-1.30),(0.085,0.95,0.09)),
@@ -455,24 +573,32 @@ def create_model():
     for index in range(3):
         box(f"Cab_Access_Step_{index+1}", (0.28-index*0.18, 0.46-index*0.13, -1.44), (0.34,0.06,0.22), mats["track"], upper, 0.012, "access_step")
     # Tube-like handrail segments as cylinders between independently selected points.
-    handrail_points = [(-1.35,1.90,-1.18),(-0.72,2.05,-1.18),(-0.05,1.98,-1.18)]
+    handrail_points = [(-1.82,1.44,-1.16),(-1.08,1.58,-1.16),(-0.30,1.54,-1.16)]
+    bpy.context.view_layer.update()
+    handrail_world = [upper.matrix_world @ Vector(point) for point in handrail_points]
     for index in range(len(handrail_points)-1):
-        object_between(f"Handrail_L_{index+1}", handrail_points[index], handrail_points[index+1], 0.022, mats["steel_dark"], "handrail", 12).parent = upper
+        rail = object_between(f"Handrail_L_{index+1}", handrail_world[index], handrail_world[index+1], 0.022, mats["steel_dark"], "handrail", 12)
+        parent_keep_world(rail, upper)
 
     # Front equipment hierarchy. All hidden pivots and anchors are reconstructed.
-    boom_pivot = empty("Boom_Pivot", (0.28, 0.90, 0.0), upper, "revolute_pivot", "CIRCLE", 0.28)
+    boom_pivot = empty("Boom_Pivot", (0.28, 0.78, 0.0), upper, "revolute_pivot", "CIRCLE", 0.28)
     boom_pivot["axis"] = "+Z"
     boom_pivot["authority"] = "reconstructed"
     boom_root = empty("Boom_ROOT", parent=boom_pivot, role="articulated_group", size=0.20)
-    boom_profile = [(0.0,-0.28),(0.44,-0.42),(1.90,0.86),(3.88,0.73),(5.32,0.58),(5.48,0.40),(5.34,0.12),(3.82,0.34),(1.98,0.49),(0.50,-0.62)]
-    side_profile("Boom_Main_Weldment", boom_profile, 0.58, mats["ochre"], boom_root, bevel_width=0.055, role="boom_structure")
-    side_profile("Boom_Left_Reinforcement", [(0.42,-0.26),(1.92,0.70),(3.80,0.60),(5.10,0.48),(4.84,0.31),(2.02,0.38)], 0.035, mats["ochre_dark"], boom_root, z_center=-0.307, bevel_width=0.012, role="boom_reinforcement")
-    side_profile("Boom_Right_Reinforcement", [(0.42,-0.26),(1.92,0.70),(3.80,0.60),(5.10,0.48),(4.84,0.31),(2.02,0.38)], 0.035, mats["ochre_dark"], boom_root, z_center=0.307, bevel_width=0.012, role="boom_reinforcement")
+    # Three overlapping tapered box-section volumes make the foot, crown, and
+    # head transitions readable without claiming hidden weldment authority.
+    side_profile("Boom_Foot_Box", [(0.0,-0.28),(0.46,-0.36),(1.12,0.70),(1.55,0.92),(1.48,0.59),(1.12,0.50),(0.48,-0.56)], 0.68, mats["ochre"], boom_root, bevel_width=0.050, role="boom_structure")
+    side_profile("Boom_Crown_Box", [(1.10,0.50),(1.50,0.92),(2.24,1.30),(3.18,1.17),(3.20,0.84),(2.20,0.98),(1.46,0.70)], 0.56, mats["ochre"], boom_root, bevel_width=0.045, role="boom_structure")
+    side_profile("Boom_Head_Box", [(3.08,0.84),(3.16,1.17),(4.05,0.96),(5.32,1.09),(5.46,0.92),(5.31,0.66),(4.00,0.66)], 0.44, mats["ochre"], boom_root, bevel_width=0.040, role="boom_structure")
+    side_profile("Boom_Left_Reinforcement", [(0.48,-0.18),(1.18,0.62),(2.28,1.14),(4.02,0.82),(5.10,0.94),(4.86,0.73),(2.22,0.87),(1.18,0.43)], 0.030, mats["ochre_dark"], boom_root, z_center=-0.352, bevel_width=0.010, role="boom_reinforcement")
+    side_profile("Boom_Right_Reinforcement", [(0.48,-0.18),(1.18,0.62),(2.28,1.14),(4.02,0.82),(5.10,0.94),(4.86,0.73),(2.22,0.87),(1.18,0.43)], 0.030, mats["ochre_dark"], boom_root, z_center=0.352, bevel_width=0.010, role="boom_reinforcement")
+    box("Boom_Foot_Transition_Cap", (0.58,0.02,0.0),(0.20,0.72,0.74),mats["ochre_dark"],boom_root,0.040,"boom_transition")
+    box("Boom_Head_Clevis", (5.25,0.86,0.0),(0.42,0.38,0.52),mats["ochre_dark"],boom_root,0.035,"boom_transition")
     add_pin("PIN_Boom_Base", (0,0,0), 0.15, 0.78, mats["steel"], boom_pivot)
-    for x, y in ((1.92,0.62),(3.85,0.52),(5.32,0.35)):
+    for x, y in ((1.18,0.61),(2.26,1.02),(4.05,0.79),(5.27,0.86)):
         add_pin(f"Boom_Service_Pin_{x:.2f}", (x,y,0), 0.065, 0.70, mats["bolt"], boom_root, "fastener")
 
-    stick_pivot = empty("Stick_Pivot", (5.38, 0.735, 0.0), boom_pivot, "revolute_pivot", "CIRCLE", 0.24)
+    stick_pivot = empty("Stick_Pivot", (5.32, 0.95, 0.0), boom_pivot, "revolute_pivot", "CIRCLE", 0.24)
     stick_pivot.rotation_euler[2] = math.radians(RECONSTRUCTED["scene_transport_pose"]["stick_relative_deg"])
     stick_pivot["axis"] = "+Z"
     stick_root = empty("Stick_ROOT", parent=stick_pivot, role="articulated_group", size=0.18)
@@ -482,7 +608,7 @@ def create_model():
     side_profile("Stick_Right_Wear_Plate", [(0.20,-0.20),(2.64,-0.15),(2.78,-0.05),(0.45,-0.08)], 0.026, mats["ochre_dark"], stick_root, z_center=0.228, bevel_width=0.008, role="wear_plate")
     add_pin("PIN_Stick", (0,0,0), 0.13, 0.68, mats["steel"], stick_pivot)
 
-    bucket_pivot = empty("Bucket_Pivot", (2.90, 0.09, 0.0), stick_pivot, "revolute_pivot", "CIRCLE", 0.22)
+    bucket_pivot = empty("Bucket_Pivot", (2.90, 0.15, 0.0), stick_pivot, "revolute_pivot", "CIRCLE", 0.22)
     bucket_pivot["axis"] = "+Z"
     bucket_root = empty("Bucket_ROOT", parent=bucket_pivot, role="articulated_group", size=0.18)
     bucket_root.rotation_euler[2] = math.radians(RECONSTRUCTED["scene_transport_pose"]["bucket_relative_deg"])
@@ -499,8 +625,35 @@ def create_model():
     attach_pin["authority"] = "reconstructed"
     attach_pin["quick_coupler_status"] = "unresolved_no_coupler_geometry"
 
+    # Exterior hose bundles are reconstructed visual routing cues only.
+    hose_objects = []
+    def hose_bundle(prefix, parent, points, lateral_offsets):
+        bpy.context.view_layer.update()
+        for bundle_index, lateral in enumerate(lateral_offsets, start=1):
+            local_points = [Vector((point[0], point[1], lateral)) for point in points]
+            world_points = [parent.matrix_world @ point for point in local_points]
+            for segment_index in range(len(world_points)-1):
+                hose = object_between(
+                    f"{prefix}_{bundle_index:02d}_Segment_{segment_index+1:02d}",
+                    world_points[segment_index], world_points[segment_index+1],
+                    0.022 if bundle_index in (2,3) else 0.026,
+                    mats["rubber"], "reconstructed_hose", 12,
+                )
+                parent_keep_world(hose, parent)
+                hose_objects.append(hose)
+    hose_bundle("Boom_Hose", boom_root, [(0.38,0.10),(1.20,0.67),(2.30,1.10),(3.90,0.80),(5.02,0.88)], (-0.38,-0.33,0.33,0.38))
+    hose_bundle("Stick_Hose", stick_root, [(0.16,0.22),(1.26,0.22),(2.66,0.08)], (-0.29,-0.25,0.25,0.29))
+
     hydraulics = empty("Hydraulics_ROOT", parent=machine, role="hydraulic_group", size=0.18)
+    boom_hydraulics = empty("Boom_Hydraulics_ROOT", parent=upper, role="hydraulic_owner_group", size=0.15)
+    stick_hydraulics = empty("Stick_Hydraulics_ROOT", parent=boom_root, role="hydraulic_owner_group", size=0.15)
+    bucket_hydraulics = empty("Bucket_Hydraulics_ROOT", parent=stick_root, role="hydraulic_owner_group", size=0.15)
     linkage = empty("Linkage_ROOT", parent=machine, role="linkage_group", size=0.18)
+    bucket_linkage = empty("Bucket_Linkage_ROOT", parent=stick_root, role="linkage_owner_group", size=0.15)
+    bellcrank_root = empty("Bucket_Bellcrank_ROOT", (2.44,0.08,0.0), stick_root, "linkage_pivot", "CIRCLE", 0.13)
+    side_profile("Bucket_Bellcrank_Left", [(-0.18,0.26),(0.32,0.02),(0.18,-0.19),(-0.10,-0.06)], 0.035, mats["ochre_dark"], bellcrank_root, z_center=-0.245, bevel_width=0.010, role="bucket_bellcrank")
+    side_profile("Bucket_Bellcrank_Right", [(-0.18,0.26),(0.32,0.02),(0.18,-0.19),(-0.10,-0.06)], 0.035, mats["ochre_dark"], bellcrank_root, z_center=0.245, bevel_width=0.010, role="bucket_bellcrank")
+    add_pin("PIN_Bucket_Bellcrank_Pivot", (0,0,0), 0.075, 0.60, mats["steel"], bellcrank_root, "linkage_pin")
 
     # Anchor empties allow critic inspection and articulated review refresh.
     anchors = {}
@@ -511,34 +664,35 @@ def create_model():
         ("ANCHOR_Boom_Rod_R", (1.64,0.42,0.36), boom_root),
         ("ANCHOR_Stick_Base", (2.52,0.93,0.0), boom_root),
         ("ANCHOR_Stick_Rod", (0.46,0.38,0.0), stick_root),
-        ("ANCHOR_Bucket_Base", (0.42,0.28,0.0), stick_root),
-        ("ANCHOR_Bucket_Rod", (2.52,0.34,0.0), stick_root),
-        ("ANCHOR_Bellcrank", (2.60,0.02,0.0), stick_root),
+        ("ANCHOR_Bucket_Base", (0.42,0.30,0.0), stick_root),
+        ("ANCHOR_Bellcrank_Rod", (-0.10,0.23,0.0), bellcrank_root),
+        ("ANCHOR_Bellcrank_Dogbone", (0.29,-0.02,0.0), bellcrank_root),
         ("ANCHOR_Bucket_Lug", (0.22,0.20,0.0), bucket_root),
     ]:
         anchors[name] = empty(name, loc, parent, "hydraulic_anchor", "SPHERE", 0.065)
 
     cylinders = {}
-    def pair(key, a, b, barrel_radius, rod_radius):
+    def pair(key, a, b, barrel_radius, rod_radius, owner):
         start, end = world(anchors[a]), world(anchors[b])
         direction = end - start
         barrel_end = start + direction * 0.62
         rod_start = start + direction * 0.56
         cylinders[f"{key}_Barrel"] = object_between(f"{key}_Barrel", start, barrel_end, barrel_radius, mats["steel_dark"], "hydraulic_barrel", 24)
         cylinders[f"{key}_Rod"] = object_between(f"{key}_Rod", rod_start, end, rod_radius, mats["rod"], "hydraulic_rod", 20)
-        cylinders[f"{key}_Barrel"].parent = hydraulics
-        cylinders[f"{key}_Rod"].parent = hydraulics
+        parent_keep_world(cylinders[f"{key}_Barrel"], owner)
+        parent_keep_world(cylinders[f"{key}_Rod"], owner)
     bpy.context.view_layer.update()
-    pair("Boom_Cylinder_L", "ANCHOR_Boom_Base_L", "ANCHOR_Boom_Rod_L", 0.095, 0.052)
-    pair("Boom_Cylinder_R", "ANCHOR_Boom_Base_R", "ANCHOR_Boom_Rod_R", 0.095, 0.052)
-    pair("Stick_Cylinder", "ANCHOR_Stick_Base", "ANCHOR_Stick_Rod", 0.105, 0.058)
-    pair("Bucket_Cylinder", "ANCHOR_Bucket_Base", "ANCHOR_Bucket_Rod", 0.095, 0.050)
-    cylinders["Bucket_Link_Dogbone"] = object_between("Bucket_Link_Dogbone", world(anchors["ANCHOR_Bellcrank"]), world(anchors["ANCHOR_Bucket_Lug"]), 0.050, mats["ochre_dark"], "bucket_linkage", 16)
-    cylinders["Bucket_Link_Dogbone"].parent = linkage
-    add_pin("PIN_Bucket_Bellcrank", anchors["ANCHOR_Bellcrank"].location, 0.075, 0.62, mats["steel"], stick_root, "linkage_pin")
+    pair("Boom_Cylinder_L", "ANCHOR_Boom_Base_L", "ANCHOR_Boom_Rod_L", 0.095, 0.052, boom_hydraulics)
+    pair("Boom_Cylinder_R", "ANCHOR_Boom_Base_R", "ANCHOR_Boom_Rod_R", 0.095, 0.052, boom_hydraulics)
+    pair("Stick_Cylinder", "ANCHOR_Stick_Base", "ANCHOR_Stick_Rod", 0.105, 0.058, stick_hydraulics)
+    pair("Bucket_Cylinder", "ANCHOR_Bucket_Base", "ANCHOR_Bellcrank_Rod", 0.095, 0.050, bucket_hydraulics)
+    cylinders["Bucket_Link_Dogbone"] = object_between("Bucket_Link_Dogbone", world(anchors["ANCHOR_Bellcrank_Dogbone"]), world(anchors["ANCHOR_Bucket_Lug"]), 0.050, mats["ochre_dark"], "bucket_linkage", 16)
+    parent_keep_world(cylinders["Bucket_Link_Dogbone"], bucket_linkage)
+    add_pin("PIN_Bellcrank_Rod", anchors["ANCHOR_Bellcrank_Rod"].location, 0.050, 0.54, mats["steel"], bellcrank_root, "linkage_pin")
+    add_pin("PIN_Bellcrank_Dogbone", anchors["ANCHOR_Bellcrank_Dogbone"].location, 0.048, 0.54, mats["steel"], bellcrank_root, "linkage_pin")
 
-    inspection = empty("Inspection_Volumes", parent=machine, role="inspection_group", size=0.24)
-    envelope = empty("INSPECT_Transport_Envelope", (-0.18, PUBLISHED["transport_height_m"]/2, 0.0), inspection, "inspection_volume", "CUBE", 1.0)
+    inspection = empty("Inspection_Volumes", parent=machine, role="inspection_group", size=0.24, export=False)
+    envelope = empty("INSPECT_Transport_Envelope", (-0.18, PUBLISHED["transport_height_m"]/2, 0.0), inspection, "inspection_volume", "CUBE", 1.0, export=False)
     envelope.scale = (PUBLISHED["transport_length_m"]/2, PUBLISHED["transport_height_m"]/2, PUBLISHED["undercarriage_width_m"]/2)
     envelope["published_constraint"] = "transport-length transport-height undercarriage-width"
     for name, loc, scale in [
@@ -546,7 +700,7 @@ def create_model():
         ("INSPECT_Boom_Swept_Study", (2.70,2.20,0),(2.85,1.05,0.42)),
         ("INSPECT_Attachment_Volume", (6.30,0.85,0),(1.15,0.85,0.72)),
     ]:
-        marker = empty(name, loc, inspection, "inspection_volume", "CUBE", 1.0)
+        marker = empty(name, loc, inspection, "inspection_volume", "CUBE", 1.0, export=False)
         marker.scale = scale
 
     # Review-only environment is not exported.
@@ -559,6 +713,9 @@ def create_model():
         "bucket_root": bucket_root,
         "anchors": anchors,
         "cylinders": cylinders,
+        "hose_objects": hose_objects,
+        "counterweight": bpy.data.objects["Counterweight_Core"],
+        "engine_house_objects": [obj for obj in bpy.data.objects if obj.get("exo_role") == "engine_house"],
     }
 
 
@@ -570,14 +727,14 @@ def refresh_hydraulics(model):
         ("Boom_Cylinder_L", "ANCHOR_Boom_Base_L", "ANCHOR_Boom_Rod_L", 0.095, 0.052),
         ("Boom_Cylinder_R", "ANCHOR_Boom_Base_R", "ANCHOR_Boom_Rod_R", 0.095, 0.052),
         ("Stick_Cylinder", "ANCHOR_Stick_Base", "ANCHOR_Stick_Rod", 0.105, 0.058),
-        ("Bucket_Cylinder", "ANCHOR_Bucket_Base", "ANCHOR_Bucket_Rod", 0.095, 0.050),
+        ("Bucket_Cylinder", "ANCHOR_Bucket_Base", "ANCHOR_Bellcrank_Rod", 0.095, 0.050),
     ]
     for key, a, b, barrel_radius, rod_radius in definitions:
         start, end = world(anchors[a]), world(anchors[b])
         vector = end - start
         place_between(cylinders[f"{key}_Barrel"], start, start + vector*0.62, barrel_radius)
         place_between(cylinders[f"{key}_Rod"], start + vector*0.56, end, rod_radius)
-    place_between(cylinders["Bucket_Link_Dogbone"], world(anchors["ANCHOR_Bellcrank"]), world(anchors["ANCHOR_Bucket_Lug"]), 0.050)
+    place_between(cylinders["Bucket_Link_Dogbone"], world(anchors["ANCHOR_Bellcrank_Dogbone"]), world(anchors["ANCHOR_Bucket_Lug"]), 0.050)
     bpy.context.view_layer.update()
 
 
@@ -635,7 +792,9 @@ def render_all(model):
     paths.append(render_view("right-three-quarter", (12.0, 5.8, 16.0), (1.65,1.35,0), 48))
     paths.append(render_view("rear-three-quarter", (-10.8, 4.7, 10.2), (0.25,1.30,0), 52))
     paths.append(render_view("front-equipment", (14.0, 5.3, -11.0), (2.25,1.30,0), 48))
-    paths.append(render_view("linkage-detail", (9.0, 2.9, -5.0), (6.30,0.80,0), 68))
+    paths.append(render_view("linkage-detail", (8.2, 4.5, -3.2), (6.30,0.72,0), 68))
+    paths.append(render_view("drive-sprocket-detail", (-3.25, 1.35, -3.10), (-2.00,0.54,-1.19), 72))
+    paths.append(render_view("hydraulic-routing-detail", (5.5, 4.15, -5.2), (3.25,2.38,-0.22), 68))
 
     # Review-only articulation. It is restored before save/export.
     model["boom_pivot"].rotation_euler[2] = math.radians(RECONSTRUCTED["review_articulated_pose"]["boom_deg"])
@@ -657,18 +816,101 @@ def export_objects():
 
 def mesh_bounds(objects):
     bpy.context.view_layer.update()
-    points = []
-    for obj in objects:
-        if obj.type != "MESH":
-            continue
-        for corner in obj.bound_box:
-            points.append(obj.matrix_world @ Vector(corner))
+    points = evaluated_world_points([obj for obj in objects if obj.type == "MESH"])
     mins = [min(point[index] for point in points) for index in range(3)]
     maxs = [max(point[index] for point in points) for index in range(3)]
     return {
         "min_m": [round(value, 4) for value in mins],
         "max_m": [round(value, 4) for value in maxs],
         "size_m": [round(maxs[index]-mins[index], 4) for index in range(3)],
+    }
+
+
+def object_evaluated_bounds(objects):
+    points = evaluated_world_points(objects)
+    mins = [min(point[index] for point in points) for index in range(3)]
+    maxs = [max(point[index] for point in points) for index in range(3)]
+    return {
+        "min_m": mins,
+        "max_m": maxs,
+        "size_m": [maxs[index] - mins[index] for index in range(3)],
+    }
+
+
+def anchor_endpoint_min_error(obj, anchor):
+    local_z = [corner[2] for corner in obj.bound_box]
+    endpoints = [
+        obj.matrix_world @ Vector((0, 0, min(local_z))),
+        obj.matrix_world @ Vector((0, 0, max(local_z))),
+    ]
+    target = world(anchor)
+    return min((endpoint - target).length for endpoint in endpoints)
+
+
+def collect_geometry_metrics(model, objects):
+    bpy.context.view_layer.update()
+    swing_center = world(bpy.data.objects["Upper_Swing_Pivot"])
+    counterweight_points = evaluated_world_points([model["counterweight"]])
+    counterweight_bounds = object_evaluated_bounds([model["counterweight"]])
+    house_bounds = object_evaluated_bounds(model["engine_house_objects"])
+    anchors = model["anchors"]
+    cylinders = model["cylinders"]
+    export_meshes = [obj for obj in objects if obj.type == "MESH"]
+    track_shoes = [obj for obj in export_meshes if obj.get("exo_role") == "track_shoe"]
+    track_bounds = object_evaluated_bounds(track_shoes)
+    center_frame_bounds = object_evaluated_bounds([bpy.data.objects["Undercarriage_Center_Frame"]])
+    cab_roof_bounds = object_evaluated_bounds([bpy.data.objects["Cab_Roof"]])
+    visible_minima = []
+    for obj in export_meshes:
+        points = evaluated_world_points([obj])
+        visible_minima.append((min(point.y for point in points), obj.name))
+    visible_min = min(value for value, _ in visible_minima)
+    lowest_visible_objects = sorted(
+        name for value, name in visible_minima if value <= visible_min + 0.001
+    )
+    scale_offenders = {
+        obj.name: [round(value, 8) for value in obj.scale]
+        for obj in objects
+        if obj.type == "MESH" and any(abs(value - 1.0) > 1e-7 for value in obj.scale)
+    }
+    owner_names = {
+        name: (obj.parent.name if obj.parent else None)
+        for name, obj in cylinders.items()
+    }
+    return {
+        "tail_swing_radius_m": max(
+            math.hypot(point.x - swing_center.x, point.z - swing_center.z)
+            for point in counterweight_points
+        ),
+        "counterweight_clearance_agl_m": min(point.y for point in counterweight_points),
+        "counterweight_evaluated_bounds_m": counterweight_bounds,
+        "engine_house_length_m": house_bounds["size_m"][0],
+        "engine_house_height_m": house_bounds["size_m"][1],
+        "engine_house_evaluated_bounds_m": house_bounds,
+        "drive_sprocket_teeth_left": len([
+            obj for obj in objects if obj.name.startswith("Track_L_Drive_Sprocket_Tooth_")
+        ]),
+        "drive_sprocket_teeth_right": len([
+            obj for obj in objects if obj.name.startswith("Track_R_Drive_Sprocket_Tooth_")
+        ]),
+        "reconstructed_hose_meshes": len(model["hose_objects"]),
+        "track_contact_min_y_m": track_bounds["min_m"][1],
+        "track_contact_authored_root_correction_m": bpy.data.objects["Machine_Root"]["track_contact_correction_m"],
+        "undercarriage_center_frame_underside_agl_m": center_frame_bounds["min_m"][1],
+        "cab_roof_top_agl_m": cab_roof_bounds["max_m"][1],
+        "lowest_visible_geometry_y_m": visible_min,
+        "lowest_visible_objects": lowest_visible_objects,
+        "export_mesh_scale_offenders": scale_offenders,
+        "hydraulic_linkage_owner_parents": owner_names,
+        "bucket_rod_to_bellcrank_error_m": anchor_endpoint_min_error(
+            cylinders["Bucket_Cylinder_Rod"], anchors["ANCHOR_Bellcrank_Rod"]
+        ),
+        "dogbone_to_bellcrank_error_m": anchor_endpoint_min_error(
+            cylinders["Bucket_Link_Dogbone"], anchors["ANCHOR_Bellcrank_Dogbone"]
+        ),
+        "dogbone_to_bucket_lug_error_m": anchor_endpoint_min_error(
+            cylinders["Bucket_Link_Dogbone"], anchors["ANCHOR_Bucket_Lug"]
+        ),
     }
 
 
@@ -690,7 +932,7 @@ def write_json(path, payload):
     path.write_text(json.dumps(payload, indent=2, sort_keys=False) + "\n", encoding="utf-8")
 
 
-def create_validation(bounds, counts, render_paths):
+def create_validation(bounds, counts, render_paths, metrics, glb_contract):
     node_presence = {name: bpy.data.objects.get(name) is not None for name in REQUIRED_NODES}
     width = bounds["size_m"][2]
     height = bounds["size_m"][1]
@@ -702,6 +944,39 @@ def create_validation(bounds, counts, render_paths):
     lower_r = len([obj for obj in bpy.data.objects if obj.name.startswith("Track_R_Lower_Roller_") and "Hub" not in obj.name])
     carrier_l = len([obj for obj in bpy.data.objects if obj.name.startswith("Track_L_Carrier_Roller_") and "Hub" not in obj.name])
     carrier_r = len([obj for obj in bpy.data.objects if obj.name.startswith("Track_R_Carrier_Roller_") and "Hub" not in obj.name])
+    expected_owners = {
+        "Boom_Cylinder_L_Barrel": "Boom_Hydraulics_ROOT",
+        "Boom_Cylinder_L_Rod": "Boom_Hydraulics_ROOT",
+        "Boom_Cylinder_R_Barrel": "Boom_Hydraulics_ROOT",
+        "Boom_Cylinder_R_Rod": "Boom_Hydraulics_ROOT",
+        "Stick_Cylinder_Barrel": "Stick_Hydraulics_ROOT",
+        "Stick_Cylinder_Rod": "Stick_Hydraulics_ROOT",
+        "Bucket_Cylinder_Barrel": "Bucket_Hydraulics_ROOT",
+        "Bucket_Cylinder_Rod": "Bucket_Hydraulics_ROOT",
+        "Bucket_Link_Dogbone": "Bucket_Linkage_ROOT",
+    }
+    actual_owners = metrics["hydraulic_linkage_owner_parents"]
+    owner_ok = all(actual_owners.get(name) == owner for name, owner in expected_owners.items())
+    bucket_static_errors = {
+        key: metrics[key]
+        for key in (
+            "bucket_rod_to_bellcrank_error_m",
+            "dogbone_to_bellcrank_error_m",
+            "dogbone_to_bucket_lug_error_m",
+        )
+    }
+    static_closure_ok = max(bucket_static_errors.values()) <= 1e-5
+    root_records = glb_contract["scene_roots"]
+    glb_contract_ok = (
+        glb_contract["scene_count"] == 1
+        and len(root_records) == 1
+        and root_records[0]["name"] == "Machine_Root"
+        and root_records[0]["transform"] == {}
+        and glb_contract["camera_count"] == 0
+        and not glb_contract["punctual_light_extension_present"]
+        and not glb_contract["inspection_helper_nodes"]
+    )
+    house_target = RECONSTRUCTED["engine_house_visible_target_m"]
     gates = [
         {"id":"builder-execution","status":"PASS","detail":"Factory-startup background builder reached receipt generation."},
         {"id":"candidate-class-boundary","status":"PASS","detail":"technical_structural_study; not engineering authority."},
@@ -710,13 +985,27 @@ def create_validation(bounds, counts, render_paths):
         {"id":"required-semantic-nodes","status":"PASS" if all(node_presence.values()) else "FAIL","detail":node_presence},
         {"id":"hierarchy-and-pivot-parenting","status":"PASS","detail":"Upper, boom, stick, and bucket are separate pivot-parented groups."},
         {"id":"track-published-counts","status":"PASS" if (shoe_l,shoe_r,lower_l,lower_r,carrier_l,carrier_r)==(49,49,8,8,2,2) else "FAIL","detail":{"shoes":[shoe_l,shoe_r],"lower_rollers":[lower_l,lower_r],"carrier_rollers":[carrier_l,carrier_r]}},
-        {"id":"transport-width-envelope","status":"PASS" if width <= PUBLISHED["undercarriage_width_m"] + 0.04 else "FAIL","detail":{"modeled_m":width,"published_max_m":PUBLISHED["undercarriage_width_m"],"classification":"published_constraint_reconstructed_geometry"}},
-        {"id":"transport-height-envelope","status":"PASS" if height <= PUBLISHED["transport_height_m"] + 0.05 else "FAIL","detail":{"modeled_m":height,"published_max_m":PUBLISHED["transport_height_m"],"classification":"published_constraint_reconstructed_pose"}},
-        {"id":"transport-length-envelope","status":"PASS" if length <= PUBLISHED["transport_length_m"] + 0.08 else "FAIL","detail":{"modeled_m":length,"published_max_m":PUBLISHED["transport_length_m"],"classification":"published_constraint_reconstructed_pose"}},
+        {"id":"authored-track-contact-ground-plane","status":"PASS" if abs(metrics["track_contact_min_y_m"]) <= 0.001 else "FAIL","detail":{"measured_shoe_bottom_y_m":metrics["track_contact_min_y_m"],"authored_ground_y_m":0.0,"absolute_tolerance_m":0.001,"classification":"evaluated_visible_reconstructed_track_geometry"}},
+        {"id":"published-center-frame-ground-clearance","status":"PASS" if abs(metrics["undercarriage_center_frame_underside_agl_m"]-PUBLISHED["ground_clearance_m"]) <= 0.005 else "FAIL","detail":{"measured_underside_agl_m":metrics["undercarriage_center_frame_underside_agl_m"],"published_m":PUBLISHED["ground_clearance_m"],"absolute_tolerance_m":0.005,"classification":"published_constraint_reconstructed_geometry"}},
+        {"id":"visible-grade-integrity","status":"PASS" if metrics["lowest_visible_geometry_y_m"] >= -0.001 and abs(metrics["lowest_visible_geometry_y_m"]-metrics["track_contact_min_y_m"]) <= 0.001 and all(name.startswith("Track_") for name in metrics["lowest_visible_objects"]) else "FAIL","detail":{"lowest_visible_y_m":metrics["lowest_visible_geometry_y_m"],"track_contact_y_m":metrics["track_contact_min_y_m"],"lowest_visible_objects":metrics["lowest_visible_objects"],"nonvisual_grade_witness_used":False}},
+        {"id":"cab-roof-published-height","status":"PASS" if abs(metrics["cab_roof_top_agl_m"]-PUBLISHED["cab_height_m"]) <= 0.025 else "FAIL","detail":{"measured_roof_top_agl_m":metrics["cab_roof_top_agl_m"],"published_m":PUBLISHED["cab_height_m"],"absolute_tolerance_m":0.025,"classification":"published_constraint_reconstructed_geometry"}},
+        {"id":"transport-width-envelope","status":"PASS" if abs(width-PUBLISHED["undercarriage_width_m"]) <= 0.04 else "FAIL","detail":{"modeled_m":width,"published_m":PUBLISHED["undercarriage_width_m"],"absolute_tolerance_m":0.04,"classification":"published_constraint_reconstructed_geometry"}},
+        {"id":"transport-height-envelope","status":"PASS" if abs(height-PUBLISHED["transport_height_m"]) <= 0.05 else "FAIL","detail":{"modeled_m":height,"published_m":PUBLISHED["transport_height_m"],"absolute_tolerance_m":0.05,"classification":"published_constraint_reconstructed_pose"}},
+        {"id":"transport-length-envelope","status":"PASS" if abs(length-PUBLISHED["transport_length_m"]) <= 0.08 else "FAIL","detail":{"modeled_m":length,"published_m":PUBLISHED["transport_length_m"],"absolute_tolerance_m":0.08,"classification":"published_constraint_reconstructed_pose"}},
+        {"id":"tail-swing-radius-evaluated-mesh","status":"PASS" if abs(metrics["tail_swing_radius_m"]-PUBLISHED["tail_swing_radius_m"]) <= 0.015 else "FAIL","detail":{"baseline_m":ROUND_1_BASELINE["tail_swing_radius_m"],"modeled_m":metrics["tail_swing_radius_m"],"published_m":PUBLISHED["tail_swing_radius_m"],"absolute_tolerance_m":0.015,"classification":"published_constraint_reconstructed_geometry"}},
+        {"id":"counterweight-clearance-evaluated-mesh","status":"PASS" if abs(metrics["counterweight_clearance_agl_m"]-PUBLISHED["counterweight_clearance_m"]) <= 0.015 else "FAIL","detail":{"baseline_m":ROUND_1_BASELINE["counterweight_clearance_agl_m"],"modeled_m":metrics["counterweight_clearance_agl_m"],"published_m":PUBLISHED["counterweight_clearance_m"],"absolute_tolerance_m":0.015,"classification":"published_constraint_reconstructed_geometry"}},
+        {"id":"engine-house-reconstructed-proportion","status":"PASS" if house_target["length_range"][0] <= metrics["engine_house_length_m"] <= house_target["length_range"][1] and house_target["height_range"][0] <= metrics["engine_house_height_m"] <= house_target["height_range"][1] else "FAIL","detail":{"baseline_m":{"length":ROUND_1_BASELINE["engine_house_length_m"],"height":ROUND_1_BASELINE["engine_house_height_m"]},"modeled_m":{"length":metrics["engine_house_length_m"],"height":metrics["engine_house_height_m"]},"reconstructed_target_m":house_target,"classification":"reconstructed_visual_proportion_not_manufacturer_fact"}},
+        {"id":"drive-sprocket-teeth-readable","status":"PASS" if (metrics["drive_sprocket_teeth_left"],metrics["drive_sprocket_teeth_right"]) == (RECONSTRUCTED["drive_sprocket_teeth_each_side"],RECONSTRUCTED["drive_sprocket_teeth_each_side"]) else "FAIL","detail":{"left":metrics["drive_sprocket_teeth_left"],"right":metrics["drive_sprocket_teeth_right"],"expected_reconstructed_each_side":RECONSTRUCTED["drive_sprocket_teeth_each_side"],"classification":"reconstructed_readability_cue"}},
+        {"id":"hydraulic-linkage-owner-hierarchy","status":"PASS" if owner_ok else "FAIL","detail":{"expected":expected_owners,"actual":actual_owners,"classification":"structural_ownership_not_engineering_authority"}},
+        {"id":"bucket-cylinder-bellcrank-static-closure","status":"PASS" if static_closure_ok else "FAIL","detail":{"errors_m":bucket_static_errors,"tolerance_m":1e-5,"classification":"static_reconstructed_visual_closure_not_kinematic_validation"}},
+        {"id":"export-mesh-scales-applied","status":"PASS" if not metrics["export_mesh_scale_offenders"] else "FAIL","detail":{"offenders":metrics["export_mesh_scale_offenders"]}},
+        {"id":"reconstructed-hose-bundles","status":"PASS" if metrics["reconstructed_hose_meshes"] == 24 else "FAIL","detail":{"segment_meshes":metrics["reconstructed_hose_meshes"],"classification":"reconstructed_exterior_routing_cues_only"}},
+        {"id":"glb-platform-contract","status":"PASS" if glb_contract_ok else "FAIL","detail":glb_contract},
+        {"id":"public-glb-inspection-helpers-stripped","status":"PASS" if not glb_contract["inspection_helper_nodes"] else "FAIL","detail":{"exported_inspection_helper_nodes":glb_contract["inspection_helper_nodes"],"private_blend_inspection_nodes_retained":True}},
         {"id":"object-count","status":"PASS" if counts["objects"] >= 180 else "FAIL","detail":counts["objects"]},
         {"id":"triangle-budget","status":"PASS" if 20_000 <= counts["triangles"] <= 220_000 else "FAIL","detail":{"triangles":counts["triangles"],"budget":[20000,220000]}},
         {"id":"neutral-unbranded-materials","status":"PASS","detail":"Neutral materials only; no manufacturer logo or exact livery claim."},
-        {"id":"transport-pose-cylinder-visual-closure","status":"PASS","detail":"Static barrel/rod objects join reconstructed anchor empties in the retained transport pose; published stroke travel is not asserted."},
+        {"id":"transport-pose-cylinder-visual-closure","status":"PASS" if static_closure_ok else "FAIL","detail":{"static_bucket_closure_errors_m":bucket_static_errors,"published_stroke_travel_asserted":False}},
         {"id":"review-renders-nonempty","status":"PASS" if render_ok else "FAIL","detail":{"count":len(render_paths),"minimum_bytes":20000}},
         {"id":"configuration-freeze","status":"PENDING","detail":"Research candidate retains unresolved coupler, thumb, OPG, grade-control, camera, serial/order, and rights choices."},
         {"id":"mechanical-solver","status":"PENDING","detail":"No solver, limits, or cylinder travel validation yet."},
@@ -736,6 +1025,17 @@ def create_validation(bounds, counts, render_paths):
         "verdict":"PASS" if not required_failed else "FAIL",
         "bounds":bounds,
         "counts":counts,
+        "round_1_repair_metrics":metrics,
+        "round_2_repair_metrics":{
+            "track_contact_min_y_m":metrics["track_contact_min_y_m"],
+            "track_contact_authored_root_correction_m":metrics["track_contact_authored_root_correction_m"],
+            "undercarriage_center_frame_underside_agl_m":metrics["undercarriage_center_frame_underside_agl_m"],
+            "cab_roof_top_agl_m":metrics["cab_roof_top_agl_m"],
+            "lowest_visible_geometry_y_m":metrics["lowest_visible_geometry_y_m"],
+            "lowest_visible_objects":metrics["lowest_visible_objects"],
+            "inspection_helper_nodes_in_public_glb":glb_contract["inspection_helper_nodes"],
+        },
+        "glb_contract":glb_contract,
         "gates":gates,
         "failed_gate_ids":required_failed,
     }
@@ -753,6 +1053,8 @@ def main():
     render_paths = render_all(model)
 
     objects = export_objects()
+    apply_export_mesh_scales(objects)
+    bpy.context.view_layer.update()
     bounds = mesh_bounds(objects)
     counts = {
         "objects": len(objects),
@@ -778,7 +1080,9 @@ def main():
         export_lights=False,
     )
 
-    validation = create_validation(bounds, counts, render_paths)
+    glb_contract = inspect_glb_contract(GLB_PATH)
+    metrics = collect_geometry_metrics(model, objects)
+    validation = create_validation(bounds, counts, render_paths, metrics, glb_contract)
     render_records = [{"path":rel(path),"sha256":sha256(path),"bytes":path.stat().st_size} for path in render_paths]
     node_presence = {name: bpy.data.objects.get(name) is not None for name in REQUIRED_NODES}
     receipt = {
@@ -794,7 +1098,16 @@ def main():
             "blend":{"path":rel(BLEND_PATH),"sha256":sha256(BLEND_PATH),"bytes":BLEND_PATH.stat().st_size},
             "glb":{"path":rel(GLB_PATH),"sha256":sha256(GLB_PATH),"bytes":GLB_PATH.stat().st_size},
         },
-        "scene":{"units":"meters","axes":{"longitudinal":"+X toward bucket","vertical":"+Y","lateral":"+Z machine right"},"bounds":bounds,**counts},
+        "scene":{"units":"meters","axes":{"longitudinal":"+X toward bucket","vertical":"+Y","lateral":"+Z machine right"},"visible_aabb_xyz_m":bounds["size_m"],"bounds":bounds,**counts},
+        "glb_contract":glb_contract,
+        "repair_round_1":{"finding_ids":["F-001","F-006","F-007","F-008","F-017","F-018","F-019"],"baseline":ROUND_1_BASELINE,"after":metrics},
+        "repair_round_2":{
+            "finding_ids":["R2-001","R2-005","R2-006"],
+            "measured":validation["round_2_repair_metrics"],
+            "track_contact_authored_root_correction_m":metrics["track_contact_authored_root_correction_m"],
+            "visual_repairs":["tapered three-volume boom box section","stepped lower house and upper hood volumes","bilateral service-door and counterweight cheek volumes","outboard thickened reconstructed hose bundles"],
+        },
+        "private_nonexport_inspection_nodes":["Inspection_Volumes","INSPECT_Transport_Envelope","INSPECT_Upper_Clearance","INSPECT_Boom_Swept_Study","INSPECT_Attachment_Volume"],
         "required_semantic_nodes":node_presence,
         "manufacturer_published_constraints_used":[
             "boom-length","stick-length","boom-cylinder-stroke","stick-cylinder-stroke","bucket-cylinder-stroke",

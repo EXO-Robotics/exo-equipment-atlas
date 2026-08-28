@@ -17,11 +17,12 @@ import hashlib
 import json
 import math
 import os
+import struct
 import sys
 from pathlib import Path
 
 import bpy
-from mathutils import Matrix, Vector
+from mathutils import Matrix, Quaternion, Vector
 
 
 MACHINE_ID = "john-deere-310-p-tier"
@@ -84,8 +85,8 @@ RECONSTRUCTED = {
     "front_loader_pivots_m": {"boom": [0.22, 1.58, 0.0], "bucket": [2.66, 0.52, 0.0]},
     "backhoe_pivots_m": {"swing": [-1.73, 1.05, 0.0], "boom": [-1.88, 1.25, 0.0], "dipper": [-2.68, 3.20, 0.0], "bucket": [-3.58, 1.55, 0.0]},
     "stabilizer_pivots_m": {"left": [-1.58, 0.72, -0.50], "right": [-1.58, 0.72, 0.50]},
-    "stabilizer_operating_pose": "reconstructed rotation reaches 3.53 m overall foot width; published 3.10 m spread retained as a separate constraint",
-    "front_bucket": "generic unbranded 2.18 m shell placeholder; exact published bucket branch unresolved",
+    "stabilizer_operating_pose": "non-exported reconstructed review pose places pad bottoms at grade and is constrained to the published 3.10 m center spread / 3.53 m overall width",
+    "front_bucket": "generic unbranded 2.18 m maximum-width shell placeholder constrained within the published 2.20 m over-tires width; exact bucket branch unresolved",
     "rear_bucket": "generic 610 mm class shell placeholder; exact coupler and tooth pattern unresolved",
     "cylinder_anchor_coordinates": "all visible cylinder endpoints are reconstructed for visual closure only",
     "steering_pose_deg": 0,
@@ -105,6 +106,7 @@ UNRESOLVED = [
 ]
 
 POSE_MEASUREMENTS = {}
+GLTF_CONTRACT = {}
 
 
 def repo_root() -> Path:
@@ -349,11 +351,25 @@ def hose(name, points, radius, material, parent=None):
     return obj
 
 
+def bake_mesh_scale(obj):
+    """Bake an authored mesh scale into vertices and leave identity object TRS."""
+    scale = Vector(obj.scale)
+    if any(abs(value - 1.0) > 1e-9 for value in scale):
+        obj.data.transform(Matrix.Diagonal(Vector((scale.x, scale.y, scale.z, 1.0))))
+        obj.scale = (1.0, 1.0, 1.0)
+
+
 def wheel(prefix, x, y, z, radius, width, steer_parent=None):
     outer = torus(prefix + "_Tire", (x, y, z), radius * 0.73, radius * 0.27, M_TIRE, COL_DETAILS, parent=steer_parent, semantic="tire")
     outer.scale.z = width / (radius * 0.54)
+    bake_mesh_scale(outer)
     rim = cylinder_between(prefix + "_Rim", (x, y, z - width * 0.44), (x, y, z + width * 0.44), radius * 0.48, M_ACCENT, COL_DETAILS, 32, steer_parent, "wheel_rim")
     hub = cylinder_between(prefix + "_Hub", (x, y, z - width * 0.46), (x, y, z + width * 0.46), radius * 0.18, M_STEEL, COL_DETAILS, 24, steer_parent, "wheel_hub")
+    # Separate reconstructed sidewall shoulders and rim lips make the carcass,
+    # bead and hub construction legible without claiming a tire option.
+    for side in (-1, 1):
+        torus(prefix + f"_SidewallShoulder_{side:+d}", (x, y, z + side * width * 0.37), radius * 0.70, radius * 0.075, M_TIRE, COL_DETAILS, parent=steer_parent, semantic="tire_sidewall")
+        torus(prefix + f"_RimLip_{side:+d}", (x, y, z + side * width * 0.445), radius * 0.47, radius * 0.022, M_STEEL, COL_DETAILS, parent=steer_parent, semantic="wheel_rim_lip")
     for side in (-1, 1):
         for idx in range(8):
             angle = 2 * math.pi * idx / 8
@@ -364,11 +380,13 @@ def wheel(prefix, x, y, z, radius, width, steer_parent=None):
     for side in (-1, 1):
         for idx in range(18):
             angle = 2 * math.pi * idx / 18
-            radial = radius * 0.965
+            # Keep decorative reconstructed lugs inside the carcass envelope;
+            # the tire torus, not a rotated block corner, owns published bounds.
+            radial = radius * 0.92
             tx = x + math.cos(angle) * radial
             ty = y + math.sin(angle) * radial
             tread = box(prefix + f"_Tread_{side:+d}_{idx:02d}", (tx, ty, z + side * width * 0.28), (radius * 0.07, radius * 0.18, width * 0.38), M_TIRE, COL_DETAILS, 0.008, steer_parent, "tire_tread")
-            tread.rotation_euler[2] = angle
+            tread.rotation_euler[2] = angle + side * math.radians(20)
     return outer, rim, hub
 
 
@@ -385,7 +403,7 @@ def hydraulic(name, base, rod_end, barrel_fraction=0.58, barrel_radius=0.055, pa
 
 
 def proxy_box(name, location, dimensions, semantic, coll, parent=None):
-    obj = box(name, location, dimensions, M_PROXY, coll, 0.0, parent, semantic, True)
+    obj = box(name, location, dimensions, M_PROXY, coll, 0.0, parent, semantic, False)
     obj.display_type = "WIRE"
     obj.hide_render = True
     obj.visible_shadow = False
@@ -446,10 +464,23 @@ def build_machine():
     box("Engine_Hood_Lower", (0.88, 1.18, 0), (1.55, 0.62, 1.10), M_BODY, COL_FIXED, 0.09, ROOT_FIXED, "engine_hood")
     hood_top = box("Engine_Hood_Sloped", (0.93, 1.52, 0), (1.43, 0.20, 1.00), M_BODY, COL_FIXED, 0.07, ROOT_FIXED, "engine_hood")
     hood_top.rotation_euler[2] = math.radians(-4)
+    box("Engine_Hood_Crown", (0.80, 1.645, 0), (1.08, 0.10, 0.84), M_BODY, COL_FIXED, 0.045, ROOT_FIXED, "engine_hood_crown")
+    box("Engine_Cowl_Rear", (0.17, 1.39, 0), (0.26, 0.66, 1.18), M_BODY, COL_FIXED, 0.055, ROOT_FIXED, "engine_cowl")
+    box("Engine_Nose_Brow", (1.66, 1.58, 0), (0.15, 0.16, 0.94), M_ACCENT, COL_FIXED, 0.04, ROOT_FIXED, "engine_nose")
     box("Front_Grille", (1.70, 1.25, 0), (0.06, 0.58, 0.83), M_DARK, COL_DETAILS, 0.02, ROOT_FIXED, "cooling_grille")
     for idx in range(7):
         box(f"Grille_Slat_{idx:02d}", (1.735, 1.05 + idx * 0.07, 0), (0.025, 0.026, 0.75), M_STEEL, COL_DETAILS, 0.004, ROOT_FIXED, "grille_slat")
     for side in (-1, 1):
+        plate_xy(
+            f"Hood_Profile_{side:+d}",
+            [(0.15, 1.02), (1.68, 1.02), (1.68, 1.60), (1.40, 1.68), (0.34, 1.70), (0.15, 1.58)],
+            side * 0.565,
+            0.035,
+            M_BODY,
+            COL_FIXED,
+            ROOT_FIXED,
+            "engine_hood_profile",
+        )
         box(f"Hood_ServicePanel_{side:+d}", (0.88, 1.24, side * 0.558), (1.20, 0.47, 0.025), M_DARK, COL_DETAILS, 0.012, ROOT_FIXED, "service_panel")
         for idx in range(4):
             box(f"HoodVent_{side:+d}_{idx:02d}", (1.15 + idx * 0.10, 1.34, side * 0.578), (0.055, 0.18, 0.018), M_STEEL, COL_DETAILS, 0.005, ROOT_FIXED, "vent")
@@ -459,6 +490,8 @@ def build_machine():
     # Cab frame with actual glass boundaries, door segmentation and interior cues.
     box("Cab_Floor", (-0.54, 1.05, 0), (1.18, 0.18, 1.44), M_DARK, COL_FIXED, 0.04, ROOT_FIXED, "cab_frame")
     box("Cab_Roof", (-0.56, 2.755, 0), (1.38, 0.11, 1.58), M_ACCENT, COL_FIXED, 0.055, ROOT_FIXED, "cab_roof")
+    box("Cab_LowerBulkhead", (-0.62, 1.25, 0), (1.02, 0.34, 1.40), M_BODY, COL_FIXED, 0.055, ROOT_FIXED, "cab_lower_body")
+    box("Cab_RearLowerPanel", (-1.08, 1.52, 0), (0.12, 0.72, 1.30), M_BODY, COL_FIXED, 0.04, ROOT_FIXED, "cab_rear_body")
     for z, label in [(-0.66, "Left"), (0.66, "Right")]:
         beam(f"CabPillar_Front{label}", (-0.02, 1.13, z), (-0.18, 2.72, z), 0.075, 0.075, M_DARK, COL_FIXED, 0.014, ROOT_FIXED, "cab_pillar")
         beam(f"CabPillar_Rear{label}", (-1.12, 1.13, z), (-1.03, 2.72, z), 0.075, 0.075, M_DARK, COL_FIXED, 0.014, ROOT_FIXED, "cab_pillar")
@@ -472,7 +505,12 @@ def build_machine():
         beam(f"Door_Divider_{side:+d}", (-0.61, 1.18, side * 0.70), (-0.61, 2.66, side * 0.70), 0.045, 0.045, M_DARK, COL_DETAILS, 0.008, ROOT_FIXED, "door_frame")
         box(f"Door_Handle_{side:+d}", (-0.28, 1.75, side * 0.715), (0.16, 0.035, 0.035), M_FASTENER, COL_DETAILS, 0.008, ROOT_FIXED, "door_handle")
         beam(f"CabStep_{side:+d}", (-0.92, 0.93, side * 0.77), (-0.15, 0.93, side * 0.77), 0.06, 0.15, M_STEEL, COL_DETAILS, 0.01, ROOT_FIXED, "access_step")
-        box(f"RearFender_Top_{side:+d}", (-1.08, 1.38, side * 0.76), (0.92, 0.10, 0.34), M_BODY, COL_DETAILS, 0.045, ROOT_FIXED, "rear_fender")
+        box(f"RearFender_Top_{side:+d}", (-1.08, 1.43, side * 0.83), (1.10, 0.12, 0.30), M_BODY, COL_DETAILS, 0.045, ROOT_FIXED, "rear_fender")
+        fender_front = box(f"RearFender_FrontSlope_{side:+d}", (-0.58, 1.19, side * 0.83), (0.50, 0.10, 0.30), M_BODY, COL_DETAILS, 0.035, ROOT_FIXED, "rear_fender")
+        fender_front.rotation_euler[2] = math.radians(34)
+        fender_rear = box(f"RearFender_RearSlope_{side:+d}", (-1.58, 1.18, side * 0.83), (0.46, 0.10, 0.30), M_BODY, COL_DETAILS, 0.035, ROOT_FIXED, "rear_fender")
+        fender_rear.rotation_euler[2] = math.radians(-36)
+        box(f"Cab_RockerPanel_{side:+d}", (-0.54, 1.12, side * 0.71), (1.04, 0.20, 0.08), M_BODY, COL_DETAILS, 0.025, ROOT_FIXED, "cab_lower_body")
     box("Operator_SeatBase", (-0.62, 1.28, 0), (0.48, 0.22, 0.48), M_DARK, COL_DETAILS, 0.05, ROOT_FIXED, "operator_station")
     seat = box("Operator_SeatBack", (-0.78, 1.68, 0), (0.18, 0.68, 0.54), M_DARK, COL_DETAILS, 0.07, ROOT_FIXED, "operator_station")
     seat.rotation_euler[2] = math.radians(-7)
@@ -497,12 +535,14 @@ def build_machine():
     pin("Loader_Bellcrank_Pin", (2.15, 0.88, 0), 0.07, 0.18, M_FASTENER, COL_FRONT, piv_loader)
 
     piv_front_bucket = empty("Pivot_FrontLoaderBucket", (2.66, 0.52, 0), "front_loader_bucket_pivot", parent=piv_loader)
-    # Generic rolled scoop shell: cutting edge exactly at x=3.115, exact bucket branch unresolved.
+    # Generic rolled scoop shell: cutting edge exactly at x=3.115. Its
+    # reconstructed 2.18 m outer width remains inside the published 2.20 m
+    # over-tires width; exact bucket family/capacity remains unresolved.
     front_scoop = [(3.085, 0.15), (3.00, 0.17), (2.86, 0.25), (2.76, 0.41), (2.71, 0.68)]
     curved_shell("FrontBucket", front_scoop, 2.15, 0.065, M_BODY, COL_FRONT, piv_front_bucket, "front_bucket_shell")
     box("FrontBucket_CuttingEdge", (3.085, 0.15, 0), (0.06, 0.09, 2.18), M_STEEL, COL_FRONT, 0.012, piv_front_bucket, "front_bucket_cutting_edge")
     for side in (-1, 1):
-        plate_xy(f"FrontBucket_Cheek_{side:+d}", [(3.09, 0.13), (2.69, 0.15), (2.64, 0.73), (2.76, 0.82), (3.02, 0.46)], side * 1.078, 0.035, M_BODY, COL_FRONT, piv_front_bucket, "front_bucket_sideplate")
+        plate_xy(f"FrontBucket_Cheek_{side:+d}", [(3.09, 0.13), (2.69, 0.15), (2.64, 0.73), (2.76, 0.82), (3.02, 0.46)], side * 1.0725, 0.035, M_BODY, COL_FRONT, piv_front_bucket, "front_bucket_sideplate")
         pin(f"FrontBucket_Pin_{side:+d}", (2.66, 0.52, side * 0.61), 0.075, 0.16, M_FASTENER, COL_FRONT, piv_front_bucket)
 
     # Rear swing post, transport-stowed boom/dipper/bucket and visible closures.
@@ -545,24 +585,33 @@ def build_machine():
         z0 = side * 0.50
         z1 = side * 0.50
         piv = empty(f"Pivot_Stabilizer_{label}", (-1.58, 0.72, z0), f"{label.lower()}_stabilizer_pivot", parent=ROOT_FIXED)
-        beam(f"StabilizerArm_{label}", (-1.58, 0.72, z0), (-1.60, 1.792, z1), 0.16, 0.18, M_ACCENT, COL_REAR, 0.025, piv, "stabilizer_arm")
-        box(f"StabilizerFoot_{label}", (-1.60, 1.792, z1), (0.42, 0.12, 0.43), M_STEEL, COL_REAR, 0.018, piv, "stabilizer_foot")
+        beam(f"StabilizerArm_{label}", (-1.58, 0.72, z0), (-1.60, 1.72, z1), 0.19, 0.22, M_ACCENT, COL_REAR, 0.028, piv, "stabilizer_arm")
+        pin(f"StabilizerPivotBoss_{label}", (-1.58, 0.72, z0), 0.115, 0.28, M_FASTENER, COL_REAR, piv)
+        box(f"StabilizerFoot_{label}", (-1.60, 1.79, z1), (0.56, 0.14, 0.43), M_STEEL, COL_REAR, 0.022, piv, "stabilizer_foot")
+        box(f"StabilizerFootWearPlate_{label}", (-1.60, 1.855, z1), (0.44, 0.035, 0.34), M_FASTENER, COL_REAR, 0.008, piv, "stabilizer_foot_wear_plate")
         hydraulic(f"StabilizerCylinder_{label}", (-1.50, 0.90, side * 0.44), (-1.60, 1.54, side * 0.50), 0.58, 0.052, piv, 0.025, ["standard-stabilizer-cylinder-bore", "standard-stabilizer-cylinder-rod"])
 
     # Exact published-width review witness. This is a separate, non-exported,
     # reconstructed pose used only for critic renders; it is not a motion solve.
     # Foot centers are +/-1.55 m (3.10 m spread) and 0.43 m-wide feet produce
-    # the published 3.53 m outer width.
+    # the published 3.53 m outer width. Pad centers are Y=0.06 m so their
+    # 0.12 m thickness places the entire wear surface exactly at grade Y=0.
     for side, label in [(-1, "Left"), (1, "Right")]:
         base = (-1.58, 0.72, side * 0.50)
-        foot_center = (-1.60, 0.18, side * 1.55)
+        arm_end = (-1.60, 0.22, side * 1.43)
+        pad_pin = (-1.60, 0.15, side * 1.55)
+        foot_center = (-1.60, 0.06, side * 1.55)
         review_objects = [
-            beam(f"Review_StabilizerArm_{label}", base, foot_center, 0.16, 0.18, M_ACCENT, COL_REVIEW, 0.025, None, "stabilizer_deployed_review"),
-            box(f"Review_StabilizerFoot_{label}", foot_center, (0.42, 0.12, 0.43), M_STEEL, COL_REVIEW, 0.018, None, "stabilizer_deployed_review"),
+            beam(f"Review_StabilizerArm_{label}", base, arm_end, 0.19, 0.24, M_ACCENT, COL_REVIEW, 0.028, None, "stabilizer_deployed_review"),
+            beam(f"Review_StabilizerKnuckle_{label}", arm_end, pad_pin, 0.15, 0.22, M_DARK, COL_REVIEW, 0.022, None, "stabilizer_deployed_review"),
+            box(f"Review_StabilizerFoot_{label}", foot_center, (0.62, 0.12, 0.43), M_STEEL, COL_REVIEW, 0.022, None, "stabilizer_deployed_review"),
+            box(f"Review_StabilizerFootTop_{label}", (-1.60, 0.135, side * 1.55), (0.42, 0.05, 0.34), M_FASTENER, COL_REVIEW, 0.008, None, "stabilizer_deployed_review"),
+            cylinder_between(f"Review_StabilizerPivotBoss_{label}", (-1.58, 0.72, side * 0.39), (-1.58, 0.72, side * 0.61), 0.115, M_FASTENER, COL_REVIEW, 24, None, "stabilizer_deployed_review"),
+            cylinder_between(f"Review_StabilizerPadPin_{label}", (-1.60, 0.15, side * 1.47), (-1.60, 0.15, side * 1.63), 0.075, M_FASTENER, COL_REVIEW, 24, None, "stabilizer_deployed_review"),
             cylinder_between(
                 f"Review_StabilizerCylinder_{label}_Barrel",
                 (-1.50, 0.68, side * 0.46),
-                (-1.57, 0.34, side * 1.28),
+                (-1.57, 0.34, side * 1.22),
                 0.052,
                 M_HYD,
                 COL_REVIEW,
@@ -572,8 +621,8 @@ def build_machine():
             ),
             cylinder_between(
                 f"Review_StabilizerCylinder_{label}_Rod",
-                (-1.57, 0.34, side * 1.28),
-                (-1.60, 0.24, side * 1.46),
+                (-1.57, 0.34, side * 1.22),
+                (-1.60, 0.22, side * 1.42),
                 0.025,
                 M_CHROME,
                 COL_REVIEW,
@@ -685,7 +734,8 @@ def render_views(camera):
             extents = {}
             for foot in feet:
                 zs = [(foot.matrix_world @ Vector(corner)).z for corner in foot.bound_box]
-                extents[foot.name] = {"min_z_m": min(zs), "max_z_m": max(zs)}
+                ys = [(foot.matrix_world @ Vector(corner)).y for corner in foot.bound_box]
+                extents[foot.name] = {"min_z_m": min(zs), "max_z_m": max(zs), "min_y_m": min(ys), "max_y_m": max(ys)}
             POSE_MEASUREMENTS["stabilizers"] = {
                 "overall_width_m": round(extents["Review_StabilizerFoot_Right"]["max_z_m"] - extents["Review_StabilizerFoot_Left"]["min_z_m"], 4),
                 "foot_center_spread_m": round(
@@ -695,6 +745,8 @@ def render_views(camera):
                 ),
                 "foot_extents": extents,
                 "witness_nodes": ["Review_StabilizerFoot_Left", "Review_StabilizerFoot_Right"],
+                "pad_bottom_y_m": round(min(item["min_y_m"] for item in extents.values()), 4),
+                "grade_y_m": 0.0,
                 "classification": "non-exported reconstructed review pose constrained by manufacturer-published spread and overall width",
             }
         camera.location = location
@@ -725,7 +777,126 @@ def select_export_objects():
             obj.select_set(True)
 
 
+def inspect_glb_contract(path: Path):
+    """Inspect the exact GLB bytes for the platform scene/export contract."""
+    data = path.read_bytes()
+    if data[:4] != b"glTF":
+        raise RuntimeError("Exported asset is not a GLB container")
+    json_length, json_type = struct.unpack_from("<II", data, 12)
+    if json_type != 0x4E4F534A:
+        raise RuntimeError("GLB first chunk is not JSON")
+    document = json.loads(data[20:20 + json_length].decode("utf-8").rstrip(" \t\r\n\0"))
+    nodes = document.get("nodes", [])
+    active_scene = document.get("scenes", [])[document.get("scene", 0)]
+    roots = active_scene.get("nodes", [])
+
+    def local_matrix(node):
+        if "matrix" in node:
+            values = node["matrix"]
+            return Matrix((
+                (values[0], values[4], values[8], values[12]),
+                (values[1], values[5], values[9], values[13]),
+                (values[2], values[6], values[10], values[14]),
+                (values[3], values[7], values[11], values[15]),
+            ))
+        translation = node.get("translation", [0.0, 0.0, 0.0])
+        rotation = node.get("rotation", [0.0, 0.0, 0.0, 1.0])
+        scale = node.get("scale", [1.0, 1.0, 1.0])
+        return (
+            Matrix.Translation(Vector(translation))
+            @ Quaternion((rotation[3], rotation[0], rotation[1], rotation[2])).to_matrix().to_4x4()
+            @ Matrix.Diagonal(Vector((*scale, 1.0)))
+        )
+
+    bounds_min = Vector((math.inf, math.inf, math.inf))
+    bounds_max = Vector((-math.inf, -math.inf, -math.inf))
+    mesh_node_count = 0
+    non_identity_mesh_scales = []
+
+    def visit(node_index, parent_matrix):
+        nonlocal mesh_node_count
+        node = nodes[node_index]
+        world = parent_matrix @ local_matrix(node)
+        if "mesh" in node:
+            mesh_node_count += 1
+            node_scale = node.get("scale", [1.0, 1.0, 1.0])
+            if any(abs(value - 1.0) > 1e-6 for value in node_scale):
+                non_identity_mesh_scales.append({"node": node.get("name"), "scale": node_scale})
+            mesh = document["meshes"][node["mesh"]]
+            for primitive in mesh.get("primitives", []):
+                position_index = primitive.get("attributes", {}).get("POSITION")
+                if position_index is None:
+                    continue
+                accessor = document["accessors"][position_index]
+                lo, hi = accessor.get("min"), accessor.get("max")
+                if lo is None or hi is None:
+                    continue
+                for x in (lo[0], hi[0]):
+                    for y in (lo[1], hi[1]):
+                        for z in (lo[2], hi[2]):
+                            point = world @ Vector((x, y, z))
+                            for axis in range(3):
+                                bounds_min[axis] = min(bounds_min[axis], point[axis])
+                                bounds_max[axis] = max(bounds_max[axis], point[axis])
+        for child in node.get("children", []):
+            visit(child, world)
+
+    for root_index in roots:
+        visit(root_index, Matrix.Identity(4))
+
+    decoded_triangles = 0
+    primitive_count = 0
+    unsupported_primitive_modes = []
+    for mesh in document.get("meshes", []):
+        for primitive in mesh.get("primitives", []):
+            primitive_count += 1
+            mode = primitive.get("mode", 4)
+            index_accessor = primitive.get("indices")
+            element_count = (
+                document["accessors"][index_accessor]["count"]
+                if index_accessor is not None
+                else document["accessors"][primitive["attributes"]["POSITION"]]["count"]
+            )
+            if mode == 4:  # TRIANGLES
+                decoded_triangles += element_count // 3
+            elif mode in (5, 6):  # TRIANGLE_STRIP / TRIANGLE_FAN
+                decoded_triangles += max(0, element_count - 2)
+            else:
+                unsupported_primitive_modes.append(mode)
+
+    helper_prefixes = ("COL_", "INSP_", "Envelope_", "Witness_", "Review_", "Render_")
+    helper_nodes = sorted(node.get("name", "") for node in nodes if node.get("name", "").startswith(helper_prefixes))
+    root_node = nodes[roots[0]] if len(roots) == 1 else {}
+    identity_root = (
+        root_node.get("translation", [0.0, 0.0, 0.0]) == [0.0, 0.0, 0.0]
+        and root_node.get("rotation", [0.0, 0.0, 0.0, 1.0]) == [0.0, 0.0, 0.0, 1.0]
+        and root_node.get("scale", [1.0, 1.0, 1.0]) == [1.0, 1.0, 1.0]
+        and "matrix" not in root_node
+    )
+    dimensions = [round(bounds_max[i] - bounds_min[i], 4) for i in range(3)] if mesh_node_count else []
+    return {
+        "asset_version": document.get("asset", {}).get("version"),
+        "coordinate_system": "glTF 2.0 Y-up; authored +Y preserved with export_yup=False",
+        "scene_count": len(document.get("scenes", [])),
+        "direct_scene_root_count": len(roots),
+        "root_name": root_node.get("name"),
+        "root_identity_trs": identity_root,
+        "helper_nodes": helper_nodes,
+        "camera_count": len(document.get("cameras", [])),
+        "light_extension_present": "KHR_lights_punctual" in document.get("extensions", {}),
+        "mesh_node_count": mesh_node_count,
+        "primitive_count": primitive_count,
+        "decoded_shipped_triangle_count": decoded_triangles,
+        "unsupported_primitive_modes": sorted(set(unsupported_primitive_modes)),
+        "non_identity_public_mesh_scales": non_identity_mesh_scales,
+        "visible_aabb_min_xyz_m": [round(v, 4) for v in bounds_min],
+        "visible_aabb_max_xyz_m": [round(v, 4) for v in bounds_max],
+        "visible_aabb_dimensions_xyz_m": dimensions,
+    }
+
+
 def export_and_save():
+    global GLTF_CONTRACT
     # Save after final review camera placement for exact critic reproducibility.
     bpy.ops.wm.save_as_mainfile(filepath=str(abs_path(BLEND_REL)), check_existing=False)
     select_export_objects()
@@ -736,9 +907,12 @@ def export_and_save():
         export_apply=True,
         export_cameras=False,
         export_lights=False,
-        export_yup=True,
+        # Geometry is intentionally authored +Y-up. Disabling Blender's usual
+        # Z-up conversion preserves that platform coordinate system directly.
+        export_yup=False,
         export_extras=True,
     )
+    GLTF_CONTRACT = inspect_glb_contract(abs_path(GLB_REL))
 
 
 def mesh_stats():
@@ -785,6 +959,17 @@ def mesh_stats():
     }
 
 
+def measured_prefix_width(prefix: str):
+    objects = [obj for obj in bpy.context.scene.objects if obj.type == "MESH" and obj.name.startswith(prefix)]
+    values = [(obj.matrix_world @ Vector(corner)).z for obj in objects for corner in obj.bound_box]
+    return {
+        "node_count": len(objects),
+        "min_z_m": round(min(values), 4),
+        "max_z_m": round(max(values), 4),
+        "outer_width_m": round(max(values) - min(values), 4),
+    }
+
+
 def required_nodes():
     names = [
         "ROOT_310P_CANDIDATE", "Mainframe_Unitized", "MFWD_Front_Axle", "Rear_Axle",
@@ -795,7 +980,15 @@ def required_nodes():
         "LoaderBoomCylinder_+1_Barrel", "LoaderBucketCylinder_Barrel",
         "BackhoeBoomCylinder_Barrel", "BackhoeCrowdCylinder_Barrel",
         "BackhoeBucketCylinder_Barrel", "StabilizerCylinder_Left_Barrel",
-        "StabilizerCylinder_Right_Barrel", "COL_Chassis", "INSP_OperatorStation",
+        "StabilizerCylinder_Right_Barrel",
+    ]
+    return {name: bpy.data.objects.get(name) is not None for name in names}
+
+
+def authoring_helper_nodes():
+    names = [
+        "COL_Chassis", "COL_Cab", "COL_FrontBucket", "COL_BackhoeTransport",
+        "INSP_OperatorStation", "INSP_FrontLoaderLinkage", "INSP_RearBackhoeLinkage",
     ]
     return {name: bpy.data.objects.get(name) is not None for name in names}
 
@@ -808,12 +1001,35 @@ def file_entry(rel):
 def write_receipts():
     stats = mesh_stats()
     semantic_nodes = required_nodes()
+    authoring_helpers = authoring_helper_nodes()
     render_entries = [file_entry(rel) for rel in RENDER_RELS]
     stabilizer_measurement = POSE_MEASUREMENTS.get("stabilizers", {})
     stabilizer_ok = (
         abs(stabilizer_measurement.get("overall_width_m", 0) - 3.53) <= 0.01
         and abs(stabilizer_measurement.get("foot_center_spread_m", 0) - 3.10) <= 0.01
+        and abs(stabilizer_measurement.get("pad_bottom_y_m", math.inf) - 0.0) <= 0.001
     )
+    bucket_measurement = measured_prefix_width("FrontBucket")
+    bucket_width_ok = 0.0 < bucket_measurement["outer_width_m"] <= 2.20 + 0.001
+    helper_exclusion_ok = (
+        not GLTF_CONTRACT.get("helper_nodes")
+        and GLTF_CONTRACT.get("camera_count") == 0
+        and not GLTF_CONTRACT.get("light_extension_present")
+    )
+    gltf_frame_ok = (
+        GLTF_CONTRACT.get("asset_version") == "2.0"
+        and GLTF_CONTRACT.get("direct_scene_root_count") == 1
+        and GLTF_CONTRACT.get("root_name") == "ROOT_310P_CANDIDATE"
+        and GLTF_CONTRACT.get("root_identity_trs") is True
+        and all(
+            abs(actual - expected) <= 0.01
+            for actual, expected in zip(GLTF_CONTRACT.get("visible_aabb_dimensions_xyz_m", []), [7.24, 3.39, 2.20])
+        )
+        and len(GLTF_CONTRACT.get("visible_aabb_dimensions_xyz_m", [])) == 3
+    )
+    public_mesh_scales_ok = not GLTF_CONTRACT.get("non_identity_public_mesh_scales")
+    shipped_triangle_count = GLTF_CONTRACT.get("decoded_shipped_triangle_count", 0)
+    shipped_triangle_decode_ok = shipped_triangle_count > 0 and not GLTF_CONTRACT.get("unsupported_primitive_modes")
     actual_dims = stats["bounds_m"]["dimensions_xyz"]
     envelope_ok = (
         abs(actual_dims[0] - 7.24) <= 0.01
@@ -826,14 +1042,20 @@ def write_receipts():
     gates = [
         {"id": "builder-completed", "status": "PASS", "detail": "Factory-startup deterministic builder completed."},
         {"id": "source-and-rights-boundary", "status": "PASS", "detail": "Independently authored neutral geometry; no logos, copied textures, CAD, or manufacturer binaries embedded."},
-        {"id": "required-semantic-nodes", "status": "PASS" if all(semantic_nodes.values()) else "FAIL", "detail": semantic_nodes},
+        {"id": "required-public-semantic-nodes", "status": "PASS" if all(semantic_nodes.values()) else "FAIL", "detail": semantic_nodes},
+        {"id": "authoring-helper-scene-inventory", "status": "PASS" if all(authoring_helpers.values()) else "FAIL", "detail": {"present_in_blend": authoring_helpers, "public_glb_expected_count": 0}},
+        {"id": "public-glb-helper-exclusion", "status": "PASS" if helper_exclusion_ok else "FAIL", "detail": {"forbidden_prefixes": ["COL_", "INSP_", "Envelope_", "Witness_", "Review_", "Render_"], "inspection": GLTF_CONTRACT}},
+        {"id": "platform-gltf-y-up-single-root", "status": "PASS" if gltf_frame_ok else "FAIL", "detail": GLTF_CONTRACT},
+        {"id": "public-glb-mesh-identity-scales", "status": "PASS" if public_mesh_scales_ok else "FAIL", "detail": {"mesh_node_count": GLTF_CONTRACT.get("mesh_node_count"), "non_identity_mesh_scales": GLTF_CONTRACT.get("non_identity_public_mesh_scales", []), "tolerance": 1e-6}},
+        {"id": "shipped-glb-triangle-accounting", "status": "PASS" if shipped_triangle_decode_ok else "FAIL", "detail": {"decoded_triangle_count": shipped_triangle_count, "primitive_count": GLTF_CONTRACT.get("primitive_count"), "unsupported_primitive_modes": GLTF_CONTRACT.get("unsupported_primitive_modes", []), "basis": "independent GLB JSON accessor/index decoding"}},
         {"id": "published-transport-length-witness", "status": "PASS", "detail": {"expected_m": 7.24, "reconstructed_endpoints_m": [-4.125, 3.115]}},
         {"id": "published-width-witness", "status": "PASS", "detail": {"expected_m": 2.20, "reconstructed_tire_outer_planes_m": [-1.10, 1.10]}},
         {"id": "published-cab-height-witness", "status": "PASS", "detail": {"expected_m": 2.81, "ground_y_m": 0.0, "roof_top_y_m": 2.81}},
         {"id": "published-mfwd-wheelbase", "status": "PASS", "detail": {"expected_m": 2.19, "front_axle_x_m": 1.095, "rear_axle_x_m": -1.095}},
         {"id": "visible-mesh-transport-envelope", "status": "PASS" if envelope_ok else "FAIL", "detail": {"expected_xyz_m": [7.24, 3.39, 2.20], "actual_xyz_m": actual_dims, "tolerance_m": 0.01, "height_basis": "published standard-backhoe transport height; cab roof separately constrained to 2.81 m"}},
-        {"id": "reconstructed-stabilizer-operating-width", "status": "PASS" if stabilizer_ok else "FAIL", "detail": {"published_overall_width_m": 3.53, "published_spread_m": 3.10, "measured_pose": stabilizer_measurement, "tolerance_m": 0.01, "authority": "reconstructed pose constrained by published endpoints"}},
-        {"id": "triangle-budget", "status": "PASS" if stats["triangle_count"] <= 125000 else "FAIL", "detail": {"maximum": 125000, "actual": stats["triangle_count"]}},
+        {"id": "reconstructed-loader-bucket-width", "status": "PASS" if bucket_width_ok else "FAIL", "detail": {"published_over_tires_width_m": 2.20, "measured_reconstructed_bucket": bucket_measurement, "rule": "unresolved generic bucket placeholder must not exceed published over-tires width", "authority": "reconstructed; exact bucket branch unresolved"}},
+        {"id": "reconstructed-stabilizer-operating-width-and-grade", "status": "PASS" if stabilizer_ok else "FAIL", "detail": {"published_overall_width_m": 3.53, "published_spread_m": 3.10, "required_pad_bottom_y_m": 0.0, "measured_pose": stabilizer_measurement, "width_tolerance_m": 0.01, "grade_tolerance_m": 0.001, "authority": "reconstructed pose constrained by published endpoints"}},
+        {"id": "triangle-budget", "status": "PASS" if shipped_triangle_count <= 125000 else "FAIL", "detail": {"maximum": 125000, "actual_shipped_glb": shipped_triangle_count, "source_blend_evaluated": stats["triangle_count"]}},
         {"id": "render-files-nonempty", "status": "PASS" if all(item["bytes"] > 10000 for item in render_entries) else "FAIL", "detail": {item["path"]: item["bytes"] for item in render_entries}},
         {"id": "front-loader-linkage-closure", "status": "PENDING", "detail": "Visible closure only; no configuration-frozen solver or published anchors."},
         {"id": "backhoe-linkage-closure", "status": "PENDING", "detail": "Visible closure only; no configuration-frozen solver or published anchors."},
@@ -876,11 +1098,17 @@ def write_receipts():
             "units": "meters",
             "axes": {"longitudinal": "+X toward front loader", "vertical": "+Y", "lateral": "+Z machine right"},
             **stats,
+            "source_blend_evaluated_triangle_count": stats["triangle_count"],
+            "triangle_count": shipped_triangle_count,
+            "triangle_count_basis": "independently decoded shipped GLB index accessors",
         },
         "required_semantic_nodes": semantic_nodes,
+        "authoring_only_helper_nodes": {"present_in_blend": authoring_helpers, "present_in_public_glb": GLTF_CONTRACT.get("helper_nodes", [])},
         "manufacturer_published_constraints_used": [{"id": key, **value} for key, value in PUBLISHED.items()],
         "reconstructed_values": RECONSTRUCTED,
         "reconstructed_pose_measurements": POSE_MEASUREMENTS,
+        "reconstructed_front_bucket_measurement": bucket_measurement,
+        "public_glb_contract": GLTF_CONTRACT,
         "unresolved_choices": UNRESOLVED,
         "mechanical_gaps": [
             "No configuration-frozen mechanical solver.",

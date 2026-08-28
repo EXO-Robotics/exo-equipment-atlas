@@ -8,19 +8,19 @@
   "blender_version": "5.1.1",
   "deterministic_builder": {
     "path": "machines/john-deere-310-p-tier/source/blender/build_john_deere_310_p_tier.py",
-    "sha256": "6f192641d0398a382031840a4b88b6b448460db6b73f106399c99848eb94d6d3",
-    "bytes": 52844
+    "sha256": "312d7d7e564016b9bb3e5a982727a26436279a253b4195d19178f0450ccb357e",
+    "bytes": 67194
   },
   "artifacts": {
     "blend": {
       "path": "machines/john-deere-310-p-tier/source/blender/john-deere-310-p-tier-structural-study.blend",
-      "sha256": "8928d9f990c27d7832750ce06830980661e560022e21252ffe273824dcca7a72",
-      "bytes": 344976
+      "sha256": "8ba6f11e93df7c3f4725ddbf4e704a6c810f6f9a88d9ddf1a64eb14b7f18456f",
+      "bytes": 378793
     },
     "glb": {
       "path": "machines/john-deere-310-p-tier/assets/john-deere-310-p-tier-structural-study.glb",
-      "sha256": "1f6507604d64ee8354356811778c81342d0fa11b32d47cd199713b7f54b3937d",
-      "bytes": 4361460
+      "sha256": "25575aae094384da4e2bc3c64e301dcca22506f067175c3b39c241797e890106",
+      "bytes": 4976692
     }
   },
   "scene": {
@@ -30,14 +30,14 @@
       "vertical": "+Y",
       "lateral": "+Z machine right"
     },
-    "object_count": 392,
-    "mesh_count": 370,
-    "triangle_count": 64580,
+    "object_count": 418,
+    "mesh_count": 403,
+    "triangle_count": 74208,
     "material_count": 9,
     "bounds_m": {
       "min_xyz": [
         -4.125,
-        -0.0003,
+        0.0,
         -1.1
       ],
       "max_xyz": [
@@ -47,10 +47,12 @@
       ],
       "dimensions_xyz": [
         7.24,
-        3.3901,
+        3.3898,
         2.2
       ]
-    }
+    },
+    "source_blend_evaluated_triangle_count": 74016,
+    "triangle_count_basis": "independently decoded shipped GLB index accessors"
   },
   "required_semantic_nodes": {
     "ROOT_310P_CANDIDATE": true,
@@ -74,9 +76,19 @@
     "BackhoeCrowdCylinder_Barrel": true,
     "BackhoeBucketCylinder_Barrel": true,
     "StabilizerCylinder_Left_Barrel": true,
-    "StabilizerCylinder_Right_Barrel": true,
-    "COL_Chassis": true,
-    "INSP_OperatorStation": true
+    "StabilizerCylinder_Right_Barrel": true
+  },
+  "authoring_only_helper_nodes": {
+    "present_in_blend": {
+      "COL_Chassis": true,
+      "COL_Cab": true,
+      "COL_FrontBucket": true,
+      "COL_BackhoeTransport": true,
+      "INSP_OperatorStation": true,
+      "INSP_FrontLoaderLinkage": true,
+      "INSP_RearBackhoeLinkage": true
+    },
+    "present_in_public_glb": []
   },
   "manufacturer_published_constraints_used": [
     {
@@ -377,8 +389,8 @@
         0.5
       ]
     },
-    "stabilizer_operating_pose": "reconstructed rotation reaches 3.53 m overall foot width; published 3.10 m spread retained as a separate constraint",
-    "front_bucket": "generic unbranded 2.18 m shell placeholder; exact published bucket branch unresolved",
+    "stabilizer_operating_pose": "non-exported reconstructed review pose places pad bottoms at grade and is constrained to the published 3.10 m center spread / 3.53 m overall width",
+    "front_bucket": "generic unbranded 2.18 m maximum-width shell placeholder constrained within the published 2.20 m over-tires width; exact bucket branch unresolved",
     "rear_bucket": "generic 610 mm class shell placeholder; exact coupler and tooth pattern unresolved",
     "cylinder_anchor_coordinates": "all visible cylinder endpoints are reconstructed for visual closure only",
     "steering_pose_deg": 0,
@@ -392,19 +404,62 @@
       "foot_extents": {
         "Review_StabilizerFoot_Left": {
           "min_z_m": -1.7649999856948853,
-          "max_z_m": -1.334999918937683
+          "max_z_m": -1.334999918937683,
+          "min_y_m": 0.0,
+          "max_y_m": 0.11999999731779099
         },
         "Review_StabilizerFoot_Right": {
           "min_z_m": 1.334999918937683,
-          "max_z_m": 1.7649999856948853
+          "max_z_m": 1.7649999856948853,
+          "min_y_m": 0.0,
+          "max_y_m": 0.11999999731779099
         }
       },
       "witness_nodes": [
         "Review_StabilizerFoot_Left",
         "Review_StabilizerFoot_Right"
       ],
+      "pad_bottom_y_m": 0.0,
+      "grade_y_m": 0.0,
       "classification": "non-exported reconstructed review pose constrained by manufacturer-published spread and overall width"
     }
+  },
+  "reconstructed_front_bucket_measurement": {
+    "node_count": 9,
+    "min_z_m": -1.09,
+    "max_z_m": 1.09,
+    "outer_width_m": 2.18
+  },
+  "public_glb_contract": {
+    "asset_version": "2.0",
+    "coordinate_system": "glTF 2.0 Y-up; authored +Y preserved with export_yup=False",
+    "scene_count": 1,
+    "direct_scene_root_count": 1,
+    "root_name": "ROOT_310P_CANDIDATE",
+    "root_identity_trs": true,
+    "helper_nodes": [],
+    "camera_count": 0,
+    "light_extension_present": false,
+    "mesh_node_count": 407,
+    "primitive_count": 407,
+    "decoded_shipped_triangle_count": 74208,
+    "unsupported_primitive_modes": [],
+    "non_identity_public_mesh_scales": [],
+    "visible_aabb_min_xyz_m": [
+      -4.125,
+      0.0,
+      -1.1
+    ],
+    "visible_aabb_max_xyz_m": [
+      3.115,
+      3.3898,
+      1.1
+    ],
+    "visible_aabb_dimensions_xyz_m": [
+      7.24,
+      3.3898,
+      2.2
+    ]
   },
   "unresolved_choices": [
     "front loader bucket family and capacity",
@@ -425,34 +480,34 @@
   "renders": [
     {
       "path": "machines/john-deere-310-p-tier/review/renders/transport-front-three-quarter.png",
-      "sha256": "e626dc4359405fb7db0e46ff91174fc177c4b84ba380d2c7c308ce8f6bea6adf",
-      "bytes": 532069
+      "sha256": "bb394f0285784e186eb21f68fe61618dc9013b5d72cf2c90ab93aeb7287c1ab4",
+      "bytes": 535325
     },
     {
       "path": "machines/john-deere-310-p-tier/review/renders/transport-rear-three-quarter.png",
-      "sha256": "da95f2b3e9fcb4debe4a22e5d376a7e21803ff883e9b71facb4e7e10219f94a8",
-      "bytes": 545984
+      "sha256": "2ced10d34182f951a72f7d9245d596fbbf03594648a96769b32b82ef9b26c033",
+      "bytes": 549388
     },
     {
       "path": "machines/john-deere-310-p-tier/review/renders/technical-side.png",
-      "sha256": "1a988fa0162df36bf6de1f1c8fbaf4ec470bb802df4de4d495766e52e567626e",
-      "bytes": 470904
+      "sha256": "1a1dea4344574511631a96e2bb8d13f83985dba968b7bce623c08331a8407afb",
+      "bytes": 472633
     },
     {
       "path": "machines/john-deere-310-p-tier/review/renders/articulated-inspection.png",
-      "sha256": "285167c3d83b60d40bd303ae3c04b3ebce93e6520d187e931a11da3d44801992",
-      "bytes": 590519
+      "sha256": "dfcc44db577a51b2746ed927d1642f02d3efbdd20839af7ed226d303d5d5f267",
+      "bytes": 593437
     },
     {
       "path": "machines/john-deere-310-p-tier/review/renders/linkage-stabilizer-detail.png",
-      "sha256": "2892b20b54bfc377f43d4b2651da1e363ea5ab9ea7fd2b20e6e6f5b8b1839e59",
-      "bytes": 653624
+      "sha256": "cbbea725def55a36433cefd0b6993246d0ae36c8ac3a56aa9c3f45ff29087d05",
+      "bytes": 649396
     }
   ],
   "validation": {
     "path": "machines/john-deere-310-p-tier/production/validation.json",
-    "sha256": "0ab91cd157b7d26f167a327653605b2e8a715513130126f2b5fac86efb0239db",
-    "bytes": 6600
+    "sha256": "7fa9a2f0ec1c8c22fb6b6278e403607e10c7e14736fa2baa0033fc38b7b3f7d4",
+    "bytes": 10529
   },
   "build_verdict": "PASS",
   "validation_verdict": "PASS",

@@ -32,6 +32,20 @@ button, a { font: inherit; }
 button { color: inherit; }
 a { color: inherit; text-decoration: none; }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.legend-mobile { display: none; }
+
 button:focus-visible,
 a:focus-visible {
   outline: 2px solid var(--accent);
@@ -108,8 +122,13 @@ a:focus-visible {
 .scene,
 .scene canvas,
 .scene-vignette { position: absolute; inset: 0; width: 100%; height: 100%; }
-.scene { z-index: -2; }
+.scene { z-index: -2; pointer-events: auto; }
 .scene canvas { display: block; touch-action: none; }
+.scene:focus-visible {
+  z-index: 0;
+  outline: 2px solid var(--accent);
+  outline-offset: -8px;
+}
 
 .scene-vignette {
   z-index: -1;
@@ -174,6 +193,7 @@ a:focus-visible {
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: .12em;
+  pointer-events: none;
 }
 
 .status-dot {
@@ -220,6 +240,7 @@ a:focus-visible {
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: .12em;
+  pointer-events: none;
 }
 
 .hero-metrics {
@@ -229,6 +250,7 @@ a:focus-visible {
   bottom: 44px;
   display: flex;
   gap: clamp(28px, 4vw, 70px);
+  pointer-events: none;
 }
 
 .hero-metrics div { display: grid; gap: 5px; }
@@ -315,6 +337,14 @@ a:focus-visible {
 .evidence-state span { display: block; color: rgba(17,17,15,.55); text-transform: uppercase; letter-spacing: .12em; font-size: 9px; }
 .evidence-state strong { display: block; margin-top: 10px; font-family: Georgia, "Times New Roman", serif; font-size: 24px; font-weight: 400; }
 .evidence-state p { margin: 10px 0 0; color: rgba(17,17,15,.58); font-size: 12px; }
+.evidence-state .release-boundary {
+  max-width: 580px;
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line-light);
+  color: rgba(17,17,15,.72);
+  line-height: 1.55;
+}
 
 .method {
   background: var(--ink);
@@ -370,20 +400,49 @@ footer {
 @keyframes pulse { 50% { opacity: .42; transform: scale(.8); } }
 
 @media (max-width: 840px) {
-  :root { --header-height: 64px; }
-  .site-header { grid-template-columns: 1fr auto; }
-  .site-header nav { display: none; }
+  :root { --header-height: 106px; }
+  .site-header {
+    height: var(--header-height);
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 63px 43px;
+  }
+  .site-header nav {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    border-top: 1px solid var(--line-dark);
+  }
+  .site-header nav a { padding: 14px 0; }
   .study-badge { font-size: 8px; }
   .brand-quiet { display: none; }
 
-  .hero-copy { top: 110px; width: calc(100% - 44px); }
+  .hero-copy { top: 146px; width: calc(100% - 44px); pointer-events: none; }
+  .hero-copy :is(a, button, input, select, textarea, [tabindex]) { pointer-events: auto; }
   .hero h1 { font-size: clamp(62px, 20vw, 96px); }
   .hero-statement { margin-top: 25px; font-size: 27px; }
   .hero-boundary { max-width: 280px; }
   .scene-vignette { background: linear-gradient(180deg, rgba(11,11,10,.45), transparent 36%, rgba(11,11,10,.76)); }
   .viewer-status { top: auto; right: auto; left: var(--gutter); bottom: 138px; }
-  .viewer-actions { right: var(--gutter); bottom: 132px; }
-  .gesture-hint { display: none; }
+  .viewer-actions { right: var(--gutter); bottom: 126px; max-width: 240px; flex-wrap: wrap; justify-content: flex-end; }
+  .gesture-hint {
+    display: block;
+    left: var(--gutter);
+    right: auto;
+    bottom: 222px;
+    padding: 7px 9px;
+    border: 1px solid var(--line-dark);
+    background: rgba(16,16,14,.58);
+    backdrop-filter: blur(10px);
+    color: rgba(255,255,255,.66);
+    line-height: 1.3;
+    pointer-events: none;
+  }
+  .legend-desktop { display: none; }
+  .legend-mobile { display: inline; }
   .hero-metrics { bottom: 34px; width: calc(100% - 44px); justify-content: space-between; gap: 14px; }
 
   .section-intro, .evidence, .method { grid-template-columns: 1fr; }
@@ -399,8 +458,9 @@ footer {
 @media (max-width: 520px) {
   .study-badge { display: none; }
   .site-header { grid-template-columns: 1fr; }
-  .viewer-actions { bottom: 117px; }
-  .viewer-status { bottom: 174px; }
+  .viewer-actions { bottom: 112px; max-width: 210px; }
+  .viewer-status { bottom: 184px; pointer-events: none; }
+  .hero-metrics { pointer-events: none; }
   .hero-metrics span { font-size: 14px; }
   .machine-action { display: none; }
   .machine-row { grid-template-columns: 40px 1fr; }

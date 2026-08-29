@@ -1,0 +1,630 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "komatsu-wa475-10",
+  "configuration_id": "KOM-WA475-10-NAM-STD-STOCKPILE42-L3-CW-CANDIDATE",
+  "candidate_class": "technical_structural_study",
+  "engineering_authority": false,
+  "verdict": "PASS",
+  "verdict_scope": "technical_structural_study_only",
+  "higher_stage_gates": "PENDING",
+  "failed_gates": [],
+  "evaluated_visible_bounds_m": {
+    "axis_order": [
+      "machine_X_longitudinal",
+      "machine_Y_vertical",
+      "machine_Z_right"
+    ],
+    "min_m": [
+      -4.05,
+      -0.005595,
+      -1.585
+    ],
+    "max_m": [
+      5.133311,
+      3.54,
+      1.585
+    ],
+    "size_m": [
+      9.183311,
+      3.545595,
+      3.17
+    ],
+    "measured_object_count": 407,
+    "method": "evaluated retained-pose public mesh and curve vertices; studio, markers, collision, inspection, cameras, and lights excluded"
+  },
+  "gates": [
+    {
+      "id": "published-overall-length-stock-pile",
+      "status": "PASS",
+      "detail": "Measured from evaluated retained-pose public visible geometry; no helper witnesses participate.",
+      "expected": {
+        "value_m": 9.185,
+        "tolerance_m": 0.08
+      },
+      "actual": {
+        "value_m": 9.183311,
+        "absolute_delta_m": 0.001689,
+        "evaluated_visible_bounds_m": {
+          "axis_order": [
+            "machine_X_longitudinal",
+            "machine_Y_vertical",
+            "machine_Z_right"
+          ],
+          "min_m": [
+            -4.05,
+            -0.005595,
+            -1.585
+          ],
+          "max_m": [
+            5.133311,
+            3.54,
+            1.585
+          ],
+          "size_m": [
+            9.183311,
+            3.545595,
+            3.17
+          ],
+          "measured_object_count": 407,
+          "method": "evaluated retained-pose public mesh and curve vertices; studio, markers, collision, inspection, cameras, and lights excluded"
+        }
+      }
+    },
+    {
+      "id": "published-height-roof-rail",
+      "status": "PASS",
+      "detail": "Measured from evaluated retained-pose public visible geometry; no helper witnesses participate.",
+      "expected": {
+        "value_m": 3.54,
+        "tolerance_m": 0.05
+      },
+      "actual": {
+        "value_m": 3.545595,
+        "absolute_delta_m": 0.005595,
+        "evaluated_visible_bounds_m": {
+          "axis_order": [
+            "machine_X_longitudinal",
+            "machine_Y_vertical",
+            "machine_Z_right"
+          ],
+          "min_m": [
+            -4.05,
+            -0.005595,
+            -1.585
+          ],
+          "max_m": [
+            5.133311,
+            3.54,
+            1.585
+          ],
+          "size_m": [
+            9.183311,
+            3.545595,
+            3.17
+          ],
+          "measured_object_count": 407,
+          "method": "evaluated retained-pose public mesh and curve vertices; studio, markers, collision, inspection, cameras, and lights excluded"
+        }
+      }
+    },
+    {
+      "id": "published-bucket-width-stock-pile",
+      "status": "PASS",
+      "detail": "Measured from evaluated retained-pose public visible geometry; no helper witnesses participate.",
+      "expected": {
+        "value_m": 3.17,
+        "tolerance_m": 0.04
+      },
+      "actual": {
+        "value_m": 3.17,
+        "absolute_delta_m": 0.0,
+        "evaluated_visible_bounds_m": {
+          "axis_order": [
+            "machine_X_longitudinal",
+            "machine_Y_vertical",
+            "machine_Z_right"
+          ],
+          "min_m": [
+            -4.05,
+            -0.005595,
+            -1.585
+          ],
+          "max_m": [
+            5.133311,
+            3.54,
+            1.585
+          ],
+          "size_m": [
+            9.183311,
+            3.545595,
+            3.17
+          ],
+          "measured_object_count": 407,
+          "method": "evaluated retained-pose public mesh and curve vertices; studio, markers, collision, inspection, cameras, and lights excluded"
+        }
+      }
+    },
+    {
+      "id": "published-wheelbase",
+      "status": "PASS",
+      "detail": "Axle-center references follow the published 3.45 m wheelbase; axle castings and tire geometry remain reconstructed.",
+      "expected": {
+        "value_m": 3.45
+      },
+      "actual": {
+        "value_m": 3.45
+      }
+    },
+    {
+      "id": "published-standard-tire-width",
+      "status": "PASS",
+      "detail": "Reconstructed tire tread outer faces are set to the published 3.060 m width; bucket side guards remain the wider complete-machine envelope.",
+      "expected": {
+        "value_m": 3.06
+      },
+      "actual": {
+        "value_m": 3.06
+      }
+    },
+    {
+      "id": "published-hinge-carry-height",
+      "status": "PASS",
+      "detail": "Bucket-hinge reference is constrained at retained carry height; linkage geometry is reconstructed.",
+      "expected": {
+        "value_m": 0.58,
+        "tolerance_m": 0.005
+      },
+      "actual": {
+        "value_m": 0.58
+      }
+    },
+    {
+      "id": "published-hinge-maximum-height",
+      "status": "PASS",
+      "detail": "Raised-pose hinge endpoint is constrained; this does not qualify the interpolated lift path.",
+      "expected": {
+        "value_m": 4.37,
+        "tolerance_m": 0.005
+      },
+      "actual": {
+        "value_m": 4.37
+      }
+    },
+    {
+      "id": "semantic-node-presence",
+      "status": "PASS",
+      "detail": "Required wheel-loader technical-study hierarchy is present.",
+      "expected": [
+        "WA47510_Root",
+        "RearFrame_Root",
+        "Articulation_FrontFrame_Root_Reconstructed",
+        "RearAxle_Oscillation_Root_Reconstructed",
+        "RearFrame_Spine",
+        "RearCounterweight_Mass",
+        "EngineCompartment_Core",
+        "RearCoolingMask",
+        "Cab_ROPS_Root_Reconstructed",
+        "ROPS_Roof",
+        "Cab_FrontGlass",
+        "RearTire_L",
+        "RearTire_R",
+        "FrontTire_L",
+        "FrontTire_R",
+        "FrontFrame_Main",
+        "CenterArticulationUpperPin",
+        "SteeringCylinder_Barrel_L",
+        "SteeringCylinder_Rod_L",
+        "SteeringCylinder_Barrel_R",
+        "SteeringCylinder_Rod_R",
+        "StandardLoaderArmRear_L",
+        "StandardLoaderArmFront_L",
+        "StandardLoaderArmRear_R",
+        "StandardLoaderArmFront_R",
+        "LiftCylinder_Barrel_L",
+        "LiftCylinder_Rod_L",
+        "LiftCylinder_Barrel_R",
+        "LiftCylinder_Rod_R",
+        "BucketCylinder_Barrel",
+        "BucketCylinder_Rod",
+        "ZBar_Bellcrank_Upper_Reconstructed",
+        "ZBar_BucketLink_Reconstructed",
+        "StockPileBucket_PivotRoot_Reconstructed",
+        "StockPileBucket_Shell",
+        "BucketBoltOnCuttingEdge",
+        "LoaderHose_L_01",
+        "LoaderHose_R_01"
+      ],
+      "actual": {
+        "missing": []
+      }
+    },
+    {
+      "id": "reconstructed-four-tire-tread-detail",
+      "status": "PASS",
+      "detail": "Four independently authored heavy-tire studies include explicit reconstructed tread blocks; count and pitch are not manufacturer facts.",
+      "expected": {
+        "count": 96,
+        "authority": "reconstructed"
+      },
+      "actual": {
+        "count": 96
+      }
+    },
+    {
+      "id": "selected-bolt-on-cutting-edge-detail",
+      "status": "PASS",
+      "detail": "The frozen bucket uses a bolt-on cutting edge. Wear-segment geometry and fastener pattern remain reconstructed; no incompatible tooth claim is made.",
+      "expected": {
+        "segments": 9
+      },
+      "actual": {
+        "segments": 9
+      }
+    },
+    {
+      "id": "render-non-emptiness",
+      "status": "PASS",
+      "detail": "Nine deterministic review views cover retained, articulated, lifted, linkage, operator, cooling, and rear-axle studies; final human/Grok review remains pending.",
+      "expected": {
+        "minimum_views": 9,
+        "minimum_bytes": 30000,
+        "minimum_width": 1000,
+        "minimum_height": 700
+      },
+      "actual": {
+        "review/renders/wa475-10-technical-side.png": {
+          "bytes": 416688,
+          "width": 1100,
+          "height": 760
+        },
+        "review/renders/wa475-10-front-three-quarter.png": {
+          "bytes": 597110,
+          "width": 1100,
+          "height": 760
+        },
+        "review/renders/wa475-10-rear-three-quarter.png": {
+          "bytes": 498068,
+          "width": 1100,
+          "height": 760
+        },
+        "review/renders/wa475-10-articulation-steering.png": {
+          "bytes": 466534,
+          "width": 1100,
+          "height": 760
+        },
+        "review/renders/wa475-10-full-lift-dump.png": {
+          "bytes": 514927,
+          "width": 1100,
+          "height": 760
+        },
+        "review/renders/wa475-10-zbar-linkage-detail.png": {
+          "bytes": 769844,
+          "width": 1100,
+          "height": 760
+        },
+        "review/renders/wa475-10-operator-cab-detail.png": {
+          "bytes": 1046628,
+          "width": 1100,
+          "height": 760
+        },
+        "review/renders/wa475-10-rear-cooling-detail.png": {
+          "bytes": 739787,
+          "width": 1100,
+          "height": 760
+        },
+        "review/renders/wa475-10-rear-axle-oscillation.png": {
+          "bytes": 803325,
+          "width": 1100,
+          "height": 760
+        }
+      }
+    },
+    {
+      "id": "structural-triangle-budget",
+      "status": "PASS",
+      "detail": "Blend source has reviewable technical detail within the reconstructed study budget.",
+      "expected": {
+        "minimum": 12000,
+        "maximum": 180000
+      },
+      "actual": 53336
+    },
+    {
+      "id": "public-source-scales-applied",
+      "status": "PASS",
+      "detail": "Public geometry node scales are applied without changing the retained envelope.",
+      "expected": {
+        "after_non_identity": [],
+        "envelope_delta_max_m": 1e-06
+      },
+      "actual": {
+        "status": "PASS",
+        "public_export_geometry_nodes": 407,
+        "baked_node_count": 25,
+        "before_non_identity": {
+          "BucketCylinder_Barrel": [
+            0.13,
+            0.13,
+            0.232913
+          ],
+          "BucketCylinder_Rod": [
+            0.078,
+            0.078,
+            0.142753
+          ],
+          "LiftCylinder_Barrel_L": [
+            0.112,
+            0.112,
+            0.460187
+          ],
+          "LiftCylinder_Barrel_R": [
+            0.112,
+            0.112,
+            0.460187
+          ],
+          "LiftCylinder_Rod_L": [
+            0.068,
+            0.068,
+            0.333239
+          ],
+          "LiftCylinder_Rod_R": [
+            0.068,
+            0.068,
+            0.333239
+          ],
+          "SteeringCylinder_Barrel_L": [
+            0.075,
+            0.075,
+            0.4611
+          ],
+          "SteeringCylinder_Barrel_R": [
+            0.075,
+            0.075,
+            0.4611
+          ],
+          "SteeringCylinder_Rod_L": [
+            0.044,
+            0.044,
+            0.3339
+          ],
+          "SteeringCylinder_Rod_R": [
+            0.044,
+            0.044,
+            0.3339
+          ],
+          "BucketHingeCrossmember": [
+            0.91,
+            0.09,
+            0.09
+          ],
+          "LoaderArmCrossmember": [
+            0.89,
+            0.11,
+            0.11
+          ],
+          "StandardLoaderArmFront_L": [
+            0.90068,
+            0.12,
+            0.15
+          ],
+          "StandardLoaderArmFront_R": [
+            0.90068,
+            0.12,
+            0.15
+          ],
+          "StandardLoaderArmLowerWeb_L": [
+            1.321836,
+            0.075,
+            0.085
+          ],
+          "StandardLoaderArmLowerWeb_R": [
+            1.321836,
+            0.075,
+            0.085
+          ],
+          "StandardLoaderArmRear_L": [
+            0.649192,
+            0.115,
+            0.14
+          ],
+          "StandardLoaderArmRear_R": [
+            0.649192,
+            0.115,
+            0.14
+          ],
+          "ZBar_Bellcrank_Lower_Reconstructed": [
+            0.215697,
+            0.1,
+            0.1
+          ],
+          "ZBar_Bellcrank_Upper_Reconstructed": [
+            0.233452,
+            0.1,
+            0.1
+          ],
+          "ZBar_BucketLink_Reconstructed": [
+            0.696796,
+            0.08,
+            0.08
+          ],
+          "ROPS_FrontPillar_L": [
+            0.976844,
+            0.05,
+            0.055
+          ],
+          "ROPS_FrontPillar_R": [
+            0.976844,
+            0.05,
+            0.055
+          ],
+          "ROPS_RearPillar_L": [
+            0.976281,
+            0.05,
+            0.055
+          ],
+          "ROPS_RearPillar_R": [
+            0.976281,
+            0.05,
+            0.055
+          ]
+        },
+        "after_non_identity": {},
+        "before_bounds_m": {
+          "axis_order": [
+            "machine_X_longitudinal",
+            "machine_Y_vertical",
+            "machine_Z_right"
+          ],
+          "min_m": [
+            -4.05,
+            -0.005595,
+            -1.585
+          ],
+          "max_m": [
+            5.133311,
+            3.54,
+            1.585
+          ],
+          "size_m": [
+            9.183311,
+            3.545595,
+            3.17
+          ],
+          "measured_object_count": 407,
+          "method": "evaluated retained-pose public mesh and curve vertices; studio, markers, collision, inspection, cameras, and lights excluded"
+        },
+        "after_bounds_m": {
+          "axis_order": [
+            "machine_X_longitudinal",
+            "machine_Y_vertical",
+            "machine_Z_right"
+          ],
+          "min_m": [
+            -4.05,
+            -0.005595,
+            -1.585
+          ],
+          "max_m": [
+            5.133311,
+            3.54,
+            1.585
+          ],
+          "size_m": [
+            9.183311,
+            3.545595,
+            3.17
+          ],
+          "measured_object_count": 407,
+          "method": "evaluated retained-pose public mesh and curve vertices; studio, markers, collision, inspection, cameras, and lights excluded"
+        },
+        "envelope_delta_m": {
+          "min_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "size_m": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "id": "public-glb-contract",
+      "status": "PASS",
+      "detail": "Public GLB has one identity root, Y-up output, identity mesh scales, triangle primitives, and no studio/helper/camera/light leakage.",
+      "expected": {
+        "root": "WA47510_Root",
+        "helpers": []
+      },
+      "actual": {
+        "status": "PASS",
+        "asset_version": "2.0",
+        "scene_direct_root_count": 1,
+        "scene_direct_root_names": [
+          "WA47510_Root"
+        ],
+        "root_identity_trs": true,
+        "node_count": 413,
+        "helper_nodes_present": [],
+        "public_mesh_node_scale_status": "PASS",
+        "public_mesh_node_count": 407,
+        "public_mesh_nodes_non_identity_scale": [],
+        "public_glb_decoded_counts": {
+          "classification": "public_glb_decoded_geometry",
+          "nodes": 413,
+          "mesh_nodes": 407,
+          "mesh_resources": 407,
+          "primitives": 407,
+          "position_vertices": 100986,
+          "triangles": 53132,
+          "triangle_method": "decoded glTF accessor element counts; TRIANGLES count/3, strips/fans count-2"
+        },
+        "unsupported_primitive_modes": [],
+        "glb_y_up": true
+      }
+    },
+    {
+      "id": "published-steering-endpoints",
+      "status": "PENDING",
+      "detail": "35 degree nominal and 40 degree end-stop facts are retained; steering-cylinder closure, swept volume, and tire/body clearance are unqualified."
+    },
+    {
+      "id": "rear-axle-oscillation",
+      "status": "PENDING",
+      "detail": "26 degree total oscillation is retained; center-pin coordinates, stops, and tire-deflection clearance are unresolved."
+    },
+    {
+      "id": "loader-linkage-closure",
+      "status": "PENDING",
+      "detail": "Standard loader-arm pivots and lift-cylinder anchors are reconstructed; endpoint renders are not a solver."
+    },
+    {
+      "id": "z-bar-linkage-closure",
+      "status": "PENDING",
+      "detail": "Bellcrank and bucket-link geometry are reconstructed; bucket-cylinder stroke continuity is unqualified."
+    },
+    {
+      "id": "dump-clearance-reach-operating-height",
+      "status": "PENDING",
+      "detail": "Published clearance, reach and fully raised operating height are retained but the brochure does not bind all measurement datums to reconstructed bucket geometry."
+    },
+    {
+      "id": "ground-and-self-collision",
+      "status": "PENDING",
+      "detail": "Source collision proxies exist, but no swept-pose collision qualification has run."
+    },
+    {
+      "id": "tire-transmission-engine-internals",
+      "status": "PENDING",
+      "detail": "Tire carcass/tread and KHMT/driveline/engine internals remain unresolved and are not fabricated."
+    },
+    {
+      "id": "powered-hood-and-cooling-mask-motion",
+      "status": "PENDING",
+      "detail": "Service-panel segmentation and cooling mask are modeled; hinges, actuators and service envelopes remain unresolved."
+    },
+    {
+      "id": "human-visual-critic",
+      "status": "PENDING",
+      "detail": "The user-directed one-time batch Grok critic runs only after all ten machine lanes are integrated."
+    },
+    {
+      "id": "viewer-browser-accessibility-mobile-performance-selection",
+      "status": "PENDING",
+      "detail": "No shared-viewer integration or browser qualification is claimed by this lane."
+    },
+    {
+      "id": "publication-release-deployment",
+      "status": "PENDING",
+      "detail": "Only the overall critic/publisher may integrate, publish, push, or deploy this research candidate."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "cat-725",
+  "configuration_id": "CAT-725-05A-NAM-STANDARD-BODY-23.5R25-CANDIDATE",
+  "status": "research_candidate",
+  "identity": {
+    "manufacturer": "Caterpillar",
+    "brand": "Cat",
+    "model": "725",
+    "product_class": "three_axle_articulated_dump_truck",
+    "publication_family": "05A",
+    "market": "North America"
+  },
+  "choices": {
+    "engine": "C13B",
+    "body": "standard_dump_body_without_optional_tailgate",
+    "tires": "six_23.5R25_radial",
+    "drive": "three_axle_six_wheel_drive",
+    "emissions": "US_EPA_Tier_4_Final",
+    "cab": "enclosed_ROPS_FOPS"
+  },
+  "unresolved_choices": [
+    "exact serial or order family",
+    "body liner and exhaust-heated-body selections",
+    "payload monitoring and external indicator-light selection",
+    "camera and object-detection options",
+    "automatic lubrication selection",
+    "exact tire manufacturer and tread pattern",
+    "public material and branding authorization"
+  ],
+  "boundary": "Research candidate only. Published dimensions, steering range, body-tip drawing, and suspension oscillation do not establish hidden joint centers, tire construction, hoist anchors, load authority, training data, or safety guidance."
+}

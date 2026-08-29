@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-470-p-tier",
+  "configuration_id": "JD-470P-NAM-B70-A39-B234-W1370-TSG900-CW8400-CANDIDATE",
+  "freeze_date": "2026-08-29",
+  "repository_policy": {
+    "source_binaries_committed": false,
+    "manufacturer_geometry_committed": false,
+    "manual_illustrations_are_scale_drawings": false,
+    "verification": "The exact official PDF is retained only at its declared gitignored research/private path for SHA-256 and byte-count verification; no manufacturer PDF, image, CAD, logo, texture, or geometry is committed or redistributed."
+  },
+  "sources": [
+    {
+      "id": "JD-470P-ME470PAU",
+      "publisher": "John Deere",
+      "kind": "official_product_specification",
+      "title": "470 P-Tier Excavator",
+      "publication": "ME470PAU (22-07)",
+      "market": "North America",
+      "pages": 12,
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.deere.com/assets/pdfs/common/products/excavators/me470pau-470p-tier-excavator-construction.pdf",
+      "local_path": "research/private/john-deere-470-p-tier/deere-470-p-tier-me470pau.pdf",
+      "sha256": "ea4684311c8e74f9c6f6c789cdfdfe33494420c1fe6e612a2d597b9c03e36b0d",
+      "bytes": 2201471,
+      "admission": "primary",
+      "note": "Configuration authority for the selected 7.0 m boom, 3.9 m arm, 2.34 m3 / 1370 mm operating-weight bucket basis, 900 mm shoes, and 8400 kg counterweight. Illustrations are observation-only and are not treated as measured drawings."
+    },
+    {
+      "id": "JD-CONSTRUCTION-EXCAVATORS-PAGE",
+      "publisher": "John Deere",
+      "kind": "official_product_family_page",
+      "title": "Excavators",
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.deere.com/en-us/products-and-solutions/construction-equipment/excavators",
+      "admission": "reference_only",
+      "note": "Current first-party product-family index. JavaScript rendering limits stable machine-specific text extraction; no claims depend on this page."
+    },
+    {
+      "id": "JD-CONSTRUCTION-FLEET-DKD1096",
+      "publisher": "John Deere",
+      "kind": "official_fleet_guide",
+      "title": "John Deere Construction Equipment Fleet Guide",
+      "publication": "DKD1096",
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.deere.com/assets/pdfs/common/products/sync/DKD1096-construction-equipment-fleet.pdf",
+      "admission": "visual_only",
+      "note": "First-party family-scale and silhouette context only; ME470PAU remains configuration authority."
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "cat-950",
+  "configuration_id": "CAT-950-14C-NAM-T4F-STDLIFT-PZBAR-BR235R25-VJT-L3-GP31-TS-CANDIDATE",
+  "freeze_date": "2026-08-29",
+  "repository_policy": {
+    "source_binaries_committed": false,
+    "manufacturer_geometry_committed": false,
+    "manufacturer_images_or_textures_committed": false,
+    "manual_illustrations_are_scale_drawings": false,
+    "verification": "The official PDF was downloaded to a machine-local ignored temporary research directory for hash, page-count, table, and illustration verification. Tracked validation does not claim that private binary is universally available."
+  },
+  "sources": [
+    {
+      "id": "CAT-950-AEXQ4425-00-NAM",
+      "publisher": "Caterpillar",
+      "kind": "technical_specification",
+      "title": "950 Wheel Loader Technical Specifications",
+      "publication": "AEXQ4425-00",
+      "publication_family": "14C",
+      "market": "North America, Europe, Turkiye, Korea, Chile, Colombia",
+      "pages": 123,
+      "retrieved": "2026-08-29",
+      "official_url": "https://s7d2.scene7.com/is/content/Caterpillar/CM20251119-08323-27647",
+      "local_path": "research/private/cat-950/cat-950-aexq4425-00-na-technical-specifications.pdf",
+      "sha256": "c0bbefdf5545b08bb13ce401b4c3c13e9ff2b104268bf54214c8e1fe0459ca9b",
+      "bytes": 8764462,
+      "admission": "primary",
+      "applicability": "Selected standard-lift, parallel-lift Z-bar, Bridgestone 23.5R25 VJT L3, 3.1 m3 general-purpose pin-on bucket with teeth and segments configuration."
+    },
+    {
+      "id": "CAT-950-PRODUCT-PAGE",
+      "publisher": "Caterpillar",
+      "kind": "official_product_page",
+      "title": "950 Medium Wheel Loader",
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.cat.com/en_US/products/new/equipment/wheel-loaders/medium-wheel-loaders/130308.html",
+      "admission": "reference_only",
+      "note": "Official 14C identity, exterior imagery/360-view index, standard equipment list, parallel-lift Z-bar description, and publication index. Visual observations do not establish dimensions or hidden geometry."
+    }
+  ]
+}

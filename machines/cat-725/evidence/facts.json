@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "cat-725",
+  "configuration_id": "CAT-725-05A-NAM-STANDARD-BODY-23.5R25-CANDIDATE",
+  "facts": [
+    {"id": "overall-length", "subject": "overall length without optional tailgate", "value": 10.445, "unit": "m", "authority": "manufacturer_published", "source_id": "CAT-725-AEXQ3698", "location": "PDF page 4, dimension 11"},
+    {"id": "height-transport-position", "subject": "height in transport position", "value": 3.498, "unit": "m", "authority": "manufacturer_published", "source_id": "CAT-725-AEXQ3698", "location": "PDF page 4, dimension 13"},
+    {"id": "overall-width", "subject": "overall width", "value": 3.676, "unit": "m", "authority": "manufacturer_published", "source_id": "CAT-725-AEXQ3698", "location": "PDF page 4, dimension 14"},
+    {"id": "width-over-tire", "subject": "width over standard tires", "value": 2.877, "unit": "m", "authority": "manufacturer_published", "source_id": "CAT-725-AEXQ3698", "location": "PDF page 4, dimension 18"},
+    {"id": "width-over-fenders", "subject": "width over fenders", "value": 2.95, "unit": "m", "authority": "manufacturer_published", "source_id": "CAT-725-AEXQ3698", "location": "PDF page 4, dimension 19"},
+    {"id": "body-width", "subject": "standard body width", "value": 2.902, "unit": "m", "authority": "manufacturer_published", "source_id": "CAT-725-AEXQ3698", "location": "PDF page 4, dimension 16"},
+    {"id": "body-length", "subject": "standard body exterior length", "value": 5.759, "unit": "m", "authority": "manufacturer_published", "source_id": "CAT-725-AEXQ3698", "location": "PDF page 4, dimension 4"},
+    {"id": "body-inside-length", "subject": "standard body inside length", "value": 5.363, "unit": "m", "authority": "manufacturer_published", "source_id": "CAT-725-AEXQ3698", "location": "PDF page 4, dimension 5"},
+    {"id": "body-height-fully-tipped", "subject": "body height fully tipped", "value": 6.414, "unit": "m", "authority": "manufacturer_published", "source_id": "CAT-725-AEXQ3698", "location": "PDF page 4, dimension 1"},
+    {"id": "body-tip-reference", "subject": "body tip angle shown on dimension drawing", "value": 70, "unit": "deg", "authority": "manufacturer_published", "source_id": "CAT-725-AEXQ3698", "location": "PDF page 4 drawing"},
+    {"id": "ground-clearance", "subject": "ground clearance", "value": 0.533, "unit": "m", "authority": "manufacturer_published", "source_id": "CAT-725-AEXQ3698", "location": "PDF page 4, dimension 6"},
+    {"id": "rear-axle-to-body-rear", "subject": "rear axle center to body rear", "value": 1.556, "unit": "m", "authority": "manufacturer_published", "source_id": "CAT-725-AEXQ3698", "location": "PDF page 4, dimension 7"},
+    {"id": "tandem-axle-spacing", "subject": "middle axle to rear axle center spacing", "value": 1.7, "unit": "m", "authority": "manufacturer_published", "source_id": "CAT-725-AEXQ3698", "location": "PDF page 4, dimension 8"},
+    {"id": "front-to-middle-axle-spacing", "subject": "middle axle to front axle center spacing", "value": 3.979, "unit": "m", "authority": "manufacturer_published", "source_id": "CAT-725-AEXQ3698", "location": "PDF page 4, dimension 9"},
+    {"id": "front-axle-to-machine-front", "subject": "front axle center to machine front", "value": 3.21, "unit": "m", "authority": "manufacturer_published", "source_id": "CAT-725-AEXQ3698", "location": "PDF page 4, dimension 10"},
+    {"id": "steering-angle", "subject": "steer angle from center left or right", "value": 45, "unit": "deg", "authority": "manufacturer_published", "source_id": "CAT-725-AEXQ3698", "location": "PDF page 5"},
+    {"id": "front-suspension-oscillation", "subject": "front suspension oscillation in either direction", "value": 6, "unit": "deg", "authority": "manufacturer_published", "source_id": "CAT-725-PRODUCT-PAGE", "location": "Long Term Value and Durability feature"},
+    {"id": "standard-tire-count", "subject": "standard 23.5R25 radial tires", "value": 6, "unit": "count", "authority": "manufacturer_published", "source_id": "CAT-725-AEXQ3699", "location": "Other standard and optional equipment"},
+    {"id": "rated-payload", "subject": "rated payload", "value": 24, "unit": "t", "authority": "manufacturer_published", "source_id": "CAT-725-AEXQ3698", "location": "PDF page 2"},
+    {"id": "heaped-body-capacity", "subject": "standard body heaped SAE 2:1 capacity", "value": 15, "unit": "m3", "authority": "manufacturer_published", "source_id": "CAT-725-AEXQ3698", "location": "PDF page 2"},
+    {"id": "body-front-plate-thickness", "subject": "body front plate thickness", "value": 7, "unit": "mm", "authority": "manufacturer_published", "source_id": "CAT-725-AEXQ3698", "location": "PDF page 3"},
+    {"id": "body-base-plate-thickness", "subject": "body base plate thickness", "value": 13, "unit": "mm", "authority": "manufacturer_published", "source_id": "CAT-725-AEXQ3698", "location": "PDF page 3"},
+    {"id": "body-side-plate-thickness", "subject": "body side plate thickness", "value": 11, "unit": "mm", "authority": "manufacturer_published", "source_id": "CAT-725-AEXQ3698", "location": "PDF page 3"},
+    {"id": "body-raise-time", "subject": "body raise time", "value": 12, "unit": "s", "authority": "manufacturer_published", "source_id": "CAT-725-AEXQ3698", "location": "PDF page 3"},
+    {"id": "body-lower-time", "subject": "body lower time", "value": 8, "unit": "s", "authority": "manufacturer_published", "source_id": "CAT-725-AEXQ3698", "location": "PDF page 3"}
+  ],
+  "issues": [
+    {
+      "id": "overall-width-feature-identity",
+      "status": "documented",
+      "detail": "AEXQ3698 separately publishes 3.676 m overall width, 2.950 m over fenders, 2.902 m body width, and 2.877 m over tires. The study represents 3.676 m at the mirror envelope and does not infer which optional visibility equipment governs every delivered machine."
+    },
+    {
+      "id": "hidden-mechanism-authority",
+      "status": "unresolved",
+      "detail": "Articulation, front-axle oscillation, dump-body hinge, steering cylinders, hoist cylinders, tandem suspension, driveshaft joints, tire construction, and all hidden anchor coordinates are reconstructed visual study values."
+    },
+    {
+      "id": "press-release-binary-verification",
+      "status": "pending",
+      "detail": "The official 188PR25_EU PDF was read through Caterpillar's public endpoint but the direct binary could not be hash-bound during this lane; no exact dimensional fact depends on it."
+    }
+  ]
+}

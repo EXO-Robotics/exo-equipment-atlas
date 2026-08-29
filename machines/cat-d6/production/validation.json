@@ -1,0 +1,335 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "cat-d6",
+  "configuration_id": "CAT-D6-20C-AUSAM-PUSHARM-6SU-HD42-MS610-DRAWBAR-CANDIDATE",
+  "candidate_class": "technical_structural_study",
+  "verdict": "PASS",
+  "bounds": {
+    "min_m": [
+      -2.26,
+      0.0,
+      -1.656
+    ],
+    "max_m": [
+      3.176,
+      3.188,
+      1.656
+    ],
+    "size_m": [
+      5.436,
+      3.188,
+      3.312
+    ]
+  },
+  "counts": {
+    "objects": 752,
+    "meshes": 725,
+    "curves": 6,
+    "empties": 21,
+    "blender_mesh_triangles_before_curve_conversion": 107292,
+    "triangles": 107532,
+    "materials": 11
+  },
+  "metrics": {
+    "scene_bounds": {
+      "min_m": [
+        -2.26,
+        0.0,
+        -1.656
+      ],
+      "max_m": [
+        3.176,
+        3.188,
+        1.656
+      ],
+      "size_m": [
+        5.436,
+        3.188,
+        3.312
+      ]
+    },
+    "blade_bounds": {
+      "min_m": [
+        2.76,
+        0.0503,
+        -1.656
+      ],
+      "max_m": [
+        3.176,
+        1.458,
+        1.656
+      ],
+      "size_m": [
+        0.416,
+        1.4077,
+        3.312
+      ]
+    },
+    "blade_width_m": 3.312,
+    "blade_height_m": 1.4077,
+    "overall_length_m": 5.436,
+    "overall_height_m": 3.188,
+    "overall_width_m": 3.312,
+    "track_contact_min_y_m": 0.0,
+    "track_authored_root_correction_m": -0.033350005745887756,
+    "mainframe_belly_underside_agl_m": 0.361,
+    "track_shoes_each_side": {
+      "left": 42,
+      "right": 42
+    },
+    "bottom_rollers_each_side": {
+      "left": 8,
+      "right": 8
+    },
+    "sprocket_teeth_each_side": {
+      "left": 14,
+      "right": 14
+    },
+    "track_links_each_side": {
+      "left": 42,
+      "right": 42
+    },
+    "track_pin_bushings_each_side": {
+      "left": 42,
+      "right": 42
+    },
+    "export_mesh_scale_offenders": {},
+    "lift_cylinder_static_anchor_error_m": 0.0,
+    "tilt_cylinder_static_anchor_error_m": 0.0
+  },
+  "glb_contract": {
+    "scene_count": 1,
+    "scene_roots": [
+      {
+        "index": 751,
+        "name": "Machine_Root",
+        "transform": {}
+      }
+    ],
+    "camera_count": 0,
+    "punctual_light_extension_present": false,
+    "inspection_helper_nodes": [],
+    "mesh_scale_offenders": {},
+    "node_count": 752,
+    "mesh_definition_count": 731,
+    "triangle_count": 107532,
+    "platform_axes": "+X longitudinal/front, +Y vertical, +Z machine right"
+  },
+  "gates": [
+    {
+      "id": "builder-execution",
+      "status": "PASS",
+      "detail": "Factory-startup background builder reached receipt generation."
+    },
+    {
+      "id": "candidate-class-boundary",
+      "status": "PASS",
+      "detail": "technical_structural_study; not engineering authority or a mechanical candidate."
+    },
+    {
+      "id": "scene-units-and-axes",
+      "status": "PASS",
+      "detail": "Meters; +X toward 6SU blade/front, +Y vertical, +Z machine right."
+    },
+    {
+      "id": "independent-authoring-boundary",
+      "status": "PASS",
+      "detail": "No CAD, downloaded geometry, copied texture, logo, manufacturer binary, or opaque add-on is embedded."
+    },
+    {
+      "id": "required-semantic-nodes",
+      "status": "PASS",
+      "detail": {
+        "Machine_Root": true,
+        "Undercarriage_ROOT": true,
+        "Track_L_ROOT": true,
+        "Track_R_ROOT": true,
+        "Mainframe_ROOT": true,
+        "Powertrain_ROOT": true,
+        "Engine_Housing_ROOT": true,
+        "Cab_ROOT": true,
+        "Blade_Lift_Pivot": true,
+        "Push_Arms_ROOT": true,
+        "Blade_Tilt_Pivot": true,
+        "Blade_ROOT": true,
+        "Hydraulics_ROOT": true,
+        "Blade_Lift_Hydraulics_ROOT": true,
+        "Blade_Tilt_Hydraulics_ROOT": true,
+        "Linkage_ROOT": true,
+        "Drawbar_ROOT": true,
+        "PIVOT_Blade_Trunnion_L": true,
+        "PIVOT_Blade_Trunnion_R": true,
+        "PIVOT_Blade_Tilt": true,
+        "PIVOT_Blade_Pitch": true
+      }
+    },
+    {
+      "id": "single-identity-root",
+      "status": "PASS",
+      "detail": [
+        {
+          "index": 751,
+          "name": "Machine_Root",
+          "transform": {}
+        }
+      ]
+    },
+    {
+      "id": "public-helper-exclusion",
+      "status": "PASS",
+      "detail": {
+        "scene_count": 1,
+        "scene_roots": [
+          {
+            "index": 751,
+            "name": "Machine_Root",
+            "transform": {}
+          }
+        ],
+        "camera_count": 0,
+        "punctual_light_extension_present": false,
+        "inspection_helper_nodes": [],
+        "mesh_scale_offenders": {},
+        "node_count": 752,
+        "mesh_definition_count": 731,
+        "triangle_count": 107532,
+        "platform_axes": "+X longitudinal/front, +Y vertical, +Z machine right"
+      }
+    },
+    {
+      "id": "export-mesh-identity-scale",
+      "status": "PASS",
+      "detail": {
+        "blender": {},
+        "glb": {}
+      }
+    },
+    {
+      "id": "published-track-section-count",
+      "status": "PASS",
+      "detail": {
+        "modeled": {
+          "left": 42,
+          "right": 42
+        },
+        "published_each_side": 42
+      }
+    },
+    {
+      "id": "published-bottom-roller-count",
+      "status": "PASS",
+      "detail": {
+        "modeled": {
+          "left": 8,
+          "right": 8
+        },
+        "published_each_side": 8
+      }
+    },
+    {
+      "id": "authored-track-contact-ground-plane",
+      "status": "PASS",
+      "detail": {
+        "measured_m": 0.0,
+        "authored_ground_m": 0.0,
+        "tolerance_m": 0.002
+      }
+    },
+    {
+      "id": "published-mainframe-ground-clearance",
+      "status": "PASS",
+      "detail": {
+        "modeled_m": 0.361,
+        "published_m": 0.361,
+        "tolerance_m": 0.008
+      }
+    },
+    {
+      "id": "published-blade-width",
+      "status": "PASS",
+      "detail": {
+        "modeled_m": 3.312,
+        "published_m": 3.312,
+        "tolerance_m": 0.012
+      }
+    },
+    {
+      "id": "published-blade-height",
+      "status": "PASS",
+      "detail": {
+        "modeled_m": 1.4077,
+        "published_m": 1.408,
+        "tolerance_m": 0.018
+      }
+    },
+    {
+      "id": "published-overall-length-static-pose",
+      "status": "PASS",
+      "detail": {
+        "modeled_m": 5.436,
+        "published_m": 5.436,
+        "tolerance_m": 0.045,
+        "classification": "published_constraint_reconstructed_static_pose"
+      }
+    },
+    {
+      "id": "published-overall-height",
+      "status": "PASS",
+      "detail": {
+        "modeled_m": 3.188,
+        "published_m": 3.188,
+        "tolerance_m": 0.025
+      }
+    },
+    {
+      "id": "blade-hydraulic-static-closure",
+      "status": "PASS",
+      "detail": {
+        "lift_anchor_error_m": 0.0,
+        "tilt_anchor_error_m": 0.0,
+        "classification": "reconstructed_static_visual_closure_not_kinematic_validation"
+      }
+    },
+    {
+      "id": "neutral-rights-boundary",
+      "status": "PASS",
+      "detail": "Neutral materials and no manufacturer logos or copied imagery."
+    },
+    {
+      "id": "mechanical-solver",
+      "status": "PENDING",
+      "detail": "No machine-specific kinematic solver, cylinder-stroke authority, or linkage endpoint reproduction."
+    },
+    {
+      "id": "blade-lift-and-tilt-endpoints",
+      "status": "PENDING",
+      "detail": "Published endpoint displacements exist, but pivot and cylinder geometry are unresolved."
+    },
+    {
+      "id": "collision-and-swept-volume",
+      "status": "PENDING",
+      "detail": "No authoritative ground/self/swept-volume collision solution."
+    },
+    {
+      "id": "track-phase-continuity",
+      "status": "PENDING",
+      "detail": "Published pitch and section count constrain the visual loop; sprocket phase and pin geometry are reconstructed."
+    },
+    {
+      "id": "human-visual-review",
+      "status": "PENDING",
+      "detail": "Exact render hashes await overall critic review."
+    },
+    {
+      "id": "browser-mobile-selection-performance",
+      "status": "PENDING",
+      "detail": "Machine has not been admitted to the shared viewer."
+    },
+    {
+      "id": "deployment-and-exact-byte",
+      "status": "PENDING",
+      "detail": "Publisher-only gate; not attempted in this lane."
+    }
+  ],
+  "failed_gate_ids": []
+}

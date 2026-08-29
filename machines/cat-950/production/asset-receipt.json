@@ -1,0 +1,295 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "cat-950",
+  "configuration_id": "CAT-950-14C-NAM-T4F-STDLIFT-PZBAR-BR235R25-VJT-L3-GP31-TS-CANDIDATE",
+  "configuration_status": "research_candidate",
+  "candidate_class": "technical_structural_study",
+  "authority_boundary": "Independently authored technical structural study. Not manufacturer CAD, engineering authority, load guidance, operator training, safety guidance, a digital twin, or a mechanically validated candidate.",
+  "blender": {
+    "version": "5.1.1",
+    "factory_startup_required": true,
+    "background_required": true
+  },
+  "builder": {
+    "path": "source/blender/build_cat_950.py",
+    "sha256": "d1138180a2538744c3f8525ded9f35975bde3c8a4fdd886e9c3f5ffbad81794a",
+    "deterministic": true,
+    "deterministic_geometry_and_hierarchy": true,
+    "byte_for_byte_rebuild_identity_proven": false,
+    "network_used": false,
+    "downloaded_geometry_used": false,
+    "manufacturer_cad_used": false,
+    "copied_textures_used": false,
+    "opaque_addons_used": false
+  },
+  "artifacts": {
+    "blend": {
+      "path": "source/blender/cat-950-structural-study.blend",
+      "sha256": "06780f3e23444b7431baaa00f80a06694db6e097f31c5de3655860dc48f285a9",
+      "bytes": 455268
+    },
+    "glb": {
+      "path": "assets/cat-950-structural-study.glb",
+      "sha256": "17000cb3a47ef54ef19f4c9c95c679ceff3db3f56804879e91ba99e9ba7d86fc",
+      "bytes": 7383528
+    }
+  },
+  "scene": {
+    "units": "meters",
+    "axes": {
+      "longitudinal": "+X toward bucket",
+      "vertical": "+Y",
+      "lateral": "+Z machine right"
+    },
+    "bounds": {
+      "min_m": [
+        -3.7351,
+        -0.0008,
+        -1.497
+      ],
+      "max_m": [
+        4.7439,
+        3.456,
+        1.497
+      ],
+      "size_m": [
+        8.479,
+        3.4568,
+        2.994
+      ]
+    },
+    "counts": {
+      "objects": 460,
+      "meshes": 424,
+      "empties": 36,
+      "triangles": 123224,
+      "materials": 18
+    },
+    "glb_contract": {
+      "scene_count": 1,
+      "scene_roots": [
+        {
+          "index": 459,
+          "name": "Machine_Root",
+          "transform": {}
+        }
+      ],
+      "node_count": 460,
+      "mesh_count": 424,
+      "camera_count": 0,
+      "punctual_light_extension_present": false,
+      "helper_nodes": [],
+      "platform_axes": "+X longitudinal, +Y vertical, +Z machine right"
+    }
+  },
+  "required_semantic_nodes": {
+    "Machine_Root": true,
+    "Rear_Frame_ROOT": true,
+    "Articulation_Pivot": true,
+    "Front_Frame_ROOT": true,
+    "Rear_Axle_Oscillation_Pivot": true,
+    "Rear_Axle_ROOT": true,
+    "Front_Axle_ROOT": true,
+    "Wheel_RL_ROOT": true,
+    "Wheel_RR_ROOT": true,
+    "Wheel_FL_ROOT": true,
+    "Wheel_FR_ROOT": true,
+    "Lift_Arm_Pivot": true,
+    "Lift_Arms_ROOT": true,
+    "Bucket_Pivot": true,
+    "Bucket_ROOT": true,
+    "ZBar_Linkage_ROOT": true,
+    "ZBar_Bellcrank_Pivot": true,
+    "Hydraulics_ROOT": true,
+    "Steering_Hydraulics_ROOT": true,
+    "Lift_Hydraulics_ROOT": true,
+    "Tilt_Hydraulics_ROOT": true,
+    "Cab_ROOT": true,
+    "Engine_Hood_ROOT": true
+  },
+  "manufacturer_published_constraints_used": [
+    "axle-center-height",
+    "hood-height",
+    "rops-height",
+    "ground-clearance",
+    "rear-axle-to-counterweight",
+    "rear-axle-to-hitch",
+    "wheelbase",
+    "length-without-bucket",
+    "carry-hinge-height",
+    "max-lift-hinge-height",
+    "max-lift-arm-clearance",
+    "max-lift-dump-angle",
+    "rack-back-max-lift",
+    "rack-back-carry",
+    "rack-back-ground",
+    "tire-width-loaded",
+    "tread-width",
+    "rear-axle-oscillation",
+    "bucket-capacity",
+    "bucket-width",
+    "shipping-length",
+    "selected-dump-clearance",
+    "selected-dump-reach",
+    "selected-max-lift-height",
+    "selected-breakout-force",
+    "selected-operating-weight",
+    "hydraulic-cycle-raise",
+    "hydraulic-cycle-dump",
+    "hydraulic-cycle-lower",
+    "hydraulic-cycle-total",
+    "full-turn-test-condition"
+  ],
+  "reconstructed_values_and_boundaries": {
+    "saved_carry_pose": {
+      "articulation_deg": 0.0,
+      "rear_axle_oscillation_deg": 0.0,
+      "lift_deg": 0.0,
+      "bucket_relative_deg": 0.0
+    },
+    "review_articulated_pose": {
+      "articulation_deg": 28.0,
+      "rear_axle_oscillation_deg": 0.0,
+      "lift_deg": 0.0,
+      "bucket_relative_deg": 0.0
+    },
+    "review_oscillation_pose": {
+      "articulation_deg": -18.0,
+      "rear_axle_oscillation_deg": 8.0,
+      "lift_deg": 0.0,
+      "bucket_relative_deg": 0.0
+    },
+    "review_linkage_pose": {
+      "articulation_deg": 0.0,
+      "rear_axle_oscillation_deg": 0.0,
+      "lift_deg": 22.0,
+      "bucket_relative_deg": -6.0
+    },
+    "review_max_lift_pose": {
+      "articulation_deg": 0.0,
+      "rear_axle_oscillation_deg": 0.0,
+      "lift_deg": 90.7,
+      "bucket_relative_deg": -32.0
+    },
+    "review_dump_pose": {
+      "articulation_deg": 20.0,
+      "rear_axle_oscillation_deg": 0.0,
+      "lift_deg": 90.7,
+      "bucket_relative_deg": -141.7
+    },
+    "hitch_pivot_m": [
+      0.0,
+      0.92,
+      0.0
+    ],
+    "rear_axle_oscillation_pivot_m": [
+      -1.675,
+      0.734,
+      0.0
+    ],
+    "lift_arm_pivot_m": [
+      0.45,
+      1.45,
+      0.0
+    ],
+    "bucket_pivot_local_to_lift_m": [
+      2.55,
+      -0.827,
+      0.0
+    ],
+    "steering_cylinder_anchors": "Reconstructed exterior closure cues; neither bore, stroke, nor steering-stop authority is asserted.",
+    "lift_and_tilt_cylinder_anchors": "Reconstructed exterior closure cues; published cycle time is not used as stroke or geometry authority.",
+    "parallel_z_bar_linkage": "Bellcrank, dogbone, bucket lug, plate thickness, and pin coordinates are independently reconstructed from official exterior imagery. Review poses retain one reconstructed dogbone length through an unvalidated planar visual closure; this is not manufacturer kinematic authority or solver proof.",
+    "tire_profile_and_tread": "23.5R25 identity, axle height, tread width, and loaded envelope constrain an independently modeled L3-style tire; tread pitch and deflection are reconstructed.",
+    "body_and_cab": "Service panels, glass boundaries, cab frame, rails, stairs, grilles, lights, exhaust, mirrors, and fastening cues are observed/reconstructed exterior form only.",
+    "bucket_shell": "3.1 m3 identity and published width constrain the shell; curvature, plate gauges, wear bars, teeth, side cutters, and pin bosses are reconstructed.",
+    "hose_routes": "Visible hose bundles are reconstructed exterior routing cues only and carry no diameter, pressure, fitting, or service authority.",
+    "materials": "Neutral unbranded ochre, graphite, steel, rubber, glass, amber, and red; no logo or exact protected livery claim."
+  },
+  "unresolved_choices_and_mechanical_gaps": [
+    "Exact serial/order family and installed optional equipment remain unresolved.",
+    "Hitch bearings, articulation pivot/stop geometry, steering-cylinder anchors and strokes are reconstructed.",
+    "Rear-axle oscillation center, tire deformation, and clearance are unresolved despite a published range.",
+    "Lift pivot, Z-bar topology dimensions, bucket lug, cylinders, strokes, timing interpolation, and all anchors are reconstructed.",
+    "Bucket shell curvature, plate gauges, tooth count/shape, wear bars, and fastening geometry are reconstructed.",
+    "No load path, pressure, breakout, tipping, stability, tire, collision, or swept-volume solver exists.",
+    "No manufacturer branding or exact protected livery is authorized or included."
+  ],
+  "renders": [
+    {
+      "path": "review/renders/cat-950-operator-side.png",
+      "sha256": "5680d2fe905f59be6155cc1a6e8f267e040396b01861427a9900f7dc6d290ba0",
+      "bytes": 416575
+    },
+    {
+      "path": "review/renders/cat-950-right-three-quarter.png",
+      "sha256": "11c5ef51f5d4076e223ba0673cfc3a8e8468e176d07c9c2cd1b6872b04c1c646",
+      "bytes": 435260
+    },
+    {
+      "path": "review/renders/cat-950-rear-three-quarter.png",
+      "sha256": "5d54434a7b1e04afa11ca7e2f2ab93842b06100da69eab897f4c81a7df0fd3be",
+      "bytes": 440044
+    },
+    {
+      "path": "review/renders/cat-950-front-bucket.png",
+      "sha256": "8bb6357d5ce62b6edcee47c120eaacb78b08816ef4bd9a8b674b78bc956e44a3",
+      "bytes": 476526
+    },
+    {
+      "path": "review/renders/cat-950-wheel-l3-detail.png",
+      "sha256": "7a5b8dd0ffdb38372e5f4edb8008b8725d06dd4812a967072eefc24c06f4ceae",
+      "bytes": 555077
+    },
+    {
+      "path": "review/renders/cat-950-tire-cab-detail.png",
+      "sha256": "1c422bf1596acd252494541265c3405a3807a386a951d98b2b3926b2d283a1a5",
+      "bytes": 583003
+    },
+    {
+      "path": "review/renders/cat-950-rear-grille-detail.png",
+      "sha256": "a6c1df6c463d4224ad911cf5a71be653fd1d98be9081be7d6782f535b2f86275",
+      "bytes": 497100
+    },
+    {
+      "path": "review/renders/cat-950-zbar-linkage-detail.png",
+      "sha256": "8e1d1afa2a3ee3f7c74f6b5525e4e5bb7735be17143ac702fc473d53186b4a69",
+      "bytes": 582542
+    },
+    {
+      "path": "review/renders/cat-950-articulated-review.png",
+      "sha256": "8d33a3fd1fd041eaabd12c2b0a9198f637dbbe107271839738ff743737ac60a9",
+      "bytes": 425327
+    },
+    {
+      "path": "review/renders/cat-950-axle-oscillation-review.png",
+      "sha256": "ba9efd9ca8a36bf5167eeda1e8e24717b690f77278debc6deca0a90dabf29f79",
+      "bytes": 454585
+    },
+    {
+      "path": "review/renders/cat-950-zbar-raised-detail.png",
+      "sha256": "55180bdb1e22c9fc73b289f256c6e9ff6476e05577feab361d695f564f32d49e",
+      "bytes": 554469
+    },
+    {
+      "path": "review/renders/cat-950-full-lift-review.png",
+      "sha256": "5b9e45e7e367286cc6fbff1b903c71656ce63fb14a16ca29535a3dd2c464fa7c",
+      "bytes": 406320
+    },
+    {
+      "path": "review/renders/cat-950-articulated-lift-dump-review.png",
+      "sha256": "00c1c6a45ce004801bf9fc72999b8ad3292dbb824f5927593809f20662f3d45b",
+      "bytes": 390552
+    }
+  ],
+  "validation": {
+    "path": "production/validation.json",
+    "sha256": "e87b3b3bc762920fef575e2005bc05b02b6a467dde901eba88f44b045f76e61f",
+    "verdict": "PASS",
+    "pass_count": 26,
+    "pending_count": 10,
+    "fail_count": 0
+  },
+  "build_verdict": "PASS",
+  "release_verdict": "PENDING"
+}

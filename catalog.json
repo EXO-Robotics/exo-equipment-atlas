@@ -4,25 +4,159 @@
   "catalog_status": "research_foundation",
   "machines": [
     {
-      "id": "john-deere-333-p-tier",
-      "priority": 1,
-      "role": "first_production_candidate",
-      "configuration_status": "research_candidate",
-      "release_status": "not_started"
-    },
-    {
       "id": "cat-320",
-      "priority": 2,
+      "priority": 1,
       "role": "flagship_mechanism_candidate",
       "configuration_status": "research_candidate",
-      "release_status": "not_started"
+      "release_status": "not_started",
+      "public_envelope": {
+        "x": { "factId": "transport-length", "toleranceM": 0.08 },
+        "y": { "factId": "transport-height", "toleranceM": 0.05 },
+        "z": { "factId": "undercarriage-width", "toleranceM": 0.04 }
+      }
+    },
+    {
+      "id": "john-deere-333-p-tier",
+      "priority": 2,
+      "role": "first_production_candidate",
+      "configuration_status": "research_candidate",
+      "release_status": "not_started",
+      "public_envelope_coverage": "partial",
+      "public_envelope": {
+        "x": { "factId": "length-foundry-bucket", "toleranceM": 0.06 },
+        "y": { "factId": "rops-height", "toleranceM": 0.04 }
+      }
     },
     {
       "id": "john-deere-310-p-tier",
       "priority": 3,
       "role": "later_multi_mechanism_hero",
       "configuration_status": "research_candidate",
-      "release_status": "not_started"
+      "release_status": "not_started",
+      "public_envelope": {
+        "x": { "factId": "overall-length", "toleranceM": 0.06 },
+        "y": { "factId": "backhoe-transport-height", "toleranceM": 0.05 },
+        "z": { "factId": "overall-width", "toleranceM": 0.04 }
+      }
+    },
+    {
+      "id": "cat-950",
+      "priority": 4,
+      "role": "inventory_expansion_batch_10",
+      "configuration_status": "research_candidate",
+      "release_status": "not_started",
+      "public_envelope": {
+        "x": { "factId": "shipping-length", "toleranceM": 0.05 },
+        "y": { "factId": "rops-height", "toleranceM": 0.025 },
+        "z": { "factId": "bucket-width", "toleranceM": 0.025 }
+      }
+    },
+    {
+      "id": "cat-d6",
+      "priority": 5,
+      "role": "inventory_expansion_batch_10",
+      "configuration_status": "research_candidate",
+      "release_status": "not_started",
+      "public_envelope": {
+        "x": { "factId": "machine-length-blade-straight", "toleranceM": 0.035 },
+        "y": { "factId": "machine-height", "toleranceM": 0.025 },
+        "z": { "factId": "blade-width-end-bits", "toleranceM": 0.025 }
+      }
+    },
+    {
+      "id": "cat-725",
+      "priority": 6,
+      "role": "inventory_expansion_batch_10",
+      "configuration_status": "research_candidate",
+      "release_status": "not_started",
+      "public_envelope": {
+        "x": { "factId": "overall-length", "toleranceM": 0.05 },
+        "y": { "factId": "height-transport-position", "toleranceM": 0.035 },
+        "z": { "factId": "overall-width", "toleranceM": 0.025 }
+      }
+    },
+    {
+      "id": "cat-140",
+      "priority": 7,
+      "role": "inventory_expansion_batch_10",
+      "configuration_status": "research_candidate",
+      "release_status": "not_started",
+      "public_envelope": {
+        "x": { "factId": "push-plate-to-ripper-length", "toleranceM": 0.035 },
+        "y": { "factId": "cab-height", "toleranceM": 0.025 },
+        "z": { "factId": "moldboard-width", "toleranceM": 0.025 }
+      }
+    },
+    {
+      "id": "john-deere-1270g",
+      "priority": 8,
+      "role": "inventory_expansion_batch_10",
+      "configuration_status": "research_candidate",
+      "release_status": "not_started",
+      "public_envelope_coverage": "partial",
+      "public_envelope": {
+        "z": { "factId": "minimum-width-600", "toleranceM": 0.07 }
+      }
+    },
+    {
+      "id": "john-deere-470-p-tier",
+      "priority": 9,
+      "role": "inventory_expansion_batch_10",
+      "configuration_status": "research_candidate",
+      "release_status": "not_started",
+      "public_envelope": {
+        "x": { "factId": "overall-length", "toleranceM": 0.04 },
+        "y": { "factId": "overall-height", "toleranceM": 0.03 },
+        "z": { "factId": "overall-width-operating", "toleranceM": 0.03 }
+      }
+    },
+    {
+      "id": "bobcat-s76-2",
+      "priority": 10,
+      "role": "inventory_expansion_batch_10",
+      "configuration_status": "research_candidate",
+      "release_status": "not_started",
+      "public_envelope": {
+        "x": { "factId": "length-standard-bucket", "toleranceM": 0.035 },
+        "y": { "factId": "overall-height", "toleranceM": 0.025 },
+        "z": { "factId": "bucket-width", "toleranceM": 0.025 }
+      }
+    },
+    {
+      "id": "komatsu-wa475-10",
+      "priority": 11,
+      "role": "inventory_expansion_batch_10",
+      "configuration_status": "research_candidate",
+      "release_status": "not_started",
+      "public_envelope": {
+        "x": { "factId": "overall-length-stock-pile", "toleranceM": 0.04 },
+        "y": { "factId": "height-roof-rail", "toleranceM": 0.025 },
+        "z": { "factId": "bucket-width-stock-pile", "toleranceM": 0.025 }
+      }
+    },
+    {
+      "id": "volvo-dd128c",
+      "priority": 12,
+      "role": "inventory_expansion_batch_10",
+      "configuration_status": "research_candidate",
+      "release_status": "not_started",
+      "public_envelope": {
+        "x": { "factId": "overall-length", "toleranceM": 0.025 },
+        "y": { "factId": "overall-height", "toleranceM": 0.025 },
+        "z": { "factId": "overall-width", "toleranceM": 0.025 }
+      }
+    },
+    {
+      "id": "liebherr-ltm-1100-5-3",
+      "priority": 13,
+      "role": "inventory_expansion_batch_10",
+      "configuration_status": "research_candidate",
+      "release_status": "not_started",
+      "public_envelope": {
+        "x": { "factId": "transport-boom-head-length", "toleranceM": 0.16 },
+        "y": { "factId": "transport-height-445", "toleranceM": 0.025 },
+        "z": { "factId": "transport-width", "toleranceM": 0.025 }
+      }
     }
   ]
 }

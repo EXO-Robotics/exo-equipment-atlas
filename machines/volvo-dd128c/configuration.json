@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "volvo-dd128c",
+  "configuration_id": "VOLVO-DD128C-NAM-T4F-2000MM-OPEN-ROPS-CANDIDATE",
+  "status": "research_candidate",
+  "identity": {
+    "manufacturer": "Volvo Construction Equipment",
+    "brand": "Volvo",
+    "model": "DD128C",
+    "product_class": "tandem_asphalt_compactor",
+    "publication_family": "VOE2210009504-English-22-2021.3",
+    "market": "North America"
+  },
+  "choices": {
+    "drum_width": "2000_mm_79_in",
+    "drum_diameter": "1400_mm_55_in",
+    "emissions": "EPA_Tier_4_Final",
+    "operator_environment": "standard_open_ROPS_FOPS_canopy",
+    "amplitude_system": "eight_settings_five_frequencies",
+    "water_system": "dual_tank_fully_redundant_four_spray_bars",
+    "lighting": "standard_four_halogen_frame_lights",
+    "intelligent_compaction": "not_frozen"
+  },
+  "unresolved_choices": [
+    "exact serial and order family",
+    "Compact Assist package selection",
+    "optional LED, canopy, drum-edge, surface, step, and beacon lighting",
+    "winterization and cocoa-mat options",
+    "exact body-panel and tank geometry for the 2021 North American production run",
+    "operator-station glazing because the admitted standard configuration is an open ROPS/FOPS canopy",
+    "public material and branding authorization"
+  ],
+  "boundary": "Research candidate for the 2,000 mm drum North American DD128C only. Published dimensions, counts, and motion limits constrain the independently authored study; hidden articulation, oscillation, eccentric, steering-cylinder, and spray-routing geometry remains reconstructed or unresolved. Not manufacturer CAD, engineering authority, training data, or safety guidance."
+}

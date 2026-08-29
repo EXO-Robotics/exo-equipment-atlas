@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "cat-d6",
+  "configuration_id": "CAT-D6-20C-AUSAM-PUSHARM-6SU-HD42-MS610-DRAWBAR-CANDIDATE",
+  "status": "research_candidate",
+  "identity": {
+    "manufacturer": "Caterpillar",
+    "brand": "Cat",
+    "model": "D6",
+    "product_class": "crawler_dozer",
+    "build_number": "20C",
+    "market": "Australia, New Zealand, and South America",
+    "emissions_scope": "Brazil MAR-1 and UN ECE R96 Stage IIIA; equivalent to U.S. EPA Tier 3/EU Stage IIIA"
+  },
+  "choices": {
+    "tractor": "standard_push_arm",
+    "blade": "6SU_semi_universal_with_standard_cutting_edges",
+    "blade_capacity_m3": 5.7,
+    "undercarriage": "HDXL_DuraLink_42_section_8_bottom_rollers",
+    "track_shoes": "610_mm_moderate_service",
+    "cab": "standard_premium_integrated_ROPS_FOPS",
+    "lights": "standard_4_LED",
+    "rear_attachment": "standard_drawbar",
+    "grade_hardware": "not_selected",
+    "special_arrangement": "none"
+  },
+  "explicit_exclusions": [
+    "ripper",
+    "winch",
+    "counterweight slabs",
+    "LGP undercarriage",
+    "VPAT blade",
+    "waste arrangement",
+    "forestry or heavy-duty arrangement",
+    "sweeps and cab screens",
+    "FirstCut cutting edges",
+    "Cat Grade with 3D antennas"
+  ],
+  "unresolved_choices": [
+    "exact serial or order family within build 20C",
+    "ARO wiring and mount completion level",
+    "cab gauge cluster versus optional touchscreen",
+    "track guidance option",
+    "specific moderate-service shoe part identity",
+    "Product Link antenna and telematics package",
+    "public material and branding authorization"
+  ],
+  "boundary": "Research candidate only. Published dimensions constrain an independently authored structural study; they do not establish hidden pivots, hydraulic anchors, track phase, motion limits, load authority, training data, or safety guidance."
+}

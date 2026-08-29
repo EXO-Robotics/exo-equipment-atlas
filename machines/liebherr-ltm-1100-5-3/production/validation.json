@@ -1,0 +1,239 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "liebherr-ltm-1100-5-3",
+  "configuration_id": "LIEBHERR-LTM1100-5.3-GLOBAL-445-R25-10X6X10-T62-TRANSPORT-CANDIDATE",
+  "candidate_class": "technical_structural_study",
+  "verdict": "PASS",
+  "bounds": {
+    "min_m": [
+      -7.0325,
+      -0.00076,
+      -1.2675
+    ],
+    "max_m": [
+      8.06225,
+      4.00033,
+      1.2675
+    ],
+    "size_m": [
+      15.09475,
+      4.00109,
+      2.535
+    ]
+  },
+  "counts": {
+    "objects": 627,
+    "meshes": 599,
+    "empties": 28,
+    "triangles": 108936,
+    "materials": 15
+  },
+  "gates": [
+    {
+      "id": "builder-execution",
+      "status": "PASS",
+      "detail": "Factory-startup background build reached receipt generation."
+    },
+    {
+      "id": "candidate-class-boundary",
+      "status": "PASS",
+      "detail": "technical_structural_study; not manufacturer CAD, engineering authority, load guidance, operator training, or safety guidance."
+    },
+    {
+      "id": "independent-authoring-boundary",
+      "status": "PASS",
+      "detail": "No downloaded geometry, CAD, copied texture, logo, manufacturer binary, network call, or opaque add-on is used by the builder."
+    },
+    {
+      "id": "scene-units-and-axes",
+      "status": "PASS",
+      "detail": "Meters; +X carrier front, +Y up, +Z carrier right."
+    },
+    {
+      "id": "required-semantic-nodes",
+      "status": "PASS",
+      "detail": {
+        "Machine_Root": true,
+        "Carrier_ROOT": true,
+        "Axle_1_Steer_Pivot": true,
+        "Axle_2_Steer_Pivot": true,
+        "Axle_3_Steer_Pivot": true,
+        "Axle_4_Steer_Pivot": true,
+        "Axle_5_Steer_Pivot": true,
+        "Slew_Pivot": true,
+        "Superstructure_ROOT": true,
+        "Crane_Operator_Cab_ROOT": true,
+        "Counterweight_ROOT": true,
+        "Boom_Luff_Pivot": true,
+        "Boom_Base_Section": true,
+        "Boom_Telescope_1": true,
+        "Boom_Telescope_2": true,
+        "Boom_Telescope_3": true,
+        "Boom_Telescope_4": true,
+        "Boom_Head_ROOT": true,
+        "Hook_Block_ROOT": true,
+        "Outrigger_FL_ROOT": true,
+        "Outrigger_FR_ROOT": true,
+        "Outrigger_RL_ROOT": true,
+        "Outrigger_RR_ROOT": true
+      }
+    },
+    {
+      "id": "five-axle-identity",
+      "status": "PASS",
+      "detail": {
+        "published": 5,
+        "modeled_axle_roots": 5
+      }
+    },
+    {
+      "id": "ten-detailed-wheel-identity",
+      "status": "PASS",
+      "detail": {
+        "expected": 10,
+        "modeled_wheel_roots": 10,
+        "wheel_detail": "carcass, 20 tread cues, rim, hub, cap, and 8 fasteners each"
+      }
+    },
+    {
+      "id": "published-axle-spacings",
+      "status": "PASS",
+      "detail": {
+        "published_m": [
+          2.5,
+          1.65,
+          2.33,
+          1.65
+        ],
+        "modeled_m": [
+          2.5,
+          1.65,
+          2.33,
+          1.65
+        ],
+        "classification": "published constraint applied to reconstructed axle centers"
+      }
+    },
+    {
+      "id": "transport-width-envelope",
+      "status": "PASS",
+      "detail": {
+        "modeled_m": 2.535,
+        "published_m": 2.55,
+        "tolerance_m": 0.04
+      }
+    },
+    {
+      "id": "transport-height-envelope",
+      "status": "PASS",
+      "detail": {
+        "modeled_top_agl_m": 4.00033,
+        "published_m": 4.0,
+        "tolerance_m": 0.12
+      }
+    },
+    {
+      "id": "transport-longitudinal-envelope",
+      "status": "PASS",
+      "detail": {
+        "modeled_m": 15.09475,
+        "published_boom_head_extent_m": 14.932,
+        "tolerance_m": 0.18,
+        "note": "carrier-only 14.416 m identity remains separately documented"
+      }
+    },
+    {
+      "id": "transport-ground-contact",
+      "status": "PASS",
+      "detail": {
+        "minimum_visible_y_m": -0.00076,
+        "authored_grade_y_m": 0.0
+      }
+    },
+    {
+      "id": "transport-boom-section-overlap",
+      "status": "PASS",
+      "detail": "Five visible rectangular boom volumes overlap continuously in retained transport pose; section dimensions and staging remain reconstructed."
+    },
+    {
+      "id": "luff-cylinder-visual-continuity",
+      "status": "PASS",
+      "detail": "Twin barrels and rods close visually between reconstructed superstructure and lower-boom anchors in both rendered poses."
+    },
+    {
+      "id": "stowed-outrigger-envelope",
+      "status": "PASS",
+      "detail": "Four support roots, nested beam cues, beam-end housings, jack barrels, rods, clevises, and pads remain within the selected 2.55 m transport-width reconstruction."
+    },
+    {
+      "id": "deployed-support-study",
+      "status": "PASS",
+      "detail": {
+        "published_full_support_width_m": 7.643,
+        "reconstructed_pad_center_width_m": 7.643,
+        "published_longitudinal_center_span_m": 8.122,
+        "visible_continuity": "outer beam overlaps inner beam; inner beam terminates in leg housing; housing overlaps barrel; rod and clevis close to pad",
+        "classification": "review-pose visual constraint only; no force or capacity authority"
+      }
+    },
+    {
+      "id": "deployed-telescope-study",
+      "status": "PASS",
+      "detail": {
+        "luff_deg": 42.0,
+        "visual_head_distance_m": 27.8,
+        "published_family_m": [
+          13.0,
+          62.0
+        ],
+        "classification": "bounded reconstructed visual pose, not an operating configuration"
+      }
+    },
+    {
+      "id": "rigging-visual-continuity",
+      "status": "PASS",
+      "detail": "A generic boom-top rope run visibly feeds a three-sheave head stack; three offset falls terminate at a three-sheave hook block with lower tie, swivel, shank, curved bowl, and latch. Reeving selection remains unresolved."
+    },
+    {
+      "id": "applied-public-mesh-scales",
+      "status": "PASS",
+      "detail": "All public mesh scales were applied immediately before saving and export."
+    },
+    {
+      "id": "public-glb-contract",
+      "status": "PASS",
+      "detail": {
+        "scene_count": 1,
+        "scene_roots": [
+          "Machine_Root"
+        ],
+        "camera_count": 0,
+        "punctual_light_extension_present": false
+      }
+    },
+    {
+      "id": "direct-render-coverage",
+      "status": "PASS",
+      "detail": {
+        "render_count": 10,
+        "transport_views": 6,
+        "deployed_views": 4
+      }
+    },
+    {
+      "id": "machine-specific-motion-solver",
+      "status": "PENDING",
+      "detail": "No engineering-authority telescope, steering, outrigger, slew, luff, collision, or rigging solver is claimed."
+    },
+    {
+      "id": "browser-mobile-accessibility-performance-selection",
+      "status": "PENDING",
+      "detail": "Publisher-level shared-viewer gates are outside this machine-owned build lane."
+    },
+    {
+      "id": "human-critic-and-release",
+      "status": "PENDING",
+      "detail": "Read-only Grok critic occurs once after all ten lanes integrate; publisher retains release authority."
+    }
+  ]
+}

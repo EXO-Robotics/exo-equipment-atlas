@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-470-p-tier",
+  "configuration_id": "JD-470P-NAM-B70-A39-B234-W1370-TSG900-CW8400-CANDIDATE",
+  "facts": [
+    {"id": "boom-length", "subject": "one-piece boom length", "value": 7.0, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF pages 7 and 11"},
+    {"id": "arm-length", "subject": "selected arm length", "value": 3.9, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF pages 7-9 and 11"},
+    {"id": "bucket-capacity-operating-weight", "subject": "operating-weight basis bucket capacity", "value": 2.34, "unit": "m3 SAE heaped", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF page 7"},
+    {"id": "bucket-width-operating-weight", "subject": "operating-weight basis bucket width", "value": 1370, "unit": "mm", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF page 7"},
+    {"id": "bucket-weight-operating-weight", "subject": "operating-weight basis bucket mass", "value": 2031, "unit": "kg", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF page 7"},
+    {"id": "counterweight-mass", "subject": "counterweight with removal device", "value": 8400, "unit": "kg", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF page 7"},
+    {"id": "operating-weight", "subject": "operating weight for frozen basis", "value": 51218, "unit": "kg", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF page 7"},
+    {"id": "overall-length", "subject": "overall length with 3.9 m arm", "value": 12.01, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF page 8, dimension A"},
+    {"id": "overall-height", "subject": "overall height with 3.9 m arm", "value": 3.50, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF page 8, dimension B"},
+    {"id": "tail-swing-radius", "subject": "rear-end length / tail swing radius", "value": 3.67, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF pages 7-8, dimensions G/C"},
+    {"id": "idler-sprocket-centers", "subject": "distance between idler and sprocket centerlines", "value": 4.47, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF page 8, dimension D"},
+    {"id": "undercarriage-length", "subject": "undercarriage length", "value": 5.47, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF page 8, dimension E"},
+    {"id": "counterweight-clearance", "subject": "counterweight clearance", "value": 1.36, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF page 8, dimension F"},
+    {"id": "upperstructure-width", "subject": "upperstructure width", "value": 3.48, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF page 8, dimension G"},
+    {"id": "cab-height", "subject": "cab height", "value": 3.33, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF page 8, dimension H"},
+    {"id": "track-shoe-width", "subject": "triple semi-grouser shoe width", "value": 0.90, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF pages 6-8"},
+    {"id": "track-gauge-operating", "subject": "operating-position track gauge", "value": 2.89, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF page 8, dimension J"},
+    {"id": "track-gauge-transport", "subject": "transport-position track gauge", "value": 2.39, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF page 8, dimension J"},
+    {"id": "overall-width-operating", "subject": "overall width with 900 mm shoes, operating gauge", "value": 3.79, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF page 8, dimension L"},
+    {"id": "overall-width-transport", "subject": "overall width with 900 mm shoes, transport gauge", "value": 3.29, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF page 8, dimension L"},
+    {"id": "ground-clearance", "subject": "ground clearance", "value": 0.74, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF page 8, dimension K"},
+    {"id": "track-shoes-per-side", "subject": "triple semi-grouser shoes each side", "value": 53, "unit": "count", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF page 6"},
+    {"id": "track-rollers-per-side", "subject": "track rollers each side", "value": 9, "unit": "count", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF page 6"},
+    {"id": "carrier-rollers-per-side", "subject": "carrier rollers each side", "value": 3, "unit": "count", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF pages 6 and 11"},
+    {"id": "boom-cylinder-count", "subject": "boom lift cylinders", "value": 2, "unit": "count", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF pages 6-7"},
+    {"id": "boom-cylinder-bore", "subject": "boom cylinder bore", "value": 170, "unit": "mm", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF page 6"},
+    {"id": "boom-cylinder-rod", "subject": "boom cylinder rod diameter", "value": 115, "unit": "mm", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF page 6"},
+    {"id": "boom-cylinder-stroke", "subject": "boom cylinder stroke", "value": 1590, "unit": "mm", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF page 6"},
+    {"id": "arm-cylinder-bore", "subject": "arm cylinder bore", "value": 190, "unit": "mm", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF page 6"},
+    {"id": "arm-cylinder-rod", "subject": "arm cylinder rod diameter", "value": 130, "unit": "mm", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF page 6"},
+    {"id": "arm-cylinder-stroke", "subject": "arm cylinder stroke", "value": 1940, "unit": "mm", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF page 6"},
+    {"id": "bucket-cylinder-bore", "subject": "bucket cylinder bore", "value": 170, "unit": "mm", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF page 6"},
+    {"id": "bucket-cylinder-rod", "subject": "bucket cylinder rod diameter", "value": 120, "unit": "mm", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF page 6"},
+    {"id": "bucket-cylinder-stroke", "subject": "bucket cylinder stroke", "value": 1325, "unit": "mm", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF page 6"},
+    {"id": "maximum-reach", "subject": "maximum reach with 3.9 m arm", "value": 12.49, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF page 7, dimension A"},
+    {"id": "maximum-ground-reach", "subject": "maximum reach at ground level with 3.9 m arm", "value": 12.28, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF page 7, dimension A-prime"},
+    {"id": "maximum-digging-depth", "subject": "maximum digging depth with 3.9 m arm", "value": 8.27, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF page 7, dimension B"},
+    {"id": "maximum-cutting-height", "subject": "maximum cutting height with 3.9 m arm", "value": 11.16, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF page 7, dimension C"},
+    {"id": "work-light-count", "subject": "standard LED work lights", "value": 9, "unit": "count", "authority": "manufacturer_published", "source_id": "JD-470P-ME470PAU", "location": "PDF page 6"},
+    {"id": "upper-swing-visual", "subject": "upper-structure visualization rotation", "value": 360, "unit": "deg", "authority": "reconstructed", "source_id": "JD-470P-ME470PAU", "location": "visualization boundary; publication states swing speed, not a UI range"}
+  ],
+  "issues": [
+    {
+      "id": "bucket-basis-versus-table-conflict",
+      "status": "documented",
+      "detail": "The operating-weight basis on PDF page 7 specifies a 2.34 m3, 1370 mm, 2031 kg bucket, while the heavy-duty table on PDF page 10 lists a 1372 mm bucket as 2.01 m3 and 1924 kg. The requested candidate freezes the operating-weight basis and does not claim a table bucket family or engineering-valid shell volume."
+    },
+    {
+      "id": "variable-gauge-state",
+      "status": "documented",
+      "detail": "The candidate uses the published operating gauge of 2.89 m and resulting 3.79 m overall width. Transport gauge and its mechanism remain evidence-only and are not animated."
+    },
+    {
+      "id": "hidden-mechanism-geometry",
+      "status": "unresolved",
+      "detail": "Slew bearing, pivot coordinates, cylinder anchors, linkage lugs, allowable joint angles, track link pitch, sprocket tooth geometry and phase, roller centers, hose routing, and hidden service structures are reconstructed or unresolved."
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "cat-725",
+  "configuration_id": "CAT-725-05A-NAM-STANDARD-BODY-23.5R25-CANDIDATE",
+  "coordinate_system": {
+    "longitudinal": "+X toward tractor front",
+    "vertical": "+Y",
+    "lateral": "+Z machine right"
+  },
+  "joints": [
+    {
+      "id": "center_articulation_steer",
+      "type": "revolute",
+      "axis": "+Y",
+      "authority": "reconstructed",
+      "range_authority": "manufacturer_published",
+      "range_deg": [-45, 45],
+      "source_ids": ["CAT-725-AEXQ3698", "CAT-725-PRODUCT-PAGE"],
+      "unresolved": ["joint center and bearing geometry", "steering-cylinder anchors and travel"]
+    },
+    {
+      "id": "front_axle_oscillation",
+      "type": "revolute",
+      "axis": "+X",
+      "authority": "reconstructed",
+      "range_authority": "manufacturer_published",
+      "range_deg": [-6, 6],
+      "source_ids": ["CAT-725-PRODUCT-PAGE"],
+      "unresolved": ["oscillation center", "suspension strut and linkage geometry"]
+    },
+    {
+      "id": "dump_body_hoist",
+      "type": "revolute_hydraulic",
+      "axis": "+Z",
+      "authority": "reconstructed",
+      "tip_reference_authority": "manufacturer_published",
+      "review_tip_deg": 70,
+      "source_ids": ["CAT-725-AEXQ3698", "CAT-725-188PR25-EU"],
+      "published_constraints": ["fully tipped body height", "body length", "raise and lower times"],
+      "unresolved": ["hinge center", "hoist-cylinder anchors", "cylinder bore and stroke", "body height limiter interpolation"]
+    },
+    {
+      "id": "front_left_wheel",
+      "type": "continuous_revolute_visual",
+      "axis": "+Z",
+      "authority": "reconstructed",
+      "source_ids": ["CAT-725-AEXQ3699"],
+      "unresolved": ["tire construction, hub dimensions, steering knuckle geometry"]
+    },
+    {
+      "id": "front_right_wheel",
+      "type": "continuous_revolute_visual",
+      "axis": "+Z",
+      "authority": "reconstructed",
+      "source_ids": ["CAT-725-AEXQ3699"],
+      "unresolved": ["tire construction, hub dimensions, steering knuckle geometry"]
+    },
+    {
+      "id": "rear_tandem_wheels",
+      "type": "four_continuous_revolute_visuals",
+      "axis": "+Z",
+      "authority": "reconstructed",
+      "source_ids": ["CAT-725-AEXQ3698", "CAT-725-AEXQ3699"],
+      "unresolved": ["bogie construction, differential housings, suspension compliance, tire construction"]
+    }
+  ],
+  "required_gates": [
+    "published_transport_envelope",
+    "published_axle_spacing",
+    "six_tire_identity",
+    "articulation_hierarchy",
+    "front_oscillation_hierarchy",
+    "dump_body_tip_envelope",
+    "steering_and_hoist_cylinder_continuity",
+    "ground_collision",
+    "self_collision",
+    "swept_volume_collision"
+  ],
+  "release_state": "no_geometry_no_solver_no_claim"
+}

@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "komatsu-wa475-10",
+  "configuration_id": "KOM-WA475-10-NAM-STD-STOCKPILE42-L3-CW-CANDIDATE",
+  "facts": [
+    {"id":"overall-length-stock-pile","subject":"overall length with standard boom 4.2 m3 stock-pile bucket on ground","value":9.185,"unit":"m","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 19, dimension M, Stock Pile Bucket column"},
+    {"id":"bucket-width-stock-pile","subject":"4.2 m3 stock-pile bucket width","value":3.17,"unit":"m","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 19, Stock Pile Bucket column"},
+    {"id":"width-standard-tires","subject":"width over standard 26.5R25 tires with standard boom","value":3.06,"unit":"m","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 19, dimensions table"},
+    {"id":"wheelbase","subject":"wheelbase","value":3.45,"unit":"m","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 19, dimension A"},
+    {"id":"hinge-pin-height-max-standard","subject":"standard-boom hinge pin height at maximum lift","value":4.37,"unit":"m","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 19, dimension B"},
+    {"id":"hinge-pin-height-carry-standard","subject":"standard-boom hinge pin height in carry position","value":0.58,"unit":"m","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 19, dimension C"},
+    {"id":"ground-clearance","subject":"ground clearance","value":0.52,"unit":"m","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 19, dimension D"},
+    {"id":"hitch-height-standard","subject":"standard-boom hitch height","value":1.2,"unit":"m","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 19, dimension E"},
+    {"id":"height-top-stack","subject":"overall height to top of exhaust stack","value":3.45,"unit":"m","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 19, dimension F"},
+    {"id":"height-rops-cab","subject":"overall height to ROPS cab","value":3.5,"unit":"m","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 19, dimension G"},
+    {"id":"height-roof-rail","subject":"overall height to roof rail","value":3.54,"unit":"m","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 19, dimension H"},
+    {"id":"bucket-capacity-heaped","subject":"stock-pile bucket heaped capacity","value":4.2,"unit":"m3","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 19, Stock Pile Bucket column"},
+    {"id":"bucket-capacity-struck","subject":"stock-pile bucket struck capacity","value":3.6,"unit":"m3","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 19, Stock Pile Bucket column"},
+    {"id":"bucket-weight","subject":"4.2 m3 stock-pile bucket weight","value":2196,"unit":"kg","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 19, Stock Pile Bucket column"},
+    {"id":"dump-clearance-stock-pile","subject":"dumping clearance at maximum height and 45 degree dump","value":3.075,"unit":"m","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 19, dimension H row, Stock Pile Bucket column"},
+    {"id":"dump-reach-stock-pile","subject":"reach at maximum height and 45 degree dump","value":1.35,"unit":"m","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 19, dimension I, Stock Pile Bucket column"},
+    {"id":"operating-height-stock-pile","subject":"operating height fully raised with stock-pile bucket","value":6.09,"unit":"m","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 19, dimension L, Stock Pile Bucket column"},
+    {"id":"operating-weight-stock-pile","subject":"operating weight with stock-pile bucket configuration","value":25510,"unit":"kg","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 19, Stock Pile Bucket column"},
+    {"id":"static-tipping-load-straight","subject":"static tipping load straight with stock-pile bucket configuration","value":20540,"unit":"kg","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 19, Stock Pile Bucket column"},
+    {"id":"static-tipping-load-full-turn","subject":"static tipping load at 40 degree full turn with stock-pile bucket configuration","value":17770,"unit":"kg","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 19, Stock Pile Bucket column"},
+    {"id":"steering-angle-nominal","subject":"articulated steering angle each direction","value":35,"unit":"deg","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 18, steering system"},
+    {"id":"steering-angle-max-stop","subject":"articulated steering maximum end stop","value":40,"unit":"deg","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 18, steering system"},
+    {"id":"rear-axle-oscillation","subject":"rear axle total oscillation","value":26,"unit":"deg_total","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 18, axles"},
+    {"id":"lift-cylinder-count","subject":"loader lift cylinders","value":2,"unit":"count","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 18, loader control hydraulic cylinders"},
+    {"id":"lift-cylinder-bore","subject":"lift cylinder bore","value":0.15,"unit":"m","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 18, loader control hydraulic cylinders"},
+    {"id":"lift-cylinder-stroke","subject":"lift cylinder stroke","value":0.764,"unit":"m","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 18, loader control hydraulic cylinders"},
+    {"id":"bucket-cylinder-count","subject":"bucket cylinder count","value":1,"unit":"count","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 18, loader control hydraulic cylinders"},
+    {"id":"bucket-cylinder-bore","subject":"bucket cylinder bore","value":0.18,"unit":"m","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 18, loader control hydraulic cylinders"},
+    {"id":"bucket-cylinder-stroke","subject":"bucket cylinder stroke","value":0.54,"unit":"m","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 18, loader control hydraulic cylinders"},
+    {"id":"steering-cylinder-count","subject":"steering cylinders","value":2,"unit":"count","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 18, steering hydraulic cylinders"}
+  ],
+  "issues": [
+    {"id":"linkage-geometry","status":"unresolved","detail":"The admitted brochure identifies standard loader linkage, Z-bar behavior cues, cylinder counts and strokes, but not pivot coordinates, link lengths, anchor coordinates, or kinematic closure."},
+    {"id":"counterweight-definition","status":"unresolved","detail":"The standard-equipment list names standard and additional counterweight, but the publication does not separate their masses or attachment geometry."},
+    {"id":"tire-geometry","status":"unresolved","detail":"26.5R25 (L-3) is the dimensional basis. Brand, casing profile, loaded radius, tread pitch, and inflation state are not frozen."},
+    {"id":"bucket-detail","status":"unresolved","detail":"The 4.2 m3 stock-pile bucket, width, weight, capacity and B.O.C. basis are frozen; exact part number, shell radii, side guard and bolt pattern are not published."}
+  ]
+}

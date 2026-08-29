@@ -5,11 +5,22 @@ authored, mechanically meaningful heavy-equipment explorers. It extracts the
 repeatable evidence and validation method proven in the JLG equipment case
 studies without copying the JLG runtime or its dirty working state.
 
-The repository begins with three research candidates:
+The repository contains thirteen research candidates across distinct mechanism
+classes:
 
-1. Cat 320 hydraulic excavator — flagship mechanism candidate.
-2. John Deere 333 P-Tier compact track loader — first production candidate.
-3. John Deere 310 P-Tier backhoe loader — later multi-mechanism hero candidate.
+1. Cat 320 hydraulic excavator.
+2. John Deere 333 P-Tier compact track loader.
+3. John Deere 310 P-Tier backhoe loader.
+4. Cat 950 articulated wheel loader.
+5. Cat D6 track-type tractor.
+6. Cat 725 articulated truck.
+7. Cat 140 motor grader.
+8. John Deere 1270G 8W wheeled harvester.
+9. John Deere 470 P-Tier hydraulic excavator.
+10. Bobcat S76-2 skid-steer loader.
+11. Komatsu WA475-10 articulated wheel loader.
+12. Volvo DD128C tandem asphalt compactor.
+13. Liebherr LTM 1100-5.3 all-terrain mobile crane.
 
 ## Non-negotiable boundaries
 
@@ -58,7 +69,7 @@ requires the private PDFs to exist locally and match the tracked SHA-256 hashes.
 ## Current state
 
 This is a research foundation with a public-facing structural-study gallery, not
-a mechanical release. All three machine packages remain `research_candidate`.
+a mechanical release. All thirteen machine packages remain `research_candidate`.
 The web viewer presents the admitted neutral GLBs and evidence boundaries; it
 does not promote them to solved mechanisms, engineering data, or manufacturer
 authority.

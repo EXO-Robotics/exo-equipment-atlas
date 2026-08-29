@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "cat-950",
+  "configuration_id": "CAT-950-14C-NAM-T4F-STDLIFT-PZBAR-BR235R25-VJT-L3-GP31-TS-CANDIDATE",
+  "coordinate_system": {
+    "longitudinal": "+X toward bucket",
+    "vertical": "+Y",
+    "lateral": "+Z machine right"
+  },
+  "joints": [
+    {
+      "id": "frame_articulation",
+      "type": "revolute",
+      "axis": "+Y",
+      "authority": "reconstructed",
+      "source_ids": ["CAT-950-AEXQ4425-00-NAM"],
+      "published_constraints": ["static tipping load is published at a full 40 degree turn"],
+      "unresolved": ["hitch pivot coordinates, bearing spacing, steering-cylinder anchors, and whether 40 degrees is the exact mechanical steering stop"]
+    },
+    {
+      "id": "rear_axle_oscillation",
+      "type": "revolute",
+      "axis": "+X",
+      "authority": "reconstructed",
+      "source_ids": ["CAT-950-AEXQ4425-00-NAM"],
+      "published_constraints": ["rear axle oscillation plus or minus 13 degrees with selected tire"],
+      "unresolved": ["oscillation bearing center and axle-housing geometry"]
+    },
+    {
+      "id": "front_and_rear_wheels",
+      "type": "rolling_visual",
+      "axis": "+Z",
+      "authority": "reconstructed",
+      "source_ids": ["CAT-950-AEXQ4425-00-NAM", "CAT-950-PRODUCT-PAGE"],
+      "published_constraints": ["23.5R25 VJT L3 identity", "734 mm axle-center height", "2140 mm tread width", "2824 mm loaded width"],
+      "unresolved": ["loaded tire profile, tread block geometry, wheel offset, hub dimensions, and rolling radius under operating conditions"]
+    },
+    {
+      "id": "lift_arms",
+      "type": "revolute",
+      "axis": "+Z",
+      "authority": "reconstructed",
+      "source_ids": ["CAT-950-AEXQ4425-00-NAM"],
+      "published_constraints": ["623 mm carry hinge-pin height", "4009 mm maximum-lift hinge-pin height", "3255 mm lift-arm clearance"],
+      "unresolved": ["lift-arm pivot, cylinder strokes, base anchors, rod anchors, and motion curve"]
+    },
+    {
+      "id": "bucket_parallel_z_bar",
+      "type": "revolute_linkage",
+      "axis": "+Z",
+      "authority": "reconstructed",
+      "source_ids": ["CAT-950-AEXQ4425-00-NAM", "CAT-950-PRODUCT-PAGE"],
+      "published_constraints": ["parallel-lift Z-bar identity", "rack-back and dump angles", "bucket-specific maximum-lift reach and clearance"],
+      "unresolved": ["bellcrank, dogbone, tilt-cylinder, bucket-lug, and all pin coordinates; no kinematic closure solver exists"]
+    },
+    {
+      "id": "lift_and_tilt_hydraulics",
+      "type": "prismatic_visual",
+      "authority": "reconstructed",
+      "source_ids": ["CAT-950-AEXQ4425-00-NAM"],
+      "published_constraints": ["5.1 second raise", "1.5 second dump", "2.5 second lower", "9.1 second total cycle"],
+      "unresolved": ["cylinder bore, rod diameter, stroke, pressure-dependent timing, anchor geometry, and load response"]
+    }
+  ],
+  "required_gates": [
+    "published_transport_envelope",
+    "tire_contact_and_loaded_width",
+    "frame_articulation_clearance",
+    "rear_axle_oscillation_clearance",
+    "lift_hinge_endpoint_height",
+    "z_bar_linkage_closure",
+    "cylinder_length_continuity",
+    "bucket_dump_and_rack_angles",
+    "ground_collision",
+    "self_collision",
+    "swept_volume_collision"
+  ],
+  "release_state": "no_geometry_no_solver_no_claim"
+}

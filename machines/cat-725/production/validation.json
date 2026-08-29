@@ -1,0 +1,372 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "cat-725",
+  "configuration_id": "CAT-725-05A-NAM-STANDARD-BODY-23.5R25-CANDIDATE",
+  "candidate_class": "technical_structural_study",
+  "verdict": "PASS",
+  "bounds": {
+    "min_m": [
+      -4.7925,
+      0.0013,
+      -1.838
+    ],
+    "max_m": [
+      5.66,
+      3.498,
+      1.838
+    ],
+    "size_m": [
+      10.4525,
+      3.4967,
+      3.676
+    ]
+  },
+  "counts": {
+    "objects": 843,
+    "meshes": 814,
+    "empties": 29,
+    "triangles": 131088,
+    "materials": 17
+  },
+  "metrics": {
+    "straight_bounds": {
+      "min_m": [
+        -4.7925,
+        0.0013,
+        -1.838
+      ],
+      "max_m": [
+        5.66,
+        3.498,
+        1.838
+      ],
+      "size_m": [
+        10.4525,
+        3.4967,
+        3.676
+      ]
+    },
+    "tire_contact_min_y_m": 0.0013150861486792564,
+    "frame_rail_underside_y_m": 0.574999988079071,
+    "wheel_root_count": 6,
+    "tread_block_count": 432,
+    "axle_positions_m": {
+      "front": [
+        2.450000047683716,
+        0.8252000212669373,
+        0.0
+      ],
+      "middle": [
+        -1.5290000438690186,
+        0.825200080871582,
+        0.0
+      ],
+      "rear": [
+        -3.2289998531341553,
+        0.825200080871582,
+        0.0
+      ]
+    },
+    "front_to_middle_spacing_m": 3.9790000915527344,
+    "middle_to_rear_spacing_m": 1.6999998092651367,
+    "body_tipped_max_y_m": 6.4084,
+    "body_tipped_bounds": {
+      "min_m": [
+        -5.2391,
+        0.6899,
+        -1.4555
+      ],
+      "max_m": [
+        -2.807,
+        6.4084,
+        1.4555
+      ],
+      "size_m": [
+        2.4321,
+        5.7185,
+        2.911
+      ]
+    },
+    "cylinder_endpoint_errors_m": {
+      "steer_left": 5.960464477539063e-08,
+      "steer_right": 1.3328003749250113e-07,
+      "hoist_left": 0.0,
+      "hoist_right": 0.0
+    }
+  },
+  "glb_contract": {
+    "scene_count": 1,
+    "scene_roots": [
+      {
+        "index": 842,
+        "name": "Machine_Root",
+        "transform": {}
+      }
+    ],
+    "camera_count": 0,
+    "punctual_light_extension_present": false,
+    "inspection_helper_nodes": [],
+    "mesh_scale_offenders": [],
+    "platform_axes": "+X longitudinal toward tractor front, +Y vertical, +Z machine right"
+  },
+  "gates": [
+    {
+      "id": "builder-execution",
+      "status": "PASS",
+      "detail": "Factory-startup background builder reached deterministic receipt generation."
+    },
+    {
+      "id": "candidate-class-boundary",
+      "status": "PASS",
+      "detail": "technical_structural_study; not engineering authority or a mechanical solver."
+    },
+    {
+      "id": "scene-units-and-axes",
+      "status": "PASS",
+      "detail": "Meters; +X tractor front, +Y vertical, +Z machine right."
+    },
+    {
+      "id": "independent-authoring-boundary",
+      "status": "PASS",
+      "detail": "No manufacturer CAD, copied texture, downloaded geometry, logo, or opaque add-on is embedded."
+    },
+    {
+      "id": "required-semantic-nodes",
+      "status": "PASS",
+      "detail": {
+        "Machine_Root": true,
+        "Front_Tractor_ROOT": true,
+        "Rear_Articulation_Pivot": true,
+        "Rear_Frame_ROOT": true,
+        "Front_Axle_Oscillation_Pivot": true,
+        "Front_Axle_ROOT": true,
+        "Axle_Mid_ROOT": true,
+        "Axle_Rear_ROOT": true,
+        "Wheel_FL_ROOT": true,
+        "Wheel_FR_ROOT": true,
+        "Wheel_ML_ROOT": true,
+        "Wheel_MR_ROOT": true,
+        "Wheel_RL_ROOT": true,
+        "Wheel_RR_ROOT": true,
+        "Dump_Body_Hinge": true,
+        "Dump_Body_ROOT": true,
+        "Hydraulics_ROOT": true,
+        "Steering_Hydraulics_ROOT": true,
+        "Hoist_Hydraulics_ROOT": true,
+        "Driveline_ROOT": true,
+        "Cab_ROOT": true
+      }
+    },
+    {
+      "id": "hierarchy-and-pivot-parenting",
+      "status": "PASS",
+      "detail": "Rear steer, front oscillation, body tip, six wheels, hydraulics, and driveline have explicit semantic owners."
+    },
+    {
+      "id": "six-tire-identity",
+      "status": "PASS",
+      "detail": {
+        "wheel_roots": 6,
+        "published": 6,
+        "designation": "23.5R25 radial"
+      }
+    },
+    {
+      "id": "reconstructed-tread-readability",
+      "status": "PASS",
+      "detail": {
+        "blocks": 432,
+        "expected_reconstructed": 432,
+        "pattern": "three-lug alternating chevron stations; visual reconstruction"
+      }
+    },
+    {
+      "id": "authored-tire-ground-contact",
+      "status": "PASS",
+      "detail": {
+        "measured_y_m": 0.0013150861486792564,
+        "authored_ground_y_m": 0.0,
+        "tolerance_m": 0.002
+      }
+    },
+    {
+      "id": "published-ground-clearance-frame-cue",
+      "status": "PASS",
+      "detail": {
+        "modeled_m": 0.574999988079071,
+        "published_m": 0.533,
+        "tolerance_m": 0.05,
+        "classification": "published_constraint_reconstructed_frame_geometry"
+      }
+    },
+    {
+      "id": "published-overall-length",
+      "status": "PASS",
+      "detail": {
+        "modeled_m": 10.4525,
+        "published_m": 10.445,
+        "tolerance_m": 0.05
+      }
+    },
+    {
+      "id": "published-transport-height",
+      "status": "PASS",
+      "detail": {
+        "modeled_m": 3.4967,
+        "published_m": 3.498,
+        "tolerance_m": 0.035
+      }
+    },
+    {
+      "id": "published-overall-width",
+      "status": "PASS",
+      "detail": {
+        "modeled_m": 3.676,
+        "published_m": 3.676,
+        "tolerance_m": 0.025,
+        "visible_feature": "mirrors"
+      }
+    },
+    {
+      "id": "published-front-middle-axle-spacing",
+      "status": "PASS",
+      "detail": {
+        "modeled_m": 3.9790000915527344,
+        "published_m": 3.979
+      }
+    },
+    {
+      "id": "published-tandem-axle-spacing",
+      "status": "PASS",
+      "detail": {
+        "modeled_m": 1.6999998092651367,
+        "published_m": 1.7
+      }
+    },
+    {
+      "id": "published-body-tip-height-study",
+      "status": "PASS",
+      "detail": {
+        "modeled_m": 6.4084,
+        "published_m": 6.414,
+        "tolerance_m": 0.1,
+        "hinge_and_shape_authority": "reconstructed"
+      }
+    },
+    {
+      "id": "static-hydraulic-endpoint-closure",
+      "status": "PASS",
+      "detail": {
+        "errors_m": {
+          "steer_left": 5.960464477539063e-08,
+          "steer_right": 1.3328003749250113e-07,
+          "hoist_left": 0.0,
+          "hoist_right": 0.0
+        },
+        "tolerance_m": 0.0001,
+        "classification": "visual_static_closure_not_stroke_validation"
+      }
+    },
+    {
+      "id": "glb-platform-contract",
+      "status": "PASS",
+      "detail": {
+        "scene_count": 1,
+        "scene_roots": [
+          {
+            "index": 842,
+            "name": "Machine_Root",
+            "transform": {}
+          }
+        ],
+        "camera_count": 0,
+        "punctual_light_extension_present": false,
+        "inspection_helper_nodes": [],
+        "mesh_scale_offenders": [],
+        "platform_axes": "+X longitudinal toward tractor front, +Y vertical, +Z machine right"
+      }
+    },
+    {
+      "id": "public-glb-authoring-helpers-stripped",
+      "status": "PASS",
+      "detail": {
+        "exported_helpers": [],
+        "private_blend_helpers_retained": true
+      }
+    },
+    {
+      "id": "object-density",
+      "status": "PASS",
+      "detail": {
+        "objects": 843,
+        "minimum": 300
+      }
+    },
+    {
+      "id": "triangle-budget",
+      "status": "PASS",
+      "detail": {
+        "triangles": 131088,
+        "budget": [
+          30000,
+          240000
+        ]
+      }
+    },
+    {
+      "id": "neutral-unbranded-materials",
+      "status": "PASS",
+      "detail": "Neutral materials and no logo; no exact Caterpillar livery claim."
+    },
+    {
+      "id": "review-renders-nonempty",
+      "status": "PASS",
+      "detail": {
+        "count": 11,
+        "minimum_count": 8,
+        "minimum_bytes_each": 20000
+      }
+    },
+    {
+      "id": "articulated-steer-oscillation-review",
+      "status": "PASS",
+      "detail": "Direct review render uses reconstructed 24 degree yaw and 5 degree axle oscillation inside published ranges."
+    },
+    {
+      "id": "raised-body-review",
+      "status": "PASS",
+      "detail": "Direct full-pose and hoist-detail renders use the published 70 degree drawing reference with reconstructed hinge and anchors."
+    },
+    {
+      "id": "configuration-freeze",
+      "status": "PENDING",
+      "detail": "Research candidate retains serial/order, tire manufacturer, body option, payload, camera, autolube, and rights choices."
+    },
+    {
+      "id": "steering-suspension-hoist-solver",
+      "status": "PENDING",
+      "detail": "No motion interpolation, cylinder stroke, load, or joint-limit solver exists."
+    },
+    {
+      "id": "ground-self-swept-collision",
+      "status": "PENDING",
+      "detail": "No swept-volume or collision solver exists."
+    },
+    {
+      "id": "critic-human-visual-review",
+      "status": "PENDING",
+      "detail": "Overall critic must inspect exact artifact and render hashes at the end of the ten-machine batch."
+    },
+    {
+      "id": "viewer-browser-accessibility-mobile-selection-performance",
+      "status": "PENDING",
+      "detail": "No shared-viewer integration in this machine lane."
+    },
+    {
+      "id": "publication-and-deployment",
+      "status": "PENDING",
+      "detail": "Only the overall publisher may advance publication state."
+    }
+  ],
+  "failed_gate_ids": []
+}

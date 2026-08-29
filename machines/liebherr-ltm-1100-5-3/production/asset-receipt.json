@@ -1,0 +1,247 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "liebherr-ltm-1100-5-3",
+  "configuration_id": "LIEBHERR-LTM1100-5.3-GLOBAL-445-R25-10X6X10-T62-TRANSPORT-CANDIDATE",
+  "configuration_status": "research_candidate",
+  "candidate_class": "technical_structural_study",
+  "authority_boundary": "Independent neutral technical structural study. Not manufacturer CAD, a load chart, lifting guidance, engineering authority, operator training, safety guidance, a digital twin, or a mechanically validated candidate.",
+  "blender": {
+    "version": "5.1.1",
+    "factory_startup_required": true,
+    "background_required": true
+  },
+  "builder": {
+    "path": "source/blender/build_liebherr_ltm_1100_5_3.py",
+    "sha256": "4bac2993a701110991f7928965fe04e95f38ec76afa2c75b7a754fba2c67ef2d",
+    "deterministic": true,
+    "network_used": false,
+    "downloaded_geometry_used": false,
+    "manufacturer_cad_used": false,
+    "copied_textures_used": false,
+    "opaque_addons_used": false
+  },
+  "artifacts": {
+    "blend": {
+      "path": "source/blender/liebherr-ltm-1100-5-3-structural-study.blend",
+      "sha256": "61ed01ffdfd8435982b4dcbf1f3ae60c6965a6d14c8a0a067a0e2b4803a50be7",
+      "bytes": 567179
+    },
+    "glb": {
+      "path": "assets/liebherr-ltm-1100-5-3-structural-study.glb",
+      "sha256": "3c63090ee206a855bb16e0984dea7d77df468ca1ed96e2728764b1fc99859fc3",
+      "bytes": 7251328
+    }
+  },
+  "scene": {
+    "units": "meters",
+    "axes": {
+      "longitudinal": "+X carrier front",
+      "vertical": "+Y",
+      "lateral": "+Z carrier right"
+    },
+    "bounds": {
+      "min_m": [
+        -7.0325,
+        -0.00076,
+        -1.2675
+      ],
+      "max_m": [
+        8.06225,
+        4.00033,
+        1.2675
+      ],
+      "size_m": [
+        15.09475,
+        4.00109,
+        2.535
+      ]
+    },
+    "objects": 627,
+    "meshes": 599,
+    "empties": 28,
+    "triangles": 108936,
+    "materials": 15
+  },
+  "glb_contract": {
+    "scene_count": 1,
+    "scene_roots": [
+      {
+        "name": "Machine_Root",
+        "transform": {}
+      }
+    ],
+    "camera_count": 0,
+    "punctual_light_extension_present": false,
+    "inspection_helper_nodes": [],
+    "platform_axes": "+X carrier front, +Y vertical, +Z carrier right"
+  },
+  "required_semantic_nodes": {
+    "Machine_Root": true,
+    "Carrier_ROOT": true,
+    "Axle_1_Steer_Pivot": true,
+    "Axle_2_Steer_Pivot": true,
+    "Axle_3_Steer_Pivot": true,
+    "Axle_4_Steer_Pivot": true,
+    "Axle_5_Steer_Pivot": true,
+    "Slew_Pivot": true,
+    "Superstructure_ROOT": true,
+    "Crane_Operator_Cab_ROOT": true,
+    "Counterweight_ROOT": true,
+    "Boom_Luff_Pivot": true,
+    "Boom_Base_Section": true,
+    "Boom_Telescope_1": true,
+    "Boom_Telescope_2": true,
+    "Boom_Telescope_3": true,
+    "Boom_Telescope_4": true,
+    "Boom_Head_ROOT": true,
+    "Hook_Block_ROOT": true,
+    "Outrigger_FL_ROOT": true,
+    "Outrigger_FR_ROOT": true,
+    "Outrigger_RL_ROOT": true,
+    "Outrigger_RR_ROOT": true
+  },
+  "manufacturer_published_constraints_used": [
+    "axle-count",
+    "drive-steering-standard",
+    "transport-width",
+    "transport-height-445",
+    "carrier-overall-length",
+    "transport-boom-head-length",
+    "axle-spacing-1-2",
+    "axle-spacing-2-3",
+    "axle-spacing-3-4",
+    "axle-spacing-4-5",
+    "tire-size",
+    "telescopic-boom-retracted",
+    "telescopic-boom-maximum",
+    "boom-luff-maximum",
+    "superstructure-slew",
+    "operator-cab-tilt",
+    "outrigger-full-support-width",
+    "outrigger-longitudinal-span"
+  ],
+  "reconstructed_values": {
+    "transport_pose": {
+      "slew_deg": 0.0,
+      "boom_luff_deg": 3.0,
+      "telescope_visual_extension_m": [
+        0.0,
+        0.18,
+        0.36,
+        0.54
+      ],
+      "supports": "stowed visual positions",
+      "hook": "low secured visual position ahead of carrier cab"
+    },
+    "deployed_review_pose": {
+      "slew_deg": 0.0,
+      "boom_luff_deg": 42.0,
+      "visual_boom_head_distance_from_heel_m": 27.8,
+      "telescope_section_offsets_m": [
+        0.0,
+        4.2,
+        8.1,
+        11.7
+      ],
+      "support_pad_centers_z_m": [
+        -3.8215,
+        3.8215
+      ],
+      "support_center_span_x_m": 8.122,
+      "note": "bounded visual continuity study only; not a load case or published operating configuration"
+    },
+    "axle_centers_x_m": [
+      4.13,
+      1.63,
+      -0.02,
+      -2.35,
+      -4.0
+    ],
+    "tire_geometry_m": {
+      "outer_radius": 0.741,
+      "section_width": 0.445,
+      "rim_radius": 0.318
+    },
+    "slew_ring_center_m": [
+      -3.35,
+      1.33,
+      0.0
+    ],
+    "boom_heel_m": [
+      -4.72,
+      2.78,
+      0.0
+    ],
+    "boom_section_profiles": "independently selected tapered rectangular shells",
+    "luff_cylinder_anchors": "independently selected for visual closure",
+    "rigging": "generic three-fall visual study; hook-block branch unresolved",
+    "steering": "all wheels straight in retained transport pose; kingpins and ratios unresolved"
+  },
+  "unresolved_choices_and_mechanical_gaps": [
+    "serial and delivery-market configuration",
+    "road axle-load and carried-counterweight case",
+    "counterweight plate set and VarioBallast radius",
+    "boom section engineering profiles, overlaps, staging, locking pins, and telescope synchronization",
+    "boom heel pin and luff-cylinder anchor coordinates",
+    "slew ring dimensions and bearing elevation",
+    "outrigger stages, VarioBase state, jack stroke, pad articulation, and support forces",
+    "suspension, driveline, brake, hub, and all-wheel-steering internal geometry",
+    "winch selection, rope specification, fall count, hook-block selection, and secured transport attachment",
+    "public material and branding authorization"
+  ],
+  "capacity_boundary": "The published 100 t value is product identity only. This artifact includes no load radius, chart, counterweight case, support-force model, reeving authority, wind case, lift plan, or capacity verdict.",
+  "renders": [
+    {
+      "path": "review/renders/transport-left-side.png",
+      "sha256": "e79f7d426b27a121ced26098beaa3bd24e319966fd256e964e87a9ada4d9fcc9",
+      "bytes": 541246
+    },
+    {
+      "path": "review/renders/transport-right-side.png",
+      "sha256": "a247ffb03e8f1e8fddd04841d8d329021694e6414e8ef688efb1d44b5ce2799e",
+      "bytes": 542285
+    },
+    {
+      "path": "review/renders/transport-front-quarter.png",
+      "sha256": "38fc5cdac8e7e449484987f68042078d08e1da9792298141b1def451f9291824",
+      "bytes": 643137
+    },
+    {
+      "path": "review/renders/transport-rear-quarter.png",
+      "sha256": "bffef620be7b3bb0efc489589cdd92f54cd56d26c1c9e1656c1de84ffec8af03",
+      "bytes": 617332
+    },
+    {
+      "path": "review/renders/carrier-five-axle-steering-detail.png",
+      "sha256": "202c62b4d81c25e27729f54d224731f31566b1ebc9a9b6881b4cfd173de0e2f4",
+      "bytes": 674818
+    },
+    {
+      "path": "review/renders/superstructure-boom-heel-detail.png",
+      "sha256": "ac2c9e0e637305beeea40ff1ee35e038d5603e71367b3b06b2d74b4623efb6a9",
+      "bytes": 694163
+    },
+    {
+      "path": "review/renders/deployed-outrigger-detail.png",
+      "sha256": "24d707b263101b133c42027aaf77c66d3e61316d59a6e4ac71d8dcb7f396a793",
+      "bytes": 676695
+    },
+    {
+      "path": "review/renders/deployed-telescoped-luffed-side.png",
+      "sha256": "f624f73b33d065c41bb95b7420b7e3cf1aef4ef7e53c6077ad3de631673226d7",
+      "bytes": 442445
+    },
+    {
+      "path": "review/renders/deployed-telescoped-front-quarter.png",
+      "sha256": "f62ad457da521c241b9856ddd73b0315f396982aaaee36b34bd3cf1cddf3c901",
+      "bytes": 537988
+    },
+    {
+      "path": "review/renders/boom-head-rigging-detail.png",
+      "sha256": "b98e47e7f5694736d4541fb717f58dc917d66d7f2e1f068bf875c47e127f7ce2",
+      "bytes": 380091
+    }
+  ],
+  "build_verdict": "PASS",
+  "validation_verdict": "PASS"
+}

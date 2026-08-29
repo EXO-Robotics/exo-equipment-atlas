@@ -4,6 +4,103 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const catalog = JSON.parse(await readFile(path.join(ROOT, "catalog.json"), "utf8"));
+const EXPECTED_MACHINE_ORDER = [
+  "cat-320",
+  "john-deere-333-p-tier",
+  "john-deere-310-p-tier",
+  "cat-950",
+  "cat-d6",
+  "cat-725",
+  "cat-140",
+  "john-deere-1270g",
+  "john-deere-470-p-tier",
+  "bobcat-s76-2",
+  "komatsu-wa475-10",
+  "volvo-dd128c",
+  "liebherr-ltm-1100-5-3"
+];
+const MACHINE_PATH_PROPERTIES = {
+  glb: (id) => `machines/${id}/assets/${id}-structural-study.glb`,
+  configuration: (id) => `machines/${id}/configuration.json`,
+  facts: (id) => `machines/${id}/evidence/facts.json`,
+  receipt: (id) => `machines/${id}/production/asset-receipt.json`,
+  validation: (id) => `machines/${id}/production/validation.json`
+};
+const errors = [];
+
+function duplicateValues(values) {
+  const seen = new Set();
+  const duplicates = new Set();
+  for (const value of values) {
+    if (seen.has(value)) duplicates.add(value);
+    seen.add(value);
+  }
+  return [...duplicates];
+}
+
+function compareExactOrder(label, actual, expected) {
+  const duplicates = duplicateValues(actual);
+  if (duplicates.length > 0) errors.push(`${label}: duplicate value(s): ${duplicates.join(", ")}`);
+  if (actual.length !== expected.length || actual.some((value, index) => value !== expected[index])) {
+    errors.push(`${label}: exact order mismatch (${actual.join(", ")} != ${expected.join(", ")})`);
+  }
+}
+
+function parseMachineDefinitions(source) {
+  const startMarker = "const MACHINE_DEFINITIONS = {";
+  const start = source.indexOf(startMarker);
+  const endMarker = "\n};\n\nconst dom =";
+  const end = start < 0 ? -1 : source.indexOf(endMarker, start + startMarker.length);
+  if (start < 0 || end < 0) {
+    errors.push("app.js: cannot isolate MACHINE_DEFINITIONS literal");
+    return [];
+  }
+  const bodyStart = start + startMarker.length;
+  const body = source.slice(bodyStart, end);
+  const entryMatches = [...body.matchAll(/^  "([a-z0-9-]+)": \{$/gmu)];
+  if (entryMatches.length === 0) {
+    errors.push("app.js: MACHINE_DEFINITIONS contains no parseable top-level entries");
+    return [];
+  }
+  return entryMatches.map((match, index) => {
+    const blockStart = match.index;
+    const blockEnd = index + 1 < entryMatches.length ? entryMatches[index + 1].index : body.length;
+    const block = body.slice(blockStart, blockEnd);
+    const paths = {};
+    for (const property of Object.keys(MACHINE_PATH_PROPERTIES)) {
+      const matches = [...block.matchAll(new RegExp(`^    ${property}: "([^"]+)",?$`, "gmu"))];
+      if (matches.length !== 1) {
+        errors.push(`app.js: ${match[1]} must declare exactly one string ${property} path`);
+      } else {
+        paths[property] = matches[0][1];
+      }
+    }
+    return { id: match[1], paths };
+  });
+}
+
+function parseAttributes(tag) {
+  const attributes = new Map();
+  for (const match of tag.matchAll(/([:\w-]+)\s*=\s*"([^"]*)"/gu)) {
+    if (attributes.has(match[1])) errors.push(`index.html: duplicate ${match[1]} attribute on machine tab`);
+    attributes.set(match[1], match[2]);
+  }
+  return attributes;
+}
+
+const catalogMachines = Array.isArray(catalog.machines) ? catalog.machines : [];
+if (!Array.isArray(catalog.machines)) errors.push("catalog.json: machines must be an array");
+const catalogIds = catalogMachines.map((machine) => machine?.id);
+compareExactOrder("catalog.json machine ids", catalogIds, EXPECTED_MACHINE_ORDER);
+for (const [index, machine] of catalogMachines.entries()) {
+  if (!Number.isInteger(machine?.priority) || machine.priority !== index + 1) {
+    errors.push(`${machine?.id ?? `machine-${index + 1}`}: catalog priority must be ${index + 1}`);
+  }
+}
+const machineRequiredFiles = (catalog.machines ?? []).map(({ id }) =>
+  `machines/${id}/assets/${id}-structural-study.glb`
+);
 const requiredFiles = [
   "index.html",
   "404.html",
@@ -17,12 +114,9 @@ const requiredFiles = [
   "assets/vendor/three-r160/examples/jsm/controls/OrbitControls.js",
   "assets/vendor/three-r160/examples/jsm/utils/BufferGeometryUtils.js",
   ".github/workflows/pages.yml",
-  "machines/cat-320/assets/cat-320-structural-study.glb",
-  "machines/john-deere-333-p-tier/assets/john-deere-333-p-tier-structural-study.glb",
-  "machines/john-deere-310-p-tier/assets/john-deere-310-p-tier-structural-study.glb"
+  ...machineRequiredFiles
 ];
 
-const errors = [];
 for (const file of requiredFiles) {
   try {
     const fileStat = await stat(path.join(ROOT, file));
@@ -74,9 +168,36 @@ for (const token of [
 ]) {
   if (!css.includes(token)) errors.push(`styles.css: missing ${token}`);
 }
-for (const token of ["GLTFLoader", "OrbitControls", "cat-320-structural-study.glb", "john-deere-333-p-tier-structural-study.glb", "john-deere-310-p-tier-structural-study.glb"]) {
+for (const token of [
+  "GLTFLoader",
+  "OrbitControls"
+]) {
   if (!app.includes(token)) errors.push(`app.js: missing ${token}`);
 }
+
+const definitions = parseMachineDefinitions(app);
+const definitionIds = definitions.map(({ id }) => id);
+compareExactOrder("app.js MACHINE_DEFINITIONS ids", definitionIds, catalogIds);
+for (const definition of definitions) {
+  for (const [property, canonicalPath] of Object.entries(MACHINE_PATH_PROPERTIES)) {
+    const expectedPath = canonicalPath(definition.id);
+    if (definition.paths[property] !== expectedPath) {
+      errors.push(
+        `app.js: ${definition.id}.${property} must be ${expectedPath} ` +
+        `(found ${definition.paths[property] ?? "missing"})`
+      );
+    }
+  }
+}
+
+const tabTags = [...html.matchAll(/<button\b[^>]*\brole\s*=\s*"tab"[^>]*>/gsu)].map((match) => match[0]);
+const tabs = tabTags.map((tag) => parseAttributes(tag));
+const tabMachineIds = tabs.map((attributes) => attributes.get("data-machine"));
+const tabElementIds = tabs.map((attributes) => attributes.get("id"));
+compareExactOrder("index.html machine tab data-machine ids", tabMachineIds, catalogIds);
+compareExactOrder("index.html machine tab element ids", tabElementIds, catalogIds.map((id) => `machine-tab-${id}`));
+const allHtmlMachineIds = [...html.matchAll(/\bdata-machine\s*=\s*"([^"]+)"/gu)].map((match) => match[1]);
+compareExactOrder("index.html all data-machine ids", allHtmlMachineIds, catalogIds);
 for (const token of [
   "selectAdjacentTab",
   "currentTechnicalCamera",
@@ -120,5 +241,5 @@ if (errors.length) {
   for (const error of errors) console.error(`FAIL ${error}`);
   process.exitCode = 1;
 } else {
-  console.log("PASS static atlas entrypoint, responsive viewer contract, three GLBs, and Pages workflow");
+  console.log(`PASS static atlas entrypoint, responsive viewer contract, ${machineRequiredFiles.length} GLBs, and Pages workflow`);
 }

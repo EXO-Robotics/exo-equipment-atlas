@@ -1,0 +1,259 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "cat-d6",
+  "configuration_id": "CAT-D6-20C-AUSAM-PUSHARM-6SU-HD42-MS610-DRAWBAR-CANDIDATE",
+  "configuration_status": "research_candidate",
+  "candidate_class": "technical_structural_study",
+  "authority_boundary": "Independently authored technical structural study. Not manufacturer CAD, engineering authority, load guidance, operator training, safety guidance, a digital twin, or a mechanically validated candidate.",
+  "blender": {
+    "version": "5.1.1",
+    "factory_startup_required": true,
+    "background_required": true
+  },
+  "builder": {
+    "path": "source/blender/build_cat_d6.py",
+    "sha256": "874c6de6cf7f360b0a5ef414783e294c9e94cff866ddf259a1bdb8cc39fbb76c",
+    "deterministic": true,
+    "determinism_scope": "scene construction, semantic naming, metrics, and receipt generation; Blender container and rendered byte identity are hash-bound per build and not claimed invariant across executions",
+    "byte_reproducibility_claimed": false,
+    "network_used": false,
+    "downloaded_geometry_used": false,
+    "manufacturer_cad_used": false,
+    "copied_textures_used": false,
+    "opaque_addons_used": false
+  },
+  "artifacts": {
+    "blend": {
+      "path": "source/blender/cat-d6-structural-study.blend",
+      "sha256": "9d252942a4842ef388c7670d39c1137da756607561dd4b9d4e1fcd9dac19335b",
+      "bytes": 493790
+    },
+    "glb": {
+      "path": "assets/cat-d6-structural-study.glb",
+      "sha256": "88f59884e1c55b25af5be26d4078859e3d2e0dc641268cd83f7ba885539a7f8f",
+      "bytes": 7186940
+    }
+  },
+  "scene": {
+    "units": "meters",
+    "axes": {
+      "longitudinal": "+X toward 6SU blade/front",
+      "vertical": "+Y",
+      "lateral": "+Z machine right"
+    },
+    "visible_aabb_xyz_m": [
+      5.436,
+      3.188,
+      3.312
+    ],
+    "bounds": {
+      "min_m": [
+        -2.26,
+        0.0,
+        -1.656
+      ],
+      "max_m": [
+        3.176,
+        3.188,
+        1.656
+      ],
+      "size_m": [
+        5.436,
+        3.188,
+        3.312
+      ]
+    },
+    "objects": 752,
+    "meshes": 725,
+    "curves": 6,
+    "empties": 21,
+    "blender_mesh_triangles_before_curve_conversion": 107292,
+    "triangles": 107532,
+    "materials": 11
+  },
+  "glb_contract": {
+    "scene_count": 1,
+    "scene_roots": [
+      {
+        "index": 751,
+        "name": "Machine_Root",
+        "transform": {}
+      }
+    ],
+    "camera_count": 0,
+    "punctual_light_extension_present": false,
+    "inspection_helper_nodes": [],
+    "mesh_scale_offenders": {},
+    "node_count": 752,
+    "mesh_definition_count": 731,
+    "triangle_count": 107532,
+    "platform_axes": "+X longitudinal/front, +Y vertical, +Z machine right"
+  },
+  "private_nonexport_inspection_nodes": [
+    "Inspection_Volumes",
+    "INSPECT_Published_Envelope",
+    "INSPECT_Blade_Lift_Swept_Study",
+    "INSPECT_Track_Ground_Contact"
+  ],
+  "required_semantic_nodes": {
+    "Machine_Root": true,
+    "Undercarriage_ROOT": true,
+    "Track_L_ROOT": true,
+    "Track_R_ROOT": true,
+    "Mainframe_ROOT": true,
+    "Powertrain_ROOT": true,
+    "Engine_Housing_ROOT": true,
+    "Cab_ROOT": true,
+    "Blade_Lift_Pivot": true,
+    "Push_Arms_ROOT": true,
+    "Blade_Tilt_Pivot": true,
+    "Blade_ROOT": true,
+    "Hydraulics_ROOT": true,
+    "Blade_Lift_Hydraulics_ROOT": true,
+    "Blade_Tilt_Hydraulics_ROOT": true,
+    "Linkage_ROOT": true,
+    "Drawbar_ROOT": true,
+    "PIVOT_Blade_Trunnion_L": true,
+    "PIVOT_Blade_Trunnion_R": true,
+    "PIVOT_Blade_Tilt": true,
+    "PIVOT_Blade_Pitch": true
+  },
+  "manufacturer_published_constraints_used": [
+    "track-sections-each-side",
+    "bottom-rollers-each-side",
+    "sprocket-service-segments",
+    "track-gauge",
+    "maximum-track-shoe-width",
+    "width-over-tracks",
+    "width-over-trunnions",
+    "track-on-ground-length",
+    "track-pitch",
+    "grouser-height",
+    "ground-clearance",
+    "front-idler-oscillation",
+    "machine-height",
+    "machine-length-without-blade",
+    "blade-capacity",
+    "blade-width-end-bits",
+    "blade-width-without-end-bits",
+    "blade-height",
+    "blade-dig-depth",
+    "blade-lift-height",
+    "blade-maximum-corner-tilt",
+    "blade-maximum-tilt-angle",
+    "blade-pitch-adjustment",
+    "machine-length-blade-straight",
+    "blade-weight",
+    "blade-and-push-arms-weight"
+  ],
+  "reconstructed_values": {
+    "static_pose": {
+      "blade_lift_deg": 0.0,
+      "blade_tilt_deg": 0.0,
+      "blade_pitch_deg": 0.0,
+      "note": "Neutral review pose, not a Caterpillar endpoint definition."
+    },
+    "raised_tilted_review_pose": {
+      "blade_lift_deg": 8.0,
+      "blade_tilt_deg": 7.0,
+      "note": "Direct-render inspection pose only; not retained in the exported asset."
+    },
+    "blade_lift_pivot_m": [
+      -0.78,
+      0.7,
+      0.0
+    ],
+    "blade_tilt_pivot_m": [
+      2.69,
+      0.8,
+      0.0
+    ],
+    "track_loop_radius_m": 0.41215,
+    "track_loop_center_y_m": 0.535,
+    "track_shoe_visual_length_m": 0.19,
+    "track_shoe_plate_thickness_m": 0.06,
+    "sprocket_teeth_each_side": 14,
+    "sprocket_service_segments_each_side": 7,
+    "track_pin_bushing_visual_radius_m": 0.031,
+    "track_outer_link_visual_length_m": 0.15,
+    "track_chain_readability": "Independent exterior link plates and pin/bushing cues make the 42-section loop and reconstructed sprocket engagement directly inspectable; pin geometry and tooth phase remain unresolved.",
+    "idler_sprocket_roller_centers": "Reconstructed around the published track-on-ground length, pitch, 42 sections, and eight bottom rollers.",
+    "blade_shell": "Independent curved 6SU shell with published overall width and height; curvature, thickness, wing sweep, bolt pattern, and back ribs are reconstructed.",
+    "push_arm_geometry": "Independent box-section push arms visually connected from reconstructed trunnions to the blade; all pivots and section dimensions are reconstructed.",
+    "hydraulic_anchors": "Lift and tilt cylinder anchors, barrel/rod diameters, visible strokes, and hose routes are reconstructed static closure cues.",
+    "cab_and_house": "Independent visible-form study from first-party brochure observations; no hidden engine, transmission, ROPS load path, or service authority is represented.",
+    "drawbar": "Standard drawbar is represented as a visible rear tow structure; pin and section dimensions are reconstructed.",
+    "material_colors": "Neutral unbranded ochre, graphite, steel, rubber, glass, and safety red; not protected manufacturer livery."
+  },
+  "unresolved_choices": [
+    "exact serial or order family within build 20C",
+    "ARO completion level",
+    "cab gauge cluster versus touchscreen",
+    "track guidance option",
+    "moderate-service shoe part identity",
+    "Product Link package",
+    "public material and branding authorization"
+  ],
+  "mechanical_gaps": [
+    "blade lift trunnion pivot authority",
+    "blade tilt and pitch pivot authority",
+    "all cylinder anchors and strokes",
+    "push-arm section and attachment geometry",
+    "track shoe pin and bushing geometry",
+    "idler roller and sprocket centers",
+    "sprocket phase",
+    "equalizer-bar and track-frame motion",
+    "motion limits and solver",
+    "collision and swept-volume validation"
+  ],
+  "evidence_gaps": [
+    "44PR25 local binary hash and byte count remain pending after retrieval timeout",
+    "exact order-level cab and ARO option identity is unresolved"
+  ],
+  "renders": [
+    {
+      "path": "review/renders/cat-d6-operator-side.png",
+      "sha256": "633e92b7dca682ef6e3db225259c59997eeb45b2ac241bef27fe0c4eb34cfca3",
+      "bytes": 494639
+    },
+    {
+      "path": "review/renders/cat-d6-front-right-three-quarter.png",
+      "sha256": "2c91d10129a05960bde7b72469900e3cbbca117fa7ad7efdd96f816101b27d00",
+      "bytes": 557978
+    },
+    {
+      "path": "review/renders/cat-d6-rear-left-three-quarter.png",
+      "sha256": "556987ba98252d58d50e1ab27b49d2c49476dbc68e699f5f47efdb252e5e8a70",
+      "bytes": 552141
+    },
+    {
+      "path": "review/renders/cat-d6-blade-linkage-detail.png",
+      "sha256": "cbe1a04a59574b9be2d01a25912e1bdf17a023b474323b8363b9dee966abeaa2",
+      "bytes": 676382
+    },
+    {
+      "path": "review/renders/cat-d6-undercarriage-detail.png",
+      "sha256": "4e7b4b0ba16af303a461e423cac353f973af9c16e848a15837d8699e53af8570",
+      "bytes": 647456
+    },
+    {
+      "path": "review/renders/cat-d6-drive-sprocket-engagement-detail.png",
+      "sha256": "29062134cb60b1215f9204b24d0032f51d187bf5263ad987dcb61906e0c04039",
+      "bytes": 632348
+    },
+    {
+      "path": "review/renders/cat-d6-cab-service-side.png",
+      "sha256": "c9cea68874d0375bf8366437ca1255604a36bf367232014549e0d075ab863e57",
+      "bytes": 565382
+    },
+    {
+      "path": "review/renders/cat-d6-raised-tilted-blade.png",
+      "sha256": "4176ced2d1d7e3c61feac930f5d6a5d82250abef60e81f10b04a2a720309851e",
+      "bytes": 530339
+    }
+  ],
+  "build_verdict": "PASS",
+  "validation_verdict": "PASS",
+  "validation_path": "production/validation.json",
+  "higher_stage_gates": "PENDING"
+}

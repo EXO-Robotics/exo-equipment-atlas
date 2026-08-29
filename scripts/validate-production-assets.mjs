@@ -8,22 +8,13 @@ const VALID_GATE_STATUSES = new Set(["PASS", "FAIL", "PENDING"]);
 const IDENTITY_EPSILON = 1e-7;
 const RECEIPT_BOUNDS_TOLERANCE_M = 0.02;
 const HELPER_NAME_PATTERN = /(?:^|[_-])(COL|COLLISION|HIT|INSP|INSPECT|WITNESS|ENVELOPE|HELPER|GUIDE)(?:$|[_-])/iu;
-const EXPECTED_PUBLIC_ENVELOPES = {
-  "cat-320": {
-    x: { factId: "transport-length", toleranceM: 0.08 },
-    y: { factId: "transport-height", toleranceM: 0.05 },
-    z: { factId: "undercarriage-width", toleranceM: 0.04 }
-  },
-  "john-deere-333-p-tier": {
-    x: { factId: "length-foundry-bucket", toleranceM: 0.06 },
-    y: { factId: "rops-height", toleranceM: 0.04 }
-  },
-  "john-deere-310-p-tier": {
-    x: { factId: "overall-length", toleranceM: 0.06 },
-    y: { factId: "backhoe-transport-height", toleranceM: 0.05 },
-    z: { factId: "overall-width", toleranceM: 0.04 }
-  }
-};
+const PUBLIC_ENVELOPE_AXES = ["x", "y", "z"];
+export const PRODUCTION_STUDY_MINIMUMS = Object.freeze({
+  nodes: 200,
+  mesh_nodes: 180,
+  decoded_triangles: 10_000,
+  review_renders: 5
+});
 
 async function readJson(absolutePath) {
   return JSON.parse(await readFile(absolutePath, "utf8"));
@@ -370,18 +361,78 @@ function compareVector(errors, label, actual, expected, toleranceM) {
   }
 }
 
-function verifyPublishedEnvelope({ errors, machineId, facts, measuredSize }) {
-  const expected = EXPECTED_PUBLIC_ENVELOPES[machineId];
-  if (!expected) {
-    errors.push(`${machineId}/glb: no authoritative public-envelope mapping is declared`);
+function isPlainObject(value) {
+  if (value === null || typeof value !== "object" || Array.isArray(value)) return false;
+  const prototype = Object.getPrototypeOf(value);
+  return prototype === Object.prototype || prototype === null;
+}
+
+function verifyPublishedEnvelope({ errors, machineId, machineEntry, facts, measuredSize }) {
+  const expected = machineEntry.public_envelope;
+  if (!isPlainObject(expected)) {
+    errors.push(`${machineId}/glb: public_envelope must be a nonempty plain object declared in catalog.json`);
     return;
   }
+  const axisNames = Object.keys(expected);
+  if (axisNames.length === 0) {
+    errors.push(`${machineId}/glb: public_envelope must map at least one measured axis`);
+    return;
+  }
+  const unexpectedAxes = axisNames.filter((axisName) => !PUBLIC_ENVELOPE_AXES.includes(axisName));
+  if (unexpectedAxes.length > 0) {
+    errors.push(`${machineId}/glb: public_envelope has unsupported key(s): ${unexpectedAxes.join(", ")}`);
+  }
+  const mappedAxes = PUBLIC_ENVELOPE_AXES.filter((axisName) => Object.hasOwn(expected, axisName));
+  const coverage = machineEntry.public_envelope_coverage;
+  if (mappedAxes.length < PUBLIC_ENVELOPE_AXES.length) {
+    if (coverage !== "partial") {
+      errors.push(
+        `${machineId}/glb: fewer than x/y/z public-envelope axes require ` +
+        `public_envelope_coverage \"partial\" (mapped ${mappedAxes.join(", ") || "none"})`
+      );
+    }
+  } else if (coverage !== undefined) {
+    errors.push(`${machineId}/glb: public_envelope_coverage is only permitted for an intentionally partial mapping`);
+  }
+
   const factsById = new Map((facts.facts ?? []).map((fact) => [fact.id, fact]));
-  for (const [axisName, rule] of Object.entries(expected)) {
-    const axisIndex = { x: 0, y: 1, z: 2 }[axisName];
+  for (const axisName of mappedAxes) {
+    const rule = expected[axisName];
+    const axisIndex = PUBLIC_ENVELOPE_AXES.indexOf(axisName);
+    if (!isPlainObject(rule)) {
+      errors.push(`${machineId}/glb: public_envelope.${axisName} must be a plain rule object`);
+      continue;
+    }
+    const unexpectedRuleKeys = Object.keys(rule).filter((key) => !["factId", "toleranceM"].includes(key));
+    if (unexpectedRuleKeys.length > 0) {
+      errors.push(`${machineId}/glb: public_envelope.${axisName} has unsupported key(s): ${unexpectedRuleKeys.join(", ")}`);
+    }
+    if (typeof rule.factId !== "string" || rule.factId.length === 0) {
+      errors.push(`${machineId}/glb: public_envelope.${axisName}.factId must be a nonempty string`);
+      continue;
+    }
+    if (!Number.isFinite(rule.toleranceM) || rule.toleranceM < 0) {
+      errors.push(`${machineId}/glb: public_envelope.${axisName}.toleranceM must be finite and nonnegative`);
+      continue;
+    }
     const fact = factsById.get(rule.factId);
-    if (!fact || fact.unit !== "m" || !Number.isFinite(fact.value)) {
-      errors.push(`${machineId}/glb: authoritative envelope fact unavailable (${rule.factId})`);
+    if (!fact) {
+      errors.push(`${machineId}/glb: public-envelope fact does not exist (${rule.factId})`);
+      continue;
+    }
+    if (fact.authority !== "manufacturer_published") {
+      errors.push(
+        `${machineId}/glb: public-envelope fact ${rule.factId} must have authority manufacturer_published ` +
+        `(found ${fact.authority ?? "missing"})`
+      );
+      continue;
+    }
+    if (fact.unit !== "m" || !Number.isFinite(fact.value)) {
+      errors.push(`${machineId}/glb: public-envelope fact ${rule.factId} must have a finite value in metres`);
+      continue;
+    }
+    if (!Number.isFinite(measuredSize?.[axisIndex])) {
+      errors.push(`${machineId}/glb: measured ${axisName.toUpperCase()} envelope is unavailable or non-finite`);
       continue;
     }
     if (Math.abs(measuredSize[axisIndex] - fact.value) > rule.toleranceM) {
@@ -391,6 +442,12 @@ function verifyPublishedEnvelope({ errors, machineId, facts, measuredSize }) {
       );
     }
   }
+}
+
+export function validatePublicEnvelopeContract({ machineId = "test-machine", machineEntry, facts, measuredSize }) {
+  const errors = [];
+  verifyPublishedEnvelope({ errors, machineId, machineEntry, facts, measuredSize });
+  return errors;
 }
 
 function builderEntry(receipt) {
@@ -505,11 +562,31 @@ export async function validateProductionAssets() {
         summary.glb_triangles += contract.triangleCount;
         summary.glb_contracts[machineId] = {
           root_name: contract.rootName,
+          nodes: gltf.nodes?.length ?? 0,
           mesh_nodes: contract.meshNodeCount,
           decoded_triangles: contract.triangleCount,
+          review_renders: Array.isArray(receipt.renders) ? receipt.renders.length : 0,
           visible_bounds_m: contract.bounds
         };
         for (const contractError of contract.errors) errors.push(`${machineId}/glb: ${contractError}`);
+        if ((gltf.nodes?.length ?? 0) < PRODUCTION_STUDY_MINIMUMS.nodes) {
+          errors.push(
+            `${machineId}/glb: ${gltf.nodes?.length ?? 0} nodes is below the technical-study floor ` +
+            `${PRODUCTION_STUDY_MINIMUMS.nodes}`
+          );
+        }
+        if (contract.meshNodeCount < PRODUCTION_STUDY_MINIMUMS.mesh_nodes) {
+          errors.push(
+            `${machineId}/glb: ${contract.meshNodeCount} mesh nodes is below the technical-study floor ` +
+            `${PRODUCTION_STUDY_MINIMUMS.mesh_nodes}`
+          );
+        }
+        if (contract.triangleCount < PRODUCTION_STUDY_MINIMUMS.decoded_triangles) {
+          errors.push(
+            `${machineId}/glb: ${contract.triangleCount} decoded triangles is below the technical-study floor ` +
+            `${PRODUCTION_STUDY_MINIMUMS.decoded_triangles}`
+          );
+        }
         const declaredTriangles = receiptTriangleCount(receipt);
         if (declaredTriangles === null) {
           errors.push(`${machineId}/glb: public receipt lacks an integer triangle metric for the viewer`);
@@ -546,8 +623,13 @@ export async function validateProductionAssets() {
               RECEIPT_BOUNDS_TOLERANCE_M
             );
           }
-          verifyPublishedEnvelope({ errors, machineId, facts, measuredSize: contract.bounds.size });
         }
+        errors.push(...validatePublicEnvelopeContract({
+          machineId,
+          machineEntry: machine,
+          facts,
+          measuredSize: contract.bounds?.size
+        }));
         for (const [nodeName, claimedPresent] of Object.entries(sceneSemanticNodes(receipt))) {
           if (claimedPresent === true && !nodeNames.has(nodeName)) {
             errors.push(`${machineId}/glb: claimed semantic node missing from export (${nodeName})`);
@@ -564,8 +646,10 @@ export async function validateProductionAssets() {
       }
     }
 
-    if (!Array.isArray(receipt.renders) || receipt.renders.length < 4) {
-      errors.push(`${machineId}: at least four hashed review renders are required`);
+    if (!Array.isArray(receipt.renders) || receipt.renders.length < PRODUCTION_STUDY_MINIMUMS.review_renders) {
+      errors.push(
+        `${machineId}: at least ${PRODUCTION_STUDY_MINIMUMS.review_renders} hashed review renders are required`
+      );
     }
     for (const [index, render] of (receipt.renders ?? []).entries()) {
       const renderPath = await verifyDeclaredFile({

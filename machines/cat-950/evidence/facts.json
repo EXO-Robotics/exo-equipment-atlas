@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "cat-950",
+  "configuration_id": "CAT-950-14C-NAM-T4F-STDLIFT-PZBAR-BR235R25-VJT-L3-GP31-TS-CANDIDATE",
+  "facts": [
+    {"id":"engine-model","subject":"engine model for Tier 4 Final column","value":"Cat C7.1","unit":"text","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 2"},
+    {"id":"engine-power","subject":"engine power at 2100 rpm ISO 14396:2002","value":186,"unit":"kW","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 2"},
+    {"id":"hydraulic-cycle-raise","subject":"raise from carry position with rated payload","value":5.1,"unit":"s","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 3"},
+    {"id":"hydraulic-cycle-dump","subject":"dump at maximum raise with rated payload","value":1.5,"unit":"s","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 3"},
+    {"id":"hydraulic-cycle-lower","subject":"lower empty float down","value":2.5,"unit":"s","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 3"},
+    {"id":"hydraulic-cycle-total","subject":"total hydraulic cycle with rated payload","value":9.1,"unit":"s","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 3"},
+    {"id":"axle-center-height","subject":"height to axle centerline with selected tires","value":0.734,"unit":"m","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 4, dimension 1"},
+    {"id":"hood-height","subject":"height to top of hood","value":2.695,"unit":"m","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 4, dimension 2"},
+    {"id":"rops-height","subject":"height to top of ROPS","value":3.456,"unit":"m","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 4, dimension 4"},
+    {"id":"ground-clearance","subject":"ground clearance","value":0.354,"unit":"m","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 4, dimension 7"},
+    {"id":"rear-axle-to-counterweight","subject":"rear axle centerline to edge of counterweight","value":2.063,"unit":"m","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 4, dimension 8"},
+    {"id":"rear-axle-to-hitch","subject":"rear axle centerline to hitch","value":1.675,"unit":"m","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 4, dimension 9"},
+    {"id":"wheelbase","subject":"wheelbase","value":3.35,"unit":"m","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 4, dimension 10"},
+    {"id":"length-without-bucket","subject":"overall length without bucket for standard lift","value":7.024,"unit":"m","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 4, dimension 11"},
+    {"id":"carry-hinge-height","subject":"bucket hinge-pin height at carry height","value":0.623,"unit":"m","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 4, dimension 13"},
+    {"id":"max-lift-hinge-height","subject":"bucket hinge-pin height at maximum lift","value":4.009,"unit":"m","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 4, dimension 14"},
+    {"id":"max-lift-arm-clearance","subject":"lift-arm clearance at maximum lift","value":3.255,"unit":"m","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 4, dimension 15"},
+    {"id":"max-lift-dump-angle","subject":"dump angle at maximum lift and dump on stops","value":51,"unit":"deg","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 4, dimension 18"},
+    {"id":"rack-back-max-lift","subject":"rack back at maximum lift","value":59,"unit":"deg","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 4, dimension 19"},
+    {"id":"rack-back-carry","subject":"rack back at carry height","value":49,"unit":"deg","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 4, dimension 20"},
+    {"id":"rack-back-ground","subject":"rack back at ground","value":39,"unit":"deg","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 4, dimension 21"},
+    {"id":"tire-width-loaded","subject":"width over selected tires loaded","value":2.824,"unit":"m","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 4, dimension 25"},
+    {"id":"tread-width","subject":"tread width with selected tires","value":2.14,"unit":"m","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 4, dimension 26"},
+    {"id":"rear-axle-oscillation","subject":"rear axle oscillation with selected tire","value":13,"unit":"deg_each_direction","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 5 tire-options table"},
+    {"id":"bucket-capacity","subject":"selected general-purpose pin-on bucket rated capacity","value":3.1,"unit":"m3","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 11, teeth-and-segments column"},
+    {"id":"bucket-width","subject":"selected general-purpose pin-on bucket width","value":2.994,"unit":"m","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 11, teeth-and-segments column"},
+    {"id":"shipping-length","subject":"overall shipping length with selected bucket level on ground","value":8.487,"unit":"m","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 11, teeth-and-segments column"},
+    {"id":"selected-dump-clearance","subject":"dump clearance at maximum lift and 45 degree discharge with selected bucket","value":2.746,"unit":"m","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 11, teeth-and-segments column"},
+    {"id":"selected-dump-reach","subject":"reach at maximum lift and 45 degree discharge with selected bucket","value":1.546,"unit":"m","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 11, teeth-and-segments column"},
+    {"id":"selected-max-lift-height","subject":"overall height with selected bucket at maximum lift","value":5.513,"unit":"m","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 11, teeth-and-segments column"},
+    {"id":"selected-breakout-force","subject":"breakout force for selected bucket configuration","value":179,"unit":"kN","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 11, teeth-and-segments column"},
+    {"id":"selected-operating-weight","subject":"operating weight for selected bucket configuration and stated table options","value":19369,"unit":"kg","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 11, teeth-and-segments column"},
+    {"id":"full-turn-test-condition","subject":"static tipping load publication test condition","value":40,"unit":"deg_full_turn_condition","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 2; not admitted as an articulation stop"},
+    {"id":"review-articulation","subject":"review-only front-frame articulation pose","value":28,"unit":"deg","authority":"reconstructed","source_id":"CAT-950-AEXQ4425-00-NAM","location":"visualization boundary; not a manufacturer endpoint"}
+  ],
+  "issues": [
+    {
+      "id": "bucket-baseline-column",
+      "status": "documented",
+      "detail": "The general dimension illustration is based on a 3.1 m3 GP pin-on bucket with BOCE, while this candidate selects the adjacent teeth-and-segments column. Chassis dimensions are admitted from page 4; bucket-specific width, length, reach, clearance, weight, and breakout force are admitted from page 11."
+    },
+    {
+      "id": "hidden-mechanism-geometry",
+      "status": "unresolved",
+      "detail": "Frame-hitch bearings, rear-axle oscillation center, steering-cylinder anchors, lift-arm pivots, Z-bar geometry, hydraulic cylinder strokes, hose routing, wheel offset, tire deflection, and all hidden fastening/load paths are not established by the admitted publications."
+    },
+    {
+      "id": "options-and-rights",
+      "status": "unresolved",
+      "detail": "Exact installed cab, safety, lighting, hydraulic, guarding, technology, trim, and rights-authorized branding choices remain unfrozen; public materials therefore stay neutral and logo-free."
+    }
+  ]
+}

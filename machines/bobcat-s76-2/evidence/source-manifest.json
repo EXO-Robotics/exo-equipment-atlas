@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "bobcat-s76-2",
+  "configuration_id": "BOBCAT-S76-2-NAM-STD74-STD-TIRE-CAB-CANDIDATE",
+  "freeze_date": "2026-08-29",
+  "repository_policy": {
+    "source_binaries_committed": false,
+    "manufacturer_geometry_committed": false,
+    "manufacturer_images_committed": false,
+    "product_gallery_is_scale_drawing": false,
+    "verification": "First-party pages are URL-bound research evidence. No manufacturer image, CAD, texture, or page capture is shipped."
+  },
+  "sources": [
+    {
+      "id": "BOBCAT-S76-2-NA-PRODUCT",
+      "publisher": "Bobcat Company",
+      "kind": "official_current_product_page_and_gallery",
+      "title": "Pro S76-2 Skid-Steer Loader (Specs, Pricing & More)",
+      "model_scope": "current Pro S76-2",
+      "market": "North America",
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.bobcat.com/na/en/equipment/loaders/skid-steer-loaders/s76-2",
+      "local_path": "research/private/bobcat-s76-2/bobcat-s76-2-product-page.html",
+      "sha256": "be904ed194f31a1a89295090338585dd2b027079b57f5bd2ef0352a5de1e9301",
+      "bytes": 1990918,
+      "capture_boundary": "Exact HTTP response body retrieved from the official URL with a normal Safari user-agent and English Accept headers; private research input only and repository-ignored.",
+      "admission": "primary"
+    },
+    {
+      "id": "BOBCAT-S76-2-EU-PRODUCT",
+      "publisher": "Bobcat Company",
+      "kind": "official_current_product_page",
+      "title": "S76-2 Skid-Steer Loader R-Series",
+      "model_scope": "current S76-2, European-market configuration",
+      "market": "Europe",
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.bobcat.com/eu/en/equipment/loaders/skid-steer-loaders/s76-2",
+      "admission": "reference_only",
+      "boundary": "Used only to corroborate visible service and tire-construction cues; European option content is not treated as North American configuration truth."
+    }
+  ]
+}

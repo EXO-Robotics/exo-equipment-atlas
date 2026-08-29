@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-1270g",
+  "configuration_id": "JD-1270G-8W-CH7-R86-H480C-600-CANDIDATE",
+  "freeze_date": "2026-08-29",
+  "repository_policy": {
+    "source_binaries_committed": false,
+    "manufacturer_geometry_committed": false,
+    "manufacturer_imagery_committed": false,
+    "manual_illustrations_are_scale_drawings": false,
+    "verification": "The private PDF was retrieved and hash-bound; no first-party binary or image is redistributed in this package."
+  },
+  "sources": [
+    {
+      "id": "JD-1270G-MWH1270GF",
+      "publisher": "John Deere",
+      "kind": "official_product_brochure_and_specification",
+      "title": "1270G Wheeled Harvester",
+      "publication": "MWH1270GF (23-09)",
+      "market": "United States and Canada",
+      "pages": 8,
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.deere.com/assets/pdfs/common/products/wheeled-harvesters/mwh1270gf-1270g-wheeled-harvester.pdf",
+      "local_path": "research/private/john-deere-1270g/mwh1270gf-1270g-wheeled-harvester.pdf",
+      "sha256": "b93cbf91f1e72fd91b78b53b8f52dd4aeaf917537db3d77903c3731d46720e22",
+      "bytes": 3434686,
+      "admission": "primary"
+    },
+    {
+      "id": "JD-1270G-8W-LA-PAGE",
+      "publisher": "John Deere",
+      "kind": "official_product_page",
+      "title": "1270G 8W Cosechadora con Ruedas",
+      "market": "Latin America",
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.deere.com/latin-america/es/cosechadoras-con-ruedas/cosechadora-con-ruedas1270g-8-ruedas/",
+      "admission": "reference_only",
+      "use": "Corroborates 8x8, CH7, 8.6 m horizontal reach, 26.5-20 tires, 7.927 m base carrier, 2.746 m width and H480C reference head. Market-specific engine/emissions values are not mixed into the North American freeze."
+    }
+  ]
+}

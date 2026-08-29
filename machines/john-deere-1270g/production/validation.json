@@ -1,0 +1,749 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-1270g",
+  "configuration_id": "JD-1270G-8W-CH7-R86-H480C-600-CANDIDATE",
+  "candidate_class": "technical_structural_study",
+  "engineering_authority": false,
+  "verdict": "PASS",
+  "verdict_scope": "technical_structural_study_only",
+  "higher_stage_gates": "PENDING",
+  "failed_gates": [],
+  "evaluated_public_visible_bounds_m": {
+    "min_m": [
+      -4.15,
+      0.008182,
+      -1.41
+    ],
+    "max_m": [
+      8.617158,
+      4.863788,
+      1.388
+    ],
+    "size_m": [
+      12.767158,
+      4.855606,
+      2.798
+    ],
+    "evaluated_vertices": 37846
+  },
+  "gates": [
+    {
+      "id": "published-base-carrier-length",
+      "status": "PASS",
+      "detail": "Published configuration constraint represented by an explicit independently authored datum; publication art is not treated as a scale drawing.",
+      "expected": {
+        "value": 7.927,
+        "tolerance": 0.001
+      },
+      "actual": {
+        "value": 7.927,
+        "absolute_delta": 0.0
+      }
+    },
+    {
+      "id": "published-front-axle-middle-joint",
+      "status": "PASS",
+      "detail": "Published configuration constraint represented by an explicit independently authored datum; publication art is not treated as a scale drawing.",
+      "expected": {
+        "value": 2.15,
+        "tolerance": 0.001
+      },
+      "actual": {
+        "value": 2.15,
+        "absolute_delta": 0.0
+      }
+    },
+    {
+      "id": "published-rear-axle-middle-joint",
+      "status": "PASS",
+      "detail": "Published configuration constraint represented by an explicit independently authored datum; publication art is not treated as a scale drawing.",
+      "expected": {
+        "value": 2.28,
+        "tolerance": 0.001
+      },
+      "actual": {
+        "value": 2.28,
+        "absolute_delta": 0.0
+      }
+    },
+    {
+      "id": "published-wheelbase",
+      "status": "PASS",
+      "detail": "Published configuration constraint represented by an explicit independently authored datum; publication art is not treated as a scale drawing.",
+      "expected": {
+        "value": 4.43,
+        "tolerance": 0.001
+      },
+      "actual": {
+        "value": 4.43,
+        "absolute_delta": 0.0
+      }
+    },
+    {
+      "id": "published-minimum-width-600",
+      "status": "PASS",
+      "detail": "Published configuration constraint represented by an explicit independently authored datum; publication art is not treated as a scale drawing.",
+      "expected": {
+        "value": 2.746,
+        "tolerance": 0.001
+      },
+      "actual": {
+        "value": 2.746,
+        "absolute_delta": 0.0
+      }
+    },
+    {
+      "id": "published-transport-height",
+      "status": "PASS",
+      "detail": "Published configuration constraint represented by an explicit independently authored datum; publication art is not treated as a scale drawing.",
+      "expected": {
+        "value": 3.881,
+        "tolerance": 0.001
+      },
+      "actual": {
+        "value": 3.881,
+        "absolute_delta": 0.0
+      }
+    },
+    {
+      "id": "published-ground-clearance",
+      "status": "PASS",
+      "detail": "Published configuration constraint represented by an explicit independently authored datum; publication art is not treated as a scale drawing.",
+      "expected": {
+        "value": 0.717,
+        "tolerance": 0.001
+      },
+      "actual": {
+        "value": 0.717,
+        "absolute_delta": 0.0
+      }
+    },
+    {
+      "id": "published-selected-maximum-reach",
+      "status": "PASS",
+      "detail": "The selected 8.6 m head-included choice is represented in the max-reach review pose. Crane pivot, segment lengths and head reference point remain reconstructed.",
+      "expected": {
+        "value_m": 8.6,
+        "tolerance_m": 0.001,
+        "head_identity": "H480C reference head"
+      },
+      "actual": {
+        "value_m": 8.6,
+        "pose": {
+          "base": [
+            1.65,
+            2.2,
+            0.0
+          ],
+          "elbow": [
+            3.88,
+            3.8,
+            0.0
+          ],
+          "wrist": [
+            6.05,
+            3.18,
+            0.0
+          ],
+          "housing": [
+            7.72,
+            2.42,
+            0.0
+          ],
+          "tip": [
+            9.85,
+            1.9,
+            0.0
+          ],
+          "pitch_deg": 0.0,
+          "head_reference": [
+            10.25,
+            1.5,
+            0.0
+          ],
+          "selected_horizontal_reach": 8.6,
+          "name": "max_reach"
+        }
+      }
+    },
+    {
+      "id": "semantic-node-presence",
+      "status": "PASS",
+      "detail": "Machine-specific hierarchy and review semantics exist.",
+      "expected": [
+        "JD1270G_Root",
+        "RearFrame_Root",
+        "FrameSteer_Pivot_Reconstructed",
+        "FrontFrame_Root",
+        "FrontBalancedBogie_Pivot_Reconstructed",
+        "FrontBogieBeam_L",
+        "FrontBogieBeam_R",
+        "RearRigidAxle_Front",
+        "RearRigidAxle_Rear",
+        "CabRotation_Root_Reconstructed",
+        "CabLeveling_Root_Reconstructed",
+        "PowerUnit_Core",
+        "CH7_Slew_Root_Reconstructed",
+        "CH7_InnerBoom",
+        "CH7_OuterBoom",
+        "CH7_TelescopeHousing",
+        "CH7_Telescope",
+        "CH7_LiftCylinder",
+        "CH7_LiftRod",
+        "CH7_FoldCylinder",
+        "CH7_FoldRod",
+        "Head_Rotator_Root_Reconstructed",
+        "H480C_ReferenceHead_Root_Reconstructed",
+        "H480C_HeadMainHousing_Reconstructed",
+        "H480C_FeedRoller_L_Reconstructed",
+        "H480C_FeedRoller_R_Reconstructed",
+        "H480C_SawGuard_Reconstructed",
+        "H480C_SawBar_Reconstructed",
+        "H480C_HoseManifold_Reconstructed"
+      ],
+      "actual": {
+        "missing": []
+      }
+    },
+    {
+      "id": "eight-independent-wheels",
+      "status": "PASS",
+      "detail": "Eight independently authored tire/rim assemblies are present; tire profile and tread remain reconstructed.",
+      "expected": {
+        "tires": 8,
+        "rims": 8
+      },
+      "actual": {
+        "tires": [
+          "Front_Front_L_Tire",
+          "Front_Front_R_Tire",
+          "Front_Rear_L_Tire",
+          "Front_Rear_R_Tire",
+          "Rear_Front_L_Tire",
+          "Rear_Front_R_Tire",
+          "Rear_Rear_L_Tire",
+          "Rear_Rear_R_Tire"
+        ],
+        "rims": [
+          "Front_Front_L_RimOuter",
+          "Front_Front_R_RimOuter",
+          "Front_Rear_L_RimOuter",
+          "Front_Rear_R_RimOuter",
+          "Rear_Front_L_RimOuter",
+          "Rear_Front_R_RimOuter",
+          "Rear_Rear_L_RimOuter",
+          "Rear_Rear_R_RimOuter"
+        ]
+      }
+    },
+    {
+      "id": "front-balanced-bogie-structure",
+      "status": "PASS",
+      "detail": "A readable balanced-front-bogie hierarchy exists; its pivot and kinematics remain reconstructed."
+    },
+    {
+      "id": "reconstructed-head-component-readability",
+      "status": "PASS",
+      "detail": "The reference-head study exposes feed rollers, knives, saw guard/bar and hose manifold without claiming H480C dimensions.",
+      "expected": [
+        "H480C_FeedRoller_",
+        "H480C_DelimbingKnife_",
+        "H480C_SawGuard_",
+        "H480C_SawBar_",
+        "H480C_HoseManifold_"
+      ],
+      "actual": {
+        "missing_prefixes": []
+      }
+    },
+    {
+      "id": "reconstructed-boom-hose-bundles",
+      "status": "PASS",
+      "detail": "Four pose-following visual hose lanes exist; routing, length, clamps, fittings and pressure remain unresolved.",
+      "expected": 4,
+      "actual": [
+        "CH7_Hose_L_1",
+        "CH7_Hose_L_2",
+        "CH7_Hose_R_1",
+        "CH7_Hose_R_2"
+      ]
+    },
+    {
+      "id": "structural-triangle-budget",
+      "status": "PASS",
+      "detail": "Candidate has reviewable mechanical detail within the web-study budget.",
+      "expected": {
+        "minimum": 25000,
+        "maximum": 180000
+      },
+      "actual": 73956
+    },
+    {
+      "id": "render-non-emptiness",
+      "status": "PASS",
+      "detail": "Eight direct Blender review renders cover the complete machine, articulated frame, bogie, cab, boom and head; human approval remains pending.",
+      "expected": {
+        "minimum_views": 7,
+        "minimum_bytes": 25000,
+        "minimum_luminance_range": 0.14
+      },
+      "actual": {
+        "review/renders/1270g-operator-side-working.png": {
+          "bytes": 493655,
+          "sampled_luminance_range": 0.96362
+        },
+        "review/renders/1270g-rear-three-quarter.png": {
+          "bytes": 725386,
+          "sampled_luminance_range": 0.91351
+        },
+        "review/renders/1270g-front-three-quarter.png": {
+          "bytes": 737649,
+          "sampled_luminance_range": 0.97559
+        },
+        "review/renders/1270g-articulated-frame.png": {
+          "bytes": 715391,
+          "sampled_luminance_range": 0.94785
+        },
+        "review/renders/1270g-front-bogie-detail.png": {
+          "bytes": 537420,
+          "sampled_luminance_range": 0.81232
+        },
+        "review/renders/1270g-cab-operator-side.png": {
+          "bytes": 1072990,
+          "sampled_luminance_range": 0.71476
+        },
+        "review/renders/1270g-ch7-max-reach-boom.png": {
+          "bytes": 428704,
+          "sampled_luminance_range": 0.96643
+        },
+        "review/renders/1270g-harvester-head-detail.png": {
+          "bytes": 528715,
+          "sampled_luminance_range": 0.96726
+        }
+      }
+    },
+    {
+      "id": "published-transport-length-envelope",
+      "status": "PENDING",
+      "detail": "The 12.560 m transport length is retained, but exact boom/head retention geometry and source datum endpoints are unresolved.",
+      "expected": {
+        "value_m": 12.56
+      }
+    },
+    {
+      "id": "frame-steering-closure",
+      "status": "PENDING",
+      "detail": "The published plus/minus 44 degree range is retained; pivot, cylinders, yokes, stops and swept collision are reconstructed or unresolved."
+    },
+    {
+      "id": "cab-rotation-leveling-motion",
+      "status": "PENDING",
+      "detail": "Published cab ranges are retained; compound pivots, actuators and the leveling control law are not qualified."
+    },
+    {
+      "id": "boom-cylinder-closure",
+      "status": "PENDING",
+      "detail": "Visual cylinders close at the authored review poses, but anchors, strokes and CH7 kinematics are not manufacturer-bound."
+    },
+    {
+      "id": "bogie-motion-continuity",
+      "status": "PENDING",
+      "detail": "The front bogie review tilt is not a qualified suspension solver."
+    },
+    {
+      "id": "head-mechanical-function",
+      "status": "PENDING",
+      "detail": "Feed, delimbing, measurement and saw components are static reconstructed visuals, not operational mechanisms."
+    },
+    {
+      "id": "ground-collision",
+      "status": "PENDING",
+      "detail": "No articulated swept-volume ground-collision solver has run."
+    },
+    {
+      "id": "self-collision",
+      "status": "PENDING",
+      "detail": "No articulated swept-volume self-collision solver has run."
+    },
+    {
+      "id": "human-visual-critic",
+      "status": "PENDING",
+      "detail": "The overall critic has not yet reviewed the exact artifact and render hashes."
+    },
+    {
+      "id": "viewer-browser-accessibility-mobile-performance-selection",
+      "status": "PENDING",
+      "detail": "This lane does not claim shared viewer integration or browser qualification."
+    },
+    {
+      "id": "publication-release-deployment",
+      "status": "PENDING",
+      "detail": "Only the overall publisher may catalog, release, push or deploy this candidate."
+    },
+    {
+      "id": "public-mesh-identity-scales",
+      "status": "PASS",
+      "detail": "Every public Blender mesh has applied local scale before export.",
+      "expected": {
+        "residual": {}
+      },
+      "actual": {
+        "applied_count": 36,
+        "applied": [
+          {
+            "node": "H480C_DelimbingKnife_Lower_L_Reconstructed",
+            "before": [
+              0.37986842,
+              0.055,
+              0.04
+            ]
+          },
+          {
+            "node": "H480C_DelimbingKnife_Lower_R_Reconstructed",
+            "before": [
+              0.37986842,
+              0.055,
+              0.04
+            ]
+          },
+          {
+            "node": "H480C_DelimbingKnife_Upper_L_Reconstructed",
+            "before": [
+              0.41581246,
+              0.055,
+              0.04
+            ]
+          },
+          {
+            "node": "H480C_DelimbingKnife_Upper_R_Reconstructed",
+            "before": [
+              0.41581246,
+              0.055,
+              0.04
+            ]
+          },
+          {
+            "node": "H480C_FeedArm_L_Reconstructed",
+            "before": [
+              0.26038432,
+              0.06,
+              0.065
+            ]
+          },
+          {
+            "node": "H480C_FeedArm_R_Reconstructed",
+            "before": [
+              0.26038432,
+              0.06,
+              0.065
+            ]
+          },
+          {
+            "node": "H480C_FeedCylinder_L_Reconstructed",
+            "before": [
+              0.055,
+              0.055,
+              0.21840332
+            ]
+          },
+          {
+            "node": "H480C_FeedCylinder_R_Reconstructed",
+            "before": [
+              0.055,
+              0.055,
+              0.21840328
+            ]
+          },
+          {
+            "node": "H480C_FeedRod_L_Reconstructed",
+            "before": [
+              0.03200001,
+              0.03200001,
+              0.1167262
+            ]
+          },
+          {
+            "node": "H480C_FeedRod_R_Reconstructed",
+            "before": [
+              0.03199999,
+              0.032,
+              0.11672614
+            ]
+          },
+          {
+            "node": "H480C_SawBar_Reconstructed",
+            "before": [
+              0.44,
+              0.0275,
+              0.0525
+            ]
+          },
+          {
+            "node": "CabFrontPillar_L",
+            "before": [
+              1.01814783,
+              0.05,
+              0.055
+            ]
+          },
+          {
+            "node": "CabFrontPillar_R",
+            "before": [
+              1.01814783,
+              0.05,
+              0.055
+            ]
+          },
+          {
+            "node": "CabRearPillar_L",
+            "before": [
+              1.01560318,
+              0.05,
+              0.055
+            ]
+          },
+          {
+            "node": "CabRearPillar_R",
+            "before": [
+              1.01560318,
+              0.05,
+              0.055
+            ]
+          },
+          {
+            "node": "CH7_FoldCylinder",
+            "before": [
+              0.09,
+              0.09,
+              0.7461766
+            ]
+          },
+          {
+            "node": "CH7_FoldRod",
+            "before": [
+              0.052,
+              0.052,
+              0.61917502
+            ]
+          },
+          {
+            "node": "CH7_InnerBoom",
+            "before": [
+              1.48870742,
+              0.27000001,
+              0.23999998
+            ]
+          },
+          {
+            "node": "CH7_InnerBoom_ParallelLink",
+            "before": [
+              1.37704396,
+              0.1,
+              0.09
+            ]
+          },
+          {
+            "node": "CH7_LiftCylinder",
+            "before": [
+              0.105,
+              0.105,
+              0.86794281
+            ]
+          },
+          {
+            "node": "CH7_LiftRod",
+            "before": [
+              0.062,
+              0.062,
+              0.75116581
+            ]
+          },
+          {
+            "node": "CH7_OuterBoom",
+            "before": [
+              1.16632986,
+              0.23,
+              0.2
+            ]
+          },
+          {
+            "node": "CH7_Telescope",
+            "before": [
+              0.44229522,
+              0.14,
+              0.125
+            ]
+          },
+          {
+            "node": "CH7_TelescopeCylinder",
+            "before": [
+              0.072,
+              0.072,
+              0.63031745
+            ]
+          },
+          {
+            "node": "CH7_TelescopeHousing",
+            "before": [
+              0.75802368,
+              0.19,
+              0.16
+            ]
+          },
+          {
+            "node": "CH7_TelescopeRod",
+            "before": [
+              0.041,
+              0.041,
+              0.38160825
+            ]
+          },
+          {
+            "node": "FrontBogieBeam_L",
+            "before": [
+              0.81,
+              0.17,
+              0.12
+            ]
+          },
+          {
+            "node": "FrontBogieBeam_R",
+            "before": [
+              0.81,
+              0.17,
+              0.12
+            ]
+          },
+          {
+            "node": "CabLevelCylinder_L",
+            "before": [
+              0.06499999,
+              0.06499999,
+              0.17578392
+            ]
+          },
+          {
+            "node": "CabLevelCylinder_R",
+            "before": [
+              0.065,
+              0.065,
+              0.17578392
+            ]
+          },
+          {
+            "node": "CabLevelRod_L",
+            "before": [
+              0.038,
+              0.038,
+              0.14983323
+            ]
+          },
+          {
+            "node": "CabLevelRod_R",
+            "before": [
+              0.038,
+              0.038,
+              0.14983325
+            ]
+          },
+          {
+            "node": "FrameSteerCylinder_L",
+            "before": [
+              0.075,
+              0.075,
+              0.3542951
+            ]
+          },
+          {
+            "node": "FrameSteerCylinder_R",
+            "before": [
+              0.075,
+              0.075,
+              0.3542951
+            ]
+          },
+          {
+            "node": "FrameSteerRod_L",
+            "before": [
+              0.04499999,
+              0.04499999,
+              0.26650509
+            ]
+          },
+          {
+            "node": "FrameSteerRod_R",
+            "before": [
+              0.045,
+              0.045,
+              0.26650515
+            ]
+          }
+        ],
+        "residual": {}
+      }
+    },
+    {
+      "id": "public-glb-contract",
+      "status": "PASS",
+      "detail": "The shipped GLB has one identity scene root, identity mesh scales and no camera, light or authoring-helper leak.",
+      "expected": {
+        "root": "JD1270G_Root",
+        "direct_roots": 1,
+        "cameras": 0,
+        "lights": 0,
+        "nonidentity_mesh_scales": {},
+        "leaked_helpers": []
+      },
+      "actual": {
+        "glb_version": "2.0",
+        "default_scene_direct_root_count": 1,
+        "default_scene_root_name": "JD1270G_Root",
+        "identity_root": true,
+        "nodes": 442,
+        "meshes": 424,
+        "materials": 10,
+        "triangles": 73956,
+        "cameras": 0,
+        "punctual_light_extension_present": false,
+        "nonidentity_mesh_scales": {},
+        "leaked_helpers": [],
+        "visible_bounds_m": {
+          "min_m": [
+            -4.15,
+            0.008182,
+            -1.388
+          ],
+          "max_m": [
+            8.617158,
+            4.858662,
+            1.41
+          ],
+          "size_m": [
+            12.767158,
+            4.850481,
+            2.798
+          ],
+          "decoded_position_vertices": 141374
+        }
+      }
+    }
+  ],
+  "decoded_public_glb_visible_bounds_m": {
+    "min_m": [
+      -4.15,
+      0.008182,
+      -1.388
+    ],
+    "max_m": [
+      8.617158,
+      4.858662,
+      1.41
+    ],
+    "size_m": [
+      12.767158,
+      4.850481,
+      2.798
+    ],
+    "decoded_position_vertices": 141374
+  }
+}

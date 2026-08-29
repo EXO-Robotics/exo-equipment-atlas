@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "cat-140",
+  "configuration_id": "CAT-140-16A-NAM-LVR-NONAWD-STDCIRCLE-MB12-RR14R24-PB-RRS-CANDIDATE",
+  "freeze_date": "2026-08-29",
+  "repository_policy": {
+    "source_binaries_committed": false,
+    "manufacturer_geometry_committed": false,
+    "manual_illustrations_are_scale_drawings": false,
+    "verification": "The two official PDF binaries were downloaded to temporary storage and hash-bound during research. Their intended private paths are not tracked; normal repository validation must not claim the binaries are present."
+  },
+  "sources": [
+    {
+      "id": "CAT-140-AEXQ4628-01-NAM",
+      "publisher": "Caterpillar",
+      "kind": "key_features_and_technical_specifications",
+      "title": "Cat 140 Motor Grader Key Features and Technical Specifications",
+      "publication": "AEXQ4628-01",
+      "build_number": "16A",
+      "market": "North America, Europe, Colombia, Chile, Japan, South Korea, Australia-New Zealand",
+      "pages": 4,
+      "retrieved": "2026-08-29",
+      "official_url": "https://s7d2.scene7.com/is/content/Caterpillar/CM20251209-75c6c-955f9",
+      "local_path": "research/private/cat-140/cat-140-aexq4628-01-key-features-technical-specifications.pdf",
+      "sha256": "bfc7e05f3d4a37865234519a217bbe0158bb0c9849a6cc461b7324a8e16bba03",
+      "bytes": 492506,
+      "admission": "primary",
+      "applicability": "Current 16A North American family; establishes lever/non-AWD choice, current 12 ft moldboard figures, 14.0R24 typically-equipped basis, push block and rear ripper/scarifier basis."
+    },
+    {
+      "id": "CAT-140-AEXQ4475-00-GLOBAL",
+      "publisher": "Caterpillar",
+      "kind": "technical_specification",
+      "title": "140 Motor Grader Technical Specifications",
+      "publication": "AEXQ4475-00",
+      "build_number": "16A",
+      "market": "Global; document states applicability to Non-AWD, AWD, lever/steering-wheel, and joystick configurations unless noted",
+      "pages": 11,
+      "retrieved": "2026-08-29",
+      "official_url": "https://s7d2.scene7.com/is/content/Caterpillar/CM20251020-9fc62-c247d",
+      "local_path": "research/private/cat-140/cat-140-aexq4475-00-technical-specifications.pdf",
+      "sha256": "96eb389fe9bec37a0752b68dba2bccccebdad8e1653c9b28cba5f17eb7b1fbba",
+      "bytes": 983744,
+      "admission": "primary",
+      "applicability": "Current 16A detailed geometry and motion facts; non-AWD and lever-specific rows are used where available."
+    },
+    {
+      "id": "CAT-140-PRODUCT-PAGE-127580",
+      "publisher": "Caterpillar",
+      "kind": "official_product_page",
+      "title": "140 Next Gen Motor Grader",
+      "market": "United States",
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.cat.com/en_US/products/new/equipment/motor-graders/motor-graders/127580.html",
+      "admission": "primary",
+      "applicability": "Current product identity, approximate overall dimensions, standard/optional equipment, gallery and 360-view visual observations.",
+      "note": "Product-page blade metric conflicts with the current North American PDF and is not used as the moldboard metric authority."
+    }
+  ]
+}

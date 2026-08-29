@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "bobcat-s76-2",
+  "configuration_id": "BOBCAT-S76-2-NAM-STD74-STD-TIRE-CAB-CANDIDATE",
+  "status": "research_candidate",
+  "identity": {
+    "manufacturer": "Bobcat Company",
+    "brand": "Bobcat",
+    "model": "Pro S76-2",
+    "product_class": "skid_steer_loader",
+    "market": "North America"
+  },
+  "choices": {
+    "lift_path": "vertical_lift",
+    "bucket": "standard_74_in",
+    "tires": "standard_12x16_5",
+    "cab": "standard_cab_enclosure",
+    "counterweights": "none_selected",
+    "public_finish": "neutral_unbranded"
+  },
+  "unresolved_choices": [
+    "selectable joystick controls versus other control configuration",
+    "exact standard-bucket part, shell profile, cutting edge, and coupler fit",
+    "manual Bob-Tach versus optional Power Bob-Tach geometry",
+    "counterweight and rear-detection packages",
+    "camera, display, lighting, and operator-package details",
+    "hidden lift-linkage pivots, cylinder anchors, stroke, and vertical-path interpolation",
+    "standard-tire casing, tread mold, wheel offset, hub, and fastener geometry",
+    "hydraulic hose lengths, fitting types, routing, and clamp points",
+    "public material and branding authorization"
+  ],
+  "boundary": "Current North American Pro S76-2 research candidate with a standard 74-inch bucket, standard 12x16.5 tires, and standard cab enclosure. Published specifications constrain an independent visualization; hidden pivots, hydraulic anchors, tire construction, attachment geometry, control/options identity, and lift-path interpolation remain reconstructed or unresolved."
+}

@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "bobcat-s76-2",
+  "configuration_id": "BOBCAT-S76-2-NAM-STD74-STD-TIRE-CAB-CANDIDATE",
+  "coordinate_system": {
+    "longitudinal": "+X toward bucket",
+    "vertical": "+Y",
+    "lateral": "+Z machine right"
+  },
+  "joints": [
+    {
+      "id": "lift_group",
+      "type": "coupled_vertical_lift_four_bar_study",
+      "axis": "+Z",
+      "authority": "reconstructed",
+      "source_ids": ["BOBCAT-S76-2-NA-PRODUCT"],
+      "published_constraints": ["3.25882 m hinge-pin endpoint", "vertical-lift classification", "0.8509 m reach at maximum height"],
+      "unresolved": ["pivot coordinates", "link lengths", "cylinder anchors and stroke", "lift-path interpolation"]
+    },
+    {
+      "id": "bucket_tilt",
+      "type": "revolute_z_axis_with_reconstructed_bellcrank",
+      "axis": "+Z",
+      "authority": "reconstructed",
+      "source_ids": ["BOBCAT-S76-2-NA-PRODUCT"],
+      "published_constraints": ["standard 74-inch bucket width", "3.6068 m overall stowed length"],
+      "unresolved": ["bucket pin center", "tilt-cylinder anchors and stroke", "bellcrank dimensions", "bucket rollback and dump angles"]
+    },
+    {
+      "id": "wheel_left_front",
+      "type": "rolling_visual",
+      "axis": "+Z",
+      "authority": "reconstructed",
+      "source_ids": ["BOBCAT-S76-2-NA-PRODUCT"],
+      "published_constraints": ["12x16.5 standard tire designation", "1.22682 m wheelbase"],
+      "unresolved": ["loaded radius", "tread mold", "rim offset", "hub geometry"]
+    },
+    {
+      "id": "wheel_right_front",
+      "type": "rolling_visual",
+      "axis": "+Z",
+      "authority": "reconstructed",
+      "source_ids": ["BOBCAT-S76-2-NA-PRODUCT"],
+      "published_constraints": ["12x16.5 standard tire designation", "1.22682 m wheelbase"],
+      "unresolved": ["loaded radius", "tread mold", "rim offset", "hub geometry"]
+    },
+    {
+      "id": "wheel_left_rear",
+      "type": "rolling_visual",
+      "axis": "+Z",
+      "authority": "reconstructed",
+      "source_ids": ["BOBCAT-S76-2-NA-PRODUCT"],
+      "published_constraints": ["12x16.5 standard tire designation", "1.22682 m wheelbase"],
+      "unresolved": ["loaded radius", "tread mold", "rim offset", "hub geometry"]
+    },
+    {
+      "id": "wheel_right_rear",
+      "type": "rolling_visual",
+      "axis": "+Z",
+      "authority": "reconstructed",
+      "source_ids": ["BOBCAT-S76-2-NA-PRODUCT"],
+      "published_constraints": ["12x16.5 standard tire designation", "1.22682 m wheelbase"],
+      "unresolved": ["loaded radius", "tread mold", "rim offset", "hub geometry"]
+    },
+    {
+      "id": "rear_service_door",
+      "type": "inspection_only",
+      "axis": "+Z",
+      "authority": "observed",
+      "source_ids": ["BOBCAT-S76-2-NA-PRODUCT"],
+      "unresolved": ["hinge axis", "latch geometry", "service-opening angle", "internal engine-bay layout"]
+    }
+  ],
+  "required_gates": [
+    "stowed_visible_envelope",
+    "full_lift_hinge_height",
+    "maximum_height_reach_context",
+    "lift_four_bar_visual_closure",
+    "bucket_linkage_visual_closure",
+    "hydraulic_cylinder_endpoint_continuity",
+    "wheelbase_and_four_wheel_presence",
+    "tire_ground_contact",
+    "bucket_ground_clearance",
+    "self_collision_risk",
+    "rights_boundary"
+  ],
+  "release_state": "no_geometry_no_solver_no_claim"
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "bobcat-s76-2",
+  "configuration_id": "BOBCAT-S76-2-NAM-STD74-STD-TIRE-CAB-CANDIDATE",
+  "facts": [
+    {"id": "length-standard-bucket", "subject": "length with standard bucket", "value": 3.6068, "unit": "m", "authority": "manufacturer_published", "source_id": "BOBCAT-S76-2-NA-PRODUCT", "location": "Dimensions table: 142 in"},
+    {"id": "length-without-attachment", "subject": "length without attachment", "value": 2.8956, "unit": "m", "authority": "manufacturer_published", "source_id": "BOBCAT-S76-2-NA-PRODUCT", "location": "Dimensions table: 114 in"},
+    {"id": "overall-width", "subject": "overall width over standard tires", "value": 1.8288, "unit": "m", "authority": "manufacturer_published", "source_id": "BOBCAT-S76-2-NA-PRODUCT", "location": "Dimensions table: 72 in"},
+    {"id": "bucket-width", "subject": "width with standard bucket", "value": 1.8796, "unit": "m", "authority": "manufacturer_published", "source_id": "BOBCAT-S76-2-NA-PRODUCT", "location": "Dimensions table: 74 in"},
+    {"id": "overall-height", "subject": "overall height", "value": 2.08026, "unit": "m", "authority": "manufacturer_published", "source_id": "BOBCAT-S76-2-NA-PRODUCT", "location": "Dimensions table: 81.9 in"},
+    {"id": "hinge-pin-height", "subject": "height to bucket hinge pin", "value": 3.25882, "unit": "m", "authority": "manufacturer_published", "source_id": "BOBCAT-S76-2-NA-PRODUCT", "location": "Dimensions table: 128.3 in"},
+    {"id": "reach-maximum-height", "subject": "reach at maximum height", "value": 0.8509, "unit": "m", "authority": "manufacturer_published", "source_id": "BOBCAT-S76-2-NA-PRODUCT", "location": "Dimensions table: 33.5 in"},
+    {"id": "turning-radius", "subject": "turning radius", "value": 2.12598, "unit": "m", "authority": "manufacturer_published", "source_id": "BOBCAT-S76-2-NA-PRODUCT", "location": "Dimensions table: 83.7 in"},
+    {"id": "wheelbase", "subject": "wheelbase", "value": 1.22682, "unit": "m", "authority": "manufacturer_published", "source_id": "BOBCAT-S76-2-NA-PRODUCT", "location": "Dimensions table: 48.3 in"},
+    {"id": "standard-bucket-nominal-width", "subject": "standard bucket nominal width", "value": 74, "unit": "in", "authority": "manufacturer_published", "source_id": "BOBCAT-S76-2-NA-PRODUCT", "location": "Dimensions table: Standard Bucket 74 in"},
+    {"id": "standard-tire-designation", "subject": "standard tire size designation", "value": "12.00 x 16.5", "unit": "designation", "authority": "manufacturer_published", "source_id": "BOBCAT-S76-2-NA-PRODUCT", "location": "Dimensions table: Standard Tires 305 x 419 [12.00 x 16.5]"},
+    {"id": "cab-enclosure-standard", "subject": "cab enclosure configuration", "value": true, "unit": "boolean", "authority": "manufacturer_published", "source_id": "BOBCAT-S76-2-NA-PRODUCT", "location": "Features table: Cab Enclosure Standard"},
+    {"id": "led-work-lights-standard", "subject": "front and rear LED work lights", "value": true, "unit": "boolean", "authority": "manufacturer_published", "source_id": "BOBCAT-S76-2-NA-PRODUCT", "location": "Features table: LED Front and Rear Lights Standard"},
+    {"id": "two-speed-standard", "subject": "two-speed travel", "value": true, "unit": "boolean", "authority": "manufacturer_published", "source_id": "BOBCAT-S76-2-NA-PRODUCT", "location": "Features table: Two Speed Travel Standard"},
+    {"id": "operating-weight", "subject": "operating weight", "value": 3635.09, "unit": "kg", "authority": "manufacturer_published", "source_id": "BOBCAT-S76-2-NA-PRODUCT", "location": "Performance table: 8,014 lb"}
+  ],
+  "issues": [
+    {"id": "control-options", "status": "unresolved", "detail": "The current product page lists joystick control and multiple software/options; an exact control and display package is not frozen."},
+    {"id": "attachment-interface", "status": "unresolved", "detail": "The standard bucket width is published, but the exact bucket part, shell, cutting edge, Bob-Tach variant, pins, and coupler geometry are not."},
+    {"id": "lift-kinematics", "status": "unresolved", "detail": "Vertical-lift identity and endpoint height/reach are published; hidden pivot coordinates, four-bar link lengths, cylinder anchors, stroke, and intermediate path are not."},
+    {"id": "tire-construction", "status": "unresolved", "detail": "The standard tire designation is published; loaded radius, casing, tread mold, ply construction, wheel offset, hubs, and exact fasteners are not."},
+    {"id": "cross-market-reference", "status": "unresolved", "detail": "European-market service and option details remain reference-only and cannot establish North American configuration facts."}
+  ]
+}

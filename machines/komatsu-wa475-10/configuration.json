@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "komatsu-wa475-10",
+  "configuration_id": "KOM-WA475-10-NAM-STD-STOCKPILE42-L3-CW-CANDIDATE",
+  "status": "research_candidate",
+  "identity": {
+    "manufacturer": "Komatsu",
+    "brand": "Komatsu",
+    "model": "WA475-10",
+    "product_class": "articulated_wheel_loader",
+    "market": "North America",
+    "emissions_configuration": "EPA Tier 4 Final"
+  },
+  "choices": {
+    "boom": "standard_boom",
+    "bucket": "4.2_m3_5.5_yd3_stock_pile_bucket",
+    "bucket_edge": "bolt_on_cutting_edge",
+    "tires": "26.5R25_L3",
+    "rims": "26.5-25",
+    "cab": "ROPS_FOPS_Level_2",
+    "counterweight": "standard_and_additional_counterweight_as_listed_standard_equipment",
+    "steering": "steering_wheel_fully_hydraulic_articulation",
+    "high_lift": "not_selected",
+    "yard_loader_arrangement": "not_selected",
+    "775_65R29_tires": "not_selected"
+  },
+  "unresolved_choices": [
+    "standard and additional counterweight individual masses and attachment geometry",
+    "26.5R25 L-3 tire manufacturer, tread pattern, carcass, loaded radius, and pressure",
+    "stock-pile bucket part number, side-guard detail, wear package, and cutting-edge fastener pattern",
+    "loader arm pivots, bellcrank coordinates, linkage lengths, and cylinder anchor coordinates",
+    "front/rear frame casting and articulation-pin geometry",
+    "KHMT and driveline hidden geometry",
+    "cab interior option set, mirrors, cameras, and work-light package",
+    "public material and branding authorization"
+  ],
+  "boundary": "Research candidate only. The 2025 North American WA475-10 brochure constrains this standard-boom, 4.2 m3 stock-pile bucket, 26.5R25 (L-3), ROPS/FOPS, listed-counterweight study. Hidden pivots, anchors, tire construction, driveline, bucket section, and articulated/lift interpolation remain reconstructed or unresolved."
+}

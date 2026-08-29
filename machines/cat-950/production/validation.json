@@ -1,0 +1,434 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "cat-950",
+  "configuration_id": "CAT-950-14C-NAM-T4F-STDLIFT-PZBAR-BR235R25-VJT-L3-GP31-TS-CANDIDATE",
+  "candidate_class": "technical_structural_study",
+  "verdict": "PASS",
+  "bounds": {
+    "min_m": [
+      -3.7351,
+      -0.0008,
+      -1.497
+    ],
+    "max_m": [
+      4.7439,
+      3.456,
+      1.497
+    ],
+    "size_m": [
+      8.479,
+      3.4568,
+      2.994
+    ]
+  },
+  "counts": {
+    "objects": 460,
+    "meshes": 424,
+    "empties": 36,
+    "triangles": 123224,
+    "materials": 18
+  },
+  "metrics": {
+    "tire_bounds_m": {
+      "min_m": [
+        -2.4098031520843506,
+        -0.0008031547768041492,
+        -1.4119911193847656
+      ],
+      "max_m": [
+        2.4098031520843506,
+        1.4688032865524292,
+        1.4119911193847656
+      ],
+      "size_m": [
+        4.819606304168701,
+        1.4696064413292333,
+        2.8239822387695312
+      ]
+    },
+    "tire_loaded_width_m": 2.8239822387695312,
+    "tire_contact_min_y_m": -0.0008031547768041492,
+    "rear_frame_guard_underside_m": 0.3540000021457672,
+    "rops_top_m": 3.4560000896453857,
+    "hood_top_m": 2.6937170028686523,
+    "visible_bounds_m": {
+      "min_m": [
+        -3.735058069229126,
+        -0.0008031547768041492,
+        -1.496999979019165
+      ],
+      "max_m": [
+        4.743940353393555,
+        3.4560000896453857,
+        1.496999979019165
+      ],
+      "size_m": [
+        8.47899842262268,
+        3.45680324442219,
+        2.99399995803833
+      ]
+    },
+    "wheel_root_centers_m": {
+      "RL": [
+        -1.675,
+        0.734,
+        -1.07
+      ],
+      "RR": [
+        -1.675,
+        0.734,
+        1.07
+      ],
+      "FL": [
+        1.675,
+        0.734,
+        -1.07
+      ],
+      "FR": [
+        1.675,
+        0.734,
+        1.07
+      ]
+    },
+    "wheelbase_m": 3.3499999046325684,
+    "rear_axle_to_hitch_m": 1.6749999523162842,
+    "bucket_teeth": 9,
+    "tread_blocks": 96,
+    "hose_segments": 20,
+    "export_mesh_scale_offenders": {},
+    "zbar_static_dogbone_endpoint_error_m": 2.67542115936242e-07
+  },
+  "glb_contract": {
+    "scene_count": 1,
+    "scene_roots": [
+      {
+        "index": 459,
+        "name": "Machine_Root",
+        "transform": {}
+      }
+    ],
+    "node_count": 460,
+    "mesh_count": 424,
+    "camera_count": 0,
+    "punctual_light_extension_present": false,
+    "helper_nodes": [],
+    "platform_axes": "+X longitudinal, +Y vertical, +Z machine right"
+  },
+  "gates": [
+    {
+      "id": "builder-execution",
+      "status": "PASS",
+      "detail": "Factory-startup Blender builder reached receipt generation."
+    },
+    {
+      "id": "candidate-class-boundary",
+      "status": "PASS",
+      "detail": "technical_structural_study; no engineering, training, safety, or manufacturer authority."
+    },
+    {
+      "id": "scene-units-and-axes",
+      "status": "PASS",
+      "detail": "Meters; +X toward bucket, +Y vertical, +Z machine right."
+    },
+    {
+      "id": "independent-authoring-boundary",
+      "status": "PASS",
+      "detail": "No manufacturer CAD, downloaded geometry, copied texture, logo, or opaque add-on is embedded."
+    },
+    {
+      "id": "required-semantic-nodes",
+      "status": "PASS",
+      "detail": {
+        "Machine_Root": true,
+        "Rear_Frame_ROOT": true,
+        "Articulation_Pivot": true,
+        "Front_Frame_ROOT": true,
+        "Rear_Axle_Oscillation_Pivot": true,
+        "Rear_Axle_ROOT": true,
+        "Front_Axle_ROOT": true,
+        "Wheel_RL_ROOT": true,
+        "Wheel_RR_ROOT": true,
+        "Wheel_FL_ROOT": true,
+        "Wheel_FR_ROOT": true,
+        "Lift_Arm_Pivot": true,
+        "Lift_Arms_ROOT": true,
+        "Bucket_Pivot": true,
+        "Bucket_ROOT": true,
+        "ZBar_Linkage_ROOT": true,
+        "ZBar_Bellcrank_Pivot": true,
+        "Hydraulics_ROOT": true,
+        "Steering_Hydraulics_ROOT": true,
+        "Lift_Hydraulics_ROOT": true,
+        "Tilt_Hydraulics_ROOT": true,
+        "Cab_ROOT": true,
+        "Engine_Hood_ROOT": true
+      }
+    },
+    {
+      "id": "hierarchy-and-pivot-parenting",
+      "status": "PASS",
+      "detail": "Rear/front frames, oscillating rear axle, four wheels, lift arms, bucket, and Z-bar groups are separately pivot-parented."
+    },
+    {
+      "id": "glb-platform-contract",
+      "status": "PASS",
+      "detail": {
+        "scene_count": 1,
+        "scene_roots": [
+          {
+            "index": 459,
+            "name": "Machine_Root",
+            "transform": {}
+          }
+        ],
+        "node_count": 460,
+        "mesh_count": 424,
+        "camera_count": 0,
+        "punctual_light_extension_present": false,
+        "helper_nodes": [],
+        "platform_axes": "+X longitudinal, +Y vertical, +Z machine right"
+      }
+    },
+    {
+      "id": "export-mesh-scales-applied",
+      "status": "PASS",
+      "detail": {}
+    },
+    {
+      "id": "shipping-length-envelope",
+      "status": "PASS",
+      "detail": {
+        "modeled_m": 8.479,
+        "published_m": 8.487,
+        "tolerance_m": 0.08
+      }
+    },
+    {
+      "id": "selected-bucket-width-envelope",
+      "status": "PASS",
+      "detail": {
+        "modeled_m": 2.994,
+        "published_m": 2.994,
+        "tolerance_m": 0.035
+      }
+    },
+    {
+      "id": "rops-height-envelope",
+      "status": "PASS",
+      "detail": {
+        "modeled_m": 3.4560000896453857,
+        "published_m": 3.456,
+        "tolerance_m": 0.02
+      }
+    },
+    {
+      "id": "hood-height-envelope",
+      "status": "PASS",
+      "detail": {
+        "modeled_m": 2.6937170028686523,
+        "published_m": 2.695,
+        "tolerance_m": 0.03
+      }
+    },
+    {
+      "id": "axle-center-height",
+      "status": "PASS",
+      "detail": {
+        "RL": [
+          -1.675,
+          0.734,
+          -1.07
+        ],
+        "RR": [
+          -1.675,
+          0.734,
+          1.07
+        ],
+        "FL": [
+          1.675,
+          0.734,
+          -1.07
+        ],
+        "FR": [
+          1.675,
+          0.734,
+          1.07
+        ]
+      }
+    },
+    {
+      "id": "wheelbase",
+      "status": "PASS",
+      "detail": {
+        "modeled_m": 3.3499999046325684,
+        "published_m": 3.35
+      }
+    },
+    {
+      "id": "rear-axle-to-hitch",
+      "status": "PASS",
+      "detail": {
+        "modeled_m": 1.6749999523162842,
+        "published_m": 1.675
+      }
+    },
+    {
+      "id": "loaded-tire-width",
+      "status": "PASS",
+      "detail": {
+        "modeled_m": 2.8239822387695312,
+        "published_m": 2.824,
+        "tolerance_m": 0.01
+      }
+    },
+    {
+      "id": "tire-ground-contact",
+      "status": "PASS",
+      "detail": {
+        "modeled_min_y_m": -0.0008031547768041492,
+        "ground_y_m": 0.0,
+        "tolerance_m": 0.003
+      }
+    },
+    {
+      "id": "published-ground-clearance-cue",
+      "status": "PASS",
+      "detail": {
+        "modeled_m": 0.3540000021457672,
+        "published_m": 0.354,
+        "tolerance_m": 0.005
+      }
+    },
+    {
+      "id": "four-detailed-wheels",
+      "status": "PASS",
+      "detail": {
+        "wheel_roots": [
+          "RL",
+          "RR",
+          "FL",
+          "FR"
+        ],
+        "tread_blocks": 96,
+        "classification": "reconstructed tread geometry"
+      }
+    },
+    {
+      "id": "bucket-teeth-and-segments-cue",
+      "status": "PASS",
+      "detail": {
+        "modeled_teeth": 9,
+        "selected_edge": "teeth_and_segments",
+        "exact tooth count authority": "reconstructed"
+      }
+    },
+    {
+      "id": "zbar-static-visual-closure",
+      "status": "PASS",
+      "detail": {
+        "endpoint_error_m": 2.67542115936242e-07,
+        "classification": "static reconstructed visual closure only"
+      }
+    },
+    {
+      "id": "reconstructed-hose-bundles",
+      "status": "PASS",
+      "detail": {
+        "segments": 20,
+        "classification": "reconstructed exterior routing cues"
+      }
+    },
+    {
+      "id": "object-count",
+      "status": "PASS",
+      "detail": 460
+    },
+    {
+      "id": "triangle-budget",
+      "status": "PASS",
+      "detail": {
+        "triangles": 123224,
+        "budget": [
+          35000,
+          280000
+        ]
+      }
+    },
+    {
+      "id": "neutral-unbranded-materials",
+      "status": "PASS",
+      "detail": "Neutral materials and no manufacturer logo or exact livery claim."
+    },
+    {
+      "id": "direct-review-renders",
+      "status": "PASS",
+      "detail": {
+        "count": 13,
+        "minimum_bytes_each": 20000,
+        "includes": [
+          "carry",
+          "L3 tread and wheel dish",
+          "cab access",
+          "rear cooling grille",
+          "articulation",
+          "rear-axle oscillation",
+          "full lift",
+          "articulated full-lift dump",
+          "stowed Z-bar detail",
+          "raised Z-bar detail"
+        ]
+      }
+    },
+    {
+      "id": "byte-for-byte-rebuild-identity",
+      "status": "PENDING",
+      "detail": "Repeat builds preserve structure, counts, bounds, gates, and source inputs, but Blender .blend/GLB serialization identity has not been proven stable across fresh processes. Exact current artifact hashes remain authoritative for this review package."
+    },
+    {
+      "id": "configuration-freeze",
+      "status": "PENDING",
+      "detail": "Serial/order family and installed cab, hydraulic, safety, lighting, guarding, technology, tire-state, and rights options remain unresolved."
+    },
+    {
+      "id": "frame-articulation-stops-and-steering-cylinder-travel",
+      "status": "PENDING",
+      "detail": "40 degree publication condition is not admitted as exact stop authority; pivot and cylinder anchors are reconstructed."
+    },
+    {
+      "id": "rear-axle-oscillation-mechanical-clearance",
+      "status": "PENDING",
+      "detail": "Published plus/minus 13 degrees is recorded, but bearing center, tire deflection, and collision clearance are not solved."
+    },
+    {
+      "id": "lift-and-zbar-kinematic-solver",
+      "status": "PENDING",
+      "detail": "Review poses retain one reconstructed dogbone length with a planar visual closure only. No manufacturer-grounded cylinder strokes, motion limits, full parallel-lift solver, or dynamic linkage proof exists."
+    },
+    {
+      "id": "published-lift-dump-endpoint-proof",
+      "status": "PENDING",
+      "detail": "Review poses are reconstructed visual studies and do not prove maximum-lift height, dump reach, clearance, rack-back, or timing endpoints."
+    },
+    {
+      "id": "ground-self-swept-collision",
+      "status": "PENDING",
+      "detail": "No collision proxies or swept-volume solver are admitted."
+    },
+    {
+      "id": "critic-human-visual-review",
+      "status": "PENDING",
+      "detail": "Overall critic must inspect exact render, blend, GLB, builder, and receipt hashes."
+    },
+    {
+      "id": "viewer-browser-accessibility-mobile-selection-performance",
+      "status": "PENDING",
+      "detail": "No shared-viewer integration or browser qualification in this machine lane."
+    },
+    {
+      "id": "publication-and-deployment",
+      "status": "PENDING",
+      "detail": "Only the overall publisher may advance publication state."
+    }
+  ],
+  "failed_gate_ids": []
+}

@@ -1,0 +1,289 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-470-p-tier",
+  "configuration_id": "JD-470P-NAM-B70-A39-B234-W1370-TSG900-CW8400-CANDIDATE",
+  "configuration_status": "research_candidate",
+  "candidate_class": "technical_structural_study",
+  "authority_boundary": "Independently authored neutral technical structural study. Not manufacturer CAD, engineering authority, a digital twin, load guidance, operator training, safety guidance, or manufacturer endorsement.",
+  "blender": {
+    "version": "5.1.1",
+    "factory_startup_required": true,
+    "background_required": true
+  },
+  "builder": {
+    "path": "source/blender/build_john_deere_470_p_tier.py",
+    "sha256": "75d9c7479b887956f537ac956c13e218fc8a2e5fc2f6a9c8b713292bb5a97dea",
+    "deterministic": true,
+    "network_used": false,
+    "downloaded_geometry_used": false,
+    "manufacturer_cad_used": false,
+    "copied_textures_used": false,
+    "copied_imagery_used": false,
+    "opaque_addons_used": false
+  },
+  "artifacts": {
+    "blend": {
+      "path": "source/blender/john-deere-470-p-tier-structural-study.blend",
+      "sha256": "b8aafc921c54fd588b578be2be40f072ba532a360709ab348fbac9b8e6093e56",
+      "bytes": 375872
+    },
+    "glb": {
+      "path": "assets/john-deere-470-p-tier-structural-study.glb",
+      "sha256": "98e068a2e6d73a13696081a1e14dff9b6521b0df3e797c6ea18ca4ab08eaeb76",
+      "bytes": 5489164
+    }
+  },
+  "scene": {
+    "units": "meters",
+    "axes": {
+      "longitudinal": "+X toward bucket",
+      "vertical": "+Y",
+      "lateral": "+Z machine right"
+    },
+    "visible_aabb_xyz_m": [
+      12.01,
+      3.5,
+      3.795
+    ],
+    "bounds": {
+      "min_m": [
+        -3.67,
+        -0.0,
+        -1.9
+      ],
+      "max_m": [
+        8.34,
+        3.5,
+        1.895
+      ],
+      "size_m": [
+        12.01,
+        3.5,
+        3.795
+      ]
+    },
+    "objects": 470,
+    "meshes": 437,
+    "empties": 33,
+    "triangles": 85688,
+    "materials": 13
+  },
+  "public_glb_contract": {
+    "scene_count": 1,
+    "scene_roots": [
+      {
+        "index": 469,
+        "name": "Machine_Root",
+        "transform": {}
+      }
+    ],
+    "camera_count": 0,
+    "punctual_light_extension_present": false,
+    "helper_nodes": [],
+    "mesh_scale_offenders": [],
+    "node_count": 470,
+    "mesh_count": 437,
+    "material_count": 13
+  },
+  "required_semantic_nodes": {
+    "Machine_Root": true,
+    "Undercarriage_ROOT": true,
+    "Track_L_ROOT": true,
+    "Track_R_ROOT": true,
+    "Upper_Swing_Pivot": true,
+    "Upper_ROOT": true,
+    "Boom_Pivot": true,
+    "Boom_ROOT": true,
+    "Arm_Pivot": true,
+    "Arm_ROOT": true,
+    "Bucket_Pivot": true,
+    "Bucket_ROOT": true,
+    "Hydraulics_ROOT": true,
+    "Boom_Hydraulics_ROOT": true,
+    "Arm_Hydraulics_ROOT": true,
+    "Bucket_Hydraulics_ROOT": true,
+    "Linkage_ROOT": true,
+    "Bucket_Linkage_ROOT": true,
+    "Bucket_Bellcrank_ROOT": true,
+    "PIVOT_Attachment_Pin": true
+  },
+  "manufacturer_published_constraints_used": [
+    "boom-length",
+    "arm-length",
+    "bucket-capacity-operating-weight",
+    "bucket-width-operating-weight",
+    "counterweight-mass",
+    "overall-length",
+    "overall-height",
+    "tail-swing-radius",
+    "idler-sprocket-centers",
+    "undercarriage-length",
+    "counterweight-clearance",
+    "upperstructure-width",
+    "cab-height",
+    "track-shoe-width",
+    "track-gauge-operating",
+    "overall-width-operating",
+    "ground-clearance",
+    "track-shoes-per-side",
+    "track-rollers-per-side",
+    "carrier-rollers-per-side",
+    "boom-cylinder-count",
+    "boom-cylinder-bore",
+    "boom-cylinder-rod",
+    "boom-cylinder-stroke",
+    "arm-cylinder-bore",
+    "arm-cylinder-rod",
+    "arm-cylinder-stroke",
+    "bucket-cylinder-bore",
+    "bucket-cylinder-rod",
+    "bucket-cylinder-stroke",
+    "maximum-reach",
+    "maximum-ground-reach",
+    "maximum-digging-depth",
+    "work-light-count"
+  ],
+  "reconstructed_values": {
+    "transport_pose": {
+      "upper_swing_deg": 0.0,
+      "boom_delta_deg": 0.0,
+      "arm_delta_deg": 0.0,
+      "bucket_delta_deg": 0.0,
+      "note": "Authored folded pose constrained to published overall dimensions; not a manufacturer pose definition."
+    },
+    "review_articulated_pose": {
+      "upper_swing_deg": -16.0,
+      "boom_delta_deg": 28.0,
+      "arm_delta_deg": 17.0,
+      "bucket_delta_deg": -32.0,
+      "note": "Review-only articulation for hierarchy inspection; not a validated working endpoint."
+    },
+    "slew_center_m": [
+      0.0,
+      1.18,
+      0.0
+    ],
+    "slew_ring_diameter_m": 2.18,
+    "boom_pivot_m": [
+      0.15,
+      1.82,
+      0.0
+    ],
+    "boom_profile_and_pin_locations": "Reconstructed to preserve the 7.0 m selected boom identity and published machine envelope; 7.0 m is not asserted as modeled pin-center distance.",
+    "arm_modeled_pin_distance_m": 3.8985,
+    "bucket_shell": "Reconstructed around the operating-weight 2.34 m3 / 1370 mm basis. Shell volume and bucket family are not validated because the same publication conflicts with its bucket table.",
+    "track_loop_radius_m": 0.45,
+    "track_center_y_m": 0.5448,
+    "track_link_pitch_and_phase": "Reconstructed from 53 shoes around a capsule loop constrained by the published 4.47 m idler/sprocket-center distance.",
+    "sprocket_teeth_each_side": 16,
+    "sprocket_tooth_geometry": "Reconstructed visibility cue; not a published count or tooth form.",
+    "roller_centers": "Evenly reconstructed within the published undercarriage envelope; only counts are manufacturer-published.",
+    "hydraulic_anchors": "All base, rod, and linkage anchors are reconstructed; bore, rod diameter, stroke, and cylinder count are published constraints only.",
+    "bucket_linkage": "Bellcrank, twin dogbones, bucket lugs, pin centers, and plate thicknesses are reconstructed visual closure cues.",
+    "exterior_hose_paths": "Reconstructed exterior routing cues only; no pressure, service, diameter, or fitting authority.",
+    "upper_house_and_cab": "Independently authored from first-party imagery observations and published envelope facts; hidden internal assemblies are omitted.",
+    "work_light_locations": "Nine visible light housings follow the published count and described mounting regions; exact bracket coordinates are reconstructed.",
+    "materials": "Neutral unbranded copper-clay, graphite, steel, rubber, and blue-gray glass; not Deere trade dress."
+  },
+  "measured_metrics": {
+    "published_component_counts": {
+      "shoes_left": 53,
+      "shoes_right": 53,
+      "track_rollers_left": 9,
+      "track_rollers_right": 9,
+      "carrier_rollers_left": 3,
+      "carrier_rollers_right": 3,
+      "sprocket_teeth_left": 16,
+      "sprocket_teeth_right": 16,
+      "work_lights": 9
+    },
+    "track_contact_min_y_m": 7.68877798691392e-05,
+    "shoe_outer_width_m": 3.7899999618530273,
+    "center_frame_underside_y_m": 0.7400000095367432,
+    "cab_roof_top_y_m": 3.3299999237060547,
+    "lowest_visible_y_m": -2.980232238769531e-07,
+    "tail_swing_radius_m": 3.6700000762939453,
+    "counterweight_clearance_y_m": 1.3599998950958252,
+    "bucket_linkage_static_closure_errors_m": {
+      "bucket_rod_to_bellcrank_m": 3.2301780792074574e-08,
+      "dogbone_left_to_bellcrank_m": 2.9802322387695312e-08,
+      "dogbone_left_to_bucket_m": 2.9802322387695312e-08,
+      "dogbone_right_to_bellcrank_m": 2.9802322387695312e-08,
+      "dogbone_right_to_bucket_m": 2.9802322387695312e-08
+    },
+    "export_mesh_scale_offenders": {},
+    "reconstructed_hose_meshes": 10
+  },
+  "unresolved_choices": [
+    "exact PIN and order family",
+    "bucket family behind operating-weight basis",
+    "hydraulic coupler",
+    "auxiliary hydraulic plumbing",
+    "cab protection and trim",
+    "grade management",
+    "counterweight removal-device exterior detail",
+    "public material and branding authorization"
+  ],
+  "documented_source_conflicts": [
+    "ME470PAU operating-weight basis states 2.34 m3 / 1370 mm / 2031 kg, while its heavy-duty table states 2.01 m3 / 1372 mm / 1924 kg. The study does not reconcile these as one bucket family."
+  ],
+  "mechanical_gaps": [
+    "Slew-bearing dimensions and elevation are reconstructed.",
+    "Boom, arm, bucket, cylinder, and linkage anchors are reconstructed.",
+    "Cylinder strokes constrain identity only; no solver or authoritative endpoint curve exists.",
+    "Track pitch, sprocket teeth/phase, roller centers, and rolling motion are reconstructed.",
+    "No ground, self, swept-volume, working-envelope, or interference qualification exists.",
+    "No hidden internal hydraulic, powertrain, counterweight-removal, or service assembly is represented."
+  ],
+  "renders": [
+    {
+      "path": "review/renders/john-deere-470-p-tier-transport-operator-side.png",
+      "sha256": "5954fed5bde36478585d6c7b7c276a0d1ea87432c377616fc2d06b7acbf74470",
+      "bytes": 510407
+    },
+    {
+      "path": "review/renders/john-deere-470-p-tier-transport-technical-right.png",
+      "sha256": "bcbc4fe0dd335a6aa15435891b6001a14bab7a98b994f9d21fcfced5cad4b9b9",
+      "bytes": 500435
+    },
+    {
+      "path": "review/renders/john-deere-470-p-tier-operator-front-quarter.png",
+      "sha256": "4beb14cda56ab5fc38578e6e6168566e05b78ca010659a6bd7182b0e341ac8a9",
+      "bytes": 539499
+    },
+    {
+      "path": "review/renders/john-deere-470-p-tier-rear-service-quarter.png",
+      "sha256": "d338e8c970ff45ef638aa485f2caeb4fba9e836e516044316b4ff8e178e1dc4b",
+      "bytes": 517270
+    },
+    {
+      "path": "review/renders/john-deere-470-p-tier-track-sprocket-detail.png",
+      "sha256": "ad34b956190eca9c23c9ab9e4aa538570345db55691737fe82605ed6289150cd",
+      "bytes": 682581
+    },
+    {
+      "path": "review/renders/john-deere-470-p-tier-boom-hydraulic-detail.png",
+      "sha256": "d1babc3df88194293d7ae23067f3f367ffbfcb7cde2ca97817b6bdd82917b825",
+      "bytes": 619841
+    },
+    {
+      "path": "review/renders/john-deere-470-p-tier-bucket-linkage-detail.png",
+      "sha256": "f7db9e9a499558ae03375bede15f8321af63ffad6b2c0b5161993ba5a46cf31b",
+      "bytes": 555341
+    },
+    {
+      "path": "review/renders/john-deere-470-p-tier-cab-service-detail.png",
+      "sha256": "2d0356095389360846a076fee35b3e44f649fb8d3cd46bcda2019613add396ac",
+      "bytes": 705466
+    },
+    {
+      "path": "review/renders/john-deere-470-p-tier-articulated-reach.png",
+      "sha256": "5f3f5f5c99c02073ae465179a83f86e423b193e83fcd9970a7823a25ac00d624",
+      "bytes": 490199
+    }
+  ],
+  "build_verdict": "PASS",
+  "validation_verdict": "PASS",
+  "validation_path": "production/validation.json",
+  "publication_gate": "PENDING_OVERALL_CRITIC_AND_FULL_PROOF_LADDER"
+}

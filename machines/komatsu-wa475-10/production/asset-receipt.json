@@ -1,0 +1,701 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "komatsu-wa475-10",
+  "configuration_id": "KOM-WA475-10-NAM-STD-STOCKPILE42-L3-CW-CANDIDATE",
+  "configuration_status": "research_candidate",
+  "candidate_class": "technical_structural_study",
+  "engineering_authority": false,
+  "authority_statement": "Independent technical structural study only; not manufacturer CAD, engineering data, training material, or operational guidance.",
+  "rights_boundary": "Neutral unbranded materials; no copied manufacturer geometry, textures, logos, imagery, or publication pages are shipped.",
+  "blender": {
+    "version": "5.1.1",
+    "factory_startup_background_required": true,
+    "builder_path": "source/blender/build_komatsu_wa475_10.py",
+    "builder_sha256": "fc127aa80cc73b97e12827969900158a782811fd5b97a58dbf3bbb359223e563",
+    "builder_bytes": 76936
+  },
+  "artifacts": {
+    "blend": {
+      "path": "source/blender/komatsu-wa475-10-structural-study.blend",
+      "sha256": "fb9fa658558567c6cce5d2d43bd6618fe1e3318e85ff9f032942a88af25301e4",
+      "bytes": 303968
+    },
+    "glb": {
+      "path": "assets/komatsu-wa475-10-structural-study.glb",
+      "sha256": "7c0f2b1628ad009a19155fbef09b03b00f9e4e2127dc4e258dcdb848fcfa64cf",
+      "bytes": 2725724
+    },
+    "validation": {
+      "path": "production/validation.json",
+      "sha256": "cdbba1b00a497a2f4735d1691cbd8de099c222022364288b54c95ad29ec0e2f5",
+      "bytes": 17923
+    }
+  },
+  "scene": {
+    "units": "meters",
+    "machine_axes": "+X toward bucket, +Y vertical, +Z machine right",
+    "blender_storage_mapping": "machine (X,Y,Z) -> Blender (X,Z,Y)",
+    "glb_export_y_up": true,
+    "bounds": {
+      "evaluated_public_visible_retained_pose": {
+        "axis_order": [
+          "machine_X_longitudinal",
+          "machine_Y_vertical",
+          "machine_Z_right"
+        ],
+        "min_m": [
+          -4.05,
+          -0.005595,
+          -1.585
+        ],
+        "max_m": [
+          5.133311,
+          3.54,
+          1.585
+        ],
+        "size_m": [
+          9.183311,
+          3.545595,
+          3.17
+        ],
+        "measured_object_count": 407,
+        "method": "evaluated retained-pose public mesh and curve vertices; studio, markers, collision, inspection, cameras, and lights excluded"
+      }
+    },
+    "counts": {
+      "classification": "public_glb_decoded_geometry",
+      "nodes": 413,
+      "mesh_nodes": 407,
+      "mesh_resources": 407,
+      "primitives": 407,
+      "position_vertices": 100986,
+      "triangles": 53132,
+      "triangle_method": "decoded glTF accessor element counts; TRIANGLES count/3, strips/fans count-2"
+    },
+    "blend_source_counts": {
+      "classification": "blend_source_scene_evaluated_including_nonpublic_helpers",
+      "objects": 433,
+      "meshes": 416,
+      "vertices": 27590,
+      "triangles": 53336,
+      "materials": 16
+    },
+    "count_boundary": "scene.counts is decoded shipped public GLB geometry; blend_source_counts includes nonpublic source helpers and studio geometry.",
+    "public_glb_contract": {
+      "status": "PASS",
+      "asset_version": "2.0",
+      "scene_direct_root_count": 1,
+      "scene_direct_root_names": [
+        "WA47510_Root"
+      ],
+      "root_identity_trs": true,
+      "node_count": 413,
+      "helper_nodes_present": [],
+      "public_mesh_node_scale_status": "PASS",
+      "public_mesh_node_count": 407,
+      "public_mesh_nodes_non_identity_scale": [],
+      "public_glb_decoded_counts": {
+        "classification": "public_glb_decoded_geometry",
+        "nodes": 413,
+        "mesh_nodes": 407,
+        "mesh_resources": 407,
+        "primitives": 407,
+        "position_vertices": 100986,
+        "triangles": 53132,
+        "triangle_method": "decoded glTF accessor element counts; TRIANGLES count/3, strips/fans count-2"
+      },
+      "unsupported_primitive_modes": [],
+      "glb_y_up": true
+    },
+    "public_scale_application": {
+      "status": "PASS",
+      "public_export_geometry_nodes": 407,
+      "baked_node_count": 25,
+      "before_non_identity": {
+        "BucketCylinder_Barrel": [
+          0.13,
+          0.13,
+          0.232913
+        ],
+        "BucketCylinder_Rod": [
+          0.078,
+          0.078,
+          0.142753
+        ],
+        "LiftCylinder_Barrel_L": [
+          0.112,
+          0.112,
+          0.460187
+        ],
+        "LiftCylinder_Barrel_R": [
+          0.112,
+          0.112,
+          0.460187
+        ],
+        "LiftCylinder_Rod_L": [
+          0.068,
+          0.068,
+          0.333239
+        ],
+        "LiftCylinder_Rod_R": [
+          0.068,
+          0.068,
+          0.333239
+        ],
+        "SteeringCylinder_Barrel_L": [
+          0.075,
+          0.075,
+          0.4611
+        ],
+        "SteeringCylinder_Barrel_R": [
+          0.075,
+          0.075,
+          0.4611
+        ],
+        "SteeringCylinder_Rod_L": [
+          0.044,
+          0.044,
+          0.3339
+        ],
+        "SteeringCylinder_Rod_R": [
+          0.044,
+          0.044,
+          0.3339
+        ],
+        "BucketHingeCrossmember": [
+          0.91,
+          0.09,
+          0.09
+        ],
+        "LoaderArmCrossmember": [
+          0.89,
+          0.11,
+          0.11
+        ],
+        "StandardLoaderArmFront_L": [
+          0.90068,
+          0.12,
+          0.15
+        ],
+        "StandardLoaderArmFront_R": [
+          0.90068,
+          0.12,
+          0.15
+        ],
+        "StandardLoaderArmLowerWeb_L": [
+          1.321836,
+          0.075,
+          0.085
+        ],
+        "StandardLoaderArmLowerWeb_R": [
+          1.321836,
+          0.075,
+          0.085
+        ],
+        "StandardLoaderArmRear_L": [
+          0.649192,
+          0.115,
+          0.14
+        ],
+        "StandardLoaderArmRear_R": [
+          0.649192,
+          0.115,
+          0.14
+        ],
+        "ZBar_Bellcrank_Lower_Reconstructed": [
+          0.215697,
+          0.1,
+          0.1
+        ],
+        "ZBar_Bellcrank_Upper_Reconstructed": [
+          0.233452,
+          0.1,
+          0.1
+        ],
+        "ZBar_BucketLink_Reconstructed": [
+          0.696796,
+          0.08,
+          0.08
+        ],
+        "ROPS_FrontPillar_L": [
+          0.976844,
+          0.05,
+          0.055
+        ],
+        "ROPS_FrontPillar_R": [
+          0.976844,
+          0.05,
+          0.055
+        ],
+        "ROPS_RearPillar_L": [
+          0.976281,
+          0.05,
+          0.055
+        ],
+        "ROPS_RearPillar_R": [
+          0.976281,
+          0.05,
+          0.055
+        ]
+      },
+      "after_non_identity": {},
+      "before_bounds_m": {
+        "axis_order": [
+          "machine_X_longitudinal",
+          "machine_Y_vertical",
+          "machine_Z_right"
+        ],
+        "min_m": [
+          -4.05,
+          -0.005595,
+          -1.585
+        ],
+        "max_m": [
+          5.133311,
+          3.54,
+          1.585
+        ],
+        "size_m": [
+          9.183311,
+          3.545595,
+          3.17
+        ],
+        "measured_object_count": 407,
+        "method": "evaluated retained-pose public mesh and curve vertices; studio, markers, collision, inspection, cameras, and lights excluded"
+      },
+      "after_bounds_m": {
+        "axis_order": [
+          "machine_X_longitudinal",
+          "machine_Y_vertical",
+          "machine_Z_right"
+        ],
+        "min_m": [
+          -4.05,
+          -0.005595,
+          -1.585
+        ],
+        "max_m": [
+          5.133311,
+          3.54,
+          1.585
+        ],
+        "size_m": [
+          9.183311,
+          3.545595,
+          3.17
+        ],
+        "measured_object_count": 407,
+        "method": "evaluated retained-pose public mesh and curve vertices; studio, markers, collision, inspection, cameras, and lights excluded"
+      },
+      "envelope_delta_m": {
+        "min_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "max_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "size_m": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    }
+  },
+  "semantic_nodes": {
+    "WA47510_Root": true,
+    "RearFrame_Root": true,
+    "Articulation_FrontFrame_Root_Reconstructed": true,
+    "RearAxle_Oscillation_Root_Reconstructed": true,
+    "RearFrame_Spine": true,
+    "RearCounterweight_Mass": true,
+    "EngineCompartment_Core": true,
+    "RearCoolingMask": true,
+    "Cab_ROPS_Root_Reconstructed": true,
+    "ROPS_Roof": true,
+    "Cab_FrontGlass": true,
+    "RearTire_L": true,
+    "RearTire_R": true,
+    "FrontTire_L": true,
+    "FrontTire_R": true,
+    "FrontFrame_Main": true,
+    "CenterArticulationUpperPin": true,
+    "SteeringCylinder_Barrel_L": true,
+    "SteeringCylinder_Rod_L": true,
+    "SteeringCylinder_Barrel_R": true,
+    "SteeringCylinder_Rod_R": true,
+    "StandardLoaderArmRear_L": true,
+    "StandardLoaderArmFront_L": true,
+    "StandardLoaderArmRear_R": true,
+    "StandardLoaderArmFront_R": true,
+    "LiftCylinder_Barrel_L": true,
+    "LiftCylinder_Rod_L": true,
+    "LiftCylinder_Barrel_R": true,
+    "LiftCylinder_Rod_R": true,
+    "BucketCylinder_Barrel": true,
+    "BucketCylinder_Rod": true,
+    "ZBar_Bellcrank_Upper_Reconstructed": true,
+    "ZBar_BucketLink_Reconstructed": true,
+    "StockPileBucket_PivotRoot_Reconstructed": true,
+    "StockPileBucket_Shell": true,
+    "BucketBoltOnCuttingEdge": true,
+    "LoaderHose_L_01": true,
+    "LoaderHose_R_01": true
+  },
+  "source_only_helper_nodes": {
+    "RearFrame_Hit": {
+      "present_in_blend_source": true,
+      "present_in_public_glb": false
+    },
+    "FrontFrame_Hit": {
+      "present_in_blend_source": true,
+      "present_in_public_glb": false
+    },
+    "Cab_Hit": {
+      "present_in_blend_source": true,
+      "present_in_public_glb": false
+    },
+    "Bucket_Hit": {
+      "present_in_blend_source": true,
+      "present_in_public_glb": false
+    },
+    "Articulation_Inspect": {
+      "present_in_blend_source": true,
+      "present_in_public_glb": false
+    },
+    "LoaderLinkage_Inspect": {
+      "present_in_blend_source": true,
+      "present_in_public_glb": false
+    },
+    "OperatorStation_Inspect": {
+      "present_in_blend_source": true,
+      "present_in_public_glb": false
+    },
+    "RearCooling_Inspect": {
+      "present_in_blend_source": true,
+      "present_in_public_glb": false
+    }
+  },
+  "manufacturer_published_constraints_used": [
+    {
+      "id": "overall-length-stock-pile",
+      "value": 9.185,
+      "source_id": "KOM-WA47510-AESS942-0225",
+      "location": "PDF pages 18-19",
+      "use": "geometry_or_configuration_constraint_with_reconstruction_boundary"
+    },
+    {
+      "id": "bucket-width-stock-pile",
+      "value": 3.17,
+      "source_id": "KOM-WA47510-AESS942-0225",
+      "location": "PDF pages 18-19",
+      "use": "geometry_or_configuration_constraint_with_reconstruction_boundary"
+    },
+    {
+      "id": "width-standard-tires",
+      "value": 3.06,
+      "source_id": "KOM-WA47510-AESS942-0225",
+      "location": "PDF pages 18-19",
+      "use": "geometry_or_configuration_constraint_with_reconstruction_boundary"
+    },
+    {
+      "id": "wheelbase",
+      "value": 3.45,
+      "source_id": "KOM-WA47510-AESS942-0225",
+      "location": "PDF pages 18-19",
+      "use": "geometry_or_configuration_constraint_with_reconstruction_boundary"
+    },
+    {
+      "id": "hinge-pin-height-max-standard",
+      "value": 4.37,
+      "source_id": "KOM-WA47510-AESS942-0225",
+      "location": "PDF pages 18-19",
+      "use": "geometry_or_configuration_constraint_with_reconstruction_boundary"
+    },
+    {
+      "id": "hinge-pin-height-carry-standard",
+      "value": 0.58,
+      "source_id": "KOM-WA47510-AESS942-0225",
+      "location": "PDF pages 18-19",
+      "use": "geometry_or_configuration_constraint_with_reconstruction_boundary"
+    },
+    {
+      "id": "ground-clearance",
+      "value": 0.52,
+      "source_id": "KOM-WA47510-AESS942-0225",
+      "location": "PDF pages 18-19",
+      "use": "geometry_or_configuration_constraint_with_reconstruction_boundary"
+    },
+    {
+      "id": "hitch-height-standard",
+      "value": 1.2,
+      "source_id": "KOM-WA47510-AESS942-0225",
+      "location": "PDF pages 18-19",
+      "use": "geometry_or_configuration_constraint_with_reconstruction_boundary"
+    },
+    {
+      "id": "height-top-stack",
+      "value": 3.45,
+      "source_id": "KOM-WA47510-AESS942-0225",
+      "location": "PDF pages 18-19",
+      "use": "geometry_or_configuration_constraint_with_reconstruction_boundary"
+    },
+    {
+      "id": "height-rops-cab",
+      "value": 3.5,
+      "source_id": "KOM-WA47510-AESS942-0225",
+      "location": "PDF pages 18-19",
+      "use": "geometry_or_configuration_constraint_with_reconstruction_boundary"
+    },
+    {
+      "id": "height-roof-rail",
+      "value": 3.54,
+      "source_id": "KOM-WA47510-AESS942-0225",
+      "location": "PDF pages 18-19",
+      "use": "geometry_or_configuration_constraint_with_reconstruction_boundary"
+    },
+    {
+      "id": "bucket-capacity-heaped",
+      "value": 4.2,
+      "source_id": "KOM-WA47510-AESS942-0225",
+      "location": "PDF pages 18-19",
+      "use": "geometry_or_configuration_constraint_with_reconstruction_boundary"
+    },
+    {
+      "id": "bucket-capacity-struck",
+      "value": 3.6,
+      "source_id": "KOM-WA47510-AESS942-0225",
+      "location": "PDF pages 18-19",
+      "use": "geometry_or_configuration_constraint_with_reconstruction_boundary"
+    },
+    {
+      "id": "bucket-weight",
+      "value": 2196,
+      "source_id": "KOM-WA47510-AESS942-0225",
+      "location": "PDF pages 18-19",
+      "use": "geometry_or_configuration_constraint_with_reconstruction_boundary"
+    },
+    {
+      "id": "dump-clearance-stock-pile",
+      "value": 3.075,
+      "source_id": "KOM-WA47510-AESS942-0225",
+      "location": "PDF pages 18-19",
+      "use": "geometry_or_configuration_constraint_with_reconstruction_boundary"
+    },
+    {
+      "id": "dump-reach-stock-pile",
+      "value": 1.35,
+      "source_id": "KOM-WA47510-AESS942-0225",
+      "location": "PDF pages 18-19",
+      "use": "geometry_or_configuration_constraint_with_reconstruction_boundary"
+    },
+    {
+      "id": "operating-height-stock-pile",
+      "value": 6.09,
+      "source_id": "KOM-WA47510-AESS942-0225",
+      "location": "PDF pages 18-19",
+      "use": "geometry_or_configuration_constraint_with_reconstruction_boundary"
+    },
+    {
+      "id": "operating-weight-stock-pile",
+      "value": 25510,
+      "source_id": "KOM-WA47510-AESS942-0225",
+      "location": "PDF pages 18-19",
+      "use": "geometry_or_configuration_constraint_with_reconstruction_boundary"
+    },
+    {
+      "id": "steering-angle-nominal",
+      "value": 35.0,
+      "source_id": "KOM-WA47510-AESS942-0225",
+      "location": "PDF pages 18-19",
+      "use": "geometry_or_configuration_constraint_with_reconstruction_boundary"
+    },
+    {
+      "id": "steering-angle-max-stop",
+      "value": 40.0,
+      "source_id": "KOM-WA47510-AESS942-0225",
+      "location": "PDF pages 18-19",
+      "use": "geometry_or_configuration_constraint_with_reconstruction_boundary"
+    },
+    {
+      "id": "rear-axle-oscillation-total",
+      "value": 26.0,
+      "source_id": "KOM-WA47510-AESS942-0225",
+      "location": "PDF pages 18-19",
+      "use": "geometry_or_configuration_constraint_with_reconstruction_boundary"
+    },
+    {
+      "id": "lift-cylinder-count",
+      "value": 2,
+      "source_id": "KOM-WA47510-AESS942-0225",
+      "location": "PDF pages 18-19",
+      "use": "geometry_or_configuration_constraint_with_reconstruction_boundary"
+    },
+    {
+      "id": "lift-cylinder-bore",
+      "value": 0.15,
+      "source_id": "KOM-WA47510-AESS942-0225",
+      "location": "PDF pages 18-19",
+      "use": "geometry_or_configuration_constraint_with_reconstruction_boundary"
+    },
+    {
+      "id": "lift-cylinder-stroke",
+      "value": 0.764,
+      "source_id": "KOM-WA47510-AESS942-0225",
+      "location": "PDF pages 18-19",
+      "use": "geometry_or_configuration_constraint_with_reconstruction_boundary"
+    },
+    {
+      "id": "bucket-cylinder-count",
+      "value": 1,
+      "source_id": "KOM-WA47510-AESS942-0225",
+      "location": "PDF pages 18-19",
+      "use": "geometry_or_configuration_constraint_with_reconstruction_boundary"
+    },
+    {
+      "id": "bucket-cylinder-bore",
+      "value": 0.18,
+      "source_id": "KOM-WA47510-AESS942-0225",
+      "location": "PDF pages 18-19",
+      "use": "geometry_or_configuration_constraint_with_reconstruction_boundary"
+    },
+    {
+      "id": "bucket-cylinder-stroke",
+      "value": 0.54,
+      "source_id": "KOM-WA47510-AESS942-0225",
+      "location": "PDF pages 18-19",
+      "use": "geometry_or_configuration_constraint_with_reconstruction_boundary"
+    },
+    {
+      "id": "steering-cylinder-count",
+      "value": 2,
+      "source_id": "KOM-WA47510-AESS942-0225",
+      "location": "PDF pages 18-19",
+      "use": "geometry_or_configuration_constraint_with_reconstruction_boundary"
+    }
+  ],
+  "reconstructed_values": {
+    "rear_visible_x_m": -4.05,
+    "bucket_front_visible_x_m": 5.135,
+    "rear_axle_x_m": -1.85,
+    "front_axle_x_m": 1.6,
+    "wheel_center_y_m": 0.86,
+    "tire_outer_radius_m": 0.85,
+    "tire_center_z_m": 1.19,
+    "tire_tread_outer_z_m": 1.53,
+    "tread_lugs_per_tire": 24,
+    "wheel_hub_bolts_per_wheel": 12,
+    "articulation_pivot_xyz_m": [
+      0.0,
+      1.2,
+      0.0
+    ],
+    "rear_axle_pivot_xyz_m": [
+      -1.85,
+      0.86,
+      0.0
+    ],
+    "loader_rear_pivot_xyz_m": [
+      0.28,
+      1.5,
+      0.0
+    ],
+    "stowed_arm_elbow_xyz_m": [
+      1.55,
+      1.23,
+      0.0
+    ],
+    "stowed_bucket_hinge_xyz_m": [
+      3.23,
+      0.58,
+      0.0
+    ],
+    "raised_arm_elbow_xyz_m": [
+      1.18,
+      3.5,
+      0.0
+    ],
+    "raised_bucket_hinge_xyz_m": [
+      2.05,
+      4.37,
+      0.0
+    ],
+    "stowed_bucket_rotation_blender_y_deg": 16.0,
+    "raised_dump_rotation_blender_y_deg": 45.0,
+    "bucket_visual_width_m": 3.07,
+    "bucket_side_guard_outer_width_m": 3.17,
+    "bucket_cutting_edge_segments": 9,
+    "loader_arm_lateral_center_m": 0.78,
+    "loader_hose_visual_diameter_m": 0.032,
+    "steering_cylinder_barrel_visual_radius_m": 0.075,
+    "steering_cylinder_rod_visual_radius_m": 0.044,
+    "structural_triangle_budget": 180000
+  },
+  "unresolved_choices_and_mechanical_gaps": [
+    "standard and additional counterweight individual masses and attachment geometry",
+    "26.5R25 L-3 tire manufacturer, tread pattern, carcass, loaded radius, and pressure",
+    "stock-pile bucket part number, shell radii, side guards, and cutting-edge fastener pattern",
+    "loader arm pivot coordinates, bellcrank coordinates, link lengths, and cylinder anchors",
+    "front and rear frame casting geometry and articulation bearing stack",
+    "rear axle center-pin coordinates, stops, and tire-deflection envelope",
+    "KHMT, driveshaft, planetary reduction, differentials, and brake internal geometry",
+    "hydraulic hose lengths, pressures, fittings, clamps, and routing under guards",
+    "powered hood and swing-out cooling-mask hinge coordinates and service envelopes",
+    "cab interior option set, mirror/camera package, work-light package, and exact glazing curvature",
+    "public material and branding authorization"
+  ],
+  "renders": [
+    {
+      "path": "review/renders/wa475-10-technical-side.png",
+      "sha256": "242bfe785c30fadbc9c2fc4d786b65eb67ff000cde7f502a89faf42a25b5d1f8",
+      "bytes": 416688
+    },
+    {
+      "path": "review/renders/wa475-10-front-three-quarter.png",
+      "sha256": "f779b75b4c913f1c6cf304c395392642a149bd10a59759ee0ac35294b9b6f7b1",
+      "bytes": 597110
+    },
+    {
+      "path": "review/renders/wa475-10-rear-three-quarter.png",
+      "sha256": "2988e1ad9a0cd25b8418e0c85281df25682088e9adadaafe43784821021d6733",
+      "bytes": 498068
+    },
+    {
+      "path": "review/renders/wa475-10-articulation-steering.png",
+      "sha256": "93b406b10ae112adfd51ef4d75d25f5208146f42c375ff59ecad238a935f13e0",
+      "bytes": 466534
+    },
+    {
+      "path": "review/renders/wa475-10-full-lift-dump.png",
+      "sha256": "fd8186cb82b78e319926ee3b1afb374eb047d1149c6a36d8ef1d46583fed4c3e",
+      "bytes": 514927
+    },
+    {
+      "path": "review/renders/wa475-10-zbar-linkage-detail.png",
+      "sha256": "a57ba834ae9895f6ae9e39cc58da4e5713e78cdcabe4383650ba6572392d3700",
+      "bytes": 769844
+    },
+    {
+      "path": "review/renders/wa475-10-operator-cab-detail.png",
+      "sha256": "ef28653e7d4719af3a88474ee5caaa33254f889563194ca0ae7964d3e9aed978",
+      "bytes": 1046628
+    },
+    {
+      "path": "review/renders/wa475-10-rear-cooling-detail.png",
+      "sha256": "ad85ba985133ff83d0c729a9fbdd673f5b09f0b32a19745131d1f98b1ebe8b53",
+      "bytes": 739787
+    },
+    {
+      "path": "review/renders/wa475-10-rear-axle-oscillation.png",
+      "sha256": "58dab4a860af96454e082a294d1668ae3d74aaa84a30b16dff1b2a71d3d7126f",
+      "bytes": 803325
+    }
+  ],
+  "build_verdict": "PASS",
+  "validation_verdict": "PASS",
+  "higher_stage_gates": "PENDING"
+}

@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "cat-d6",
+  "configuration_id": "CAT-D6-20C-AUSAM-PUSHARM-6SU-HD42-MS610-DRAWBAR-CANDIDATE",
+  "facts": [
+    {"id":"build-number","subject":"machine build number","value":"20C","unit":"identifier","authority":"manufacturer_published","source_id":"CAT-D6-AEXQ3981-20C-AUSAM","location":"PDF page 3"},
+    {"id":"engine-model","subject":"engine model","value":"Cat C9.3B","unit":"identifier","authority":"manufacturer_published","source_id":"CAT-D6-AEXQ3981-20C-AUSAM","location":"PDF page 3"},
+    {"id":"net-power","subject":"net power ISO 9249 SAE J1349","value":161,"unit":"kW","authority":"manufacturer_published","source_id":"CAT-D6-AEXQ3981-20C-AUSAM","location":"PDF page 3"},
+    {"id":"operating-weight","subject":"standard Push Arm 6SU operating weight","value":22130,"unit":"kg","authority":"manufacturer_published","source_id":"CAT-D6-AEXQ3981-20C-AUSAM","location":"PDF page 6"},
+    {"id":"shipping-weight","subject":"standard Push Arm 6SU shipping weight","value":19178,"unit":"kg","authority":"manufacturer_published","source_id":"CAT-D6-AEXQ3981-20C-AUSAM","location":"PDF page 6"},
+    {"id":"ground-pressure","subject":"ground pressure ISO 16754","value":54,"unit":"kPa","authority":"manufacturer_published","source_id":"CAT-D6-AEXQ3981-20C-AUSAM","location":"PDF page 6"},
+    {"id":"track-sections-each-side","subject":"undercarriage sections per side","value":42,"unit":"count","authority":"manufacturer_published","source_id":"CAT-D6-AEXQ3981-20C-AUSAM","location":"PDF page 6"},
+    {"id":"bottom-rollers-each-side","subject":"bottom rollers per side","value":8,"unit":"count","authority":"manufacturer_published","source_id":"CAT-D6-AEXQ3981-20C-AUSAM","location":"PDF page 6"},
+    {"id":"sprocket-service-segments","subject":"sprocket mounting and service arrangement","value":"segments mounted on the outside of the final drive","unit":"visible_form_statement","authority":"manufacturer_published","source_id":"CAT-D6-AEXQ4170-20C-AUSAM","location":"PDF page 3"},
+    {"id":"carrier-roller-observed-count","subject":"carrier roller visible per side","value":1,"unit":"count","authority":"observed","source_id":"CAT-D6-AEXQ4170-20C-AUSAM","location":"brochure imagery and standard equipment list; exact installed count not stated in page 6 dimension table"},
+    {"id":"track-gauge","subject":"track gauge","value":1.93,"unit":"m","authority":"manufacturer_published","source_id":"CAT-D6-AEXQ3981-20C-AUSAM","location":"PDF page 6, dimension 1"},
+    {"id":"maximum-track-shoe-width","subject":"maximum track shoe width for configuration","value":0.61,"unit":"m","authority":"manufacturer_published","source_id":"CAT-D6-AEXQ3981-20C-AUSAM","location":"PDF page 6, dimension 2"},
+    {"id":"width-over-tracks","subject":"width over tracks","value":2.54,"unit":"m","authority":"manufacturer_published","source_id":"CAT-D6-AEXQ3981-20C-AUSAM","location":"PDF page 6, dimension 3"},
+    {"id":"width-over-trunnions","subject":"width over push-arm trunnions","value":2.692,"unit":"m","authority":"manufacturer_published","source_id":"CAT-D6-AEXQ3981-20C-AUSAM","location":"PDF page 6"},
+    {"id":"track-on-ground-length","subject":"track length on ground","value":2.964,"unit":"m","authority":"manufacturer_published","source_id":"CAT-D6-AEXQ3981-20C-AUSAM","location":"PDF page 6, dimension 4"},
+    {"id":"track-pitch","subject":"track pitch","value":0.2028,"unit":"m","authority":"manufacturer_published","source_id":"CAT-D6-AEXQ3981-20C-AUSAM","location":"PDF page 6"},
+    {"id":"grouser-height","subject":"moderate-service grouser height","value":0.065,"unit":"m","authority":"manufacturer_published","source_id":"CAT-D6-AEXQ3981-20C-AUSAM","location":"PDF page 6"},
+    {"id":"ground-clearance","subject":"machine ground clearance","value":0.361,"unit":"m","authority":"manufacturer_published","source_id":"CAT-D6-AEXQ3981-20C-AUSAM","location":"PDF page 6"},
+    {"id":"front-idler-oscillation","subject":"oscillation at front idler","value":0.103,"unit":"m","authority":"manufacturer_published","source_id":"CAT-D6-AEXQ3981-20C-AUSAM","location":"PDF page 6"},
+    {"id":"machine-height","subject":"grouser tip to Product Link antenna","value":3.188,"unit":"m","authority":"manufacturer_published","source_id":"CAT-D6-AEXQ3981-20C-AUSAM","location":"PDF page 6, dimension 5"},
+    {"id":"machine-length-without-blade","subject":"machine length without blade","value":4.73,"unit":"m","authority":"manufacturer_published","source_id":"CAT-D6-AEXQ3981-20C-AUSAM","location":"PDF page 6, dimension 6"},
+    {"id":"blade-configuration","subject":"blade configuration","value":"6SU semi-universal","unit":"identifier","authority":"manufacturer_published","source_id":"CAT-D6-AEXQ3981-20C-AUSAM","location":"PDF page 6"},
+    {"id":"blade-capacity","subject":"6SU capacity ISO 9246","value":5.7,"unit":"m3","authority":"manufacturer_published","source_id":"CAT-D6-AEXQ3981-20C-AUSAM","location":"PDF page 6"},
+    {"id":"blade-width-end-bits","subject":"6SU width across end bits","value":3.312,"unit":"m","authority":"manufacturer_published","source_id":"CAT-D6-AEXQ3981-20C-AUSAM","location":"PDF page 6, dimension 7"},
+    {"id":"blade-width-without-end-bits","subject":"6SU width without end bits","value":3.246,"unit":"m","authority":"manufacturer_published","source_id":"CAT-D6-AEXQ3981-20C-AUSAM","location":"PDF page 6"},
+    {"id":"blade-height","subject":"6SU blade height","value":1.408,"unit":"m","authority":"manufacturer_published","source_id":"CAT-D6-AEXQ3981-20C-AUSAM","location":"PDF page 6, dimension 8"},
+    {"id":"blade-dig-depth","subject":"6SU blade dig depth","value":0.502,"unit":"m","authority":"manufacturer_published","source_id":"CAT-D6-AEXQ3981-20C-AUSAM","location":"PDF page 6, dimension 9"},
+    {"id":"blade-lift-height","subject":"6SU blade lift height","value":1.18,"unit":"m","authority":"manufacturer_published","source_id":"CAT-D6-AEXQ3981-20C-AUSAM","location":"PDF page 6, dimension 10"},
+    {"id":"blade-maximum-corner-tilt","subject":"6SU maximum tilt at blade corner","value":0.564,"unit":"m","authority":"manufacturer_published","source_id":"CAT-D6-AEXQ3981-20C-AUSAM","location":"PDF page 6, dimension 11"},
+    {"id":"blade-maximum-tilt-angle","subject":"6SU maximum tilt angle","value":9.8,"unit":"deg","authority":"manufacturer_published","source_id":"CAT-D6-AEXQ3981-20C-AUSAM","location":"PDF page 6"},
+    {"id":"blade-pitch-adjustment","subject":"6SU pitch adjustment","value":4.2,"unit":"deg_plus_minus","authority":"manufacturer_published","source_id":"CAT-D6-AEXQ3981-20C-AUSAM","location":"PDF page 6"},
+    {"id":"machine-length-blade-straight","subject":"machine length with 6SU blade straight","value":5.436,"unit":"m","authority":"manufacturer_published","source_id":"CAT-D6-AEXQ3981-20C-AUSAM","location":"PDF page 6, dimension 12"},
+    {"id":"blade-weight","subject":"6SU blade weight","value":1385,"unit":"kg","authority":"manufacturer_published","source_id":"CAT-D6-AEXQ3981-20C-AUSAM","location":"PDF page 6"},
+    {"id":"blade-and-push-arms-weight","subject":"6SU blade and push arms weight","value":2620,"unit":"kg","authority":"manufacturer_published","source_id":"CAT-D6-AEXQ3981-20C-AUSAM","location":"PDF page 6"}
+  ],
+  "issues": [
+    {
+      "id": "regional-applicability",
+      "status": "documented",
+      "detail": "AEXQ3981 binds Build 20C for Australia, New Zealand, and South America. It must not be merged with North American Build 20B Tier 4 Final dimensions or option tables."
+    },
+    {
+      "id": "drawbar-versus-ripper",
+      "status": "frozen",
+      "detail": "Published operating weight includes the standard drawbar. This candidate excludes the optional high-lift ripper and its 1.179 m length addition."
+    },
+    {
+      "id": "hidden-mechanism-geometry",
+      "status": "unresolved",
+      "detail": "Blade lift and tilt pivot coordinates, cylinder anchors and strokes, push-arm trunnion axes, equalizer-bar motion, roller and idler centers, sprocket tooth phase, and track shoe pin geometry are not established by the admitted publications."
+    },
+    {
+      "id": "press-release-binary",
+      "status": "pending",
+      "detail": "The official 44PR25 page text was reviewed, but its local binary download timed out; no synthetic hash or byte count is recorded."
+    }
+  ]
+}

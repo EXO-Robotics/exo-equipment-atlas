@@ -1,0 +1,353 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "cat-140",
+  "configuration_id": "CAT-140-16A-NAM-LVR-NONAWD-STDCIRCLE-MB12-RR14R24-PB-RRS-CANDIDATE",
+  "candidate_class": "technical_structural_study",
+  "verdict": "PASS",
+  "bounds": {
+    "min_m": [
+      -3.997,
+      0.0,
+      -1.829
+    ],
+    "max_m": [
+      6.3,
+      3.454,
+      1.829
+    ],
+    "size_m": [
+      10.297,
+      3.454,
+      3.658
+    ]
+  },
+  "counts": {
+    "objects": 1358,
+    "meshes": 1305,
+    "empties": 53,
+    "triangles": 224404,
+    "materials": 14
+  },
+  "measured_metrics": {
+    "visible_min_y_m": 0.0,
+    "tire_contact_min_y_m": 0.0,
+    "front_tire_outside_width_m": 2.5209999084472656,
+    "rear_tire_outside_width_m": 2.5319998264312744,
+    "cab_roof_top_m": 3.4539999961853027,
+    "front_axle_center_world_m": [
+      5.292,
+      0.612,
+      0.0
+    ],
+    "rear_axle_center_world_m": [
+      -0.844,
+      0.69,
+      0.0
+    ],
+    "tandem_wheel_spacing_m": 1.4979999661445618,
+    "moldboard_width_m": 3.6579999923706055,
+    "tire_carcass_count": 6,
+    "tread_block_count": 336,
+    "circle_tooth_count": 64,
+    "drawbar_shoe_count": 6,
+    "ripper_shank_count": 5,
+    "hydraulic_barrels": 12,
+    "hydraulic_rods": 12,
+    "reconstructed_hose_segments": 28,
+    "export_mesh_scale_offenders": {}
+  },
+  "glb_contract": {
+    "scene_count": 1,
+    "scene_roots": [
+      {
+        "index": 1357,
+        "name": "Machine_Root",
+        "transform": {}
+      }
+    ],
+    "camera_count": 0,
+    "punctual_light_extension_present": false,
+    "inspection_helper_nodes": [],
+    "platform_axes": "+X front, +Y vertical, +Z machine right"
+  },
+  "gates": [
+    {
+      "id": "builder-execution",
+      "status": "PASS",
+      "detail": "Factory-startup background builder reached receipt generation."
+    },
+    {
+      "id": "candidate-class-boundary",
+      "status": "PASS",
+      "detail": "technical_structural_study; research candidate only; not engineering authority."
+    },
+    {
+      "id": "scene-units-and-axes",
+      "status": "PASS",
+      "detail": "Meters; +X front, +Y vertical, +Z machine right."
+    },
+    {
+      "id": "independent-authoring-boundary",
+      "status": "PASS",
+      "detail": "No downloaded geometry, CAD, copied texture, logo, manufacturer binary, or protected livery is embedded."
+    },
+    {
+      "id": "required-semantic-nodes",
+      "status": "PASS",
+      "detail": {
+        "Machine_Root": true,
+        "Rear_Frame_ROOT": true,
+        "Articulation_Pivot": true,
+        "Front_Frame_ROOT": true,
+        "Front_Axle_Oscillation_Pivot": true,
+        "Front_Axle_ROOT": true,
+        "Front_Steering_L_Pivot": true,
+        "Front_Steering_R_Pivot": true,
+        "Front_Wheel_Lean_L_Pivot": true,
+        "Front_Wheel_Lean_R_Pivot": true,
+        "Tandem_L_Pivot": true,
+        "Tandem_R_Pivot": true,
+        "Drawbar_ROOT": true,
+        "Circle_Rotation_Pivot": true,
+        "Circle_ROOT": true,
+        "Moldboard_Tip_Pivot": true,
+        "Moldboard_Sideshift_ROOT": true,
+        "Rear_Ripper_Pivot": true,
+        "Rear_Ripper_ROOT": true,
+        "Hydraulics_ROOT": true,
+        "Steering_Linkage_ROOT": true
+      }
+    },
+    {
+      "id": "hierarchy-and-pivot-parenting",
+      "status": "PASS",
+      "detail": "Rear frame, articulation, front axle, steering, wheel lean, tandems, circle, moldboard, and rear ripper are separate pivot-parented groups."
+    },
+    {
+      "id": "published-visible-length-envelope",
+      "status": "PASS",
+      "detail": {
+        "modeled_m": 10.297,
+        "published_m": 10.297,
+        "absolute_tolerance_m": 0.035,
+        "classification": "published_constraint_reconstructed_static_geometry"
+      }
+    },
+    {
+      "id": "published-visible-width-envelope",
+      "status": "PASS",
+      "detail": {
+        "modeled_m": 3.658,
+        "published_m": 3.658,
+        "absolute_tolerance_m": 0.02,
+        "classification": "published_12ft_moldboard_constraint"
+      }
+    },
+    {
+      "id": "published-cab-height-envelope",
+      "status": "PASS",
+      "detail": {
+        "modeled_visible_height_m": 3.454,
+        "cab_roof_top_m": 3.4539999961853027,
+        "published_m": 3.454,
+        "absolute_tolerance_m": 0.02
+      }
+    },
+    {
+      "id": "front-axle-center-height",
+      "status": "PASS",
+      "detail": {
+        "measured_world_m": [
+          5.292,
+          0.612,
+          0.0
+        ],
+        "published_height_m": 0.612
+      }
+    },
+    {
+      "id": "six-tire-contact",
+      "status": "PASS",
+      "detail": {
+        "tire_count": 6,
+        "tire_contact_min_y_m": 0.0,
+        "visible_min_y_m": 0.0
+      }
+    },
+    {
+      "id": "published-front-tire-outside-width",
+      "status": "PASS",
+      "detail": {
+        "modeled_m": 2.5209999084472656,
+        "published_m": 2.521
+      }
+    },
+    {
+      "id": "published-rear-tire-outside-width",
+      "status": "PASS",
+      "detail": {
+        "modeled_m": 2.5319998264312744,
+        "published_m": 2.532
+      }
+    },
+    {
+      "id": "published-tandem-wheel-spacing",
+      "status": "PASS",
+      "detail": {
+        "modeled_m": 1.4979999661445618,
+        "published_m": 1.498
+      }
+    },
+    {
+      "id": "published-moldboard-width",
+      "status": "PASS",
+      "detail": {
+        "modeled_m": 3.6579999923706055,
+        "published_m": 3.658,
+        "product_page_conflicting_metric_used": false
+      }
+    },
+    {
+      "id": "published-count-cues",
+      "status": "PASS",
+      "detail": {
+        "circle_teeth": 64,
+        "drawbar_shoes": 6,
+        "ripper_shanks": 5,
+        "geometry_classification": "published_counts_reconstructed_geometry"
+      }
+    },
+    {
+      "id": "tire-detail-readability",
+      "status": "PASS",
+      "detail": {
+        "tread_blocks": 336,
+        "expected": 336,
+        "classification": "reconstructed_non_proprietary_tread"
+      }
+    },
+    {
+      "id": "hydraulic-visual-elements",
+      "status": "PASS",
+      "detail": {
+        "barrels": 12,
+        "rods": 12,
+        "classification": "reconstructed_static_visual_closure"
+      }
+    },
+    {
+      "id": "reconstructed-hose-routing",
+      "status": "PASS",
+      "detail": {
+        "segment_meshes": 28,
+        "classification": "exterior_visual_cues_only"
+      }
+    },
+    {
+      "id": "export-mesh-scales-applied",
+      "status": "PASS",
+      "detail": {
+        "offenders": {}
+      }
+    },
+    {
+      "id": "glb-platform-contract",
+      "status": "PASS",
+      "detail": {
+        "scene_count": 1,
+        "scene_roots": [
+          {
+            "index": 1357,
+            "name": "Machine_Root",
+            "transform": {}
+          }
+        ],
+        "camera_count": 0,
+        "punctual_light_extension_present": false,
+        "inspection_helper_nodes": [],
+        "platform_axes": "+X front, +Y vertical, +Z machine right"
+      }
+    },
+    {
+      "id": "public-glb-authoring-helpers-stripped",
+      "status": "PASS",
+      "detail": {
+        "exported_inspection_helpers": [],
+        "private_blend_helpers_retained": true
+      }
+    },
+    {
+      "id": "object-count",
+      "status": "PASS",
+      "detail": {
+        "objects": 1358,
+        "minimum": 400
+      }
+    },
+    {
+      "id": "triangle-budget",
+      "status": "PASS",
+      "detail": {
+        "triangles": 224404,
+        "budget": [
+          40000,
+          350000
+        ]
+      }
+    },
+    {
+      "id": "review-renders-nonempty",
+      "status": "PASS",
+      "detail": {
+        "count": 9,
+        "minimum_bytes": 25000
+      }
+    },
+    {
+      "id": "neutral-unbranded-materials",
+      "status": "PASS",
+      "detail": "Neutral materials only; no logo, copied image, exact Caterpillar Yellow, or Modern Hex trade dress claim."
+    },
+    {
+      "id": "configuration-freeze",
+      "status": "PENDING",
+      "detail": "Visible LVR/non-AWD/standard-circle/12-ft/14.0R24/push-block/rear-ripper package is frozen, but serial/order, tire make, cab trim, guard/light package, and rights authorization remain unresolved."
+    },
+    {
+      "id": "articulation-steering-wheel-lean-solver",
+      "status": "PENDING",
+      "detail": "Published ranges are recorded; reconstructed joint centers and linkage geometry have no machine-specific solver or endpoint proof."
+    },
+    {
+      "id": "drawbar-circle-moldboard-kinematics",
+      "status": "PENDING",
+      "detail": "Static visual closure only; centershift, sideshift, tip, lift, ring/pinion engagement, and link-bar positions are not solved."
+    },
+    {
+      "id": "hydraulic-stroke-and-pressure-authority",
+      "status": "PENDING",
+      "detail": "Cylinder anchors and visible proportions are reconstructed; no stroke, pressure, force, hose, fitting, or service claim is made."
+    },
+    {
+      "id": "ground-self-swept-collision",
+      "status": "PENDING",
+      "detail": "No swept-volume, tire/blade, articulation, ladder, ripper, or self-collision solver exists."
+    },
+    {
+      "id": "critic-human-visual-review",
+      "status": "PENDING",
+      "detail": "Overall critic must inspect exact render and artifact hashes."
+    },
+    {
+      "id": "viewer-browser-accessibility-mobile-selection-performance",
+      "status": "PENDING",
+      "detail": "No shared-viewer integration is performed in this machine-authoring lane."
+    },
+    {
+      "id": "publication-and-deployment",
+      "status": "PENDING",
+      "detail": "Only the overall publisher may admit, push, or deploy this study."
+    }
+  ],
+  "failed_gate_ids": []
+}

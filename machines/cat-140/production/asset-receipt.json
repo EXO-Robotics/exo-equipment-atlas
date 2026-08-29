@@ -1,0 +1,295 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "cat-140",
+  "configuration_id": "CAT-140-16A-NAM-LVR-NONAWD-STDCIRCLE-MB12-RR14R24-PB-RRS-CANDIDATE",
+  "configuration_status": "research_candidate",
+  "candidate_class": "technical_structural_study",
+  "authority_boundary": "Independently authored technical structural study. Not manufacturer CAD, engineering authority, a digital twin, load/clearance guidance, operator training, safety guidance, or a mechanically validated candidate.",
+  "blender": {
+    "version": "5.1.1",
+    "factory_startup_required": true,
+    "background_required": true
+  },
+  "builder": {
+    "path": "source/blender/build_cat_140.py",
+    "sha256": "3b52bf63b60319323fc74bcbab93a1e06af1646cc74f93f2e4c5a4e42da45035",
+    "deterministic": true,
+    "network_used": false,
+    "downloaded_geometry_used": false,
+    "manufacturer_cad_used": false,
+    "copied_textures_used": false,
+    "opaque_addons_used": false
+  },
+  "artifacts": {
+    "blend": {
+      "path": "source/blender/cat-140-structural-study.blend",
+      "sha256": "a92a55d4167ccdaaa5cf6252abf47f9d8c7f5f96ed4a098a97755bb63f22bf68",
+      "bytes": 1054739
+    },
+    "glb": {
+      "path": "assets/cat-140-structural-study.glb",
+      "sha256": "0ef2f0a57c0ec9bb4f0b968749d789029634953a8406460cdf90013710292c90",
+      "bytes": 15420060
+    }
+  },
+  "scene": {
+    "units": "meters",
+    "axes": {
+      "longitudinal": "+X toward front axle and push block",
+      "vertical": "+Y",
+      "lateral": "+Z machine right"
+    },
+    "visible_aabb_xyz_m": [
+      10.297,
+      3.454,
+      3.658
+    ],
+    "bounds": {
+      "min_m": [
+        -3.997,
+        0.0,
+        -1.829
+      ],
+      "max_m": [
+        6.3,
+        3.454,
+        1.829
+      ],
+      "size_m": [
+        10.297,
+        3.454,
+        3.658
+      ]
+    },
+    "objects": 1358,
+    "meshes": 1305,
+    "empties": 53,
+    "triangles": 224404,
+    "materials": 14
+  },
+  "glb_contract": {
+    "scene_count": 1,
+    "scene_roots": [
+      {
+        "index": 1357,
+        "name": "Machine_Root",
+        "transform": {}
+      }
+    ],
+    "camera_count": 0,
+    "punctual_light_extension_present": false,
+    "inspection_helper_nodes": [],
+    "platform_axes": "+X front, +Y vertical, +Z machine right"
+  },
+  "glb_uv_canonicalization": {
+    "semantic": "TEXCOORD_*",
+    "decimals": 6,
+    "accessors": 1277,
+    "values": 868536,
+    "reason": "Canonicalizes sub-ULP Blender UV export jitter only; POSITION, NORMAL, indices, hierarchy, and geometry are unchanged."
+  },
+  "private_nonexport_inspection_nodes": [
+    "Inspection_Volumes",
+    "INSPECT_Visible_Envelope",
+    "INSPECT_Articulation_Sweep",
+    "INSPECT_Drawbar_Circle_Moldboard",
+    "INSPECT_Front_Axle_Steering_Lean",
+    "INSPECT_Rear_Ripper"
+  ],
+  "required_semantic_nodes": {
+    "Machine_Root": true,
+    "Rear_Frame_ROOT": true,
+    "Articulation_Pivot": true,
+    "Front_Frame_ROOT": true,
+    "Front_Axle_Oscillation_Pivot": true,
+    "Front_Axle_ROOT": true,
+    "Front_Steering_L_Pivot": true,
+    "Front_Steering_R_Pivot": true,
+    "Front_Wheel_Lean_L_Pivot": true,
+    "Front_Wheel_Lean_R_Pivot": true,
+    "Tandem_L_Pivot": true,
+    "Tandem_R_Pivot": true,
+    "Drawbar_ROOT": true,
+    "Circle_Rotation_Pivot": true,
+    "Circle_ROOT": true,
+    "Moldboard_Tip_Pivot": true,
+    "Moldboard_Sideshift_ROOT": true,
+    "Rear_Ripper_Pivot": true,
+    "Rear_Ripper_ROOT": true,
+    "Hydraulics_ROOT": true,
+    "Steering_Linkage_ROOT": true
+  },
+  "manufacturer_published_constraints_used": [
+    "publication-family",
+    "controls-choice",
+    "drive-choice",
+    "tire-choice",
+    "moldboard-width",
+    "moldboard-height",
+    "moldboard-thickness",
+    "moldboard-arc-radius",
+    "moldboard-throat-clearance",
+    "circle-teeth-count",
+    "circle-rotation",
+    "link-bar-positions",
+    "drawbar-shoes",
+    "steering-range",
+    "articulation-range",
+    "wheel-lean-range",
+    "front-axle-total-oscillation",
+    "cab-height",
+    "front-axle-center-height",
+    "top-of-cylinders-height",
+    "exhaust-height",
+    "push-plate-to-ripper-length",
+    "front-tire-to-rear-length",
+    "tandem-wheel-spacing",
+    "front-axle-to-rear-axle",
+    "front-axle-to-articulation",
+    "rear-axle-to-articulation",
+    "rear-axle-to-rear",
+    "rear-axle-ground-clearance",
+    "rear-tire-centerline-width",
+    "outside-rear-tires-width",
+    "outside-front-tires-width",
+    "ripper-shank-holders",
+    "ripper-depth",
+    "ripper-shank-spacing",
+    "push-block-and-ripper-basis"
+  ],
+  "reconstructed_values": {
+    "static_pose": {
+      "frame_articulation_deg": 0.0,
+      "front_axle_oscillation_deg": 0.0,
+      "front_steering_deg": 0.0,
+      "front_wheel_lean_deg": 0.0,
+      "circle_rotation_deg": 0.0,
+      "moldboard_tip_deg": 4.0,
+      "note": "Neutral review pose selected independently; not a manufacturer transport or grading pose definition."
+    },
+    "review_pose": {
+      "frame_articulation_deg": 14.0,
+      "front_axle_oscillation_deg": 5.0,
+      "front_steering_deg": 22.0,
+      "front_wheel_lean_deg": 11.0,
+      "note": "Review-only visibility pose within published ranges; not retained in the saved asset and not mechanically solved."
+    },
+    "articulation_center_m": [
+      0.0,
+      1.25,
+      0.0
+    ],
+    "rear_axle_center_m": [
+      -0.844,
+      0.69,
+      0.0
+    ],
+    "front_axle_center_m": [
+      5.292,
+      0.612,
+      0.0
+    ],
+    "rear_tire_radius_m": 0.69,
+    "front_tire_radius_m": 0.612,
+    "rear_tire_width_m": 0.445,
+    "front_tire_width_m": 0.434,
+    "tire_tread_blocks_each": 28,
+    "tire_note": "14.0R24 identity is published; loaded radii, carcass sections, and tread geometry are independently reconstructed.",
+    "standard_circle_outside_diameter_m": 1.53,
+    "circle_note": "Ring diameter, tooth form, pinion, shoes, and tooth placement are reconstructed visual cues. Only current-family tooth count and rotation range are published facts.",
+    "drawbar_circle_center_m": [
+      2.728,
+      0.895,
+      0.0
+    ],
+    "moldboard_static_center_m": [
+      2.68,
+      0.56,
+      0.0
+    ],
+    "front_frame_section": "Independently proportioned around published axle, articulation, and moldboard stations; no hidden weldment authority.",
+    "cab_hood_panels": "Independently authored from first-party gallery observations; no internal systems or protected styling assets copied.",
+    "hydraulic_anchors": "Every visible barrel, rod, bellcrank, and hose anchor is reconstructed. No published stroke or pressure is asserted as visual travel proof.",
+    "steering_linkage": "Kingpins, steering arms, tie rod, lean links, and cylinder anchors are reconstructed and not Ackermann or clearance authority.",
+    "rear_ripper": "Five holders and approximate published spacing constrain the study; beam, shank curve, tips, pivots, and cylinder anchors are reconstructed.",
+    "material_colors": "Neutral unbranded ochre, graphite, steel, rubber, and smoke glass; not Caterpillar livery or trade dress."
+  },
+  "unresolved_choices": [
+    "exact serial and dealer order code",
+    "cab trim and seat package",
+    "tire manufacturer and tread pattern",
+    "rear ripper scarifier holder arrangement beyond frozen five-shank ripper",
+    "lighting and guard package",
+    "public material and branding authorization"
+  ],
+  "mechanical_gaps": [
+    "all hidden articulation, axle, steering, lean, tandem, circle, moldboard and ripper joint centers",
+    "all cylinder and link anchors",
+    "Ackermann and wheel-lean interaction",
+    "circle tooth profile and pinion engagement",
+    "drawbar link-bar and centershift closure",
+    "moldboard sideshift/tip/lift solver",
+    "ripper solver",
+    "hose routing, fittings and service authority",
+    "ground, self and swept-volume collision",
+    "load, force, pressure and operator-training authority"
+  ],
+  "documented_source_conflicts": [
+    "U.S. product page pairs 12 ft with 4267 mm; current AEXQ4628-01 gives 3658 mm and is used.",
+    "U.S. product page displays 19531 kg while AEXQ4628-01 gives 19027 kg for frozen lever/non-AWD typically equipped configuration; geometry makes no mass claim."
+  ],
+  "renders": [
+    {
+      "path": "review/renders/cat-140-technical-side.png",
+      "sha256": "9da12c93344bd17ac8add75e5cf41ff64c2d0604bac43465ca1bca3429978cc9",
+      "bytes": 388735
+    },
+    {
+      "path": "review/renders/cat-140-front-left-quarter.png",
+      "sha256": "366996ce526de22cf2e863b2800d5e78b5ddcbec0c9abf1bd641b555f24ac412",
+      "bytes": 417952
+    },
+    {
+      "path": "review/renders/cat-140-rear-right-quarter.png",
+      "sha256": "c8eddbc366e7313539dc0ea52e1a6de3f0a8b1d7fa45f76e942c9c4c7bc8c6f9",
+      "bytes": 419436
+    },
+    {
+      "path": "review/renders/cat-140-blade-circle-drawbar-detail.png",
+      "sha256": "42f06c7ad3bac421225be879b5b601caaac20892345657fd78cf69a283649044",
+      "bytes": 556069
+    },
+    {
+      "path": "review/renders/cat-140-circle-drive-guide-component-inspection.png",
+      "sha256": "25b304dde6fb17248a29481a43ced093a71f32a0b08b219cd559235001446e28",
+      "bytes": 487615
+    },
+    {
+      "path": "review/renders/cat-140-front-axle-steering-detail.png",
+      "sha256": "760b09eb31578f01ccfe7f2cb569c605f036d58306766ced4872af892fe38d99",
+      "bytes": 503509
+    },
+    {
+      "path": "review/renders/cat-140-cab-service-side.png",
+      "sha256": "b449836095306e7a138d9d21d5184e0f2b2b8c426b7acc50bf838cf50acbbb96",
+      "bytes": 492438
+    },
+    {
+      "path": "review/renders/cat-140-rear-ripper-detail.png",
+      "sha256": "a2ff856d962f97630c89135d624ad345f01d2db027ee4728d82f1181ce6c330b",
+      "bytes": 532327
+    },
+    {
+      "path": "review/renders/cat-140-articulated-frame-wheel-lean-study.png",
+      "sha256": "ebc334bdd8e63f4118dcb510d5eb78c6c58232b4c9c7802c9f00021e9577695d",
+      "bytes": 396117
+    }
+  ],
+  "review_render_notes": {
+    "circle-drive-guide-component-inspection": "Review-only isolation of the exported drawbar/circle/drive/contact geometry. Occluding components are hidden for this render only and restored before .blend save and GLB export."
+  },
+  "build_verdict": "PASS",
+  "validation_verdict": "PASS",
+  "validation_path": "production/validation.json",
+  "higher_stage_gates": "PENDING"
+}

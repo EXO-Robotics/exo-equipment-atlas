@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "liebherr-ltm-1100-5-3",
+  "configuration_id": "LIEBHERR-LTM1100-5.3-GLOBAL-445-R25-10X6X10-T62-TRANSPORT-CANDIDATE",
+  "coordinate_system": {
+    "longitudinal": "+X carrier front",
+    "vertical": "+Y",
+    "lateral": "+Z carrier right"
+  },
+  "joints": [
+    {
+      "id": "carrier_all_wheel_steering",
+      "type": "multi_axle_revolute_visual",
+      "axis": "+Y",
+      "authority": "reconstructed",
+      "source_ids": ["LIEBHERR-LTM1100-5.3-TECH-DATA"],
+      "published_constraints": ["five axles", "10 x 6 x 10 standard drive/steering", "all-wheel steering envelope drawing"],
+      "unresolved": ["individual axle steering ratios, suspension travel, wheel offsets, and kingpin centers"]
+    },
+    {
+      "id": "superstructure_slew",
+      "type": "revolute",
+      "axis": "+Y",
+      "authority": "reconstructed",
+      "source_ids": ["LIEBHERR-LTM1100-5.3-TECH-DATA"],
+      "published_constraints": ["360 degree slewing capability"],
+      "unresolved": ["slew-ring dimensions, bearing center elevation, and allowable operating sectors"]
+    },
+    {
+      "id": "telescopic_boom_luff",
+      "type": "revolute",
+      "axis": "+Z",
+      "authority": "reconstructed",
+      "source_ids": ["LIEBHERR-LTM1100-5.3-TECH-DATA"],
+      "published_constraints": ["13 m to 62 m telescopic boom family", "approximately 83 degree luff endpoint"],
+      "unresolved": ["boom heel pin, luff-cylinder anchors, section profile, and motion path"]
+    },
+    {
+      "id": "telescope_sections",
+      "type": "prismatic_staged_visual",
+      "axis": "+X boom local",
+      "authority": "reconstructed",
+      "source_ids": ["LIEBHERR-LTM1100-5.3-TECH-DATA"],
+      "published_constraints": ["12.9/13 m retracted identity", "62 m maximum boom identity"],
+      "unresolved": ["section count authority, section lengths, overlap, synchronization, pinning, and Telematik staging"]
+    },
+    {
+      "id": "front_left_outtrigger",
+      "type": "prismatic_plus_jack",
+      "authority": "reconstructed",
+      "source_ids": ["LIEBHERR-LTM1100-5.3-TECH-DATA"],
+      "unresolved": ["beam stages, extension stops, jack stroke, pad articulation, and VarioBase state"]
+    },
+    {
+      "id": "front_right_outtrigger",
+      "type": "prismatic_plus_jack",
+      "authority": "reconstructed",
+      "source_ids": ["LIEBHERR-LTM1100-5.3-TECH-DATA"],
+      "unresolved": ["beam stages, extension stops, jack stroke, pad articulation, and VarioBase state"]
+    },
+    {
+      "id": "rear_left_outtrigger",
+      "type": "prismatic_plus_jack",
+      "authority": "reconstructed",
+      "source_ids": ["LIEBHERR-LTM1100-5.3-TECH-DATA"],
+      "unresolved": ["beam stages, extension stops, jack stroke, pad articulation, and VarioBase state"]
+    },
+    {
+      "id": "rear_right_outtrigger",
+      "type": "prismatic_plus_jack",
+      "authority": "reconstructed",
+      "source_ids": ["LIEBHERR-LTM1100-5.3-TECH-DATA"],
+      "unresolved": ["beam stages, extension stops, jack stroke, pad articulation, and VarioBase state"]
+    },
+    {
+      "id": "hoist_rigging",
+      "type": "reeved_visual",
+      "authority": "reconstructed",
+      "source_ids": ["LIEBHERR-LTM1100-5.3-TECH-DATA"],
+      "unresolved": ["winch selection, hook-block branch, fall count, rope path, fleet angles, and secured transport attachment"]
+    }
+  ],
+  "required_gates": [
+    "transport_length_width_height_envelope",
+    "five_axle_and_ten_wheel_identity",
+    "boom_retracted_length_identity",
+    "boom_section_overlap",
+    "luff_cylinder_visual_continuity",
+    "outrigger_stowed_envelope",
+    "deployed_pad_ground_contact",
+    "slew_ring_carrier_clearance",
+    "hook_and_reeving_continuity",
+    "ground_collision",
+    "self_collision",
+    "public_glb_contract"
+  ],
+  "release_state": "no_geometry_no_solver_no_claim"
+}

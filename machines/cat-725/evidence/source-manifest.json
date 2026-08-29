@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "cat-725",
+  "configuration_id": "CAT-725-05A-NAM-STANDARD-BODY-23.5R25-CANDIDATE",
+  "freeze_date": "2026-08-29",
+  "repository_policy": {
+    "source_binaries_committed": false,
+    "manufacturer_geometry_committed": false,
+    "manual_illustrations_are_scale_drawings": false,
+    "verification": "Private publications remain outside this machine package. The AEXQ3698 binary was independently downloaded and hash-bound during this research pass; the press-release binary download remained unavailable and is explicitly PENDING rather than guessed."
+  },
+  "sources": [
+    {
+      "id": "CAT-725-AEXQ3698",
+      "publisher": "Caterpillar",
+      "kind": "technical_specification",
+      "title": "725 Articulated Truck Technical Specifications",
+      "publication": "AEXQ3698",
+      "market": "North America, Europe, Australia-New Zealand, Japan",
+      "pages": 11,
+      "retrieved": "2026-08-29",
+      "official_url": "https://s7d2.scene7.com/is/content/Caterpillar/CM20251208-3bcb1-ca96e",
+      "local_path": "research/private/cat-725/cat-725-aexq3698-technical-specifications.pdf",
+      "sha256": "a5f3a06c5210353f7aaab7b76e060f84307d6211fe0c8e2c51bc1a35e08d007a",
+      "bytes": 1282504,
+      "admission": "primary"
+    },
+    {
+      "id": "CAT-725-AEXQ3699",
+      "publisher": "Caterpillar",
+      "kind": "standard_and_optional_equipment",
+      "title": "725 Articulated Truck Key Features",
+      "publication": "AEXQ3699",
+      "market": "North America, Europe, Australia-New Zealand, Japan",
+      "retrieved": "2026-08-29",
+      "official_url": "https://s7d2.scene7.com/is/content/Caterpillar/CM20250922-a0c2c-1ba04",
+      "admission": "primary",
+      "note": "Configuration applicability used for six 23.5R25 radial tires and selected standard visible equipment; binary hash is not asserted by this lane."
+    },
+    {
+      "id": "CAT-725-188PR25-EU",
+      "publisher": "Caterpillar",
+      "kind": "trade_press_release",
+      "title": "With built-in automatic features, the next generation Cat Articulated Trucks enhance performance, safety and efficiency",
+      "publication": "188PR25_EU",
+      "market": "global next-generation 725, 730, 730 EJ, and 735 family",
+      "pages": 5,
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.cat.com/content/dam/catDotCom/documents/trade-press-releases/en_us/2025/september/188PR25_EU.pdf",
+      "local_path": "research/private/cat-725/188PR25_EU.pdf",
+      "sha256": null,
+      "bytes": null,
+      "binary_verification": "PENDING",
+      "admission": "reference_only",
+      "note": "Applicable to redesigned body and body-height-limiter feature boundaries; no dimensions are sourced from this document."
+    },
+    {
+      "id": "CAT-725-PRODUCT-PAGE",
+      "publisher": "Caterpillar",
+      "kind": "official_product_page",
+      "title": "725 Three Axle Articulated Trucks",
+      "market": "United States",
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.cat.com/en_US/products/new/equipment/articulated-trucks/three-axle-articulated-trucks/129340.html",
+      "admission": "primary",
+      "note": "Exact current product identity and visible-feature observations. Dynamic page bytes are not treated as a frozen publication binary."
+    }
+  ]
+}

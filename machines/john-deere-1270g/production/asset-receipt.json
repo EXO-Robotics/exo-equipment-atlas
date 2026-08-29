@@ -1,0 +1,707 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-1270g",
+  "configuration_id": "JD-1270G-8W-CH7-R86-H480C-600-CANDIDATE",
+  "configuration_status": "research_candidate",
+  "candidate_class": "technical_structural_study",
+  "release_state": "no_geometry_no_solver_no_claim",
+  "engineering_authority": false,
+  "geometry_authority": "PENDING",
+  "solver_authority": "PENDING",
+  "collision_authority": "PENDING",
+  "authority_statement": "Independent technical structural study only; not Deere CAD, engineering authority, training material, operational guidance, or manufacturer endorsement.",
+  "rights_boundary": "Independently authored geometry and neutral unbranded materials. No copied CAD, textures, logos, publication pages or first-party imagery is shipped.",
+  "blender": {
+    "version": "5.1.1",
+    "factory_startup_background_required": true,
+    "builder_path": "source/blender/build_john_deere_1270g.py",
+    "builder_sha256": "06b64860be9311d286f872fa781c204c57e75440fa702d37bfb2b0ceabe51bdc"
+  },
+  "artifacts": {
+    "blend": {
+      "path": "source/blender/john-deere-1270g-structural-study.blend",
+      "sha256": "d4a5f07152407d03b40bec95f4a925d7e1d8280a622ea5904d6eab29f20c845e",
+      "bytes": 354789
+    },
+    "glb": {
+      "path": "assets/john-deere-1270g-structural-study.glb",
+      "sha256": "fc32b5982b6da1439e8300110c6a53a68de5558634d31f6b6f278e37f46574c5",
+      "bytes": 3736192
+    },
+    "validation": {
+      "path": "production/validation.json",
+      "sha256": "d379dac52a437a7e6affa27e7dc0ad6952353a02ff50266e73389e0fdc30af11",
+      "bytes": 19770
+    }
+  },
+  "scene": {
+    "units": "meters",
+    "machine_axes": "+X toward harvester head/front, +Y vertical, +Z machine right",
+    "blender_storage_mapping": "machine (X,Y,Z) -> Blender (X,Z,Y)",
+    "glb_export_y_up": true,
+    "bounds": {
+      "min_m": [
+        -4.15,
+        0.008182,
+        -1.388
+      ],
+      "max_m": [
+        8.617158,
+        4.858662,
+        1.41
+      ],
+      "size_m": [
+        12.767158,
+        4.850481,
+        2.798
+      ],
+      "decoded_position_vertices": 141374,
+      "classification": "independently_decoded_shipped_public_glb_world_aabb",
+      "note": "Decoded directly from every reachable GLB POSITION vertex with composed node transforms; retained working pose, not the published transport envelope."
+    },
+    "blend_source_bounds": {
+      "min_m": [
+        -4.15,
+        0.008182,
+        -1.41
+      ],
+      "max_m": [
+        8.617158,
+        4.863788,
+        1.388
+      ],
+      "size_m": [
+        12.767158,
+        4.855606,
+        2.798
+      ],
+      "evaluated_vertices": 37846,
+      "classification": "evaluated_blender_source_before_glTF_axis_conversion"
+    },
+    "counts": {
+      "classification": "decoded_shipped_public_glb",
+      "objects": 442,
+      "meshes": 424,
+      "triangles": 73956,
+      "materials": 10
+    },
+    "blend_source_counts": {
+      "classification": "evaluated_blend_source_including_helpers",
+      "objects": 429,
+      "meshes": 429,
+      "triangles": 74112,
+      "materials": 14
+    },
+    "public_glb_contract": {
+      "glb_version": "2.0",
+      "default_scene_direct_root_count": 1,
+      "default_scene_root_name": "JD1270G_Root",
+      "identity_root": true,
+      "nodes": 442,
+      "meshes": 424,
+      "materials": 10,
+      "triangles": 73956,
+      "cameras": 0,
+      "punctual_light_extension_present": false,
+      "nonidentity_mesh_scales": {},
+      "leaked_helpers": [],
+      "visible_bounds_m": {
+        "min_m": [
+          -4.15,
+          0.008182,
+          -1.388
+        ],
+        "max_m": [
+          8.617158,
+          4.858662,
+          1.41
+        ],
+        "size_m": [
+          12.767158,
+          4.850481,
+          2.798
+        ],
+        "decoded_position_vertices": 141374
+      }
+    },
+    "public_scale_application": {
+      "applied_count": 36,
+      "applied": [
+        {
+          "node": "H480C_DelimbingKnife_Lower_L_Reconstructed",
+          "before": [
+            0.37986842,
+            0.055,
+            0.04
+          ]
+        },
+        {
+          "node": "H480C_DelimbingKnife_Lower_R_Reconstructed",
+          "before": [
+            0.37986842,
+            0.055,
+            0.04
+          ]
+        },
+        {
+          "node": "H480C_DelimbingKnife_Upper_L_Reconstructed",
+          "before": [
+            0.41581246,
+            0.055,
+            0.04
+          ]
+        },
+        {
+          "node": "H480C_DelimbingKnife_Upper_R_Reconstructed",
+          "before": [
+            0.41581246,
+            0.055,
+            0.04
+          ]
+        },
+        {
+          "node": "H480C_FeedArm_L_Reconstructed",
+          "before": [
+            0.26038432,
+            0.06,
+            0.065
+          ]
+        },
+        {
+          "node": "H480C_FeedArm_R_Reconstructed",
+          "before": [
+            0.26038432,
+            0.06,
+            0.065
+          ]
+        },
+        {
+          "node": "H480C_FeedCylinder_L_Reconstructed",
+          "before": [
+            0.055,
+            0.055,
+            0.21840332
+          ]
+        },
+        {
+          "node": "H480C_FeedCylinder_R_Reconstructed",
+          "before": [
+            0.055,
+            0.055,
+            0.21840328
+          ]
+        },
+        {
+          "node": "H480C_FeedRod_L_Reconstructed",
+          "before": [
+            0.03200001,
+            0.03200001,
+            0.1167262
+          ]
+        },
+        {
+          "node": "H480C_FeedRod_R_Reconstructed",
+          "before": [
+            0.03199999,
+            0.032,
+            0.11672614
+          ]
+        },
+        {
+          "node": "H480C_SawBar_Reconstructed",
+          "before": [
+            0.44,
+            0.0275,
+            0.0525
+          ]
+        },
+        {
+          "node": "CabFrontPillar_L",
+          "before": [
+            1.01814783,
+            0.05,
+            0.055
+          ]
+        },
+        {
+          "node": "CabFrontPillar_R",
+          "before": [
+            1.01814783,
+            0.05,
+            0.055
+          ]
+        },
+        {
+          "node": "CabRearPillar_L",
+          "before": [
+            1.01560318,
+            0.05,
+            0.055
+          ]
+        },
+        {
+          "node": "CabRearPillar_R",
+          "before": [
+            1.01560318,
+            0.05,
+            0.055
+          ]
+        },
+        {
+          "node": "CH7_FoldCylinder",
+          "before": [
+            0.09,
+            0.09,
+            0.7461766
+          ]
+        },
+        {
+          "node": "CH7_FoldRod",
+          "before": [
+            0.052,
+            0.052,
+            0.61917502
+          ]
+        },
+        {
+          "node": "CH7_InnerBoom",
+          "before": [
+            1.48870742,
+            0.27000001,
+            0.23999998
+          ]
+        },
+        {
+          "node": "CH7_InnerBoom_ParallelLink",
+          "before": [
+            1.37704396,
+            0.1,
+            0.09
+          ]
+        },
+        {
+          "node": "CH7_LiftCylinder",
+          "before": [
+            0.105,
+            0.105,
+            0.86794281
+          ]
+        },
+        {
+          "node": "CH7_LiftRod",
+          "before": [
+            0.062,
+            0.062,
+            0.75116581
+          ]
+        },
+        {
+          "node": "CH7_OuterBoom",
+          "before": [
+            1.16632986,
+            0.23,
+            0.2
+          ]
+        },
+        {
+          "node": "CH7_Telescope",
+          "before": [
+            0.44229522,
+            0.14,
+            0.125
+          ]
+        },
+        {
+          "node": "CH7_TelescopeCylinder",
+          "before": [
+            0.072,
+            0.072,
+            0.63031745
+          ]
+        },
+        {
+          "node": "CH7_TelescopeHousing",
+          "before": [
+            0.75802368,
+            0.19,
+            0.16
+          ]
+        },
+        {
+          "node": "CH7_TelescopeRod",
+          "before": [
+            0.041,
+            0.041,
+            0.38160825
+          ]
+        },
+        {
+          "node": "FrontBogieBeam_L",
+          "before": [
+            0.81,
+            0.17,
+            0.12
+          ]
+        },
+        {
+          "node": "FrontBogieBeam_R",
+          "before": [
+            0.81,
+            0.17,
+            0.12
+          ]
+        },
+        {
+          "node": "CabLevelCylinder_L",
+          "before": [
+            0.06499999,
+            0.06499999,
+            0.17578392
+          ]
+        },
+        {
+          "node": "CabLevelCylinder_R",
+          "before": [
+            0.065,
+            0.065,
+            0.17578392
+          ]
+        },
+        {
+          "node": "CabLevelRod_L",
+          "before": [
+            0.038,
+            0.038,
+            0.14983323
+          ]
+        },
+        {
+          "node": "CabLevelRod_R",
+          "before": [
+            0.038,
+            0.038,
+            0.14983325
+          ]
+        },
+        {
+          "node": "FrameSteerCylinder_L",
+          "before": [
+            0.075,
+            0.075,
+            0.3542951
+          ]
+        },
+        {
+          "node": "FrameSteerCylinder_R",
+          "before": [
+            0.075,
+            0.075,
+            0.3542951
+          ]
+        },
+        {
+          "node": "FrameSteerRod_L",
+          "before": [
+            0.04499999,
+            0.04499999,
+            0.26650509
+          ]
+        },
+        {
+          "node": "FrameSteerRod_R",
+          "before": [
+            0.045,
+            0.045,
+            0.26650515
+          ]
+        }
+      ],
+      "residual": {}
+    }
+  },
+  "semantic_nodes": {
+    "JD1270G_Root": true,
+    "RearFrame_Root": true,
+    "FrameSteer_Pivot_Reconstructed": true,
+    "FrontFrame_Root": true,
+    "FrontBalancedBogie_Pivot_Reconstructed": true,
+    "FrontBogieBeam_L": true,
+    "FrontBogieBeam_R": true,
+    "RearRigidAxle_Front": true,
+    "RearRigidAxle_Rear": true,
+    "CabRotation_Root_Reconstructed": true,
+    "CabLeveling_Root_Reconstructed": true,
+    "PowerUnit_Core": true,
+    "CH7_Slew_Root_Reconstructed": true,
+    "CH7_InnerBoom": true,
+    "CH7_OuterBoom": true,
+    "CH7_TelescopeHousing": true,
+    "CH7_Telescope": true,
+    "CH7_LiftCylinder": true,
+    "CH7_LiftRod": true,
+    "CH7_FoldCylinder": true,
+    "CH7_FoldRod": true,
+    "Head_Rotator_Root_Reconstructed": true,
+    "H480C_ReferenceHead_Root_Reconstructed": true,
+    "H480C_HeadMainHousing_Reconstructed": true,
+    "H480C_FeedRoller_L_Reconstructed": true,
+    "H480C_FeedRoller_R_Reconstructed": true,
+    "H480C_SawGuard_Reconstructed": true,
+    "H480C_SawBar_Reconstructed": true,
+    "H480C_HoseManifold_Reconstructed": true
+  },
+  "source_only_helper_nodes": {
+    "Carrier_Hit": {
+      "present_in_blend_source": true,
+      "present_in_public_glb": false
+    },
+    "Cab_Inspect": {
+      "present_in_blend_source": true,
+      "present_in_public_glb": false
+    },
+    "Boom_Inspect": {
+      "present_in_blend_source": true,
+      "present_in_public_glb": false
+    },
+    "H480C_Head_Inspect": {
+      "present_in_blend_source": true,
+      "present_in_public_glb": false
+    },
+    "ReviewGround": {
+      "present_in_blend_source": true,
+      "present_in_public_glb": false
+    }
+  },
+  "manufacturer_published_constraints_used": [
+    {
+      "id": "base-carrier-length",
+      "value": 7.927,
+      "source_id": "JD-1270G-MWH1270GF",
+      "location": "PDF page 7, dimension A",
+      "use": "configuration_or_geometry_constraint"
+    },
+    {
+      "id": "front-axle-middle-joint",
+      "value": 2.15,
+      "source_id": "JD-1270G-MWH1270GF",
+      "location": "PDF page 7, dimension B",
+      "use": "configuration_or_geometry_constraint"
+    },
+    {
+      "id": "rear-axle-middle-joint",
+      "value": 2.28,
+      "source_id": "JD-1270G-MWH1270GF",
+      "location": "PDF page 7, dimension C",
+      "use": "configuration_or_geometry_constraint"
+    },
+    {
+      "id": "wheelbase",
+      "value": 4.43,
+      "source_id": "JD-1270G-MWH1270GF",
+      "location": "PDF page 7, B + C",
+      "use": "configuration_or_geometry_constraint"
+    },
+    {
+      "id": "minimum-width-600",
+      "value": 2.746,
+      "source_id": "JD-1270G-MWH1270GF",
+      "location": "PDF page 7, dimension D",
+      "use": "configuration_or_geometry_constraint"
+    },
+    {
+      "id": "transport-height",
+      "value": 3.881,
+      "source_id": "JD-1270G-MWH1270GF",
+      "location": "PDF page 7",
+      "use": "configuration_or_geometry_constraint"
+    },
+    {
+      "id": "transport-length",
+      "value": 12.56,
+      "source_id": "JD-1270G-MWH1270GF",
+      "location": "PDF page 7",
+      "use": "retained_constraint_geometry_qualification_pending"
+    },
+    {
+      "id": "ground-clearance",
+      "value": 0.717,
+      "source_id": "JD-1270G-MWH1270GF",
+      "location": "PDF page 7, dimension E",
+      "use": "configuration_or_geometry_constraint"
+    },
+    {
+      "id": "selected-maximum-reach",
+      "value": 8.6,
+      "source_id": "JD-1270G-MWH1270GF",
+      "location": "PDF page 6 and official 8W product page",
+      "use": "configuration_or_geometry_constraint"
+    },
+    {
+      "id": "turning-angle",
+      "value": 44.0,
+      "source_id": "JD-1270G-MWH1270GF",
+      "location": "PDF page 6",
+      "use": "configuration_or_geometry_constraint"
+    },
+    {
+      "id": "boom-slewing-angle",
+      "value": 220.0,
+      "source_id": "JD-1270G-MWH1270GF",
+      "location": "PDF page 6",
+      "use": "configuration_or_geometry_constraint"
+    },
+    {
+      "id": "cab-rotation",
+      "value": 160.0,
+      "source_id": "JD-1270G-MWH1270GF",
+      "location": "PDF page 6",
+      "use": "configuration_or_geometry_constraint"
+    },
+    {
+      "id": "cab-sideways-tilt",
+      "value": 17.0,
+      "source_id": "JD-1270G-MWH1270GF",
+      "location": "PDF page 6",
+      "use": "configuration_or_geometry_constraint"
+    },
+    {
+      "id": "cab-fore-aft-tilt",
+      "value": 9.0,
+      "source_id": "JD-1270G-MWH1270GF",
+      "location": "PDF page 6",
+      "use": "configuration_or_geometry_constraint"
+    },
+    {
+      "id": "drive-configuration",
+      "value": "8x8",
+      "source_id": "JD-1270G-8W-LA-PAGE",
+      "location": "official product page",
+      "use": "configuration_identity"
+    },
+    {
+      "id": "boom-type",
+      "value": "CH7",
+      "source_id": "JD-1270G-MWH1270GF",
+      "location": "PDF page 6",
+      "use": "configuration_identity"
+    },
+    {
+      "id": "reference-head",
+      "value": "H480C",
+      "source_id": "JD-1270G-8W-LA-PAGE",
+      "location": "official product page",
+      "use": "reference_head_identity_only_geometry_reconstructed"
+    },
+    {
+      "id": "tire-front",
+      "value": "26.5-20",
+      "source_id": "JD-1270G-MWH1270GF",
+      "location": "PDF page 7",
+      "use": "configuration_identity_visual_profile_reconstructed"
+    },
+    {
+      "id": "tire-rear",
+      "value": "26.5-20",
+      "source_id": "JD-1270G-MWH1270GF",
+      "location": "PDF page 7",
+      "use": "configuration_identity_visual_profile_reconstructed"
+    }
+  ],
+  "reconstructed_values": {
+    "carrier_rear_x_m": -4.15,
+    "carrier_front_x_m": 3.777,
+    "frame_joint_xyz_m": [
+      0.0,
+      1.08,
+      0.0
+    ],
+    "front_bogie_center_xyz_m": [
+      2.15,
+      0.83,
+      0.0
+    ],
+    "rear_rigid_axle_center_xyz_m": [
+      -2.28,
+      0.83,
+      0.0
+    ],
+    "tandem_half_spacing_m": 0.73,
+    "tire_outer_radius_m": 0.73,
+    "tire_visual_width_m": 0.58,
+    "tire_center_abs_z_m": 1.083,
+    "tire_tread_blocks_per_wheel": 18,
+    "crane_base_xyz_m": [
+      1.65,
+      2.05,
+      0.0
+    ],
+    "selected_max_reach_head_reference_local_x_m": 0.4,
+    "head_visual_height_m": 1.65,
+    "head_visual_width_m": 1.02,
+    "head_visual_depth_m": 0.92,
+    "boom_hose_visual_diameter_m": 0.032,
+    "frame_review_articulation_deg": 24.0,
+    "front_bogie_review_tilt_deg": 8.0,
+    "retained_pose": "working",
+    "structural_triangle_budget": 180000
+  },
+  "unresolved_choices_and_mechanical_gaps": [
+    "exact tire make, tread, inflation, offset and sidewall geometry",
+    "individual front and rear axle centers beyond published joint-distance references",
+    "rear eight-wheel suspension articulation and housing geometry",
+    "frame joint pivot, yokes, stops, steering-cylinder anchors and clearances",
+    "rotating/leveling cab pivots, actuators, option package and control law",
+    "CH7 8.6 m segment lengths, telescope stroke, pivots, cylinders and IBC interpolation",
+    "boom tilt and slew datum conventions",
+    "H480C exact revision, envelope, mass, internal structure and attachment interface",
+    "feed-roller profiles, knife linkages, saw bar/chain/guard and hydraulic routing",
+    "transport-pose retention, measured transport envelope and collision clearance",
+    "regional power-unit, emissions, guarding, lighting and service-panel options",
+    "manufacturer material, livery, logo and trade-dress authorization"
+  ],
+  "renders": [
+    {
+      "path": "review/renders/1270g-operator-side-working.png",
+      "sha256": "8d97a593dc713be4df59a0db65652b88ecace22e72317754403944197e0bea4f",
+      "bytes": 493655
+    },
+    {
+      "path": "review/renders/1270g-rear-three-quarter.png",
+      "sha256": "e5fc483092b8b1c2800ab59eff2c02c39f6ae5d9852f8bbd554894bf4b67106a",
+      "bytes": 725386
+    },
+    {
+      "path": "review/renders/1270g-front-three-quarter.png",
+      "sha256": "0863b7906a23a87b64434062a0226aabfcdf3419b5f6e810e4ff2a445b3095f0",
+      "bytes": 737649
+    },
+    {
+      "path": "review/renders/1270g-articulated-frame.png",
+      "sha256": "44ffc1dbc94360dc451a735cb37aaf2f9e36ad043c6c178fe2f6094a93062432",
+      "bytes": 715391
+    },
+    {
+      "path": "review/renders/1270g-front-bogie-detail.png",
+      "sha256": "7b1e4241d372dd76b2be24b0b20d6cd0ee561fcfbaf697034465937ca2f5d21d",
+      "bytes": 537420
+    },
+    {
+      "path": "review/renders/1270g-cab-operator-side.png",
+      "sha256": "139088bea62f28fa77ebb8aa2082adb70f495e70c2a3ec4d55c6ca91cf37b6f0",
+      "bytes": 1072990
+    },
+    {
+      "path": "review/renders/1270g-ch7-max-reach-boom.png",
+      "sha256": "3e08286f4db81da9db31e3223f6383e1a81e7976c489a366f91288f020638fd5",
+      "bytes": 428704
+    },
+    {
+      "path": "review/renders/1270g-harvester-head-detail.png",
+      "sha256": "ad9f01d360883db9512e942c4433589f98ff82d2f772c82fd76bebd941d4eccc",
+      "bytes": 528715
+    }
+  ],
+  "build_verdict": "PASS",
+  "validation_verdict": "PASS",
+  "higher_stage_gates": "PENDING"
+}

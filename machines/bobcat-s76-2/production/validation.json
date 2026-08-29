@@ -1,0 +1,364 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "bobcat-s76-2",
+  "configuration_id": "BOBCAT-S76-2-NAM-STD74-STD-TIRE-CAB-CANDIDATE",
+  "candidate_class": "technical_structural_study",
+  "verdict": "PASS",
+  "verdict_scope": "technical_structural_study_only",
+  "engineering_authority": false,
+  "gates": [
+    {
+      "id": "candidate-class-boundary",
+      "status": "PASS",
+      "detail": "technical_structural_study only; not engineering authority"
+    },
+    {
+      "id": "factory-startup-empty-scene-builder",
+      "status": "PASS",
+      "detail": "Builder resets the factory-startup scene and authors all geometry procedurally."
+    },
+    {
+      "id": "current-na-configuration-identity",
+      "status": "PASS",
+      "detail": "Current North American Pro S76-2 with standard 74-inch bucket, standard tires, and cab enclosure."
+    },
+    {
+      "id": "four-tire-rim-assemblies",
+      "status": "PASS",
+      "detail": "Four independent torus casings, rims, hubs, eight-lug patterns, and tread-block sets are present.",
+      "expected": 4,
+      "actual": 4
+    },
+    {
+      "id": "published-wheelbase-study",
+      "status": "PASS",
+      "detail": "Reconstructed axle placement is constrained to the published wheelbase.",
+      "expected": 1.22682,
+      "actual": 1.22682
+    },
+    {
+      "id": "stowed-visible-length",
+      "status": "PASS",
+      "detail": "Evaluated visible public stowed envelope compared with official standard-bucket length.",
+      "expected": {
+        "m": 3.6068,
+        "tolerance_m": 0.035
+      },
+      "actual": {
+        "m": 3.61181,
+        "absolute_error_m": 0.00501
+      }
+    },
+    {
+      "id": "stowed-visible-height",
+      "status": "PASS",
+      "detail": "Highest visible public point compared with official overall height.",
+      "expected": {
+        "m": 2.08026,
+        "tolerance_m": 0.025
+      },
+      "actual": {
+        "m": 2.08,
+        "absolute_error_m": 0.00026
+      }
+    },
+    {
+      "id": "stowed-visible-width",
+      "status": "PASS",
+      "detail": "Bucket cutting-edge width compared with official 74-inch width.",
+      "expected": {
+        "m": 1.8796,
+        "tolerance_m": 0.025
+      },
+      "actual": {
+        "m": 1.8796,
+        "absolute_error_m": 0.0
+      }
+    },
+    {
+      "id": "ground-contact",
+      "status": "PASS",
+      "detail": "Evaluated visible geometry remains at the floor datum within modeling tolerance.",
+      "expected": {
+        "m": 0.0,
+        "tolerance_m": 0.025
+      },
+      "actual": {
+        "minimum_y_m": -0.0,
+        "absolute_error_m": 0.0
+      }
+    },
+    {
+      "id": "full-lift-hinge-endpoint",
+      "status": "PASS",
+      "detail": "Review pose hinge center is constrained to the published maximum hinge-pin height.",
+      "expected": 3.25882,
+      "actual": 3.25882
+    },
+    {
+      "id": "semantic-node-presence",
+      "status": "PASS",
+      "detail": "Required structural and articulation nodes are present.",
+      "expected": {
+        "BobcatS76_2_Root": true,
+        "Chassis_MainMonocoque": true,
+        "RearServiceDoor": true,
+        "CabEnclosure_Root": true,
+        "Tire_Front_L": true,
+        "Tire_Front_R": true,
+        "Tire_Rear_L": true,
+        "Tire_Rear_R": true,
+        "VerticalLift_MainArm_L": true,
+        "VerticalLift_MainArm_R": true,
+        "VerticalLift_UpperLink_L": true,
+        "VerticalLift_UpperLink_R": true,
+        "LiftCylinderBarrel_L": true,
+        "LiftCylinderBarrel_R": true,
+        "BucketTiltCylinderBarrel": true,
+        "BobTach_Interface_Reconstructed": true,
+        "BucketPivotRoot": true,
+        "Standard74BucketShell_Reconstructed": true,
+        "BucketCuttingEdge": true
+      },
+      "actual": {
+        "BobcatS76_2_Root": true,
+        "Chassis_MainMonocoque": true,
+        "RearServiceDoor": true,
+        "CabEnclosure_Root": true,
+        "Tire_Front_L": true,
+        "Tire_Front_R": true,
+        "Tire_Rear_L": true,
+        "Tire_Rear_R": true,
+        "VerticalLift_MainArm_L": true,
+        "VerticalLift_MainArm_R": true,
+        "VerticalLift_UpperLink_L": true,
+        "VerticalLift_UpperLink_R": true,
+        "LiftCylinderBarrel_L": true,
+        "LiftCylinderBarrel_R": true,
+        "BucketTiltCylinderBarrel": true,
+        "BobTach_Interface_Reconstructed": true,
+        "BucketPivotRoot": true,
+        "Standard74BucketShell_Reconstructed": true,
+        "BucketCuttingEdge": true
+      }
+    },
+    {
+      "id": "public-mesh-scales-identity",
+      "status": "PASS",
+      "detail": "Every public mesh scale is baked before export.",
+      "expected": {
+        "after_non_identity": {}
+      },
+      "actual": {
+        "status": "PASS",
+        "baked_node_count": 24,
+        "before_non_identity": {
+          "AttachmentCarriageSide_L": [
+            0.16497651,
+            0.07,
+            0.0825
+          ],
+          "AttachmentCarriageSide_R": [
+            0.16497651,
+            0.07,
+            0.0825
+          ],
+          "BucketTiltBellcrank_Reconstructed": [
+            0.07500001,
+            0.045,
+            0.05
+          ],
+          "BucketTiltCylinderBarrel": [
+            0.07199999,
+            0.07199999,
+            0.11118648
+          ],
+          "BucketTiltCylinderRod": [
+            0.041,
+            0.041,
+            0.08387759
+          ],
+          "CabFrontPillar_L": [
+            0.57866234,
+            0.03750001,
+            0.0425
+          ],
+          "CabFrontPillar_R": [
+            0.57866234,
+            0.03750001,
+            0.0425
+          ],
+          "CabLowerSill_L": [
+            0.65507632,
+            0.0375,
+            0.0425
+          ],
+          "CabLowerSill_R": [
+            0.65507632,
+            0.0375,
+            0.0425
+          ],
+          "CabRearPillar_L": [
+            0.56641412,
+            0.0375,
+            0.0425
+          ],
+          "CabRearPillar_R": [
+            0.56641412,
+            0.0375,
+            0.0425
+          ],
+          "CabRoofRail_L": [
+            0.55000001,
+            0.0375,
+            0.0425
+          ],
+          "CabRoofRail_R": [
+            0.55000001,
+            0.0375,
+            0.0425
+          ],
+          "LiftArmBoxBrace_L": [
+            1.10039198,
+            0.0525,
+            0.0625
+          ],
+          "LiftArmBoxBrace_R": [
+            1.10039198,
+            0.0525,
+            0.0625
+          ],
+          "LiftCrossmember": [
+            0.72999996,
+            0.09,
+            0.09
+          ],
+          "LiftCylinderBarrel_L": [
+            0.06800001,
+            0.068,
+            0.50450915
+          ],
+          "LiftCylinderBarrel_R": [
+            0.06800001,
+            0.068,
+            0.50450915
+          ],
+          "LiftCylinderRod_L": [
+            0.04,
+            0.04000001,
+            0.3653343
+          ],
+          "LiftCylinderRod_R": [
+            0.04,
+            0.04000001,
+            0.3653343
+          ],
+          "VerticalLift_MainArm_L": [
+            1.20192039,
+            0.0725,
+            0.1025
+          ],
+          "VerticalLift_MainArm_R": [
+            1.20192039,
+            0.0725,
+            0.1025
+          ],
+          "VerticalLift_UpperLink_L": [
+            1.22208941,
+            0.0475,
+            0.0675
+          ],
+          "VerticalLift_UpperLink_R": [
+            1.22208941,
+            0.0475,
+            0.0675
+          ]
+        },
+        "after_non_identity": {}
+      }
+    },
+    {
+      "id": "public-glb-contract",
+      "status": "PASS",
+      "detail": "Single identity root, +Y up, applied mesh scales, and no public helpers/cameras/lights/textures.",
+      "expected": {
+        "root": "BobcatS76_2_Root",
+        "helper_nodes": [],
+        "non_identity_mesh_scales": []
+      },
+      "actual": {
+        "status": "PASS",
+        "asset_version": "2.0",
+        "scene_direct_root_count": 1,
+        "scene_direct_root_names": [
+          "BobcatS76_2_Root"
+        ],
+        "root_identity_trs": true,
+        "node_count": 250,
+        "mesh_node_count": 247,
+        "mesh_resource_count": 247,
+        "primitive_count": 247,
+        "position_vertices": 26414,
+        "triangles": 14360,
+        "public_mesh_nodes_non_identity_scale": [],
+        "helper_nodes_present": [],
+        "camera_count": 0,
+        "image_count": 0,
+        "texture_count": 0,
+        "glb_y_up": true
+      }
+    },
+    {
+      "id": "neutral-rights-boundary",
+      "status": "PASS",
+      "detail": "No manufacturer logos, copied imagery, copied geometry, textures, or exact branded livery are shipped."
+    },
+    {
+      "id": "review-render-set",
+      "status": "PASS",
+      "detail": "Stowed, full-lift, dump, linkage, wheel/service, and front/rear-quarter views are hash-bound.",
+      "expected": {
+        "minimum": 6
+      },
+      "actual": {
+        "count": 8
+      }
+    },
+    {
+      "id": "exact-control-option",
+      "status": "PENDING",
+      "detail": "Control/display package remains unresolved."
+    },
+    {
+      "id": "exact-bucket-and-bobtach-interface",
+      "status": "PENDING",
+      "detail": "Exact bucket part, shell section, cutting edge, and Bob-Tach variant remain unresolved."
+    },
+    {
+      "id": "engineering-lift-closure",
+      "status": "PENDING",
+      "detail": "Hidden pivots, link lengths, cylinder anchors/stroke, and intermediate lift path are reconstructed."
+    },
+    {
+      "id": "engineering-collision-sweeps",
+      "status": "PENDING",
+      "detail": "No authoritative self/ground/swept-volume solver has qualified the reconstructed path."
+    },
+    {
+      "id": "manufacturer-human-approval",
+      "status": "PENDING",
+      "detail": "No manufacturer or licensed engineering review is claimed."
+    },
+    {
+      "id": "browser-release-deployment",
+      "status": "PENDING",
+      "detail": "Viewer integration, browser, mobile, accessibility, performance, deployment, and exact-byte gates belong to the publisher."
+    }
+  ],
+  "summary": {
+    "pass": 15,
+    "pending": 6,
+    "fail": 0
+  },
+  "failed_gate_ids": []
+}

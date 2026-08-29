@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "cat-d6",
+  "configuration_id": "CAT-D6-20C-AUSAM-PUSHARM-6SU-HD42-MS610-DRAWBAR-CANDIDATE",
+  "freeze_date": "2026-08-29",
+  "repository_policy": {
+    "source_binaries_committed": false,
+    "manufacturer_geometry_committed": false,
+    "manual_illustrations_are_scale_drawings": false,
+    "verification": "Private binaries remain outside the tracked machine package; exact local hashes are recorded when retrieval succeeded."
+  },
+  "sources": [
+    {
+      "id": "CAT-D6-AEXQ3981-20C-AUSAM",
+      "publisher": "Caterpillar",
+      "kind": "technical_specification",
+      "title": "D6 (20C) Track-Type Tractors - Technical Specifications",
+      "publication": "AEXQ3981",
+      "market": "Australia, New Zealand, and South America",
+      "configuration_scope": "Build 20C standard D6 Push Arm, 6SU blade, HDXL undercarriage, 610 mm moderate-service shoes",
+      "pages": 45,
+      "retrieved": "2026-08-29",
+      "official_url": "https://s7d2.scene7.com/is/content/Caterpillar/CM20241023-18d2f-f8595",
+      "local_path": "research/private/cat-d6/cat-d6-aexq3981-20c-technical-specifications.pdf",
+      "sha256": "c91d73ae443f1590420a87472df436d9a4edcbdb852805efbd712f3470d600a8",
+      "bytes": 2736218,
+      "admission": "primary",
+      "note": "Page 6 is the dimensional authority for the frozen standard Push Arm 6SU configuration. Other configuration pages remain excluded."
+    },
+    {
+      "id": "CAT-D6-AEXQ4170-20C-AUSAM",
+      "publisher": "Caterpillar",
+      "kind": "product_brochure",
+      "title": "D6 (20C) Dozer - Product Brochure",
+      "publication": "AEXQ4170",
+      "market": "Australia, New Zealand, and South America",
+      "configuration_scope": "Build 20C product family; visible feature and equipment descriptions",
+      "pages": 12,
+      "retrieved": "2026-08-29",
+      "official_url": "https://s7d2.scene7.com/is/content/Caterpillar/CM20241218-a7372-80d25",
+      "local_path": "research/private/cat-d6/cat-d6-aexq4170-20c-product-brochure.pdf",
+      "sha256": "cf6ebebf928944fcf89f5f6cd5aff84298c81e4bee4f5e9603f286f6ab9c5e1d",
+      "bytes": 2532569,
+      "admission": "reference_only",
+      "note": "Used for visible construction and standard-equipment observations, not scale extraction."
+    },
+    {
+      "id": "CAT-D6-PRODUCT-PAGE-AU-126600",
+      "publisher": "Caterpillar",
+      "kind": "official_product_page",
+      "title": "D6 Medium Dozers Tier 3",
+      "market": "Australia",
+      "configuration_scope": "Regional Build 20C family index",
+      "pages": null,
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.cat.com/en_AU/products/new/equipment/dozers/medium-dozers/126600.html",
+      "local_path": null,
+      "sha256": null,
+      "bytes": null,
+      "binary_verification": "PENDING_not_frozen_as_a_local_binary",
+      "admission": "reference_only",
+      "note": "Confirms the regional product identity, standard 610 mm Push Arm SU configuration, eight bottom rollers, carrier roller, and available equipment families."
+    },
+    {
+      "id": "CAT-D6-44PR25-2025",
+      "publisher": "Caterpillar",
+      "kind": "trade_press_release",
+      "title": "Cat D6 dozer features increased weight and power, automatic transmission, and next-level technology",
+      "publication": "44PR25",
+      "market": "Global editorial release with Tier 3 specification table",
+      "configuration_scope": "Next-generation D6 family and standard SU weight/capacity summary",
+      "pages": 6,
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.cat.com/content/dam/catDotCom/documents/trade-press-releases/en_mx/2025/april/44PR25.pdf",
+      "local_path": "research/private/cat-d6/cat-d6-44pr25-2025.pdf",
+      "sha256": null,
+      "bytes": null,
+      "binary_verification": "PENDING_download_timed_out_during_this_lane",
+      "admission": "reference_only",
+      "note": "Corroborates the standard SU operating weight, 5.7 m3 blade capacity, next-generation cab, push-arm construction, and 4-speed transmission. It is not dimensional authority."
+    }
+  ]
+}

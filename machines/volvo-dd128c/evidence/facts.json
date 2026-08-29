@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "volvo-dd128c",
+  "configuration_id": "VOLVO-DD128C-NAM-T4F-2000MM-OPEN-ROPS-CANDIDATE",
+  "facts": [
+    {"id": "operating-weight", "subject": "operating weight under brochure footnote conditions", "value": 12893, "unit": "kg", "authority": "manufacturer_published", "source_id": "VOLVO-DD128C-VOE2210009504", "location": "PDF page 14, Specifications, Machine weights"},
+    {"id": "front-drum-weight", "subject": "weight at front drum", "value": 6846, "unit": "kg", "authority": "manufacturer_published", "source_id": "VOLVO-DD128C-VOE2210009504", "location": "PDF page 14, Specifications, Machine weights"},
+    {"id": "rear-drum-weight", "subject": "weight at rear drum", "value": 6047, "unit": "kg", "authority": "manufacturer_published", "source_id": "VOLVO-DD128C-VOE2210009504", "location": "PDF page 14, Specifications, Machine weights"},
+    {"id": "shipping-weight", "subject": "shipping weight under brochure footnote conditions", "value": 12120, "unit": "kg", "authority": "manufacturer_published", "source_id": "VOLVO-DD128C-VOE2210009504", "location": "PDF page 14, Specifications, Machine weights"},
+    {"id": "drum-width", "subject": "drum or rolling width", "value": 2.0, "unit": "m", "authority": "manufacturer_published", "source_id": "VOLVO-DD128C-VOE2210009504", "location": "PDF page 14, Drums, Width and dimension F"},
+    {"id": "drum-diameter", "subject": "front and rear drum diameter", "value": 1.4, "unit": "m", "authority": "manufacturer_published", "source_id": "VOLVO-DD128C-VOE2210009504", "location": "PDF page 14, Drums, Diameter"},
+    {"id": "drum-shell-thickness", "subject": "drum shell thickness", "value": 0.02, "unit": "m", "authority": "manufacturer_published", "source_id": "VOLVO-DD128C-VOE2210009504", "location": "PDF page 14, Drums, Shell thickness"},
+    {"id": "overall-length", "subject": "overall length dimension A", "value": 5.973, "unit": "m", "authority": "manufacturer_published", "source_id": "VOLVO-DD128C-VOE2210009504", "location": "PDF page 14, Dimensions, A"},
+    {"id": "drum-center-distance", "subject": "front-to-rear drum center distance dimension B", "value": 3.55, "unit": "m", "authority": "manufacturer_published", "source_id": "VOLVO-DD128C-VOE2210009504", "location": "PDF page 14, Dimensions diagram, B"},
+    {"id": "overall-height", "subject": "overall height to canopy dimension C", "value": 3.177, "unit": "m", "authority": "manufacturer_published", "source_id": "VOLVO-DD128C-VOE2210009504", "location": "PDF page 14, Dimensions diagram, C"},
+    {"id": "dimension-d", "subject": "published vertical dimension D with datum semantics unresolved", "value": 2.479, "unit": "m", "authority": "unresolved", "source_id": "VOLVO-DD128C-VOE2210009504", "location": "PDF page 14, Dimensions diagram, D"},
+    {"id": "overall-width", "subject": "maximum machine width dimension E", "value": 2.218, "unit": "m", "authority": "manufacturer_published", "source_id": "VOLVO-DD128C-VOE2210009504", "location": "PDF page 14, Dimensions diagram, E"},
+    {"id": "ground-clearance", "subject": "ground clearance dimension G", "value": 0.505, "unit": "m", "authority": "manufacturer_published", "source_id": "VOLVO-DD128C-VOE2210009504", "location": "PDF page 14, Dimensions diagram, G"},
+    {"id": "rated-power", "subject": "rated engine power at 2,000 r/min", "value": 110, "unit": "kW", "authority": "manufacturer_published", "source_id": "VOLVO-DD128C-VOE2210009504", "location": "PDF page 14, Engine"},
+    {"id": "maximum-travel-speed", "subject": "upper published travel-speed endpoint", "value": 12.6, "unit": "km/h", "authority": "manufacturer_published", "source_id": "VOLVO-DD128C-VOE2210009504", "location": "PDF page 14, Propulsion"},
+    {"id": "water-capacity", "subject": "combined dual-water-tank capacity", "value": 1280, "unit": "l", "authority": "manufacturer_published", "source_id": "VOLVO-DD128C-VOE2210009504", "location": "PDF page 14, Water system"},
+    {"id": "spray-bars-per-drum", "subject": "primary and backup spray bars on each drum", "value": 2, "unit": "count", "authority": "manufacturer_published", "source_id": "VOLVO-DD128C-VOE2210009504", "location": "PDF page 15, Standard equipment, Water system"},
+    {"id": "nozzles-per-spray-bar", "subject": "hand-serviceable spray nozzles per spray bar", "value": 10, "unit": "count", "authority": "manufacturer_published", "source_id": "VOLVO-DD128C-VOE2210009504", "location": "PDF page 14, Water system"},
+    {"id": "drum-wipers", "subject": "styrene wipers at front and rear of each drum", "value": 4, "unit": "count", "authority": "manufacturer_published", "source_id": "VOLVO-DD128C-VOE2210009504", "location": "PDF page 14, Water system"},
+    {"id": "articulation-limit", "subject": "articulation angle each direction", "value": 40, "unit": "deg", "authority": "manufacturer_published", "source_id": "VOLVO-DD128C-VOE2210009504", "location": "PDF page 14, Miscellaneous"},
+    {"id": "oscillation-limit", "subject": "oscillation angle each direction", "value": 10, "unit": "deg", "authority": "manufacturer_published", "source_id": "VOLVO-DD128C-VOE2210009504", "location": "PDF page 14, Miscellaneous"},
+    {"id": "inside-turning-radius", "subject": "inside turning radius to drum edge", "value": 3.772, "unit": "m", "authority": "manufacturer_published", "source_id": "VOLVO-DD128C-VOE2210009504", "location": "PDF page 14, Miscellaneous"},
+    {"id": "amplitude-setting-count", "subject": "amplitude setting count", "value": 8, "unit": "count", "authority": "manufacturer_published", "source_id": "VOLVO-DD128C-VOE2210009504", "location": "PDF pages 4 and 14"},
+    {"id": "maximum-vibration-frequency", "subject": "maximum vibration frequency at amplitude setting 1", "value": 4800, "unit": "vpm", "authority": "manufacturer_published", "source_id": "VOLVO-DD128C-VOE2210009504", "location": "PDF page 14, Amplitude setting table"},
+    {"id": "maximum-nominal-amplitude", "subject": "maximum nominal amplitude at setting 8", "value": 0.76, "unit": "mm", "authority": "manufacturer_published", "source_id": "VOLVO-DD128C-VOE2210009504", "location": "PDF page 14, Amplitude setting table"},
+    {"id": "open-rops-canopy", "subject": "standard operator environment is open ROPS/FOPS canopy", "value": 1, "unit": "configuration", "authority": "manufacturer_published", "source_id": "VOLVO-DD128C-VOE2210009504", "location": "PDF page 15, Standard equipment, Operator environment"},
+    {"id": "auto-reversing-eccentrics", "subject": "eight-amplitude drum design uses auto-reversing eccentric rotation", "value": 1, "unit": "system", "authority": "manufacturer_published", "source_id": "VOLVO-DD128C-VOE2210009504", "location": "PDF page 4, Superior smoothness"},
+    {"id": "articulation-center", "subject": "visual articulation-center coordinate", "value": 0, "unit": "m", "authority": "reconstructed", "source_id": "VOLVO-DD128C-VOE2210009504", "location": "visualization datum; brochure publishes range but not pivot coordinates"},
+    {"id": "eccentric-offset-visual", "subject": "visual internal eccentric offset", "value": 0.11, "unit": "m", "authority": "reconstructed", "source_id": "VOLVO-DD128C-VOE2210009504", "location": "visual reconstruction; publication does not disclose eccentric geometry"}
+  ],
+  "issues": [
+    {"id": "weight-scope-conflict", "status": "documented", "detail": "The Canadian product page states 27,700 lb with ROPS fully ballasted, while the North American brochure states 28,430 lb under its own 50% fuel, 50% water, full hydraulics, 75 kg operator condition. The brochure value governs this candidate and the page value remains reference-only."},
+    {"id": "width-label-conflict", "status": "documented", "detail": "The Canadian page labels overall width as 6 ft 7 in, while the brochure diagram distinguishes 2,218 mm dimension E from the 2,000 mm drum/rolling width F. This candidate preserves the brochure distinction."},
+    {"id": "dimension-d-semantics", "status": "unresolved", "detail": "The brochure publishes D = 2,479 mm but does not textually identify its upper datum. It is retained without using it as a geometry proof."},
+    {"id": "hidden-mechanism-geometry", "status": "unresolved", "detail": "Articulation and oscillation pivot coordinates, bearing construction, steering-cylinder anchors/strokes, drum drive internals, eccentric weights/phasing, scraper compliance, and spray hose routing are not dimensioned by admitted sources."}
+  ]
+}

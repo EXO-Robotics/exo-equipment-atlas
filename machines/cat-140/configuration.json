@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "cat-140",
+  "configuration_id": "CAT-140-16A-NAM-LVR-NONAWD-STDCIRCLE-MB12-RR14R24-PB-RRS-CANDIDATE",
+  "status": "research_candidate",
+  "identity": {
+    "manufacturer": "Caterpillar",
+    "brand": "Cat",
+    "model": "140",
+    "product_class": "motor_grader",
+    "publication_family": "16A",
+    "market": "North America"
+  },
+  "choices": {
+    "operator_controls": "lever_and_steering_wheel",
+    "drive": "non_AWD_tandem",
+    "emissions": "US_EPA_Tier_4_Final",
+    "drawbar_circle_moldboard": "standard_bottom_adjust_circle",
+    "moldboard": "12_ft_3658_mm",
+    "tires": "14.0R24_radial_on_multi_piece_rims",
+    "front_attachment": "push_block",
+    "rear_attachment": "rear_ripper_scarifier_five_shank_ripper",
+    "mid_machine_scarifier": "not_fitted",
+    "public_finish": "neutral_unbranded_ochre_graphite"
+  },
+  "excluded_options": [
+    "all_wheel_drive",
+    "joystick_controls",
+    "top_adjust_circle",
+    "high_performance_circle",
+    "14_ft_and_14_ft_plus_moldboards",
+    "mid_machine_scarifier",
+    "front_blade_plows_snow_wings_and_brooms",
+    "Cat_Grade_3D_hardware",
+    "front_rear_or_360_camera_hardware"
+  ],
+  "unresolved_choices": [
+    "exact serial number and dealer order code",
+    "lever cab trim and seat package",
+    "tire manufacturer and tread pattern",
+    "rear ripper scarifier exact holder arrangement beyond the five-shank ripper selection",
+    "lighting and guard package",
+    "public material and branding authorization"
+  ],
+  "boundary": "Research candidate technical structural study only. Published dimensions constrain the visible study; hidden joints, steering linkage, circle-tooth geometry, cylinder anchors, hose routing, loads, motion interpolation, and clearances are not manufacturer authority."
+}

@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "volvo-dd128c",
+  "configuration_id": "VOLVO-DD128C-NAM-T4F-2000MM-OPEN-ROPS-CANDIDATE",
+  "freeze_date": "2026-08-29",
+  "repository_policy": {
+    "source_binaries_committed": false,
+    "manufacturer_geometry_committed": false,
+    "manual_illustrations_are_scale_drawings": false,
+    "verification": "The official brochure binary was downloaded only for private evidence binding. No manufacturer PDF page, photograph, CAD, texture, or geometry is shipped."
+  },
+  "sources": [
+    {
+      "id": "VOLVO-DD128C-VOE2210009504",
+      "publisher": "Volvo Construction Equipment",
+      "kind": "official_product_brochure",
+      "title": "Volvo Double Drum Compactors DD128C",
+      "publication": "VOE2210009504 / English-22 / 2021.3 / COA / Volvo, North America Marketing",
+      "market": "North America",
+      "pages": 16,
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.volvoce.com/-/media/volvoce/global/products/compactors/asphalt-compactors/brochures/brochure_dd128c_t4f_en_voe2210009504.pdf?v=IQ9VPw",
+      "local_path": "research/private/volvo-dd128c/volvo-dd128c-voe2210009504.pdf",
+      "sha256": "c8dd8334aad6ab1c1fd3e6a550272e2b611986e52b383a6d9d6dab973740d80a",
+      "bytes": 5526944,
+      "admission": "primary",
+      "note": "Configuration authority for the North American Tier 4 Final 2,000 mm drum machine. Illustrations are used for visual observation only and are not treated as scale drawings."
+    },
+    {
+      "id": "VOLVO-DD128C-CA-PRODUCT-PAGE",
+      "publisher": "Volvo Construction Equipment",
+      "kind": "official_product_page",
+      "title": "Asphalt Compactor DD128C",
+      "market": "Canada",
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.volvoce.com/canada/en-ca/products/compactors/dd128c/",
+      "admission": "reference_only",
+      "note": "Official overview and visual reference. Its 27,700 lb fully-ballasted weight and 6 ft 7 in overall-width labels conflict with or differ in scope from brochure values, so the page is not configuration authority for those fields."
+    }
+  ]
+}

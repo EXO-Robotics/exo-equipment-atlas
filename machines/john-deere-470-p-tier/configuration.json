@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-470-p-tier",
+  "configuration_id": "JD-470P-NAM-B70-A39-B234-W1370-TSG900-CW8400-CANDIDATE",
+  "status": "research_candidate",
+  "identity": {
+    "manufacturer": "John Deere",
+    "brand": "John Deere",
+    "model": "470 P-Tier",
+    "product_class": "hydraulic_excavator",
+    "publication_family": "ME470PAU",
+    "market": "North America"
+  },
+  "choices": {
+    "boom": "one_piece_7.0_m",
+    "arm": "3.9_m",
+    "bucket": "operating_weight_basis_2.34_m3_1370_mm",
+    "undercarriage": "hydraulic_variable_gauge_operating_position",
+    "track_shoes": "900_mm_triple_semi_grouser_53_each_side",
+    "counterweight": "8400_kg_with_removal_device",
+    "grade_management": "not_modeled",
+    "auxiliary_hydraulics": "not_frozen"
+  },
+  "unresolved_choices": [
+    "exact PIN and order family",
+    "bucket family behind the operating-weight 2.34 m3 / 1370 mm basis",
+    "hydraulic coupler selection",
+    "auxiliary hydraulic plumbing selection",
+    "cab protection and trim package",
+    "grade-management option",
+    "counterweight removal-device exterior detail",
+    "public material and branding authorization"
+  ],
+  "boundary": "Research candidate only. Independently authored neutral structural study; not manufacturer CAD, engineering authority, load guidance, operator training, safety guidance, or manufacturer endorsement."
+}

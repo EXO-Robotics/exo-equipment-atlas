@@ -1,0 +1,635 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "volvo-dd128c",
+  "configuration_id": "VOLVO-DD128C-NAM-T4F-2000MM-OPEN-ROPS-CANDIDATE",
+  "candidate_class": "technical_structural_study",
+  "engineering_authority": false,
+  "verdict": "PASS",
+  "verdict_scope": "technical_structural_study_only",
+  "higher_stage_gates": "PENDING",
+  "failed_gates": [],
+  "evaluated_visible_bounds_m": {
+    "axis_order": [
+      "machine_X_longitudinal",
+      "machine_Y_vertical",
+      "machine_Z_right"
+    ],
+    "min_m": [
+      -2.9865,
+      -0.0,
+      -1.109
+    ],
+    "max_m": [
+      2.9865,
+      3.177,
+      1.109
+    ],
+    "size_m": [
+      5.973,
+      3.177,
+      2.218
+    ],
+    "measured_object_count": 325,
+    "method": "evaluated retained straight-pose public mesh and curve vertices; source helpers and studio excluded"
+  },
+  "gates": [
+    {
+      "id": "semantic-node-presence",
+      "status": "PASS",
+      "detail": "Required structural-study hierarchy exists.",
+      "expected": [
+        "VOLVODD128C_Root",
+        "ArticulationSteer_Root_Reconstructed",
+        "FrontOscillation_Root_Reconstructed",
+        "FrontDrum_Shell_2000mm",
+        "RearDrum_Shell_2000mm",
+        "FrontDrum_Hub_L",
+        "FrontDrum_Hub_R",
+        "RearDrum_Hub_L",
+        "RearDrum_Hub_R",
+        "FrontFrame_YokeCore",
+        "RearFrame_YokeCore",
+        "ArticulationBearing_Reconstructed",
+        "SteeringCylinder_Barrel_L_Reconstructed",
+        "SteeringCylinder_Rod_L_Reconstructed",
+        "SteeringCylinder_Barrel_R_Reconstructed",
+        "SteeringCylinder_Rod_R_Reconstructed",
+        "FrontWaterTank_640L_Reconstructed",
+        "RearWaterTank_640L_Reconstructed",
+        "FrontSprayBar_01",
+        "FrontSprayBar_02",
+        "RearSprayBar_01",
+        "RearSprayBar_02",
+        "FrontDrumWiper_Front",
+        "FrontDrumWiper_Rear",
+        "RearDrumWiper_Front",
+        "RearDrumWiper_Rear",
+        "EngineHood_Main_Reconstructed",
+        "OperatorPlatform",
+        "OperatorSeat_Cushion",
+        "OperatorDisplay",
+        "SteeringWheel",
+        "ROPS_FOPS_Canopy"
+      ],
+      "actual": {
+        "missing": []
+      }
+    },
+    {
+      "id": "published-overall-length",
+      "status": "PASS",
+      "detail": "Retained straight-pose evaluated public geometry represents dimension A.",
+      "expected": {
+        "value_m": 5.973,
+        "tolerance_m": 0.025
+      },
+      "actual": {
+        "value_m": 5.973
+      }
+    },
+    {
+      "id": "published-overall-height",
+      "status": "PASS",
+      "detail": "Retained straight-pose evaluated public geometry represents dimension C.",
+      "expected": {
+        "value_m": 3.177,
+        "tolerance_m": 0.025
+      },
+      "actual": {
+        "value_m": 3.177
+      }
+    },
+    {
+      "id": "published-overall-width",
+      "status": "PASS",
+      "detail": "Retained straight-pose evaluated public geometry represents dimension E.",
+      "expected": {
+        "value_m": 2.218,
+        "tolerance_m": 0.025
+      },
+      "actual": {
+        "value_m": 2.218
+      }
+    },
+    {
+      "id": "published-drum-center-distance",
+      "status": "PASS",
+      "detail": "Explicit front and rear center coordinates differ by the published dimension B; bearing geometry remains reconstructed.",
+      "expected": {
+        "value_m": 3.55
+      },
+      "actual": {
+        "value_m": 3.55
+      }
+    },
+    {
+      "id": "published-drum-width-diameter",
+      "status": "PASS",
+      "detail": "Both drum shell primitives use published F width and diameter; bevel/rim/hub geometry remains reconstructed.",
+      "expected": {
+        "width_m": 2.0,
+        "diameter_m": 1.4
+      },
+      "actual": {
+        "front": {
+          "width_m": 2.0,
+          "diameter_m": 1.4
+        },
+        "rear": {
+          "width_m": 2.0,
+          "diameter_m": 1.4
+        }
+      }
+    },
+    {
+      "id": "published-spray-component-counts",
+      "status": "PASS",
+      "detail": "Two redundant bars per drum and ten hand-serviceable visual nozzles per bar are represented; routing and nozzle angles remain reconstructed.",
+      "expected": {
+        "spray_bars": 4,
+        "nozzles": 40
+      },
+      "actual": {
+        "spray_bars": [
+          "FrontSprayBar_01",
+          "FrontSprayBar_02",
+          "RearSprayBar_01",
+          "RearSprayBar_02"
+        ],
+        "nozzle_count": 40,
+        "tip_count": 40
+      }
+    },
+    {
+      "id": "published-drum-wiper-count",
+      "status": "PASS",
+      "detail": "Front and rear styrene visual wipers for each drum are represented.",
+      "expected": {
+        "wipers": 4
+      },
+      "actual": {
+        "nodes": [
+          "FrontDrumWiper_Front",
+          "FrontDrumWiper_Rear",
+          "RearDrumWiper_Front",
+          "RearDrumWiper_Rear"
+        ]
+      }
+    },
+    {
+      "id": "published-articulation-endpoint",
+      "status": "PASS",
+      "detail": "The hierarchy reaches the published range endpoint; pivot and swept-volume authority remain pending.",
+      "expected": {
+        "endpoint_deg": 40
+      },
+      "actual": {
+        "steer_deg": 40.0,
+        "oscillation_deg": 0,
+        "steering_visual_lengths_m": {
+          "L": 1.54479,
+          "R": 1.19321
+        },
+        "front_anchors_xyz_m": {
+          "L": [
+            0.6183884739875793,
+            0.11999999731779099,
+            0.009780704975128174
+          ],
+          "R": [
+            0.11701416969299316,
+            0.11999999731779099,
+            0.6072953343391418
+          ]
+        }
+      }
+    },
+    {
+      "id": "published-oscillation-endpoint",
+      "status": "PASS",
+      "detail": "The hierarchy reaches the published range endpoint; bearing axis and clearance authority remain pending.",
+      "expected": {
+        "endpoint_deg": 10
+      },
+      "actual": {
+        "steer_deg": 0,
+        "oscillation_deg": 10.0,
+        "steering_visual_lengths_m": {
+          "L": 1.44473,
+          "R": 1.34672
+        },
+        "front_anchors_xyz_m": {
+          "L": [
+            0.47999998927116394,
+            0.05045413225889206,
+            -0.4049127697944641
+          ],
+          "R": [
+            0.47999998927116394,
+            0.18589970469474792,
+            0.363237202167511
+          ]
+        }
+      }
+    },
+    {
+      "id": "steering-cylinder-visual-continuity",
+      "status": "PASS",
+      "detail": "Both reconstructed paired cylinders remain endpoint-connected in straight and review poses; this is not a stroke or closure solver.",
+      "expected": {
+        "minimum_visual_length_m": 0.2
+      },
+      "actual": {
+        "straight": {
+          "L": 1.39345,
+          "R": 1.39345
+        },
+        "articulated": {
+          "L": 1.54479,
+          "R": 1.19321
+        }
+      }
+    },
+    {
+      "id": "structural-triangle-budget",
+      "status": "PASS",
+      "detail": "Blend source has sufficient review detail within the reconstructed study budget.",
+      "expected": {
+        "minimum": 12000,
+        "maximum": 140000
+      },
+      "actual": 61772
+    },
+    {
+      "id": "render-non-emptiness",
+      "status": "PASS",
+      "detail": "Eight deterministic multi-angle views are non-empty; the water-spray detail is an explicitly occluder-suppressed technical cutaway and human critic review is separate.",
+      "expected": {
+        "minimum_views": 7,
+        "minimum_bytes": 30000,
+        "minimum_luminance_range": 0.15
+      },
+      "actual": {
+        "review/renders/dd128c-straight-technical-side.png": {
+          "bytes": 623713,
+          "sampled_luminance_min": 0.0,
+          "sampled_luminance_max": 0.999166,
+          "sampled_luminance_range": 0.999166
+        },
+        "review/renders/dd128c-straight-front-quarter.png": {
+          "bytes": 669175,
+          "sampled_luminance_min": 0.003088,
+          "sampled_luminance_max": 0.970882,
+          "sampled_luminance_range": 0.967794
+        },
+        "review/renders/dd128c-rear-quarter.png": {
+          "bytes": 671360,
+          "sampled_luminance_min": 0.003088,
+          "sampled_luminance_max": 0.988786,
+          "sampled_luminance_range": 0.985698
+        },
+        "review/renders/dd128c-drum-water-spray-detail.png": {
+          "bytes": 554421,
+          "sampled_luminance_min": 0.0,
+          "sampled_luminance_max": 0.999717,
+          "sampled_luminance_range": 0.999717
+        },
+        "review/renders/dd128c-drum-hub-scraper-detail.png": {
+          "bytes": 792927,
+          "sampled_luminance_min": 0.003638,
+          "sampled_luminance_max": 0.86081,
+          "sampled_luminance_range": 0.857172
+        },
+        "review/renders/dd128c-operator-station.png": {
+          "bytes": 750623,
+          "sampled_luminance_min": 0.003088,
+          "sampled_luminance_max": 0.962504,
+          "sampled_luminance_range": 0.959416
+        },
+        "review/renders/dd128c-articulated-steer-study.png": {
+          "bytes": 652865,
+          "sampled_luminance_min": 0.003088,
+          "sampled_luminance_max": 1.0,
+          "sampled_luminance_range": 0.996912
+        },
+        "review/renders/dd128c-oscillation-study.png": {
+          "bytes": 789651,
+          "sampled_luminance_min": 0.0,
+          "sampled_luminance_max": 0.999717,
+          "sampled_luminance_range": 0.999717
+        }
+      }
+    },
+    {
+      "id": "published-ground-clearance-dimension-g",
+      "status": "PENDING",
+      "detail": "Dimension G is retained, but the complete articulation-belly datum and dynamic clearance are not qualified.",
+      "expected": {
+        "value_m": 0.505
+      }
+    },
+    {
+      "id": "published-inside-turning-radius",
+      "status": "PENDING",
+      "detail": "Published inside turning radius is retained; no travel-path or swept-drum solver has run.",
+      "expected": {
+        "value_m": 3.772
+      }
+    },
+    {
+      "id": "articulation-clearance",
+      "status": "PENDING",
+      "detail": "No exact joint envelope or swept collision solver is available."
+    },
+    {
+      "id": "oscillation-clearance",
+      "status": "PENDING",
+      "detail": "No exact oscillation bearing envelope or swept collision solver is available."
+    },
+    {
+      "id": "drum-ground-contact",
+      "status": "PENDING",
+      "detail": "Retained visual drum geometry touches grade, but dynamic contact and compaction behavior are outside this study."
+    },
+    {
+      "id": "self-collision",
+      "status": "PENDING",
+      "detail": "Source-only proxy volumes exist; no exact swept-volume self-collision qualification has run."
+    },
+    {
+      "id": "eccentric-phase-continuity",
+      "status": "PENDING",
+      "detail": "Internal eccentric visuals are reconstructed and not a qualified vibration or phase solver."
+    },
+    {
+      "id": "spray-flow-and-coverage",
+      "status": "PENDING",
+      "detail": "No pump, valve, flow, coverage, or redundancy simulation is claimed."
+    },
+    {
+      "id": "human-visual-critic",
+      "status": "PENDING",
+      "detail": "Overall Grok critic is intentionally deferred to the end of the ten-machine batch."
+    },
+    {
+      "id": "viewer-browser-accessibility-mobile-performance-selection",
+      "status": "PENDING",
+      "detail": "Shared-viewer integration and browser qualification are not claimed by this worker."
+    },
+    {
+      "id": "publication-release-deployment",
+      "status": "PENDING",
+      "detail": "Only the overall critic/publisher may advance or deploy this research candidate."
+    },
+    {
+      "id": "public-source-export-scales-applied",
+      "status": "PASS",
+      "detail": "Every public mesh/curve source object has applied scale without envelope drift.",
+      "expected": {
+        "all_scales": [
+          1,
+          1,
+          1
+        ],
+        "maximum_envelope_delta_m": 1e-06
+      },
+      "actual": {
+        "status": "PASS",
+        "public_export_geometry_nodes": 325,
+        "baked_node_count": 20,
+        "before_non_identity": {
+          "RearGuardInnerArm_L": [
+            0.4530451,
+            0.04,
+            0.1
+          ],
+          "RearGuardInnerArm_R": [
+            0.4530451,
+            0.04,
+            0.1
+          ],
+          "RearGuardOuterArm_L": [
+            0.4562072,
+            0.04,
+            0.1
+          ],
+          "RearGuardOuterArm_R": [
+            0.4562072,
+            0.04,
+            0.1
+          ],
+          "RearWiperArm_Front_L": [
+            0.2126029,
+            0.0325,
+            0.0375
+          ],
+          "RearWiperArm_Front_R": [
+            0.2126029,
+            0.0325,
+            0.0375
+          ],
+          "RearWiperArm_Rear_L": [
+            0.2126029,
+            0.0325,
+            0.0375
+          ],
+          "RearWiperArm_Rear_R": [
+            0.2126029,
+            0.0325,
+            0.0375
+          ],
+          "SteeringCylinder_Barrel_L_Reconstructed": [
+            0.075,
+            0.075,
+            0.4041001
+          ],
+          "SteeringCylinder_Barrel_R_Reconstructed": [
+            0.075,
+            0.075,
+            0.4041001
+          ],
+          "SteeringCylinder_Rod_L_Reconstructed": [
+            0.042,
+            0.042,
+            0.2926243
+          ],
+          "SteeringCylinder_Rod_R_Reconstructed": [
+            0.042,
+            0.042,
+            0.2926243
+          ],
+          "FrontGuardInnerArm_L": [
+            0.4530452,
+            0.04,
+            0.1
+          ],
+          "FrontGuardInnerArm_R": [
+            0.4530452,
+            0.04,
+            0.1
+          ],
+          "FrontGuardOuterArm_L": [
+            0.4562073,
+            0.04,
+            0.1
+          ],
+          "FrontGuardOuterArm_R": [
+            0.4562073,
+            0.04,
+            0.1
+          ],
+          "FrontWiperArm_Front_L": [
+            0.2126029,
+            0.0325,
+            0.0375
+          ],
+          "FrontWiperArm_Front_R": [
+            0.2126029,
+            0.0325,
+            0.0375
+          ],
+          "FrontWiperArm_Rear_L": [
+            0.2126029,
+            0.0325,
+            0.0375
+          ],
+          "FrontWiperArm_Rear_R": [
+            0.2126029,
+            0.0325,
+            0.0375
+          ]
+        },
+        "after_non_identity": {},
+        "before_bounds_m": {
+          "axis_order": [
+            "machine_X_longitudinal",
+            "machine_Y_vertical",
+            "machine_Z_right"
+          ],
+          "min_m": [
+            -2.9865,
+            -0.0,
+            -1.109
+          ],
+          "max_m": [
+            2.9865,
+            3.177,
+            1.109
+          ],
+          "size_m": [
+            5.973,
+            3.177,
+            2.218
+          ],
+          "measured_object_count": 325,
+          "method": "evaluated retained straight-pose public mesh and curve vertices; source helpers and studio excluded"
+        },
+        "after_bounds_m": {
+          "axis_order": [
+            "machine_X_longitudinal",
+            "machine_Y_vertical",
+            "machine_Z_right"
+          ],
+          "min_m": [
+            -2.9865,
+            -0.0,
+            -1.109
+          ],
+          "max_m": [
+            2.9865,
+            3.177,
+            1.109
+          ],
+          "size_m": [
+            5.973,
+            3.177,
+            2.218
+          ],
+          "measured_object_count": 325,
+          "method": "evaluated retained straight-pose public mesh and curve vertices; source helpers and studio excluded"
+        },
+        "envelope_delta_m": {
+          "min_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "size_m": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "id": "public-glb-mesh-node-scales-identity",
+      "status": "PASS",
+      "detail": "Every shipped public GLB mesh node decodes to identity local scale.",
+      "expected": {
+        "non_identity_mesh_nodes": []
+      },
+      "actual": []
+    },
+    {
+      "id": "public-glb-decoded-triangle-budget",
+      "status": "PASS",
+      "detail": "Shipped triangle count is decoded from GLB accessors.",
+      "expected": {
+        "minimum": 10000,
+        "maximum": 140000
+      },
+      "actual": {
+        "classification": "public_glb_decoded_geometry",
+        "nodes": 328,
+        "mesh_nodes": 325,
+        "mesh_resources": 325,
+        "primitives": 325,
+        "position_vertices": 118052,
+        "triangles": 62024,
+        "triangle_method": "decoded glTF accessor element counts"
+      }
+    },
+    {
+      "id": "public-glb-single-root-helper-free",
+      "status": "PASS",
+      "detail": "Y-up GLB has one identity root and no reference, collision, inspection, studio, camera, or light helpers.",
+      "expected": {
+        "root_name": "VOLVODD128C_Root",
+        "root_identity_trs": true,
+        "helper_nodes_present": []
+      },
+      "actual": {
+        "status": "PASS",
+        "asset_version": "2.0",
+        "scene_direct_root_count": 1,
+        "scene_direct_root_names": [
+          "VOLVODD128C_Root"
+        ],
+        "root_identity_trs": true,
+        "node_count": 328,
+        "helper_nodes_present": [],
+        "public_mesh_node_scale_status": "PASS",
+        "public_mesh_node_count": 325,
+        "public_mesh_nodes_non_identity_scale": [],
+        "unsupported_primitive_modes": [],
+        "glb_y_up": true,
+        "public_glb_decoded_counts": {
+          "classification": "public_glb_decoded_geometry",
+          "nodes": 328,
+          "mesh_nodes": 325,
+          "mesh_resources": 325,
+          "primitives": 325,
+          "position_vertices": 118052,
+          "triangles": 62024,
+          "triangle_method": "decoded glTF accessor element counts"
+        }
+      }
+    }
+  ]
+}

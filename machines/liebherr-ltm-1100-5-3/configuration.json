@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "liebherr-ltm-1100-5-3",
+  "configuration_id": "LIEBHERR-LTM1100-5.3-GLOBAL-445-R25-10X6X10-T62-TRANSPORT-CANDIDATE",
+  "status": "research_candidate",
+  "identity": {
+    "manufacturer": "Liebherr",
+    "brand": "Liebherr",
+    "model": "LTM 1100-5.3",
+    "product_class": "five_axle_all_terrain_mobile_crane",
+    "publication_family": "S3586.02",
+    "market": "Global"
+  },
+  "choices": {
+    "carrier": "five_axle",
+    "drive_steering": "10_x_6_x_10_standard",
+    "tires": "445_95_R25",
+    "telescopic_boom": "13_to_62_m_family",
+    "jib": "not_installed_in_transport_study",
+    "counterweight": "neutral_reconstructed_transport_stack_not_load_configuration_authority",
+    "transport_pose": "boom_retracted_outriggers_stowed_hook_secured_study",
+    "review_pose": "bounded_partially_telescoped_42_degree_luff_outriggers_deployed_study"
+  },
+  "unresolved_choices": [
+    "exact serial number and delivery market specification",
+    "road-travel axle-load and carried-ballast configuration",
+    "counterweight plate combination and VarioBallast radius",
+    "optional 10 x 8 x 10 drive selection",
+    "jib and folding-tip configuration",
+    "hook-block and reeving selection",
+    "all hidden pivots, telescope staging, pins, hydraulic anchors, and rope routing",
+    "outrigger extension and VarioBase operating state",
+    "public material and branding authorization"
+  ],
+  "boundary": "Independent neutral technical structural study of the LTM 1100-5.3 identity. Published dimensions constrain the transport reconstruction, but this package is not manufacturer CAD, a load chart, lifting guidance, engineering authority, operator training, or safety guidance. The deployed pose, telescope staging, rigging, pivots, anchors, and outrigger motion are reconstructed."
+}

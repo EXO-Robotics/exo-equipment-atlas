@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "cat-d6",
+  "configuration_id": "CAT-D6-20C-AUSAM-PUSHARM-6SU-HD42-MS610-DRAWBAR-CANDIDATE",
+  "coordinate_system": {
+    "longitudinal": "+X toward 6SU blade/front",
+    "vertical": "+Y",
+    "lateral": "+Z machine right"
+  },
+  "joints": [
+    {
+      "id": "blade_lift",
+      "type": "reconstructed_push_arm_arc",
+      "axis": "+Z nominal",
+      "authority": "reconstructed",
+      "source_ids": ["CAT-D6-AEXQ3981-20C-AUSAM"],
+      "published_constraints": ["blade-lift-height", "blade-dig-depth", "machine-length-blade-straight"],
+      "unresolved": ["trunnion pivot locations", "lift-cylinder anchors", "cylinder stroke", "push-arm flex and oscillation"]
+    },
+    {
+      "id": "blade_tilt",
+      "type": "reconstructed_roll_about_longitudinal_axis",
+      "axis": "+X nominal",
+      "authority": "reconstructed",
+      "source_ids": ["CAT-D6-AEXQ3981-20C-AUSAM"],
+      "published_constraints": ["blade-maximum-corner-tilt", "blade-maximum-tilt-angle"],
+      "unresolved": ["tilt-cylinder anchors", "tilt-cylinder stroke", "blade pitch interaction"]
+    },
+    {
+      "id": "blade_pitch",
+      "type": "reconstructed_adjustment",
+      "axis": "+Z nominal",
+      "authority": "reconstructed",
+      "source_ids": ["CAT-D6-AEXQ3981-20C-AUSAM"],
+      "published_constraints": ["blade-pitch-adjustment"],
+      "unresolved": ["pitch-link hole locations", "operating procedure", "coupling to tilt geometry"]
+    },
+    {
+      "id": "left_track",
+      "type": "looped_visual",
+      "authority": "reconstructed",
+      "source_ids": ["CAT-D6-AEXQ3981-20C-AUSAM", "CAT-D6-AEXQ4170-20C-AUSAM"],
+      "published_constraints": ["track-sections-each-side", "track-pitch", "track-on-ground-length", "bottom-rollers-each-side", "sprocket-service-segments"],
+      "unresolved": ["sprocket phase", "roller centers", "idler center and tension setting", "shoe pin and bushing geometry"]
+    },
+    {
+      "id": "right_track",
+      "type": "looped_visual",
+      "authority": "reconstructed",
+      "source_ids": ["CAT-D6-AEXQ3981-20C-AUSAM", "CAT-D6-AEXQ4170-20C-AUSAM"],
+      "published_constraints": ["track-sections-each-side", "track-pitch", "track-on-ground-length", "bottom-rollers-each-side", "sprocket-service-segments"],
+      "unresolved": ["sprocket phase", "roller centers", "idler center and tension setting", "shoe pin and bushing geometry"]
+    },
+    {
+      "id": "equalizer_bar_oscillation",
+      "type": "unresolved",
+      "authority": "unresolved",
+      "source_ids": ["CAT-D6-AEXQ3981-20C-AUSAM"],
+      "published_constraints": ["front-idler-oscillation"],
+      "unresolved": ["equalizer-bar pivots", "bogie relationship", "track-frame roll limits"]
+    }
+  ],
+  "required_gates": [
+    "published_static_envelope",
+    "blade_width_and_height",
+    "track_count_pitch_and_ground_contact",
+    "blade_cylinder_static_closure",
+    "blade_lift_endpoint",
+    "blade_tilt_endpoint",
+    "ground_collision",
+    "self_collision",
+    "track_phase_continuity"
+  ],
+  "release_state": "no_geometry_no_solver_no_claim"
+}

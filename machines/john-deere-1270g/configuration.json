@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-1270g",
+  "configuration_id": "JD-1270G-8W-CH7-R86-H480C-600-CANDIDATE",
+  "status": "research_candidate",
+  "identity": {
+    "manufacturer": "John Deere",
+    "brand": "John Deere",
+    "model": "1270G 8W",
+    "product_class": "wheeled_harvester",
+    "market": "North America and Latin America source intersection"
+  },
+  "choices": {
+    "drive_configuration": "8x8",
+    "boom": "CH7",
+    "selected_maximum_reach_head_included_m": 8.6,
+    "reference_harvester_head": "H480C",
+    "tire_identity": "26.5-20 front and rear",
+    "overall_width_basis": "600-series minimum 2.746 m",
+    "cabin": "rotating_and_leveling_visual_study"
+  },
+  "unresolved_choices": [
+    "exact tire make, tread, inflation, offset, and sidewall geometry",
+    "exact H480C part revision and all head geometry",
+    "CH7 8.6 m segment lengths, telescope stroke, hidden pivots, cylinder anchors, and hose routing",
+    "cab option package and leveling/rotation mechanism geometry",
+    "lighting, guarding, service, emissions, and regional option packages",
+    "transport-pose boom and head retention geometry",
+    "public material and branding authorization"
+  ],
+  "boundary": "Research candidate only. The 1270G 8W, CH7, 8.6 m head-included reach, H480C reference-head, 26.5-20 tire and 2.746 m minimum-width choices are source-bound. All independently authored mesh dimensions, articulation, head internals, pivots, anchors and interpolation remain reconstructed or unresolved."
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "komatsu-wa475-10",
+  "configuration_id": "KOM-WA475-10-NAM-STD-STOCKPILE42-L3-CW-CANDIDATE",
+  "freeze_date": "2026-08-29",
+  "repository_policy": {
+    "source_binaries_committed": false,
+    "manufacturer_geometry_committed": false,
+    "manufacturer_photography_committed": false,
+    "publication_illustrations_are_scale_drawings": false,
+    "verification": "Private source binary is identified by exact bytes and SHA-256; only independently authored geometry and derived fact records are shipped."
+  },
+  "sources": [
+    {
+      "id": "KOM-WA47510-AESS942-0225",
+      "publisher": "Komatsu America Corp.",
+      "kind": "official_product_brochure_and_specification",
+      "title": "WA475-10 Tier 4 Final Engine Wheel Loader",
+      "publication": "AESS942-0225",
+      "market": "North America",
+      "pages": 20,
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.komatsu.com/content/dam/komatsu/websites/en-us/miscellaneous-web-site-assets/WA475_10_AESS942_0225_v2.pdf",
+      "local_path": "research/private/komatsu-wa475-10/WA475_10_AESS942_0225_v2.pdf",
+      "sha256": "f403e03406788ac041db083e2198000d8e358fff39902c31cfda6c4aca602a50",
+      "bytes": 29231274,
+      "admission": "primary"
+    },
+    {
+      "id": "KOM-WA47510-PRODUCT-PAGE-AU",
+      "publisher": "Komatsu Australia",
+      "kind": "official_product_page",
+      "title": "WA475-10 Large Wheel Loader",
+      "market": "Australia",
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.komatsu.com/en-au/products/equipment/wheel-loaders/large-wheel-loaders/wa475-10",
+      "admission": "reference_only"
+    },
+    {
+      "id": "KOM-WA47510-LAUNCH-2020",
+      "publisher": "Komatsu",
+      "kind": "official_product_release",
+      "title": "Komatsu's new WA475-10 wheel loader increases fuel efficiency by up to 30 percent",
+      "market": "North America",
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.komatsu.com/en-us/newsroom/2020/2020-03-10-komatsu-new-wa475-10-wheel-loader-increases-fuel-efficiency-by-up-to-30",
+      "admission": "reference_only"
+    }
+  ]
+}

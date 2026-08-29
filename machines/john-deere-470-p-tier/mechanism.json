@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-470-p-tier",
+  "configuration_id": "JD-470P-NAM-B70-A39-B234-W1370-TSG900-CW8400-CANDIDATE",
+  "coordinate_system": {
+    "longitudinal": "+X toward bucket",
+    "vertical": "+Y",
+    "lateral": "+Z machine right"
+  },
+  "joints": [
+    {
+      "id": "upper_swing",
+      "type": "revolute",
+      "axis": "+Y",
+      "authority": "reconstructed",
+      "source_ids": ["JD-470P-ME470PAU"],
+      "published_constraints": ["tail swing radius", "swing speed"],
+      "unresolved": ["slew-bearing diameter, center elevation, and allowable UI travel"]
+    },
+    {
+      "id": "boom",
+      "type": "revolute",
+      "axis": "+Z",
+      "authority": "reconstructed",
+      "source_ids": ["JD-470P-ME470PAU"],
+      "published_constraints": ["7.0 m boom identity", "two 170/115 mm boom cylinders", "1590 mm stroke", "working envelope"],
+      "unresolved": ["boom pin center, box-section dimensions, cylinder anchors, and permitted angles"]
+    },
+    {
+      "id": "arm",
+      "type": "revolute",
+      "axis": "+Z",
+      "authority": "reconstructed",
+      "source_ids": ["JD-470P-ME470PAU"],
+      "published_constraints": ["3.9 m arm identity", "190/130 mm arm cylinder", "1940 mm stroke", "working envelope"],
+      "unresolved": ["arm pin-to-pin interpretation, section taper, anchors, and permitted angles"]
+    },
+    {
+      "id": "bucket",
+      "type": "revolute_linkage",
+      "axis": "+Z",
+      "authority": "reconstructed",
+      "source_ids": ["JD-470P-ME470PAU"],
+      "published_constraints": ["2.34 m3 / 1370 mm operating-weight bucket basis", "170/120 mm bucket cylinder", "1325 mm stroke"],
+      "unresolved": ["bucket family conflict, shell volume, tooth-tip radius, linkage topology dimensions, all lugs, and all anchors"]
+    },
+    {
+      "id": "left_track",
+      "type": "looped_visual",
+      "authority": "reconstructed",
+      "source_ids": ["JD-470P-ME470PAU"],
+      "published_constraints": ["53 shoes", "9 track rollers", "3 carrier rollers", "900 mm shoe width", "4.47 m idler-sprocket center distance"],
+      "unresolved": ["link pitch, shoe plate profile, sprocket tooth count and phase, wheel diameters, and exact roller centers"]
+    },
+    {
+      "id": "right_track",
+      "type": "looped_visual",
+      "authority": "reconstructed",
+      "source_ids": ["JD-470P-ME470PAU"],
+      "published_constraints": ["53 shoes", "9 track rollers", "3 carrier rollers", "900 mm shoe width", "4.47 m idler-sprocket center distance"],
+      "unresolved": ["link pitch, shoe plate profile, sprocket tooth count and phase, wheel diameters, and exact roller centers"]
+    },
+    {
+      "id": "variable_gauge",
+      "type": "prismatic_configuration_only",
+      "axis": "+Z/-Z",
+      "authority": "reconstructed",
+      "source_ids": ["JD-470P-ME470PAU"],
+      "published_constraints": ["2.89 m operating gauge", "2.39 m transport gauge", "3.79 m operating width", "3.29 m transport width"],
+      "unresolved": ["extension mechanism, actuator, locks, travel path, and operating procedure"]
+    }
+  ],
+  "required_gates": [
+    "published_transport_envelope",
+    "published_operating_width",
+    "boom_arm_identity",
+    "published_roller_and_shoe_counts",
+    "cylinder_anchor_continuity",
+    "bucket_linkage_closure",
+    "upper_to_undercarriage_clearance",
+    "ground_collision",
+    "self_collision",
+    "track_phase_continuity",
+    "identity_root_and_applied_scales"
+  ],
+  "release_state": "no_geometry_no_solver_no_claim"
+}

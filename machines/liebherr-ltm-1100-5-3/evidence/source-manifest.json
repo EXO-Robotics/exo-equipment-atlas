@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "liebherr-ltm-1100-5-3",
+  "configuration_id": "LIEBHERR-LTM1100-5.3-GLOBAL-445-R25-10X6X10-T62-TRANSPORT-CANDIDATE",
+  "freeze_date": "2026-08-29",
+  "repository_policy": {
+    "source_binaries_committed": false,
+    "manufacturer_geometry_committed": false,
+    "manual_illustrations_are_scale_drawings": false,
+    "verification": "The official PDF was retrieved directly for this build, hashed privately, and is not redistributed. Its drawings constrain published envelopes only and are not treated as CAD or hidden-geometry authority."
+  },
+  "sources": [
+    {
+      "id": "LIEBHERR-LTM1100-5.3-TECH-DATA",
+      "publisher": "Liebherr-Werk Ehingen GmbH",
+      "kind": "official_technical_data",
+      "title": "Technical Data - Mobile crane LTM 1100-5.3 [m/t]",
+      "publication": "LTM 1100-5.3 / S3586.02",
+      "market": "Global multilingual metric publication",
+      "pages": 32,
+      "retrieved": "2026-08-29",
+      "official_url": "https://assets-cdn.liebherr.com/versions/6dc2da1b-e0b5-4add-9591-accee6d4ff01/original/",
+      "local_path": "research/private/liebherr-ltm-1100-5-3/liebherr-ltm-1100-5-3-technical-data.pdf",
+      "private_filename": "liebherr-ltm-1100-5-3-technical-data.pdf",
+      "sha256": "cb577004901788d02eac064cf37b820be002d1df853dc1a57d533a46cea3f4c5",
+      "bytes": 5564872,
+      "admission": "primary",
+      "note": "Configuration-applicable identity, dimension drawing, carrier, boom, counterweight-family, and motion-endpoint publication. Capacity charts are outside this structural-study scope."
+    },
+    {
+      "id": "LIEBHERR-LTM1100-5.3-PRODUCT-PAGE",
+      "publisher": "Liebherr",
+      "kind": "official_product_page",
+      "title": "Mobile crane LTM 1100-5.3 - The master of all roads",
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.liebherr.com/en-int/mobile-and-crawler-cranes/mobile-cranes/ltm-mobile-cranes/ltm-1100-5-3-5387259",
+      "admission": "primary",
+      "note": "Official product identity and technical-data download index."
+    }
+  ]
+}

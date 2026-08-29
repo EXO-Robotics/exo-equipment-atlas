@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-1270g",
+  "configuration_id": "JD-1270G-8W-CH7-R86-H480C-600-CANDIDATE",
+  "coordinate_system": {"longitudinal": "+X toward harvester head/front", "vertical": "+Y", "lateral": "+Z machine right"},
+  "joints": [
+    {"id": "frame_steer", "type": "revolute", "axis": "+Y", "authority": "reconstructed", "published_range_deg": [-44, 44], "source_ids": ["JD-1270G-MWH1270GF"], "unresolved": ["pivot coordinates, steering-cylinder anchors, joint clearances, swept-volume closure"]},
+    {"id": "front_balanced_bogie", "type": "revolute", "axis": "+Z", "authority": "reconstructed", "source_ids": ["JD-1270G-MWH1270GF"], "unresolved": ["pivot, stop angles, axle centers, housing geometry, suspension motion"]},
+    {"id": "cab_rotation_leveling", "type": "compound_rotation_leveling", "authority": "reconstructed", "published_ranges_deg": {"rotation": 160, "sideways_tilt": 17, "fore_aft_tilt": 9}, "source_ids": ["JD-1270G-MWH1270GF"], "unresolved": ["rotation convention, pivots, actuator anchors, control law, collision clearance"]},
+    {"id": "ch7_boom", "type": "slew_lift_fold_telescope", "authority": "reconstructed", "published_constraints": {"selected_head_included_maximum_reach_m": 8.6, "slewing_angle_deg": 220, "forward_back_tilt_deg": [28, -15]}, "source_ids": ["JD-1270G-MWH1270GF", "JD-1270G-8W-LA-PAGE"], "unresolved": ["segment lengths, all pivots, anchors, strokes, hose routing, interpolation, mechanical closure"]},
+    {"id": "h480c_reference_head", "type": "rotator_tilt_feed_delimb_saw_visual", "authority": "reconstructed", "source_ids": ["JD-1270G-MWH1270GF", "JD-1270G-8W-LA-PAGE"], "unresolved": ["exact revision, dimensions, feed-roller profiles, knife linkage, saw geometry, rotator and hose interface, operating motion"]}
+  ],
+  "required_gates": ["base_carrier_length", "wheelbase", "minimum_width", "transport_height_reference", "ground_clearance_reference", "selected_maximum_reach_endpoint", "frame_steering_range", "bogie_continuity", "boom_cylinder_continuity", "head_visual_components", "ground_collision", "self_collision"],
+  "release_state": "no_geometry_no_solver_no_claim"
+}

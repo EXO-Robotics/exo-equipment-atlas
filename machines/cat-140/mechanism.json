@@ -1,0 +1,125 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "cat-140",
+  "configuration_id": "CAT-140-16A-NAM-LVR-NONAWD-STDCIRCLE-MB12-RR14R24-PB-RRS-CANDIDATE",
+  "coordinate_system": {
+    "longitudinal": "+X toward front axle and push block",
+    "vertical": "+Y",
+    "lateral": "+Z machine right"
+  },
+  "joints": [
+    {
+      "id": "frame_articulation",
+      "type": "revolute",
+      "axis": "+Y",
+      "published_range_deg": [-20, 20],
+      "authority": "reconstructed",
+      "source_ids": ["CAT-140-AEXQ4475-00-GLOBAL"],
+      "unresolved": ["hitch bearing center, kingpin stack, hose sweep, and articulation interpolation"]
+    },
+    {
+      "id": "front_axle_oscillation",
+      "type": "revolute",
+      "axis": "+X",
+      "published_total_range_deg": 32,
+      "authority": "reconstructed",
+      "source_ids": ["CAT-140-AEXQ4475-00-GLOBAL"],
+      "unresolved": ["oscillation center and stops"]
+    },
+    {
+      "id": "front_steering_left_right",
+      "type": "paired_revolute_linkage",
+      "axis": "+Y nominal",
+      "published_range_deg_each_side": 50,
+      "authority": "reconstructed",
+      "source_ids": ["CAT-140-AEXQ4475-00-GLOBAL"],
+      "unresolved": ["kingpin inclination, Ackermann geometry, tie-rod anchors, and cylinder anchors"]
+    },
+    {
+      "id": "front_wheel_lean",
+      "type": "paired_revolute_linkage",
+      "axis": "+X nominal",
+      "published_range_deg_each_side": 18,
+      "authority": "reconstructed",
+      "source_ids": ["CAT-140-AEXQ4475-00-GLOBAL"],
+      "unresolved": ["lean pivot centers, steering interaction, and hydraulic anchors"]
+    },
+    {
+      "id": "left_tandem_oscillation",
+      "type": "revolute",
+      "axis": "+Z",
+      "authority": "reconstructed",
+      "source_ids": ["CAT-140-PRODUCT-PAGE-127580"],
+      "unresolved": ["pivot center, chain-case geometry, stops, and phase"]
+    },
+    {
+      "id": "right_tandem_oscillation",
+      "type": "revolute",
+      "axis": "+Z",
+      "authority": "reconstructed",
+      "source_ids": ["CAT-140-PRODUCT-PAGE-127580"],
+      "unresolved": ["pivot center, chain-case geometry, stops, and phase"]
+    },
+    {
+      "id": "circle_rotation",
+      "type": "revolute",
+      "axis": "+Y nominal",
+      "published_range_deg": [0, 360],
+      "authority": "reconstructed",
+      "source_ids": ["CAT-140-AEXQ4475-00-GLOBAL"],
+      "unresolved": ["circle center, tooth profile, pinion engagement, wear shoes, and drive housing geometry"]
+    },
+    {
+      "id": "drawbar_centershift",
+      "type": "compound_linkage",
+      "authority": "reconstructed",
+      "source_ids": ["CAT-140-AEXQ4475-00-GLOBAL"],
+      "unresolved": ["12 ft and 14.0R24 configuration-specific endpoints, link-bar holes, anchors, and closure"]
+    },
+    {
+      "id": "moldboard_sideshift",
+      "type": "prismatic",
+      "axis": "+Z nominal",
+      "authority": "reconstructed",
+      "source_ids": ["CAT-140-AEXQ4475-00-GLOBAL"],
+      "unresolved": ["selected tire and 12 ft moldboard endpoints, rail geometry, and cylinder anchors"]
+    },
+    {
+      "id": "moldboard_tip",
+      "type": "revolute",
+      "axis": "+Z",
+      "published_range_deg": [-5, 50],
+      "authority": "reconstructed",
+      "source_ids": ["CAT-140-AEXQ4475-00-GLOBAL"],
+      "unresolved": ["tip pivot, bellcrank, and cylinder anchors"]
+    },
+    {
+      "id": "blade_lift_left_right",
+      "type": "paired_hydraulic_linkage",
+      "authority": "reconstructed",
+      "source_ids": ["CAT-140-AEXQ4475-00-GLOBAL"],
+      "unresolved": ["all pivot and cylinder anchors, strokes, synchronization, and collision limits"]
+    },
+    {
+      "id": "rear_ripper_raise_lower",
+      "type": "hydraulic_linkage",
+      "authority": "reconstructed",
+      "source_ids": ["CAT-140-AEXQ4475-00-GLOBAL"],
+      "unresolved": ["beam pivot, cylinder anchors, travel, and five-shank tooth geometry"]
+    }
+  ],
+  "required_gates": [
+    "frozen_visible_configuration",
+    "published_static_envelope",
+    "front_axle_center_height",
+    "six_tire_contact_and_clearance",
+    "articulation_steering_and_wheel_lean_continuity",
+    "drawbar_circle_moldboard_closure",
+    "lift_centershift_sideshift_cylinder_continuity",
+    "rear_ripper_clearance",
+    "ground_collision",
+    "self_collision",
+    "swept_volume_collision"
+  ],
+  "release_state": "no_geometry_no_solver_no_claim"
+}

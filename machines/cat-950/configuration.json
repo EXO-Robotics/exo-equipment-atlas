@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "cat-950",
+  "configuration_id": "CAT-950-14C-NAM-T4F-STDLIFT-PZBAR-BR235R25-VJT-L3-GP31-TS-CANDIDATE",
+  "status": "research_candidate",
+  "identity": {
+    "manufacturer": "Caterpillar",
+    "brand": "Cat",
+    "model": "950",
+    "publication_family": "14C",
+    "product_class": "articulated_wheel_loader",
+    "market": "North America",
+    "emissions_configuration": "U.S. EPA Tier 4 Final / EU Stage V publication column"
+  },
+  "choices": {
+    "linkage": "standard_lift_parallel_lift_z_bar",
+    "bucket": "3.1_m3_general_purpose_pin_on",
+    "bucket_edge": "teeth_and_segments",
+    "tires": "Bridgestone_23.5R25_VJT_L3_radial",
+    "counterweight": "standard",
+    "fenders": "roading",
+    "front_axle": "manual_differential_lock",
+    "rear_axle": "open",
+    "ride_control": "included",
+    "secondary_steering": "included"
+  },
+  "unresolved_choices": [
+    "exact serial or order family",
+    "cab trim, seat, steering, mirror, camera, lighting, and glazing options",
+    "automatic differential-lock option applicability",
+    "third and fourth hydraulic function installation",
+    "quick-coupler and auxiliary plumbing selections",
+    "autolube, guarding, and rear access options",
+    "exact tire inflation and loaded deflection state",
+    "public material and branding authorization"
+  ],
+  "boundary": "Research candidate only. Published dimensions constrain an independently authored structural study; they do not establish hidden pivots, anchors, cylinder strokes, load paths, tire mechanics, training data, safety guidance, or manufacturer endorsement."
+}

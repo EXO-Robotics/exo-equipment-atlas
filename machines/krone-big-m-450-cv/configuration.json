@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "krone-big-m-450-cv",
+  "configuration_id": "KRONE-BIGM450-CV-EU-STAGEV-990-DUOGRIP-SM-AUGER-CANDIDATE",
+  "status": "research_candidate",
+  "identity": {
+    "manufacturer": "Maschinenfabrik Bernard Krone GmbH & Co. KG",
+    "brand": "KRONE",
+    "model": "BiG M 450 CV",
+    "product_class": "self_propelled_mower_conditioner",
+    "market": "European / international Stage V"
+  },
+  "choices": {
+    "conditioner": "CV_V_type_steel_tine_rotors",
+    "mower_system": "front_plus_two_DuoGrip_side_units",
+    "swath_merger": "optional_independent_left_right_cross_conveyor_augers_selected",
+    "front_mower_side_shift": "optional_hydraulic_side_shift_selected",
+    "side_guard_fold": "hydraulic_option_selected",
+    "tires": "publication_family_visual_basis_unresolved",
+    "public_finish": "neutral_unbranded_sage_and_graphite"
+  },
+  "excluded_options": [
+    "CR roller conditioner",
+    "Perfect TriGant mulcher conversion",
+    "manufacturer logos and protected livery"
+  ],
+  "unresolved_choices": [
+    "exact market order code and serial number",
+    "tire specification and track-width order",
+    "GPS Guidance, SectionControl, lighting and telemetry package",
+    "exact mower pivots, guard hinges, break-back stops, suspension points and driveline routing",
+    "public material and branding authorization"
+  ],
+  "boundary": "Technical structural study only. Published working width, transport envelope, mass-independent performance facts, and visible mower functions constrain the study. Exact machine length, hidden hinges, mower suspension geometry, break-back trajectory, disc phasing, conditioner drives, auger drives, axle travel, motion interpolation, and clearances are reconstructed."
+}

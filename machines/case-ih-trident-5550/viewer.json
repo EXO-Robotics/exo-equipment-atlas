@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0.0",
+  "machineId": "case-ih-trident-5550",
+  "displayName": "Case IH Trident 5550",
+  "className": "High-clearance combination applicator",
+  "category": "Crop application",
+  "assets": {
+    "glb": "machines/case-ih-trident-5550/assets/case-ih-trident-5550-structural-study.glb",
+    "configuration": "machines/case-ih-trident-5550/configuration.json",
+    "facts": "machines/case-ih-trident-5550/evidence/facts.json",
+    "receipt": "machines/case-ih-trident-5550/production/asset-receipt.json",
+    "validation": "machines/case-ih-trident-5550/production/validation.json",
+    "poster": "machines/case-ih-trident-5550/review/renders/case-ih-trident-5550-operator-side.png"
+  },
+  "evidence": {
+    "boundary": "Neutral 1,600-gallon liquid-system study retaining the folded carrier envelope for fleet-scale inspection. The selected 120-foot boom span is evidence only; its segment lengths, folds and breakaways are not claimed as scale geometry.",
+    "lede": "The official brochure fixes the 9.72 x 4.21 x 4.01 m folded carrier envelope and the selected 36.5 m boom working span while the public model remains a structural study, not application or safety guidance.",
+    "factIds": ["public-envelope-x", "public-envelope-y", "public-envelope-z", "boom-working-span", "liquid-tank-capacity", "pwm-frequency"]
+  },
+  "camera": {"azimuth": 0.54, "elevation": 0.27, "distance": 1.43},
+  "accent": "#758696",
+  "motion": {
+    "autoplay": true,
+    "durationSeconds": 18,
+    "mode": "sine",
+    "damping": 5.8,
+    "channels": [
+      {"id":"left-boom-fold","label":"Left boom fold - reconstructed","nodes":["Boom_L_Fold_Pivot"],"property":"rotation.y","from":0.0,"to":1.18,"phase":0.0,"mode":"offset","autoplay":"ping-pong"},
+      {"id":"right-boom-fold","label":"Right boom fold - reconstructed","nodes":["Boom_R_Fold_Pivot"],"property":"rotation.y","from":0.0,"to":-1.18,"phase":0.0,"mode":"offset","autoplay":"ping-pong"}
+    ]
+  }
+}

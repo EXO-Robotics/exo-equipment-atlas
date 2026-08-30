@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "case-ih-trident-5550",
+  "display_name": "Case IH Trident 5550",
+  "configuration_id": "CASEIH-TRIDENT5550-NAM-LIQ1600-ALBOOM120-AIMCF2-4WD-CANDIDATE",
+  "archetype": "high_clearance_sprayer",
+  "dimensions_m": {
+    "length": 9.72,
+    "width": 4.21,
+    "height": 4.01
+  },
+  "attachment_span_m": 4.21,
+  "palette": "slate",
+  "published_constraints_used": [
+    "public-envelope-x",
+    "public-envelope-y",
+    "public-envelope-z",
+    "boom-working-span",
+    "liquid-tank-capacity",
+    "selected-boom-width",
+    "wheelbase",
+    "drive-system"
+  ],
+  "reconstructed_values": {
+    "presentation_pose": "Folded carrier study retained for fleet-scale inspectability; the selected 120-foot / 36.5 m working span remains a published evidence fact but is not reconstructed as full-length public geometry.",
+    "carrier_transport_width_m": 4.21,
+    "carrier_transport_width_note": "Manufacturer-published with 710/60R46 tires; axle track setting within that basis remains unresolved.",
+    "solution_system": "Visible tank is a neutral volume cue for the selected 1,600 US gallon liquid system; plumbing and liquid behavior are not simulated.",
+    "materials": "Neutral unbranded slate, graphite, steel, rubber and glass with no logos, decals or copied trade dress.",
+    "hidden_geometry": "Boom hinges, self-centering linkage, suspension anchors, steering joints and plumbing are reconstructed.",
+    "animation_ranges": "Conservative presentation fold and axle ranges only; not operating limits."
+  },
+  "unresolved_choices": [
+    "exact model year and dealer order code",
+    "boom nozzle spacing and tip package",
+    "wheel-track setting within the published 710/60R46 envelope basis",
+    "SenseApply model-year-specific hardware selection",
+    "tank plumbing, hose routing and breakaway geometry",
+    "public material and branding authorization"
+  ],
+  "mechanical_gaps": [
+    "120-foot boom section lengths, fold axes, self-centering links and breakaway endpoints",
+    "suspension travel, steering angles, tie rods and wheel-offset authority",
+    "tank mounts, pump, plumbing, nozzle and liquid-flow geometry",
+    "boom-to-cab and boom-to-ground swept clearance",
+    "ground, self and swept-volume collision solver"
+  ]
+}

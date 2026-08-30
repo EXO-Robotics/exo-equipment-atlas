@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-8r-410",
+  "configuration_id": "JD-8R410-MY2024-NA-JD9-E23-ILS-CAT4N3-CANDIDATE",
+  "coordinate_system": {
+    "longitudinal": "+X forward",
+    "vertical": "+Y",
+    "lateral": "+Z machine right"
+  },
+  "joints": [
+    {
+      "id": "ils_front_axle_oscillation",
+      "type": "independent_link_suspension_visible_articulation",
+      "axis": "+X",
+      "authority": "reconstructed",
+      "published_constraints": {"axle_clearance_m": 0.59, "wheelbase_m": 3.05},
+      "source_ids": ["JD-8-SERIES-TRACTOR-2024"],
+      "unresolved": ["upper and lower arm pivots", "cylinder anchors and stroke", "wheel travel, damping and stops", "coupling between axle roll, independent wheel travel and steering"]
+    },
+    {
+      "id": "front_left_steering",
+      "type": "steered_wheel_revolute",
+      "axis": "+Y",
+      "authority": "reconstructed",
+      "source_ids": ["JD-8-SERIES-TRACTOR-2024"],
+      "unresolved": ["kingpin axis and caster", "tie-rod and steering-cylinder geometry", "inside/outside steering relationship and stops"]
+    },
+    {
+      "id": "front_right_steering",
+      "type": "steered_wheel_revolute",
+      "axis": "+Y",
+      "authority": "reconstructed",
+      "source_ids": ["JD-8-SERIES-TRACTOR-2024"],
+      "unresolved": ["kingpin axis and caster", "tie-rod and steering-cylinder geometry", "inside/outside steering relationship and stops"]
+    },
+    {
+      "id": "rear_hitch_raise_lower",
+      "type": "hydraulic_three_point_lift",
+      "axis": "+Z",
+      "authority": "reconstructed",
+      "published_constraints": {"category": "4N/3", "capacity_kg": 9072},
+      "source_ids": ["JD-8-SERIES-TRACTOR-2024"],
+      "unresolved": ["lift-arm, top-link and stabilizer pivots", "cylinder anchors and stroke", "full lift path, draft-control response and mechanical stops", "PTO, drawbar and implement collision envelopes"]
+    },
+    {
+      "id": "rear_pto_visual_rotation",
+      "type": "continuous_rotation",
+      "axis": "+X",
+      "authority": "reconstructed",
+      "source_ids": ["JD-8-SERIES-TRACTOR-2024"],
+      "unresolved": ["shaft spline and guard geometry", "exact axis location", "speed state, driveline connection and load behavior"]
+    }
+  ],
+  "motion_constraints": [
+    "ILS roll is a slow visual articulation and must not imply a validated suspension solver or travel envelope.",
+    "Left and right steering remain synchronized presentation channels; no Ackermann, tyre scrub or terrain solver is claimed.",
+    "Rear hitch motion must remain clear of the static drawbar and PTO guard in all autoplay poses.",
+    "Autoplay must phase suspension, steering, hitch and PTO demonstrations so extreme poses do not occur together."
+  ],
+  "required_gates": [
+    "published_length_envelope",
+    "configuration_specific_width_unresolved",
+    "configuration_specific_height_unresolved",
+    "wheelbase_and_ground_clearance",
+    "ils_left_right_continuity",
+    "steering_node_continuity",
+    "three_point_linkage_continuity",
+    "pto_guard_clearance",
+    "ground_collision",
+    "self_collision",
+    "neutral_unbranded_material_review"
+  ],
+  "release_state": "no_geometry_no_solver_no_claim"
+}

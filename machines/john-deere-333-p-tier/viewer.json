@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "machineId": "john-deere-333-p-tier",
+  "displayName": "333 P-Tier",
+  "className": "Compact track loader",
+  "category": "Compact equipment",
+  "assets": {
+    "glb": "machines/john-deere-333-p-tier/assets/john-deere-333-p-tier-structural-study.glb",
+    "configuration": "machines/john-deere-333-p-tier/configuration.json",
+    "facts": "machines/john-deere-333-p-tier/evidence/facts.json",
+    "receipt": "machines/john-deere-333-p-tier/production/asset-receipt.json",
+    "validation": "machines/john-deere-333-p-tier/production/validation.json"
+  },
+  "evidence": {
+    "boundary": "Independent vertical-lift study. Exact bucket, interface, lift pivots, and hydraulic anchors remain unresolved.",
+    "lede": "Published endpoints establish hinge height, dump height, reach, rollback, and dump angle. The path between them is not yet solver-qualified.",
+    "factIds": [
+      "length-foundry-bucket",
+      "width-450-track",
+      "hinge-pin-height",
+      "dump-height"
+    ]
+  },
+  "camera": {
+    "azimuth": 0.72,
+    "elevation": 0.34,
+    "distance": 1.62
+  },
+  "accent": "#c8a45b"
+}

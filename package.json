@@ -11,6 +11,7 @@
     "check:production": "node scripts/validate-production-assets.mjs",
     "check:site": "node --check assets/site/app.js && node scripts/validate-site.mjs && node scripts/build-site.mjs",
     "check:sources": "node scripts/validate-repository.mjs --require-private-sources",
+    "bind:sources": "node scripts/bind-private-sources.mjs --bind",
     "test": "node --test tests/*.test.mjs"
   },
   "engines": {

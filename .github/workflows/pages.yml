@@ -32,8 +32,19 @@ jobs:
       - name: Validate tracked contracts
         run: npm test
 
+      - name: Validate repository contracts
+        run: npm run check
+
+      - name: Validate production assets
+        run: npm run check:production
+
       - name: Validate static site bundle
         run: npm run check:site
+
+      - name: Attest exact public bundle bytes
+        env:
+          SOURCE_COMMIT: ${{ github.sha }}
+        run: node scripts/generate-public-manifest.mjs --source-commit "$SOURCE_COMMIT"
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
@@ -46,3 +57,16 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Verify deployed bytes and source commit
+        env:
+          PAGES_URL: ${{ steps.deployment.outputs.page_url }}
+          SOURCE_COMMIT: ${{ github.sha }}
+        run: >-
+          node scripts/verify-deployed-pages.mjs
+          --base-url "$PAGES_URL"
+          --expected-commit "$SOURCE_COMMIT"
+          --expected-manifest _site/public-bundle-manifest.json
+          --attempts 12
+          --delay-ms 5000
+          --concurrency 8

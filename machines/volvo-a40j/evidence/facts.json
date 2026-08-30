@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "volvo-a40j",
+  "configuration_id": "VOLVO-A40J-NA-T4F-SV-29.5R25-24M3-NOTAIL-NOEXT-CANDIDATE",
+  "facts": [
+    {"id":"public-envelope-x","subject":"public static envelope along +X longitudinal axis","value":11.261,"unit":"m","authority":"manufacturer_published","source_id":"VOLVO-A40J-T4F-PG-20064352-D","location":"Dimensions table, A"},
+    {"id":"public-envelope-y","subject":"public static envelope along +Y vertical axis","value":3.626,"unit":"m","authority":"manufacturer_published","source_id":"VOLVO-A40J-T4F-PG-20064352-D","location":"Dimensions table, C"},
+    {"id":"public-envelope-z","subject":"public static envelope along +Z lateral axis","value":3.401,"unit":"m","authority":"manufacturer_published","source_id":"VOLVO-A40J-T4F-PG-20064352-D","location":"Dimensions table, W"},
+    {"id":"overall-length","subject":"overall machine length","value":11.261,"unit":"m","authority":"manufacturer_published","source_id":"VOLVO-A40J-T4F-PG-20064352-D","location":"Dimensions table, A"},
+    {"id":"overall-width","subject":"visible machine width on 29.5R25 basis","value":3.401,"unit":"m","authority":"manufacturer_published","source_id":"VOLVO-A40J-T4F-PG-20064352-D","location":"Dimensions table, W"},
+    {"id":"overall-height","subject":"machine height","value":3.626,"unit":"m","authority":"manufacturer_published","source_id":"VOLVO-A40J-T4F-PG-20064352-D","location":"Dimensions table, C"},
+    {"id":"ground-clearance","subject":"minimum ground clearance","value":0.494,"unit":"m","authority":"manufacturer_published","source_id":"VOLVO-A40J-T4F-PG-20064352-D","location":"Dimensions table, I"},
+    {"id":"payload-capacity","subject":"rated payload capacity","value":39000,"unit":"kg","authority":"manufacturer_published","source_id":"VOLVO-A40-CANADA-PRODUCT-2026","location":"Technical specifications"},
+    {"id":"body-volume","subject":"standard body SAE 2:1 heap volume","value":24,"unit":"m3","authority":"manufacturer_published","source_id":"VOLVO-A40-CANADA-PRODUCT-2026","location":"Technical specifications"},
+    {"id":"unloaded-operating-weight","subject":"operating weight unloaded on 29.5R25 tires","value":31400,"unit":"kg","authority":"manufacturer_published","source_id":"VOLVO-A40J-T4F-PG-20064352-D","location":"Operating weight unloaded table"},
+    {"id":"gross-weight","subject":"total loaded weight on 29.5R25 tires","value":70310,"unit":"kg","authority":"manufacturer_published","source_id":"VOLVO-A40J-T4F-PG-20064352-D","location":"Total weight table"},
+    {"id":"engine-power","subject":"Volvo D13J maximum gross power","value":350,"unit":"kW","authority":"manufacturer_published","source_id":"VOLVO-A40-CANADA-PRODUCT-2026","location":"Technical specifications"},
+    {"id":"engine-torque","subject":"maximum SAE J1349 gross torque","value":2525,"unit":"Nm","authority":"manufacturer_published","source_id":"VOLVO-A40-CANADA-PRODUCT-2026","location":"Technical specifications"},
+    {"id":"maximum-speed","subject":"maximum forward speed","value":57,"unit":"km/h","authority":"manufacturer_published","source_id":"VOLVO-A40J-T4F-PG-20064352-D","location":"Speed table, forward gear 9"},
+    {"id":"articulation-range","subject":"frame articulation steering","value":45,"unit":"deg_each_side","authority":"manufacturer_published","source_id":"VOLVO-A40J-T4F-PG-20064352-D","location":"Dimensions table, a3"},
+    {"id":"body-tip-angle","subject":"maximum body tip angle","value":69,"unit":"deg","authority":"manufacturer_published","source_id":"VOLVO-A40J-T4F-PG-20064352-D","location":"Dumping-system specification and dimensions a2"},
+    {"id":"body-raise-time","subject":"body raise time","value":12,"unit":"s","authority":"manufacturer_published","source_id":"VOLVO-A40J-T4F-PG-20064352-D","location":"Dumping system"},
+    {"id":"body-lower-time","subject":"body lower time","value":10,"unit":"s","authority":"manufacturer_published","source_id":"VOLVO-A40J-T4F-PG-20064352-D","location":"Dumping system"},
+    {"id":"tire-choice","subject":"selected tire basis","value":"29.5R25","unit":"choice","authority":"manufacturer_published","source_id":"VOLVO-A40J-T4F-PG-20064352-D","location":"Dimensions and weight table notes"}
+  ],
+  "issues": [
+    {"id":"tire-weight-variance","status":"resolved_for_candidate","detail":"The guide notes different weights for 875/65R29. This candidate freezes 29.5R25 and uses only that column."},
+    {"id":"body-option-boundary","status":"resolved_for_candidate","detail":"The standard 24 m3 body is selected without tailgate or extensions; optional body hardware is excluded."},
+    {"id":"hidden-mechanics","status":"unresolved","detail":"Articulation bearings, oscillation coupling, bogie pivots, body hinge and cylinder anchors, steering motion curve, tire deformation and collision limits are reconstructed."}
+  ]
+}

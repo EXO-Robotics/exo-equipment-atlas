@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "machineId": "bobcat-s76-2",
+  "displayName": "S76-2",
+  "className": "Skid-steer loader",
+  "category": "Compact equipment",
+  "assets": {
+    "glb": "machines/bobcat-s76-2/assets/bobcat-s76-2-structural-study.glb",
+    "configuration": "machines/bobcat-s76-2/configuration.json",
+    "facts": "machines/bobcat-s76-2/evidence/facts.json",
+    "receipt": "machines/bobcat-s76-2/production/asset-receipt.json",
+    "validation": "machines/bobcat-s76-2/production/validation.json"
+  },
+  "evidence": {
+    "boundary": "Independent North American Pro S76-2 study. Lift pivots, hydraulic anchors, tire construction, bucket section, and lift-path interpolation remain reconstructed.",
+    "lede": "Published dimensions constrain the standard 74-inch bucket, 12×16.5 tires, enclosed cab, stowed envelope, and hinge-pin endpoint. Hidden mechanics remain unresolved.",
+    "factIds": [
+      "length-standard-bucket",
+      "bucket-width",
+      "overall-height",
+      "hinge-pin-height"
+    ]
+  },
+  "camera": {
+    "azimuth": 0.72,
+    "elevation": 0.34,
+    "distance": 1.58
+  },
+  "accent": "#c47a50"
+}

@@ -1,0 +1,289 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "komatsu-pc210lc-11",
+  "configuration_id": "KOMATSU-PC210LC11-CONV-T4F-57B-2925A-700SH-TL085-CANDIDATE",
+  "configuration_status": "research_candidate",
+  "archetype": "excavator",
+  "candidate_class": "technical_structural_study",
+  "engineering_authority": false,
+  "authority_boundary": "Independently authored neutral technical structural study. Not manufacturer CAD, engineering authority, load guidance, operator training, safety guidance, a digital twin, or a mechanically validated candidate.",
+  "rights_boundary": "Neutral unbranded procedural geometry and materials; no manufacturer CAD, logo, copied texture, or protected livery claim.",
+  "release_status": "PENDING",
+  "blender": {
+    "version": "5.1.1",
+    "factory_startup_required": true,
+    "background_required": true
+  },
+  "builder": {
+    "path": "source/blender/build_komatsu_pc210lc_11.py",
+    "sha256": "72621a1e8eb5d5a77cecc0717c16d4184b42684dc56222cf411f189bd422bbc1",
+    "bytes": 12711,
+    "deterministic": true,
+    "network_used": false,
+    "downloaded_geometry_used": false,
+    "manufacturer_cad_used": false,
+    "copied_textures_used": false,
+    "opaque_addons_used": false
+  },
+  "shared_generator": {
+    "path": "../../scripts/fleet/build_machine.py",
+    "sha256": "02b99250651741b462b3dae8b2471db723beb689dfe89e1c7e251d7402fe0f55",
+    "bytes": 78579
+  },
+  "design": {
+    "path": "source/design.json",
+    "sha256": "eef996f689be24d3aad23a85101a10a7bfa5060fce899ab2fd00079113c16076",
+    "bytes": 1382,
+    "schema_version": "1.0.0"
+  },
+  "artifacts": {
+    "blend": {
+      "path": "source/blender/komatsu-pc210lc-11-structural-study.blend",
+      "sha256": "97e4f02295d76ad94bc15842cf19026227e3c73c445fc0a82b8aaf2686654170",
+      "bytes": 240261
+    },
+    "glb": {
+      "path": "assets/komatsu-pc210lc-11-structural-study.glb",
+      "sha256": "ad5e27f1c6de93aa735563bf376498bf4715bf46ebd1a8e126ec56c313b25fa8",
+      "bytes": 1527444
+    },
+    "validation": {
+      "path": "production/validation.json",
+      "sha256": "05d0251cbd05bb8ed3d5d175aee06af19d69b9879626730be1b39b2712e6a738",
+      "bytes": 9992
+    }
+  },
+  "scene": {
+    "units": "meters",
+    "axes": {
+      "longitudinal": "+X forward",
+      "vertical": "+Y up",
+      "lateral": "+Z machine right"
+    },
+    "bounds": {
+      "min_m": [
+        -4.8525,
+        0.0,
+        -1.54
+      ],
+      "max_m": [
+        4.8525,
+        3.135,
+        1.54
+      ],
+      "size_m": [
+        9.705,
+        3.135,
+        3.08
+      ]
+    },
+    "visible_aabb_xyz_m": [
+      9.705,
+      3.135,
+      3.08
+    ],
+    "objects": 211,
+    "meshes": 190,
+    "triangles": 29924,
+    "materials": 7
+  },
+  "glb_contract": {
+    "glb_version": "2.0",
+    "scene_count": 1,
+    "scene_root_count": 1,
+    "root_name": "Machine_Root",
+    "root_record": {},
+    "identity_root": true,
+    "nodes": 211,
+    "mesh_nodes": 190,
+    "mesh_definitions": 190,
+    "materials": 7,
+    "triangles": 29924,
+    "cameras": 0,
+    "punctual_lights": false,
+    "images": 0,
+    "textures": 0,
+    "nonidentity_mesh_scales": {},
+    "helper_like_mesh_nodes": [],
+    "semantic_motion_nodes": 20,
+    "bounds": {
+      "min_m": [
+        -4.8525,
+        0.0,
+        -1.54
+      ],
+      "max_m": [
+        4.8525,
+        3.135,
+        1.54
+      ],
+      "size_m": [
+        9.705,
+        3.135,
+        3.08
+      ]
+    }
+  },
+  "required_semantic_nodes": {
+    "Machine_Root": true,
+    "Fixed_Structure_ROOT": true,
+    "Running_Gear_ROOT": true,
+    "Hydraulics_ROOT": true,
+    "Service_Detail_ROOT": true,
+    "Track_L_ROOT": true,
+    "Track_R_ROOT": true,
+    "Upper_Swing_Pivot": true,
+    "Upper_ROOT": true,
+    "Boom_Pivot": true,
+    "Boom_ROOT": true,
+    "Stick_Pivot": true,
+    "Stick_ROOT": true,
+    "Bucket_Pivot": true,
+    "Bucket_ROOT": true,
+    "Arm_Crowd_Actuator_ROOT": true,
+    "Bucket_Curl_Actuator_ROOT": true,
+    "Bucket_H_Link_ROOT": true,
+    "Bucket_Dogbone_ROOT": true,
+    "Boom_Cylinder": true,
+    "Arm_Crowd_Cylinder_Barrel": true,
+    "Arm_Crowd_Cylinder_Rod": true,
+    "Arm_Crowd_Cylinder_Base_Pin": true,
+    "Arm_Crowd_Cylinder_Rod_End_Pin": true,
+    "Arm_Crowd_Boom_Base_Clevis": true,
+    "Bucket_Curl_Cylinder_Barrel": true,
+    "Bucket_Curl_Cylinder_Rod": true,
+    "Bucket_Curl_Cylinder_Base_Pin": true,
+    "Bucket_Curl_Cylinder_Rod_End_Pin": true,
+    "Bucket_H_Link_L": true,
+    "Bucket_H_Link_R": true,
+    "Bucket_H_Link_Upper_Cross_Pin": true,
+    "Bucket_H_Link_Lower_Cross_Pin": true,
+    "Bucket_Dogbone_L": true,
+    "Bucket_Dogbone_R": true,
+    "Bucket_Dogbone_End_Pin": true,
+    "Bucket_Linkage_Ear_L": true,
+    "Bucket_Linkage_Ear_R": true
+  },
+  "manufacturer_published_constraints_used": [
+    "public-envelope-x",
+    "public-envelope-y",
+    "public-envelope-z",
+    "boom-length",
+    "arm-length",
+    "shoe-width",
+    "track-length",
+    "track-gauge",
+    "selected-bucket-capacity",
+    "selected-bucket-width"
+  ],
+  "reconstructed_values": {
+    "hidden_geometry": "All front-equipment pivots and hydraulic anchors, bucket four-bar geometry, swing bearing, undercarriage rollers and belt route, hose paths, motion curves and internal construction are reconstructed visualization choices.",
+    "visible_actuation_study": "The fixed boom-lift cylinder, arm-crowd barrel and overlapping rod, bucket-curl barrel and overlapping rod, H-link, paired dogbones, pins, clevis and bucket ears are independently reconstructed for static visual closure. They are not manufacturer anchor coordinates or a solved linkage.",
+    "generic_archetype_geometry": "excavator proportions and visible detail are independently reconstructed for this technical study.",
+    "visible_envelope_calibration": {
+      "classification": "reconstructed_visible_envelope_calibration",
+      "source_bounds_m": {
+        "min_m": [
+          -3.882,
+          -0.01058,
+          -1.54
+        ],
+        "max_m": [
+          5.427608,
+          3.313583,
+          1.54
+        ],
+        "size_m": [
+          9.309608,
+          3.324163,
+          3.08
+        ]
+      },
+      "target_bounds_m": {
+        "min_m": [
+          -4.8525,
+          0.0,
+          -1.54
+        ],
+        "max_m": [
+          4.8525,
+          3.135,
+          1.54
+        ],
+        "size_m": [
+          9.705,
+          3.135,
+          3.08
+        ]
+      },
+      "axis_scale_factors": [
+        1.042471393,
+        0.943094537,
+        1.000000025
+      ],
+      "calibrated_bounds_m": {
+        "min_m": [
+          -4.8525,
+          0.0,
+          -1.54
+        ],
+        "max_m": [
+          4.8525,
+          3.135,
+          1.54
+        ],
+        "size_m": [
+          9.705,
+          3.135,
+          3.08
+        ]
+      },
+      "authority": "reconstructed_not_machine_specific_engineering"
+    }
+  },
+  "unresolved_choices": [
+    "exact regional serial and equipment revision",
+    "coupler and tooth package",
+    "guards, cameras, lighting and hydraulics"
+  ],
+  "mechanical_gaps": [
+    "No manufacturer-authoritative front-equipment solver",
+    "No collision or swept-volume proof"
+  ],
+  "renders": [
+    {
+      "path": "review/renders/komatsu-pc210lc-11-operator-side.png",
+      "sha256": "178adaadb0ca0c5c313cb1a66415fb42e0ee327cb36b7010b6f898cb0baad68c",
+      "bytes": 227513
+    },
+    {
+      "path": "review/renders/komatsu-pc210lc-11-front-three-quarter.png",
+      "sha256": "5f82fb3f5eeac202cb5614b1edaf7c01b627fca196134ac3bc7f1a453f23564c",
+      "bytes": 261663
+    },
+    {
+      "path": "review/renders/komatsu-pc210lc-11-rear-three-quarter.png",
+      "sha256": "268786b853f406339b29544272a391060ade7b244302083df32bb69dc650b3cd",
+      "bytes": 248179
+    },
+    {
+      "path": "review/renders/komatsu-pc210lc-11-elevated-technical.png",
+      "sha256": "7d40ca71f4487554d617a0f0bb2c76bb827e6303028a55bc5e07f72c0d60f2a0",
+      "bytes": 342964
+    },
+    {
+      "path": "review/renders/komatsu-pc210lc-11-articulation-detail.png",
+      "sha256": "a55a567ff009c736800297207c450649d54032bfa9cea8237afdf2143a5c5481",
+      "bytes": 275123
+    },
+    {
+      "path": "review/renders/komatsu-pc210lc-11-right-side.png",
+      "sha256": "d54dc1df9a57d8e373d1d1762a560d86ebda8f3f9dd3bcedaa5f440030759c35",
+      "bytes": 225861
+    }
+  ],
+  "build_verdict": "PASS",
+  "validation_verdict": "PASS",
+  "validation_path": "production/validation.json",
+  "higher_stage_gates": "PENDING"
+}

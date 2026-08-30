@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "case-ih-axial-flow-8250",
+  "configuration_id": "CASEIH-AF8250-NAM-250-WHEELED-GT410-UA45-CANDIDATE-MYUNRESOLVED",
+  "status": "research_candidate",
+  "identity": {
+    "manufacturer": "CNH Industrial America LLC",
+    "brand": "Case IH",
+    "model": "Axial-Flow 8250",
+    "product_class": "single_rotor_combine",
+    "publication_family": "Axial-Flow 250 Series",
+    "market": "North America",
+    "model_year": "unresolved; admitted specification brochure copyright 2022"
+  },
+  "choices": {
+    "ground_drive": "wheeled_2WD_front_drive_axle",
+    "front_running_gear": "dual_drive_tires_visual_study",
+    "grain_tank": "410_bu_14448_L",
+    "unloading_rate": "4.5_bu_per_s_159_L_per_s",
+    "unloading_auger": "28_ft_9_in_8.8_m_folding_with_pivoting_spout",
+    "rotor": "30_in_762_mm_AFX_large_tube",
+    "automation": "AFS_Harvest_Command",
+    "header": "not_fitted_feederhouse_only",
+    "public_finish": "neutral_unbranded_oxide_graphite"
+  },
+  "excluded_options": [
+    "Quadtrac_or_PowerFlex_Trax_front_running_gear",
+    "315_bu_grain_tank",
+    "27_in_small_tube_rotor",
+    "Chrome_Edition_surface_treatment_claim",
+    "named_header_attachment",
+    "manufacturer_logos_and_trade_dress"
+  ],
+  "unresolved_choices": [
+    "exact model year and production serial family",
+    "published brochure table formatting does not isolate every shared 8250 and 9250 value unambiguously",
+    "front and rear tire sizes and axle option",
+    "unloading auger fold joint and spout option ordering",
+    "residue package",
+    "public material and branding authorization"
+  ],
+  "boundary": "Explicit research candidate because exact model year and complete option order are unresolved. The 2022 North American 250 Series publication controls cited facts only; hidden rotor, feeder, sieve, auger and hydraulic geometry, crop flow, timing, loads and clearances remain reconstructed or unresolved."
+}

@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "vermeer-zr5-1200",
+  "configuration_id": "VERMEER-ZR5-1200-NA26-STAGEV-STDPICKUP-NET-RAMP-CANDIDATE",
+  "facts": [
+    {"id":"public-envelope-x","subject":"public static envelope along +X longitudinal axis","value":6.299,"unit":"m","authority":"manufacturer_published","source_id":"VERMEER-ZR5-PRODUCT-2026","location":"Specifications, Dimensions and Weights"},
+    {"id":"public-envelope-y","subject":"public static envelope along +Y vertical axis","value":3.150,"unit":"m","authority":"manufacturer_published","source_id":"VERMEER-ZR5-PRODUCT-2026","location":"Specifications, Dimensions and Weights"},
+    {"id":"public-envelope-z","subject":"public static envelope along +Z lateral axis","value":3.607,"unit":"m","authority":"manufacturer_published","source_id":"VERMEER-ZR5-PRODUCT-2026","location":"Specifications, Dimensions and Weights"},
+    {"id":"overall-length","subject":"overall length","value":6.299,"unit":"m","authority":"manufacturer_published","source_id":"VERMEER-ZR5-PRODUCT-2026","location":"Specifications, Dimensions and Weights"},
+    {"id":"overall-width","subject":"overall width","value":3.607,"unit":"m","authority":"manufacturer_published","source_id":"VERMEER-ZR5-PRODUCT-2026","location":"Specifications, Dimensions and Weights"},
+    {"id":"overall-height","subject":"overall height","value":3.150,"unit":"m","authority":"manufacturer_published","source_id":"VERMEER-ZR5-PRODUCT-2026","location":"Specifications, Dimensions and Weights"},
+    {"id":"machine-weight","subject":"machine weight","value":8845.1,"unit":"kg","authority":"manufacturer_published","source_id":"VERMEER-ZR5-PRODUCT-2026","location":"Specifications, Dimensions and Weights"},
+    {"id":"engine-power","subject":"Cummins Stage V 4.5 L engine power","value":149,"unit":"kW","authority":"manufacturer_published","source_id":"VERMEER-ZR5-PRODUCT-2026","location":"Specifications, Engine"},
+    {"id":"maximum-baling-speed","subject":"maximum baling speed","value":19.3,"unit":"km/h","authority":"manufacturer_published","source_id":"VERMEER-ZR5-PRODUCT-2026","location":"Specifications, Engine"},
+    {"id":"maximum-road-speed","subject":"maximum road speed range","value":[51,53],"unit":"km/h","authority":"manufacturer_published","source_id":"VERMEER-ZR5-PRODUCT-2026","location":"Specifications, Engine"},
+    {"id":"bale-diameter-range","subject":"supported round bale diameter","value":[0.914,1.829],"unit":"m","authority":"manufacturer_published","source_id":"VERMEER-ZR5-PRODUCT-2026","location":"Specifications, Bale Size"},
+    {"id":"bale-width","subject":"round bale width","value":1.549,"unit":"m","authority":"manufacturer_published","source_id":"VERMEER-ZR5-PRODUCT-2026","location":"Specifications, Bale Size"},
+    {"id":"maximum-bale-weight","subject":"maximum bale weight","value":1088.6,"unit":"kg","authority":"manufacturer_published","source_id":"VERMEER-ZR5-PRODUCT-2026","location":"Specifications, Bale Size"},
+    {"id":"pickup-tooth-width","subject":"pickup tooth-to-tooth width","value":1.956,"unit":"m","authority":"manufacturer_published","source_id":"VERMEER-ZR5-PRODUCT-2026","location":"Specifications, Pickup"},
+    {"id":"pickup-bars","subject":"pickup tooth bars","value":5,"unit":"count","authority":"manufacturer_published","source_id":"VERMEER-ZR5-PRODUCT-2026","location":"Specifications, Pickup"},
+    {"id":"pickup-teeth","subject":"double rubber-mounted pickup teeth","value":65,"unit":"count","authority":"manufacturer_published","source_id":"VERMEER-ZR5-PRODUCT-2026","location":"Specifications, Pickup"},
+    {"id":"chamber-belts","subject":"bale chamber belt count","value":8,"unit":"count","authority":"manufacturer_published","source_id":"VERMEER-ZR5-PRODUCT-2026","location":"Specifications, Bale Forming Chamber"},
+    {"id":"suspension-type","subject":"suspension","value":"double A-arm independent hydraulic","unit":"type","authority":"manufacturer_published","source_id":"VERMEER-ZR5-PRODUCT-2026","location":"Specifications, Engine"},
+    {"id":"steering-modes","subject":"dual steering and counter-steer","value":["dual steering mode","counter steer","zero turn"],"unit":"function_set","authority":"manufacturer_published","source_id":"VERMEER-ZR5-PRODUCT-2026","location":"Features and Specifications"},
+    {"id":"quarter-turn-function","subject":"integrated quarter-turn bale placement","value":"places bales parallel to the windrow","unit":"function","authority":"manufacturer_published","source_id":"VERMEER-ZR5-PRODUCT-2026","location":"Features and Benefits"}
+  ],
+  "issues": [
+    {"id":"road-speed-copy-variance","status":"documented","detail":"Feature copy describes up to 34 mph / 54 km/h while the specification table lists 32–33 mph / 51–53 km/h. The structured fact preserves the specification-table range."},
+    {"id":"exposed-internals","status":"bounded","detail":"Belts, rollers and bale formation may be shown only as an explicit technical cutaway. They are normally hidden geometry and remain reconstructed."},
+    {"id":"hidden-mechanics","status":"unresolved","detail":"Pickup cam path, chamber belt routing, tailgate and ramp pivots, suspension axes, steering geometry, crop flow, bale physics and automation timing are not manufacturer-established by the admitted sources."}
+  ]
+}

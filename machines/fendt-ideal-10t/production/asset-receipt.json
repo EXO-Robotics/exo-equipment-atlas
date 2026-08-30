@@ -1,0 +1,303 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "fendt-ideal-10t",
+  "configuration_id": "FENDT-IDEAL-10T-GB-STAGEV-TR30-PF1070-S210-A840F-SWINGFLOW-CANDIDATE",
+  "configuration_status": "research_candidate",
+  "archetype": "combine",
+  "candidate_class": "technical_structural_study",
+  "engineering_authority": false,
+  "authority_boundary": "Independently authored neutral technical structural study. Not manufacturer CAD, engineering authority, load guidance, operator training, safety guidance, a digital twin, or a mechanically validated candidate.",
+  "rights_boundary": "Neutral unbranded procedural geometry and materials; no manufacturer CAD, logo, copied texture, or protected livery claim.",
+  "release_status": "PENDING",
+  "blender": {
+    "version": "5.1.1",
+    "factory_startup_required": true,
+    "background_required": true
+  },
+  "builder": {
+    "path": "source/blender/build_fendt_ideal_10t.py",
+    "sha256": "385bfbde8363e26cd1c54af3999bd4c64214c660007563b5d4d1055652ad06d8",
+    "bytes": 661,
+    "deterministic": true,
+    "network_used": false,
+    "downloaded_geometry_used": false,
+    "manufacturer_cad_used": false,
+    "copied_textures_used": false,
+    "opaque_addons_used": false
+  },
+  "shared_generator": {
+    "path": "../../scripts/fleet/build_machine.py",
+    "sha256": "02b99250651741b462b3dae8b2471db723beb689dfe89e1c7e251d7402fe0f55",
+    "bytes": 78579
+  },
+  "design": {
+    "path": "source/design.json",
+    "sha256": "ceabf2977fd077edd1e2b060e969f9d33ae8ab30361e1287097de637f1743928",
+    "bytes": 3798,
+    "schema_version": "1.0.0"
+  },
+  "artifacts": {
+    "blend": {
+      "path": "source/blender/fendt-ideal-10t-structural-study.blend",
+      "sha256": "f9859b513026e376c3e39fcc630da4af3a3a7fc2f88eae20cb88b5fd1f06efaa",
+      "bytes": 237177
+    },
+    "glb": {
+      "path": "assets/fendt-ideal-10t-structural-study.glb",
+      "sha256": "f328d9fc9f67ae15ee757fcdc6e81232a955407fa6ad6d05129e1fdf324ee724",
+      "bytes": 1415308
+    },
+    "validation": {
+      "path": "production/validation.json",
+      "sha256": "5abbb6e264a014811ce5a4713dd0dd7e83aec5c743746f6e5bac2d266268e7d7",
+      "bytes": 7928
+    }
+  },
+  "scene": {
+    "units": "meters",
+    "axes": {
+      "longitudinal": "+X forward",
+      "vertical": "+Y up",
+      "lateral": "+Z machine right"
+    },
+    "bounds": {
+      "min_m": [
+        -5.315001,
+        0.0,
+        -5.35
+      ],
+      "max_m": [
+        5.315,
+        3.99,
+        5.35
+      ],
+      "size_m": [
+        10.630001,
+        3.99,
+        10.7
+      ]
+    },
+    "visible_aabb_xyz_m": [
+      10.630001,
+      3.99,
+      10.7
+    ],
+    "objects": 210,
+    "meshes": 190,
+    "triangles": 27040,
+    "materials": 7
+  },
+  "glb_contract": {
+    "glb_version": "2.0",
+    "scene_count": 1,
+    "scene_root_count": 1,
+    "root_name": "Machine_Root",
+    "root_record": {},
+    "identity_root": true,
+    "nodes": 210,
+    "mesh_nodes": 190,
+    "mesh_definitions": 190,
+    "materials": 7,
+    "triangles": 27040,
+    "cameras": 0,
+    "punctual_lights": false,
+    "images": 0,
+    "textures": 0,
+    "nonidentity_mesh_scales": {},
+    "helper_like_mesh_nodes": [],
+    "semantic_motion_nodes": 19,
+    "bounds": {
+      "min_m": [
+        -5.315001,
+        0.0,
+        -5.35
+      ],
+      "max_m": [
+        5.315,
+        3.99,
+        5.35
+      ],
+      "size_m": [
+        10.630001,
+        3.99,
+        10.7
+      ]
+    }
+  },
+  "required_semantic_nodes": {
+    "Machine_Root": true,
+    "Fixed_Structure_ROOT": true,
+    "Running_Gear_ROOT": true,
+    "Hydraulics_ROOT": true,
+    "Service_Detail_ROOT": true,
+    "Header_Lift_Pivot": true,
+    "Header_ROOT": true,
+    "Reel_Pivot": true,
+    "Reel_ROOT": true,
+    "Feederhouse_ROOT": true,
+    "Unloader_Swing_Pivot": true,
+    "Unloader_ROOT": true,
+    "Track_L_ROOT": true,
+    "Track_R_ROOT": true
+  },
+  "manufacturer_published_constraints_used": [
+    "carrier-length-without-header",
+    "selected-carrier-width",
+    "carrier-height",
+    "selected-powerflow-width",
+    "selected-track-width",
+    "selected-steering-axle-tyre",
+    "header-raised-ground-clearance",
+    "header-tilt-compensation",
+    "selected-discharge-tube",
+    "maximum-unloading-height",
+    "streamer-210-capacity"
+  ],
+  "reconstructed_values": {
+    "running_gear": "front_tracks_rear_wheels",
+    "carrier_width_m": 3.49,
+    "header_width_m": 10.7,
+    "header_visual_depth_m": 2.05,
+    "front_track_pod_visual_length_m": 3.28,
+    "front_track_pod_visual_height_m": 1.22,
+    "front_track_belt_nominal_width_m": 0.762,
+    "rear_steering_tire_visual_radius_m": 0.82,
+    "rear_steering_tire_visual_width_m": 0.52,
+    "rear_steering_presentation_limit_deg": 22,
+    "header_lift_presentation_range_deg": [
+      0,
+      13
+    ],
+    "header_roll_presentation_range_deg": [
+      -8,
+      8
+    ],
+    "reel_visual_radius_m": 1.02,
+    "unloader_total_length_m": 8.4,
+    "unloader_outer_segment_ratio": 0.46,
+    "unloader_swing_presentation_range_deg": [
+      0,
+      76
+    ],
+    "unloader_fold_presentation_range_deg": [
+      0,
+      142
+    ],
+    "neutral_material_policy": "matte slate and graphite body volumes, dark neutral rubber, neutral steel, restrained amber visibility cues, clear neutral glazing, no manufacturer colors, logos, wordmarks, decals, or copied textures",
+    "geometry_boundary": "Only the cited carrier envelope, selected header span, running-gear designation, nominal track width, capacities, and named equipment are manufacturer-bound. Body surfacing, header depth, undercarriage proportions, tyre shape, hidden structure, pivots, anchors, clearances, and detail placement are independently authored visualization choices.",
+    "hidden_geometry": "All hidden structure, pivot centers, anchors, linkage proportions, underbody volumes, and internal geometry are reconstructed visualization choices unless a design record explicitly identifies a manufacturer-published envelope constraint.",
+    "generic_archetype_geometry": "combine proportions and visible detail are independently reconstructed for this technical study.",
+    "visible_envelope_calibration": {
+      "classification": "reconstructed_visible_envelope_calibration",
+      "source_bounds_m": {
+        "min_m": [
+          -4.895328,
+          -0.003432,
+          -5.35
+        ],
+        "max_m": [
+          5.7402,
+          3.99,
+          5.35
+        ],
+        "size_m": [
+          10.635527,
+          3.993432,
+          10.7
+        ]
+      },
+      "target_bounds_m": {
+        "min_m": [
+          -5.315,
+          0.0,
+          -5.35
+        ],
+        "max_m": [
+          5.315,
+          3.99,
+          5.35
+        ],
+        "size_m": [
+          10.63,
+          3.99,
+          10.7
+        ]
+      },
+      "axis_scale_factors": [
+        0.999480314,
+        0.999140699,
+        1.000000018
+      ],
+      "calibrated_bounds_m": {
+        "min_m": [
+          -5.315001,
+          0.0,
+          -5.35
+        ],
+        "max_m": [
+          5.315,
+          3.99,
+          5.35
+        ],
+        "size_m": [
+          10.630001,
+          3.99,
+          10.7
+        ]
+      },
+      "authority": "reconstructed_not_machine_specific_engineering"
+    }
+  },
+  "unresolved_choices": [
+    "exact production serial, order code, country-road equipment, and dealer-installed options",
+    "exact TrakRide belt, pad, guide-block, drive-wheel, roller, tensioner, and carrier-frame geometry",
+    "exact 520/85R30 loaded radius, tread, rim, pressure, offset, and steering geometry",
+    "overall length with the selected PowerFlow 10.70 m attachment",
+    "PowerFlow header depth, reel, tine, belt, intake-auger, crop-divider, and coupling geometry",
+    "all body panels, cab structure, grain-tank surfacing, service doors, lights, mirrors, rails, and vents",
+    "all manufacturer colors, graphics, badges, decals, wordmarks, and trade dress"
+  ],
+  "mechanical_gaps": [
+    "Track motion is a rigid presentation abstraction without physical lug engagement, tension, deformation, slip, soil contact, or differential-drive dynamics.",
+    "Header lift and lateral compensation use reconstructed pivots and do not model cylinder pressure, load, TerraControl response, field surface, or stability.",
+    "Reel, PowerFlow, intake, Dual Helix, RotorFeeder, ShortCut, chaff and SwingFlow motion omit crop particles, torque, speed control, clearances, guards, and internal driveline authority.",
+    "The 8.4 m unloader swing, fold and spout-flap choreography uses reconstructed hinges, angles and timing and is not an operating or clearance instruction.",
+    "Cooling-fan reversal and ladder motion are presentation cues without control logic, interlocks, service-state authority, or validated collision envelopes."
+  ],
+  "renders": [
+    {
+      "path": "review/renders/fendt-ideal-10t-operator-side.png",
+      "sha256": "5f0a82a4268a66557091c7c4ff7354395bcfd3b515999d02105d0b75e7e07ea1",
+      "bytes": 234718
+    },
+    {
+      "path": "review/renders/fendt-ideal-10t-front-three-quarter.png",
+      "sha256": "0ea7ff946b6c59d79afb3bfabfba7b71cdf428fc578559a4f3d1aba1f68dd69d",
+      "bytes": 255124
+    },
+    {
+      "path": "review/renders/fendt-ideal-10t-rear-three-quarter.png",
+      "sha256": "b7118a003f3ddaa1aac4c5f582919d6e929df616247e101c8b498aeae9950dd3",
+      "bytes": 251182
+    },
+    {
+      "path": "review/renders/fendt-ideal-10t-elevated-technical.png",
+      "sha256": "60233b48f11c6decc98b36862a3c3d436fc6ae2323d7b92a0351021106885b4a",
+      "bytes": 348014
+    },
+    {
+      "path": "review/renders/fendt-ideal-10t-articulation-detail.png",
+      "sha256": "d676ee81fc4731bae80f2c7e46dcaeda9d4366f0f8d1a6a565adf26d3684d85f",
+      "bytes": 267705
+    },
+    {
+      "path": "review/renders/fendt-ideal-10t-right-side.png",
+      "sha256": "89e73d24a2491da8028ac57f58c6da5394e49af2f946eec66509b7a2ddfe9846",
+      "bytes": 238705
+    }
+  ],
+  "build_verdict": "PASS",
+  "validation_verdict": "PASS",
+  "validation_path": "production/validation.json",
+  "higher_stage_gates": "PENDING"
+}

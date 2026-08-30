@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "machineId": "cat-950",
+  "displayName": "Cat 950",
+  "className": "Articulated wheel loader",
+  "category": "Wheel loaders",
+  "assets": {
+    "glb": "machines/cat-950/assets/cat-950-structural-study.glb",
+    "configuration": "machines/cat-950/configuration.json",
+    "facts": "machines/cat-950/evidence/facts.json",
+    "receipt": "machines/cat-950/production/asset-receipt.json",
+    "validation": "machines/cat-950/production/validation.json"
+  },
+  "evidence": {
+    "boundary": "Independent 14C standard-lift study. Hitch, axle, Z-bar, hydraulic-anchor, and tire mechanics remain reconstructed.",
+    "lede": "Published 14C dimensions constrain the 3.1 m³ general-purpose bucket, carry envelope, and maximum-lift endpoints. Hidden linkage geometry remains reconstructed.",
+    "factIds": [
+      "shipping-length",
+      "bucket-width",
+      "rops-height",
+      "max-lift-hinge-height"
+    ]
+  },
+  "camera": {
+    "azimuth": 0.66,
+    "elevation": 0.33,
+    "distance": 1.52
+  },
+  "accent": "#d6943d"
+}

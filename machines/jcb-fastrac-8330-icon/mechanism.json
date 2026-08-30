@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "jcb-fastrac-8330-icon",
+  "configuration_id": "JCB-F8330-ICON-NA26-AG-VF540R38-VF710R42-FL35-RL10-CANDIDATE",
+  "coordinate_system": {"longitudinal":"+X toward front linkage","vertical":"+Y","lateral":"+Z machine right"},
+  "joints": [
+    {"id":"front_steering","type":"paired_revolute_linkage","axis":"+Y nominal","authority":"reconstructed","source_ids":["JCB-8330-US-PRODUCT-2026"],"unresolved":["kingpin centers, steering angles, Ackermann relation, tie-rod and hydraulic anchors"]},
+    {"id":"front_axle_suspension","type":"hydropneumatic_linkage","axis":"+Y nominal","authority":"reconstructed","source_ids":["JCB-8330-US-PRODUCT-2026","JCB-4000-8000-TECH-FR-ISSUE1"],"unresolved":["pivot and cylinder anchors, stroke, attitude correction, pressure response, damping"]},
+    {"id":"rear_axle_suspension","type":"hydropneumatic_linkage","axis":"+Y nominal","authority":"reconstructed","source_ids":["JCB-8330-US-PRODUCT-2026","JCB-4000-8000-TECH-FR-ISSUE1"],"unresolved":["pivot and cylinder anchors, stroke, self-leveling response, damping"]},
+    {"id":"wheel_rotation","type":"four_revolute","axis":"+Z at each wheel","authority":"reconstructed","source_ids":["JCB-4000-8000-TECH-FR-ISSUE1"],"unresolved":["loaded radii, slip, exact tire profiles and phase"]},
+    {"id":"rear_three_point_linkage","type":"hydraulic_compound_linkage","authority":"reconstructed","source_ids":["JCB-8330-US-PRODUCT-2026","JCB-4000-8000-TECH-FR-ISSUE1"],"unresolved":["all pivots, cylinder anchors, lift arc, leveling geometry and collision stops"]},
+    {"id":"front_three_point_linkage","type":"hydraulic_compound_linkage","authority":"reconstructed","source_ids":["JCB-8330-US-PRODUCT-2026","JCB-4000-8000-TECH-FR-ISSUE1"],"unresolved":["optional-package attachment points, folds, anchors and lift arc"]},
+    {"id":"rear_pto_rotation","type":"revolute","axis":"+X nominal","authority":"reconstructed","source_ids":["JCB-4000-8000-TECH-FR-ISSUE1"],"unresolved":["shaft detail, guard geometry and visual angular rate"]}
+  ],
+  "motion_channels": [
+    {"id":"ride","label":"Hydropneumatic ride","joints":["front_axle_suspension","rear_axle_suspension"],"presentation_range":[0,1],"authority":"reconstructed"},
+    {"id":"steer_drive","label":"Steering and wheel travel","joints":["front_steering","wheel_rotation"],"presentation_range":[0,1],"authority":"reconstructed"},
+    {"id":"rear_linkage","label":"Rear linkage and PTO","joints":["rear_three_point_linkage","rear_pto_rotation"],"presentation_range":[0,1],"authority":"reconstructed"},
+    {"id":"front_linkage","label":"Optional front linkage","joints":["front_three_point_linkage"],"presentation_range":[0,1],"authority":"reconstructed"}
+  ],
+  "required_gates": ["published_static_envelope","four_tire_contact","rigid_full_length_chassis","front_rear_suspension_continuity","steering_clearance","front_rear_linkage_clearance","ground_collision","self_collision","swept_volume_collision"],
+  "release_state": "no_geometry_no_solver_no_claim"
+}

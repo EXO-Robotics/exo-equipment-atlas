@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "new-holland-cr11",
+  "configuration_id": "NH-CR11-NAM-C16-WHEEL2WD-GT567-UR6-TWINCLEAN-DISC45-CANDIDATE",
+  "status": "research_candidate",
+  "identity": {
+    "manufacturer": "CNH Industrial America LLC",
+    "brand": "New Holland",
+    "model": "CR11",
+    "product_class": "twin_rotor_combine",
+    "publication_family": "Next-Generation CR Series",
+    "market": "North America"
+  },
+  "choices": {
+    "front_running_gear": "wheeled_dual_710_70_R42",
+    "rear_axle": "2WD_steering_axle",
+    "grain_tank": "567_bu_with_XL_bubble_up_auger",
+    "unloading_rate": "6.0_bu_per_s",
+    "unloading_reach": "folding_up_to_50_ft_header",
+    "feeder_drive": "variable_standard_135_kW",
+    "residue_management": "integrated_standard_chop_three_paddle_disc_up_to_45_ft",
+    "header": "not_fitted_feederhouse_only",
+    "public_finish": "neutral_unbranded_sage_graphite"
+  },
+  "excluded_options": [
+    "36_in_SmartTrax_front_tracks",
+    "powered_4WD_rear_axle",
+    "455_bu_grain_tank",
+    "high_speed_clean_grain_elevator_claim",
+    "variable_HD_210_kW_feeder_drive",
+    "impeller_or_high_hood_fine_chop_residue_package",
+    "named_header_attachment",
+    "manufacturer_logos_and_trade_dress"
+  ],
+  "unresolved_choices": [
+    "exact serial number and dealer order code",
+    "front dual rim offset and rear tire size",
+    "unloading tube length within the selected reach family",
+    "grain tank cover panel geometry",
+    "lighting and camera package",
+    "public material and branding authorization"
+  ],
+  "boundary": "Research-candidate North American CR11 wheeled study with the 567-bushel tank and 6.0-bushel-per-second unload option. Published topology and cited dimensions constrain the visible structure; hidden rotor, feeder, TwinClean, auger, axle and hydraulic geometry, crop flow, loads, clearances and choreography are independently reconstructed."
+}

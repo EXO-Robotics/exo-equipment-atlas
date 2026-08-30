@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "machineId": "volvo-dd128c",
+  "displayName": "DD128C",
+  "className": "Tandem asphalt compactor",
+  "category": "Roadbuilding",
+  "assets": {
+    "glb": "machines/volvo-dd128c/assets/volvo-dd128c-structural-study.glb",
+    "configuration": "machines/volvo-dd128c/configuration.json",
+    "facts": "machines/volvo-dd128c/evidence/facts.json",
+    "receipt": "machines/volvo-dd128c/production/asset-receipt.json",
+    "validation": "machines/volvo-dd128c/production/validation.json"
+  },
+  "evidence": {
+    "boundary": "Independent North American open-canopy study. Articulation, oscillation, eccentric, steering-cylinder, and spray-routing geometry remain reconstructed.",
+    "lede": "Published dimensions constrain the 2,000 mm drums, open ROPS/FOPS canopy, articulation and oscillation limits, water system, and straight transport envelope.",
+    "factIds": [
+      "overall-length",
+      "overall-height",
+      "overall-width",
+      "drum-width"
+    ]
+  },
+  "camera": {
+    "azimuth": 0.7,
+    "elevation": 0.3,
+    "distance": 1.5
+  },
+  "accent": "#b98a52"
+}

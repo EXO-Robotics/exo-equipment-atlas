@@ -1,0 +1,273 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "new-holland-cr11",
+  "configuration_id": "NH-CR11-NAM-C16-WHEEL2WD-GT567-UR6-TWINCLEAN-DISC45-CANDIDATE",
+  "configuration_status": "research_candidate",
+  "archetype": "combine",
+  "candidate_class": "technical_structural_study",
+  "engineering_authority": false,
+  "authority_boundary": "Independently authored neutral technical structural study. Not manufacturer CAD, engineering authority, load guidance, operator training, safety guidance, a digital twin, or a mechanically validated candidate.",
+  "rights_boundary": "Neutral unbranded procedural geometry and materials; no manufacturer CAD, logo, copied texture, or protected livery claim.",
+  "release_status": "PENDING",
+  "blender": {
+    "version": "5.1.1",
+    "factory_startup_required": true,
+    "background_required": true
+  },
+  "builder": {
+    "path": "source/blender/build_new_holland_cr11.py",
+    "sha256": "3a297a107b64f1825793398c8c40595026a628e84fda89403a672869c0fb9410",
+    "bytes": 662,
+    "deterministic": true,
+    "network_used": false,
+    "downloaded_geometry_used": false,
+    "manufacturer_cad_used": false,
+    "copied_textures_used": false,
+    "opaque_addons_used": false
+  },
+  "shared_generator": {
+    "path": "../../scripts/fleet/build_machine.py",
+    "sha256": "02b99250651741b462b3dae8b2471db723beb689dfe89e1c7e251d7402fe0f55",
+    "bytes": 78579
+  },
+  "design": {
+    "path": "source/design.json",
+    "sha256": "49b5b5cb75435fba03b31c979b73ab676e640dbc3688b35b27cf9d69425c1bb4",
+    "bytes": 2168,
+    "schema_version": "1.0.0"
+  },
+  "artifacts": {
+    "blend": {
+      "path": "source/blender/new-holland-cr11-structural-study.blend",
+      "sha256": "da104a76211d2f5b80c21e2a8cf130741a132dc8055a1c2c1e09b30a2660ec10",
+      "bytes": 236568
+    },
+    "glb": {
+      "path": "assets/new-holland-cr11-structural-study.glb",
+      "sha256": "8730ecf9503f864fce13ab097b1bb9dd2ec14c174882bd23344975414c853a76",
+      "bytes": 1497620
+    },
+    "validation": {
+      "path": "production/validation.json",
+      "sha256": "4fb23d1342e91c47956bc1780113e1795ae950d6a8288bc46e9811e1585d3799",
+      "bytes": 7874
+    }
+  },
+  "scene": {
+    "units": "meters",
+    "axes": {
+      "longitudinal": "+X forward",
+      "vertical": "+Y up",
+      "lateral": "+Z machine right"
+    },
+    "bounds": {
+      "min_m": [
+        -5.626,
+        0.0,
+        -2.756
+      ],
+      "max_m": [
+        5.626,
+        4.013,
+        2.756
+      ],
+      "size_m": [
+        11.252,
+        4.013,
+        5.512
+      ]
+    },
+    "visible_aabb_xyz_m": [
+      11.252,
+      4.013,
+      5.512
+    ],
+    "objects": 212,
+    "meshes": 190,
+    "triangles": 28968,
+    "materials": 7
+  },
+  "glb_contract": {
+    "glb_version": "2.0",
+    "scene_count": 1,
+    "scene_root_count": 1,
+    "root_name": "Machine_Root",
+    "root_record": {},
+    "identity_root": true,
+    "nodes": 212,
+    "mesh_nodes": 190,
+    "mesh_definitions": 190,
+    "materials": 7,
+    "triangles": 28968,
+    "cameras": 0,
+    "punctual_lights": false,
+    "images": 0,
+    "textures": 0,
+    "nonidentity_mesh_scales": {},
+    "helper_like_mesh_nodes": [],
+    "semantic_motion_nodes": 21,
+    "bounds": {
+      "min_m": [
+        -5.626,
+        0.0,
+        -2.756
+      ],
+      "max_m": [
+        5.626,
+        4.013,
+        2.756
+      ],
+      "size_m": [
+        11.252,
+        4.013,
+        5.512
+      ]
+    }
+  },
+  "required_semantic_nodes": {
+    "Machine_Root": true,
+    "Fixed_Structure_ROOT": true,
+    "Running_Gear_ROOT": true,
+    "Hydraulics_ROOT": true,
+    "Service_Detail_ROOT": true,
+    "Header_Lift_Pivot": true,
+    "Header_ROOT": true,
+    "Reel_Pivot": true,
+    "Reel_ROOT": true,
+    "Feederhouse_ROOT": true,
+    "Unloader_Swing_Pivot": true,
+    "Unloader_ROOT": true
+  },
+  "manufacturer_published_constraints_used": [
+    "public-envelope-x",
+    "public-envelope-y",
+    "public-envelope-z",
+    "rotor-count",
+    "rotor-diameter",
+    "rotor-length",
+    "grain-tank-capacity",
+    "unloading-rate",
+    "unloading-auger-swivel"
+  ],
+  "reconstructed_values": {
+    "transport_pose": "Rigid-unloader length, grain-tank-closed height and 710/70 R42 dual width define the retained published envelope.",
+    "header_interface": "Generic narrow feeder/header interface cue only; no named header or harvesting width claim.",
+    "running_gear": "Wheeled dual-front 2WD carrier cue; rim offset, loaded radius and rear tire selection are reconstructed.",
+    "materials": "Neutral unbranded sage, graphite, steel, rubber and glass with no logos, decals or copied trade dress.",
+    "hidden_geometry": "Twin rotors, Dynamic Feed Roll, TwinClean links, auger hinges and residue drives are reconstructed.",
+    "animation_ranges": "Conservative presentation ranges only; not machine-specific operating limits.",
+    "generic_archetype_geometry": "combine proportions and visible detail are independently reconstructed for this technical study.",
+    "visible_envelope_calibration": {
+      "classification": "reconstructed_visible_envelope_calibration",
+      "source_bounds_m": {
+        "min_m": [
+          -5.181203,
+          0.0,
+          -2.756
+        ],
+        "max_m": [
+          6.07608,
+          4.013,
+          2.756
+        ],
+        "size_m": [
+          11.257284,
+          4.013,
+          5.512
+        ]
+      },
+      "target_bounds_m": {
+        "min_m": [
+          -5.626,
+          0.0,
+          -2.756
+        ],
+        "max_m": [
+          5.626,
+          4.013,
+          2.756
+        ],
+        "size_m": [
+          11.252,
+          4.013,
+          5.512
+        ]
+      },
+      "axis_scale_factors": [
+        0.999530643,
+        0.999999997,
+        0.999999985
+      ],
+      "calibrated_bounds_m": {
+        "min_m": [
+          -5.626,
+          0.0,
+          -2.756
+        ],
+        "max_m": [
+          5.626,
+          4.013,
+          2.756
+        ],
+        "size_m": [
+          11.252,
+          4.013,
+          5.512
+        ]
+      },
+      "authority": "reconstructed_not_machine_specific_engineering"
+    }
+  },
+  "unresolved_choices": [
+    "exact serial number and dealer order code",
+    "front dual rim offset and rear tire size",
+    "unloading tube length within the selected reach family",
+    "grain tank cover panel geometry",
+    "lighting and camera package",
+    "named header attachment",
+    "public material and branding authorization"
+  ],
+  "mechanical_gaps": [
+    "feeder lift cylinder anchors and attachment coupler authority",
+    "twin rotor axes, crop-flow geometry and component phase",
+    "TwinClean side-shake linkage and slope-response solver",
+    "unloading auger hinge, fold joint and swept clearance",
+    "steering, ground, self and swept-volume collision solvers"
+  ],
+  "renders": [
+    {
+      "path": "review/renders/new-holland-cr11-operator-side.png",
+      "sha256": "8b5206d517ba0ad340a652571dc8f3bb55a7b1ec34be073f5070e610e59062a2",
+      "bytes": 237560
+    },
+    {
+      "path": "review/renders/new-holland-cr11-front-three-quarter.png",
+      "sha256": "b5ec6f79cf394fdf990afc450ece6084b3526f6d33a1bf44c39ddcbdef234651",
+      "bytes": 283728
+    },
+    {
+      "path": "review/renders/new-holland-cr11-rear-three-quarter.png",
+      "sha256": "41ac893524f5e4035e7f12ef5575b9f4e27daf831c589d7fd4ace1bc88322fdb",
+      "bytes": 265346
+    },
+    {
+      "path": "review/renders/new-holland-cr11-elevated-technical.png",
+      "sha256": "58428219dbae076225bbb064c7519d93cb2210ea2198c87153c8486f3490d08a",
+      "bytes": 356014
+    },
+    {
+      "path": "review/renders/new-holland-cr11-articulation-detail.png",
+      "sha256": "3a52df8018da56cb41bd0a05f6793776a0027f0ccadac1c93906340ed74eb2a0",
+      "bytes": 303218
+    },
+    {
+      "path": "review/renders/new-holland-cr11-right-side.png",
+      "sha256": "c7f1ce40f12192a6b5ff68fc76182cca34438f1b7d38c9be7b42cfa39bf66197",
+      "bytes": 236333
+    }
+  ],
+  "build_verdict": "PASS",
+  "validation_verdict": "PASS",
+  "validation_path": "production/validation.json",
+  "higher_stage_gates": "PENDING"
+}

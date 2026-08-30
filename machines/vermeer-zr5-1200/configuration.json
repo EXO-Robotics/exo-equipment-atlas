@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "vermeer-zr5-1200",
+  "configuration_id": "VERMEER-ZR5-1200-NA26-STAGEV-STDPICKUP-NET-RAMP-CANDIDATE",
+  "status": "research_candidate",
+  "identity": {
+    "manufacturer": "Vermeer Corporation",
+    "brand": "Vermeer",
+    "model": "ZR5-1200",
+    "product_class": "self_propelled_round_baler",
+    "market": "North America"
+  },
+  "choices": {
+    "engine": "Cummins_4_5L_Stage_V_149_kW",
+    "pickup": "cammed_wide_1956_mm_five_bar_65_double_teeth",
+    "bale_tie": "standard_netwrap",
+    "bale_ramp": "standard_integrated_quarter_turn_ramp",
+    "powered_windguard": "not_fitted",
+    "tires": "21_5L_16_1_front_and_18_4R38_rear_highway",
+    "public_finish": "neutral_unbranded_amber_and_graphite"
+  },
+  "excluded_options": [
+    "powered windguard",
+    "toolbox and front net storage",
+    "manufacturer logos and protected livery"
+  ],
+  "unresolved_choices": [
+    "exact serial number and production revision",
+    "tire manufacturer, inflation and tread detail",
+    "bale chamber internal belt routing and roller center coordinates",
+    "pickup cam track, tailgate hinge and quarter-turn ramp actuator geometry",
+    "public material and branding authorization"
+  ],
+  "boundary": "Technical structural study only. Current Vermeer dimensions, bale limits, visible equipment, and functional topology constrain the study. Hidden baler internals, pickup cam track, belts, roller centers, tailgate and ramp pivots, suspension anchors, steering geometry, automation timing, crop and bale simulation, and collision envelopes are reconstructed."
+}

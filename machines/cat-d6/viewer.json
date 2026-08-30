@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "machineId": "cat-d6",
+  "displayName": "Cat D6",
+  "className": "Crawler dozer",
+  "category": "Dozers",
+  "assets": {
+    "glb": "machines/cat-d6/assets/cat-d6-structural-study.glb",
+    "configuration": "machines/cat-d6/configuration.json",
+    "facts": "machines/cat-d6/evidence/facts.json",
+    "receipt": "machines/cat-d6/production/asset-receipt.json",
+    "validation": "machines/cat-d6/production/validation.json"
+  },
+  "evidence": {
+    "boundary": "Independent 20C 6SU push-arm study. Track phase, blade joints, cylinder anchors, motion limits, and load paths remain reconstructed.",
+    "lede": "Published 20C dimensions establish the HDXL undercarriage, 610 mm shoes, 6SU blade, and straight-blade envelope. Hidden actuation remains unresolved.",
+    "factIds": [
+      "machine-length-blade-straight",
+      "blade-width-end-bits",
+      "machine-height",
+      "track-on-ground-length"
+    ]
+  },
+  "camera": {
+    "azimuth": 0.68,
+    "elevation": 0.31,
+    "distance": 1.5
+  },
+  "accent": "#cb8f3f"
+}

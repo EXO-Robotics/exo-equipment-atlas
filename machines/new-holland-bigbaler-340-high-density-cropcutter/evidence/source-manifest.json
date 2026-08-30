@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "new-holland-bigbaler-340-high-density-cropcutter",
+  "configuration_id": "NH-BB340HD-NAM-CROPCUTTER120X90-29K-TANDEM600-CANDIDATE",
+  "freeze_date": "2026-08-29",
+  "repository_policy": {
+    "source_binaries_committed": false,
+    "manufacturer_geometry_committed": false,
+    "manual_illustrations_are_scale_drawings": false,
+    "verification": "The official North American product page and brochure establish configuration facts. Manufacturer diagrams are not copied and do not establish hidden motion coordinates."
+  },
+  "sources": [
+    {
+      "id": "NH-BB340HD-NAM-BROCHURE-2022",
+      "publisher": "New Holland / CNH Industrial America LLC",
+      "kind": "official_brochure",
+      "title": "BigBaler High Density Large Square Baler",
+      "publication": "NH37022121",
+      "market": "Canada and United States",
+      "pages": 24,
+      "retrieved": "2026-08-29",
+      "official_url": "https://cnhi-p-001-delivery.sitecorecontenthub.cloud/api/public/content/15cec91ae38e472a88e3e1117f0288d8?v=8ab29f3d",
+      "local_path": "research/private/new-holland-bigbaler-340-high-density-cropcutter/primary-source.pdf",
+      "sha256": "2ae64b85bfb2b55e1399f7aa909e9269869afe2a61912375fa33f2b24390ddf1",
+      "bytes": 7821791,
+      "admission": "primary",
+      "applicability": "Copyright 2022 North American brochure; controls the 120 x 90 cm CropCutter Rotor Cutter configuration, dimensions, drive, pickup, knife, stuffer, plunger, knotter, tandem axle and empty-weight facts."
+    },
+    {
+      "id": "NH-BB340HD-NAM-PRODUCT-2026",
+      "publisher": "New Holland / CNH Industrial America LLC",
+      "kind": "official_product_page",
+      "title": "BigBaler High Density Large Square Balers",
+      "market": "North America",
+      "retrieved": "2026-08-29",
+      "official_url": "https://agriculture.newholland.com/en-us/nar/products/haytools-spreaders/bigbaler-high-density-series/bigbaler-340-high-density",
+      "admission": "primary",
+      "applicability": "Current North American identity and feature page; corroborates the CropCutter model, 29 knives, SmartShift drive, Loop Master knotting, service access and high-density family context."
+    }
+  ]
+}

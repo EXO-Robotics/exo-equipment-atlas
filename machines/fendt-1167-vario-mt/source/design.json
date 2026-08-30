@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "fendt-1167-vario-mt",
+  "display_name": "Fendt 1167 Vario MT",
+  "configuration_id": "FENDT-1167-NA-T4F-SG30-SRPLUS-3PT-CANDIDATE",
+  "archetype": "twin_track_tractor",
+  "dimensions_m": {
+    "length": 6.758,
+    "width": 2.95,
+    "height": 3.754
+  },
+  "palette": "slate",
+  "published_constraints_used": [
+    "public-envelope-x",
+    "public-envelope-y",
+    "public-envelope-z",
+    "ground-clearance",
+    "track-wheelbase",
+    "selected-track-belt-width",
+    "midwheel-sets-per-side",
+    "smartride-hardbar-travel",
+    "cab-rear-suspension-travel"
+  ],
+  "reconstructed_values": {
+    "front_idler_radius_m": 0.64,
+    "rear_drive_radius_m": 0.76,
+    "midwheel_radius_m": 0.19,
+    "midwheel_sets_per_side": 4,
+    "midwheel_set_authority": "count is manufacturer-published; diameters, pair spacing, pivots and rocker geometry are reconstructed",
+    "track_frame_visual_length_m": 4.08,
+    "belt_visual_thickness_m": 0.10,
+    "chassis_lower_height_m": 0.88,
+    "hood_visual_length_m": 2.82,
+    "cab_visual_length_m": 1.68,
+    "rear_hitch_visual_reach_m": 0.76,
+    "rear_hitch_pivot_height_ratio": 0.28,
+    "drawbar_pivot_height_ratio": 0.24,
+    "rear_interface_attachment_note": "Machine-local reconstructed rest-pose continuity calibration. The hitch and drawbar meshes overlap the chassis and each other in the retained pose; these height ratios are visualization choices, not manufacturer-published pivot coordinates or operating limits.",
+    "neutral_material_policy": "matte slate body, dark rubber, graphite running gear, clear neutral glazing, no logos or decals"
+  },
+  "unresolved_choices": [
+    "Exact production track, gauge, ballast and hitch option combination",
+    "All belt, idler, drive-wheel, midwheel and track-frame profiles",
+    "Exact body panel, hood, grille, cab, glazing and service-platform surfacing",
+    "All hidden suspension, SmartRide Plus, cab, hitch and drawbar pivots and actuators",
+    "Any manufacturer colors, graphics, decals, badges or copied texture details"
+  ],
+  "mechanical_gaps": [
+    "Track belts are a rigid visual abstraction without physical lug engagement, tension, deformation, slip or soil interaction.",
+    "Hardbar, midwheel and SmartRide Plus transforms are reconstructed demonstrations and do not form a validated suspension solver.",
+    "Cab movement is a bounded visual study, not a measured sprung-mass response.",
+    "Three-point and drawbar motions omit implement mass, hydraulics, PTO driveline, hoses and verified swept-volume closure.",
+    "Cooling, engine, transmission, aftertreatment and hydraulic internals are not modeled."
+  ]
+}

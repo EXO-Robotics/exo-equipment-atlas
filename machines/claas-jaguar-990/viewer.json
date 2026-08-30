@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0.0",
+  "machineId": "claas-jaguar-990",
+  "displayName": "CLAAS JAGUAR 990",
+  "className": "Self-propelled forage harvester",
+  "category": "Forage harvesting",
+  "assets": {
+    "glb": "machines/claas-jaguar-990/assets/claas-jaguar-990-structural-study.glb",
+    "configuration": "machines/claas-jaguar-990/configuration.json",
+    "facts": "machines/claas-jaguar-990/evidence/facts.json",
+    "receipt": "machines/claas-jaguar-990/production/asset-receipt.json",
+    "validation": "machines/claas-jaguar-990/production/validation.json",
+    "poster": "machines/claas-jaguar-990/review/renders/claas-jaguar-990-front-three-quarter.png"
+  },
+  "evidence": {
+    "boundary": "Independent neutral structural study of a Stage V wheeled JAGUAR 990 with ORBIS 900, V-MAX 42, MCC MAX, and the standard chute. Hidden pivots, internal centers, and motion curves are reconstructed.",
+    "lede": "The 8.93 m ORBIS width, 680 kW output, V-MAX 42 crop setup, and 210-degree standard chute are manufacturer-published. The model is not manufacturer CAD or mechanical authority.",
+    "factIds": [
+      "maximum-engine-power",
+      "public-envelope-z",
+      "vmax42-cutting-frequency",
+      "standard-chute-swing"
+    ]
+  },
+  "camera": {
+    "azimuth": 0.58,
+    "elevation": 0.31,
+    "distance": 1.58
+  },
+  "accent": "#657a89",
+  "motion": {
+    "autoplay": true,
+    "durationSeconds": 20,
+    "mode": "sine",
+    "damping": 5.8,
+    "channels": [
+      {
+        "id": "attachment-lift",
+        "label": "ORBIS lift - reconstructed linkage",
+        "nodes": ["Header_Lift_Pivot"],
+        "property": "rotation.z",
+        "from": 0,
+        "to": 0.15,
+        "phase": 0,
+        "direction": 1,
+        "mode": "offset",
+        "autoplay": "sine"
+      },
+      {
+        "id": "chute-swing",
+        "label": "Chute swing - 210 deg published envelope",
+        "nodes": ["Spout_Yaw_Pivot"],
+        "property": "rotation.y",
+        "from": -1.8326,
+        "to": 1.8326,
+        "phase": 0.36,
+        "direction": 1,
+        "mode": "offset",
+        "autoplay": "sine"
+      },
+      {
+        "id": "chute-tip",
+        "label": "Outlet flap - reconstructed trim",
+        "nodes": ["Spout_Tip_Pivot"],
+        "property": "rotation.z",
+        "from": -0.18,
+        "to": 0.12,
+        "phase": 0.7,
+        "direction": 1,
+        "mode": "offset",
+        "autoplay": "sine"
+      }
+    ]
+  }
+}

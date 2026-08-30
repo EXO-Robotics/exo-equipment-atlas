@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "claas-jaguar-990",
+  "configuration_id": "CLAAS-J990-INT-STGV-WHEEL-ORBIS900-VMAX42-MCCMAX-M-CANDIDATE",
+  "status": "research_candidate",
+  "identity": {
+    "manufacturer": "CLAAS",
+    "brand": "CLAAS",
+    "model": "JAGUAR 990",
+    "product_class": "self_propelled_forage_harvester",
+    "market": "International",
+    "emissions_basis": "Stage V market freeze"
+  },
+  "choices": {
+    "undercarriage": "wheeled",
+    "front_attachment": "ORBIS_900_8.93_m",
+    "front_attachment_drive": "variable",
+    "chopping_cylinder": "V_MAX_42",
+    "kernel_processor": "MCC_MAX_265_mm",
+    "discharge_chute": "standard_210_deg",
+    "fuel": "1100_L_plus_optional_400_L_auxiliary",
+    "crop_setup": "corn_short_length_of_cut"
+  },
+  "unresolved_choices": [
+    "exact model year and order code",
+    "front and rear tire sizes, spacers, and track width",
+    "rear powered steering axle and tire-pressure-control options",
+    "discharge chute extension length",
+    "AUTO FILL, OPTI FILL, NIR, additive, camera, guidance, and cab options",
+    "rear ballast and regional road equipment",
+    "public material and branding authorization"
+  ],
+  "boundary": "International Stage V wheeled JAGUAR 990 research candidate with ORBIS 900, variable attachment drive, V-MAX 42, MCC MAX, and the standard 210-degree chute explicitly selected. Manufacturer facts constrain the study, but attachment folding pivots, steering geometry, internal crop-flow locations, chute anchors, and all animation timing remain reconstructed. The neutral public study is not manufacturer CAD, a digital twin, engineering authority, load guidance, operator training, or safety guidance."
+}

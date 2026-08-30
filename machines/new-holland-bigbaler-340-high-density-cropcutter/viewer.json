@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "machineId": "new-holland-bigbaler-340-high-density-cropcutter",
+  "displayName": "New Holland BigBaler 340 High Density CropCutter",
+  "className": "Large square baler",
+  "category": "Hay and forage",
+  "assets": {
+    "glb": "machines/new-holland-bigbaler-340-high-density-cropcutter/assets/new-holland-bigbaler-340-high-density-cropcutter-structural-study.glb",
+    "configuration": "machines/new-holland-bigbaler-340-high-density-cropcutter/configuration.json",
+    "facts": "machines/new-holland-bigbaler-340-high-density-cropcutter/evidence/facts.json",
+    "receipt": "machines/new-holland-bigbaler-340-high-density-cropcutter/production/asset-receipt.json",
+    "validation": "machines/new-holland-bigbaler-340-high-density-cropcutter/production/validation.json",
+    "poster": "machines/new-holland-bigbaler-340-high-density-cropcutter/review/renders/new-holland-bigbaler-340-high-density-cropcutter-operator-side.png"
+  },
+  "evidence": {
+    "boundary": "Neutral CropCutter transport-pose study. PTO, flywheel, pickup, rotor, stuffer, plunger, knotter, density and steering mechanisms remain reconstructed beyond published dimensional constraints.",
+    "lede": "The brochure fixes the 8.936 x 2.987 x 3.454 m envelope, 1.2 x 0.9 m bale section, 29-knife CropCutter and 0.748 m plunger stroke without establishing hidden kinematics.",
+    "factIds": ["public-envelope-x", "public-envelope-y", "public-envelope-z", "pickup-width", "cropcutter-knives", "plunger-stroke"]
+  },
+  "camera": {"azimuth": 0.66, "elevation": 0.29, "distance": 1.56},
+  "accent": "#a88952",
+  "motion": {
+    "autoplay": true,
+    "durationSeconds": 10,
+    "mode": "sine",
+    "damping": 6.8,
+    "channels": [
+      {"id":"pickup-lift","label":"Pickup lift - reconstructed","nodes":["Pickup_Lift_Pivot"],"property":"rotation.z","from":-0.10,"to":0.16,"phase":0.0,"mode":"offset"},
+      {"id":"bale-chute","label":"Bale chute trim - reconstructed","nodes":["Bale_Chute_Pivot"],"property":"rotation.z","from":-0.12,"to":0.08,"phase":0.42,"mode":"offset"},
+      {"id":"drawbar-yaw","label":"Tractor drawbar articulation - reconstructed","nodes":["Drawbar_Yaw_Pivot"],"property":"rotation.y","from":-0.09,"to":0.09,"phase":0.72,"mode":"offset"}
+    ]
+  }
+}

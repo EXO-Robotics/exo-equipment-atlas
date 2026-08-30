@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-9rx-640",
+  "configuration_id": "JD-9RX640-MY2025-9540RW-JD14-E18-4X30AG3500-87-NOPTO-NOHITCH-CANDIDATE",
+  "freeze_date": "2026-08-29",
+  "repository_policy": {
+    "source_binaries_committed": false,
+    "manufacturer_geometry_committed": false,
+    "manufacturer_imagery_committed": false,
+    "manual_illustrations_are_scale_drawings": false,
+    "verification": "The official 1 November 2024 Deere price book was inspected and hash-bound under research/private. No manufacturer PDF, imagery, texture, logo or geometry is redistributed."
+  },
+  "sources": [
+    {
+      "id": "JD-9RX640-PRICEBOOK-2024-11",
+      "publisher": "Deere & Company",
+      "kind": "official_north_american_price_book",
+      "title": "Tractors 6000s-9000s Less PUKs, 1 November 2024",
+      "publication": "MY2025 price pages; 9RX 640 pages 3210-3248",
+      "market": "North America",
+      "pages": 3722,
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.deere.com/assets/pdfs/region-4/industries/government-and-military-sales/contracts/price-pages/agricultural/Tractors_6000s-9000s_Less%20PUKS_01Nov2024.pdf",
+      "local_path": "research/private/john-deere-9rx-640/primary-source.pdf",
+      "sha256": "7784fd6935b41f43f176be8a0d510aaae105c92270adb9aa8fd59bea70c2df2f",
+      "bytes": 8743066,
+      "admission": "primary",
+      "use": "Primary authority for model year, base code, engine, transmission, less-PTO/less-hitch state, drawbar and selected track codes."
+    },
+    {
+      "id": "JD-9RX640-CA-PAGE",
+      "publisher": "Deere & Company",
+      "kind": "official_canadian_product_page",
+      "title": "9 Series Tractors | 9RX 640",
+      "market": "Canada",
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.deere.ca/en/tractors/4wd-track-tractors/9rx-640/",
+      "admission": "corroborating",
+      "use": "Manufacturer-published overall length, wheelbase, drawbar clearance and shipping-weight corroboration."
+    },
+    {
+      "id": "JD-9-SERIES-AUNZ-2023",
+      "publisher": "Deere & Company",
+      "kind": "official_australia_new_zealand_product_brochure",
+      "title": "9 Series Tractors: 390-640 Engine Horsepower",
+      "publication": "DSAA70733AU (11/23)",
+      "market": "Australia and New Zealand",
+      "pages": 32,
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.deere.com/assets/pdfs/common/products/tractors/4wd-track-tractors/9-series-au-nz-CP8264_LR.pdf",
+      "admission": "corroborating",
+      "use": "First-party structural and specification authority for 36-degree articulation, 15-degree chassis oscillation and plus/minus 10-degree undercarriage oscillation on standard 9RX tractors."
+    }
+  ]
+}

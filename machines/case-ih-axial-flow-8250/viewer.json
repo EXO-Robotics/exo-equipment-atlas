@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "machineId": "case-ih-axial-flow-8250",
+  "displayName": "Case IH Axial-Flow 8250",
+  "className": "Single-rotor combine",
+  "category": "Grain harvesting",
+  "assets": {
+    "glb": "machines/case-ih-axial-flow-8250/assets/case-ih-axial-flow-8250-structural-study.glb",
+    "configuration": "machines/case-ih-axial-flow-8250/configuration.json",
+    "facts": "machines/case-ih-axial-flow-8250/evidence/facts.json",
+    "receipt": "machines/case-ih-axial-flow-8250/production/asset-receipt.json",
+    "validation": "machines/case-ih-axial-flow-8250/production/validation.json",
+    "poster": "machines/case-ih-axial-flow-8250/review/renders/case-ih-axial-flow-8250-operator-side.png"
+  },
+  "evidence": {
+    "boundary": "Copyright-2022 250 Series research candidate with exact model year unresolved. Overall length, hidden crop-flow geometry, pivots, steering and motion limits are reconstructed.",
+    "lede": "The official brochure publishes the 8250 power, rotor, 410-bushel tank, 4.5-bushel-per-second unload selection, width and cab height; no named header is claimed.",
+    "factIds": ["public-envelope-y", "public-envelope-z", "rated-engine-power", "rotor-diameter", "grain-tank-capacity", "unloading-rate"]
+  },
+  "camera": {"azimuth": 0.61, "elevation": 0.32, "distance": 1.54},
+  "accent": "#c18a42",
+  "motion": {
+    "autoplay": true,
+    "durationSeconds": 12,
+    "mode": "sine",
+    "damping": 6.2,
+    "channels": [
+      {"id":"feeder-lift","label":"Feeder/header interface lift - reconstructed","nodes":["Header_Lift_Pivot"],"property":"rotation.z","from":-0.08,"to":0.14,"phase":0.0,"mode":"offset"},
+      {"id":"reel-study","label":"Generic interface reel study","nodes":["Reel_ROOT"],"property":"rotation.z","from":-0.55,"to":0.55,"phase":0.28,"mode":"offset"},
+      {"id":"unloader-swing","label":"Unloader sweep - reconstructed hinge","nodes":["Unloader_Swing_Pivot"],"property":"rotation.y","from":0.0,"to":1.08,"phase":0.55,"mode":"offset","autoplay":"ping-pong"}
+    ]
+  }
+}

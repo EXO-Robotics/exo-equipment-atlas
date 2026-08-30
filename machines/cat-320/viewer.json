@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "machineId": "cat-320",
+  "displayName": "Cat 320",
+  "className": "Hydraulic excavator",
+  "category": "Excavation",
+  "assets": {
+    "glb": "machines/cat-320/assets/cat-320-structural-study.glb",
+    "configuration": "machines/cat-320/configuration.json",
+    "facts": "machines/cat-320/evidence/facts.json",
+    "receipt": "machines/cat-320/production/asset-receipt.json",
+    "validation": "machines/cat-320/production/validation.json"
+  },
+  "evidence": {
+    "boundary": "Independent 07H structural study. Pivots, anchors, linkage, and motion remain reconstructed.",
+    "lede": "Published 07H dimensions constrain the transport envelope and front equipment. Hidden pivot and cylinder geometry remains reconstructed.",
+    "factIds": [
+      "transport-length",
+      "transport-height",
+      "undercarriage-width",
+      "maximum-ground-reach"
+    ]
+  },
+  "camera": {
+    "azimuth": 0.62,
+    "elevation": 0.34,
+    "distance": 1.48
+  },
+  "accent": "#d6943d"
+}

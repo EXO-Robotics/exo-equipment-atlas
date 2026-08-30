@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "case-ih-steiger-715-quadtrac",
+  "configuration_id": "CASEIH-STEIGER715-NAM-AG-QUADTRAC-PWRDRIVE-HDS-CAT4N-CANDIDATE",
+  "coordinate_system": {
+    "longitudinal": "+X toward engine hood",
+    "vertical": "+Y",
+    "lateral": "+Z machine right"
+  },
+  "joints": [
+    {"id":"chassis_articulation","type":"revolute","axis":"+Y nominal","authority":"reconstructed","source_ids":["CASEIH-STEIGER-US-BROCHURE-2025"],"unresolved":["published yaw limit, hinge center, bearing stack, steering-cylinder anchors and oscillation coupling"]},
+    {"id":"front_frame_oscillation","type":"revolute","axis":"+X nominal","authority":"reconstructed","source_ids":["CASEIH-STEIGER-US-BROCHURE-2025"],"unresolved":["three-point articulation topology, oscillation limit and frame relationship"]},
+    {"id":"track_module_oscillation_four","type":"four_revolute_modules","axis":"+Z nominal per module","authority":"reconstructed","source_ids":["CASEIH-STEIGER-US-BROCHURE-2025"],"unresolved":["module pivot centers, stops, phase and interaction with HDS"]},
+    {"id":"hds_double_axis_roller_suspension","type":"four_compound_suspension_modules","published_total_range_in":7,"authority":"reconstructed","source_ids":["CASEIH-STEIGER-US-BROCHURE-2025"],"unresolved":["double-axis roller link lengths, hydraulic elements, neutral position and per-wheel load sharing"]},
+    {"id":"track_belt_travel","type":"four_closed_loop_tracks","authority":"reconstructed","source_ids":["CASEIH-STEIGER-US-BROCHURE-2025"],"unresolved":["track width, belt pitch, drive-wheel ratio, idler radius, tread phase and slip"]},
+    {"id":"rear_three_point_hitch","type":"three_point_hydraulic_linkage","authority":"reconstructed","source_ids":["CASEIH-STEIGER-US-BROCHURE-2025"],"unresolved":["rockshaft axis, lower-link geometry, lift-cylinder anchors, ball ends and full range"]},
+    {"id":"drawbar_yaw","type":"revolute","axis":"+Y nominal","authority":"reconstructed","source_ids":["CASEIH-STEIGER-US-BROCHURE-2025"],"unresolved":["pivot center, supported angle and selected drawbar structure"]}
+  ],
+  "presentation_motion": {
+    "sequence": ["chassis articulation sweep","alternating four-module track oscillation","HDS roller compression cue","rear hitch raise and lower","track-pad phase cue"],
+    "boundary": "Smooth semantic presentation only; no traction, suspension-load, steering, implement, stability or time-domain simulation."
+  },
+  "required_gates": ["frozen_visible_configuration","single_identity_root","four_track_contact","chassis_articulation_continuity","track_module_and_HDS_clearance","belt_phase_continuity","rear_hitch_clearance","ground_collision","self_collision","swept_volume_collision"],
+  "release_state": "no_geometry_no_solver_no_claim"
+}

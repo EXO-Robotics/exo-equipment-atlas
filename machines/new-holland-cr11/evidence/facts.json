@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "new-holland-cr11",
+  "configuration_id": "NH-CR11-NAM-C16-WHEEL2WD-GT567-UR6-TWINCLEAN-DISC45-CANDIDATE",
+  "facts": [
+    {"id":"maximum-engine-power","subject":"CR11 maximum engine power","value":775,"unit":"hp","authority":"manufacturer_published","source_id":"NH-CR10-CR11-NAM-BROCHURE-2025","location":"PDF pages 4 and 29, CR11 column"},
+    {"id":"engine-displacement","subject":"FPT Cursor 16 displacement","value":16,"unit":"L","authority":"manufacturer_published","source_id":"NH-CR10-CR11-NAM-BROCHURE-2025","location":"PDF page 29, CR11 column"},
+    {"id":"harvest-engine-speed","subject":"harvesting engine speed","value":1900,"unit":"rpm","authority":"manufacturer_published","source_id":"NH-CR10-CR11-NAM-BROCHURE-2025","location":"PDF pages 5 and 29"},
+    {"id":"fuel-capacity","subject":"CR11 fuel capacity","value":396,"unit":"US_gal","authority":"manufacturer_published","source_id":"NH-CR10-CR11-NAM-BROCHURE-2025","location":"PDF pages 5 and 29, 1,500 L"},
+    {"id":"rotor-count","subject":"Twin Rotor rotor count","value":2,"unit":"count","authority":"manufacturer_published","source_id":"NH-CR10-CR11-NAM-BROCHURE-2025","location":"PDF pages 3 and 9"},
+    {"id":"rotor-diameter","subject":"each rotor diameter","value":0.61,"unit":"m","authority":"manufacturer_published","source_id":"NH-CR10-CR11-NAM-BROCHURE-2025","location":"PDF page 29, 24 in / 610 mm"},
+    {"id":"rotor-length","subject":"each rotor length","value":3.6,"unit":"m","authority":"manufacturer_published","source_id":"NH-CR10-CR11-NAM-BROCHURE-2025","location":"PDF page 29, 142 in / 3,600 mm"},
+    {"id":"rotor-speed-range","subject":"selectable rotor speed span","value":[300,1400],"unit":"rpm","authority":"manufacturer_published","source_id":"NH-CR10-CR11-NAM-BROCHURE-2025","location":"PDF page 9"},
+    {"id":"twinclean-side-slope","subject":"TwinClean side-slope compensation","value":28,"unit":"percent_slope","authority":"manufacturer_published","source_id":"NH-CR10-CR11-NAM-BROCHURE-2025","location":"PDF pages 12 and 29"},
+    {"id":"twinclean-area","subject":"cleaning area under wind control","value":8.76,"unit":"m2","authority":"manufacturer_published","source_id":"NH-CR10-CR11-NAM-BROCHURE-2025","location":"PDF page 29"},
+    {"id":"grain-tank-capacity","subject":"selected CR11 grain tank capacity","value":567,"unit":"bu","authority":"manufacturer_published","source_id":"NH-CR10-CR11-NAM-BROCHURE-2025","location":"PDF pages 13 and 29"},
+    {"id":"unloading-rate","subject":"selected unload rate","value":6,"unit":"bu_per_s","authority":"manufacturer_published","source_id":"NH-CR10-CR11-NAM-BROCHURE-2025","location":"PDF pages 13 and 29"},
+    {"id":"unloading-auger-swivel","subject":"unloading auger swivel","value":105,"unit":"deg","authority":"manufacturer_published","source_id":"NH-CR10-CR11-NAM-BROCHURE-2025","location":"PDF page 30"},
+    {"id":"standard-header-lift","subject":"standard feeder lift capacity","value":12100,"unit":"lb","authority":"manufacturer_published","source_id":"NH-CR10-CR11-NAM-BROCHURE-2025","location":"PDF page 29"},
+    {"id":"transport-length","subject":"maximum length with rigid unload","value":11.252,"unit":"m","authority":"manufacturer_published","source_id":"NH-CR10-CR11-NAM-BROCHURE-2025","location":"PDF page 30, 443 in"},
+    {"id":"field-length","subject":"maximum length with folding unloader extended","value":11.608,"unit":"m","authority":"manufacturer_published","source_id":"NH-CR10-CR11-NAM-BROCHURE-2025","location":"PDF page 30, 457 in"},
+    {"id":"road-height","subject":"maximum height with grain tank closed","value":4.013,"unit":"m","authority":"manufacturer_published","source_id":"NH-CR10-CR11-NAM-BROCHURE-2025","location":"PDF page 30, 158 in"},
+    {"id":"field-height","subject":"maximum height with grain tank open","value":5.08,"unit":"m","authority":"manufacturer_published","source_id":"NH-CR10-CR11-NAM-BROCHURE-2025","location":"PDF page 30, 200 in"},
+    {"id":"dual-710-width","subject":"maximum transport width on 710/70 R42 duals","value":5.512,"unit":"m","authority":"manufacturer_published","source_id":"NH-CR10-CR11-NAM-BROCHURE-2025","location":"PDF page 30, 217 in"},
+    {"id":"dual-wheelbase","subject":"wheelbase on wheeled dual configurations","value":4.039,"unit":"m","authority":"manufacturer_published","source_id":"NH-CR10-CR11-NAM-BROCHURE-2025","location":"PDF page 30, 159 in"},
+    {"id":"public-envelope-x","subject":"public longitudinal transport envelope with rigid unloader","value":11.252,"unit":"m","authority":"manufacturer_published","source_id":"NH-CR10-CR11-NAM-BROCHURE-2025","location":"PDF page 30, 443 in maximum length"},
+    {"id":"public-envelope-y","subject":"public vertical road envelope with grain tank closed","value":4.013,"unit":"m","authority":"manufacturer_published","source_id":"NH-CR10-CR11-NAM-BROCHURE-2025","location":"PDF page 30, 158 in maximum height"},
+    {"id":"public-envelope-z","subject":"public lateral transport envelope on 710/70 R42 duals","value":5.512,"unit":"m","authority":"manufacturer_published","source_id":"NH-CR10-CR11-NAM-BROCHURE-2025","location":"PDF page 30, 217 in maximum width"}
+  ],
+  "issues": [
+    {"id":"configuration-options","status":"documented","detail":"The 567-bushel tank and 6.0-bu/s unload rate are options in the brochure matrix. This candidate selects them rather than claiming them for every CR11."},
+    {"id":"wheeled-envelope","status":"documented","detail":"The public envelope uses the brochure's 710/70 R42 dual-tire column and excludes SmartTrax values. Tire rim offset and loaded radius remain unresolved."},
+    {"id":"static-geometry-boundary","status":"unresolved","detail":"Feeder cylinders, Dynamic Feed Roll, rotor axes, TwinClean side-shake links, auger hinges, grain covers, axle steering and residue drive coordinates are not established by the admitted publications."}
+  ]
+}

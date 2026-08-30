@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "case-ih-axial-flow-8250",
+  "display_name": "Case IH Axial-Flow 8250",
+  "configuration_id": "CASEIH-AF8250-NAM-250-WHEELED-GT410-UA45-CANDIDATE-MYUNRESOLVED",
+  "archetype": "combine",
+  "dimensions_m": {
+    "length": 9.0,
+    "width": 3.962,
+    "height": 3.904
+  },
+  "carrier_dimensions_m": {
+    "length": 9.0,
+    "width": 3.962,
+    "height": 3.904
+  },
+  "attachment_span_m": 3.962,
+  "palette": "amber",
+  "published_constraints_used": [
+    "public-envelope-y",
+    "public-envelope-z",
+    "feeder-width",
+    "feeder-length",
+    "feeder-lateral-tilt",
+    "rotor-diameter",
+    "grain-tank-capacity",
+    "unloading-auger-length"
+  ],
+  "reconstructed_values": {
+    "longitudinal_envelope_m": 9.0,
+    "longitudinal_envelope_note": "Overall length is not published in the admitted brochure and is reconstructed for presentation; only Y and Z are manufacturer-published public-envelope axes.",
+    "header_interface": "Generic narrow feeder/header interface cue only; no named harvesting attachment or width claim.",
+    "running_gear": "Generic 2WD wheeled presentation; tire sizes, loaded radii, offsets and steering geometry are reconstructed.",
+    "materials": "Neutral unbranded amber, graphite, steel, rubber and glass with no logos, decals or copied trade dress.",
+    "hidden_geometry": "Rotor center, feeder pivot, cleaning shoe, auger hinge and every hydraulic anchor are reconstructed.",
+    "animation_ranges": "Conservative presentation ranges only; not machine-specific operating limits."
+  },
+  "unresolved_choices": [
+    "exact model year and production serial family",
+    "overall longitudinal envelope",
+    "front and rear tire sizes, offsets and axle option",
+    "unloading auger fold joint and spout option ordering",
+    "residue package",
+    "named header attachment",
+    "public material and branding authorization"
+  ],
+  "mechanical_gaps": [
+    "feederhouse pivot, cylinder anchors and header coupler authority",
+    "rotor axis and internal crop-flow geometry",
+    "cleaning shoe phase, leveling linkage and fan placement",
+    "unloading auger hinge, fold joint and swept clearance",
+    "steering, ground, self and swept-volume collision solvers"
+  ]
+}

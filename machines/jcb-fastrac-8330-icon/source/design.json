@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "jcb-fastrac-8330-icon",
+  "display_name": "JCB Fastrac 8330 iCON",
+  "configuration_id": "JCB-F8330-ICON-NA26-AG-VF540R38-VF710R42-FL35-RL10-CANDIDATE",
+  "archetype": "wheeled_tractor",
+  "dimensions_m": {"length":5.65,"width":2.55,"height":3.45},
+  "palette": "slate",
+  "published_constraints_used": ["public-envelope-x","public-envelope-y","public-envelope-z","wheelbase","ground-clearance"],
+  "reconstructed_values": {"hidden_geometry":"All pivots, hydraulic anchors, suspension travel, steering geometry, tire surfaces, hitch kinematics, PTO geometry, motion curves and internal construction are reconstructed visualization choices.","front_linkage_presentation":"The visible front three-point layout is a selected reconstructed presentation constrained only by the published optional 3500 kg front-lift capacity; no Category 3N class or geometry is claimed."},
+  "unresolved_choices": ["exact dealer order and serial number","US availability of selected tire basis","cab, lighting, ballast and rear-deck packages"],
+  "mechanical_gaps": ["Suspension and hitch solvers are not manufacturer-authoritative","No collision or swept-volume proof"]
+}

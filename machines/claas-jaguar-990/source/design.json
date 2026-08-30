@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "claas-jaguar-990",
+  "display_name": "CLAAS JAGUAR 990",
+  "configuration_id": "CLAAS-J990-INT-STGV-WHEEL-ORBIS900-VMAX42-MCCMAX-M-CANDIDATE",
+  "archetype": "forage_harvester",
+  "dimensions_m": {
+    "length": 6.495,
+    "width": 8.93,
+    "height": 3.945
+  },
+  "carrier_dimensions_m": {
+    "length": 6.495,
+    "width": 3.0,
+    "height": 3.945
+  },
+  "attachment_span_m": 8.93,
+  "palette": "slate",
+  "published_constraints_used": [
+    "public-envelope-x",
+    "public-envelope-y",
+    "public-envelope-z",
+    "orbis-working-width",
+    "orbis-transport-width",
+    "feeder-width",
+    "feed-roller-count",
+    "chopping-cylinder-width",
+    "chopping-cylinder-diameter",
+    "vmax42-knife-count",
+    "mcc-max-diameter",
+    "accelerator-width",
+    "accelerator-diameter",
+    "standard-chute-swing"
+  ],
+  "reconstructed_values": {
+    "carrier_display_envelope_m": [6.495, 3.0, 3.945],
+    "carrier_width_note": "The 3.0 m value is the selected ORBIS transport-protection span used as a conservative display width, not a configuration-complete carrier width claim.",
+    "selected_orbis_working_span_m": 8.93,
+    "selected_orbis_span_note": "Manufacturer-published working width; header depth, wing hinges, row-unit centers, and folded geometry remain reconstructed.",
+    "materials": "Neutral unbranded slate, sand, graphite, steel, rubber, and glass; no logos or protected livery claim.",
+    "all_hidden_pivots": "Reconstructed visual hierarchy only.",
+    "all_animation_ranges": "Conservative presentation ranges, not operator limits.",
+    "internal_crop_flow": "Cutaway-only schematic study; no crop simulation or hidden assembly authority."
+  },
+  "unresolved_choices": [
+    "exact model year and order code",
+    "front and rear tire sizes, spacers, and track width",
+    "rear powered steering axle and tire-pressure-control options",
+    "discharge chute extension length",
+    "AUTO FILL, OPTI FILL, NIR, additive, camera, guidance, and cab options",
+    "rear ballast and regional road equipment",
+    "public material and branding authorization"
+  ],
+  "mechanical_gaps": [
+    "front attachment coupler, lift, and fold pivot authority",
+    "wheel rolling radius and rear steering geometry",
+    "feeder, chopping cylinder, cracker, and accelerator centers and rates",
+    "standard chute hinge and swept-volume clearance",
+    "ground, self, and swept-volume collision solver"
+  ]
+}

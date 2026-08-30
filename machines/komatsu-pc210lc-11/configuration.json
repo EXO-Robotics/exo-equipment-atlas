@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "komatsu-pc210lc-11",
+  "configuration_id": "KOMATSU-PC210LC11-CONV-T4F-57B-2925A-700SH-TL085-CANDIDATE",
+  "status": "research_candidate",
+  "identity": {
+    "manufacturer": "Komatsu Ltd.",
+    "brand": "Komatsu",
+    "model": "PC210LC-11",
+    "product_class": "crawler_excavator",
+    "market": "Conventional Tier 4 Final configuration; current New Zealand identity with North American dimensional publication"
+  },
+  "choices": {
+    "machine_control": "conventional_non_i",
+    "boom": "5_7_m_one_piece",
+    "arm": "2_925_m",
+    "track_shoes": "700_mm_triple_grouser",
+    "bucket": "Komatsu_TL_0_85_m3_914_mm",
+    "counterweight": "4370_kg_standard",
+    "public_finish": "neutral_unbranded_sand_and_graphite"
+  },
+  "excluded_options": [
+    "PC210LCi intelligent machine control hardware",
+    "super long front",
+    "waste-handler riser and guarding",
+    "800 mm shoes",
+    "other bucket families and capacities",
+    "manufacturer logos and protected livery"
+  ],
+  "unresolved_choices": [
+    "exact serial number and regional standard-equipment revision",
+    "bucket teeth, coupler, auxiliary hydraulic and guarding package",
+    "track shoe profile, cab guards, cameras, lights and handrail configuration",
+    "all front-equipment pivot and cylinder anchor coordinates",
+    "public material and branding authorization"
+  ],
+  "boundary": "Technical structural study only. Published transport dimensions, undercarriage, front-equipment lengths, compatible bucket, engine output and working ranges constrain the visible study. Pivots, cylinder anchors, upper swing bearing, track kinematics, hose routing, motion curves, forces, clearances and hidden structures are reconstructed and not engineering authority."
+}

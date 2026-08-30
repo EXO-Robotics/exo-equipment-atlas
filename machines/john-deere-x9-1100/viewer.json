@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0.0",
+  "machineId": "john-deere-x9-1100",
+  "displayName": "John Deere X9 1100",
+  "className": "Dual-rotor combine with 50-ft-class draper",
+  "category": "Harvesting equipment",
+  "assets": {
+    "glb": "machines/john-deere-x9-1100/assets/john-deere-x9-1100-structural-study.glb",
+    "configuration": "machines/john-deere-x9-1100/configuration.json",
+    "facts": "machines/john-deere-x9-1100/evidence/facts.json",
+    "receipt": "machines/john-deere-x9-1100/production/asset-receipt.json",
+    "validation": "machines/john-deere-x9-1100/production/validation.json",
+    "poster": "machines/john-deere-x9-1100/review/renders/john-deere-x9-1100-elevated-technical.png"
+  },
+  "evidence": {
+    "boundary": "MY2024 X9 1100 wheeled candidate with HD50R 50-ft-class header and 31-ft auger. The 15.2 m header span is published; carrier length/height and all hidden feeder/header/auger geometry remain reconstructed or unresolved.",
+    "lede": "A phased technical sequence demonstrates feeder/header pitch, reel rotation and auger swing while keeping crop flow, terrain following and internal rotor mechanics outside the claim boundary.",
+    "factIds": ["rated-engine-power-hp", "engine-displacement", "public-envelope-z", "feederhouse-width", "rotor-length", "grain-tank-capacity", "selected-auger-length"]
+  },
+  "camera": {"azimuth": 0.74, "elevation": 0.32, "distance": 1.68},
+  "accent": "#a0acb7",
+  "motion": {
+    "autoplay": true,
+    "durationSeconds": 22,
+    "mode": "sine",
+    "damping": 8.5,
+    "channels": [
+      {"id": "feederhouse-pitch", "label": "Feederhouse pitch study", "nodes": ["Feederhouse_ROOT"], "property": "rotation.z", "from": -0.03, "to": 0.08, "phase": 0.0, "mode": "offset"},
+      {"id": "header-lift", "label": "Header lift study", "nodes": ["Header_ROOT"], "property": "rotation.z", "from": -0.08, "to": 0.18, "phase": 0.18, "mode": "offset", "autoplay": "ping-pong"},
+      {"id": "reel-rotation", "label": "Header reel visual cue", "nodes": ["Reel_ROOT"], "property": "rotation.z", "from": 0, "to": 6.283185, "phase": 0.42, "mode": "offset"},
+      {"id": "unloader-swing", "label": "Unloading auger swing study", "nodes": ["Unloader_ROOT"], "property": "rotation.y", "from": 0, "to": 1.65, "phase": 0.68, "mode": "offset", "autoplay": "ping-pong"}
+    ]
+  }
+}

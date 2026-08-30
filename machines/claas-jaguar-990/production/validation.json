@@ -1,0 +1,341 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "claas-jaguar-990",
+  "configuration_id": "CLAAS-J990-INT-STGV-WHEEL-ORBIS900-VMAX42-MCCMAX-M-CANDIDATE",
+  "archetype": "forage_harvester",
+  "candidate_class": "technical_structural_study",
+  "engineering_authority": false,
+  "verdict": "PASS",
+  "verdict_scope": "technical_structural_study_only",
+  "release_status": "PENDING",
+  "bounds": {
+    "min_m": [
+      -3.2475,
+      0.0,
+      -4.465
+    ],
+    "max_m": [
+      3.2475,
+      3.945,
+      4.465
+    ],
+    "size_m": [
+      6.495,
+      3.945,
+      8.93
+    ]
+  },
+  "counts": {
+    "objects": 212,
+    "meshes": 190,
+    "triangles": 29560,
+    "materials": 6
+  },
+  "envelope_fit": {
+    "classification": "reconstructed_visible_envelope_calibration",
+    "source_bounds_m": {
+      "min_m": [
+        -2.4243,
+        0.0,
+        -4.465
+      ],
+      "max_m": [
+        3.451005,
+        3.988627,
+        4.465
+      ],
+      "size_m": [
+        5.875305,
+        3.988627,
+        8.93
+      ]
+    },
+    "target_bounds_m": {
+      "min_m": [
+        -3.2475,
+        0.0,
+        -4.465
+      ],
+      "max_m": [
+        3.2475,
+        3.945,
+        4.465
+      ],
+      "size_m": [
+        6.495,
+        3.945,
+        8.93
+      ]
+    },
+    "axis_scale_factors": [
+      1.105474536,
+      0.989062221,
+      0.999999966
+    ],
+    "calibrated_bounds_m": {
+      "min_m": [
+        -3.2475,
+        0.0,
+        -4.465
+      ],
+      "max_m": [
+        3.2475,
+        3.945,
+        4.465
+      ],
+      "size_m": [
+        6.495,
+        3.945,
+        8.93
+      ]
+    },
+    "authority": "reconstructed_not_machine_specific_engineering"
+  },
+  "glb_contract": {
+    "glb_version": "2.0",
+    "scene_count": 1,
+    "scene_root_count": 1,
+    "root_name": "Machine_Root",
+    "root_record": {},
+    "identity_root": true,
+    "nodes": 212,
+    "mesh_nodes": 190,
+    "mesh_definitions": 190,
+    "materials": 6,
+    "triangles": 29560,
+    "cameras": 0,
+    "punctual_lights": false,
+    "images": 0,
+    "textures": 0,
+    "nonidentity_mesh_scales": {},
+    "helper_like_mesh_nodes": [],
+    "semantic_motion_nodes": 21,
+    "bounds": {
+      "min_m": [
+        -3.2475,
+        0.0,
+        -4.465
+      ],
+      "max_m": [
+        3.2475,
+        3.945,
+        4.465
+      ],
+      "size_m": [
+        6.495,
+        3.945,
+        8.93
+      ]
+    }
+  },
+  "gates": [
+    {
+      "id": "builder-execution",
+      "status": "PASS",
+      "detail": "Factory-startup background builder reached validation generation."
+    },
+    {
+      "id": "candidate-class-boundary",
+      "status": "PASS",
+      "detail": "technical_structural_study only; not engineering authority."
+    },
+    {
+      "id": "scene-units-and-axes",
+      "status": "PASS",
+      "detail": "Meters; +X forward, +Y up, +Z machine right."
+    },
+    {
+      "id": "independent-authoring-boundary",
+      "status": "PASS",
+      "detail": "No downloaded geometry, CAD, copied textures, logos, or opaque add-ons."
+    },
+    {
+      "id": "one-identity-root",
+      "status": "PASS",
+      "detail": {}
+    },
+    {
+      "id": "required-semantic-nodes",
+      "status": "PASS",
+      "detail": {
+        "Machine_Root": true,
+        "Fixed_Structure_ROOT": true,
+        "Running_Gear_ROOT": true,
+        "Hydraulics_ROOT": true,
+        "Service_Detail_ROOT": true,
+        "Header_Lift_Pivot": true,
+        "Header_ROOT": true,
+        "Feedroll_ROOT": true,
+        "Spout_Yaw_Pivot": true,
+        "Spout_ROOT": true,
+        "Spout_Tip_Pivot": true,
+        "Spout_Tip_ROOT": true
+      }
+    },
+    {
+      "id": "semantic-motion-hierarchy",
+      "status": "PASS",
+      "detail": {
+        "semantic_motion_nodes": 21
+      }
+    },
+    {
+      "id": "export-mesh-scales-applied",
+      "status": "PASS",
+      "detail": {
+        "authoring_residual": {},
+        "glb_residual": {}
+      }
+    },
+    {
+      "id": "public-glb-no-cameras-lights",
+      "status": "PASS",
+      "detail": {
+        "cameras": 0,
+        "punctual_lights": false
+      }
+    },
+    {
+      "id": "public-glb-no-helpers",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "public-glb-no-images-textures",
+      "status": "PASS",
+      "detail": {
+        "images": 0,
+        "textures": 0
+      }
+    },
+    {
+      "id": "node-density",
+      "status": "PASS",
+      "detail": {
+        "actual": 212,
+        "minimum": 200
+      }
+    },
+    {
+      "id": "mesh-density",
+      "status": "PASS",
+      "detail": {
+        "actual": 190,
+        "minimum": 180
+      }
+    },
+    {
+      "id": "triangle-density",
+      "status": "PASS",
+      "detail": {
+        "actual": 29560,
+        "minimum": 10000
+      }
+    },
+    {
+      "id": "finite-visible-bounds",
+      "status": "PASS",
+      "detail": {
+        "min_m": [
+          -3.2475,
+          0.0,
+          -4.465
+        ],
+        "max_m": [
+          3.2475,
+          3.945,
+          4.465
+        ],
+        "size_m": [
+          6.495,
+          3.945,
+          8.93
+        ]
+      }
+    },
+    {
+      "id": "retained-visible-envelope",
+      "status": "PASS",
+      "detail": {
+        "actual_size_m": [
+          6.495,
+          3.945,
+          8.93
+        ],
+        "expected_size_m": [
+          6.495,
+          3.945,
+          8.93
+        ],
+        "absolute_tolerance_m": 0.03,
+        "minimum_y_m": 0.0
+      }
+    },
+    {
+      "id": "review-renders-nonempty",
+      "status": "PASS",
+      "detail": [
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/claas-jaguar-990/review/renders/claas-jaguar-990-operator-side.png",
+          "bytes": 294355
+        },
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/claas-jaguar-990/review/renders/claas-jaguar-990-front-three-quarter.png",
+          "bytes": 266740
+        },
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/claas-jaguar-990/review/renders/claas-jaguar-990-rear-three-quarter.png",
+          "bytes": 293809
+        },
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/claas-jaguar-990/review/renders/claas-jaguar-990-elevated-technical.png",
+          "bytes": 337589
+        },
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/claas-jaguar-990/review/renders/claas-jaguar-990-articulation-detail.png",
+          "bytes": 330639
+        },
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/claas-jaguar-990/review/renders/claas-jaguar-990-right-side.png",
+          "bytes": 292597
+        }
+      ]
+    },
+    {
+      "id": "neutral-unbranded-materials",
+      "status": "PASS",
+      "detail": "Neutral palette and procedural materials only; no manufacturer marks or textures."
+    },
+    {
+      "id": "configuration-freeze",
+      "status": "PENDING",
+      "detail": "Research candidate retains unresolved exact configuration and options."
+    },
+    {
+      "id": "machine-specific-mechanical-solver",
+      "status": "PENDING",
+      "detail": "Generic structural pivots do not establish evidence-bound limits, endpoints, or cylinder closure."
+    },
+    {
+      "id": "ground-self-swept-collision",
+      "status": "PENDING",
+      "detail": "No machine-specific swept-volume or collision solver exists."
+    },
+    {
+      "id": "critic-human-visual-review",
+      "status": "PENDING",
+      "detail": "A human critic must inspect the exact render and artifact hashes."
+    },
+    {
+      "id": "viewer-browser-accessibility-mobile-selection-performance",
+      "status": "PENDING",
+      "detail": "Viewer integration belongs to the publication lane."
+    },
+    {
+      "id": "publication-and-deployment",
+      "status": "PENDING",
+      "detail": "Only the publisher may advance this research artifact to release."
+    }
+  ],
+  "failed_gate_ids": []
+}

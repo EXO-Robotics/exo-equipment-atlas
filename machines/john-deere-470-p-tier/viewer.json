@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "machineId": "john-deere-470-p-tier",
+  "displayName": "470 P-Tier",
+  "className": "Hydraulic excavator",
+  "category": "Excavation",
+  "assets": {
+    "glb": "machines/john-deere-470-p-tier/assets/john-deere-470-p-tier-structural-study.glb",
+    "configuration": "machines/john-deere-470-p-tier/configuration.json",
+    "facts": "machines/john-deere-470-p-tier/evidence/facts.json",
+    "receipt": "machines/john-deere-470-p-tier/production/asset-receipt.json",
+    "validation": "machines/john-deere-470-p-tier/production/validation.json"
+  },
+  "evidence": {
+    "boundary": "Independent 7.0 m boom, 3.9 m arm study. Linkage, pivot placement, attachment geometry, motion, and hydraulic routing remain reconstructed.",
+    "lede": "Published ME470PAU dimensions constrain the operating-gauge undercarriage, front equipment, cylinder sizes, and working ranges. Conflicting bucket-table values remain documented.",
+    "factIds": [
+      "overall-length",
+      "overall-height",
+      "overall-width-operating",
+      "maximum-ground-reach"
+    ]
+  },
+  "camera": {
+    "azimuth": 0.62,
+    "elevation": 0.33,
+    "distance": 1.5
+  },
+  "accent": "#b9a161"
+}

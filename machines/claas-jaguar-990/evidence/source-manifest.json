@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "claas-jaguar-990",
+  "configuration_id": "CLAAS-J990-INT-STGV-WHEEL-ORBIS900-VMAX42-MCCMAX-M-CANDIDATE",
+  "freeze_date": "2026-08-29",
+  "repository_policy": {
+    "source_binaries_committed": false,
+    "manufacturer_geometry_committed": false,
+    "manual_illustrations_are_scale_drawings": false,
+    "verification": "The parent release lane will download the canonical primary PDF into research/private and replace the pending digest and byte declaration before repository admission."
+  },
+  "sources": [
+    {
+      "id": "CLAAS-J900-INT-BROCHURE",
+      "publisher": "CLAAS",
+      "kind": "official_product_brochure",
+      "title": "JAGUAR 900 product brochure",
+      "publication": "stable media 1339740",
+      "market": "International Stage V",
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.claas.com/caas/claas/media/stable/1339740",
+      "local_path": "research/private/claas-jaguar-990/primary-source.pdf",
+      "sha256": "2fbd89a28cce4ccd57b4eba9d3b03597220ad62599c6e445ba60ecd9349f05aa",
+      "bytes": 14359206,
+      "admission": "primary",
+      "note": "Canonical private-binary identity will be sealed by the parent release lane."
+    },
+    {
+      "id": "CLAAS-J900-US-PRODUCT",
+      "publisher": "CLAAS",
+      "kind": "official_product_page",
+      "title": "JAGUAR 900",
+      "market": "North America family reference",
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.claas.com/en-us/agricultural-machinery/forage-harvesters/jaguar-900",
+      "admission": "reference_only",
+      "note": "Current first-party mechanism descriptions and model table; no North American power value is imported into the Stage V candidate."
+    },
+    {
+      "id": "CLAAS-J900-CURRENT-LINKED-BROCHURE",
+      "publisher": "CLAAS",
+      "kind": "official_product_brochure",
+      "title": "JAGUAR 900 forage harvesters",
+      "publication": "LRC / 203012001024 NO LC 1124",
+      "market": "International",
+      "pages": 41,
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.claas.com/caas/claas/media/stable/66736",
+      "admission": "reference_only",
+      "note": "Current product-page linked brochure inspected for visible option matrices and shared topology; the parent canonical PDF remains the configuration authority."
+    }
+  ]
+}

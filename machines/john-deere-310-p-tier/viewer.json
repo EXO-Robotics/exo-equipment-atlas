@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "machineId": "john-deere-310-p-tier",
+  "displayName": "310 P-Tier",
+  "className": "Backhoe loader",
+  "category": "Backhoe loaders",
+  "assets": {
+    "glb": "machines/john-deere-310-p-tier/assets/john-deere-310-p-tier-structural-study.glb",
+    "configuration": "machines/john-deere-310-p-tier/configuration.json",
+    "facts": "machines/john-deere-310-p-tier/evidence/facts.json",
+    "receipt": "machines/john-deere-310-p-tier/production/asset-receipt.json",
+    "validation": "machines/john-deere-310-p-tier/production/validation.json"
+  },
+  "evidence": {
+    "boundary": "Independent MFWD standard-dipper study. Buckets, tires, couplers, pivots, and anchors remain unresolved.",
+    "lede": "The transport envelope, wheelbase, cylinder dimensions, and standard-backhoe ranges are published. Multi-mechanism motion remains reconstructed.",
+    "factIds": [
+      "overall-length",
+      "overall-width",
+      "cab-height",
+      "mfwd-wheelbase"
+    ]
+  },
+  "camera": {
+    "azimuth": 0.68,
+    "elevation": 0.33,
+    "distance": 1.58
+  },
+  "accent": "#bda575"
+}

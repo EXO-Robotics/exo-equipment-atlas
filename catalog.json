@@ -157,6 +157,239 @@
         "y": { "factId": "transport-height-445", "toleranceM": 0.025 },
         "z": { "factId": "transport-width", "toleranceM": 0.025 }
       }
+    },
+    {
+      "id": "john-deere-8r-410",
+      "priority": 14,
+      "role": "farm_expansion_batch_20",
+      "configuration_status": "research_candidate",
+      "release_status": "not_started",
+      "public_envelope_coverage": "partial",
+      "public_envelope": {
+        "x": { "factId": "public-envelope-x", "toleranceM": 0.03 }
+      }
+    },
+    {
+      "id": "john-deere-9rx-640",
+      "priority": 15,
+      "role": "farm_expansion_batch_20",
+      "configuration_status": "research_candidate",
+      "release_status": "not_started",
+      "public_envelope_coverage": "partial",
+      "public_envelope": {
+        "x": { "factId": "public-envelope-x", "toleranceM": 0.03 }
+      }
+    },
+    {
+      "id": "john-deere-x9-1100",
+      "priority": 16,
+      "role": "farm_expansion_batch_20",
+      "configuration_status": "research_candidate",
+      "release_status": "not_started",
+      "public_envelope_coverage": "partial",
+      "public_envelope": {
+        "z": { "factId": "public-envelope-z", "toleranceM": 0.03 }
+      }
+    },
+    {
+      "id": "john-deere-9900-spfh",
+      "priority": 17,
+      "role": "farm_expansion_batch_20",
+      "configuration_status": "research_candidate",
+      "release_status": "not_started",
+      "public_envelope_coverage": "partial",
+      "public_envelope": {
+        "z": { "factId": "public-envelope-z", "toleranceM": 0.03 }
+      }
+    },
+    {
+      "id": "john-deere-r4045",
+      "priority": 18,
+      "role": "farm_expansion_batch_20",
+      "configuration_status": "research_candidate",
+      "release_status": "not_started",
+      "public_envelope_coverage": "partial",
+      "public_envelope": {
+        "z": { "factId": "public-envelope-z", "toleranceM": 0.03 }
+      }
+    },
+    {
+      "id": "case-ih-steiger-715-quadtrac",
+      "priority": 19,
+      "role": "farm_expansion_batch_20",
+      "configuration_status": "research_candidate",
+      "release_status": "not_started",
+      "public_envelope": {
+        "x": { "factId": "public-envelope-x", "toleranceM": 0.03 },
+        "y": { "factId": "public-envelope-y", "toleranceM": 0.03 },
+        "z": { "factId": "public-envelope-z", "toleranceM": 0.03 }
+      }
+    },
+    {
+      "id": "case-ih-axial-flow-8250",
+      "priority": 20,
+      "role": "farm_expansion_batch_20",
+      "configuration_status": "research_candidate",
+      "release_status": "not_started",
+      "public_envelope_coverage": "partial",
+      "public_envelope": {
+        "y": { "factId": "public-envelope-y", "toleranceM": 0.03 },
+        "z": { "factId": "public-envelope-z", "toleranceM": 0.03 }
+      }
+    },
+    {
+      "id": "case-ih-trident-5550",
+      "priority": 21,
+      "role": "farm_expansion_batch_20",
+      "configuration_status": "research_candidate",
+      "release_status": "not_started",
+      "public_envelope": {
+        "x": { "factId": "public-envelope-x", "toleranceM": 0.03 },
+        "y": { "factId": "public-envelope-y", "toleranceM": 0.03 },
+        "z": { "factId": "public-envelope-z", "toleranceM": 0.03 }
+      }
+    },
+    {
+      "id": "new-holland-cr11",
+      "priority": 22,
+      "role": "farm_expansion_batch_20",
+      "configuration_status": "research_candidate",
+      "release_status": "not_started",
+      "public_envelope": {
+        "x": { "factId": "public-envelope-x", "toleranceM": 0.03 },
+        "y": { "factId": "public-envelope-y", "toleranceM": 0.03 },
+        "z": { "factId": "public-envelope-z", "toleranceM": 0.03 }
+      }
+    },
+    {
+      "id": "new-holland-bigbaler-340-high-density-cropcutter",
+      "priority": 23,
+      "role": "farm_expansion_batch_20",
+      "configuration_status": "research_candidate",
+      "release_status": "not_started",
+      "public_envelope": {
+        "x": { "factId": "public-envelope-x", "toleranceM": 0.03 },
+        "y": { "factId": "public-envelope-y", "toleranceM": 0.03 },
+        "z": { "factId": "public-envelope-z", "toleranceM": 0.03 }
+      }
+    },
+    {
+      "id": "fendt-1167-vario-mt",
+      "priority": 24,
+      "role": "farm_expansion_batch_20",
+      "configuration_status": "research_candidate",
+      "release_status": "not_started",
+      "public_envelope": {
+        "x": { "factId": "public-envelope-x", "toleranceM": 0.03 },
+        "y": { "factId": "public-envelope-y", "toleranceM": 0.03 },
+        "z": { "factId": "public-envelope-z", "toleranceM": 0.03 }
+      }
+    },
+    {
+      "id": "fendt-ideal-10t",
+      "priority": 25,
+      "role": "farm_expansion_batch_20",
+      "configuration_status": "research_candidate",
+      "release_status": "not_started",
+      "public_envelope": {
+        "x": { "factId": "carrier-length-without-header", "toleranceM": 0.03 },
+        "y": { "factId": "public-envelope-y", "toleranceM": 0.03 },
+        "z": { "factId": "public-envelope-z", "toleranceM": 0.03 }
+      }
+    },
+    {
+      "id": "claas-lexion-8900-terra-trac",
+      "priority": 26,
+      "role": "farm_expansion_batch_20",
+      "configuration_status": "research_candidate",
+      "release_status": "not_started",
+      "public_envelope_coverage": "partial",
+      "public_envelope": {
+        "z": { "factId": "public-envelope-z", "toleranceM": 0.03 }
+      }
+    },
+    {
+      "id": "claas-jaguar-990",
+      "priority": 27,
+      "role": "farm_expansion_batch_20",
+      "configuration_status": "research_candidate",
+      "release_status": "not_started",
+      "public_envelope": {
+        "x": { "factId": "public-envelope-x", "toleranceM": 0.03 },
+        "y": { "factId": "public-envelope-y", "toleranceM": 0.03 },
+        "z": { "factId": "public-envelope-z", "toleranceM": 0.03 }
+      }
+    },
+    {
+      "id": "kubota-m8-201",
+      "priority": 28,
+      "role": "farm_expansion_batch_20",
+      "configuration_status": "research_candidate",
+      "release_status": "not_started",
+      "public_envelope_coverage": "partial",
+      "public_envelope": {
+        "y": { "factId": "public-envelope-y", "toleranceM": 0.03 }
+      }
+    },
+    {
+      "id": "jcb-fastrac-8330-icon",
+      "priority": 29,
+      "role": "farm_expansion_batch_20",
+      "configuration_status": "research_candidate",
+      "release_status": "not_started",
+      "public_envelope": {
+        "x": { "factId": "public-envelope-x", "toleranceM": 0.03 },
+        "y": { "factId": "public-envelope-y", "toleranceM": 0.03 },
+        "z": { "factId": "public-envelope-z", "toleranceM": 0.03 }
+      }
+    },
+    {
+      "id": "krone-big-m-450-cv",
+      "priority": 30,
+      "role": "farm_expansion_batch_20",
+      "configuration_status": "research_candidate",
+      "release_status": "not_started",
+      "public_envelope": {
+        "x": { "factId": "public-envelope-x", "toleranceM": 0.03 },
+        "y": { "factId": "public-envelope-y", "toleranceM": 0.03 },
+        "z": { "factId": "public-envelope-z", "toleranceM": 0.03 }
+      }
+    },
+    {
+      "id": "vermeer-zr5-1200",
+      "priority": 31,
+      "role": "farm_expansion_batch_20",
+      "configuration_status": "research_candidate",
+      "release_status": "not_started",
+      "public_envelope": {
+        "x": { "factId": "public-envelope-x", "toleranceM": 0.03 },
+        "y": { "factId": "public-envelope-y", "toleranceM": 0.03 },
+        "z": { "factId": "public-envelope-z", "toleranceM": 0.03 }
+      }
+    },
+    {
+      "id": "volvo-a40j",
+      "priority": 32,
+      "role": "construction_expansion_batch_20",
+      "configuration_status": "research_candidate",
+      "release_status": "not_started",
+      "public_envelope": {
+        "x": { "factId": "public-envelope-x", "toleranceM": 0.03 },
+        "y": { "factId": "public-envelope-y", "toleranceM": 0.03 },
+        "z": { "factId": "public-envelope-z", "toleranceM": 0.03 }
+      }
+    },
+    {
+      "id": "komatsu-pc210lc-11",
+      "priority": 33,
+      "role": "construction_expansion_batch_20",
+      "configuration_status": "research_candidate",
+      "release_status": "not_started",
+      "public_envelope": {
+        "x": { "factId": "public-envelope-x", "toleranceM": 0.03 },
+        "y": { "factId": "public-envelope-y", "toleranceM": 0.03 },
+        "z": { "factId": "public-envelope-z", "toleranceM": 0.03 }
+      }
     }
   ]
 }

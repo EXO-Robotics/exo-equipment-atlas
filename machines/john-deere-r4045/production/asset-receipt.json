@@ -1,0 +1,277 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-r4045",
+  "configuration_id": "JD-R4045-MY2020-NA-06W5N-4920-5165-4995-CANDIDATE",
+  "configuration_status": "research_candidate",
+  "archetype": "high_clearance_sprayer",
+  "candidate_class": "technical_structural_study",
+  "engineering_authority": false,
+  "authority_boundary": "Independently authored neutral technical structural study. Not manufacturer CAD, engineering authority, load guidance, operator training, safety guidance, a digital twin, or a mechanically validated candidate.",
+  "rights_boundary": "Neutral unbranded procedural geometry and materials; no manufacturer CAD, logo, copied texture, or protected livery claim.",
+  "release_status": "PENDING",
+  "blender": {
+    "version": "5.1.1",
+    "factory_startup_required": true,
+    "background_required": true
+  },
+  "builder": {
+    "path": "source/blender/build_john_deere_r4045.py",
+    "sha256": "80a7d9e1f6bba5c81b4c51cdc2d20073b847e50889b07fa0421aaad6ffeb46f5",
+    "bytes": 662,
+    "deterministic": true,
+    "network_used": false,
+    "downloaded_geometry_used": false,
+    "manufacturer_cad_used": false,
+    "copied_textures_used": false,
+    "opaque_addons_used": false
+  },
+  "shared_generator": {
+    "path": "../../scripts/fleet/build_machine.py",
+    "sha256": "02b99250651741b462b3dae8b2471db723beb689dfe89e1c7e251d7402fe0f55",
+    "bytes": 78579
+  },
+  "design": {
+    "path": "source/design.json",
+    "sha256": "01024daeed9543c2aae7b6af6374aef2976c851270c245bbd6f5e87fbf791867",
+    "bytes": 2469,
+    "schema_version": "1.0.0"
+  },
+  "artifacts": {
+    "blend": {
+      "path": "source/blender/john-deere-r4045-structural-study.blend",
+      "sha256": "7b733e28c002b0c2724aec7237c5dd890eb844579ac89325fc306cb2b6112b90",
+      "bytes": 259828
+    },
+    "glb": {
+      "path": "assets/john-deere-r4045-structural-study.glb",
+      "sha256": "f03d81d7e1e8e420057c61f5c3e24b365dcdcf7f334d811eb9a2933457085cf5",
+      "bytes": 1804632
+    },
+    "validation": {
+      "path": "production/validation.json",
+      "sha256": "4aac1d3571e3e87fa2bdcf9de5ebb21b9505743f9906c25f5acdd3ce7e966ba1",
+      "bytes": 7830
+    }
+  },
+  "scene": {
+    "units": "meters",
+    "axes": {
+      "longitudinal": "+X forward",
+      "vertical": "+Y up",
+      "lateral": "+Z machine right"
+    },
+    "bounds": {
+      "min_m": [
+        -4.7,
+        0.0,
+        -18.288
+      ],
+      "max_m": [
+        4.7,
+        4.0,
+        18.288
+      ],
+      "size_m": [
+        9.4,
+        4.0,
+        36.576
+      ]
+    },
+    "visible_aabb_xyz_m": [
+      9.4,
+      4.0,
+      36.576
+    ],
+    "objects": 212,
+    "meshes": 190,
+    "triangles": 35224,
+    "materials": 6
+  },
+  "glb_contract": {
+    "glb_version": "2.0",
+    "scene_count": 1,
+    "scene_root_count": 1,
+    "root_name": "Machine_Root",
+    "root_record": {},
+    "identity_root": true,
+    "nodes": 212,
+    "mesh_nodes": 190,
+    "mesh_definitions": 190,
+    "materials": 6,
+    "triangles": 35224,
+    "cameras": 0,
+    "punctual_lights": false,
+    "images": 0,
+    "textures": 0,
+    "nonidentity_mesh_scales": {},
+    "helper_like_mesh_nodes": [],
+    "semantic_motion_nodes": 21,
+    "bounds": {
+      "min_m": [
+        -4.7,
+        0.0,
+        -18.288
+      ],
+      "max_m": [
+        4.7,
+        4.0,
+        18.288
+      ],
+      "size_m": [
+        9.4,
+        4.0,
+        36.576
+      ]
+    }
+  },
+  "required_semantic_nodes": {
+    "Machine_Root": true,
+    "Fixed_Structure_ROOT": true,
+    "Running_Gear_ROOT": true,
+    "Hydraulics_ROOT": true,
+    "Service_Detail_ROOT": true,
+    "Front_Axle_Oscillation_Pivot": true,
+    "Front_Axle_ROOT": true,
+    "Boom_Center_ROOT": true,
+    "Boom_L_Fold_Pivot": true,
+    "Boom_L_ROOT": true,
+    "Boom_R_Fold_Pivot": true,
+    "Boom_R_ROOT": true
+  },
+  "manufacturer_published_constraints_used": [
+    "public-envelope-z",
+    "boom-working-span",
+    "crop-clearance",
+    "hydraulic-tread-range",
+    "solution-tank-capacity",
+    "selected-nozzle-spacing",
+    "selected-boom-plumbing",
+    "selected-auto-boom-leveling"
+  ],
+  "reconstructed_values": {
+    "presentation_length_m": 9.4,
+    "presentation_height_m": 4.0,
+    "carrier_display_envelope_m": [
+      9.4,
+      4.5,
+      4.0
+    ],
+    "carrier_envelope_note": "Carrier length, overall width and height are conservative presentation values. The published 3.05-4.06 m figure is wheel tread, not overall width.",
+    "selected_boom_span_m": 36.576,
+    "selected_boom_span_note": "Manufacturer-published 120 ft selected working width retained as the deployed lateral display envelope; truss segments, pivots, fold geometry and breakaways remain reconstructed.",
+    "tank_visualization": "Neutral exterior tank cue for the published 1,200 U.S. gallon capacity; no internal volume, liquid or plumbing simulation.",
+    "materials": "Neutral unbranded slate, graphite, steel, rubber and glass; no logos, decals or copied trade dress.",
+    "all_hidden_pivots": "Reconstructed visual hierarchy only.",
+    "all_animation_ranges": "Conservative presentation ranges, not operator limits.",
+    "hidden_geometry": "All hidden structure, pivot centers, anchors, linkage proportions, underbody volumes, and internal geometry are reconstructed visualization choices unless a design record explicitly identifies a manufacturer-published envelope constraint.",
+    "generic_archetype_geometry": "high_clearance_sprayer proportions and visible detail are independently reconstructed for this technical study.",
+    "visible_envelope_calibration": {
+      "classification": "reconstructed_visible_envelope_calibration",
+      "source_bounds_m": {
+        "min_m": [
+          -3.526,
+          0.0,
+          -18.288
+        ],
+        "max_m": [
+          3.526,
+          4.0,
+          18.288
+        ],
+        "size_m": [
+          7.052,
+          4.0,
+          36.576
+        ]
+      },
+      "target_bounds_m": {
+        "min_m": [
+          -4.7,
+          0.0,
+          -18.288
+        ],
+        "max_m": [
+          4.7,
+          4.0,
+          18.288
+        ],
+        "size_m": [
+          9.4,
+          4.0,
+          36.576
+        ]
+      },
+      "axis_scale_factors": [
+        1.332955181,
+        1.0,
+        0.999999994
+      ],
+      "calibrated_bounds_m": {
+        "min_m": [
+          -4.7,
+          0.0,
+          -18.288
+        ],
+        "max_m": [
+          4.7,
+          4.0,
+          18.288
+        ],
+        "size_m": [
+          9.4,
+          4.0,
+          36.576
+        ]
+      },
+      "authority": "reconstructed_not_machine_specific_engineering"
+    }
+  },
+  "unresolved_choices": [
+    "complete carrier longitudinal, vertical and folded lateral envelopes",
+    "exact tire code, wheel offset and tread setting",
+    "all suspension, steering, tread-adjustment, boom and breakaway pivots",
+    "tank mounts, pump, valve, hose and nozzle geometry",
+    "exact exterior surfacing and service-detail placement"
+  ],
+  "mechanical_gaps": [
+    "Boom fold and axle oscillation are bounded visual articulations without terrain, suspension, steering, hydraulic or collision physics.",
+    "Boom plumbing and nozzle marks do not simulate pressure, rate, droplets, wind, section control or application coverage.",
+    "Powertrain, wheel motors, suspension internals, tank internals and hydraulic systems are not modeled as engineering assemblies."
+  ],
+  "renders": [
+    {
+      "path": "review/renders/john-deere-r4045-operator-side.png",
+      "sha256": "56a06de45255285c0388bb1e58f41142f095bac6cc8939b25c160d118e426cc7",
+      "bytes": 228309
+    },
+    {
+      "path": "review/renders/john-deere-r4045-front-three-quarter.png",
+      "sha256": "55ff2a9a880b2cfe04ba45310625047c0028f5584e10d15f41510b32dc293486",
+      "bytes": 178952
+    },
+    {
+      "path": "review/renders/john-deere-r4045-rear-three-quarter.png",
+      "sha256": "4daebbddc605cc6b127d681c2b17fae919dcb840959a84c30cd2d1d2f259fb7c",
+      "bytes": 249643
+    },
+    {
+      "path": "review/renders/john-deere-r4045-elevated-technical.png",
+      "sha256": "fd03cd5ba1b37bdbe06d19b29f69ddcee2ff7adda18c7b28a9c188749e52798e",
+      "bytes": 250422
+    },
+    {
+      "path": "review/renders/john-deere-r4045-articulation-detail.png",
+      "sha256": "966c8c62f6f5fa3eb55578b60dc98993db040364aff90949fba268e028d1dc51",
+      "bytes": 273174
+    },
+    {
+      "path": "review/renders/john-deere-r4045-right-side.png",
+      "sha256": "f16b45dadb7a7b992dd05565486ff437ef8a65a2db4df1921dd4522e9fb53bb7",
+      "bytes": 221440
+    }
+  ],
+  "build_verdict": "PASS",
+  "validation_verdict": "PASS",
+  "validation_path": "production/validation.json",
+  "higher_stage_gates": "PENDING"
+}

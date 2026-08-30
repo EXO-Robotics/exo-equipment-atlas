@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0.0",
+  "machineId": "john-deere-8r-410",
+  "displayName": "John Deere 8R 410",
+  "className": "Wheeled row-crop tractor",
+  "category": "Farm tractors",
+  "assets": {
+    "glb": "machines/john-deere-8r-410/assets/john-deere-8r-410-structural-study.glb",
+    "configuration": "machines/john-deere-8r-410/configuration.json",
+    "facts": "machines/john-deere-8r-410/evidence/facts.json",
+    "receipt": "machines/john-deere-8r-410/production/asset-receipt.json",
+    "validation": "machines/john-deere-8r-410/production/validation.json",
+    "poster": "machines/john-deere-8r-410/review/renders/john-deere-8r-410-front-three-quarter.png"
+  },
+  "evidence": {
+    "boundary": "MY2024 North American 8R 410 source freeze. The 6.636 m length is manufacturer-published; presentation width and height plus all hidden ILS, steering and hitch geometry are reconstructed. Neutral unbranded study only.",
+    "lede": "A slow technical sequence separates ILS axle articulation, steering, three-point lift and PTO cues without claiming a suspension solver or operating envelope.",
+    "factIds": ["rated-engine-power-hp", "engine-displacement", "public-envelope-x", "ils-wheelbase", "ils-axle-clearance", "rear-hitch-capacity"]
+  },
+  "camera": {"azimuth": 0.72, "elevation": 0.31, "distance": 1.58},
+  "accent": "#9aa8b4",
+  "motion": {
+    "autoplay": true,
+    "durationSeconds": 18,
+    "mode": "sine",
+    "damping": 8,
+    "channels": [
+      {"id": "ils-articulation", "label": "ILS axle articulation study", "nodes": ["Front_Axle_ROOT"], "property": "rotation.x", "from": -0.08, "to": 0.08, "phase": 0.0, "mode": "offset"},
+      {"id": "front-steering", "label": "Front steering study", "nodes": ["Steering_L_Pivot", "Steering_R_Pivot"], "property": "rotation.y", "from": -0.18, "to": 0.18, "phase": 0.22, "mode": "offset"},
+      {"id": "rear-hitch", "label": "Rear three-point lift study", "nodes": ["Rear_Hitch_ROOT"], "property": "rotation.z", "from": -0.12, "to": 0.34, "phase": 0.52, "mode": "offset", "autoplay": "ping-pong"},
+      {"id": "rear-pto", "label": "Rear PTO visual cue", "nodes": ["PTO_ROOT"], "property": "rotation.x", "from": 0, "to": 6.283185, "phase": 0.72, "mode": "offset"}
+    ]
+  }
+}

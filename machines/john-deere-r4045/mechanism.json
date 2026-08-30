@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-r4045",
+  "configuration_id": "JD-R4045-MY2020-NA-06W5N-4920-5165-4995-CANDIDATE",
+  "coordinate_system": {
+    "longitudinal": "+X toward cab",
+    "vertical": "+Y",
+    "lateral": "+Z machine right"
+  },
+  "joints": [
+    {"id":"front-wheel-steering","type":"paired_revolute_steering","axis":"+Y nominal","authority":"reconstructed","source_ids":["JD-AG-SPRAYER-PRICE-PAGES-2019-11"],"published_constraints":["turning-radius"],"unresolved":["kingpin centers and caster","inside/outside angle relationship","tie rods, wheel-motor hoses and steering limits"]},
+    {"id":"dual-strut-air-ride","type":"independent_air_suspension","axis":"+Y nominal","authority":"reconstructed","source_ids":["JD-AG-SPRAYER-PRICE-PAGES-2019-11"],"published_constraints":["crop-clearance"],"unresolved":["strut anchors and travel","spring, damping and automatic-level response","load and terrain behavior"]},
+    {"id":"hydraulic-tread-setting","type":"paired_prismatic_axle_adjustment","axis":"+Z nominal","authority":"reconstructed","source_ids":["JD-AG-SPRAYER-PRICE-PAGES-2019-11"],"published_constraints":["hydraulic-tread-range"],"unresolved":["axle tube overlap","wheel offset and locks","motion timing and safe adjustment state"]},
+    {"id":"boom-center-raise-lower","type":"hydraulic_parallel_linkage","axis":"+Y nominal","authority":"reconstructed","source_ids":["JD-AG-SPRAYER-PRICE-PAGES-2019-11"],"unresolved":["mast rails and pivot coordinates","cylinder anchors and stroke","height range and tank clearance"]},
+    {"id":"boom-left-fold","type":"multi_stage_revolute","authority":"reconstructed","source_ids":["JD-AG-SPRAYER-PRICE-PAGES-2019-11"],"published_constraints":["boom-working-span"],"unresolved":["wing section lengths and pivots","fold order and timing","breakaway axis, transport locks and hose sweep"]},
+    {"id":"boom-right-fold","type":"multi_stage_revolute","authority":"reconstructed","source_ids":["JD-AG-SPRAYER-PRICE-PAGES-2019-11"],"published_constraints":["boom-working-span"],"unresolved":["wing section lengths and pivots","fold order and timing","breakaway axis, transport locks and hose sweep"]},
+    {"id":"five-sensor-boom-leveling","type":"sensor_guided_roll_and_height_control","authority":"reconstructed","source_ids":["JD-AG-SPRAYER-PRICE-PAGES-2019-11"],"published_constraints":["selected-auto-boom-leveling"],"unresolved":["sensor positions and fields","control response and rate","boom roll center and terrain following"]},
+    {"id":"solution-flow","type":"static_plumbing_topology_only","authority":"reconstructed","source_ids":["JD-AG-SPRAYER-PRICE-PAGES-2019-11"],"published_constraints":["solution-tank-capacity","selected-boom-plumbing","selected-nozzle-spacing"],"unresolved":["tank internal volume","pump and valve locations","hose routing, nozzle tips, pressure, flow and droplet behavior"]}
+  ],
+  "presentation_motion": {
+    "sequence": ["front-axle articulation cue","symmetric boom unfold","slow boom-center settle"],
+    "boundary": "Autoplay is a slow visual explanation. It does not model suspension, steering, boom control, spray rate, droplet behavior, wind, stability, hydraulic timing, road transport or safe operating limits."
+  },
+  "required_gates": [
+    "frozen_06W5N_4920_5165_4995_configuration",
+    "selected_120ft_deployed_span",
+    "four_tire_contact",
+    "front_axle_continuity",
+    "boom_fold_symmetry",
+    "boom_center_tank_cab_clearance",
+    "nozzle_array_continuity",
+    "ground_collision",
+    "self_collision",
+    "neutral_unbranded_material_review"
+  ],
+  "release_state": "no_geometry_no_solver_no_claim"
+}

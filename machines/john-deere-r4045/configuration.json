@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-r4045",
+  "configuration_id": "JD-R4045-MY2020-NA-06W5N-4920-5165-4995-CANDIDATE",
+  "status": "research_candidate",
+  "identity": {
+    "manufacturer": "Deere & Company",
+    "brand": "John Deere",
+    "model": "R4045",
+    "product_class": "high_clearance_self_propelled_sprayer",
+    "market": "United States and Canada",
+    "source_model_year_basis": "Model Year 2020",
+    "lifecycle_note": "legacy MY2020 configuration retained from the admitted November 2019 order guide"
+  },
+  "choices": {
+    "base_machine": "06W5N R4045 Self-Propelled Sprayer, Model Year 2020",
+    "engine": "2857 9.0 L Final Tier IV / Stage V",
+    "solution_tank": "1,200 U.S. gal stainless steel",
+    "boom": "4920 120 ft steel boom",
+    "boom_plumbing": "5165 120 ft steel boom, 20 in off-center stainless-steel plumbing, 72 five-position high-flow nozzle bodies, 11 section-control valves",
+    "nozzle_spacing": "4995 20 in off-center",
+    "automatic_boom_leveling": "5465 five-sensor system for 120 ft steel boom",
+    "solution_control": "4210 manual solution control",
+    "running_gear": "base row-crop tire family; exact tire code intentionally unresolved",
+    "public_geometry": "independently authored neutral structural study",
+    "public_materials": "matte slate, graphite, steel, rubber and neutral glazing; no logos, decals, copied textures or manufacturer geometry"
+  },
+  "unresolved_choices": [
+    "The admitted order guide publishes working boom span, tread range and crop clearance but not a configuration-complete overall longitudinal, vertical or carrier-width envelope.",
+    "Exact base tire code, wheel offset, hydraulic tread setting, fender and crop-shield selection are not frozen.",
+    "Receiver, connectivity, cab, radio, eductor, fill, lighting, radar, nozzle-control and tip selections remain outside this visual freeze.",
+    "Boom-center lift geometry, wing section lengths, fold pivots, breakaway joints, tilt cylinders, five-sensor mounting and swept volume are not published coordinate authority.",
+    "Suspension strut anchors and travel, steering pivots and limits, wheel-motor geometry, tank mounts, pump, plumbing and liquid behavior are not published.",
+    "Exterior panels, cab/glazing profiles, service openings, lights, cooling, exhaust, wiring and hose routing are not scale-authoritative in the order guide."
+  ],
+  "boundary": "Legacy Model Year 2020 North American R4045 research candidate frozen to base code 06W5N, its 1,200 U.S. gallon stainless tank, 4920 120-foot steel boom, 5165 20-inch off-center stainless plumbing and 5465 five-sensor boom leveling. Manufacturer facts constrain identity, engine power, tank capacity, crop clearance, tread range and the selected 36.576 m boom span. Complete carrier length, height and width plus hidden suspension, steering, boom and plumbing geometry remain reconstructed or unresolved. The neutral model is not manufacturer CAD, a digital twin, spray guidance, engineering authority, operator training or safety guidance."
+}

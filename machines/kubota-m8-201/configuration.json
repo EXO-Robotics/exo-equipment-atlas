@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "kubota-m8-201",
+  "configuration_id": "KUB-M8-201-NA-KVT-SFA50-3R-C3STD-CANDIDATE",
+  "status": "research_candidate",
+  "identity": {
+    "manufacturer": "Kubota",
+    "brand": "Kubota",
+    "model": "M8-201",
+    "product_class": "high_horsepower_wheeled_tractor",
+    "market": "North America",
+    "emissions": "EPA Tier 4 Final"
+  },
+  "choices": {
+    "engine": "Cummins B6.7 six-cylinder, 200 hp factory-estimated rating",
+    "transmission": "optional KVT continuously variable transmission",
+    "travel_package": "optional 50 km/h (31 mph) maximum-speed presentation branch",
+    "front_axle": "optional suspended full-locking differential",
+    "rear_axle": "standard 2489 mm overall-length bar axle",
+    "rear_three_point_hitch": "standard Category III/IIIN, 5080 kg at 610 mm behind lift points, ball ends",
+    "rear_pto": "electro-hydraulic 540/540E/1000/1000E",
+    "hydraulics": "standard 120 L/min implement pump with three electronic rear remotes",
+    "operator_station": "standard fabric air-suspension seat and 7-inch K-Monitor",
+    "lighting": "standard eight-halogen package",
+    "front_attachment": "none",
+    "public_finish": "neutral unbranded graphite and amber structural-study materials"
+  },
+  "excluded_options": [
+    "30F x 15R semi-powershift transmission",
+    "rigid limited-slip or rigid full-locking front axle",
+    "40 km/h base travel package",
+    "M77 front loader",
+    "front Category III three-point hitch and front PTO",
+    "160 L/min implement pump, five-remotes package, Power Beyond, and hydraulic trailer brakes",
+    "optional 6170 kg rear-hitch lift package and hook ends",
+    "2997 mm rear bar axle",
+    "12-inch K-Monitor Pro, semi-active cab suspension, premium seat, and LED lighting",
+    "manufacturer logos, decals, protected trade dress, and branded attachments"
+  ],
+  "unresolved_choices": [
+    "exact dealer order and serial number",
+    "official overall length and overall width are not published in the admitted sources, so the public +X and +Z envelope axes remain reconstructed",
+    "front and rear tire sizes, wheel offsets, tread setting, fender width, and ballast package because the admitted current sources do not publish an order-specific tire matrix",
+    "the order-code relationship among KVT, suspended front axle, and the 50 km/h option",
+    "exact lighting fixture placement and minor cab trim",
+    "public material and branding authorization"
+  ],
+  "boundary": "Current North American M8-201 presentation candidate. The listed options define one coherent public visualization branch, not a dealer-verified order. Kubota-published identity, power, capacity, wheelbase, height, and functional topology constrain the study. Overall length and width, tires, materials, hidden construction, pivots, suspension travel, steering linkage, hitch kinematics, and motion curves are independent reconstructions and are not engineering, service, operating, load, or safety authority."
+}

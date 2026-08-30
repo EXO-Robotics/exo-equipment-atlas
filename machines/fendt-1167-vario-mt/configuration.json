@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "fendt-1167-vario-mt",
+  "configuration_id": "FENDT-1167-NA-T4F-SG30-SRPLUS-3PT-CANDIDATE",
+  "status": "research_candidate",
+  "identity": {
+    "manufacturer": "Fendt (AGCO)",
+    "brand": "Fendt",
+    "model": "1167 Vario MT",
+    "product_class": "tracked_agricultural_tractor",
+    "market": "North America",
+    "emissions_stage": "Tier 4 Final"
+  },
+  "choices": {
+    "source_model_year_basis": "North American brochure created 2025-04-03",
+    "engine": "MAN 16.2 L six-cylinder",
+    "transmission": "VarioDrive CVT TA 400T",
+    "track_system": "Mobil-trac with 30 in General Ag belts",
+    "gauge": "standard gauge; 2.950 m published overall-width basis",
+    "primary_suspension": "SmartRide with SmartRide Plus load-leveling study",
+    "cab_suspension": "two-point rear cab suspension",
+    "rear_interface": "steerable three-point standard-lift study with controlled drawbar; no implement",
+    "pto": "rear 1000 / 1000E identity",
+    "public_geometry": "independently authored, neutral, unbranded structural study",
+    "public_materials": "neutral slate materials; no manufacturer trade dress, logos, decals, or copied textures"
+  },
+  "unresolved_choices": [
+    "The official sources do not establish that standard gauge, 30 in General Ag belts, SmartRide Plus, steerable three-point and controlled drawbar were delivered together as one orderable serial-number configuration.",
+    "Exact belt carcass, tread, guide-lug, drive-lug, sprocket-engagement, idler, midwheel, axle, and undercarriage geometry.",
+    "Hardbar pivots, spring and damper coordinates, side-to-side oscillation split, travel stops, and SmartRide Plus hydraulic anchors and control law.",
+    "Cab suspension pivots, isolator dimensions, stops, and relationship between the published rear travel and full cab attitude.",
+    "Rear three-point pivots, link lengths, actuator anchors, lift path, category adapter details, and option-package interfaces.",
+    "Controlled-drawbar pivot and linkage geometry; the U.S. page and brochure figure show 28 degrees each way while brochure narrative states 11.5 degrees, so no numeric motion limit is frozen.",
+    "Exact exterior panel surfacing, glazing, lighting, cooling apertures, exhaust and aftertreatment packaging, service hardware, ballast, hoses, wiring, fasteners, and regional option content.",
+    "Exact colors, materials, brand graphics, decals, and any manufacturer-authored geometry or imagery."
+  ],
+  "boundary": "Research candidate with the North American Tier 4 Final Fendt 1167 identity, 2025 source edition and presentation choices frozen. The public asset must be a neutral, unbranded, independently authored structural study. Published dimensions constrain the outer envelope; photographs and brochure illustrations are not treated as scale drawings. Hidden pivots, belt mechanics, suspension, cab motion, hitch and drawbar kinematics remain reconstructed. SmartRide Plus and the rear interface are option-bound studies, not proof of one delivered serial-number machine."
+}

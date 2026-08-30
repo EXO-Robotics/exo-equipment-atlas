@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "new-holland-bigbaler-340-high-density-cropcutter",
+  "configuration_id": "NH-BB340HD-NAM-CROPCUTTER120X90-29K-TANDEM600-CANDIDATE",
+  "status": "research_candidate",
+  "identity": {
+    "manufacturer": "CNH Industrial America LLC",
+    "brand": "New Holland",
+    "model": "BigBaler 340 High Density CropCutter",
+    "product_class": "large_square_baler",
+    "publication_family": "BigBaler High Density",
+    "market": "North America"
+  },
+  "choices": {
+    "feeding_system": "CropCutter_rotor_cutter",
+    "bale_section": "1200_x_900_mm",
+    "knife_set": "29_spring_protected_knives",
+    "pickup": "2350_mm_five_bar_MaxiSweep",
+    "main_drive": "SmartShift_two_speed_powershift",
+    "axle": "hydraulic_adjustable_Auto_Steer_tandem",
+    "tires": "600_55_R26_5_dimension_basis",
+    "accumulator": "not_fitted",
+    "public_finish": "neutral_unbranded_sage_graphite"
+  },
+  "excluded_options": [
+    "packer_feeding_model",
+    "hydraulic_feed_assist_auger",
+    "620_55_R26_5_tires",
+    "bale_accumulator",
+    "optional_precision_camera_and_preservative_packages",
+    "manufacturer_logos_and_trade_dress"
+  ],
+  "unresolved_choices": [
+    "exact serial number and order code",
+    "PTO and hitch connection geometry",
+    "tire manufacturer and tread pattern",
+    "optional gauge wheel arm style",
+    "twine package and service lighting",
+    "public material and branding authorization"
+  ],
+  "boundary": "Research-candidate technical structural study of the North American 120 x 90 cm CropCutter Rotor Cutter configuration without accumulator. Published dimensions and functional topology do not establish hidden crank, stuffer, plunger, density-door, knotter, suspension or steering geometry; all such coordinates and motion timing remain reconstructed."
+}

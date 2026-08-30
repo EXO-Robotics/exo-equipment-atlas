@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "case-ih-steiger-715-quadtrac",
+  "configuration_id": "CASEIH-STEIGER715-NAM-AG-QUADTRAC-PWRDRIVE-HDS-CAT4N-CANDIDATE",
+  "freeze_date": "2026-08-29",
+  "repository_policy": {
+    "source_binaries_committed": false,
+    "manufacturer_geometry_committed": false,
+    "manual_illustrations_are_scale_drawings": false,
+    "verification": "Official manufacturer URLs are recorded as public evidence. No manufacturer imagery, geometry, logos, or source binary is copied into the public machine package."
+  },
+  "sources": [
+    {
+      "id": "CASEIH-STEIGER715-US-PRODUCT-2026",
+      "publisher": "Case IH / CNH Industrial America LLC",
+      "kind": "official_product_page",
+      "title": "Steiger 715",
+      "market": "United States",
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.caseih.com/en-us/unitedstates/products/tractors/steiger-series/steiger-715",
+      "admission": "primary",
+      "applicability": "Current United States identity page; establishes the 715-rated/778-maximum horsepower product, PowerDrive transmission, and Quadtrac configuration."
+    },
+    {
+      "id": "CASEIH-STEIGER-US-BROCHURE-2025",
+      "publisher": "Case IH / CNH Industrial America LLC",
+      "kind": "official_brochure",
+      "title": "Steiger Series Tractors",
+      "publication": "CIH25050502",
+      "market": "North America",
+      "pages": 24,
+      "retrieved": "2026-08-29",
+      "official_url": "https://cnhi-p-001-delivery.sitecorecontenthub.cloud/api/public/content/f56d8deba3544529adbe69e2133a9911?v=93a07a60",
+      "local_path": "research/private/case-ih-steiger-715-quadtrac/primary-source.pdf",
+      "sha256": "cfa036f01353d42a377cd1031a5357db92f46bc3edf9963632a3ea72d68aa9d1",
+      "bytes": 5814152,
+      "admission": "primary",
+      "applicability": "Copyright 2025 North American brochure; establishes Quadtrac topology, HDS option, 715 specification row, track width, transmission, hitch, hydraulics, fuel and mass facts."
+    },
+    {
+      "id": "CASEIH-QUADTRAC-STEIGER-WORLD-TECH-2024",
+      "publisher": "Case IH",
+      "kind": "official_technical_brochure",
+      "title": "Quadtrac & Steiger 475-715 hp",
+      "publication": "24C0010COMINB",
+      "market": "Worldwide circulation",
+      "pages": 17,
+      "retrieved": "2026-08-29",
+      "official_url": "https://cnhi-p-001-delivery.sitecorecontenthub.cloud/api/public/content/4613a20e486c4654a967438bc0b2fcea?v=914de6a3",
+      "admission": "secondary_configuration_constraint",
+      "applicability": "Official Case IH worldwide technical brochure used only for the Quadtrac 715 total length, total height and 30-inch-track total width. North American power, emissions, option availability and publication-family claims remain controlled by the admitted US brochure."
+    }
+  ]
+}

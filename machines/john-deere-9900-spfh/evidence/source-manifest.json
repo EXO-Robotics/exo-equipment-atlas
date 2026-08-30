@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-9900-spfh",
+  "configuration_id": "JD-9900SPFH-MY2024-NA-282DZ-4005-0415KM-5597-33M-CANDIDATE",
+  "freeze_date": "2026-08-29",
+  "repository_policy": {
+    "source_binaries_committed": false,
+    "manufacturer_geometry_committed": false,
+    "manufacturer_imagery_committed": false,
+    "manual_illustrations_are_scale_drawings": false,
+    "verification": "The official Deere order guide was inspected and hash-bound under research/private. Public output redistributes no manufacturer PDF, imagery, logo, texture or geometry."
+  },
+  "sources": [
+    {
+      "id": "JD-HAY-FORAGE-ORDER-GUIDE-2024-02",
+      "publisher": "Deere & Company",
+      "kind": "official_government_price_page_and_order_guide",
+      "title": "Hay, Forage and Lawn Equipment Price Pages",
+      "publication": "Effective 1 February 2024",
+      "market": "North America",
+      "pages": 754,
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.deere.com/assets/pdfs/region-4/industries/government-and-military-sales/contracts/price-pages/agricultural/Hay_Forage_01Feb2024.pdf",
+      "local_path": "research/private/john-deere-9900-spfh/primary-source.pdf",
+      "sha256": "f6a246705de3a89603f00df8c2eb8436ccbbe6fa8411e5826052aeee92cb4ac9",
+      "bytes": 1869289,
+      "admission": "primary",
+      "use": "Configuration and specification authority for base code 282DZ, cutterhead, 772 rotary crop header, high-arch spout, carrier tire package, engine, crop-flow components and spout swing. Illustrations are visual reference only."
+    }
+  ]
+}

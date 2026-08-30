@@ -1,0 +1,342 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-9rx-640",
+  "configuration_id": "JD-9RX640-MY2025-9540RW-JD14-E18-4X30AG3500-87-NOPTO-NOHITCH-CANDIDATE",
+  "archetype": "tracked_tractor",
+  "candidate_class": "technical_structural_study",
+  "engineering_authority": false,
+  "verdict": "PASS",
+  "verdict_scope": "technical_structural_study_only",
+  "release_status": "PENDING",
+  "bounds": {
+    "min_m": [
+      -4.1545,
+      -0.0,
+      -1.49
+    ],
+    "max_m": [
+      4.1545,
+      3.71,
+      1.49
+    ],
+    "size_m": [
+      8.309,
+      3.71,
+      2.98
+    ]
+  },
+  "counts": {
+    "objects": 205,
+    "meshes": 190,
+    "triangles": 27544,
+    "materials": 5
+  },
+  "envelope_fit": {
+    "classification": "reconstructed_visible_envelope_calibration",
+    "source_bounds_m": {
+      "min_m": [
+        -4.07141,
+        -0.00376,
+        -1.49
+      ],
+      "max_m": [
+        3.15742,
+        3.71,
+        1.49
+      ],
+      "size_m": [
+        7.22883,
+        3.71376,
+        2.98
+      ]
+    },
+    "target_bounds_m": {
+      "min_m": [
+        -4.1545,
+        0.0,
+        -1.49
+      ],
+      "max_m": [
+        4.1545,
+        3.71,
+        1.49
+      ],
+      "size_m": [
+        8.309,
+        3.71,
+        2.98
+      ]
+    },
+    "axis_scale_factors": [
+      1.149425272,
+      0.998987683,
+      0.999999994
+    ],
+    "calibrated_bounds_m": {
+      "min_m": [
+        -4.1545,
+        -0.0,
+        -1.49
+      ],
+      "max_m": [
+        4.1545,
+        3.71,
+        1.49
+      ],
+      "size_m": [
+        8.309,
+        3.71,
+        2.98
+      ]
+    },
+    "authority": "reconstructed_not_machine_specific_engineering"
+  },
+  "glb_contract": {
+    "glb_version": "2.0",
+    "scene_count": 1,
+    "scene_root_count": 1,
+    "root_name": "Machine_Root",
+    "root_record": {},
+    "identity_root": true,
+    "nodes": 205,
+    "mesh_nodes": 190,
+    "mesh_definitions": 190,
+    "materials": 5,
+    "triangles": 27544,
+    "cameras": 0,
+    "punctual_lights": false,
+    "images": 0,
+    "textures": 0,
+    "nonidentity_mesh_scales": {},
+    "helper_like_mesh_nodes": [],
+    "semantic_motion_nodes": 14,
+    "bounds": {
+      "min_m": [
+        -4.1545,
+        -0.0,
+        -1.49
+      ],
+      "max_m": [
+        4.1545,
+        3.71,
+        1.49
+      ],
+      "size_m": [
+        8.309,
+        3.71,
+        2.98
+      ]
+    }
+  },
+  "gates": [
+    {
+      "id": "builder-execution",
+      "status": "PASS",
+      "detail": "Factory-startup background builder reached validation generation."
+    },
+    {
+      "id": "candidate-class-boundary",
+      "status": "PASS",
+      "detail": "technical_structural_study only; not engineering authority."
+    },
+    {
+      "id": "scene-units-and-axes",
+      "status": "PASS",
+      "detail": "Meters; +X forward, +Y up, +Z machine right."
+    },
+    {
+      "id": "independent-authoring-boundary",
+      "status": "PASS",
+      "detail": "No downloaded geometry, CAD, copied textures, logos, or opaque add-ons."
+    },
+    {
+      "id": "one-identity-root",
+      "status": "PASS",
+      "detail": {}
+    },
+    {
+      "id": "required-semantic-nodes",
+      "status": "PASS",
+      "detail": {
+        "Machine_Root": true,
+        "Fixed_Structure_ROOT": true,
+        "Running_Gear_ROOT": true,
+        "Hydraulics_ROOT": true,
+        "Service_Detail_ROOT": true,
+        "Chassis_Yaw_Pivot": true,
+        "Front_Frame_ROOT": true,
+        "Rear_Frame_ROOT": true,
+        "Track_FL_ROOT": true,
+        "Track_FR_ROOT": true,
+        "Track_RL_ROOT": true,
+        "Track_RR_ROOT": true,
+        "Drawbar_Pivot": true
+      }
+    },
+    {
+      "id": "semantic-motion-hierarchy",
+      "status": "PASS",
+      "detail": {
+        "semantic_motion_nodes": 14
+      }
+    },
+    {
+      "id": "export-mesh-scales-applied",
+      "status": "PASS",
+      "detail": {
+        "authoring_residual": {},
+        "glb_residual": {}
+      }
+    },
+    {
+      "id": "public-glb-no-cameras-lights",
+      "status": "PASS",
+      "detail": {
+        "cameras": 0,
+        "punctual_lights": false
+      }
+    },
+    {
+      "id": "public-glb-no-helpers",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "public-glb-no-images-textures",
+      "status": "PASS",
+      "detail": {
+        "images": 0,
+        "textures": 0
+      }
+    },
+    {
+      "id": "node-density",
+      "status": "PASS",
+      "detail": {
+        "actual": 205,
+        "minimum": 200
+      }
+    },
+    {
+      "id": "mesh-density",
+      "status": "PASS",
+      "detail": {
+        "actual": 190,
+        "minimum": 180
+      }
+    },
+    {
+      "id": "triangle-density",
+      "status": "PASS",
+      "detail": {
+        "actual": 27544,
+        "minimum": 10000
+      }
+    },
+    {
+      "id": "finite-visible-bounds",
+      "status": "PASS",
+      "detail": {
+        "min_m": [
+          -4.1545,
+          -0.0,
+          -1.49
+        ],
+        "max_m": [
+          4.1545,
+          3.71,
+          1.49
+        ],
+        "size_m": [
+          8.309,
+          3.71,
+          2.98
+        ]
+      }
+    },
+    {
+      "id": "retained-visible-envelope",
+      "status": "PASS",
+      "detail": {
+        "actual_size_m": [
+          8.309,
+          3.71,
+          2.98
+        ],
+        "expected_size_m": [
+          8.309,
+          3.71,
+          2.98
+        ],
+        "absolute_tolerance_m": 0.03,
+        "minimum_y_m": -0.0
+      }
+    },
+    {
+      "id": "review-renders-nonempty",
+      "status": "PASS",
+      "detail": [
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/john-deere-9rx-640/review/renders/john-deere-9rx-640-operator-side.png",
+          "bytes": 247789
+        },
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/john-deere-9rx-640/review/renders/john-deere-9rx-640-front-three-quarter.png",
+          "bytes": 307192
+        },
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/john-deere-9rx-640/review/renders/john-deere-9rx-640-rear-three-quarter.png",
+          "bytes": 285148
+        },
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/john-deere-9rx-640/review/renders/john-deere-9rx-640-elevated-technical.png",
+          "bytes": 349656
+        },
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/john-deere-9rx-640/review/renders/john-deere-9rx-640-articulation-detail.png",
+          "bytes": 328662
+        },
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/john-deere-9rx-640/review/renders/john-deere-9rx-640-right-side.png",
+          "bytes": 247706
+        }
+      ]
+    },
+    {
+      "id": "neutral-unbranded-materials",
+      "status": "PASS",
+      "detail": "Neutral palette and procedural materials only; no manufacturer marks or textures."
+    },
+    {
+      "id": "configuration-freeze",
+      "status": "PENDING",
+      "detail": "Research candidate retains unresolved exact configuration and options."
+    },
+    {
+      "id": "machine-specific-mechanical-solver",
+      "status": "PENDING",
+      "detail": "Generic structural pivots do not establish evidence-bound limits, endpoints, or cylinder closure."
+    },
+    {
+      "id": "ground-self-swept-collision",
+      "status": "PENDING",
+      "detail": "No machine-specific swept-volume or collision solver exists."
+    },
+    {
+      "id": "critic-human-visual-review",
+      "status": "PENDING",
+      "detail": "A human critic must inspect the exact render and artifact hashes."
+    },
+    {
+      "id": "viewer-browser-accessibility-mobile-selection-performance",
+      "status": "PENDING",
+      "detail": "Viewer integration belongs to the publication lane."
+    },
+    {
+      "id": "publication-and-deployment",
+      "status": "PENDING",
+      "detail": "Only the publisher may advance this research artifact to release."
+    }
+  ],
+  "failed_gate_ids": []
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "claas-lexion-8900-terra-trac",
+  "configuration_id": "CLAAS-L8900TT-NA25-CF1530-GT510-UL51-CANDIDATE",
+  "status": "research_candidate",
+  "identity": {
+    "manufacturer": "CLAAS",
+    "brand": "CLAAS",
+    "model": "LEXION 8900 TERRA TRAC",
+    "product_class": "tracked_combine_harvester",
+    "market": "North America",
+    "emissions_basis": "North American current product presentation"
+  },
+  "choices": {
+    "undercarriage": "TERRA_TRAC",
+    "header": "CONVIO_FLEX_1530_50_ft_15.3_m",
+    "grain_tank": "510_bu",
+    "unloading_rate": "5.1_bu_per_s",
+    "threshing_system": "APS_SYNFLOW_HYBRID",
+    "secondary_separation": "ROTO_PLUS_twin_rotor",
+    "residue_management": "power_spreader",
+    "automatic_lubrication": "standard_AUTO_LUBE"
+  },
+  "unresolved_choices": [
+    "exact model year and order code",
+    "TERRA TRAC belt width and transport-width package",
+    "unloading tube length and grain-cart clearance package",
+    "powered rear axle and tire selection",
+    "CEMOS option bundle beyond the features stated for this model",
+    "cab, lighting, camera, guidance, and crop-equipment options",
+    "public material and branding authorization"
+  ],
+  "boundary": "North American research candidate with the CONVIO FLEX 1530 header explicitly selected. Manufacturer facts constrain the study, but hidden pivots, belt paths, crop-flow geometry, linkage coordinates, motion limits, and animation timing remain reconstructed. The neutral public study is not manufacturer CAD, a digital twin, engineering authority, load guidance, operator training, or safety guidance."
+}

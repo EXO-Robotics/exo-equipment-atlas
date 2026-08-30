@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "volvo-a40j",
+  "configuration_id": "VOLVO-A40J-NA-T4F-SV-29.5R25-24M3-NOTAIL-NOEXT-CANDIDATE",
+  "status": "research_candidate",
+  "identity": {
+    "manufacturer": "Volvo Construction Equipment",
+    "brand": "Volvo",
+    "model": "A40J",
+    "product_class": "articulated_hauler",
+    "market": "North America Tier 4 Final / Stage V product-guide configuration"
+  },
+  "choices": {
+    "engine": "Volvo_D13J_Tier_4_Final_Stage_V",
+    "tires": "29.5R25",
+    "body": "standard_24_m3_SAE_2_to_1_heap",
+    "tailgate": "not_fitted",
+    "body_extensions": "not_fitted",
+    "public_finish": "neutral_unbranded_oxide_and_graphite"
+  },
+  "excluded_options": [
+    "875_65R29 tires",
+    "tailgate",
+    "body extensions",
+    "wear plate and side extension packages",
+    "manufacturer logos and protected livery"
+  ],
+  "unresolved_choices": [
+    "exact serial number and regional equipment order",
+    "body liner, heating and spill-guard package",
+    "cab trim, camera, lights and onboard weighing hardware",
+    "articulation, oscillation, bogie and dump-cylinder pivot coordinates",
+    "public material and branding authorization"
+  ],
+  "boundary": "Technical structural study only. Published configuration, static envelope, payload, body volume, power, speed, articulation range and body tip performance constrain the study. Hidden articulation bearings, bogie geometry, body hinge, cylinders, steering linkage, tire surfaces, damping, load behavior, motion curves and collision envelopes are reconstructed."
+}

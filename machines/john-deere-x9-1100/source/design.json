@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-x9-1100",
+  "display_name": "John Deere X9 1100",
+  "configuration_id": "JD-X9-1100-MY2024-NA-WHEEL-HD50R-AUGER31-CANDIDATE",
+  "archetype": "combine",
+  "dimensions_m": {"length": 10.1, "width": 15.2, "height": 4.0},
+  "carrier_dimensions_m": {"length": 10.1, "width": 4.3, "height": 4.0},
+  "attachment_span_m": 15.2,
+  "tracked_front": false,
+  "palette": "slate",
+  "published_constraints_used": ["public-envelope-z", "feederhouse-width", "rotor-count", "rotor-length", "rotor-diameter", "selected-auger-length"],
+  "reconstructed_values": {
+    "presentation_carrier_length_m": 10.1,
+    "presentation_carrier_width_m": 4.3,
+    "presentation_height_m": 4.0,
+    "front_tyre_family": "VF 900/60R38 visual selection",
+    "rear_tyre_family": "VF 620/70R26 visual selection",
+    "header_lift_visual_range_rad": [-0.08, 0.18],
+    "auger_swing_visual_range_rad": [0, 1.65],
+    "neutral_material_policy": "matte slate and graphite with dark rubber and neutral glazing; no logos, decals or manufacturer trade dress"
+  },
+  "unresolved_choices": ["Manufacturer-published carrier overall length and overall height", "Exact order tyre pair, wheel offsets, ballast and carrier width", "Header attachment, feederhouse, reel and auger hidden pivots, anchors and limits", "Exact exterior and internal processing geometry"],
+  "mechanical_gaps": ["Header and feeder motions are reconstructed visual transforms without ground following, header mass or crop interaction.", "The reel and feeder are visual cues without a crop-flow or speed-control solver.", "Unloading auger motion omits internal screw, grain flow, hydraulic loads and validated stowed collision closure.", "Dual rotors and cleaning systems are documented but not modeled as validated internal machinery."]
+}

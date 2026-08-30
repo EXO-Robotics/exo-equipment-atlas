@@ -1,0 +1,343 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "fendt-ideal-10t",
+  "configuration_id": "FENDT-IDEAL-10T-GB-STAGEV-TR30-PF1070-S210-A840F-SWINGFLOW-CANDIDATE",
+  "archetype": "combine",
+  "candidate_class": "technical_structural_study",
+  "engineering_authority": false,
+  "verdict": "PASS",
+  "verdict_scope": "technical_structural_study_only",
+  "release_status": "PENDING",
+  "bounds": {
+    "min_m": [
+      -5.315001,
+      0.0,
+      -5.35
+    ],
+    "max_m": [
+      5.315,
+      3.99,
+      5.35
+    ],
+    "size_m": [
+      10.630001,
+      3.99,
+      10.7
+    ]
+  },
+  "counts": {
+    "objects": 210,
+    "meshes": 190,
+    "triangles": 27040,
+    "materials": 7
+  },
+  "envelope_fit": {
+    "classification": "reconstructed_visible_envelope_calibration",
+    "source_bounds_m": {
+      "min_m": [
+        -4.895328,
+        -0.003432,
+        -5.35
+      ],
+      "max_m": [
+        5.7402,
+        3.99,
+        5.35
+      ],
+      "size_m": [
+        10.635527,
+        3.993432,
+        10.7
+      ]
+    },
+    "target_bounds_m": {
+      "min_m": [
+        -5.315,
+        0.0,
+        -5.35
+      ],
+      "max_m": [
+        5.315,
+        3.99,
+        5.35
+      ],
+      "size_m": [
+        10.63,
+        3.99,
+        10.7
+      ]
+    },
+    "axis_scale_factors": [
+      0.999480314,
+      0.999140699,
+      1.000000018
+    ],
+    "calibrated_bounds_m": {
+      "min_m": [
+        -5.315001,
+        0.0,
+        -5.35
+      ],
+      "max_m": [
+        5.315,
+        3.99,
+        5.35
+      ],
+      "size_m": [
+        10.630001,
+        3.99,
+        10.7
+      ]
+    },
+    "authority": "reconstructed_not_machine_specific_engineering"
+  },
+  "glb_contract": {
+    "glb_version": "2.0",
+    "scene_count": 1,
+    "scene_root_count": 1,
+    "root_name": "Machine_Root",
+    "root_record": {},
+    "identity_root": true,
+    "nodes": 210,
+    "mesh_nodes": 190,
+    "mesh_definitions": 190,
+    "materials": 7,
+    "triangles": 27040,
+    "cameras": 0,
+    "punctual_lights": false,
+    "images": 0,
+    "textures": 0,
+    "nonidentity_mesh_scales": {},
+    "helper_like_mesh_nodes": [],
+    "semantic_motion_nodes": 19,
+    "bounds": {
+      "min_m": [
+        -5.315001,
+        0.0,
+        -5.35
+      ],
+      "max_m": [
+        5.315,
+        3.99,
+        5.35
+      ],
+      "size_m": [
+        10.630001,
+        3.99,
+        10.7
+      ]
+    }
+  },
+  "gates": [
+    {
+      "id": "builder-execution",
+      "status": "PASS",
+      "detail": "Factory-startup background builder reached validation generation."
+    },
+    {
+      "id": "candidate-class-boundary",
+      "status": "PASS",
+      "detail": "technical_structural_study only; not engineering authority."
+    },
+    {
+      "id": "scene-units-and-axes",
+      "status": "PASS",
+      "detail": "Meters; +X forward, +Y up, +Z machine right."
+    },
+    {
+      "id": "independent-authoring-boundary",
+      "status": "PASS",
+      "detail": "No downloaded geometry, CAD, copied textures, logos, or opaque add-ons."
+    },
+    {
+      "id": "one-identity-root",
+      "status": "PASS",
+      "detail": {}
+    },
+    {
+      "id": "required-semantic-nodes",
+      "status": "PASS",
+      "detail": {
+        "Machine_Root": true,
+        "Fixed_Structure_ROOT": true,
+        "Running_Gear_ROOT": true,
+        "Hydraulics_ROOT": true,
+        "Service_Detail_ROOT": true,
+        "Header_Lift_Pivot": true,
+        "Header_ROOT": true,
+        "Reel_Pivot": true,
+        "Reel_ROOT": true,
+        "Feederhouse_ROOT": true,
+        "Unloader_Swing_Pivot": true,
+        "Unloader_ROOT": true,
+        "Track_L_ROOT": true,
+        "Track_R_ROOT": true
+      }
+    },
+    {
+      "id": "semantic-motion-hierarchy",
+      "status": "PASS",
+      "detail": {
+        "semantic_motion_nodes": 19
+      }
+    },
+    {
+      "id": "export-mesh-scales-applied",
+      "status": "PASS",
+      "detail": {
+        "authoring_residual": {},
+        "glb_residual": {}
+      }
+    },
+    {
+      "id": "public-glb-no-cameras-lights",
+      "status": "PASS",
+      "detail": {
+        "cameras": 0,
+        "punctual_lights": false
+      }
+    },
+    {
+      "id": "public-glb-no-helpers",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "public-glb-no-images-textures",
+      "status": "PASS",
+      "detail": {
+        "images": 0,
+        "textures": 0
+      }
+    },
+    {
+      "id": "node-density",
+      "status": "PASS",
+      "detail": {
+        "actual": 210,
+        "minimum": 200
+      }
+    },
+    {
+      "id": "mesh-density",
+      "status": "PASS",
+      "detail": {
+        "actual": 190,
+        "minimum": 180
+      }
+    },
+    {
+      "id": "triangle-density",
+      "status": "PASS",
+      "detail": {
+        "actual": 27040,
+        "minimum": 10000
+      }
+    },
+    {
+      "id": "finite-visible-bounds",
+      "status": "PASS",
+      "detail": {
+        "min_m": [
+          -5.315001,
+          0.0,
+          -5.35
+        ],
+        "max_m": [
+          5.315,
+          3.99,
+          5.35
+        ],
+        "size_m": [
+          10.630001,
+          3.99,
+          10.7
+        ]
+      }
+    },
+    {
+      "id": "retained-visible-envelope",
+      "status": "PASS",
+      "detail": {
+        "actual_size_m": [
+          10.630001,
+          3.99,
+          10.7
+        ],
+        "expected_size_m": [
+          10.63,
+          3.99,
+          10.7
+        ],
+        "absolute_tolerance_m": 0.03,
+        "minimum_y_m": 0.0
+      }
+    },
+    {
+      "id": "review-renders-nonempty",
+      "status": "PASS",
+      "detail": [
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/fendt-ideal-10t/review/renders/fendt-ideal-10t-operator-side.png",
+          "bytes": 234718
+        },
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/fendt-ideal-10t/review/renders/fendt-ideal-10t-front-three-quarter.png",
+          "bytes": 255124
+        },
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/fendt-ideal-10t/review/renders/fendt-ideal-10t-rear-three-quarter.png",
+          "bytes": 251182
+        },
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/fendt-ideal-10t/review/renders/fendt-ideal-10t-elevated-technical.png",
+          "bytes": 348014
+        },
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/fendt-ideal-10t/review/renders/fendt-ideal-10t-articulation-detail.png",
+          "bytes": 267705
+        },
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/fendt-ideal-10t/review/renders/fendt-ideal-10t-right-side.png",
+          "bytes": 238705
+        }
+      ]
+    },
+    {
+      "id": "neutral-unbranded-materials",
+      "status": "PASS",
+      "detail": "Neutral palette and procedural materials only; no manufacturer marks or textures."
+    },
+    {
+      "id": "configuration-freeze",
+      "status": "PENDING",
+      "detail": "Research candidate retains unresolved exact configuration and options."
+    },
+    {
+      "id": "machine-specific-mechanical-solver",
+      "status": "PENDING",
+      "detail": "Generic structural pivots do not establish evidence-bound limits, endpoints, or cylinder closure."
+    },
+    {
+      "id": "ground-self-swept-collision",
+      "status": "PENDING",
+      "detail": "No machine-specific swept-volume or collision solver exists."
+    },
+    {
+      "id": "critic-human-visual-review",
+      "status": "PENDING",
+      "detail": "A human critic must inspect the exact render and artifact hashes."
+    },
+    {
+      "id": "viewer-browser-accessibility-mobile-selection-performance",
+      "status": "PENDING",
+      "detail": "Viewer integration belongs to the publication lane."
+    },
+    {
+      "id": "publication-and-deployment",
+      "status": "PENDING",
+      "detail": "Only the publisher may advance this research artifact to release."
+    }
+  ],
+  "failed_gate_ids": []
+}

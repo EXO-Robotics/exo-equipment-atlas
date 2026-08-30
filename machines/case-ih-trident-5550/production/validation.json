@@ -1,0 +1,341 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "case-ih-trident-5550",
+  "configuration_id": "CASEIH-TRIDENT5550-NAM-LIQ1600-ALBOOM120-AIMCF2-4WD-CANDIDATE",
+  "archetype": "high_clearance_sprayer",
+  "candidate_class": "technical_structural_study",
+  "engineering_authority": false,
+  "verdict": "PASS",
+  "verdict_scope": "technical_structural_study_only",
+  "release_status": "PENDING",
+  "bounds": {
+    "min_m": [
+      -4.86,
+      0.0,
+      -2.105
+    ],
+    "max_m": [
+      4.86,
+      4.01,
+      2.105
+    ],
+    "size_m": [
+      9.72,
+      4.01,
+      4.21
+    ]
+  },
+  "counts": {
+    "objects": 212,
+    "meshes": 190,
+    "triangles": 31032,
+    "materials": 6
+  },
+  "envelope_fit": {
+    "classification": "reconstructed_visible_envelope_calibration",
+    "source_bounds_m": {
+      "min_m": [
+        -3.6208,
+        0.0,
+        -2.105
+      ],
+      "max_m": [
+        3.6208,
+        4.01,
+        2.105
+      ],
+      "size_m": [
+        7.2416,
+        4.01,
+        4.21
+      ]
+    },
+    "target_bounds_m": {
+      "min_m": [
+        -4.86,
+        0.0,
+        -2.105
+      ],
+      "max_m": [
+        4.86,
+        4.01,
+        2.105
+      ],
+      "size_m": [
+        9.72,
+        4.01,
+        4.21
+      ]
+    },
+    "axis_scale_factors": [
+      1.342244801,
+      0.999999943,
+      0.999999991
+    ],
+    "calibrated_bounds_m": {
+      "min_m": [
+        -4.86,
+        0.0,
+        -2.105
+      ],
+      "max_m": [
+        4.86,
+        4.01,
+        2.105
+      ],
+      "size_m": [
+        9.72,
+        4.01,
+        4.21
+      ]
+    },
+    "authority": "reconstructed_not_machine_specific_engineering"
+  },
+  "glb_contract": {
+    "glb_version": "2.0",
+    "scene_count": 1,
+    "scene_root_count": 1,
+    "root_name": "Machine_Root",
+    "root_record": {},
+    "identity_root": true,
+    "nodes": 212,
+    "mesh_nodes": 190,
+    "mesh_definitions": 190,
+    "materials": 6,
+    "triangles": 31032,
+    "cameras": 0,
+    "punctual_lights": false,
+    "images": 0,
+    "textures": 0,
+    "nonidentity_mesh_scales": {},
+    "helper_like_mesh_nodes": [],
+    "semantic_motion_nodes": 21,
+    "bounds": {
+      "min_m": [
+        -4.86,
+        0.0,
+        -2.105
+      ],
+      "max_m": [
+        4.86,
+        4.01,
+        2.105
+      ],
+      "size_m": [
+        9.72,
+        4.01,
+        4.21
+      ]
+    }
+  },
+  "gates": [
+    {
+      "id": "builder-execution",
+      "status": "PASS",
+      "detail": "Factory-startup background builder reached validation generation."
+    },
+    {
+      "id": "candidate-class-boundary",
+      "status": "PASS",
+      "detail": "technical_structural_study only; not engineering authority."
+    },
+    {
+      "id": "scene-units-and-axes",
+      "status": "PASS",
+      "detail": "Meters; +X forward, +Y up, +Z machine right."
+    },
+    {
+      "id": "independent-authoring-boundary",
+      "status": "PASS",
+      "detail": "No downloaded geometry, CAD, copied textures, logos, or opaque add-ons."
+    },
+    {
+      "id": "one-identity-root",
+      "status": "PASS",
+      "detail": {}
+    },
+    {
+      "id": "required-semantic-nodes",
+      "status": "PASS",
+      "detail": {
+        "Machine_Root": true,
+        "Fixed_Structure_ROOT": true,
+        "Running_Gear_ROOT": true,
+        "Hydraulics_ROOT": true,
+        "Service_Detail_ROOT": true,
+        "Front_Axle_Oscillation_Pivot": true,
+        "Front_Axle_ROOT": true,
+        "Boom_Center_ROOT": true,
+        "Boom_L_Fold_Pivot": true,
+        "Boom_L_ROOT": true,
+        "Boom_R_Fold_Pivot": true,
+        "Boom_R_ROOT": true
+      }
+    },
+    {
+      "id": "semantic-motion-hierarchy",
+      "status": "PASS",
+      "detail": {
+        "semantic_motion_nodes": 21
+      }
+    },
+    {
+      "id": "export-mesh-scales-applied",
+      "status": "PASS",
+      "detail": {
+        "authoring_residual": {},
+        "glb_residual": {}
+      }
+    },
+    {
+      "id": "public-glb-no-cameras-lights",
+      "status": "PASS",
+      "detail": {
+        "cameras": 0,
+        "punctual_lights": false
+      }
+    },
+    {
+      "id": "public-glb-no-helpers",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "public-glb-no-images-textures",
+      "status": "PASS",
+      "detail": {
+        "images": 0,
+        "textures": 0
+      }
+    },
+    {
+      "id": "node-density",
+      "status": "PASS",
+      "detail": {
+        "actual": 212,
+        "minimum": 200
+      }
+    },
+    {
+      "id": "mesh-density",
+      "status": "PASS",
+      "detail": {
+        "actual": 190,
+        "minimum": 180
+      }
+    },
+    {
+      "id": "triangle-density",
+      "status": "PASS",
+      "detail": {
+        "actual": 31032,
+        "minimum": 10000
+      }
+    },
+    {
+      "id": "finite-visible-bounds",
+      "status": "PASS",
+      "detail": {
+        "min_m": [
+          -4.86,
+          0.0,
+          -2.105
+        ],
+        "max_m": [
+          4.86,
+          4.01,
+          2.105
+        ],
+        "size_m": [
+          9.72,
+          4.01,
+          4.21
+        ]
+      }
+    },
+    {
+      "id": "retained-visible-envelope",
+      "status": "PASS",
+      "detail": {
+        "actual_size_m": [
+          9.72,
+          4.01,
+          4.21
+        ],
+        "expected_size_m": [
+          9.72,
+          4.01,
+          4.21
+        ],
+        "absolute_tolerance_m": 0.03,
+        "minimum_y_m": 0.0
+      }
+    },
+    {
+      "id": "review-renders-nonempty",
+      "status": "PASS",
+      "detail": [
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/case-ih-trident-5550/review/renders/case-ih-trident-5550-operator-side.png",
+          "bytes": 239581
+        },
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/case-ih-trident-5550/review/renders/case-ih-trident-5550-front-three-quarter.png",
+          "bytes": 296554
+        },
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/case-ih-trident-5550/review/renders/case-ih-trident-5550-rear-three-quarter.png",
+          "bytes": 282943
+        },
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/case-ih-trident-5550/review/renders/case-ih-trident-5550-elevated-technical.png",
+          "bytes": 349892
+        },
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/case-ih-trident-5550/review/renders/case-ih-trident-5550-articulation-detail.png",
+          "bytes": 314332
+        },
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/case-ih-trident-5550/review/renders/case-ih-trident-5550-right-side.png",
+          "bytes": 238478
+        }
+      ]
+    },
+    {
+      "id": "neutral-unbranded-materials",
+      "status": "PASS",
+      "detail": "Neutral palette and procedural materials only; no manufacturer marks or textures."
+    },
+    {
+      "id": "configuration-freeze",
+      "status": "PENDING",
+      "detail": "Research candidate retains unresolved exact configuration and options."
+    },
+    {
+      "id": "machine-specific-mechanical-solver",
+      "status": "PENDING",
+      "detail": "Generic structural pivots do not establish evidence-bound limits, endpoints, or cylinder closure."
+    },
+    {
+      "id": "ground-self-swept-collision",
+      "status": "PENDING",
+      "detail": "No machine-specific swept-volume or collision solver exists."
+    },
+    {
+      "id": "critic-human-visual-review",
+      "status": "PENDING",
+      "detail": "A human critic must inspect the exact render and artifact hashes."
+    },
+    {
+      "id": "viewer-browser-accessibility-mobile-selection-performance",
+      "status": "PENDING",
+      "detail": "Viewer integration belongs to the publication lane."
+    },
+    {
+      "id": "publication-and-deployment",
+      "status": "PENDING",
+      "detail": "Only the publisher may advance this research artifact to release."
+    }
+  ],
+  "failed_gate_ids": []
+}

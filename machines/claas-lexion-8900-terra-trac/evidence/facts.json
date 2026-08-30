@@ -1,0 +1,177 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "claas-lexion-8900-terra-trac",
+  "configuration_id": "CLAAS-L8900TT-NA25-CF1530-GT510-UL51-CANDIDATE",
+  "facts": [
+    {
+      "id": "engine-displacement",
+      "subject": "MAN engine displacement",
+      "value": 16.2,
+      "unit": "L",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-L8900-NA-PRESS",
+      "location": "press release paragraphs 2 and feature list"
+    },
+    {
+      "id": "maximum-engine-power-na",
+      "subject": "maximum North American engine output",
+      "value": 779,
+      "unit": "hp_SAE",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-L8900-NA-PRESS",
+      "location": "press release paragraph 2 and feature list"
+    },
+    {
+      "id": "terra-trac-configuration",
+      "subject": "undercarriage configuration",
+      "value": "TERRA TRAC exclusive",
+      "unit": "configuration",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-L8900-NA-PRESS",
+      "location": "press release paragraph beginning 'The LEXION 8900 is exclusively offered'"
+    },
+    {
+      "id": "header-working-width",
+      "subject": "selected CONVIO FLEX 1530 working width",
+      "value": 15.3,
+      "unit": "m",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-L8900-NA-PRESS",
+      "location": "press release header paragraph and feature list"
+    },
+    {
+      "id": "public-envelope-z",
+      "subject": "retained CONVIO FLEX 1530 lateral working envelope",
+      "value": 15.3,
+      "unit": "m",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-L8900-NA-PRESS",
+      "location": "press release header paragraph and feature list; selected full-width working pose"
+    },
+    {
+      "id": "header-flex-range",
+      "subject": "selected CONVIO FLEX 1530 flex range",
+      "value": 225,
+      "unit": "mm",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-L8900-NA-PRESS",
+      "location": "press release header paragraph"
+    },
+    {
+      "id": "grain-tank-capacity",
+      "subject": "grain tank capacity",
+      "value": 510,
+      "unit": "bu",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-L8900-NA-PRESS",
+      "location": "press release grain-handling paragraph and feature list"
+    },
+    {
+      "id": "grain-unloading-rate",
+      "subject": "grain unloading rate",
+      "value": 5.1,
+      "unit": "bu/s",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-L8900-NA-PRESS",
+      "location": "press release grain-handling paragraph and feature list"
+    },
+    {
+      "id": "threshing-drum-width",
+      "subject": "APS SYNFLOW HYBRID threshing drum width",
+      "value": 1700,
+      "unit": "mm",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-L8900-NA-BROCHURE",
+      "location": "technical data, APS SYNFLOW HYBRID table"
+    },
+    {
+      "id": "threshing-drum-diameter",
+      "subject": "APS SYNFLOW HYBRID threshing drum diameter",
+      "value": 755,
+      "unit": "mm",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-L8900-NA-BROCHURE",
+      "location": "technical data, APS SYNFLOW HYBRID table"
+    },
+    {
+      "id": "threshing-drum-speed-range",
+      "subject": "threshing drum speed range",
+      "value": [330, 930],
+      "unit": "rpm",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-L8900-NA-BROCHURE",
+      "location": "technical data, APS SYNFLOW HYBRID table"
+    },
+    {
+      "id": "rotor-count",
+      "subject": "ROTO PLUS secondary-separation rotors",
+      "value": 2,
+      "unit": "count",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-L8000-NA-PRODUCT",
+      "location": "ROTO PLUS section"
+    },
+    {
+      "id": "rotor-diameter",
+      "subject": "ROTO PLUS rotor diameter",
+      "value": 445,
+      "unit": "mm",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-L8000-NA-PRODUCT",
+      "location": "ROTO PLUS section"
+    },
+    {
+      "id": "rotor-length",
+      "subject": "ROTO PLUS rotor length",
+      "value": 4.2,
+      "unit": "m",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-L8000-NA-PRODUCT",
+      "location": "ROTO PLUS section"
+    },
+    {
+      "id": "cleaning-sieve-area",
+      "subject": "cleaning sieve area",
+      "value": 6.2,
+      "unit": "m2",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-L8900-NA-BROCHURE",
+      "location": "technical data, cleaning system table"
+    },
+    {
+      "id": "unloading-auger-swing",
+      "subject": "grain tank unloading tube swing",
+      "value": 105,
+      "unit": "deg",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-L8900-NA-BROCHURE",
+      "location": "technical data, grain tank unloading system"
+    },
+    {
+      "id": "maximum-road-speed",
+      "subject": "maximum ground-drive speed",
+      "value": 40,
+      "unit": "km/h",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-L8000-NA-PRODUCT",
+      "location": "25 mph transport section"
+    }
+  ],
+  "issues": [
+    {
+      "id": "power-market-basis",
+      "status": "resolved_for_candidate",
+      "detail": "The North American launch release controls at 779 maximum hp SAE. The current family page's 790 hp global-style headline is retained only as cross-market context and is not mixed into this fact register."
+    },
+    {
+      "id": "carrier-envelope",
+      "status": "unresolved",
+      "detail": "No admitted source in this lane establishes a configuration-complete carrier transport length, width, height, TERRA TRAC belt width, or exact header transport envelope. Generator dimensions are visibly reconstructed presentation values, not manufacturer facts."
+    },
+    {
+      "id": "hidden-mechanisms",
+      "status": "unresolved",
+      "detail": "Header pivots, lift cylinders, track wheel centers, auger hinge, internal drum and rotor locations, bearing centers, and motion profiles are not published geometry authority."
+    }
+  ]
+}

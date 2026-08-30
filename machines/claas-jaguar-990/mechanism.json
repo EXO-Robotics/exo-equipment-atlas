@@ -1,0 +1,139 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "claas-jaguar-990",
+  "configuration_id": "CLAAS-J990-INT-STGV-WHEEL-ORBIS900-VMAX42-MCCMAX-M-CANDIDATE",
+  "coordinate_system": {
+    "longitudinal": "+X toward front attachment",
+    "vertical": "+Y",
+    "lateral": "+Z machine right"
+  },
+  "joints": [
+    {
+      "id": "front_attachment_lift",
+      "type": "revolute_linkage",
+      "axis": "+Z",
+      "authority": "reconstructed",
+      "source_ids": ["CLAAS-J900-INT-BROCHURE", "CLAAS-J900-US-PRODUCT"],
+      "unresolved": ["coupler pivot, lift cylinder anchors, lift limits, and AUTO CONTOUR response"]
+    },
+    {
+      "id": "orbis_left_wing_fold",
+      "type": "compound_revolute",
+      "authority": "reconstructed",
+      "source_ids": ["CLAAS-J900-INT-BROCHURE"],
+      "published_constraints": ["orbis-working-width", "orbis-transport-width"],
+      "unresolved": ["wing pivot axes, fold order, linkage geometry, and transport locks"]
+    },
+    {
+      "id": "orbis_right_wing_fold",
+      "type": "compound_revolute",
+      "authority": "reconstructed",
+      "source_ids": ["CLAAS-J900-INT-BROCHURE"],
+      "published_constraints": ["orbis-working-width", "orbis-transport-width"],
+      "unresolved": ["wing pivot axes, fold order, linkage geometry, and transport locks"]
+    },
+    {
+      "id": "orbis_row_units",
+      "type": "counter_rotating_array",
+      "authority": "observed",
+      "source_ids": ["CLAAS-J900-INT-BROCHURE"],
+      "unresolved": ["disk count for the selected visible study, shaft centers, direction, phase, and speed"]
+    },
+    {
+      "id": "front_wheel_drive",
+      "type": "continuous_revolute",
+      "axis": "+Z",
+      "authority": "reconstructed",
+      "source_ids": ["CLAAS-J900-INT-BROCHURE"],
+      "unresolved": ["tire size, rolling radius, rotational phase, and ground-speed ratio"]
+    },
+    {
+      "id": "rear_wheel_drive",
+      "type": "continuous_revolute",
+      "axis": "+Z",
+      "authority": "reconstructed",
+      "source_ids": ["CLAAS-J900-INT-BROCHURE"],
+      "unresolved": ["tire size, rolling radius, rotational phase, and ground-speed ratio"]
+    },
+    {
+      "id": "rear_steering",
+      "type": "steered_wheels",
+      "axis": "+Y",
+      "authority": "observed",
+      "source_ids": ["CLAAS-J900-US-PRODUCT", "CLAAS-J900-INT-BROCHURE"],
+      "unresolved": ["kingpin axes, Ackermann geometry, steering limit, and dynamic-steering response"]
+    },
+    {
+      "id": "feed_rollers",
+      "type": "four_roller_cutaway",
+      "authority": "reconstructed",
+      "source_ids": ["CLAAS-J900-INT-BROCHURE"],
+      "published_constraints": ["feeder-width", "feed-roller-count"],
+      "unresolved": ["hidden roller diameters, centers, directions, speed, and hydraulic precompression travel"]
+    },
+    {
+      "id": "vmax42_chopping_cylinder",
+      "type": "continuous_revolute_cutaway",
+      "axis": "+Z",
+      "authority": "reconstructed",
+      "source_ids": ["CLAAS-J900-INT-BROCHURE", "CLAAS-J900-US-PRODUCT"],
+      "published_constraints": ["chopping-cylinder-width", "chopping-cylinder-diameter", "vmax42-knife-count", "vmax42-cutting-frequency"],
+      "unresolved": ["hidden center, knife mounting detail, rotation direction, operating rpm, and crop interaction"]
+    },
+    {
+      "id": "mcc_max_rollers",
+      "type": "counter_rotating_pair_cutaway",
+      "authority": "reconstructed",
+      "source_ids": ["CLAAS-J900-INT-BROCHURE"],
+      "published_constraints": ["mcc-max-diameter"],
+      "unresolved": ["hidden centers, tooth profile, speed difference, gap, rotation direction, and crop interaction"]
+    },
+    {
+      "id": "crop_accelerator",
+      "type": "continuous_revolute_cutaway",
+      "axis": "+Z",
+      "authority": "reconstructed",
+      "source_ids": ["CLAAS-J900-INT-BROCHURE"],
+      "published_constraints": ["accelerator-width", "accelerator-diameter"],
+      "unresolved": ["hidden center, paddle construction, rotation direction, speed, and optional gap actuator geometry"]
+    },
+    {
+      "id": "discharge_chute_swing",
+      "type": "revolute",
+      "axis": "+Y",
+      "authority": "reconstructed",
+      "source_ids": ["CLAAS-J900-INT-BROCHURE"],
+      "published_constraints": ["standard-chute-swing"],
+      "unresolved": ["turntable center, stowed orientation, elevation linkage, and collision envelope"]
+    },
+    {
+      "id": "discharge_flap",
+      "type": "revolute",
+      "authority": "observed",
+      "source_ids": ["CLAAS-J900-US-PRODUCT"],
+      "unresolved": ["flap hinge axis, standard manual range, and crop trajectory"]
+    },
+    {
+      "id": "dynamic_cooling_fan",
+      "type": "continuous_revolute",
+      "authority": "observed",
+      "source_ids": ["CLAAS-J900-US-PRODUCT", "CLAAS-J900-INT-BROCHURE"],
+      "unresolved": ["fan diameter, blade count, axis, and variable speed curve"]
+    }
+  ],
+  "required_gates": [
+    "configuration_attachment_and_crop_setup_identity",
+    "published_orbis_working_span",
+    "orbis_folded_transport_span",
+    "attachment_lift_visual_closure",
+    "attachment_to_feeder_clearance",
+    "rear_steering_tire_clearance",
+    "standard_chute_stowed_and_deployed_clearance",
+    "cutaway_only_internal_mechanism_labeling",
+    "wheel_phase_continuity",
+    "ground_collision",
+    "self_collision",
+    "neutral_unbranded_materials"
+  ],
+  "release_state": "no_geometry_no_solver_no_claim"
+}

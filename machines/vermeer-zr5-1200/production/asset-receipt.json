@@ -1,0 +1,260 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "vermeer-zr5-1200",
+  "configuration_id": "VERMEER-ZR5-1200-NA26-STAGEV-STDPICKUP-NET-RAMP-CANDIDATE",
+  "configuration_status": "research_candidate",
+  "archetype": "self_propelled_round_baler",
+  "candidate_class": "technical_structural_study",
+  "engineering_authority": false,
+  "authority_boundary": "Independently authored neutral technical structural study. Not manufacturer CAD, engineering authority, load guidance, operator training, safety guidance, a digital twin, or a mechanically validated candidate.",
+  "rights_boundary": "Neutral unbranded procedural geometry and materials; no manufacturer CAD, logo, copied texture, or protected livery claim.",
+  "release_status": "PENDING",
+  "blender": {
+    "version": "5.1.1",
+    "factory_startup_required": true,
+    "background_required": true
+  },
+  "builder": {
+    "path": "source/blender/build_vermeer_zr5_1200.py",
+    "sha256": "d4510a0b4e03eedd3f706ade27833c0a56d194937f33d1e29748273cbd608df3",
+    "bytes": 6181,
+    "deterministic": true,
+    "network_used": false,
+    "downloaded_geometry_used": false,
+    "manufacturer_cad_used": false,
+    "copied_textures_used": false,
+    "opaque_addons_used": false
+  },
+  "shared_generator": {
+    "path": "../../scripts/fleet/build_machine.py",
+    "sha256": "02b99250651741b462b3dae8b2471db723beb689dfe89e1c7e251d7402fe0f55",
+    "bytes": 78579
+  },
+  "design": {
+    "path": "source/design.json",
+    "sha256": "cbb79fab95cc03f3ebc66a52bfb6dc26adb177e2eb6413be445efbce70676e38",
+    "bytes": 1221,
+    "schema_version": "1.0.0"
+  },
+  "artifacts": {
+    "blend": {
+      "path": "source/blender/vermeer-zr5-1200-structural-study.blend",
+      "sha256": "7985131aa8f77c2e7d0f49090851113b711a752544ca789c0b17c321a9f324d5",
+      "bytes": 251460
+    },
+    "glb": {
+      "path": "assets/vermeer-zr5-1200-structural-study.glb",
+      "sha256": "167ff15c93635cd0250d42ef769880540ec20da0aa914880107df65cc3c0c6cf",
+      "bytes": 1433132
+    },
+    "validation": {
+      "path": "production/validation.json",
+      "sha256": "cd99fcbeedefab31151fe9941cb4bc220ff76a8b9a52241d66c13d06550cacab",
+      "bytes": 7908
+    }
+  },
+  "scene": {
+    "units": "meters",
+    "axes": {
+      "longitudinal": "+X forward",
+      "vertical": "+Y up",
+      "lateral": "+Z machine right"
+    },
+    "bounds": {
+      "min_m": [
+        -3.1495,
+        0.0,
+        -1.8035
+      ],
+      "max_m": [
+        3.1495,
+        3.15,
+        1.8035
+      ],
+      "size_m": [
+        6.299,
+        3.15,
+        3.607
+      ]
+    },
+    "visible_aabb_xyz_m": [
+      6.299,
+      3.15,
+      3.607
+    ],
+    "objects": 213,
+    "meshes": 190,
+    "triangles": 27212,
+    "materials": 6
+  },
+  "glb_contract": {
+    "glb_version": "2.0",
+    "scene_count": 1,
+    "scene_root_count": 1,
+    "root_name": "Machine_Root",
+    "root_record": {},
+    "identity_root": true,
+    "nodes": 213,
+    "mesh_nodes": 190,
+    "mesh_definitions": 190,
+    "materials": 6,
+    "triangles": 27212,
+    "cameras": 0,
+    "punctual_lights": false,
+    "images": 0,
+    "textures": 0,
+    "nonidentity_mesh_scales": {},
+    "helper_like_mesh_nodes": [],
+    "semantic_motion_nodes": 22,
+    "bounds": {
+      "min_m": [
+        -3.1495,
+        0.0,
+        -1.8035
+      ],
+      "max_m": [
+        3.1495,
+        3.15,
+        1.8035
+      ],
+      "size_m": [
+        6.299,
+        3.15,
+        3.607
+      ]
+    }
+  },
+  "required_semantic_nodes": {
+    "Machine_Root": true,
+    "Fixed_Structure_ROOT": true,
+    "Running_Gear_ROOT": true,
+    "Hydraulics_ROOT": true,
+    "Service_Detail_ROOT": true,
+    "Front_Axle_Oscillation_Pivot": true,
+    "Front_Axle_ROOT": true,
+    "Pickup_Lift_Pivot": true,
+    "Pickup_ROOT": true,
+    "Bale_Chamber_ROOT": true,
+    "Tailgate_Pivot": true,
+    "Tailgate_ROOT": true
+  },
+  "manufacturer_published_constraints_used": [
+    "public-envelope-x",
+    "public-envelope-y",
+    "public-envelope-z",
+    "pickup-tooth-width",
+    "pickup-bars",
+    "pickup-teeth",
+    "chamber-belts"
+  ],
+  "reconstructed_values": {
+    "hidden_geometry": "All pivots, pickup cam path, tailgate and ramp axes, chamber internals, suspension and steering geometry, crop/bale representation and motion curves are reconstructed.",
+    "pickup_feed_topology": "The pickup is placed below the leading edge of the bale chamber and connected by a reconstructed slat-and-transfer-rotor crop path based on topology visible in official literature; no dimensions, pivot centers, or kinematics are manufacturer-authoritative.",
+    "generic_archetype_geometry": "self_propelled_round_baler proportions and visible detail are independently reconstructed for this technical study.",
+    "visible_envelope_calibration": {
+      "classification": "reconstructed_visible_envelope_calibration",
+      "source_bounds_m": {
+        "min_m": [
+          -2.133291,
+          0.0,
+          -1.8035
+        ],
+        "max_m": [
+          2.299135,
+          3.15,
+          1.8035
+        ],
+        "size_m": [
+          4.432426,
+          3.15,
+          3.607
+        ]
+      },
+      "target_bounds_m": {
+        "min_m": [
+          -3.1495,
+          0.0,
+          -1.8035
+        ],
+        "max_m": [
+          3.1495,
+          3.15,
+          1.8035
+        ],
+        "size_m": [
+          6.299,
+          3.15,
+          3.607
+        ]
+      },
+      "axis_scale_factors": [
+        1.421117847,
+        0.99999997,
+        0.999999969
+      ],
+      "calibrated_bounds_m": {
+        "min_m": [
+          -3.1495,
+          0.0,
+          -1.8035
+        ],
+        "max_m": [
+          3.1495,
+          3.15,
+          1.8035
+        ],
+        "size_m": [
+          6.299,
+          3.15,
+          3.607
+        ]
+      },
+      "authority": "reconstructed_not_machine_specific_engineering"
+    }
+  },
+  "unresolved_choices": [
+    "exact production revision",
+    "tire construction",
+    "hidden belt and roller arrangement"
+  ],
+  "mechanical_gaps": [
+    "No authoritative bale-formation or ejection solver",
+    "No collision or swept-volume proof"
+  ],
+  "renders": [
+    {
+      "path": "review/renders/vermeer-zr5-1200-operator-side.png",
+      "sha256": "bfebc4d9dd31acb2621bbd31a5072931a9457bfe190d69867421393cd285210c",
+      "bytes": 299908
+    },
+    {
+      "path": "review/renders/vermeer-zr5-1200-front-three-quarter.png",
+      "sha256": "6a4add6dce32a700f8dd8c11330719edca216bdf25dbbd1cba73d6c1605a8645",
+      "bytes": 353710
+    },
+    {
+      "path": "review/renders/vermeer-zr5-1200-rear-three-quarter.png",
+      "sha256": "ca860883ca57998df33e6e5fa08a2562062ddc6c34ed6b9de3618b31819999f9",
+      "bytes": 332080
+    },
+    {
+      "path": "review/renders/vermeer-zr5-1200-elevated-technical.png",
+      "sha256": "403d1734a0b88277ce71143d7cd53b7edab4a5c9875ae5212d7e30450a463628",
+      "bytes": 379242
+    },
+    {
+      "path": "review/renders/vermeer-zr5-1200-articulation-detail.png",
+      "sha256": "17dc01b123e83bcc8f4d669c3117fdd9dcdd9cee35a041be4e97e5156066a996",
+      "bytes": 387346
+    },
+    {
+      "path": "review/renders/vermeer-zr5-1200-right-side.png",
+      "sha256": "996944164984a594019971b24ba4436263571ffe5bb02911e08cb9493ceea33a",
+      "bytes": 301242
+    }
+  ],
+  "build_verdict": "PASS",
+  "validation_verdict": "PASS",
+  "validation_path": "production/validation.json",
+  "higher_stage_gates": "PENDING"
+}

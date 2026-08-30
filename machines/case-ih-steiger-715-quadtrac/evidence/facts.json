@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "case-ih-steiger-715-quadtrac",
+  "configuration_id": "CASEIH-STEIGER715-NAM-AG-QUADTRAC-PWRDRIVE-HDS-CAT4N-CANDIDATE",
+  "facts": [
+    {"id":"rated-engine-power","subject":"Steiger 715 rated engine power","value":715,"unit":"hp","authority":"manufacturer_published","source_id":"CASEIH-STEIGER-US-BROCHURE-2025","location":"PDF page 23, 715 Quadtrac column"},
+    {"id":"maximum-engine-power","subject":"Steiger 715 maximum engine power","value":778,"unit":"hp","authority":"manufacturer_published","source_id":"CASEIH-STEIGER-US-BROCHURE-2025","location":"PDF page 23, 715 Quadtrac column"},
+    {"id":"engine-displacement","subject":"Steiger 715 engine displacement","value":16,"unit":"L","authority":"manufacturer_published","source_id":"CASEIH-STEIGER-US-BROCHURE-2025","location":"PDF page 23, 16 L engine group"},
+    {"id":"engine-layout","subject":"engine cylinders and valves","value":{"cylinders":6,"valves":24},"unit":"count_set","authority":"manufacturer_published","source_id":"CASEIH-STEIGER-US-BROCHURE-2025","location":"PDF page 23"},
+    {"id":"transmission","subject":"standard PowerDrive transmission","value":{"forward":16,"reverse":2},"unit":"gear_count","authority":"manufacturer_published","source_id":"CASEIH-STEIGER-US-BROCHURE-2025","location":"PDF pages 7 and 23"},
+    {"id":"quadtrac-topology","subject":"Quadtrac ground-contact system","value":"four individually driven positive-drive oscillating tracks","unit":"functional_topology","authority":"manufacturer_published","source_id":"CASEIH-STEIGER-US-BROCHURE-2025","location":"PDF page 6"},
+    {"id":"hds-total-travel","subject":"Heavy-Duty Suspension total travel","value":7,"unit":"in","authority":"manufacturer_published","source_id":"CASEIH-STEIGER-US-BROCHURE-2025","location":"PDF page 10"},
+    {"id":"hds-up-travel","subject":"Heavy-Duty Suspension upward travel","value":3,"unit":"in","authority":"manufacturer_published","source_id":"CASEIH-STEIGER-US-BROCHURE-2025","location":"PDF page 10"},
+    {"id":"hds-down-travel","subject":"Heavy-Duty Suspension downward travel","value":4,"unit":"in","authority":"manufacturer_published","source_id":"CASEIH-STEIGER-US-BROCHURE-2025","location":"PDF page 10"},
+    {"id":"hds-transport-speed","subject":"Heavy-Duty Suspension maximum transport speed","value":26.5,"unit":"mph","authority":"manufacturer_published","source_id":"CASEIH-STEIGER-US-BROCHURE-2025","location":"PDF pages 6 and 10"},
+    {"id":"wheelbase","subject":"Quadtrac wheelbase","value":3.912,"unit":"m","authority":"manufacturer_published","source_id":"CASEIH-STEIGER-US-BROCHURE-2025","location":"PDF page 23, 154 in"},
+    {"id":"standard-hydraulic-flow","subject":"standard PowerDrive hydraulic pump flow","value":216,"unit":"L_per_min","authority":"manufacturer_published","source_id":"CASEIH-STEIGER-US-BROCHURE-2025","location":"PDF page 23"},
+    {"id":"optional-twinflow-total","subject":"optional TwinFlow total tractor hydraulic flow","value":428,"unit":"L_per_min","authority":"manufacturer_published","source_id":"CASEIH-STEIGER-US-BROCHURE-2025","location":"PDF pages 6 and 23"},
+    {"id":"rear-remotes","subject":"standard and optional rear remotes","value":{"standard":4,"maximum":8},"unit":"count","authority":"manufacturer_published","source_id":"CASEIH-STEIGER-US-BROCHURE-2025","location":"PDF pages 6 and 23"},
+    {"id":"hitch-category","subject":"available three-point hitch category","value":"Category 4N","unit":"category","authority":"manufacturer_published","source_id":"CASEIH-STEIGER-US-BROCHURE-2025","location":"PDF page 23"},
+    {"id":"hitch-lift-capacity","subject":"three-point hitch lift capacity","value":10092,"unit":"kg","authority":"manufacturer_published","source_id":"CASEIH-STEIGER-US-BROCHURE-2025","location":"PDF page 23"},
+    {"id":"quadtrac-ag-configuration","subject":"715 configuration availability","value":{"ag":true,"scraper":false},"unit":"availability","authority":"manufacturer_published","source_id":"CASEIH-STEIGER-US-BROCHURE-2025","location":"PDF page 6 model matrix"},
+    {"id":"public-envelope-x","subject":"Quadtrac 715 total longitudinal envelope","value":8.29,"unit":"m","authority":"manufacturer_published","source_id":"CASEIH-QUADTRAC-STEIGER-WORLD-TECH-2024","location":"PDF page 16, 8,290 mm total length, Quadtrac 715 column"},
+    {"id":"public-envelope-y","subject":"Quadtrac 715 total vertical envelope","value":3.918,"unit":"m","authority":"manufacturer_published","source_id":"CASEIH-QUADTRAC-STEIGER-WORLD-TECH-2024","location":"PDF page 16, 3,918 mm total height, Quadtrac 715 column"},
+    {"id":"public-envelope-z","subject":"Quadtrac 715 total lateral envelope with 30-inch tracks","value":2.997,"unit":"m","authority":"manufacturer_published","source_id":"CASEIH-QUADTRAC-STEIGER-WORLD-TECH-2024","location":"PDF pages 11 and 16, 2,997 mm total width with 30-inch rubber tracks"}
+  ],
+  "issues": [
+    {"id":"public-envelope-market-basis","status":"documented","detail":"The total dimensions come from an official Case IH worldwide-circulation technical brochure and the width is explicitly tied to 30-inch tracks. North American power and option availability remain controlled by the separate US brochure."},
+    {"id":"track-width-order-unresolved","status":"unresolved","detail":"The North American brochure identifies Quadtrac topology but does not bind one track width to this notional 715 order. Track width and belt profile remain reconstructed and are not presented as a sourced dimension."},
+    {"id":"hds-option-selection","status":"documented","detail":"HDS is an available option rather than universal standard equipment. This presentation explicitly selects it and excludes standard-undercarriage claims."},
+    {"id":"static-geometry-boundary","status":"unresolved","detail":"Overall envelope, articulation center, four track-module pivots, roller suspension links, belt phase, hitch links and every hydraulic anchor are not established by the admitted publications."}
+  ]
+}

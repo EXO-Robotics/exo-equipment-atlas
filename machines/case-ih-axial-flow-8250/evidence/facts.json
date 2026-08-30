@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "case-ih-axial-flow-8250",
+  "configuration_id": "CASEIH-AF8250-NAM-250-WHEELED-GT410-UA45-CANDIDATE-MYUNRESOLVED",
+  "facts": [
+    {"id":"combine-class","subject":"Axial-Flow 8250 combine class","value":8,"unit":"class","authority":"manufacturer_published","source_id":"CASEIH-AF250-US-BROCHURE-2022","location":"PDF page 18, 8250 column"},
+    {"id":"engine-displacement","subject":"engine displacement","value":12.9,"unit":"L","authority":"manufacturer_published","source_id":"CASEIH-AF250-US-BROCHURE-2022","location":"PDF page 18, 8250 column"},
+    {"id":"rated-engine-power","subject":"rated engine power","value":480,"unit":"hp","authority":"manufacturer_published","source_id":"CASEIH-AF250-US-BROCHURE-2022","location":"PDF page 18, 8250 column"},
+    {"id":"maximum-engine-power","subject":"maximum engine power","value":555,"unit":"hp","authority":"manufacturer_published","source_id":"CASEIH-AF250-US-BROCHURE-2022","location":"PDF page 18, 8250 column"},
+    {"id":"feeder-width","subject":"feeder width","value":1.372,"unit":"m","authority":"manufacturer_published","source_id":"CASEIH-AF250-US-BROCHURE-2022","location":"PDF page 18, 54 in"},
+    {"id":"feeder-length","subject":"feeder length without rock trap","value":2.388,"unit":"m","authority":"manufacturer_published","source_id":"CASEIH-AF250-US-BROCHURE-2022","location":"PDF page 18, 94 in"},
+    {"id":"feeder-lateral-tilt","subject":"optional feeder lateral tilt","value":5,"unit":"deg_each_side","authority":"manufacturer_published","source_id":"CASEIH-AF250-US-BROCHURE-2022","location":"PDF page 18"},
+    {"id":"feeder-faceplate-tilt","subject":"optional fore-aft feeder faceplate tilt","value":12,"unit":"deg","authority":"manufacturer_published","source_id":"CASEIH-AF250-US-BROCHURE-2022","location":"PDF page 18"},
+    {"id":"rotor-diameter","subject":"large-tube AFX rotor diameter","value":0.762,"unit":"m","authority":"manufacturer_published","source_id":"CASEIH-AF250-US-BROCHURE-2022","location":"PDF pages 10 and 18, 30 in"},
+    {"id":"rotor-speed-range","subject":"rotor speed range","value":[220,1180],"unit":"rpm","authority":"manufacturer_published","source_id":"CASEIH-AF250-US-BROCHURE-2022","location":"PDF page 18"},
+    {"id":"thresh-separate-wrap","subject":"threshing and separating wrap","value":{"threshing":180,"separating":180},"unit":"deg","authority":"manufacturer_published","source_id":"CASEIH-AF250-US-BROCHURE-2022","location":"PDF page 18"},
+    {"id":"cleaning-area","subject":"total sieve area","value":6.9,"unit":"m2","authority":"manufacturer_published","source_id":"CASEIH-AF250-US-BROCHURE-2022","location":"PDF page 18"},
+    {"id":"self-leveling-slope","subject":"self-leveling cleaning capability","value":7,"unit":"deg","authority":"manufacturer_published","source_id":"CASEIH-AF250-US-BROCHURE-2022","location":"PDF pages 4 and 18"},
+    {"id":"grain-tank-capacity","subject":"8250 grain tank capacity","value":410,"unit":"bu","authority":"manufacturer_published","source_id":"CASEIH-AF250-US-BROCHURE-2022","location":"PDF page 18, 14,448 L"},
+    {"id":"unloading-auger-length","subject":"unloading auger length","value":8.8,"unit":"m","authority":"manufacturer_published","source_id":"CASEIH-AF250-US-BROCHURE-2022","location":"PDF page 18"},
+    {"id":"unloading-rate","subject":"8250 maximum unloading rate","value":4.5,"unit":"bu_per_s","authority":"manufacturer_published","source_id":"CASEIH-AF250-US-BROCHURE-2022","location":"PDF pages 10 and 18, 159 L/s"},
+    {"id":"typical-weight","subject":"typical 2WD dual-drive-tire weight","value":21309,"unit":"kg","authority":"manufacturer_published","source_id":"CASEIH-AF250-US-BROCHURE-2022","location":"PDF page 18, 8250 column"},
+    {"id":"cab-height","subject":"cab height","value":3.904,"unit":"m","authority":"manufacturer_published","source_id":"CASEIH-AF250-US-BROCHURE-2022","location":"PDF page 18, 8250/9250 row"},
+    {"id":"public-envelope-y","subject":"public vertical envelope at cab height","value":3.904,"unit":"m","authority":"manufacturer_published","source_id":"CASEIH-AF250-US-BROCHURE-2022","location":"PDF page 18, 153.7 in cab height, 8250 column"},
+    {"id":"public-envelope-z","subject":"public lateral envelope on single tires at 120-inch tread","value":3.962,"unit":"m","authority":"manufacturer_published","source_id":"CASEIH-AF250-US-BROCHURE-2022","location":"PDF page 18, 156 in overall width"},
+    {"id":"harvest-command-adjustments","subject":"AFS Harvest Command automatically adjusted settings","value":["ground speed","rotor speed","cleaning fan speed","presieve","upper sieve","lower sieve","cage vane angle"],"unit":"setting_list","authority":"manufacturer_published","source_id":"CASEIH-AF250-US-BROCHURE-2022","location":"PDF page 16"}
+  ],
+  "issues": [
+    {"id":"exact-model-year","status":"unresolved","detail":"The admitted brochure is a copyright-2022 250 Series specification snapshot. It does not prove the exact model year or production order of this public candidate."},
+    {"id":"auger-rate-overlap","status":"documented","detail":"The brochure lists 4.0 bu/s for 7250 and 8250 and 4.5 bu/s for 8250 and 9250, establishing two supported 8250 unload configurations. This study explicitly selects 4.5 bu/s; it is not treated as universal."},
+    {"id":"public-envelope-x","status":"unresolved","detail":"The admitted brochure publishes wheelbase, overall single-tire width and cab height, but not overall length. The study's X envelope is reconstructed and is not mapped as manufacturer-published."},
+    {"id":"static-geometry-boundary","status":"unresolved","detail":"Feeder pivots, rotor axis location, sieve mechanism, auger fold axis, steering geometry, hydraulic anchors, tire sizes, crop paths and component timing are not published for the exact candidate."}
+  ]
+}

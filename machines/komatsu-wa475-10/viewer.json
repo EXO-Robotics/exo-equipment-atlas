@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "machineId": "komatsu-wa475-10",
+  "displayName": "WA475-10",
+  "className": "Articulated wheel loader",
+  "category": "Wheel loaders",
+  "assets": {
+    "glb": "machines/komatsu-wa475-10/assets/komatsu-wa475-10-structural-study.glb",
+    "configuration": "machines/komatsu-wa475-10/configuration.json",
+    "facts": "machines/komatsu-wa475-10/evidence/facts.json",
+    "receipt": "machines/komatsu-wa475-10/production/asset-receipt.json",
+    "validation": "machines/komatsu-wa475-10/production/validation.json"
+  },
+  "evidence": {
+    "boundary": "Independent standard-boom study. Hitch, pivots, anchors, driveline, tire construction, bucket section, and motion interpolation remain reconstructed.",
+    "lede": "The 2025 North American brochure constrains the 4.2 m³ stock-pile bucket, 26.5R25 tires, ROPS/FOPS envelope, cylinder dimensions, and steering endpoints.",
+    "factIds": [
+      "overall-length-stock-pile",
+      "bucket-width-stock-pile",
+      "height-roof-rail",
+      "hinge-pin-height-max-standard"
+    ]
+  },
+  "camera": {
+    "azimuth": 0.66,
+    "elevation": 0.32,
+    "distance": 1.52
+  },
+  "accent": "#a9845d"
+}

@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "claas-lexion-8900-terra-trac",
+  "configuration_id": "CLAAS-L8900TT-NA25-CF1530-GT510-UL51-CANDIDATE",
+  "freeze_date": "2026-08-29",
+  "repository_policy": {
+    "source_binaries_committed": false,
+    "manufacturer_geometry_committed": false,
+    "manual_illustrations_are_scale_drawings": false,
+    "verification": "The parent release lane will download the canonical primary PDF into research/private and replace the pending digest and byte declaration before repository admission."
+  },
+  "sources": [
+    {
+      "id": "CLAAS-L8900-NA-BROCHURE",
+      "publisher": "CLAAS",
+      "kind": "official_product_brochure",
+      "title": "LEXION 8000 / 7000 product brochure",
+      "publication": "stable media 1333800",
+      "market": "North America",
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.claas.com/caas/claas/media/stable/1333800",
+      "local_path": "research/private/claas-lexion-8900-terra-trac/primary-source.pdf",
+      "sha256": "12a178239992686bb4b229bf69275c248cc1b1b3b9d62ce54ca72aac59648b0b",
+      "bytes": 18742261,
+      "admission": "primary",
+      "note": "Canonical private-binary identity will be sealed by the parent release lane."
+    },
+    {
+      "id": "CLAAS-L8900-NA-PRESS",
+      "publisher": "CLAAS",
+      "kind": "official_press_release",
+      "title": "CLAAS Rolls out LEXION 8900 TERRA TRAC in North America",
+      "publication": "2024-07-16",
+      "market": "North America",
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.claas.com/en-us/press/press-releases/2024-07-16-claas-rolls-out-lexion-8900-tt",
+      "admission": "primary",
+      "note": "Controls the North American 779 max hp SAE presentation and the selected CONVIO FLEX 1530 configuration."
+    },
+    {
+      "id": "CLAAS-L8000-NA-PRODUCT",
+      "publisher": "CLAAS",
+      "kind": "official_product_page",
+      "title": "LEXION 8000 / 7000",
+      "market": "North America",
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.claas.com/en-us/agricultural-machinery/combine-harvesters/lexion-8000",
+      "admission": "reference_only",
+      "note": "Current family-level mechanism descriptions and technical-data table; market-specific 790 hp wording is not mixed into the press-release power freeze."
+    },
+    {
+      "id": "CLAAS-L8000-NA-BROCHURE",
+      "publisher": "CLAAS",
+      "kind": "official_product_brochure",
+      "title": "LEXION combine brochure CL99881048",
+      "publication": "CL99881048 / 1/23",
+      "market": "North America",
+      "pages": 20,
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.claas.com/caas/claas/media/stable/65606",
+      "admission": "reference_only",
+      "note": "Current-page linked family brochure inspected for shared family topology. It predates the North American 8900 and is not used as exact 8900 power authority."
+    }
+  ]
+}

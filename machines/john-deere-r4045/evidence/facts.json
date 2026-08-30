@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-r4045",
+  "configuration_id": "JD-R4045-MY2020-NA-06W5N-4920-5165-4995-CANDIDATE",
+  "facts": [
+    {"id":"model-identity","subject":"base-machine identity","value":"06W5N R4045 Self-Propelled Sprayer, Model Year 2020","unit":"order_code_and_identity","authority":"manufacturer_published","source_id":"JD-AG-SPRAYER-PRICE-PAGES-2019-11","location":"PDF page 135; 8-SPRAYER page 1"},
+    {"id":"engine-configuration","subject":"engine configuration","value":"six-cylinder turbocharged and aftercooled John Deere PowerTech Plus diesel, HPCR","unit":"functional_description","authority":"manufacturer_published","source_id":"JD-AG-SPRAYER-PRICE-PAGES-2019-11","location":"PDF page 135; 8-SPRAYER page 1"},
+    {"id":"rated-engine-power","subject":"engine power at 2,200 rpm","value":258,"unit":"kW","authority":"manufacturer_published","source_id":"JD-AG-SPRAYER-PRICE-PAGES-2019-11","location":"PDF page 135; 8-SPRAYER page 1"},
+    {"id":"rated-engine-power-hp","subject":"engine power at 2,200 rpm","value":346,"unit":"hp","authority":"manufacturer_published","source_id":"JD-AG-SPRAYER-PRICE-PAGES-2019-11","location":"PDF page 135; 8-SPRAYER page 1"},
+    {"id":"engine-displacement","subject":"selected 2857 engine displacement","value":9.0,"unit":"L","authority":"manufacturer_published","source_id":"JD-AG-SPRAYER-PRICE-PAGES-2019-11","location":"PDF page 140; 8-SPRAYER page 6"},
+    {"id":"maximum-field-speed","subject":"maximum field speed","value":40,"unit":"km/h","authority":"manufacturer_published","source_id":"JD-AG-SPRAYER-PRICE-PAGES-2019-11","location":"PDF page 135; 8-SPRAYER page 1"},
+    {"id":"maximum-transport-speed","subject":"maximum transport speed","value":56,"unit":"km/h","authority":"manufacturer_published","source_id":"JD-AG-SPRAYER-PRICE-PAGES-2019-11","location":"PDF page 135; 8-SPRAYER page 1"},
+    {"id":"ground-drive","subject":"ground drive","value":"CommandDrive hydrostatic, full-time four-wheel drive with slip control","unit":"functional_description","authority":"manufacturer_published","source_id":"JD-AG-SPRAYER-PRICE-PAGES-2019-11","location":"PDF page 135; 8-SPRAYER page 1"},
+    {"id":"turning-radius","subject":"turning radius measured at rear wheel","value":9.2,"unit":"m","authority":"manufacturer_published","source_id":"JD-AG-SPRAYER-PRICE-PAGES-2019-11","location":"PDF page 135; 8-SPRAYER page 1"},
+    {"id":"hydraulic-tread-range","subject":"hydraulic wheel-tread setting range","value":[3.05,4.06],"unit":"m range","authority":"manufacturer_published","source_id":"JD-AG-SPRAYER-PRICE-PAGES-2019-11","location":"PDF page 135; 8-SPRAYER page 1"},
+    {"id":"crop-clearance","subject":"under-frame crop clearance with standard tires","value":1.47,"unit":"m","authority":"manufacturer_published","source_id":"JD-AG-SPRAYER-PRICE-PAGES-2019-11","location":"PDF page 135; 8-SPRAYER page 1"},
+    {"id":"solution-tank-capacity","subject":"stainless-steel solution tank capacity","value":1200,"unit":"US_gal","authority":"manufacturer_published","source_id":"JD-AG-SPRAYER-PRICE-PAGES-2019-11","location":"PDF page 135; 8-SPRAYER page 1"},
+    {"id":"solution-tank-capacity-litres","subject":"stainless-steel solution tank capacity","value":4500,"unit":"L","authority":"manufacturer_published","source_id":"JD-AG-SPRAYER-PRICE-PAGES-2019-11","location":"PDF page 135; 8-SPRAYER page 1"},
+    {"id":"rinse-tank-capacity","subject":"rinse tank capacity","value":170,"unit":"US_gal","authority":"manufacturer_published","source_id":"JD-AG-SPRAYER-PRICE-PAGES-2019-11","location":"PDF page 135; 8-SPRAYER page 1"},
+    {"id":"selected-boom","subject":"selected boom","value":"4920 120 ft steel boom","unit":"order_code_and_identity","authority":"manufacturer_published","source_id":"JD-AG-SPRAYER-PRICE-PAGES-2019-11","location":"PDF page 141; 8-SPRAYER page 7"},
+    {"id":"selected-nozzle-spacing","subject":"selected nozzle spacing","value":20,"unit":"in off-center","authority":"manufacturer_published","source_id":"JD-AG-SPRAYER-PRICE-PAGES-2019-11","location":"PDF page 142; 8-SPRAYER page 8"},
+    {"id":"selected-boom-plumbing","subject":"selected 5165 boom plumbing","value":"1 in high-flow stainless-steel pipe, 72 five-position high-flow nozzle bodies, 11 section-control valves","unit":"configuration_description","authority":"manufacturer_published","source_id":"JD-AG-SPRAYER-PRICE-PAGES-2019-11","location":"PDF page 144; 8-SPRAYER page 10"},
+    {"id":"selected-auto-boom-leveling","subject":"selected automatic boom leveling","value":"5465 five-sensor system for 120 ft steel boom","unit":"order_code_and_identity","authority":"manufacturer_published","source_id":"JD-AG-SPRAYER-PRICE-PAGES-2019-11","location":"PDF page 145; 8-SPRAYER page 11"},
+    {"id":"boom-working-span","subject":"selected steel boom working span","value":36.576,"unit":"m","authority":"manufacturer_published","source_id":"JD-AG-SPRAYER-PRICE-PAGES-2019-11","location":"PDF pages 141-145; 120 ft boom selection and plumbing tables"},
+    {"id":"public-envelope-z","subject":"retained selected deployed boom lateral span","value":36.576,"unit":"m","authority":"manufacturer_published","source_id":"JD-AG-SPRAYER-PRICE-PAGES-2019-11","location":"PDF pages 141-145; selected 120 ft steel boom in deployed study pose"}
+  ],
+  "issues": [
+    {"id":"legacy-model-year-basis","status":"documented","detail":"This candidate intentionally preserves the Model Year 2020 R4045 configuration in the November 2019 Deere order guide; it is not represented as a current Deere sprayer offering."},
+    {"id":"partial-public-envelope","status":"unresolved","detail":"The selected 36.576 m deployed boom span is the only retained complete visible envelope axis. Complete carrier-plus-boom longitudinal X and vertical Y envelopes and folded carrier width are not published in the admitted source."},
+    {"id":"working-span-not-road-width","status":"documented","detail":"The public Z value is the selected deployed working boom span, not road-transport width. The study and viewer must label it as a field-pose presentation envelope."},
+    {"id":"hidden-mechanisms","status":"unresolved","detail":"Suspension travel, steering geometry, boom-center and wing pivots, fold order, breakaway joints, sensor mounts, tank supports, plumbing, nozzle internals and liquid behavior remain reconstructed or omitted."}
+  ]
+}

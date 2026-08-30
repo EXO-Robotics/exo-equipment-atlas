@@ -1,0 +1,257 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "volvo-a40j",
+  "configuration_id": "VOLVO-A40J-NA-T4F-SV-29.5R25-24M3-NOTAIL-NOEXT-CANDIDATE",
+  "configuration_status": "research_candidate",
+  "archetype": "articulated_hauler",
+  "candidate_class": "technical_structural_study",
+  "engineering_authority": false,
+  "authority_boundary": "Independently authored neutral technical structural study. Not manufacturer CAD, engineering authority, load guidance, operator training, safety guidance, a digital twin, or a mechanically validated candidate.",
+  "rights_boundary": "Neutral unbranded procedural geometry and materials; no manufacturer CAD, logo, copied texture, or protected livery claim.",
+  "release_status": "PENDING",
+  "blender": {
+    "version": "5.1.1",
+    "factory_startup_required": true,
+    "background_required": true
+  },
+  "builder": {
+    "path": "source/blender/build_volvo_a40j.py",
+    "sha256": "4984f34ce06dcd5696a92d7b080f39f75e334f91a760f1dd8b9e4f2e2f9b4749",
+    "bytes": 6998,
+    "deterministic": true,
+    "network_used": false,
+    "downloaded_geometry_used": false,
+    "manufacturer_cad_used": false,
+    "copied_textures_used": false,
+    "opaque_addons_used": false
+  },
+  "shared_generator": {
+    "path": "../../scripts/fleet/build_machine.py",
+    "sha256": "02b99250651741b462b3dae8b2471db723beb689dfe89e1c7e251d7402fe0f55",
+    "bytes": 78579
+  },
+  "design": {
+    "path": "source/design.json",
+    "sha256": "b32305b278511c73c6e585cf896ca6a647b1c0bc8358d295c22683f2857370f6",
+    "bytes": 1219,
+    "schema_version": "1.0.0"
+  },
+  "artifacts": {
+    "blend": {
+      "path": "source/blender/volvo-a40j-structural-study.blend",
+      "sha256": "bd54062d08e3420dbcaceadfb1eed0b5c12900cf13b17a527d717fb426406b7d",
+      "bytes": 244187
+    },
+    "glb": {
+      "path": "assets/volvo-a40j-structural-study.glb",
+      "sha256": "bb2f522b3e53f8e3b6ca260952f7eb32c7f2bfb50a846be74ba2cd40b8285d5d",
+      "bytes": 1413016
+    },
+    "validation": {
+      "path": "production/validation.json",
+      "sha256": "36acf0de1dd41e2fd7bbd44a81e553a3eb7e031224d6a6bfd5d31ecc4062f8b6",
+      "bytes": 8408
+    }
+  },
+  "scene": {
+    "units": "meters",
+    "axes": {
+      "longitudinal": "+X forward",
+      "vertical": "+Y up",
+      "lateral": "+Z machine right"
+    },
+    "bounds": {
+      "min_m": [
+        -5.6305,
+        0.0,
+        -1.7005
+      ],
+      "max_m": [
+        5.6305,
+        3.626,
+        1.7005
+      ],
+      "size_m": [
+        11.261,
+        3.626,
+        3.401
+      ]
+    },
+    "visible_aabb_xyz_m": [
+      11.261,
+      3.626,
+      3.401
+    ],
+    "objects": 215,
+    "meshes": 190,
+    "triangles": 26976,
+    "materials": 6
+  },
+  "glb_contract": {
+    "glb_version": "2.0",
+    "scene_count": 1,
+    "scene_root_count": 1,
+    "root_name": "Machine_Root",
+    "root_record": {},
+    "identity_root": true,
+    "nodes": 215,
+    "mesh_nodes": 190,
+    "mesh_definitions": 190,
+    "materials": 6,
+    "triangles": 26976,
+    "cameras": 0,
+    "punctual_lights": false,
+    "images": 0,
+    "textures": 0,
+    "nonidentity_mesh_scales": {},
+    "helper_like_mesh_nodes": [],
+    "semantic_motion_nodes": 24,
+    "bounds": {
+      "min_m": [
+        -5.6305,
+        0.0,
+        -1.7005
+      ],
+      "max_m": [
+        5.6305,
+        3.626,
+        1.7005
+      ],
+      "size_m": [
+        11.261,
+        3.626,
+        3.401
+      ]
+    }
+  },
+  "required_semantic_nodes": {
+    "Machine_Root": true,
+    "Fixed_Structure_ROOT": true,
+    "Running_Gear_ROOT": true,
+    "Hydraulics_ROOT": true,
+    "Service_Detail_ROOT": true,
+    "Chassis_Yaw_Pivot": true,
+    "Front_Frame_ROOT": true,
+    "Rear_Frame_ROOT": true,
+    "Bed_Tip_Pivot": true,
+    "Bed_ROOT": true
+  },
+  "manufacturer_published_constraints_used": [
+    "public-envelope-x",
+    "public-envelope-y",
+    "public-envelope-z",
+    "ground-clearance",
+    "articulation-range",
+    "body-tip-angle"
+  ],
+  "reconstructed_values": {
+    "hidden_geometry": "All articulation and oscillation centers, bogies, body hinge, cylinder anchors, underbody, tire surfaces, motion curves and internal construction are reconstructed visualization choices.",
+    "dump_hoist_geometry": "Twin low-profile tipping cylinders, moving clevises and final under-bed knuckles are independently reconstructed. They remain rigidly below the bed floor through the bounded 0 to 69 degree Bed_ROOT presentation; this is not a kinematic or load solver.",
+    "generic_archetype_geometry": "articulated_hauler proportions and visible detail are independently reconstructed for this technical study.",
+    "visible_envelope_calibration": {
+      "classification": "reconstructed_visible_envelope_calibration",
+      "source_bounds_m": {
+        "min_m": [
+          -5.51789,
+          0.0,
+          -1.7005
+        ],
+        "max_m": [
+          4.5044,
+          3.626,
+          1.7005
+        ],
+        "size_m": [
+          10.02229,
+          3.626,
+          3.401
+        ]
+      },
+      "target_bounds_m": {
+        "min_m": [
+          -5.6305,
+          0.0,
+          -1.7005
+        ],
+        "max_m": [
+          5.6305,
+          3.626,
+          1.7005
+        ],
+        "size_m": [
+          11.261,
+          3.626,
+          3.401
+        ]
+      },
+      "axis_scale_factors": [
+        1.12359548,
+        0.999999954,
+        0.999999993
+      ],
+      "calibrated_bounds_m": {
+        "min_m": [
+          -5.6305,
+          0.0,
+          -1.7005
+        ],
+        "max_m": [
+          5.6305,
+          3.626,
+          1.7005
+        ],
+        "size_m": [
+          11.261,
+          3.626,
+          3.401
+        ]
+      },
+      "authority": "reconstructed_not_machine_specific_engineering"
+    }
+  },
+  "unresolved_choices": [
+    "exact regional order",
+    "body liner and heating",
+    "cab, lighting and weighing hardware"
+  ],
+  "mechanical_gaps": [
+    "No authoritative articulation, bogie or dump-body solver",
+    "No collision or swept-volume proof"
+  ],
+  "renders": [
+    {
+      "path": "review/renders/volvo-a40j-operator-side.png",
+      "sha256": "e5001b2ce5ea4248abff07cbf7fc1ff46bfd988e4df5f9bdd17f6bbe44bdeaec",
+      "bytes": 233011
+    },
+    {
+      "path": "review/renders/volvo-a40j-front-three-quarter.png",
+      "sha256": "dfcaf55caa9e060ec3580f482475823c097bcf6e83d5b479e6ce30da273b9680",
+      "bytes": 269864
+    },
+    {
+      "path": "review/renders/volvo-a40j-rear-three-quarter.png",
+      "sha256": "1e64e376546eb256a25a43f4de7edcbd07b6648c0db0d630ec17b7698787ba5c",
+      "bytes": 258678
+    },
+    {
+      "path": "review/renders/volvo-a40j-elevated-technical.png",
+      "sha256": "d4242307fdb5652e3d6a41f6938c2152f11c4d89c5e85c346a5b34c1ad77d0ab",
+      "bytes": 349306
+    },
+    {
+      "path": "review/renders/volvo-a40j-articulation-detail.png",
+      "sha256": "3c3b59543f3c2dc11354dde1999276e98bbfe8f29ff7b57aa516bede96dfa879",
+      "bytes": 294338
+    },
+    {
+      "path": "review/renders/volvo-a40j-right-side.png",
+      "sha256": "522218b3465810f7e012b20d99aec71ad4eb67e4f276ba12bfedfc41c26a2099",
+      "bytes": 231217
+    }
+  ],
+  "build_verdict": "PASS",
+  "validation_verdict": "PASS",
+  "validation_path": "production/validation.json",
+  "higher_stage_gates": "PENDING"
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "vermeer-zr5-1200",
+  "configuration_id": "VERMEER-ZR5-1200-NA26-STAGEV-STDPICKUP-NET-RAMP-CANDIDATE",
+  "coordinate_system": {"longitudinal":"+X toward cab and front axle","vertical":"+Y","lateral":"+Z machine right"},
+  "joints": [
+    {"id":"four_wheel_counter_steering","type":"four_revolute_linkage","axis":"+Y nominal","authority":"reconstructed","source_ids":["VERMEER-ZR5-PRODUCT-2026"],"unresolved":["kingpin centers, zero-turn angles, counter-steer relationship, tie rods and hydraulic anchors"]},
+    {"id":"independent_double_A_arm_suspension","type":"four_independent_hydraulic_linkages","axis":"+Y nominal","authority":"reconstructed","source_ids":["VERMEER-ZR5-PRODUCT-2026"],"unresolved":["control-arm pivots, cylinder anchors, travel, damping and body response"]},
+    {"id":"pickup_raise_lower","type":"hydraulic_linkage","authority":"reconstructed","source_ids":["VERMEER-ZR5-PRODUCT-2026","VERMEER-ZR5-LITERATURE-2024-09"],"unresolved":["pickup pivot, lift cylinder anchors, stow and work endpoints"]},
+    {"id":"pickup_reel_rotation","type":"revolute_cammed_five_bar","axis":"+Z nominal","authority":"reconstructed","source_ids":["VERMEER-ZR5-PRODUCT-2026"],"unresolved":["cam track, tine phase, angular rate and tooth flexibility"]},
+    {"id":"chamber_belt_and_roller_motion","type":"multiple_revolute_and_belt_paths","authority":"reconstructed","source_ids":["VERMEER-ZR5-PRODUCT-2026"],"unresolved":["all roller centers, belt routing, belt tension, direction and speed; normally hidden"]},
+    {"id":"tailgate_raise_lower","type":"hydraulic_revolute_linkage","authority":"reconstructed","source_ids":["VERMEER-ZR5-PRODUCT-2026","VERMEER-ZR5-LITERATURE-2024-09"],"unresolved":["tailgate hinge, cylinder anchors, opening angle, locks and belt clearance"]},
+    {"id":"quarter_turn_ramp","type":"compound_bale_ejection_linkage","authority":"reconstructed","source_ids":["VERMEER-ZR5-PRODUCT-2026"],"unresolved":["ramp hinge, actuator, bale contact, quarter-turn trajectory, timing and safety envelope"]}
+  ],
+  "motion_channels": [
+    {"id":"pickup","label":"Pickup lift and reel","joints":["pickup_raise_lower","pickup_reel_rotation"],"presentation_range":[0,1],"authority":"reconstructed"},
+    {"id":"bale_cycle","label":"Cutaway chamber and bale cycle","joints":["chamber_belt_and_roller_motion"],"presentation_range":[0,1],"authority":"reconstructed"},
+    {"id":"tailgate_eject","label":"Tailgate and quarter-turn ramp","joints":["tailgate_raise_lower","quarter_turn_ramp"],"presentation_range":[0,1],"authority":"reconstructed"},
+    {"id":"steer_ride","label":"Counter-steering and suspension","joints":["four_wheel_counter_steering","independent_double_A_arm_suspension"],"presentation_range":[0,1],"authority":"reconstructed"}
+  ],
+  "required_gates": ["published_static_envelope","four_tire_contact","pickup_width_and_count_cues","pickup_ground_clearance","tailgate_chamber_clearance","quarter_turn_bale_path","suspension_continuity","zero_turn_wheel_clearance","ground_collision","self_collision","swept_volume_collision"],
+  "release_state": "no_geometry_no_solver_no_claim"
+}

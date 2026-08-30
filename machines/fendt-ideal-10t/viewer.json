@@ -1,0 +1,111 @@
+{
+  "schema_version": "1.0.0",
+  "machineId": "fendt-ideal-10t",
+  "displayName": "Fendt IDEAL 10T",
+  "className": "Tracked combine harvester",
+  "category": "Harvesting",
+  "assets": {
+    "glb": "machines/fendt-ideal-10t/assets/fendt-ideal-10t-structural-study.glb",
+    "configuration": "machines/fendt-ideal-10t/configuration.json",
+    "facts": "machines/fendt-ideal-10t/evidence/facts.json",
+    "receipt": "machines/fendt-ideal-10t/production/asset-receipt.json",
+    "validation": "machines/fendt-ideal-10t/production/validation.json",
+    "poster": "machines/fendt-ideal-10t/review/renders/fendt-ideal-10t-front-three-quarter.png"
+  },
+  "evidence": {
+    "boundary": "Unofficial neutral structural study. Published sources bind the named configuration, selected envelope facts, capacities, and visible functional topology. Geometry, hidden pivots, anchors, motion arcs, timing, track phase, collision behavior, materials, and choreography are reconstructed presentation choices, not manufacturer CAD, operational guidance, or a digital twin.",
+    "lede": "International Stage V IDEAL 10T presentation freeze with front TrakRide tracks, rear steering tyres, a 10.70 m PowerFlow header, Streamer 210 grain system, 8.4 m folding unloader, and standard ActiveSpread SwingFlow.",
+    "factIds": [
+      "maximum-power",
+      "carrier-length-without-header",
+      "selected-carrier-width",
+      "carrier-height",
+      "selected-powerflow-width",
+      "header-raised-ground-clearance",
+      "header-tilt-compensation",
+      "streamer-210-capacity",
+      "streamer-210-rate",
+      "selected-discharge-tube",
+      "active-spread-swingflow-standard"
+    ]
+  },
+  "camera": {
+    "azimuth": -0.72,
+    "elevation": 0.34,
+    "distance": 19.6
+  },
+  "accent": "#c9a24d",
+  "motion": {
+    "autoplay": true,
+    "durationSeconds": 18,
+    "mode": "sine",
+    "damping": 5.5,
+    "channels": [
+      {
+        "id": "running-gear-inspection",
+        "label": "Tracked running gear inspection",
+        "nodes": [
+          "Track_L_Front_Wheel",
+          "Track_L_Rear_Wheel",
+          "Track_L_Roller_01",
+          "Track_L_Roller_02",
+          "Track_L_Roller_03",
+          "Track_L_Roller_04",
+          "Track_L_Roller_05",
+          "Track_R_Front_Wheel",
+          "Track_R_Rear_Wheel",
+          "Track_R_Roller_01",
+          "Track_R_Roller_02",
+          "Track_R_Roller_03",
+          "Track_R_Roller_04",
+          "Track_R_Roller_05",
+          "Rear_L_Wheel_ROOT",
+          "Rear_R_Wheel_ROOT"
+        ],
+        "property": "rotation.z",
+        "from": 0,
+        "to": 1.25,
+        "phase": 0,
+        "direction": 1,
+        "mode": "offset",
+        "autoplay": "sine"
+      },
+      {
+        "id": "header-lift",
+        "label": "Crop-elevator header lift",
+        "nodes": ["Header_ROOT"],
+        "property": "rotation.z",
+        "from": 0,
+        "to": -0.22,
+        "phase": 0.12,
+        "direction": 1,
+        "mode": "offset",
+        "autoplay": "sine"
+      },
+      {
+        "id": "reel-inspection",
+        "label": "PowerFlow reel inspection rotation",
+        "nodes": ["Reel_ROOT"],
+        "property": "rotation.z",
+        "from": 0,
+        "to": 1.57,
+        "phase": 0.24,
+        "direction": -1,
+        "mode": "offset",
+        "autoplay": "sine"
+      },
+      {
+        "id": "unloader-deploy",
+        "label": "Unloading-auger presentation sweep",
+        "nodes": ["Unloader_ROOT"],
+        "property": "rotation.y",
+        "from": 0,
+        "to": -1.12,
+        "phase": 0.50,
+        "direction": 1,
+        "mode": "offset",
+        "autoplay": "sine"
+      }
+    ]
+  }
+}

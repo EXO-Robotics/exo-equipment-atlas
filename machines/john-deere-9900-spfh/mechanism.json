@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-9900-spfh",
+  "configuration_id": "JD-9900SPFH-MY2024-NA-282DZ-4005-0415KM-5597-33M-CANDIDATE",
+  "coordinate_system": {
+    "longitudinal": "+X toward the 772 header",
+    "vertical": "+Y",
+    "lateral": "+Z machine right"
+  },
+  "joints": [
+    {"id":"header-lift","type":"hydraulic_attachment_lift","axis":"+Z nominal","authority":"reconstructed","source_ids":["JD-HAY-FORAGE-ORDER-GUIDE-2024-02"],"published_constraints":["header-length","header-height","public-envelope-z"],"unresolved":["attaching-frame pivot","lift-cylinder anchors and stroke","lift limits and header-to-ground clearance"]},
+    {"id":"header-fold","type":"double_hydraulic_outer_gatherer_fold","authority":"reconstructed","source_ids":["JD-HAY-FORAGE-ORDER-GUIDE-2024-02"],"published_constraints":["header-working-width","header-transport-width"],"unresolved":["wing pivot coordinates","fold order and timing","locks and folded swept volume"]},
+    {"id":"header-cutting-and-gathering","type":"row_independent_counter_rotating_array","authority":"reconstructed","source_ids":["JD-HAY-FORAGE-ORDER-GUIDE-2024-02"],"unresolved":["rotor count and centers","direction, phase and speed","crop interaction"]},
+    {"id":"feedrolls","type":"four_roller_crop_flow_cutaway","authority":"reconstructed","source_ids":["JD-HAY-FORAGE-ORDER-GUIDE-2024-02"],"published_constraints":["feedroll-count"],"unresolved":["hidden centers and diameters","spring and hydraulic dampening geometry","speed, direction and crop interaction"]},
+    {"id":"dura-drum-cutterhead","type":"continuous_revolute_cutaway","axis":"+Z nominal","authority":"reconstructed","source_ids":["JD-HAY-FORAGE-ORDER-GUIDE-2024-02"],"published_constraints":["cutterhead-width","cutterhead-diameter","selected-knife-count","selected-cutterhead-speed"],"unresolved":["hidden shaft center","knife and holder construction","shearbar gap and sharpening mechanism","crop interaction"]},
+    {"id":"crop-accelerator","type":"continuous_revolute_cutaway","axis":"+Z nominal","authority":"reconstructed","source_ids":["JD-HAY-FORAGE-ORDER-GUIDE-2024-02"],"published_constraints":["accelerator-width","accelerator-diameter","accelerator-speed"],"unresolved":["hidden center","paddle construction","crop-flow and load behavior"]},
+    {"id":"high-arch-spout-yaw","type":"revolute","axis":"+Y nominal","authority":"reconstructed","source_ids":["JD-HAY-FORAGE-ORDER-GUIDE-2024-02"],"published_constraints":["spout-swing"],"unresolved":["turntable center","stowed orientation","actuator and bearing geometry","swept-volume clearance"]},
+    {"id":"spout-outlet-flap","type":"revolute","axis":"+Z nominal","authority":"reconstructed","source_ids":["JD-HAY-FORAGE-ORDER-GUIDE-2024-02"],"unresolved":["hinge coordinate","range and actuator","crop trajectory"]}
+  ],
+  "presentation_motion": {
+    "sequence": ["header lift cue","feedroll rotation cue","high-arch spout sweep","outlet flap trim"],
+    "boundary": "Autoplay is a slow visual explanation. It does not model crop flow, cutterhead load, spout trajectory, hydraulic timing, stability, road transport or safe operating limits."
+  },
+  "required_gates": [
+    "frozen_282DZ_4005_0415KM_5597_configuration",
+    "selected_772_overall_width",
+    "carrier_3_3m_width_class",
+    "header_lift_continuity",
+    "feedroll_continuity",
+    "spout_yaw_and_tip_continuity",
+    "header_carrier_spout_clearance",
+    "ground_collision",
+    "self_collision",
+    "neutral_unbranded_material_review"
+  ],
+  "release_state": "no_geometry_no_solver_no_claim"
+}

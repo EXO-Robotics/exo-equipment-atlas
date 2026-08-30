@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0.0",
+  "machineId": "kubota-m8-201",
+  "displayName": "Kubota M8-201",
+  "className": "High-horsepower wheeled tractor",
+  "category": "Agriculture",
+  "assets": {
+    "glb": "machines/kubota-m8-201/assets/kubota-m8-201-structural-study.glb",
+    "configuration": "machines/kubota-m8-201/configuration.json",
+    "facts": "machines/kubota-m8-201/evidence/facts.json",
+    "receipt": "machines/kubota-m8-201/production/asset-receipt.json",
+    "validation": "machines/kubota-m8-201/production/validation.json",
+    "poster": "machines/kubota-m8-201/review/renders/kubota-m8-201-front-three-quarter.png"
+  },
+  "evidence": {
+    "boundary": "Independent current North American M8-201 KVT presentation candidate. Overall length and width, tires, materials, steering and suspension pivots, hitch geometry, PTO detail, and every motion curve remain reconstructed.",
+    "lede": "The active product identity and a 200 hp Cummins B6.7, 159 PTO hp, KVT, 55-degree steering reference, 2.895 m wheelbase, 3.25 m height, and standard 5080 kg rear hitch are manufacturer-published. The neutral model demonstrates topology rather than engineering behavior.",
+    "factIds": [
+      "rated-engine-power",
+      "rated-pto-power",
+      "wheelbase",
+      "public-envelope-y",
+      "front-axle-turning-angle",
+      "standard-rear-hitch-capacity"
+    ]
+  },
+  "camera": {
+    "azimuth": 0.68,
+    "elevation": 0.34,
+    "distance": 1.55
+  },
+  "accent": "#c39a45",
+  "motion": {
+    "autoplay": true,
+    "durationSeconds": 10,
+    "mode": "sine",
+    "damping": 7,
+    "channels": [
+      {
+        "id": "front-steering",
+        "label": "Front steering",
+        "nodes": ["Steering_L_Pivot", "Steering_R_Pivot"],
+        "property": "rotation.y",
+        "from": -0.48,
+        "to": 0.48,
+        "phase": 0,
+        "mode": "offset"
+      },
+      {
+        "id": "field-travel",
+        "label": "Field travel",
+        "nodes": ["Front_L_Wheel_Pivot", "Front_R_Wheel_Pivot", "Rear_L_Wheel_Pivot", "Rear_R_Wheel_Pivot"],
+        "property": "rotation.z",
+        "from": 0,
+        "to": 6.283185307179586,
+        "phase": 0,
+        "mode": "offset"
+      },
+      {
+        "id": "front-axle-ride",
+        "label": "Suspended front axle",
+        "nodes": ["Front_Axle_Oscillation_Pivot"],
+        "property": "rotation.x",
+        "from": -0.07,
+        "to": 0.07,
+        "phase": 0.25,
+        "mode": "offset"
+      },
+      {
+        "id": "rear-hitch",
+        "label": "Rear three-point hitch",
+        "nodes": ["Rear_Hitch_Pivot"],
+        "property": "rotation.z",
+        "from": 0,
+        "to": -0.42,
+        "phase": 0.5,
+        "mode": "offset"
+      },
+      {
+        "id": "rear-pto",
+        "label": "Rear PTO",
+        "nodes": ["PTO_ROOT"],
+        "property": "rotation.x",
+        "from": 0,
+        "to": 6.283185307179586,
+        "phase": 0.1,
+        "mode": "offset"
+      }
+    ]
+  }
+}

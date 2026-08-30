@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "new-holland-cr11",
+  "configuration_id": "NH-CR11-NAM-C16-WHEEL2WD-GT567-UR6-TWINCLEAN-DISC45-CANDIDATE",
+  "freeze_date": "2026-08-29",
+  "repository_policy": {
+    "source_binaries_committed": false,
+    "manufacturer_geometry_committed": false,
+    "manual_illustrations_are_scale_drawings": false,
+    "verification": "Official North American brochure and product page establish the selected wheeled configuration and cited values. Illustrations are visual references, not scale drawings or hidden-joint authority."
+  },
+  "sources": [
+    {
+      "id": "NH-CR10-CR11-NAM-BROCHURE-2025",
+      "publisher": "New Holland / CNH Industrial America LLC",
+      "kind": "official_brochure",
+      "title": "CR Series Twin Rotor Combines - CR10 CR11",
+      "publication": "NH29024D19",
+      "market": "Canada and United States",
+      "pages": 32,
+      "retrieved": "2026-08-29",
+      "official_url": "https://cnhi-p-001-delivery.sitecorecontenthub.cloud/api/public/content/88f92bf1e3654507a3852e6b58ddeace?v=a59812b3",
+      "local_path": "research/private/new-holland-cr11/primary-source.pdf",
+      "sha256": "f5e831f615113469af0312047a1f82ed1c3fb4e18612bbf402b1184c0576836c",
+      "bytes": 8719267,
+      "admission": "primary",
+      "applicability": "Copyright 2025 North American brochure; establishes CR11 engine, rotors, TwinClean, 567-bushel and 6.0-bushel-per-second options, wheeled and tracked running gear, auger sweep, residue packages and dimensional rows."
+    },
+    {
+      "id": "NH-NEXTGEN-CR-NAM-PRODUCT-2026",
+      "publisher": "New Holland / CNH Industrial America LLC",
+      "kind": "official_product_page",
+      "title": "Next-Gen CR Series Twin Rotor Combines",
+      "market": "North America",
+      "retrieved": "2026-08-29",
+      "official_url": "https://agriculture.newholland.com/en-us/nar/products/combines-and-headers/next-gen-cr-series-twin-rotor-combines",
+      "admission": "primary",
+      "applicability": "Current North American product identity and high-level mechanism description for the CR11."
+    }
+  ]
+}

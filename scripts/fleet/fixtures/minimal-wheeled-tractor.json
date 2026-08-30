@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "fleet-builder-fixture",
+  "display_name": "Fleet Builder Fixture",
+  "configuration_id": "FLEET-BUILDER-FIXTURE-CANDIDATE",
+  "archetype": "wheeled_tractor",
+  "dimensions_m": {
+    "length": 5.8,
+    "width": 2.65,
+    "height": 3.15
+  },
+  "palette": "oxide",
+  "published_constraints_used": [],
+  "reconstructed_values": {
+    "hidden_geometry": "All hidden geometry, pivots, anchors, proportions, and detail placement are reconstructed visualization choices."
+  },
+  "unresolved_choices": [
+    "fixture has no manufacturer or order identity"
+  ],
+  "mechanical_gaps": [
+    "fixture articulation is structural only and has no validated limits or collision solver"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "machineId": "cat-725",
+  "displayName": "Cat 725",
+  "className": "Articulated dump truck",
+  "category": "Hauling",
+  "assets": {
+    "glb": "machines/cat-725/assets/cat-725-structural-study.glb",
+    "configuration": "machines/cat-725/configuration.json",
+    "facts": "machines/cat-725/evidence/facts.json",
+    "receipt": "machines/cat-725/production/asset-receipt.json",
+    "validation": "machines/cat-725/production/validation.json"
+  },
+  "evidence": {
+    "boundary": "Independent 05A standard-body study. Articulation centers, suspension, hoist anchors, tire construction, and load behavior remain reconstructed.",
+    "lede": "Published dimensions constrain the three-axle carrier, 24 t body, 45° steering range, suspension oscillation, and 70° tip reference. Hidden joints remain reconstructed.",
+    "factIds": [
+      "overall-length",
+      "overall-width",
+      "height-transport-position",
+      "rated-payload"
+    ]
+  },
+  "camera": {
+    "azimuth": 0.65,
+    "elevation": 0.31,
+    "distance": 1.55
+  },
+  "accent": "#c9873b"
+}

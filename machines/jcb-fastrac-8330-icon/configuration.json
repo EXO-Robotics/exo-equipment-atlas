@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "jcb-fastrac-8330-icon",
+  "configuration_id": "JCB-F8330-ICON-NA26-AG-VF540R38-VF710R42-FL35-RL10-CANDIDATE",
+  "status": "research_candidate",
+  "identity": {
+    "manufacturer": "JCB",
+    "brand": "JCB",
+    "model": "Fastrac 8330 iCON",
+    "product_class": "high_speed_wheeled_tractor",
+    "market": "North America presentation with 8000-series static geometry cross-reference"
+  },
+  "choices": {
+    "application": "agricultural",
+    "transmission": "AGCO_ML260_CVT",
+    "tires": "VF_540_65R38_front_and_VF_710_60R42_rear",
+    "rear_linkage": "Category_3_with_10000_kg_capacity",
+    "front_linkage": "optional_3500_kg_front_lift_selected_with_reconstructed_three_point_presentation",
+    "rear_pto": "540E_and_1000_rpm",
+    "public_finish": "neutral_unbranded_slate_and_amber"
+  },
+  "excluded_options": [
+    "utility tire packages",
+    "row-crop narrow tire package",
+    "front PTO",
+    "RapidSteer",
+    "manufacturer logos and protected livery"
+  ],
+  "unresolved_choices": [
+    "exact dealer order and serial number",
+    "US-market tire availability for the selected European static-dimension basis",
+    "cab trim, lighting, ballast, rear-deck implement, and hydraulic remote package",
+    "exact suspension cylinder anchors and control law",
+    "exact front-lift category, order code, attachment geometry, fold details, and dealer applicability beyond the published optional 3500 kg capacity",
+    "public material and branding authorization"
+  ],
+  "boundary": "Technical structural study only. JCB-published dimensions, component functions, and the optional 3500 kg front-lift capacity constrain the visible study. The displayed front three-point layout is a selected reconstructed presentation and does not claim a manufacturer-published Category 3N class or geometry. Suspension axes, steering linkages, hitch pivots, PTO geometry, tire carcasses, motion curves, collision envelopes, and hidden construction are reconstructed and are not manufacturer authority."
+}

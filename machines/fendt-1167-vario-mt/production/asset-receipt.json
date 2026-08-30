@@ -1,0 +1,281 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "fendt-1167-vario-mt",
+  "configuration_id": "FENDT-1167-NA-T4F-SG30-SRPLUS-3PT-CANDIDATE",
+  "configuration_status": "research_candidate",
+  "archetype": "twin_track_tractor",
+  "candidate_class": "technical_structural_study",
+  "engineering_authority": false,
+  "authority_boundary": "Independently authored neutral technical structural study. Not manufacturer CAD, engineering authority, load guidance, operator training, safety guidance, a digital twin, or a mechanically validated candidate.",
+  "rights_boundary": "Neutral unbranded procedural geometry and materials; no manufacturer CAD, logo, copied texture, or protected livery claim.",
+  "release_status": "PENDING",
+  "blender": {
+    "version": "5.1.1",
+    "factory_startup_required": true,
+    "background_required": true
+  },
+  "builder": {
+    "path": "source/blender/build_fendt_1167_vario_mt.py",
+    "sha256": "225f342e8e5a437bd8a47c03beaba9664f697a3cc954dd0ed3faa5e00ea18635",
+    "bytes": 6010,
+    "deterministic": true,
+    "network_used": false,
+    "downloaded_geometry_used": false,
+    "manufacturer_cad_used": false,
+    "copied_textures_used": false,
+    "opaque_addons_used": false
+  },
+  "shared_generator": {
+    "path": "../../scripts/fleet/build_machine.py",
+    "sha256": "02b99250651741b462b3dae8b2471db723beb689dfe89e1c7e251d7402fe0f55",
+    "bytes": 78579
+  },
+  "design": {
+    "path": "source/design.json",
+    "sha256": "db54d8f8b6a0101d35b9ffe68fa312f08430b03348058b619b70f5c9f26d1dbd",
+    "bytes": 2679,
+    "schema_version": "1.0.0"
+  },
+  "artifacts": {
+    "blend": {
+      "path": "source/blender/fendt-1167-vario-mt-structural-study.blend",
+      "sha256": "d5032934010363b708e0166e28eef70831980e7d825568004148c951755ef6ff",
+      "bytes": 216350
+    },
+    "glb": {
+      "path": "assets/fendt-1167-vario-mt-structural-study.glb",
+      "sha256": "de758118a790b42c16c7cc8b9ba79fdc4cd52d1032c67eb4f8c353049957012e",
+      "bytes": 1459652
+    },
+    "validation": {
+      "path": "production/validation.json",
+      "sha256": "0aee6aace770105c9fdcb7c42a2b014826fa7042c2119d9962b5b3d27636489b",
+      "bytes": 10068
+    }
+  },
+  "scene": {
+    "units": "meters",
+    "axes": {
+      "longitudinal": "+X forward",
+      "vertical": "+Y up",
+      "lateral": "+Z machine right"
+    },
+    "bounds": {
+      "min_m": [
+        -3.379,
+        -0.0,
+        -1.475
+      ],
+      "max_m": [
+        3.379,
+        3.754,
+        1.475
+      ],
+      "size_m": [
+        6.758,
+        3.754,
+        2.95
+      ]
+    },
+    "visible_aabb_xyz_m": [
+      6.758,
+      3.754,
+      2.95
+    ],
+    "objects": 204,
+    "meshes": 190,
+    "triangles": 28472,
+    "materials": 5
+  },
+  "glb_contract": {
+    "glb_version": "2.0",
+    "scene_count": 1,
+    "scene_root_count": 1,
+    "root_name": "Machine_Root",
+    "root_record": {},
+    "identity_root": true,
+    "nodes": 204,
+    "mesh_nodes": 190,
+    "mesh_definitions": 190,
+    "materials": 5,
+    "triangles": 28472,
+    "cameras": 0,
+    "punctual_lights": false,
+    "images": 0,
+    "textures": 0,
+    "nonidentity_mesh_scales": {},
+    "helper_like_mesh_nodes": [],
+    "semantic_motion_nodes": 13,
+    "bounds": {
+      "min_m": [
+        -3.379,
+        -0.0,
+        -1.475
+      ],
+      "max_m": [
+        3.379,
+        3.754,
+        1.475
+      ],
+      "size_m": [
+        6.758,
+        3.754,
+        2.95
+      ]
+    }
+  },
+  "required_semantic_nodes": {
+    "Machine_Root": true,
+    "Fixed_Structure_ROOT": true,
+    "Running_Gear_ROOT": true,
+    "Hydraulics_ROOT": true,
+    "Service_Detail_ROOT": true,
+    "Track_L_ROOT": true,
+    "Track_R_ROOT": true,
+    "SmartRide_Level_ROOT": true,
+    "Cab_Suspension_ROOT": true,
+    "Rear_Hitch_Pivot": true,
+    "Rear_Hitch_ROOT": true,
+    "Drawbar_Pivot": true
+  },
+  "manufacturer_published_constraints_used": [
+    "public-envelope-x",
+    "public-envelope-y",
+    "public-envelope-z",
+    "ground-clearance",
+    "track-wheelbase",
+    "selected-track-belt-width",
+    "midwheel-sets-per-side",
+    "smartride-hardbar-travel",
+    "cab-rear-suspension-travel"
+  ],
+  "reconstructed_values": {
+    "front_idler_radius_m": 0.64,
+    "rear_drive_radius_m": 0.76,
+    "midwheel_radius_m": 0.19,
+    "midwheel_sets_per_side": 4,
+    "midwheel_set_authority": "count is manufacturer-published; diameters, pair spacing, pivots and rocker geometry are reconstructed",
+    "track_frame_visual_length_m": 4.08,
+    "belt_visual_thickness_m": 0.1,
+    "chassis_lower_height_m": 0.88,
+    "hood_visual_length_m": 2.82,
+    "cab_visual_length_m": 1.68,
+    "rear_hitch_visual_reach_m": 0.76,
+    "rear_hitch_pivot_height_ratio": 0.28,
+    "drawbar_pivot_height_ratio": 0.24,
+    "rear_interface_attachment_note": "Machine-local reconstructed rest-pose continuity calibration. The hitch and drawbar meshes overlap the chassis and each other in the retained pose; these height ratios are visualization choices, not manufacturer-published pivot coordinates or operating limits.",
+    "neutral_material_policy": "matte slate body, dark rubber, graphite running gear, clear neutral glazing, no logos or decals",
+    "hidden_geometry": "All hidden structure, pivot centers, anchors, linkage proportions, underbody volumes, and internal geometry are reconstructed visualization choices unless a design record explicitly identifies a manufacturer-published envelope constraint.",
+    "generic_archetype_geometry": "twin_track_tractor proportions and visible detail are independently reconstructed for this technical study.",
+    "visible_envelope_calibration": {
+      "classification": "reconstructed_visible_envelope_calibration",
+      "source_bounds_m": {
+        "min_m": [
+          -3.31142,
+          -0.003939,
+          -1.475
+        ],
+        "max_m": [
+          2.3653,
+          3.754,
+          1.475
+        ],
+        "size_m": [
+          5.67672,
+          3.757939,
+          2.95
+        ]
+      },
+      "target_bounds_m": {
+        "min_m": [
+          -3.379,
+          0.0,
+          -1.475
+        ],
+        "max_m": [
+          3.379,
+          3.754,
+          1.475
+        ],
+        "size_m": [
+          6.758,
+          3.754,
+          2.95
+        ]
+      },
+      "axis_scale_factors": [
+        1.190476211,
+        0.998951736,
+        0.999999984
+      ],
+      "calibrated_bounds_m": {
+        "min_m": [
+          -3.379,
+          -0.0,
+          -1.475
+        ],
+        "max_m": [
+          3.379,
+          3.754,
+          1.475
+        ],
+        "size_m": [
+          6.758,
+          3.754,
+          2.95
+        ]
+      },
+      "authority": "reconstructed_not_machine_specific_engineering"
+    }
+  },
+  "unresolved_choices": [
+    "Exact production track, gauge, ballast and hitch option combination",
+    "All belt, idler, drive-wheel, midwheel and track-frame profiles",
+    "Exact body panel, hood, grille, cab, glazing and service-platform surfacing",
+    "All hidden suspension, SmartRide Plus, cab, hitch and drawbar pivots and actuators",
+    "Any manufacturer colors, graphics, decals, badges or copied texture details"
+  ],
+  "mechanical_gaps": [
+    "Track belts are a rigid visual abstraction without physical lug engagement, tension, deformation, slip or soil interaction.",
+    "Hardbar, midwheel and SmartRide Plus transforms are reconstructed demonstrations and do not form a validated suspension solver.",
+    "Cab movement is a bounded visual study, not a measured sprung-mass response.",
+    "Three-point and drawbar motions omit implement mass, hydraulics, PTO driveline, hoses and verified swept-volume closure.",
+    "Cooling, engine, transmission, aftertreatment and hydraulic internals are not modeled."
+  ],
+  "renders": [
+    {
+      "path": "review/renders/fendt-1167-vario-mt-operator-side.png",
+      "sha256": "0fbca35f65a95ade12fc00cec50216da21bf130a361df1c2304a1998b84adf9b",
+      "bytes": 274889
+    },
+    {
+      "path": "review/renders/fendt-1167-vario-mt-front-three-quarter.png",
+      "sha256": "8341497a9dfe5690451530bd3cb23b45d2f581d631f8e142b7800cccbcf91d64",
+      "bytes": 325212
+    },
+    {
+      "path": "review/renders/fendt-1167-vario-mt-rear-three-quarter.png",
+      "sha256": "5c256356f84ea4b7858830a88905d7b22c74068369130bb36b39fafa573f8d13",
+      "bytes": 321075
+    },
+    {
+      "path": "review/renders/fendt-1167-vario-mt-elevated-technical.png",
+      "sha256": "1bc620138027817afce677c55f2421efeff0afbdc5d9705e2764b2b066e6b52f",
+      "bytes": 366871
+    },
+    {
+      "path": "review/renders/fendt-1167-vario-mt-articulation-detail.png",
+      "sha256": "c30d9980c2a58091d06334bfd6dac12f28d8f22b2adc0623a0757736a9ab9af2",
+      "bytes": 350984
+    },
+    {
+      "path": "review/renders/fendt-1167-vario-mt-right-side.png",
+      "sha256": "c158beb8b8586631fa7e369cc2dabf584b5373a37ddacbe41f63c41b1e5d95be",
+      "bytes": 276230
+    }
+  ],
+  "build_verdict": "PASS",
+  "validation_verdict": "PASS",
+  "validation_path": "production/validation.json",
+  "higher_stage_gates": "PENDING"
+}

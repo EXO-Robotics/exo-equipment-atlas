@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0.0",
+  "machineId": "komatsu-pc210lc-11",
+  "displayName": "Komatsu PC210LC-11",
+  "className": "Crawler excavator",
+  "category": "Construction and earthmoving",
+  "assets": {
+    "glb": "machines/komatsu-pc210lc-11/assets/komatsu-pc210lc-11-structural-study.glb",
+    "configuration": "machines/komatsu-pc210lc-11/configuration.json",
+    "facts": "machines/komatsu-pc210lc-11/evidence/facts.json",
+    "receipt": "machines/komatsu-pc210lc-11/production/asset-receipt.json",
+    "validation": "machines/komatsu-pc210lc-11/production/validation.json",
+    "poster": "machines/komatsu-pc210lc-11/review/renders/komatsu-pc210lc-11-operator-side.png"
+  },
+  "evidence": {
+    "boundary": "Neutral conventional PC210LC-11 technical study; every front-equipment pivot, cylinder anchor, swing bearing, track path and hidden part is reconstructed.",
+    "lede": "The conventional non-i machine freezes the 5.7 m boom, 2.925 m arm, 700 mm shoes and one compatible 0.85 m3 TL bucket without importing iMC hardware.",
+    "factIds": ["public-envelope-x","public-envelope-y","public-envelope-z","engine-power","boom-length","arm-length","selected-bucket-capacity","maximum-digging-depth","maximum-ground-reach"]
+  },
+  "camera": {"azimuth":-0.77,"elevation":0.36,"distance":15.2},
+  "accent": "#c6a050",
+  "motion": {
+    "autoplay": true,
+    "durationSeconds": 17,
+    "mode": "sine",
+    "damping": 7.0,
+    "channels": [
+      {"id":"boom","label":"Boom raise / lower","nodes":["Boom_ROOT"],"property":"rotation.z","from":-0.16,"to":0.50,"phase":0.0},
+      {"id":"arm","label":"Arm crowd / extend","nodes":["Stick_ROOT"],"property":"rotation.z","from":-0.82,"to":0.12,"phase":0.18},
+      {"id":"bucket","label":"Bucket curl / dump","nodes":["Bucket_ROOT"],"property":"rotation.z","from":-0.68,"to":0.46,"phase":0.34},
+      {"id":"upper-swing","label":"Upper structure swing","nodes":["Upper_ROOT"],"property":"rotation.y","from":-0.32,"to":0.32,"phase":0.62},
+      {"id":"left-track","label":"Left track travel study","nodes":["Track_L_ROOT"],"property":"position.x","from":-0.045,"to":0.045,"phase":0.78},
+      {"id":"right-track","label":"Right track travel study","nodes":["Track_R_ROOT"],"property":"position.x","from":0.045,"to":-0.045,"phase":0.78}
+    ]
+  }
+}

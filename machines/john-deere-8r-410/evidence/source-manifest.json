@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-8r-410",
+  "configuration_id": "JD-8R410-MY2024-NA-JD9-E23-ILS-CAT4N3-CANDIDATE",
+  "freeze_date": "2026-08-29",
+  "repository_policy": {
+    "source_binaries_committed": false,
+    "manufacturer_geometry_committed": false,
+    "manufacturer_imagery_committed": false,
+    "manual_illustrations_are_scale_drawings": false,
+    "verification": "The official Deere brochure was inspected and hash-bound under research/private. Public output redistributes no manufacturer PDF, imagery, texture, logo or geometry."
+  },
+  "sources": [
+    {
+      "id": "JD-8-SERIES-TRACTOR-2024",
+      "publisher": "Deere & Company",
+      "kind": "official_product_brochure_and_specification",
+      "title": "8 Series Tractor: 230-410 Engine Horsepower",
+      "publication": "4856100; PDF metadata February 2024",
+      "market": "North America",
+      "pages": 32,
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.deere.com/assets/pdfs/region-4/products/row-crop-tractors/4867854-8-series-tractor.pdf",
+      "local_path": "research/private/john-deere-8r-410/primary-source.pdf",
+      "sha256": "73448ee19efd7fe7b4546dde58d1b7ed34da39e79f21365755522fbe106db186",
+      "bytes": 17255348,
+      "admission": "primary",
+      "use": "Primary configuration and specification authority for 8R 410 power, e23, ILS, hitch, tread, wheelbase, clearance and hydraulic facts. Illustrations are visual reference only."
+    },
+    {
+      "id": "JD-8R410-LATAM-PAGE",
+      "publisher": "Deere & Company",
+      "kind": "official_product_page",
+      "title": "Tractor 8R 410",
+      "market": "Latin America",
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.deere.com/latin-america/es/tractores/tractores-grandes/8r-rt-rx-serie/8r410/",
+      "admission": "corroborating",
+      "use": "Manufacturer-published overall-length corroboration only; width and height are not treated as published for the selected configuration."
+    }
+  ]
+}

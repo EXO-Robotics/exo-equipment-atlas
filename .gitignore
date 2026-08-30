@@ -5,6 +5,8 @@ tmp/
 machines/*/tmp/
 *.blend1
 .DS_Store
+__pycache__/
+*.py[cod]
 
 # Manufacturer publications and reference imagery are research inputs only.
 research/private/**

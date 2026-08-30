@@ -1,0 +1,282 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-9900-spfh",
+  "configuration_id": "JD-9900SPFH-MY2024-NA-282DZ-4005-0415KM-5597-33M-CANDIDATE",
+  "configuration_status": "research_candidate",
+  "archetype": "forage_harvester",
+  "candidate_class": "technical_structural_study",
+  "engineering_authority": false,
+  "authority_boundary": "Independently authored neutral technical structural study. Not manufacturer CAD, engineering authority, load guidance, operator training, safety guidance, a digital twin, or a mechanically validated candidate.",
+  "rights_boundary": "Neutral unbranded procedural geometry and materials; no manufacturer CAD, logo, copied texture, or protected livery claim.",
+  "release_status": "PENDING",
+  "blender": {
+    "version": "5.1.1",
+    "factory_startup_required": true,
+    "background_required": true
+  },
+  "builder": {
+    "path": "source/blender/build_john_deere_9900_spfh.py",
+    "sha256": "97a2247396d442b5f80ae3d01a1f119eb2e210ed32a0764b4f35719ed76304a3",
+    "bytes": 666,
+    "deterministic": true,
+    "network_used": false,
+    "downloaded_geometry_used": false,
+    "manufacturer_cad_used": false,
+    "copied_textures_used": false,
+    "opaque_addons_used": false
+  },
+  "shared_generator": {
+    "path": "../../scripts/fleet/build_machine.py",
+    "sha256": "02b99250651741b462b3dae8b2471db723beb689dfe89e1c7e251d7402fe0f55",
+    "bytes": 78579
+  },
+  "design": {
+    "path": "source/design.json",
+    "sha256": "739100f3feea6ec60fe4f2b5e829352628aa4e0cdfb65968c680f85c1de9a3d3",
+    "bytes": 2555,
+    "schema_version": "1.0.0"
+  },
+  "artifacts": {
+    "blend": {
+      "path": "source/blender/john-deere-9900-spfh-structural-study.blend",
+      "sha256": "4cdb2c88836e9c7909e27929467b3e4cc58d9061959713f655e5b2398a174a19",
+      "bytes": 233703
+    },
+    "glb": {
+      "path": "assets/john-deere-9900-spfh-structural-study.glb",
+      "sha256": "468b2501b4513192f1b914109b5eae2509d4c4c5a0a83d8a86922e6a1e813275",
+      "bytes": 1520336
+    },
+    "validation": {
+      "path": "production/validation.json",
+      "sha256": "68510f05e351d8c23c911d0fd8f646656ed3bb044bdfb643e69b9ecda567a185",
+      "bytes": 7869
+    }
+  },
+  "scene": {
+    "units": "meters",
+    "axes": {
+      "longitudinal": "+X forward",
+      "vertical": "+Y up",
+      "lateral": "+Z machine right"
+    },
+    "bounds": {
+      "min_m": [
+        -4.6,
+        0.0,
+        -4.525
+      ],
+      "max_m": [
+        4.6,
+        4.05,
+        4.525
+      ],
+      "size_m": [
+        9.2,
+        4.05,
+        9.05
+      ]
+    },
+    "visible_aabb_xyz_m": [
+      9.2,
+      4.05,
+      9.05
+    ],
+    "objects": 212,
+    "meshes": 190,
+    "triangles": 29560,
+    "materials": 6
+  },
+  "glb_contract": {
+    "glb_version": "2.0",
+    "scene_count": 1,
+    "scene_root_count": 1,
+    "root_name": "Machine_Root",
+    "root_record": {},
+    "identity_root": true,
+    "nodes": 212,
+    "mesh_nodes": 190,
+    "mesh_definitions": 190,
+    "materials": 6,
+    "triangles": 29560,
+    "cameras": 0,
+    "punctual_lights": false,
+    "images": 0,
+    "textures": 0,
+    "nonidentity_mesh_scales": {},
+    "helper_like_mesh_nodes": [],
+    "semantic_motion_nodes": 21,
+    "bounds": {
+      "min_m": [
+        -4.6,
+        0.0,
+        -4.525
+      ],
+      "max_m": [
+        4.6,
+        4.05,
+        4.525
+      ],
+      "size_m": [
+        9.2,
+        4.05,
+        9.05
+      ]
+    }
+  },
+  "required_semantic_nodes": {
+    "Machine_Root": true,
+    "Fixed_Structure_ROOT": true,
+    "Running_Gear_ROOT": true,
+    "Hydraulics_ROOT": true,
+    "Service_Detail_ROOT": true,
+    "Header_Lift_Pivot": true,
+    "Header_ROOT": true,
+    "Feedroll_ROOT": true,
+    "Spout_Yaw_Pivot": true,
+    "Spout_ROOT": true,
+    "Spout_Tip_Pivot": true,
+    "Spout_Tip_ROOT": true
+  },
+  "manufacturer_published_constraints_used": [
+    "public-envelope-z",
+    "carrier-width-class",
+    "header-length",
+    "header-height",
+    "header-working-width",
+    "header-transport-width",
+    "feedroll-count",
+    "cutterhead-width",
+    "cutterhead-diameter",
+    "selected-knife-count",
+    "accelerator-width",
+    "accelerator-diameter",
+    "spout-swing"
+  ],
+  "reconstructed_values": {
+    "presentation_length_m": 9.2,
+    "presentation_height_m": 4.05,
+    "carrier_display_envelope_m": [
+      6.7,
+      3.3,
+      4.05
+    ],
+    "carrier_envelope_note": "The 3.3 m width class is manufacturer-published for the selected tire package; carrier length and height are conservative presentation values, not manufacturer envelope claims.",
+    "selected_header_span_m": 9.05,
+    "selected_header_span_note": "Manufacturer-published overall 772 header width retained as the full lateral display envelope; header details and folding geometry remain reconstructed.",
+    "materials": "Neutral unbranded slate, graphite, steel, rubber and glass; no logos, decals or copied trade dress.",
+    "all_hidden_pivots": "Reconstructed visual hierarchy only.",
+    "all_animation_ranges": "Conservative presentation ranges, not operator limits.",
+    "internal_crop_flow": "Schematic visual hierarchy only; no crop simulation or internal assembly authority.",
+    "hidden_geometry": "All hidden structure, pivot centers, anchors, linkage proportions, underbody volumes, and internal geometry are reconstructed visualization choices unless a design record explicitly identifies a manufacturer-published envelope constraint.",
+    "generic_archetype_geometry": "forage_harvester proportions and visible detail are independently reconstructed for this technical study.",
+    "visible_envelope_calibration": {
+      "classification": "reconstructed_visible_envelope_calibration",
+      "source_bounds_m": {
+        "min_m": [
+          -3.1725,
+          0.0,
+          -4.525
+        ],
+        "max_m": [
+          4.876,
+          4.096222,
+          4.525
+        ],
+        "size_m": [
+          8.0485,
+          4.096222,
+          9.05
+        ]
+      },
+      "target_bounds_m": {
+        "min_m": [
+          -4.6,
+          0.0,
+          -4.525
+        ],
+        "max_m": [
+          4.6,
+          4.05,
+          4.525
+        ],
+        "size_m": [
+          9.2,
+          4.05,
+          9.05
+        ]
+      },
+      "axis_scale_factors": [
+        1.143070162,
+        0.988715962,
+        0.999999979
+      ],
+      "calibrated_bounds_m": {
+        "min_m": [
+          -4.6,
+          0.0,
+          -4.525
+        ],
+        "max_m": [
+          4.6,
+          4.05,
+          4.525
+        ],
+        "size_m": [
+          9.2,
+          4.05,
+          9.05
+        ]
+      },
+      "authority": "reconstructed_not_machine_specific_engineering"
+    }
+  },
+  "unresolved_choices": [
+    "complete machine-plus-header longitudinal and vertical envelopes",
+    "knife and shearbar crop package and kernel processor",
+    "tire bulge, wheel offsets, ballast and exact carrier projections",
+    "all header, feedroll, cutterhead, accelerator and spout pivots or centers",
+    "exact exterior surfacing and service-detail placement"
+  ],
+  "mechanical_gaps": [
+    "Header lift and any fold cue are bounded visual articulations without hydraulic, terrain, crop or collision physics.",
+    "Feedroll and spout motion are reconstructed and exclude crop flow, load, rate, trajectory and validated swept-volume closure.",
+    "Powertrain, cooling, aftertreatment, crop processor, cutterhead and hydraulic internals are not modeled as engineering assemblies."
+  ],
+  "renders": [
+    {
+      "path": "review/renders/john-deere-9900-spfh-operator-side.png",
+      "sha256": "db7b6bd7e0543790ea5106afa6f07ef80b30cea19faa8b07a8458f194604da18",
+      "bytes": 254041
+    },
+    {
+      "path": "review/renders/john-deere-9900-spfh-front-three-quarter.png",
+      "sha256": "0457a7ed1736be8481be78b2d14ede7513e058947d4dadf5a7dc053fc900f767",
+      "bytes": 272381
+    },
+    {
+      "path": "review/renders/john-deere-9900-spfh-rear-three-quarter.png",
+      "sha256": "74f2f12985b925d88bb314ef2805d3f290c17a46b15ed73afd52c653d954a9bb",
+      "bytes": 263484
+    },
+    {
+      "path": "review/renders/john-deere-9900-spfh-elevated-technical.png",
+      "sha256": "0fac36b5c4a2a15694e1a0ecb17f3bb8567f4f03a5eea1a24e5da672fa92ce39",
+      "bytes": 340966
+    },
+    {
+      "path": "review/renders/john-deere-9900-spfh-articulation-detail.png",
+      "sha256": "ef46ceb1ea6dbde9fe1d564f93fa641e19075397a03399212c7775e224dab887",
+      "bytes": 288807
+    },
+    {
+      "path": "review/renders/john-deere-9900-spfh-right-side.png",
+      "sha256": "78d4005b0b6dfbef1d512d1b7e7a6ceb2e9f073b726daf91b44224df62424dba",
+      "bytes": 251611
+    }
+  ],
+  "build_verdict": "PASS",
+  "validation_verdict": "PASS",
+  "validation_path": "production/validation.json",
+  "higher_stage_gates": "PENDING"
+}

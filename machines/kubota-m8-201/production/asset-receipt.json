@@ -1,0 +1,263 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "kubota-m8-201",
+  "configuration_id": "KUB-M8-201-NA-KVT-SFA50-3R-C3STD-CANDIDATE",
+  "configuration_status": "research_candidate",
+  "archetype": "wheeled_tractor",
+  "candidate_class": "technical_structural_study",
+  "engineering_authority": false,
+  "authority_boundary": "Independently authored neutral technical structural study. Not manufacturer CAD, engineering authority, load guidance, operator training, safety guidance, a digital twin, or a mechanically validated candidate.",
+  "rights_boundary": "Neutral unbranded procedural geometry and materials; no manufacturer CAD, logo, copied texture, or protected livery claim.",
+  "release_status": "PENDING",
+  "blender": {
+    "version": "5.1.1",
+    "factory_startup_required": true,
+    "background_required": true
+  },
+  "builder": {
+    "path": "source/blender/build_kubota_m8_201.py",
+    "sha256": "51322f731e67850979aa2e7960fa9d9e9ecb9424f2786455b738311ae7b8cc0a",
+    "bytes": 659,
+    "deterministic": true,
+    "network_used": false,
+    "downloaded_geometry_used": false,
+    "manufacturer_cad_used": false,
+    "copied_textures_used": false,
+    "opaque_addons_used": false
+  },
+  "shared_generator": {
+    "path": "../../scripts/fleet/build_machine.py",
+    "sha256": "02b99250651741b462b3dae8b2471db723beb689dfe89e1c7e251d7402fe0f55",
+    "bytes": 78579
+  },
+  "design": {
+    "path": "source/design.json",
+    "sha256": "6d99d562db119674c956815dbc3a476e7a2ab3e4547c6862b63027d7c3b1cd74",
+    "bytes": 1679,
+    "schema_version": "1.0.0"
+  },
+  "artifacts": {
+    "blend": {
+      "path": "source/blender/kubota-m8-201-structural-study.blend",
+      "sha256": "2f827cf4952ca84aa3a75e5fbea02acdcdf9986a243a84e1de4b0385d684d60f",
+      "bytes": 233250
+    },
+    "glb": {
+      "path": "assets/kubota-m8-201-structural-study.glb",
+      "sha256": "e5fe3423e058e8aea7b717d58fb5b7a1e4f89f90817ff2e84e22ab2bc86e3348",
+      "bytes": 1450424
+    },
+    "validation": {
+      "path": "production/validation.json",
+      "sha256": "30481db1804acc913fb059596424190481ef9d4533fff3c240d08dce3c8400f4",
+      "bytes": 7788
+    }
+  },
+  "scene": {
+    "units": "meters",
+    "axes": {
+      "longitudinal": "+X forward",
+      "vertical": "+Y up",
+      "lateral": "+Z machine right"
+    },
+    "bounds": {
+      "min_m": [
+        -2.875,
+        0.0,
+        -1.325
+      ],
+      "max_m": [
+        2.875,
+        3.25,
+        1.325
+      ],
+      "size_m": [
+        5.75,
+        3.25,
+        2.65
+      ]
+    },
+    "visible_aabb_xyz_m": [
+      5.75,
+      3.25,
+      2.65
+    ],
+    "objects": 212,
+    "meshes": 190,
+    "triangles": 27848,
+    "materials": 6
+  },
+  "glb_contract": {
+    "glb_version": "2.0",
+    "scene_count": 1,
+    "scene_root_count": 1,
+    "root_name": "Machine_Root",
+    "root_record": {},
+    "identity_root": true,
+    "nodes": 212,
+    "mesh_nodes": 190,
+    "mesh_definitions": 190,
+    "materials": 6,
+    "triangles": 27848,
+    "cameras": 0,
+    "punctual_lights": false,
+    "images": 0,
+    "textures": 0,
+    "nonidentity_mesh_scales": {},
+    "helper_like_mesh_nodes": [],
+    "semantic_motion_nodes": 21,
+    "bounds": {
+      "min_m": [
+        -2.875,
+        0.0,
+        -1.325
+      ],
+      "max_m": [
+        2.875,
+        3.25,
+        1.325
+      ],
+      "size_m": [
+        5.75,
+        3.25,
+        2.65
+      ]
+    }
+  },
+  "required_semantic_nodes": {
+    "Machine_Root": true,
+    "Fixed_Structure_ROOT": true,
+    "Running_Gear_ROOT": true,
+    "Hydraulics_ROOT": true,
+    "Service_Detail_ROOT": true,
+    "Front_Axle_Oscillation_Pivot": true,
+    "Front_Axle_ROOT": true,
+    "Steering_L_Pivot": true,
+    "Steering_R_Pivot": true,
+    "Rear_Hitch_Pivot": true,
+    "Rear_Hitch_ROOT": true,
+    "PTO_ROOT": true
+  },
+  "manufacturer_published_constraints_used": [
+    "public-envelope-y"
+  ],
+  "reconstructed_values": {
+    "overall_length_m": 5.75,
+    "overall_width_m": 2.65,
+    "front_tire_radius_m": 0.71,
+    "rear_tire_radius_m": 0.96,
+    "front_suspension_presentation_travel_m": 0.1,
+    "front_steering_presentation_limit_deg": 28,
+    "rear_hitch_presentation_lift_deg": 24,
+    "geometry_boundary": "Overall length and width, tires, track, proportions, all pivots, anchors, suspension travel, hitch arcs, PTO shaft detail, materials, and hidden construction are independently authored visualization choices.",
+    "hidden_geometry": "All hidden structure, pivot centers, anchors, linkage proportions, underbody volumes, and internal geometry are reconstructed visualization choices unless a design record explicitly identifies a manufacturer-published envelope constraint.",
+    "generic_archetype_geometry": "wheeled_tractor proportions and visible detail are independently reconstructed for this technical study.",
+    "visible_envelope_calibration": {
+      "classification": "reconstructed_visible_envelope_calibration",
+      "source_bounds_m": {
+        "min_m": [
+          -2.875,
+          0.0,
+          -1.325
+        ],
+        "max_m": [
+          2.875,
+          3.25,
+          1.325
+        ],
+        "size_m": [
+          5.75,
+          3.25,
+          2.65
+        ]
+      },
+      "target_bounds_m": {
+        "min_m": [
+          -2.875,
+          0.0,
+          -1.325
+        ],
+        "max_m": [
+          2.875,
+          3.25,
+          1.325
+        ],
+        "size_m": [
+          5.75,
+          3.25,
+          2.65
+        ]
+      },
+      "axis_scale_factors": [
+        1.0,
+        0.999999927,
+        0.999999964
+      ],
+      "calibrated_bounds_m": {
+        "min_m": [
+          -2.875,
+          0.0,
+          -1.325
+        ],
+        "max_m": [
+          2.875,
+          3.25,
+          1.325
+        ],
+        "size_m": [
+          5.75,
+          3.25,
+          2.65
+        ]
+      },
+      "authority": "reconstructed_not_machine_specific_engineering"
+    }
+  },
+  "unresolved_choices": [
+    "manufacturer-published overall +X length and +Z width are unavailable in the admitted current sources; the retained 5.75 m by 2.65 m horizontal envelope is reconstructed",
+    "exact tire sizes, loaded radii, wheel offsets, tread setting, fender width, and ballast",
+    "exact dealer order and serial number",
+    "minor cab, mirror, lighting, and hydraulic-remote placement"
+  ],
+  "mechanical_gaps": [
+    "No manufacturer-authoritative steering, suspension, rear-hitch, or PTO pivot coordinates",
+    "No published suspension travel, damping law, hitch lift arc, mechanical stop, or collision envelope",
+    "Presentation motion is not a simulation of travel speed, PTO rpm, hydraulic timing, load, stability, or safety interlocks"
+  ],
+  "renders": [
+    {
+      "path": "review/renders/kubota-m8-201-operator-side.png",
+      "sha256": "3fe85935e6b5f8c0aaa51f36ec77d4985033cde09bd5521edeff9f425e72eae6",
+      "bytes": 304694
+    },
+    {
+      "path": "review/renders/kubota-m8-201-front-three-quarter.png",
+      "sha256": "ee1bde4cd050894b0978c0585c495cf72ac662cf265d09aedfd444a11f4e437d",
+      "bytes": 347060
+    },
+    {
+      "path": "review/renders/kubota-m8-201-rear-three-quarter.png",
+      "sha256": "49386a43d549330d32873520b2ebc9f9958864c07d0ad38664702c651bc56bf7",
+      "bytes": 338077
+    },
+    {
+      "path": "review/renders/kubota-m8-201-elevated-technical.png",
+      "sha256": "1e8f76cd553d2c9ae2a1d20d9bf280c35b663395c1f41b1c5cf5af88ed36af89",
+      "bytes": 402486
+    },
+    {
+      "path": "review/renders/kubota-m8-201-articulation-detail.png",
+      "sha256": "03051ac7f823567b532863f07ff859129578c741860406e11269827b3082c8f2",
+      "bytes": 377537
+    },
+    {
+      "path": "review/renders/kubota-m8-201-right-side.png",
+      "sha256": "749f8071f04009b5cc8a73ed6e40af6c89538855b98c259510dc0cf172c516a5",
+      "bytes": 292670
+    }
+  ],
+  "build_verdict": "PASS",
+  "validation_verdict": "PASS",
+  "validation_path": "production/validation.json",
+  "higher_stage_gates": "PENDING"
+}

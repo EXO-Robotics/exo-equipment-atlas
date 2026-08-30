@@ -1,0 +1,284 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "claas-lexion-8900-terra-trac",
+  "configuration_id": "CLAAS-L8900TT-NA25-CF1530-GT510-UL51-CANDIDATE",
+  "configuration_status": "research_candidate",
+  "archetype": "combine",
+  "candidate_class": "technical_structural_study",
+  "engineering_authority": false,
+  "authority_boundary": "Independently authored neutral technical structural study. Not manufacturer CAD, engineering authority, load guidance, operator training, safety guidance, a digital twin, or a mechanically validated candidate.",
+  "rights_boundary": "Neutral unbranded procedural geometry and materials; no manufacturer CAD, logo, copied texture, or protected livery claim.",
+  "release_status": "PENDING",
+  "blender": {
+    "version": "5.1.1",
+    "factory_startup_required": true,
+    "background_required": true
+  },
+  "builder": {
+    "path": "source/blender/build_claas_lexion_8900_terra_trac.py",
+    "sha256": "56816a2725cc7d6e4fd6450ee007c16b22d50f1d184736e80eb8a39e71e42be5",
+    "bytes": 674,
+    "deterministic": true,
+    "network_used": false,
+    "downloaded_geometry_used": false,
+    "manufacturer_cad_used": false,
+    "copied_textures_used": false,
+    "opaque_addons_used": false
+  },
+  "shared_generator": {
+    "path": "../../scripts/fleet/build_machine.py",
+    "sha256": "02b99250651741b462b3dae8b2471db723beb689dfe89e1c7e251d7402fe0f55",
+    "bytes": 78579
+  },
+  "design": {
+    "path": "source/design.json",
+    "sha256": "d87f1e3cc7fa54542b330c427046459ebc380074bcd19c6bf1225ce3f652eba6",
+    "bytes": 2370,
+    "schema_version": "1.0.0"
+  },
+  "artifacts": {
+    "blend": {
+      "path": "source/blender/claas-lexion-8900-terra-trac-structural-study.blend",
+      "sha256": "5d58286f12cd31be0dd39147901c7c3f884d6a175b58947d5059dc9a813509dd",
+      "bytes": 237684
+    },
+    "glb": {
+      "path": "assets/claas-lexion-8900-terra-trac-structural-study.glb",
+      "sha256": "bb1ecb255971f618393de7c4b565d0ddaed3291d51fd6b483dbecb525a64a3ec",
+      "bytes": 1414536
+    },
+    "validation": {
+      "path": "production/validation.json",
+      "sha256": "0ce54073e7e919ead08c4dcb7d8c009d79d9b6e82a002102abaa16d0d75f0d16",
+      "bytes": 8029
+    }
+  },
+  "scene": {
+    "units": "meters",
+    "axes": {
+      "longitudinal": "+X forward",
+      "vertical": "+Y up",
+      "lateral": "+Z machine right"
+    },
+    "bounds": {
+      "min_m": [
+        -5.375,
+        0.0,
+        -7.65
+      ],
+      "max_m": [
+        5.375,
+        4.0,
+        7.65
+      ],
+      "size_m": [
+        10.75,
+        4.0,
+        15.3
+      ]
+    },
+    "visible_aabb_xyz_m": [
+      10.75,
+      4.0,
+      15.3
+    ],
+    "objects": 210,
+    "meshes": 190,
+    "triangles": 27040,
+    "materials": 7
+  },
+  "glb_contract": {
+    "glb_version": "2.0",
+    "scene_count": 1,
+    "scene_root_count": 1,
+    "root_name": "Machine_Root",
+    "root_record": {},
+    "identity_root": true,
+    "nodes": 210,
+    "mesh_nodes": 190,
+    "mesh_definitions": 190,
+    "materials": 7,
+    "triangles": 27040,
+    "cameras": 0,
+    "punctual_lights": false,
+    "images": 0,
+    "textures": 0,
+    "nonidentity_mesh_scales": {},
+    "helper_like_mesh_nodes": [],
+    "semantic_motion_nodes": 19,
+    "bounds": {
+      "min_m": [
+        -5.375,
+        0.0,
+        -7.65
+      ],
+      "max_m": [
+        5.375,
+        4.0,
+        7.65
+      ],
+      "size_m": [
+        10.75,
+        4.0,
+        15.3
+      ]
+    }
+  },
+  "required_semantic_nodes": {
+    "Machine_Root": true,
+    "Fixed_Structure_ROOT": true,
+    "Running_Gear_ROOT": true,
+    "Hydraulics_ROOT": true,
+    "Service_Detail_ROOT": true,
+    "Header_Lift_Pivot": true,
+    "Header_ROOT": true,
+    "Reel_Pivot": true,
+    "Reel_ROOT": true,
+    "Feederhouse_ROOT": true,
+    "Unloader_Swing_Pivot": true,
+    "Unloader_ROOT": true,
+    "Track_L_ROOT": true,
+    "Track_R_ROOT": true
+  },
+  "manufacturer_published_constraints_used": [
+    "header-working-width",
+    "public-envelope-z",
+    "header-flex-range",
+    "grain-tank-capacity",
+    "grain-unloading-rate",
+    "threshing-drum-width",
+    "threshing-drum-diameter",
+    "rotor-count",
+    "rotor-diameter",
+    "rotor-length"
+  ],
+  "reconstructed_values": {
+    "running_gear": "front_terra_trac_rear_wheels",
+    "carrier_display_envelope_m": [
+      10.75,
+      3.8,
+      4.0
+    ],
+    "carrier_display_envelope_note": "Selected for coherent neutral presentation because no admitted configuration-complete carrier envelope is available; not manufacturer published.",
+    "selected_header_working_span_m": 15.3,
+    "selected_header_span_note": "Manufacturer-published working width; header depth, folded pose, linkage, and flex segmentation remain reconstructed.",
+    "materials": "Neutral unbranded sage, warm gray, graphite, steel, rubber, and glass; no logos or protected livery claim.",
+    "all_hidden_pivots": "Reconstructed visual hierarchy only.",
+    "all_animation_ranges": "Conservative presentation ranges, not operator limits.",
+    "internal_crop_flow": "Cutaway-only schematic study; no crop simulation or hidden assembly authority.",
+    "hidden_geometry": "All hidden structure, pivot centers, anchors, linkage proportions, underbody volumes, and internal geometry are reconstructed visualization choices unless a design record explicitly identifies a manufacturer-published envelope constraint.",
+    "generic_archetype_geometry": "combine proportions and visible detail are independently reconstructed for this technical study.",
+    "visible_envelope_calibration": {
+      "classification": "reconstructed_visible_envelope_calibration",
+      "source_bounds_m": {
+        "min_m": [
+          -4.950493,
+          -0.003502,
+          -7.65
+        ],
+        "max_m": [
+          5.805,
+          4.0,
+          7.65
+        ],
+        "size_m": [
+          10.755494,
+          4.003502,
+          15.3
+        ]
+      },
+      "target_bounds_m": {
+        "min_m": [
+          -5.375,
+          0.0,
+          -7.65
+        ],
+        "max_m": [
+          5.375,
+          4.0,
+          7.65
+        ],
+        "size_m": [
+          10.75,
+          4.0,
+          15.3
+        ]
+      },
+      "axis_scale_factors": [
+        0.999489225,
+        0.999125181,
+        0.999999988
+      ],
+      "calibrated_bounds_m": {
+        "min_m": [
+          -5.375,
+          0.0,
+          -7.65
+        ],
+        "max_m": [
+          5.375,
+          4.0,
+          7.65
+        ],
+        "size_m": [
+          10.75,
+          4.0,
+          15.3
+        ]
+      },
+      "authority": "reconstructed_not_machine_specific_engineering"
+    }
+  },
+  "unresolved_choices": [
+    "exact model year and order code",
+    "TERRA TRAC belt width and transport-width package",
+    "unloading tube length and grain-cart clearance package",
+    "powered rear axle and tire selection",
+    "cab, lighting, camera, guidance, and crop-equipment options",
+    "public material and branding authorization"
+  ],
+  "mechanical_gaps": [
+    "header and feederhouse pivot authority",
+    "track wheel centers, belt pitch, and terrain-following limits",
+    "rear steering geometry",
+    "unloading auger hinge and swept-volume clearance",
+    "internal drum, rotor, spreader, and fan centers and rates",
+    "ground, self, and swept-volume collision solver"
+  ],
+  "renders": [
+    {
+      "path": "review/renders/claas-lexion-8900-terra-trac-operator-side.png",
+      "sha256": "3d3abe9712b38f19ae76f6f2eb99f8041179282029791e7faf58fb61902379c5",
+      "bytes": 230574
+    },
+    {
+      "path": "review/renders/claas-lexion-8900-terra-trac-front-three-quarter.png",
+      "sha256": "e0778c34c2566ec51b6a2ca51b3e0507e6cd2773cc8bc5090d6bef7be8f34f0f",
+      "bytes": 219802
+    },
+    {
+      "path": "review/renders/claas-lexion-8900-terra-trac-rear-three-quarter.png",
+      "sha256": "acb523a73d231ebab244789065a2c648e96bcbcb21f0c05df312e981ac8c35ae",
+      "bytes": 243126
+    },
+    {
+      "path": "review/renders/claas-lexion-8900-terra-trac-elevated-technical.png",
+      "sha256": "24983d96b79b5bb18187d880d8c59da5bacbed6aee231cb940f3918ed4538f8a",
+      "bytes": 331318
+    },
+    {
+      "path": "review/renders/claas-lexion-8900-terra-trac-articulation-detail.png",
+      "sha256": "4b1820685412f5b0d56e811cebef75c38f8555bb1e7336a2bdd9064a5d3cc298",
+      "bytes": 264431
+    },
+    {
+      "path": "review/renders/claas-lexion-8900-terra-trac-right-side.png",
+      "sha256": "5e0944e8d99ff0ace0a9d4fb5c162bdadb40c13ec339ad36248d0e5aede39e77",
+      "bytes": 232536
+    }
+  ],
+  "build_verdict": "PASS",
+  "validation_verdict": "PASS",
+  "validation_path": "production/validation.json",
+  "higher_stage_gates": "PENDING"
+}

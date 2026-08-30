@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "fendt-ideal-10t",
+  "configuration_id": "FENDT-IDEAL-10T-GB-STAGEV-TR30-PF1070-S210-A840F-SWINGFLOW-CANDIDATE",
+  "status": "research_candidate",
+  "identity": {
+    "manufacturer": "AGCO GmbH",
+    "brand": "Fendt",
+    "model": "IDEAL 10T",
+    "product_class": "tracked_combine_harvester",
+    "publication_family": "2301 international technical matrix",
+    "market": "Great Britain and International English evidence intersection",
+    "emissions_context": "European Stage V"
+  },
+  "choices": {
+    "drive_configuration": "TrakRide crawler-track drive",
+    "track_width": "30 in / 76 cm nominal",
+    "steering_axle_tyre": "520/85R30",
+    "steering_control": "conventional steering",
+    "all_drive_4wd": "not_selected",
+    "heavy_duty_traction_drive": "standard",
+    "header_attachment": "PowerFlow 10.70 m",
+    "header_attachment_status": "named presentation attachment",
+    "crop_elevator": "EHU with standard multi-coupler",
+    "autodock": "not_selected",
+    "grain_tank": "Streamer 210",
+    "grain_tank_capacity_l": 17100,
+    "unloading_auger": "8.4 m M folding",
+    "straw_management": "ShortCut with 112 serrated knives",
+    "chaff_spreader": "standard",
+    "active_spread": "ActiveSpread SwingFlow standard",
+    "engine": "MAN 16.2 litre six-cylinder Stage V",
+    "fuel_tank_l": 1000,
+    "cab": "Vision cab with air-suspended driver seat",
+    "exterior_lighting": "standard work-light package",
+    "optional_packages_excluded": [
+      "IDEALDrive joystick steering",
+      "AllDrive 4WD",
+      "AutoDock and Ag Tag",
+      "hydraulic cutting-angle adjustment",
+      "variable table drive",
+      "full LED work-light package",
+      "360-degree camera system",
+      "Hi-Wear bundle",
+      "ActiveSpread radial spreader alternative"
+    ]
+  },
+  "unresolved_choices": [
+    "exact model year, serial range, order code, and dealer-installed equipment",
+    "TrakRide belt construction, tread pattern, guide-block geometry, roller spacing, and tension state",
+    "steering-axle tyre manufacturer, tread, pressure, rim offset, and sidewall profile",
+    "PowerFlow 10.70 m header production revision, divider arrangement, reel tine population, and crop kit",
+    "exact TrakRide and 520/85R30 wheel offsets that produce the published 3.49 m presentation width",
+    "country-specific road equipment, mirrors, beacons, guards, cameras, and lighting details",
+    "engine-bay, threshing, cleaning, grain-handling, hydraulic, electrical, and hose-routing geometry",
+    "public material, livery, wordmark, decal, and trade-dress authorization"
+  ],
+  "boundary": "Frozen presentation configuration, not an order sheet or engineering release. Current international technical data and the model-year 2023 running-gear release bind the IDEAL 10T identity, Stage V powertrain, TrakRide choice, 30-inch track and 520/85R30 rear steering tyre combination, PowerFlow 10.70 m attachment, Streamer 210, 8.4 m folding auger, ShortCut and ActiveSpread SwingFlow choices, and cited envelopes or capacities. The public asset must use independently authored neutral materials and geometry. The published 10.63 m carrier length excludes the header; because the retained header and unloading tube extend the visible X axis, no manufacturer-published overall visible X envelope is claimed. All mesh proportions not directly constrained by a cited fact, hidden pivots, anchors, internal clearances, motion limits, interpolation, track phase, and collision volumes remain reconstructed or unresolved."
+}

@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "machineId": "john-deere-1270g",
+  "displayName": "1270G 8W",
+  "className": "Wheeled harvester",
+  "category": "Forestry",
+  "assets": {
+    "glb": "machines/john-deere-1270g/assets/john-deere-1270g-structural-study.glb",
+    "configuration": "machines/john-deere-1270g/configuration.json",
+    "facts": "machines/john-deere-1270g/evidence/facts.json",
+    "receipt": "machines/john-deere-1270g/production/asset-receipt.json",
+    "validation": "machines/john-deere-1270g/production/validation.json"
+  },
+  "evidence": {
+    "boundary": "Independent 8×8 CH7 working-pose study. Boom pivots, head internals, articulation, hydraulic anchors, and pose interpolation remain reconstructed.",
+    "lede": "Published specifications freeze the 8×8 carrier, CH7 boom, 8.6 m head-included reach, and H480C reference head. The retained working pose is not a transport-envelope claim.",
+    "factIds": [
+      "transport-length",
+      "transport-height",
+      "minimum-width-600",
+      "selected-maximum-reach"
+    ]
+  },
+  "camera": {
+    "azimuth": 0.65,
+    "elevation": 0.32,
+    "distance": 1.54
+  },
+  "accent": "#b8a65f"
+}

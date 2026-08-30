@@ -1,0 +1,341 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "krone-big-m-450-cv",
+  "configuration_id": "KRONE-BIGM450-CV-EU-STAGEV-990-DUOGRIP-SM-AUGER-CANDIDATE",
+  "archetype": "self_propelled_mower",
+  "candidate_class": "technical_structural_study",
+  "engineering_authority": false,
+  "verdict": "PASS",
+  "verdict_scope": "technical_structural_study_only",
+  "release_status": "PENDING",
+  "bounds": {
+    "min_m": [
+      -4.225,
+      0.0,
+      -4.95
+    ],
+    "max_m": [
+      4.225,
+      4.0,
+      4.95
+    ],
+    "size_m": [
+      8.45,
+      4.0,
+      9.9
+    ]
+  },
+  "counts": {
+    "objects": 303,
+    "meshes": 255,
+    "triangles": 35540,
+    "materials": 8
+  },
+  "envelope_fit": {
+    "classification": "reconstructed_visible_envelope_calibration",
+    "source_bounds_m": {
+      "min_m": [
+        -3.1995,
+        0.0,
+        -4.95
+      ],
+      "max_m": [
+        4.499625,
+        4.0,
+        4.95
+      ],
+      "size_m": [
+        7.699125,
+        4.0,
+        9.9
+      ]
+    },
+    "target_bounds_m": {
+      "min_m": [
+        -4.225,
+        0.0,
+        -4.95
+      ],
+      "max_m": [
+        4.225,
+        4.0,
+        4.95
+      ],
+      "size_m": [
+        8.45,
+        4.0,
+        9.9
+      ]
+    },
+    "axis_scale_factors": [
+      1.097527377,
+      1.00000006,
+      1.000000039
+    ],
+    "calibrated_bounds_m": {
+      "min_m": [
+        -4.225,
+        0.0,
+        -4.95
+      ],
+      "max_m": [
+        4.225,
+        4.0,
+        4.95
+      ],
+      "size_m": [
+        8.45,
+        4.0,
+        9.9
+      ]
+    },
+    "authority": "reconstructed_not_machine_specific_engineering"
+  },
+  "glb_contract": {
+    "glb_version": "2.0",
+    "scene_count": 1,
+    "scene_root_count": 1,
+    "root_name": "Machine_Root",
+    "root_record": {},
+    "identity_root": true,
+    "nodes": 303,
+    "mesh_nodes": 255,
+    "mesh_definitions": 255,
+    "materials": 8,
+    "triangles": 35540,
+    "cameras": 0,
+    "punctual_lights": false,
+    "images": 0,
+    "textures": 0,
+    "nonidentity_mesh_scales": {},
+    "helper_like_mesh_nodes": [],
+    "semantic_motion_nodes": 47,
+    "bounds": {
+      "min_m": [
+        -4.225,
+        0.0,
+        -4.95
+      ],
+      "max_m": [
+        4.225,
+        4.0,
+        4.95
+      ],
+      "size_m": [
+        8.45,
+        4.0,
+        9.9
+      ]
+    }
+  },
+  "gates": [
+    {
+      "id": "builder-execution",
+      "status": "PASS",
+      "detail": "Factory-startup background builder reached validation generation."
+    },
+    {
+      "id": "candidate-class-boundary",
+      "status": "PASS",
+      "detail": "technical_structural_study only; not engineering authority."
+    },
+    {
+      "id": "scene-units-and-axes",
+      "status": "PASS",
+      "detail": "Meters; +X forward, +Y up, +Z machine right."
+    },
+    {
+      "id": "independent-authoring-boundary",
+      "status": "PASS",
+      "detail": "No downloaded geometry, CAD, copied textures, logos, or opaque add-ons."
+    },
+    {
+      "id": "one-identity-root",
+      "status": "PASS",
+      "detail": {}
+    },
+    {
+      "id": "required-semantic-nodes",
+      "status": "PASS",
+      "detail": {
+        "Machine_Root": true,
+        "Fixed_Structure_ROOT": true,
+        "Running_Gear_ROOT": true,
+        "Hydraulics_ROOT": true,
+        "Service_Detail_ROOT": true,
+        "Header_Lift_Pivot": true,
+        "Header_ROOT": true,
+        "Conditioner_ROOT": true,
+        "Deck_L_Fold_Pivot": true,
+        "Deck_L_ROOT": true,
+        "Deck_R_Fold_Pivot": true,
+        "Deck_R_ROOT": true
+      }
+    },
+    {
+      "id": "semantic-motion-hierarchy",
+      "status": "PASS",
+      "detail": {
+        "semantic_motion_nodes": 47
+      }
+    },
+    {
+      "id": "export-mesh-scales-applied",
+      "status": "PASS",
+      "detail": {
+        "authoring_residual": {},
+        "glb_residual": {}
+      }
+    },
+    {
+      "id": "public-glb-no-cameras-lights",
+      "status": "PASS",
+      "detail": {
+        "cameras": 0,
+        "punctual_lights": false
+      }
+    },
+    {
+      "id": "public-glb-no-helpers",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "public-glb-no-images-textures",
+      "status": "PASS",
+      "detail": {
+        "images": 0,
+        "textures": 0
+      }
+    },
+    {
+      "id": "node-density",
+      "status": "PASS",
+      "detail": {
+        "actual": 303,
+        "minimum": 200
+      }
+    },
+    {
+      "id": "mesh-density",
+      "status": "PASS",
+      "detail": {
+        "actual": 255,
+        "minimum": 180
+      }
+    },
+    {
+      "id": "triangle-density",
+      "status": "PASS",
+      "detail": {
+        "actual": 35540,
+        "minimum": 10000
+      }
+    },
+    {
+      "id": "finite-visible-bounds",
+      "status": "PASS",
+      "detail": {
+        "min_m": [
+          -4.225,
+          0.0,
+          -4.95
+        ],
+        "max_m": [
+          4.225,
+          4.0,
+          4.95
+        ],
+        "size_m": [
+          8.45,
+          4.0,
+          9.9
+        ]
+      }
+    },
+    {
+      "id": "retained-visible-envelope",
+      "status": "PASS",
+      "detail": {
+        "actual_size_m": [
+          8.45,
+          4.0,
+          9.9
+        ],
+        "expected_size_m": [
+          8.45,
+          4.0,
+          9.9
+        ],
+        "absolute_tolerance_m": 0.03,
+        "minimum_y_m": 0.0
+      }
+    },
+    {
+      "id": "review-renders-nonempty",
+      "status": "PASS",
+      "detail": [
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/krone-big-m-450-cv/review/renders/krone-big-m-450-cv-operator-side.png",
+          "bytes": 263319
+        },
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/krone-big-m-450-cv/review/renders/krone-big-m-450-cv-front-three-quarter.png",
+          "bytes": 258522
+        },
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/krone-big-m-450-cv/review/renders/krone-big-m-450-cv-rear-three-quarter.png",
+          "bytes": 253942
+        },
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/krone-big-m-450-cv/review/renders/krone-big-m-450-cv-elevated-technical.png",
+          "bytes": 348027
+        },
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/krone-big-m-450-cv/review/renders/krone-big-m-450-cv-articulation-detail.png",
+          "bytes": 267511
+        },
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/krone-big-m-450-cv/review/renders/krone-big-m-450-cv-right-side.png",
+          "bytes": 258007
+        }
+      ]
+    },
+    {
+      "id": "neutral-unbranded-materials",
+      "status": "PASS",
+      "detail": "Neutral palette and procedural materials only; no manufacturer marks or textures."
+    },
+    {
+      "id": "configuration-freeze",
+      "status": "PENDING",
+      "detail": "Research candidate retains unresolved exact configuration and options."
+    },
+    {
+      "id": "machine-specific-mechanical-solver",
+      "status": "PENDING",
+      "detail": "Generic structural pivots do not establish evidence-bound limits, endpoints, or cylinder closure."
+    },
+    {
+      "id": "ground-self-swept-collision",
+      "status": "PENDING",
+      "detail": "No machine-specific swept-volume or collision solver exists."
+    },
+    {
+      "id": "critic-human-visual-review",
+      "status": "PENDING",
+      "detail": "A human critic must inspect the exact render and artifact hashes."
+    },
+    {
+      "id": "viewer-browser-accessibility-mobile-selection-performance",
+      "status": "PENDING",
+      "detail": "Viewer integration belongs to the publication lane."
+    },
+    {
+      "id": "publication-and-deployment",
+      "status": "PENDING",
+      "detail": "Only the publisher may advance this research artifact to release."
+    }
+  ],
+  "failed_gate_ids": []
+}

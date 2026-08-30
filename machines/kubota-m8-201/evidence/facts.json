@@ -1,0 +1,263 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "kubota-m8-201",
+  "configuration_id": "KUB-M8-201-NA-KVT-SFA50-3R-C3STD-CANDIDATE",
+  "facts": [
+    {
+      "id": "current-model-power",
+      "subject": "current M8-201 advertised engine power",
+      "value": 200,
+      "unit": "hp",
+      "authority": "manufacturer_published",
+      "source_id": "KUB-M8-CURRENT-PRODUCT-2026",
+      "location": "Current product page, Build Your M8 Series, M8-201 model card"
+    },
+    {
+      "id": "rated-engine-power",
+      "subject": "M8-201 factory-estimated rated engine power at 2100 engine rpm",
+      "value": 200,
+      "unit": "hp",
+      "authority": "manufacturer_published",
+      "source_id": "KUB-M8-NA-BROCHURE-2023",
+      "location": "PDF page 12, Performance table"
+    },
+    {
+      "id": "rated-pto-power",
+      "subject": "M8-201 factory-estimated rated PTO power at 2000 engine rpm",
+      "value": 159,
+      "unit": "hp",
+      "authority": "manufacturer_published",
+      "source_id": "KUB-M8-NA-BROCHURE-2023",
+      "location": "PDF page 12, Performance table"
+    },
+    {
+      "id": "responsive-power-delivery-boost",
+      "subject": "Responsive Power Delivery additional power",
+      "value": 25,
+      "unit": "hp",
+      "authority": "manufacturer_published",
+      "source_id": "KUB-M8-NA-BROCHURE-2023",
+      "location": "PDF page 7 and page 12, Responsive Power Delivery and Performance table"
+    },
+    {
+      "id": "engine-displacement",
+      "subject": "Cummins B6.7 engine displacement",
+      "value": 6.7,
+      "unit": "L",
+      "authority": "manufacturer_published",
+      "source_id": "KUB-M8-NA-BROCHURE-2023",
+      "location": "PDF page 6 and page 12, Engine table"
+    },
+    {
+      "id": "engine-cylinder-count",
+      "subject": "engine cylinder count",
+      "value": 6,
+      "unit": "count",
+      "authority": "manufacturer_published",
+      "source_id": "KUB-M8-NA-BROCHURE-2023",
+      "location": "PDF page 6 and page 12, Engine table"
+    },
+    {
+      "id": "aftertreatment",
+      "subject": "engine aftertreatment components",
+      "value": "DOC+SCR+DPF",
+      "unit": "system",
+      "authority": "manufacturer_published",
+      "source_id": "KUB-M8-NA-BROCHURE-2023",
+      "location": "PDF page 6 and page 12, Engine table"
+    },
+    {
+      "id": "fuel-capacity",
+      "subject": "fuel tank capacity",
+      "value": 375,
+      "unit": "L",
+      "authority": "manufacturer_published",
+      "source_id": "KUB-M8-NA-BROCHURE-2023",
+      "location": "PDF page 12, Engine table; 99 US gal"
+    },
+    {
+      "id": "def-capacity",
+      "subject": "DEF tank capacity",
+      "value": 35,
+      "unit": "L",
+      "authority": "manufacturer_published",
+      "source_id": "KUB-M8-NA-BROCHURE-2023",
+      "location": "PDF page 12, Engine table; 9 US gal"
+    },
+    {
+      "id": "selected-transmission",
+      "subject": "selected optional transmission type",
+      "value": "KVT CVT",
+      "unit": "type",
+      "authority": "manufacturer_published",
+      "source_id": "KUB-M8-NA-BROCHURE-2023",
+      "location": "PDF page 7 and page 12, Transmission"
+    },
+    {
+      "id": "base-max-travel-speed",
+      "subject": "base maximum travel speed",
+      "value": 40,
+      "unit": "km/h",
+      "authority": "manufacturer_published",
+      "source_id": "KUB-M8-NA-BROCHURE-2023",
+      "location": "PDF page 7 and page 12, Transmission; 24.8 mph"
+    },
+    {
+      "id": "selected-max-travel-speed",
+      "subject": "selected optional maximum travel speed",
+      "value": 50,
+      "unit": "km/h",
+      "authority": "manufacturer_published",
+      "source_id": "KUB-M8-NA-BROCHURE-2023",
+      "location": "PDF page 7 and page 12, Transmission; optional 31 mph with suspended front axle"
+    },
+    {
+      "id": "rear-pto-speed-modes",
+      "subject": "rear PTO selectable speed modes",
+      "value": ["540", "540E", "1000", "1000E"],
+      "unit": "rpm_modes",
+      "authority": "manufacturer_published",
+      "source_id": "KUB-M8-NA-BROCHURE-2023",
+      "location": "PDF page 7 and page 12, PTO"
+    },
+    {
+      "id": "hydraulic-system",
+      "subject": "hydraulic system type",
+      "value": "closed-center load sensing",
+      "unit": "type",
+      "authority": "manufacturer_published",
+      "source_id": "KUB-M8-NA-BROCHURE-2023",
+      "location": "PDF page 9 and page 12, Hydraulics"
+    },
+    {
+      "id": "steering-operating-flow",
+      "subject": "steering and operating hydraulic flow",
+      "value": 42,
+      "unit": "L/min",
+      "authority": "manufacturer_published",
+      "source_id": "KUB-M8-NA-BROCHURE-2023",
+      "location": "PDF page 12, Hydraulics; 11.1 gpm"
+    },
+    {
+      "id": "standard-implement-pump-flow",
+      "subject": "selected standard implement pump flow",
+      "value": 120,
+      "unit": "L/min",
+      "authority": "manufacturer_published",
+      "source_id": "KUB-M8-NA-BROCHURE-2023",
+      "location": "PDF page 9 and page 12, Hydraulics; 31.7 gpm"
+    },
+    {
+      "id": "standard-rear-remote-count",
+      "subject": "selected standard electronic rear remote valve count",
+      "value": 3,
+      "unit": "count",
+      "authority": "manufacturer_published",
+      "source_id": "KUB-M8-NA-BROCHURE-2023",
+      "location": "PDF page 9 and page 12, Hydraulics"
+    },
+    {
+      "id": "standard-rear-hitch-capacity",
+      "subject": "selected standard rear three-point hitch lift capacity at 610 mm behind lift points",
+      "value": 5080,
+      "unit": "kg",
+      "authority": "manufacturer_published",
+      "source_id": "KUB-M8-NA-BROCHURE-2023",
+      "location": "PDF page 9 and page 12, Rear 3-Point Hitch; 11200 lb"
+    },
+    {
+      "id": "rear-hitch-category",
+      "subject": "rear three-point hitch attachment category",
+      "value": "Category III/IIIN",
+      "unit": "category",
+      "authority": "manufacturer_published",
+      "source_id": "KUB-M8-NA-BROCHURE-2023",
+      "location": "PDF page 9 and page 12, Rear 3-Point Hitch"
+    },
+    {
+      "id": "front-axle-turning-angle",
+      "subject": "front axle turning angle",
+      "value": 55,
+      "unit": "deg",
+      "authority": "manufacturer_published",
+      "source_id": "KUB-M8-NA-BROCHURE-2023",
+      "location": "PDF page 12, Front Axle"
+    },
+    {
+      "id": "standard-rear-bar-axle-length",
+      "subject": "selected standard rear bar axle overall length",
+      "value": 2.489,
+      "unit": "m",
+      "authority": "manufacturer_published",
+      "source_id": "KUB-M8-NA-BROCHURE-2023",
+      "location": "PDF page 12, Rear Axle; 98 in"
+    },
+    {
+      "id": "wheelbase",
+      "subject": "wheelbase",
+      "value": 2.895,
+      "unit": "m",
+      "authority": "manufacturer_published",
+      "source_id": "KUB-M8-NA-BROCHURE-2023",
+      "location": "PDF page 12, Measurement; 114 in"
+    },
+    {
+      "id": "overall-height",
+      "subject": "published tractor height",
+      "value": 3.25,
+      "unit": "m",
+      "authority": "manufacturer_published",
+      "source_id": "KUB-M8-NA-BROCHURE-2023",
+      "location": "PDF page 12, Measurement; 128 in"
+    },
+    {
+      "id": "public-envelope-y",
+      "subject": "published overall height used as the public +Y envelope authority",
+      "value": 3.25,
+      "unit": "m",
+      "authority": "manufacturer_published",
+      "source_id": "KUB-M8-NA-BROCHURE-2023",
+      "location": "PDF page 12, Measurement; height 128 in (3250 mm)"
+    },
+    {
+      "id": "kvt-shipping-weight",
+      "subject": "average shipping weight with KVT transmission",
+      "value": 8391,
+      "unit": "kg",
+      "authority": "manufacturer_published",
+      "source_id": "KUB-M8-NA-BROCHURE-2023",
+      "location": "PDF page 12, Measurement; 18498 lb"
+    },
+    {
+      "id": "standard-monitor-size",
+      "subject": "selected standard K-Monitor diagonal",
+      "value": 7,
+      "unit": "in",
+      "authority": "manufacturer_published",
+      "source_id": "KUB-M8-CURRENT-PRODUCT-2026",
+      "location": "Current product page, Integrated Technology"
+    }
+  ],
+  "issues": [
+    {
+      "id": "current-model-lineage",
+      "status": "documented",
+      "detail": "The active Kubota USA page lists M8-181 and M8-201. The historical 2019 launch release is retained only as lineage context and cannot substitute the earlier M8-211 identity for this current package."
+    },
+    {
+      "id": "incomplete-public-envelope",
+      "status": "unresolved",
+      "detail": "The admitted current North American sources publish height and wheelbase but not an order-specific overall length, field width, tire size, wheel offset, or tread setting. Length and width in the structural study are explicitly reconstructed and cannot be promoted to manufacturer facts."
+    },
+    {
+      "id": "high-speed-option-coupling",
+      "status": "documented",
+      "detail": "The brochure text associates the 50 km/h upgrade with a suspended front axle, while the specification table lists speed and axle options separately. This presentation selects both, but does not claim an undisclosed dealer order code or dependency."
+    },
+    {
+      "id": "hidden-mechanics",
+      "status": "unresolved",
+      "detail": "Steering pivots, suspension travel and anchors, differential internals, wheel and tire geometry, rear-hitch pivots, PTO detail, motion curves, and collision limits are not published and remain presentation reconstructions."
+    }
+  ]
+}

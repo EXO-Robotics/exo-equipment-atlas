@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "machineId": "liebherr-ltm-1100-5-3",
+  "displayName": "LTM 1100-5.3",
+  "className": "All-terrain mobile crane",
+  "category": "Cranes",
+  "assets": {
+    "glb": "machines/liebherr-ltm-1100-5-3/assets/liebherr-ltm-1100-5-3-structural-study.glb",
+    "configuration": "machines/liebherr-ltm-1100-5-3/configuration.json",
+    "facts": "machines/liebherr-ltm-1100-5-3/evidence/facts.json",
+    "receipt": "machines/liebherr-ltm-1100-5-3/production/asset-receipt.json",
+    "validation": "machines/liebherr-ltm-1100-5-3/production/validation.json"
+  },
+  "evidence": {
+    "boundary": "Independent five-axle transport study. Boom staging, rigging, pivots, anchors, outriggers, and deployed review motion remain reconstructed.",
+    "lede": "Published S3586.02 dimensions constrain the 10×6×10 carrier, five-axle spacing, transport envelope, 62 m boom endpoint, and support footprint. No load-chart claim is made.",
+    "factIds": [
+      "transport-boom-head-length",
+      "transport-height-445",
+      "transport-width",
+      "telescopic-boom-maximum"
+    ]
+  },
+  "camera": {
+    "azimuth": 0.64,
+    "elevation": 0.27,
+    "distance": 1.5
+  },
+  "accent": "#d2a153"
+}

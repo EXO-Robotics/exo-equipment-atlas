@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#11110f" />
     <meta
       name="description"
-      content="EXO Equipment Atlas — evidence-bound, independently authored interactive heavy-equipment studies."
+      content="EXO Equipment Atlas — evidence-bound, independently authored interactive equipment studies."
     />
     <title>EXO Equipment Atlas</title>
     <link rel="stylesheet" href="assets/site/styles.css" />
@@ -33,7 +33,7 @@
         <a href="#evidence">Evidence</a>
         <a href="#method">Method</a>
       </nav>
-      <span class="study-badge">Structural studies · v0.1</span>
+      <span class="study-badge">Technical studies · v0.2</span>
     </header>
 
     <main id="top">
@@ -41,7 +41,8 @@
         class="hero"
         id="machine-panel"
         role="tabpanel"
-        aria-labelledby="machine-tab-cat-320 machine-title"
+        aria-labelledby="machine-title"
+        aria-busy="true"
       >
         <div
           id="scene"
@@ -50,15 +51,20 @@
           tabindex="0"
           aria-label="Interactive full-machine 3D viewer"
           aria-describedby="viewer-help"
-        ></div>
+        >
+          <div class="scene-fallback" id="scene-fallback" aria-hidden="true">
+            <img id="scene-poster" alt="" hidden />
+            <p id="fallback-copy">Interactive geometry is unavailable. The evidence record remains accessible below.</p>
+          </div>
+        </div>
         <div class="scene-vignette" aria-hidden="true"></div>
 
         <div class="hero-copy">
-          <p class="eyebrow" id="machine-class">Hydraulic excavator</p>
-          <h1 id="machine-title">Cat 320</h1>
+          <p class="eyebrow" id="machine-class">Loading catalog</p>
+          <h1 id="machine-title">Equipment Atlas</h1>
           <p class="hero-statement">Evidence-bound machinery,<br />rendered as a system.</p>
           <p class="hero-boundary" id="machine-boundary">
-            Independently authored structural study. Not engineering authority.
+            Independently authored structural studies. Not engineering authority.
           </p>
         </div>
 
@@ -72,14 +78,24 @@
 
           <div class="viewer-status" role="status" aria-live="polite">
             <span class="status-dot" aria-hidden="true"></span>
-            <span id="load-status">Loading Cat 320</span>
+            <span id="load-status">Loading machine catalog</span>
           </div>
 
           <div class="viewer-actions" aria-label="3D viewer controls">
             <button id="orbit-toggle" class="text-button" type="button" aria-pressed="false">Auto orbit</button>
+            <button id="motion-toggle" class="text-button" type="button" aria-pressed="false" hidden>Auto motion</button>
             <button id="technical-view" class="text-button" type="button">Technical side</button>
             <button id="reset-view" class="text-button" type="button">Reset view</button>
           </div>
+
+          <section class="motion-panel" id="motion-panel" aria-labelledby="motion-title" hidden>
+            <div class="motion-heading">
+              <h3 id="motion-title">Machine motion</h3>
+              <span id="motion-state">Automatic presentation</span>
+            </div>
+            <div class="motion-channels" id="motion-channels"></div>
+            <p>Manual input holds auto mode for six seconds. Motion is a reconstructed presentation, not an operating envelope.</p>
+          </section>
         </section>
 
         <p class="gesture-hint" id="viewer-help">
@@ -97,90 +113,27 @@
 
       <section class="fleet" id="fleet" aria-labelledby="fleet-title">
         <div class="section-intro">
-          <p class="eyebrow">Machine index</p>
-          <h2 id="fleet-title">Thirteen machines.<br />One evidence contract.</h2>
+          <div>
+            <p class="eyebrow">Machine index</p>
+            <p class="catalog-kicker"><span id="machine-count">—</span> evidence-bound studies</p>
+          </div>
+          <h2 id="fleet-title">Every machine.<br />One viewer contract.</h2>
         </div>
 
-        <div class="machine-index" role="tablist" aria-label="Choose a machine">
-          <button class="machine-row is-active" id="machine-tab-cat-320" type="button" role="tab" aria-selected="true" aria-controls="machine-panel" tabindex="0" data-machine="cat-320">
-            <span class="machine-number">01</span>
-            <span class="machine-name">Cat 320</span>
-            <span class="machine-type">Hydraulic excavator</span>
-            <span class="machine-action">Explore ↗</span>
-          </button>
-          <button class="machine-row" id="machine-tab-john-deere-333-p-tier" type="button" role="tab" aria-selected="false" aria-controls="machine-panel" tabindex="-1" data-machine="john-deere-333-p-tier">
-            <span class="machine-number">02</span>
-            <span class="machine-name">333 P-Tier</span>
-            <span class="machine-type">Compact track loader</span>
-            <span class="machine-action">Explore ↗</span>
-          </button>
-          <button class="machine-row" id="machine-tab-john-deere-310-p-tier" type="button" role="tab" aria-selected="false" aria-controls="machine-panel" tabindex="-1" data-machine="john-deere-310-p-tier">
-            <span class="machine-number">03</span>
-            <span class="machine-name">310 P-Tier</span>
-            <span class="machine-type">Backhoe loader</span>
-            <span class="machine-action">Explore ↗</span>
-          </button>
-          <button class="machine-row" id="machine-tab-cat-950" type="button" role="tab" aria-selected="false" aria-controls="machine-panel" tabindex="-1" data-machine="cat-950">
-            <span class="machine-number">04</span>
-            <span class="machine-name">Cat 950</span>
-            <span class="machine-type">Articulated wheel loader</span>
-            <span class="machine-action">Explore ↗</span>
-          </button>
-          <button class="machine-row" id="machine-tab-cat-d6" type="button" role="tab" aria-selected="false" aria-controls="machine-panel" tabindex="-1" data-machine="cat-d6">
-            <span class="machine-number">05</span>
-            <span class="machine-name">Cat D6</span>
-            <span class="machine-type">Crawler dozer</span>
-            <span class="machine-action">Explore ↗</span>
-          </button>
-          <button class="machine-row" id="machine-tab-cat-725" type="button" role="tab" aria-selected="false" aria-controls="machine-panel" tabindex="-1" data-machine="cat-725">
-            <span class="machine-number">06</span>
-            <span class="machine-name">Cat 725</span>
-            <span class="machine-type">Articulated dump truck</span>
-            <span class="machine-action">Explore ↗</span>
-          </button>
-          <button class="machine-row" id="machine-tab-cat-140" type="button" role="tab" aria-selected="false" aria-controls="machine-panel" tabindex="-1" data-machine="cat-140">
-            <span class="machine-number">07</span>
-            <span class="machine-name">Cat 140</span>
-            <span class="machine-type">Motor grader</span>
-            <span class="machine-action">Explore ↗</span>
-          </button>
-          <button class="machine-row" id="machine-tab-john-deere-1270g" type="button" role="tab" aria-selected="false" aria-controls="machine-panel" tabindex="-1" data-machine="john-deere-1270g">
-            <span class="machine-number">08</span>
-            <span class="machine-name">1270G 8W</span>
-            <span class="machine-type">Wheeled harvester</span>
-            <span class="machine-action">Explore ↗</span>
-          </button>
-          <button class="machine-row" id="machine-tab-john-deere-470-p-tier" type="button" role="tab" aria-selected="false" aria-controls="machine-panel" tabindex="-1" data-machine="john-deere-470-p-tier">
-            <span class="machine-number">09</span>
-            <span class="machine-name">470 P-Tier</span>
-            <span class="machine-type">Hydraulic excavator</span>
-            <span class="machine-action">Explore ↗</span>
-          </button>
-          <button class="machine-row" id="machine-tab-bobcat-s76-2" type="button" role="tab" aria-selected="false" aria-controls="machine-panel" tabindex="-1" data-machine="bobcat-s76-2">
-            <span class="machine-number">10</span>
-            <span class="machine-name">S76-2</span>
-            <span class="machine-type">Skid-steer loader</span>
-            <span class="machine-action">Explore ↗</span>
-          </button>
-          <button class="machine-row" id="machine-tab-komatsu-wa475-10" type="button" role="tab" aria-selected="false" aria-controls="machine-panel" tabindex="-1" data-machine="komatsu-wa475-10">
-            <span class="machine-number">11</span>
-            <span class="machine-name">WA475-10</span>
-            <span class="machine-type">Articulated wheel loader</span>
-            <span class="machine-action">Explore ↗</span>
-          </button>
-          <button class="machine-row" id="machine-tab-volvo-dd128c" type="button" role="tab" aria-selected="false" aria-controls="machine-panel" tabindex="-1" data-machine="volvo-dd128c">
-            <span class="machine-number">12</span>
-            <span class="machine-name">DD128C</span>
-            <span class="machine-type">Tandem asphalt compactor</span>
-            <span class="machine-action">Explore ↗</span>
-          </button>
-          <button class="machine-row" id="machine-tab-liebherr-ltm-1100-5-3" type="button" role="tab" aria-selected="false" aria-controls="machine-panel" tabindex="-1" data-machine="liebherr-ltm-1100-5-3">
-            <span class="machine-number">13</span>
-            <span class="machine-name">LTM 1100-5.3</span>
-            <span class="machine-type">All-terrain mobile crane</span>
-            <span class="machine-action">Explore ↗</span>
-          </button>
+        <div class="catalog-tools" aria-label="Filter machine index">
+          <label class="machine-search" for="machine-search">
+            <span>Search the atlas</span>
+            <input id="machine-search" type="search" inputmode="search" autocomplete="off" placeholder="Machine, class, or category" />
+          </label>
+          <div class="category-control">
+            <span id="category-label">Category</span>
+            <div class="category-filters" id="category-filters" role="group" aria-labelledby="category-label"></div>
+          </div>
         </div>
+
+        <p class="catalog-summary" id="catalog-summary" role="status" aria-live="polite">Loading machine index.</p>
+        <div class="machine-index" id="machine-index" role="tablist" aria-label="Choose a machine" aria-busy="true"></div>
+        <p class="catalog-empty" id="catalog-empty" hidden>No machines match this search and category.</p>
       </section>
 
       <section class="evidence" id="evidence" aria-labelledby="evidence-title">
@@ -232,7 +185,27 @@
       <span>Visualization only · Not safety or operating guidance</span>
     </footer>
 
-    <noscript>This experience requires JavaScript to display the interactive machine studies.</noscript>
+    <template id="machine-row-template">
+      <button class="machine-row" type="button" role="tab" aria-selected="false" aria-controls="machine-panel" tabindex="-1">
+        <span class="machine-number"></span>
+        <span class="machine-name"></span>
+        <span class="machine-type"></span>
+        <span class="machine-category"></span>
+        <span class="machine-action">Explore ↗</span>
+      </button>
+    </template>
+
+    <template id="motion-channel-template">
+      <label class="motion-channel">
+        <span></span>
+        <input type="range" min="0" max="100" step="1" value="0" />
+        <output>0%</output>
+      </label>
+    </template>
+
+    <noscript>
+      <p class="noscript-note">JavaScript is required for the interactive models. The atlas remains an unofficial visualization and is not operating guidance.</p>
+    </noscript>
     <script type="module" src="assets/site/app.js"></script>
   </body>
 </html>

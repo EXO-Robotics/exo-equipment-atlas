@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0.0",
+  "machineId": "john-deere-r4045",
+  "displayName": "John Deere R4045",
+  "className": "High-clearance self-propelled sprayer",
+  "category": "Crop application",
+  "assets": {
+    "glb": "machines/john-deere-r4045/assets/john-deere-r4045-structural-study.glb",
+    "configuration": "machines/john-deere-r4045/configuration.json",
+    "facts": "machines/john-deere-r4045/evidence/facts.json",
+    "receipt": "machines/john-deere-r4045/production/asset-receipt.json",
+    "validation": "machines/john-deere-r4045/production/validation.json",
+    "poster": "machines/john-deere-r4045/review/renders/john-deere-r4045-front-three-quarter.png"
+  },
+  "evidence": {
+    "boundary": "Legacy MY2020 R4045 source freeze: 06W5N carrier, 1,200-gallon stainless tank, 120-foot steel boom and 20-inch stainless plumbing. The 36.576 m deployed boom span is published; carrier length/height/width and every hidden mechanism remain reconstructed.",
+    "lede": "The official order guide publishes 258 kW, 1.47 m crop clearance, a 3.05-4.06 m tread range and the selected 120-foot/20-inch application package. Motion is a neutral structural explanation, not spray or operating guidance.",
+    "factIds": ["rated-engine-power", "solution-tank-capacity", "crop-clearance", "hydraulic-tread-range", "public-envelope-z", "selected-nozzle-spacing"]
+  },
+  "camera": {"azimuth": 0.56, "elevation": 0.28, "distance": 1.66},
+  "accent": "#718591",
+  "motion": {
+    "autoplay": true,
+    "durationSeconds": 19,
+    "mode": "sine",
+    "damping": 6.4,
+    "channels": [
+      {"id":"front-axle-oscillation","label":"Front axle articulation - reconstructed","nodes":["Front_Axle_Oscillation_Pivot"],"property":"rotation.x","from":-0.04,"to":0.04,"phase":0.0,"mode":"offset"},
+      {"id":"left-boom-fold","label":"Left 120-foot boom wing - reconstructed fold","nodes":["Boom_L_Fold_Pivot"],"property":"rotation.x","from":0.0,"to":1.15,"phase":0.22,"mode":"offset","autoplay":"ping-pong"},
+      {"id":"right-boom-fold","label":"Right 120-foot boom wing - reconstructed fold","nodes":["Boom_R_Fold_Pivot"],"property":"rotation.x","from":0.0,"to":-1.15,"phase":0.22,"mode":"offset","autoplay":"ping-pong"},
+      {"id":"boom-center-settle","label":"Boom-center leveling cue - reconstructed","nodes":["Boom_Center_ROOT"],"property":"rotation.x","from":-0.025,"to":0.025,"phase":0.62,"mode":"offset","autoplay":"sine"}
+    ]
+  }
+}

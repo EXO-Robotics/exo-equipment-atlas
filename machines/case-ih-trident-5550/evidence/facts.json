@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "case-ih-trident-5550",
+  "configuration_id": "CASEIH-TRIDENT5550-NAM-LIQ1600-ALBOOM120-AIMCF2-4WD-CANDIDATE",
+  "facts": [
+    {"id":"rated-engine-power","subject":"Trident 5550 rated engine power","value":390,"unit":"hp","authority":"manufacturer_published","source_id":"CASEIH-TRIDENT5550-US-PRODUCT-2026","location":"Product page, Engine & Transmission section"},
+    {"id":"peak-engine-power","subject":"Trident 5550 peak engine power","value":415,"unit":"hp","authority":"manufacturer_published","source_id":"CASEIH-TRIDENT5550-US-PRODUCT-2026","location":"Linked model page headline specification"},
+    {"id":"maximum-travel-speed","subject":"maximum road travel speed","value":40,"unit":"mph","authority":"manufacturer_published","source_id":"CASEIH-TRIDENT5550-US-PRODUCT-2026","location":"Product page headline and linked model page"},
+    {"id":"wheelbase","subject":"wheelbase","value":"14 ft 2 in","unit":"imperial_length","authority":"manufacturer_published","source_id":"CASEIH-TRIDENT5550-US-PRODUCT-2026","location":"Linked model page headline specification"},
+    {"id":"liquid-tank-capacity","subject":"selected maximum liquid tank capacity","value":1600,"unit":"US_gal","authority":"manufacturer_published","source_id":"CASEIH-TRIDENT5550-US-PRODUCT-2026","location":"Product page, Application Tanks & Bins"},
+    {"id":"selected-boom-width","subject":"selected supported aluminum boom width","value":120,"unit":"ft","authority":"manufacturer_published","source_id":"CASEIH-TRIDENT5550-US-PRODUCT-2026","location":"Product page, Liquid Application, Boom Recirculation availability"},
+    {"id":"boom-recirculation","subject":"factory-installed boom recirculation availability","value":[120,135],"unit":"ft_boom_options","authority":"manufacturer_published","source_id":"CASEIH-TRIDENT5550-US-PRODUCT-2026","location":"Product page, Liquid Application"},
+    {"id":"pwm-frequency","subject":"AIM Command FLEX II nozzle pulse rate","value":20,"unit":"pulses_per_s","authority":"manufacturer_published","source_id":"CASEIH-TRIDENT5550-US-PRODUCT-2026","location":"Product page, Pulse Width Modulation"},
+    {"id":"drive-system","subject":"ground drive","value":"hydrostatic full-time four-wheel drive with individual wheel traction control","unit":"functional_topology","authority":"manufacturer_published","source_id":"CASEIH-TRIDENT5550-US-PRODUCT-2026","location":"Product page, Engine & Transmission"},
+    {"id":"suspension-function","subject":"load-compensating suspension function","value":"automatic ride-quality and load-level adjustment by operating mode and load weight","unit":"functional_description","authority":"manufacturer_published","source_id":"CASEIH-TRIDENT5550-US-PRODUCT-2026","location":"Product page, Chassis"},
+    {"id":"axle-width-adjustment","subject":"axle arrangement","value":"easily adjustable axle widths","unit":"functional_description","authority":"manufacturer_published","source_id":"CASEIH-TRIDENT5550-US-PRODUCT-2026","location":"Product page, Axles Wheels and Brakes"},
+    {"id":"conversion-time","subject":"documented liquid-to-dry changeover demonstration","value":42,"unit":"min","authority":"manufacturer_published","source_id":"CASEIH-TRIDENT5550-US-PRODUCT-2026","location":"Product page, Aerial Lift Device; three people with telehandler outdoors"},
+    {"id":"cab-volume","subject":"Surveyor cab interior volume","value":109.5,"unit":"ft3","authority":"manufacturer_published","source_id":"CASEIH-TRIDENT5550-US-PRODUCT-2026","location":"Product page, Operator Environment"},
+    {"id":"cab-glass-area","subject":"Surveyor cab glass area","value":68,"unit":"ft2","authority":"manufacturer_published","source_id":"CASEIH-TRIDENT5550-US-PRODUCT-2026","location":"Product page, Operator Environment"},
+    {"id":"public-envelope-x","subject":"public longitudinal envelope with liquid system and 120-foot boom folded","value":9.72,"unit":"m","authority":"manufacturer_published","source_id":"CASEIH-TRIDENT5550-US-BROCHURE-CURRENT","location":"PDF page 27, 31 ft 10.5 in overall length"},
+    {"id":"public-envelope-y","subject":"public vertical envelope at standard suspension ride height","value":4.01,"unit":"m","authority":"manufacturer_published","source_id":"CASEIH-TRIDENT5550-US-BROCHURE-CURRENT","location":"PDF page 27, 13 ft 1.75 in overall height"},
+    {"id":"boom-working-span","subject":"selected 120-foot boom working span","value":36.5,"unit":"m","authority":"manufacturer_published","source_id":"CASEIH-TRIDENT5550-US-BROCHURE-CURRENT","location":"PDF page 27, 60/90/120 ft boom option, 36.5 m published metric"},
+    {"id":"public-envelope-z","subject":"public folded lateral carrier envelope with 710/60R46 tires","value":4.21,"unit":"m","authority":"manufacturer_published","source_id":"CASEIH-TRIDENT5550-US-BROCHURE-CURRENT","location":"PDF page 27, 13 ft 9.75 in overall width"}
+  ],
+  "issues": [
+    {"id":"boom-and-tank-order","status":"documented","detail":"The current page establishes that 1,600-gallon tanks and 120-foot aluminum booms are offered; the study explicitly combines those supported choices but does not claim a serial-bound factory order."},
+    {"id":"senseapply-model-year","status":"unresolved","detail":"The current page states SenseApply availability on model-year 2026 machines. This candidate does not include or animate the optional SenseApply camera because its exact model year is unresolved."},
+    {"id":"static-geometry-boundary","status":"unresolved","detail":"The admitted brochure establishes the selected folded overall envelope, but steering angles, boom section lengths, self-centering linkage, suspension travel, breakaway axes, plumbing and nozzle spacing remain unestablished."}
+  ]
+}

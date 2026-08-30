@@ -1,0 +1,231 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "claas-jaguar-990",
+  "configuration_id": "CLAAS-J990-INT-STGV-WHEEL-ORBIS900-VMAX42-MCCMAX-M-CANDIDATE",
+  "facts": [
+    {
+      "id": "engine-model",
+      "subject": "engine model",
+      "value": "MAN D2862 V12",
+      "unit": "identity",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-J900-INT-BROCHURE",
+      "location": "technical data, engine table"
+    },
+    {
+      "id": "engine-displacement",
+      "subject": "engine displacement",
+      "value": 24.24,
+      "unit": "L",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-J900-INT-BROCHURE",
+      "location": "technical data, engine table"
+    },
+    {
+      "id": "maximum-engine-power",
+      "subject": "maximum engine output ECE R120",
+      "value": 680,
+      "unit": "kW",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-J900-INT-BROCHURE",
+      "location": "technical data, engine table"
+    },
+    {
+      "id": "maximum-engine-power-ps",
+      "subject": "maximum engine output ECE R120",
+      "value": 925,
+      "unit": "hp_metric",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-J900-INT-BROCHURE",
+      "location": "technical data, engine table"
+    },
+    {
+      "id": "maximum-power-speed",
+      "subject": "working speed at maximum output",
+      "value": 1800,
+      "unit": "rpm",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-J900-INT-BROCHURE",
+      "location": "technical data, engine table"
+    },
+    {
+      "id": "standard-fuel-capacity",
+      "subject": "standard fuel tank capacity",
+      "value": 1100,
+      "unit": "L",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-J900-INT-BROCHURE",
+      "location": "technical data, engine table"
+    },
+    {
+      "id": "auxiliary-fuel-capacity",
+      "subject": "selected optional auxiliary fuel tank capacity",
+      "value": 400,
+      "unit": "L",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-J900-INT-BROCHURE",
+      "location": "technical data, engine table"
+    },
+    {
+      "id": "orbis-working-width",
+      "subject": "selected ORBIS 900 working width",
+      "value": 8.93,
+      "unit": "m",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-J900-INT-BROCHURE",
+      "location": "technical data, front attachments table"
+    },
+    {
+      "id": "orbis-transport-width",
+      "subject": "ORBIS automatic transport-protection width",
+      "value": 3,
+      "unit": "m",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-J900-INT-BROCHURE",
+      "location": "front attachments spread"
+    },
+    {
+      "id": "feeder-width",
+      "subject": "feeder unit width",
+      "value": 730,
+      "unit": "mm",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-J900-INT-BROCHURE",
+      "location": "technical data, feeder unit table"
+    },
+    {
+      "id": "feed-roller-count",
+      "subject": "feed and precompression rollers",
+      "value": 4,
+      "unit": "count",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-J900-INT-BROCHURE",
+      "location": "technical data, feeder unit table"
+    },
+    {
+      "id": "chopping-cylinder-width",
+      "subject": "chopping cylinder width",
+      "value": 750,
+      "unit": "mm",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-J900-INT-BROCHURE",
+      "location": "technical data, chopping cylinder table"
+    },
+    {
+      "id": "chopping-cylinder-diameter",
+      "subject": "chopping cylinder diameter",
+      "value": 630,
+      "unit": "mm",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-J900-INT-BROCHURE",
+      "location": "technical data, chopping cylinder table"
+    },
+    {
+      "id": "vmax42-knife-count",
+      "subject": "selected V-MAX 42 knife count",
+      "value": 42,
+      "unit": "count",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-J900-INT-BROCHURE",
+      "location": "V-MAX chopping cylinder spread and technical data"
+    },
+    {
+      "id": "vmax42-cutting-frequency",
+      "subject": "selected V-MAX 42 cutting frequency",
+      "value": 25200,
+      "unit": "cuts/min",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-J900-INT-BROCHURE",
+      "location": "V-MAX chopping cylinder spread"
+    },
+    {
+      "id": "vmax42-length-of-cut",
+      "subject": "selected V-MAX 42 short length-of-cut range",
+      "value": [3.5, 12.5],
+      "unit": "mm",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-J900-INT-BROCHURE",
+      "location": "V-MAX chopping cylinder spread and technical data"
+    },
+    {
+      "id": "mcc-max-diameter",
+      "subject": "selected MCC MAX roller diameter",
+      "value": 265,
+      "unit": "mm",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-J900-INT-BROCHURE",
+      "location": "technical data, MULTI CROP CRACKER table"
+    },
+    {
+      "id": "accelerator-width",
+      "subject": "crop accelerator width",
+      "value": 680,
+      "unit": "mm",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-J900-INT-BROCHURE",
+      "location": "technical data, crop accelerator table"
+    },
+    {
+      "id": "accelerator-diameter",
+      "subject": "crop accelerator diameter",
+      "value": 540,
+      "unit": "mm",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-J900-INT-BROCHURE",
+      "location": "technical data, crop accelerator table"
+    },
+    {
+      "id": "standard-chute-swing",
+      "subject": "selected standard discharge chute swivel angle",
+      "value": 210,
+      "unit": "deg",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-J900-INT-BROCHURE",
+      "location": "technical data, discharge chute table"
+    },
+    {
+      "id": "public-envelope-x",
+      "subject": "carrier working length",
+      "value": 6.495,
+      "unit": "m",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-J900-INT-BROCHURE",
+      "location": "technical data, dimensions and weights table"
+    },
+    {
+      "id": "public-envelope-y",
+      "subject": "carrier transport height with standard chute extension",
+      "value": 3.945,
+      "unit": "m",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-J900-INT-BROCHURE",
+      "location": "technical data, dimensions and weights table"
+    },
+    {
+      "id": "public-envelope-z",
+      "subject": "retained ORBIS 900 lateral working envelope",
+      "value": 8.93,
+      "unit": "m",
+      "authority": "manufacturer_published",
+      "source_id": "CLAAS-J900-INT-BROCHURE",
+      "location": "technical data, front attachments table; selected full-width working pose"
+    }
+  ],
+  "issues": [
+    {
+      "id": "emissions-market-boundary",
+      "status": "documented",
+      "detail": "The candidate uses the Stage V market freeze supplied by the research lane. North American product-page wording is used only for mechanism descriptions, not engine certification or output authority."
+    },
+    {
+      "id": "dimension-footnote-configuration",
+      "status": "documented",
+      "detail": "The brochure's standard-equipment weight footnote names a V-MAX 24 and no front attachment, so that weight is intentionally omitted from the selected V-MAX 42 plus ORBIS 900 fact register."
+    },
+    {
+      "id": "hidden-mechanisms",
+      "status": "unresolved",
+      "detail": "Attachment pivots, wheel and steering geometry, feeder rollers, chopping cylinder, cracker, accelerator, chute bearings, and their speed relationships are not published coordinate authority."
+    }
+  ]
+}

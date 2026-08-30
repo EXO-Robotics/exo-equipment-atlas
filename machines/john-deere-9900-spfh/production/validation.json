@@ -1,0 +1,341 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-9900-spfh",
+  "configuration_id": "JD-9900SPFH-MY2024-NA-282DZ-4005-0415KM-5597-33M-CANDIDATE",
+  "archetype": "forage_harvester",
+  "candidate_class": "technical_structural_study",
+  "engineering_authority": false,
+  "verdict": "PASS",
+  "verdict_scope": "technical_structural_study_only",
+  "release_status": "PENDING",
+  "bounds": {
+    "min_m": [
+      -4.6,
+      0.0,
+      -4.525
+    ],
+    "max_m": [
+      4.6,
+      4.05,
+      4.525
+    ],
+    "size_m": [
+      9.2,
+      4.05,
+      9.05
+    ]
+  },
+  "counts": {
+    "objects": 212,
+    "meshes": 190,
+    "triangles": 29560,
+    "materials": 6
+  },
+  "envelope_fit": {
+    "classification": "reconstructed_visible_envelope_calibration",
+    "source_bounds_m": {
+      "min_m": [
+        -3.1725,
+        0.0,
+        -4.525
+      ],
+      "max_m": [
+        4.876,
+        4.096222,
+        4.525
+      ],
+      "size_m": [
+        8.0485,
+        4.096222,
+        9.05
+      ]
+    },
+    "target_bounds_m": {
+      "min_m": [
+        -4.6,
+        0.0,
+        -4.525
+      ],
+      "max_m": [
+        4.6,
+        4.05,
+        4.525
+      ],
+      "size_m": [
+        9.2,
+        4.05,
+        9.05
+      ]
+    },
+    "axis_scale_factors": [
+      1.143070162,
+      0.988715962,
+      0.999999979
+    ],
+    "calibrated_bounds_m": {
+      "min_m": [
+        -4.6,
+        0.0,
+        -4.525
+      ],
+      "max_m": [
+        4.6,
+        4.05,
+        4.525
+      ],
+      "size_m": [
+        9.2,
+        4.05,
+        9.05
+      ]
+    },
+    "authority": "reconstructed_not_machine_specific_engineering"
+  },
+  "glb_contract": {
+    "glb_version": "2.0",
+    "scene_count": 1,
+    "scene_root_count": 1,
+    "root_name": "Machine_Root",
+    "root_record": {},
+    "identity_root": true,
+    "nodes": 212,
+    "mesh_nodes": 190,
+    "mesh_definitions": 190,
+    "materials": 6,
+    "triangles": 29560,
+    "cameras": 0,
+    "punctual_lights": false,
+    "images": 0,
+    "textures": 0,
+    "nonidentity_mesh_scales": {},
+    "helper_like_mesh_nodes": [],
+    "semantic_motion_nodes": 21,
+    "bounds": {
+      "min_m": [
+        -4.6,
+        0.0,
+        -4.525
+      ],
+      "max_m": [
+        4.6,
+        4.05,
+        4.525
+      ],
+      "size_m": [
+        9.2,
+        4.05,
+        9.05
+      ]
+    }
+  },
+  "gates": [
+    {
+      "id": "builder-execution",
+      "status": "PASS",
+      "detail": "Factory-startup background builder reached validation generation."
+    },
+    {
+      "id": "candidate-class-boundary",
+      "status": "PASS",
+      "detail": "technical_structural_study only; not engineering authority."
+    },
+    {
+      "id": "scene-units-and-axes",
+      "status": "PASS",
+      "detail": "Meters; +X forward, +Y up, +Z machine right."
+    },
+    {
+      "id": "independent-authoring-boundary",
+      "status": "PASS",
+      "detail": "No downloaded geometry, CAD, copied textures, logos, or opaque add-ons."
+    },
+    {
+      "id": "one-identity-root",
+      "status": "PASS",
+      "detail": {}
+    },
+    {
+      "id": "required-semantic-nodes",
+      "status": "PASS",
+      "detail": {
+        "Machine_Root": true,
+        "Fixed_Structure_ROOT": true,
+        "Running_Gear_ROOT": true,
+        "Hydraulics_ROOT": true,
+        "Service_Detail_ROOT": true,
+        "Header_Lift_Pivot": true,
+        "Header_ROOT": true,
+        "Feedroll_ROOT": true,
+        "Spout_Yaw_Pivot": true,
+        "Spout_ROOT": true,
+        "Spout_Tip_Pivot": true,
+        "Spout_Tip_ROOT": true
+      }
+    },
+    {
+      "id": "semantic-motion-hierarchy",
+      "status": "PASS",
+      "detail": {
+        "semantic_motion_nodes": 21
+      }
+    },
+    {
+      "id": "export-mesh-scales-applied",
+      "status": "PASS",
+      "detail": {
+        "authoring_residual": {},
+        "glb_residual": {}
+      }
+    },
+    {
+      "id": "public-glb-no-cameras-lights",
+      "status": "PASS",
+      "detail": {
+        "cameras": 0,
+        "punctual_lights": false
+      }
+    },
+    {
+      "id": "public-glb-no-helpers",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "public-glb-no-images-textures",
+      "status": "PASS",
+      "detail": {
+        "images": 0,
+        "textures": 0
+      }
+    },
+    {
+      "id": "node-density",
+      "status": "PASS",
+      "detail": {
+        "actual": 212,
+        "minimum": 200
+      }
+    },
+    {
+      "id": "mesh-density",
+      "status": "PASS",
+      "detail": {
+        "actual": 190,
+        "minimum": 180
+      }
+    },
+    {
+      "id": "triangle-density",
+      "status": "PASS",
+      "detail": {
+        "actual": 29560,
+        "minimum": 10000
+      }
+    },
+    {
+      "id": "finite-visible-bounds",
+      "status": "PASS",
+      "detail": {
+        "min_m": [
+          -4.6,
+          0.0,
+          -4.525
+        ],
+        "max_m": [
+          4.6,
+          4.05,
+          4.525
+        ],
+        "size_m": [
+          9.2,
+          4.05,
+          9.05
+        ]
+      }
+    },
+    {
+      "id": "retained-visible-envelope",
+      "status": "PASS",
+      "detail": {
+        "actual_size_m": [
+          9.2,
+          4.05,
+          9.05
+        ],
+        "expected_size_m": [
+          9.2,
+          4.05,
+          9.05
+        ],
+        "absolute_tolerance_m": 0.03,
+        "minimum_y_m": 0.0
+      }
+    },
+    {
+      "id": "review-renders-nonempty",
+      "status": "PASS",
+      "detail": [
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/john-deere-9900-spfh/review/renders/john-deere-9900-spfh-operator-side.png",
+          "bytes": 254041
+        },
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/john-deere-9900-spfh/review/renders/john-deere-9900-spfh-front-three-quarter.png",
+          "bytes": 272381
+        },
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/john-deere-9900-spfh/review/renders/john-deere-9900-spfh-rear-three-quarter.png",
+          "bytes": 263484
+        },
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/john-deere-9900-spfh/review/renders/john-deere-9900-spfh-elevated-technical.png",
+          "bytes": 340966
+        },
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/john-deere-9900-spfh/review/renders/john-deere-9900-spfh-articulation-detail.png",
+          "bytes": 288807
+        },
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/john-deere-9900-spfh/review/renders/john-deere-9900-spfh-right-side.png",
+          "bytes": 251611
+        }
+      ]
+    },
+    {
+      "id": "neutral-unbranded-materials",
+      "status": "PASS",
+      "detail": "Neutral palette and procedural materials only; no manufacturer marks or textures."
+    },
+    {
+      "id": "configuration-freeze",
+      "status": "PENDING",
+      "detail": "Research candidate retains unresolved exact configuration and options."
+    },
+    {
+      "id": "machine-specific-mechanical-solver",
+      "status": "PENDING",
+      "detail": "Generic structural pivots do not establish evidence-bound limits, endpoints, or cylinder closure."
+    },
+    {
+      "id": "ground-self-swept-collision",
+      "status": "PENDING",
+      "detail": "No machine-specific swept-volume or collision solver exists."
+    },
+    {
+      "id": "critic-human-visual-review",
+      "status": "PENDING",
+      "detail": "A human critic must inspect the exact render and artifact hashes."
+    },
+    {
+      "id": "viewer-browser-accessibility-mobile-selection-performance",
+      "status": "PENDING",
+      "detail": "Viewer integration belongs to the publication lane."
+    },
+    {
+      "id": "publication-and-deployment",
+      "status": "PENDING",
+      "detail": "Only the publisher may advance this research artifact to release."
+    }
+  ],
+  "failed_gate_ids": []
+}

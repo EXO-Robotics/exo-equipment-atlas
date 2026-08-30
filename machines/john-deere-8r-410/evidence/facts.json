@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-8r-410",
+  "configuration_id": "JD-8R410-MY2024-NA-JD9-E23-ILS-CAT4N3-CANDIDATE",
+  "facts": [
+    {"id": "model-identity", "subject": "model identity", "value": "8R 410", "unit": "identity", "authority": "manufacturer_published", "source_id": "JD-8-SERIES-TRACTOR-2024", "location": "PDF page 26, 8R specifications, 410 column"},
+    {"id": "rated-engine-power", "subject": "rated engine power", "value": 302, "unit": "kW", "authority": "manufacturer_published", "source_id": "JD-8-SERIES-TRACTOR-2024", "location": "PDF page 26, 8R 410 specifications"},
+    {"id": "rated-engine-power-hp", "subject": "rated engine power", "value": 410, "unit": "hp", "authority": "manufacturer_published", "source_id": "JD-8-SERIES-TRACTOR-2024", "location": "PDF page 26, 8R 410 specifications"},
+    {"id": "maximum-engine-power", "subject": "maximum engine power", "value": 326, "unit": "kW", "authority": "manufacturer_published", "source_id": "JD-8-SERIES-TRACTOR-2024", "location": "PDF page 26, 8R 410 specifications"},
+    {"id": "engine-displacement", "subject": "engine displacement", "value": 9.0, "unit": "L", "authority": "manufacturer_published", "source_id": "JD-8-SERIES-TRACTOR-2024", "location": "PDF page 26, engine specifications"},
+    {"id": "e23-maximum-speed", "subject": "e23 PowerShift maximum forward speed", "value": 40, "unit": "km/h", "authority": "manufacturer_published", "source_id": "JD-8-SERIES-TRACTOR-2024", "location": "PDF page 26, transmissions"},
+    {"id": "ils-tread-range", "subject": "ILS front tread adjustment range", "value": [1.524, 3.657], "unit": "m range", "authority": "manufacturer_published", "source_id": "JD-8-SERIES-TRACTOR-2024", "location": "PDF page 26, front axle and tread spacing"},
+    {"id": "ils-wheelbase", "subject": "wheelbase with ILS", "value": 3.05, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-8-SERIES-TRACTOR-2024", "location": "PDF page 26, dimensions"},
+    {"id": "ils-axle-clearance", "subject": "front axle clearance with ILS", "value": 0.59, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-8-SERIES-TRACTOR-2024", "location": "PDF page 26, dimensions"},
+    {"id": "maximum-hydraulic-flow", "subject": "maximum hydraulic pump flow", "value": 227, "unit": "L/min", "authority": "manufacturer_published", "source_id": "JD-8-SERIES-TRACTOR-2024", "location": "PDF page 26, hydraulic system"},
+    {"id": "rear-hitch-capacity", "subject": "Category 4N/3 rear hitch lift capacity", "value": 9072, "unit": "kg", "authority": "manufacturer_published", "source_id": "JD-8-SERIES-TRACTOR-2024", "location": "PDF page 26, three-point hitch"},
+    {"id": "public-envelope-x", "subject": "overall tractor length", "value": 6.636, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-8R410-LATAM-PAGE", "location": "Official product page, Dimensions, Overall length"}
+  ],
+  "issues": [
+    {"id": "partial-public-envelope", "status": "unresolved", "detail": "Only longitudinal X is admitted as a manufacturer-published overall envelope. Configuration-specific overall height Y and overall width Z are not published in the admitted sources."},
+    {"id": "tyre-and-tread-freeze", "status": "unresolved", "detail": "Tyre order codes, offsets and final front/rear tread settings remain unresolved and can change visible width."}
+  ]
+}

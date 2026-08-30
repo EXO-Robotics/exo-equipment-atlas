@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-9900-spfh",
+  "configuration_id": "JD-9900SPFH-MY2024-NA-282DZ-4005-0415KM-5597-33M-CANDIDATE",
+  "status": "research_candidate",
+  "identity": {
+    "manufacturer": "Deere & Company",
+    "brand": "John Deere",
+    "model": "9900",
+    "product_class": "self_propelled_forage_harvester",
+    "market": "North America",
+    "source_model_year_basis": "MY2024 government-price-page literature",
+    "lifecycle_note": "legacy predecessor configuration retained from the admitted February 2024 order guide"
+  },
+  "choices": {
+    "base_machine": "282DZ 9900 Self-Propelled Forage Harvester",
+    "engine": "Liebherr V12 24.2 L, Stage V / Final Tier 4",
+    "cutterhead": "4005 40-knife-bracket Dura-Drum, 1,170 rpm, 7-25 mm published length-of-cut range",
+    "front_attachment": "0415KM 772 rotary crop header with 1050 9000-series wide crop-flow-channel mounting",
+    "front_attachment_drive": "2421 standard PTO connection",
+    "discharge_spout": "5597 high-arch spout for eight-row and pickup use",
+    "front_tires": "672L VF 710/75 R42 184D, 3.3 m machine-width package",
+    "rear_tires": "6612 620/70 R30",
+    "public_geometry": "independently authored neutral structural study",
+    "public_materials": "matte slate, graphite, steel, rubber and neutral glazing; no logos, decals, copied textures or manufacturer geometry"
+  },
+  "unresolved_choices": [
+    "The admitted order guide does not publish the selected complete harvester-plus-header longitudinal or vertical envelope; public X and Y envelope axes remain unresolved.",
+    "Knife and shearbar crop package, kernel-processor package, guidance, HarvestLab, Active Fill Control, camera, lighting and ballast codes are not frozen.",
+    "The 3.3 m tire-package wording constrains carrier width class but not every tire bulge, wheel-offset or body projection coordinate.",
+    "Header mounting pivots, lift-cylinder anchors, crop-unit centers, feedroll centers and all internal crop-flow geometry are not published.",
+    "Spout yaw center, high-arch tube profile, outlet-flap hinge, actuation limits, hoses and swept-volume clearance are not published.",
+    "Exterior panels, cab/glazing profiles, service openings, lights, cooling, exhaust, wiring and hydraulic routing are not scale-authoritative in the order guide."
+  ],
+  "boundary": "MY2024 North American legacy 9900 research candidate frozen to base code 282DZ, 4005 40-knife Dura-Drum, 0415KM 772 rotary crop header, 5597 high-arch spout and the 672L/6612 3.3 m carrier tire package. Manufacturer facts constrain identity, power, crop-flow component sizes, spout swing and the 772 header's 9.05 m overall width. Complete working length and height plus hidden pivots and kinematics remain reconstructed or unresolved. The neutral model is not manufacturer CAD, a digital twin, engineering authority, load guidance, operator training or safety guidance."
+}

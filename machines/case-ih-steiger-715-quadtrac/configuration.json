@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "case-ih-steiger-715-quadtrac",
+  "configuration_id": "CASEIH-STEIGER715-NAM-AG-QUADTRAC-PWRDRIVE-HDS-CAT4N-CANDIDATE",
+  "status": "research_candidate",
+  "identity": {
+    "manufacturer": "CNH Industrial America LLC",
+    "brand": "Case IH",
+    "model": "Steiger 715 Quadtrac",
+    "product_class": "articulated_tracked_tractor",
+    "publication_family": "Steiger Series 2025",
+    "market": "North America"
+  },
+  "choices": {
+    "configuration": "Quadtrac Ag",
+    "transmission": "PowerDrive_16F_2R_full_powershift",
+    "undercarriage": "heavy_duty_suspended_HDS",
+    "rear_hitch": "Category_4N_three_point_hitch",
+    "drawbar": "Category_4_standard_6000_lb",
+    "track_width": "unresolved_within_supported_Quadtrac_track_family",
+    "rear_remotes": 4,
+    "public_finish": "neutral_unbranded_oxide_graphite"
+  },
+  "excluded_options": [
+    "wheeled_or_Rowtrac_configuration",
+    "scraper_configuration",
+    "CVXDrive_transmission",
+    "Category_5_drawbar",
+    "dual_hydraulic_pump_TwinFlow",
+    "PTO_hardware",
+    "manufacturer_logos_and_trade_dress"
+  ],
+  "unresolved_choices": [
+    "exact serial number and dealer order code",
+    "serial-bound confirmation that the worldwide 30-inch-track dimensional basis matches the selected North American HDS order",
+    "HDS production build date and regional availability",
+    "track carcass and tread supplier",
+    "hitch ball ends and implement connection",
+    "cab trim and lighting package",
+    "public material and branding authorization"
+  ],
+  "boundary": "Research-candidate technical structural study of a North American Steiger 715 Ag Quadtrac. Published capacities and functional topology constrain the visible study; articulation, track phase, suspension pivots, hydraulic anchors, drawbar geometry, loads, clearances, and animation timing are independently reconstructed and are not operating or engineering authority."
+}

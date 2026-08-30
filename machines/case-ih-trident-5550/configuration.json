@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "case-ih-trident-5550",
+  "configuration_id": "CASEIH-TRIDENT5550-NAM-LIQ1600-ALBOOM120-AIMCF2-4WD-CANDIDATE",
+  "status": "research_candidate",
+  "identity": {
+    "manufacturer": "CNH Industrial America LLC",
+    "brand": "Case IH",
+    "model": "Trident 5550",
+    "product_class": "high_clearance_liquid_applicator",
+    "publication_family": "Trident combination applicator",
+    "market": "North America"
+  },
+  "choices": {
+    "application_system": "liquid",
+    "product_tank": "1600_US_gal",
+    "boom": "120_ft_aluminum_self_centering",
+    "spray_control": "AIM_Command_FLEX_II",
+    "boom_recirculation": "selected",
+    "envelope_tire_basis": "710_60R46_single",
+    "drive": "hydrostatic_full_time_4WD",
+    "chassis": "convertible_liquid_dry_row_crop_chassis",
+    "public_finish": "neutral_unbranded_oxide_graphite"
+  },
+  "excluded_options": [
+    "135_ft_boom",
+    "1400_US_gal_liquid_tank",
+    "New_Leader_dry_nutrient_applicator",
+    "Dry_Hi_Flow_nonconvertible_chassis",
+    "factory_available_duals",
+    "manufacturer_logos_and_trade_dress"
+  ],
+  "unresolved_choices": [
+    "exact model year and dealer order code",
+    "boom nozzle spacing and tip package",
+    "wheel-track setting within the published 710/60R46 envelope basis",
+    "SenseApply model-year-specific hardware selection",
+    "tank plumbing, hose routing and breakaway geometry",
+    "public material and branding authorization"
+  ],
+  "boundary": "Research-candidate presentation of the 1,600-gallon liquid system with the supported 120-foot aluminum boom. Product-page facts establish capacity and visible functional topology; boom pivots, self-centering linkage, suspension travel, steering angles, nozzle plumbing, liquid behavior, rates, clearances and timing are reconstructed or unresolved."
+}

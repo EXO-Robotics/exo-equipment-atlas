@@ -1,0 +1,322 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "fendt-1167-vario-mt",
+  "configuration_id": "FENDT-1167-NA-T4F-SG30-SRPLUS-3PT-CANDIDATE",
+  "facts": [
+    {
+      "id": "public-envelope-x",
+      "subject": "frozen presentation overall length envelope",
+      "value": 6.758,
+      "unit": "m",
+      "authority": "manufacturer_published",
+      "source_id": "FENDT-1100-MT-NA-2025",
+      "location": "PDF page 8, printed page 15, Weights and Dimensions, overall length; 30 in General Ag tracks footnote"
+    },
+    {
+      "id": "public-envelope-y",
+      "subject": "frozen presentation overall height envelope",
+      "value": 3.754,
+      "unit": "m",
+      "authority": "manufacturer_published",
+      "source_id": "FENDT-1100-MT-NA-2025",
+      "location": "PDF page 8, printed page 15, Weights and Dimensions, overall height; 30 in General Ag tracks footnote"
+    },
+    {
+      "id": "public-envelope-z",
+      "subject": "frozen presentation standard-gauge overall width envelope",
+      "value": 2.95,
+      "unit": "m",
+      "authority": "manufacturer_published",
+      "source_id": "FENDT-1100-MT-NA-2025",
+      "location": "PDF page 8, printed page 15, Weights and Dimensions, standard-gauge overall width; 30 in General Ag tracks footnote"
+    },
+    {
+      "id": "model-identity",
+      "subject": "model identity",
+      "value": "1167 Vario MT",
+      "unit": "identity",
+      "authority": "manufacturer_published",
+      "source_id": "FENDT-1100-MT-US-PAGE",
+      "location": "U.S. product page, model power table"
+    },
+    {
+      "id": "emissions-stage",
+      "subject": "North American 1100 Vario MT series engine emissions stage",
+      "value": "Tier 4 Final",
+      "unit": "regulatory stage",
+      "authority": "manufacturer_published",
+      "source_id": "FENDT-1100-MT-NA-2025",
+      "location": "PDF page 3, printed page 5, Quick Specs and Features (Tier 4F)"
+    },
+    {
+      "id": "constant-power-kw",
+      "subject": "1167 constant power at 1,700 RPM according to ECE R 120",
+      "value": 495,
+      "unit": "kW",
+      "authority": "manufacturer_published",
+      "source_id": "FENDT-1100-MT-NA-2025",
+      "location": "PDF page 8, printed page 15, Specifications, 1167 column"
+    },
+    {
+      "id": "constant-power-hp",
+      "subject": "1167 constant power at 1,700 RPM according to ECE R 120",
+      "value": 673,
+      "unit": "hp ISO",
+      "authority": "manufacturer_published",
+      "source_id": "FENDT-1100-MT-NA-2025",
+      "location": "PDF page 8, printed page 15, Specifications, 1167 column"
+    },
+    {
+      "id": "engine-displacement",
+      "subject": "1167 MAN six-cylinder engine displacement",
+      "value": 16.2,
+      "unit": "L",
+      "authority": "manufacturer_published",
+      "source_id": "FENDT-1100-MT-NA-2025",
+      "location": "PDF page 8, printed page 15, Specifications, 1167 column"
+    },
+    {
+      "id": "maximum-torque",
+      "subject": "1167 maximum torque at 1,450 RPM",
+      "value": 3100,
+      "unit": "Nm",
+      "authority": "manufacturer_published",
+      "source_id": "FENDT-1100-MT-NA-2025",
+      "location": "PDF page 8, printed page 15, Specifications, 1167 column"
+    },
+    {
+      "id": "transmission-model",
+      "subject": "transmission type and model",
+      "value": "VarioDrive CVT / TA 400T",
+      "unit": "identity",
+      "authority": "manufacturer_published",
+      "source_id": "FENDT-1100-MT-NA-2025",
+      "location": "PDF page 8, printed page 15, Transmission / PTO"
+    },
+    {
+      "id": "maximum-forward-speed",
+      "subject": "maximum forward speed",
+      "value": 40,
+      "unit": "km/h",
+      "authority": "manufacturer_published",
+      "source_id": "FENDT-1100-MT-NA-2025",
+      "location": "PDF page 8, printed page 15, Transmission / PTO"
+    },
+    {
+      "id": "rear-pto-speeds",
+      "subject": "rear PTO speed identities",
+      "value": [1000, "1000E"],
+      "unit": "rpm / mode",
+      "authority": "manufacturer_published",
+      "source_id": "FENDT-1100-MT-NA-2025",
+      "location": "PDF page 8, printed page 15, Transmission / PTO"
+    },
+    {
+      "id": "standard-hydraulic-flow",
+      "subject": "single-pump hydraulic capacity at 1,700 RPM",
+      "value": 220,
+      "unit": "L/min",
+      "authority": "manufacturer_published",
+      "source_id": "FENDT-1100-MT-NA-2025",
+      "location": "PDF page 8, printed page 15, Hydraulics"
+    },
+    {
+      "id": "optional-dual-hydraulic-flow",
+      "subject": "optional dual-pump hydraulic capacity at 1,700 RPM",
+      "value": 439,
+      "unit": "L/min",
+      "authority": "manufacturer_published",
+      "source_id": "FENDT-1100-MT-NA-2025",
+      "location": "PDF page 8, printed page 15, Hydraulics"
+    },
+    {
+      "id": "standard-three-point-capacity",
+      "subject": "standard three-point lift capacity at ball ends",
+      "value": 6800,
+      "unit": "kg",
+      "authority": "manufacturer_published",
+      "source_id": "FENDT-1100-MT-NA-2025",
+      "location": "PDF page 8, printed page 15, 3-Point"
+    },
+    {
+      "id": "unladen-weight",
+      "subject": "unladen weight without ballast weights",
+      "value": 19051,
+      "unit": "kg",
+      "authority": "manufacturer_published",
+      "source_id": "FENDT-1100-MT-NA-2025",
+      "location": "PDF page 8, printed page 15, Weights and Dimensions; footnote specifies 30 in General Ag tracks"
+    },
+    {
+      "id": "maximum-permissible-weight",
+      "subject": "maximum permissible overall weight",
+      "value": 26762,
+      "unit": "kg",
+      "authority": "manufacturer_published",
+      "source_id": "FENDT-1100-MT-NA-2025",
+      "location": "PDF page 8, printed page 15, Weights and Dimensions"
+    },
+    {
+      "id": "overall-length",
+      "subject": "overall length",
+      "value": 6.758,
+      "unit": "m",
+      "authority": "manufacturer_published",
+      "source_id": "FENDT-1100-MT-NA-2025",
+      "location": "PDF page 8, printed page 15, Weights and Dimensions; footnote specifies 30 in General Ag tracks"
+    },
+    {
+      "id": "standard-gauge-overall-width",
+      "subject": "standard-gauge overall width",
+      "value": 2.95,
+      "unit": "m",
+      "authority": "manufacturer_published",
+      "source_id": "FENDT-1100-MT-NA-2025",
+      "location": "PDF page 8, printed page 15, Weights and Dimensions; footnote specifies 30 in General Ag tracks"
+    },
+    {
+      "id": "overall-height",
+      "subject": "overall height",
+      "value": 3.754,
+      "unit": "m",
+      "authority": "manufacturer_published",
+      "source_id": "FENDT-1100-MT-NA-2025",
+      "location": "PDF page 8, printed page 15, Weights and Dimensions; footnote specifies 30 in General Ag tracks"
+    },
+    {
+      "id": "ground-clearance",
+      "subject": "ground clearance",
+      "value": 0.359,
+      "unit": "m",
+      "authority": "manufacturer_published",
+      "source_id": "FENDT-1100-MT-NA-2025",
+      "location": "PDF page 8, printed page 15, Weights and Dimensions"
+    },
+    {
+      "id": "track-wheelbase",
+      "subject": "front-idler to rear-axle wheelbase",
+      "value": 3.0,
+      "unit": "m",
+      "authority": "manufacturer_published",
+      "source_id": "FENDT-1100-MT-NA-2025",
+      "location": "PDF page 8, printed page 15, Weights and Dimensions"
+    },
+    {
+      "id": "selected-track-belt-width",
+      "subject": "dimension-basis General Ag track belt width",
+      "value": 30,
+      "unit": "in",
+      "authority": "manufacturer_published",
+      "source_id": "FENDT-1100-MT-NA-2025",
+      "location": "PDF page 8, printed page 15, Weights and Dimensions footnote"
+    },
+    {
+      "id": "available-track-width-range",
+      "subject": "published available track-belt widths",
+      "value": [18, 36],
+      "unit": "in range",
+      "authority": "manufacturer_published",
+      "source_id": "FENDT-1100-MT-NA-2025",
+      "location": "PDF page 4, printed page 6, performance feature list"
+    },
+    {
+      "id": "midwheel-sets-per-side",
+      "subject": "Mobil-trac midwheel sets per side",
+      "value": 4,
+      "unit": "sets per side",
+      "authority": "manufacturer_published",
+      "source_id": "FENDT-1100-MT-NA-2025",
+      "location": "PDF page 5, printed page 8, Mobil-trac system description"
+    },
+    {
+      "id": "smartride-hardbar-travel",
+      "subject": "SmartRide hardbar suspension travel",
+      "value": 10,
+      "unit": "in",
+      "authority": "manufacturer_published",
+      "source_id": "FENDT-1100-MT-NA-2025",
+      "location": "PDF page 5, printed page 9, SmartRide"
+    },
+    {
+      "id": "cab-rear-suspension-travel",
+      "subject": "two-point cab suspension travel at rear of cab",
+      "value": 100,
+      "unit": "mm",
+      "authority": "manufacturer_published",
+      "source_id": "FENDT-1100-MT-NA-2025",
+      "location": "PDF page 5, printed page 9, Cab Suspension"
+    },
+    {
+      "id": "smartride-plus-leveling",
+      "subject": "SmartRide Plus hydraulic load-leveling function",
+      "value": true,
+      "unit": "boolean",
+      "authority": "manufacturer_published",
+      "source_id": "FENDT-1100-MT-US-PAGE",
+      "location": "U.S. product page, SmartRide+ chassis suspension"
+    },
+    {
+      "id": "independent-undercarriage-motion",
+      "subject": "left and right undercarriages move independently from the tractor chassis",
+      "value": true,
+      "unit": "boolean",
+      "authority": "manufacturer_published",
+      "source_id": "FENDT-1100-MT-NA-2025",
+      "location": "PDF page 5, printed page 9, SmartRide"
+    },
+    {
+      "id": "controlled-drawbar-figure-swing",
+      "subject": "controlled drawbar swing shown in brochure figure",
+      "value": 28,
+      "unit": "deg each direction",
+      "authority": "manufacturer_published",
+      "source_id": "FENDT-1100-MT-NA-2025",
+      "location": "PDF page 6, printed page 11, controlled-drawbar figure label"
+    },
+    {
+      "id": "controlled-drawbar-narrative-swing",
+      "subject": "drawbar swing stated in adjacent brochure narrative",
+      "value": 11.5,
+      "unit": "deg",
+      "authority": "manufacturer_published",
+      "source_id": "FENDT-1100-MT-NA-2025",
+      "location": "PDF page 6, printed page 11, Implement Control narrative"
+    },
+    {
+      "id": "controlled-drawbar-us-page-swing",
+      "subject": "U.S. product-page swivel-drawbar range",
+      "value": 28,
+      "unit": "deg each direction",
+      "authority": "manufacturer_published",
+      "source_id": "FENDT-1100-MT-US-PAGE",
+      "location": "U.S. product page, Swivel drawbar"
+    }
+  ],
+  "issues": [
+    {
+      "id": "drawbar-range-conflict",
+      "status": "unresolved",
+      "detail": "The brochure controlled-drawbar figure and current U.S. page state 28 degrees each direction, but adjacent brochure narrative says 11.5 degrees. The mechanism therefore exposes no numeric drawbar-yaw limit."
+    },
+    {
+      "id": "option-combination",
+      "status": "unresolved",
+      "detail": "The admitted literature does not provide an order code or serial-number record proving that the standard-gauge 30 in track, SmartRide Plus, steerable three-point and controlled-drawbar study choices coexist on one delivered machine."
+    },
+    {
+      "id": "hidden-kinematics",
+      "status": "unresolved",
+      "detail": "The sources publish suspension travel and feature behavior but not pivots, link lengths, anchors, strokes, stops, belt engagement, control laws or collision envelopes."
+    },
+    {
+      "id": "dimension-art",
+      "status": "unresolved",
+      "detail": "Brochure photographs, cutaways and mechanism figures are reference-only; they are not treated as orthographic or scale drawings."
+    },
+    {
+      "id": "neutral-public-asset",
+      "status": "resolved_policy",
+      "detail": "Public geometry and materials must remain independently authored and neutral, with no Fendt trade dress, logos, decals, copied imagery or manufacturer CAD."
+    }
+  ]
+}

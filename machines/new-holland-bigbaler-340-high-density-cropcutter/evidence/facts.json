@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "new-holland-bigbaler-340-high-density-cropcutter",
+  "configuration_id": "NH-BB340HD-NAM-CROPCUTTER120X90-29K-TANDEM600-CANDIDATE",
+  "facts": [
+    {"id":"bale-width","subject":"bale nominal width","value":1.2,"unit":"m","authority":"manufacturer_published","source_id":"NH-BB340HD-NAM-BROCHURE-2022","location":"PDF pages 1 and 21"},
+    {"id":"bale-height","subject":"bale nominal height","value":0.9,"unit":"m","authority":"manufacturer_published","source_id":"NH-BB340HD-NAM-BROCHURE-2022","location":"PDF pages 1 and 21"},
+    {"id":"bale-length-range","subject":"bale length range","value":[1,3],"unit":"m","authority":"manufacturer_published","source_id":"NH-BB340HD-NAM-BROCHURE-2022","location":"PDF page 21"},
+    {"id":"minimum-pto-power","subject":"CropCutter tractor PTO power requirement","value":[250,270],"unit":"hp","authority":"manufacturer_published","source_id":"NH-BB340HD-NAM-BROCHURE-2022","location":"PDF pages 1 and 21"},
+    {"id":"pto-speed","subject":"PTO speed","value":1000,"unit":"rpm","authority":"manufacturer_published","source_id":"NH-BB340HD-NAM-BROCHURE-2022","location":"PDF page 21"},
+    {"id":"flywheel-diameter","subject":"flywheel diameter","value":1.08,"unit":"m","authority":"manufacturer_published","source_id":"NH-BB340HD-NAM-BROCHURE-2022","location":"PDF pages 3 and 21"},
+    {"id":"flywheel-weight","subject":"flywheel weight","value":324,"unit":"kg","authority":"manufacturer_published","source_id":"NH-BB340HD-NAM-BROCHURE-2022","location":"PDF page 21"},
+    {"id":"pickup-width","subject":"MaxiSweep pickup DIN width","value":2.35,"unit":"m","authority":"manufacturer_published","source_id":"NH-BB340HD-NAM-BROCHURE-2022","location":"PDF pages 4 and 21"},
+    {"id":"pickup-tine-bars","subject":"pickup tine bars","value":5,"unit":"count","authority":"manufacturer_published","source_id":"NH-BB340HD-NAM-BROCHURE-2022","location":"PDF page 21"},
+    {"id":"pickup-double-tines","subject":"pickup double tines","value":85,"unit":"count","authority":"manufacturer_published","source_id":"NH-BB340HD-NAM-BROCHURE-2022","location":"PDF pages 4 and 21"},
+    {"id":"cropcutter-rotor-width","subject":"CropCutter rotor width","value":1.2,"unit":"m","authority":"manufacturer_published","source_id":"NH-BB340HD-NAM-BROCHURE-2022","location":"PDF page 21"},
+    {"id":"cropcutter-knives","subject":"spring-protected CropCutter knives","value":29,"unit":"count","authority":"manufacturer_published","source_id":"NH-BB340HD-NAM-BROCHURE-2022","location":"PDF pages 5 and 21"},
+    {"id":"theoretical-cut-length","subject":"theoretical CropCutter cut length","value":39,"unit":"mm","authority":"manufacturer_published","source_id":"NH-BB340HD-NAM-BROCHURE-2022","location":"PDF page 21"},
+    {"id":"stuffer-rate","subject":"maximum stuffer cycles","value":48,"unit":"cycles_per_min","authority":"manufacturer_published","source_id":"NH-BB340HD-NAM-BROCHURE-2022","location":"PDF page 21"},
+    {"id":"plunger-rate","subject":"plunger speed","value":48,"unit":"strokes_per_min","authority":"manufacturer_published","source_id":"NH-BB340HD-NAM-BROCHURE-2022","location":"PDF page 22"},
+    {"id":"plunger-stroke","subject":"plunger stroke length","value":0.748,"unit":"m","authority":"manufacturer_published","source_id":"NH-BB340HD-NAM-BROCHURE-2022","location":"PDF pages 6 and 22"},
+    {"id":"knotter-twines","subject":"Loop Master twines","value":6,"unit":"count","authority":"manufacturer_published","source_id":"NH-BB340HD-NAM-BROCHURE-2022","location":"PDF page 22"},
+    {"id":"knotter-fans","subject":"electric knotter fans","value":3,"unit":"count","authority":"manufacturer_published","source_id":"NH-BB340HD-NAM-BROCHURE-2022","location":"PDF pages 8 and 22"},
+    {"id":"density-cylinders","subject":"bale density double-acting cylinders","value":7,"unit":"count","authority":"manufacturer_published","source_id":"NH-BB340HD-NAM-BROCHURE-2022","location":"PDF pages 6 and 22"},
+    {"id":"tandem-steering-angle","subject":"Auto-Steer tandem axle maximum steering angle","value":14,"unit":"deg","authority":"manufacturer_published","source_id":"NH-BB340HD-NAM-BROCHURE-2022","location":"PDF page 22"},
+    {"id":"transport-length","subject":"length with chute closed","value":8.936,"unit":"m","authority":"manufacturer_published","source_id":"NH-BB340HD-NAM-BROCHURE-2022","location":"PDF page 22"},
+    {"id":"transport-width","subject":"overall width","value":2.987,"unit":"m","authority":"manufacturer_published","source_id":"NH-BB340HD-NAM-BROCHURE-2022","location":"PDF page 22"},
+    {"id":"height-rails-up","subject":"height with handrails up","value":3.454,"unit":"m","authority":"manufacturer_published","source_id":"NH-BB340HD-NAM-BROCHURE-2022","location":"PDF page 22"},
+    {"id":"height-rails-folded","subject":"height with handrails folded","value":3.099,"unit":"m","authority":"manufacturer_published","source_id":"NH-BB340HD-NAM-BROCHURE-2022","location":"PDF page 22"},
+    {"id":"empty-weight","subject":"empty CropCutter weight with brochure dimension-basis tires","value":14600,"unit":"kg","authority":"manufacturer_published","source_id":"NH-BB340HD-NAM-BROCHURE-2022","location":"PDF page 22"},
+    {"id":"public-envelope-x","subject":"public longitudinal transport envelope with chute closed","value":8.936,"unit":"m","authority":"manufacturer_published","source_id":"NH-BB340HD-NAM-BROCHURE-2022","location":"PDF page 22, overall length"},
+    {"id":"public-envelope-y","subject":"public vertical envelope with handrails up","value":3.454,"unit":"m","authority":"manufacturer_published","source_id":"NH-BB340HD-NAM-BROCHURE-2022","location":"PDF page 22, overall height"},
+    {"id":"public-envelope-z","subject":"public lateral transport envelope","value":2.987,"unit":"m","authority":"manufacturer_published","source_id":"NH-BB340HD-NAM-BROCHURE-2022","location":"PDF page 22, overall width"}
+  ],
+  "issues": [
+    {"id":"tire-label-conflict","status":"documented","detail":"Brochure narrative lists 600/50 R22.5 or optional 620/55 R26.5, while the specifications weight row states 600/55R26.5. The study uses the specification-table label only as a dimension/weight basis and leaves exact tire order unresolved."},
+    {"id":"no-accumulator","status":"documented","detail":"Accumulator dimensions and motions are excluded; the public study ends at the baler chute."},
+    {"id":"static-geometry-boundary","status":"unresolved","detail":"PTO driveline, flywheel phase, pickup reel, CropCutter rotor and knife profiles, stuffer crank, plunger crank, knotter linkage, density doors, suspension and steering joint coordinates are not published as scale geometry."}
+  ]
+}

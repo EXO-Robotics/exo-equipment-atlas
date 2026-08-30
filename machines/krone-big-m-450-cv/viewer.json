@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0.0",
+  "machineId": "krone-big-m-450-cv",
+  "displayName": "KRONE BiG M 450 CV",
+  "className": "Self-propelled mower conditioner",
+  "category": "Agriculture",
+  "assets": {
+    "glb": "machines/krone-big-m-450-cv/assets/krone-big-m-450-cv-structural-study.glb",
+    "configuration": "machines/krone-big-m-450-cv/configuration.json",
+    "facts": "machines/krone-big-m-450-cv/evidence/facts.json",
+    "receipt": "machines/krone-big-m-450-cv/production/asset-receipt.json",
+    "validation": "machines/krone-big-m-450-cv/production/validation.json",
+    "poster": "machines/krone-big-m-450-cv/review/renders/krone-big-m-450-cv-operator-side.png"
+  },
+  "evidence": {
+    "boundary": "Neutral technical structural study; mower hinges, DuoGrip geometry, disc/conditioner phasing, auger drives and hidden construction are reconstructed.",
+    "lede": "The CV conditioner, optional swath-merger bundle and exact brochure transport envelope are frozen without borrowing CR roller geometry.",
+    "factIds": ["public-envelope-x","public-envelope-y","public-envelope-z","working-width","maximum-power","steering-angle","running-gear-height-change","conditioner-choice"]
+  },
+  "camera": {"azimuth":-0.74,"elevation":0.38,"distance":14.0},
+  "accent": "#789b63",
+  "motion": {
+    "autoplay": true,
+    "durationSeconds": 15,
+    "mode": "sine",
+    "damping": 6.0,
+    "channels": [
+      {"id":"front-mower-lift","label":"Front mower lift","nodes":["Header_ROOT"],"property":"rotation.z","from":-0.06,"to":0.18,"phase":0.0},
+      {"id":"left-mower-fold","label":"Left mower transport fold","nodes":["Deck_L_ROOT"],"property":"rotation.x","from":0.0,"to":1.12,"phase":0.18},
+      {"id":"right-mower-fold","label":"Right mower transport fold","nodes":["Deck_R_ROOT"],"property":"rotation.x","from":0.0,"to":-1.12,"phase":0.18},
+      {"id":"cv-conditioner","label":"CV conditioner rotation study","nodes":["Conditioner_ROOT"],"property":"rotation.z","from":-0.8,"to":0.8,"phase":0.62}
+    ]
+  }
+}

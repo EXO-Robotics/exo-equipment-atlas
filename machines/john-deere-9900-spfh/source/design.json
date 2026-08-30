@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-9900-spfh",
+  "display_name": "John Deere 9900 SPFH",
+  "configuration_id": "JD-9900SPFH-MY2024-NA-282DZ-4005-0415KM-5597-33M-CANDIDATE",
+  "archetype": "forage_harvester",
+  "dimensions_m": {"length": 9.2, "width": 9.05, "height": 4.05},
+  "carrier_dimensions_m": {"length": 6.7, "width": 3.3, "height": 4.05},
+  "attachment_span_m": 9.05,
+  "palette": "slate",
+  "published_constraints_used": [
+    "public-envelope-z",
+    "carrier-width-class",
+    "header-length",
+    "header-height",
+    "header-working-width",
+    "header-transport-width",
+    "feedroll-count",
+    "cutterhead-width",
+    "cutterhead-diameter",
+    "selected-knife-count",
+    "accelerator-width",
+    "accelerator-diameter",
+    "spout-swing"
+  ],
+  "reconstructed_values": {
+    "presentation_length_m": 9.2,
+    "presentation_height_m": 4.05,
+    "carrier_display_envelope_m": [6.7, 3.3, 4.05],
+    "carrier_envelope_note": "The 3.3 m width class is manufacturer-published for the selected tire package; carrier length and height are conservative presentation values, not manufacturer envelope claims.",
+    "selected_header_span_m": 9.05,
+    "selected_header_span_note": "Manufacturer-published overall 772 header width retained as the full lateral display envelope; header details and folding geometry remain reconstructed.",
+    "materials": "Neutral unbranded slate, graphite, steel, rubber and glass; no logos, decals or copied trade dress.",
+    "all_hidden_pivots": "Reconstructed visual hierarchy only.",
+    "all_animation_ranges": "Conservative presentation ranges, not operator limits.",
+    "internal_crop_flow": "Schematic visual hierarchy only; no crop simulation or internal assembly authority."
+  },
+  "unresolved_choices": [
+    "complete machine-plus-header longitudinal and vertical envelopes",
+    "knife and shearbar crop package and kernel processor",
+    "tire bulge, wheel offsets, ballast and exact carrier projections",
+    "all header, feedroll, cutterhead, accelerator and spout pivots or centers",
+    "exact exterior surfacing and service-detail placement"
+  ],
+  "mechanical_gaps": [
+    "Header lift and any fold cue are bounded visual articulations without hydraulic, terrain, crop or collision physics.",
+    "Feedroll and spout motion are reconstructed and exclude crop flow, load, rate, trajectory and validated swept-volume closure.",
+    "Powertrain, cooling, aftertreatment, crop processor, cutterhead and hydraulic internals are not modeled as engineering assemblies."
+  ]
+}

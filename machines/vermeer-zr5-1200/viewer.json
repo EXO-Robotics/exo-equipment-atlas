@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "machineId": "vermeer-zr5-1200",
+  "displayName": "Vermeer ZR5-1200",
+  "className": "Self-propelled round baler",
+  "category": "Agriculture",
+  "assets": {
+    "glb": "machines/vermeer-zr5-1200/assets/vermeer-zr5-1200-structural-study.glb",
+    "configuration": "machines/vermeer-zr5-1200/configuration.json",
+    "facts": "machines/vermeer-zr5-1200/evidence/facts.json",
+    "receipt": "machines/vermeer-zr5-1200/production/asset-receipt.json",
+    "validation": "machines/vermeer-zr5-1200/production/validation.json",
+    "poster": "machines/vermeer-zr5-1200/review/renders/vermeer-zr5-1200-operator-side.png"
+  },
+  "evidence": {
+    "boundary": "Neutral technical structural study; pickup cam path, round chamber internals, tailgate, quarter-turn ramp, steering and suspension geometry are reconstructed.",
+    "lede": "A current Stage V ZR5-1200 is frozen with the standard cammed pickup, netwrap and quarter-turn ramp, while normally hidden bale formation remains an explicit reconstruction.",
+    "factIds": ["public-envelope-x","public-envelope-y","public-envelope-z","engine-power","bale-diameter-range","pickup-tooth-width","pickup-bars","pickup-teeth","quarter-turn-function"]
+  },
+  "camera": {"azimuth":-0.74,"elevation":0.36,"distance":10.8},
+  "accent": "#cf8a34",
+  "motion": {
+    "autoplay": true,
+    "durationSeconds": 15,
+    "mode": "sine",
+    "damping": 6.5,
+    "channels": [
+      {"id":"front-suspension","label":"Independent front suspension study","nodes":["Front_Axle_ROOT"],"property":"position.y","from":-0.035,"to":0.045,"phase":0.0},
+      {"id":"pickup-lift","label":"Hydraulic pickup lift","nodes":["Pickup_ROOT"],"property":"rotation.z","from":-0.10,"to":0.24,"phase":0.24},
+      {"id":"tailgate","label":"Round-chamber tailgate","nodes":["Tailgate_ROOT"],"property":"rotation.z","from":0.0,"to":1.02,"phase":0.58,"autoplay":"ping-pong"}
+    ]
+  }
+}

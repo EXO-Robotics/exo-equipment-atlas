@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "jcb-fastrac-8330-icon",
+  "configuration_id": "JCB-F8330-ICON-NA26-AG-VF540R38-VF710R42-FL35-RL10-CANDIDATE",
+  "freeze_date": "2026-08-29",
+  "repository_policy": {
+    "source_binaries_committed": false,
+    "manufacturer_geometry_committed": false,
+    "manual_illustrations_are_scale_drawings": false,
+    "verification": "Official web and PDF publications are referenced by URL; no manufacturer geometry, imagery, logo, or PDF binary is embedded in the public package."
+  },
+  "sources": [
+    {
+      "id": "JCB-8330-US-PRODUCT-2026",
+      "publisher": "JCB",
+      "kind": "official_product_page",
+      "title": "8000 Series Fastrac iCON",
+      "market": "United States",
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.jcb.com/en-US/products/machines/agricultural-tractors/8000-series/",
+      "local_path": "research/private/jcb-fastrac-8330-icon/primary-source.html",
+      "sha256": "1f98b8ce3cae4dbca9f610d815d27dc81cdfc564d6736a9eccb93edd6bb9d99e",
+      "bytes": 370386,
+      "admission": "primary",
+      "applicability": "Current US identity, power, torque, linkage capacity, hydraulic flow, road-speed, weight-distribution, suspension, steering, and rigid-chassis statements."
+    },
+    {
+      "id": "JCB-4000-8000-TECH-FR-ISSUE1",
+      "publisher": "JCB",
+      "kind": "official_technical_data_pdf",
+      "title": "Fastrac Series 4000 and 8000 Technical Data — 4160, 4190, 4220, 8290, 8330",
+      "market": "France / metric cross-market reference",
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.jcb.com/en-GB/products/machines/agricultural-tractors/8000-series/",
+      "retired_official_asset_url": "https://www.jcb.com/globalassets/digizuite/53520-29846-fastrac-4000-8000-series-e-spec-fr-fr-issue-1-lr/",
+      "pages": 8,
+      "admission": "reference_only",
+      "applicability": "The current live JCB 8000-series page is the landing authority. Static dimensions, suspension cylinder size, selected tire basis, transmission, capacities, 540E/1000 PTO modes, steering topology, and linkage presentation context were transcribed from JCB's eight-page 2022 French technical-data publication while its direct asset URL was live; that direct asset now returns 404 and is retained only as a retired-official-asset locator. Its 335/348 hp calibration is not applied to the US power facts, and no Category 3N fact or geometry is claimed in the public package."
+    }
+  ]
+}

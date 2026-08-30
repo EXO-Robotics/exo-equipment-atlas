@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://exo-robotics.github.io/equipment-atlas/schemas/viewer.schema.json",
+  "title": "EXO Equipment Atlas public viewer contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "machineId",
+    "displayName",
+    "className",
+    "category",
+    "assets",
+    "evidence",
+    "camera",
+    "accent"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "machineId": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "displayName": { "type": "string", "minLength": 1 },
+    "className": { "type": "string", "minLength": 1 },
+    "category": { "type": "string", "minLength": 1 },
+    "assets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["glb", "configuration", "facts", "receipt", "validation"],
+      "properties": {
+        "glb": { "$ref": "#/$defs/publicPath" },
+        "configuration": { "$ref": "#/$defs/publicPath" },
+        "facts": { "$ref": "#/$defs/publicPath" },
+        "receipt": { "$ref": "#/$defs/publicPath" },
+        "validation": { "$ref": "#/$defs/publicPath" },
+        "poster": { "$ref": "#/$defs/publicPath" }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["boundary", "lede", "factIds"],
+      "properties": {
+        "boundary": { "type": "string", "minLength": 1 },
+        "lede": { "type": "string", "minLength": 1 },
+        "factIds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "camera": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["azimuth", "elevation", "distance"],
+      "properties": {
+        "azimuth": { "type": "number" },
+        "elevation": { "type": "number" },
+        "distance": { "type": "number", "exclusiveMinimum": 0 }
+      }
+    },
+    "accent": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+    "motion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["channels"],
+      "properties": {
+        "autoplay": { "type": "boolean" },
+        "durationSeconds": { "type": "number", "exclusiveMinimum": 0 },
+        "mode": { "enum": ["sine", "ping-pong"] },
+        "damping": { "type": "number", "exclusiveMinimum": 0 },
+        "channels": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/motionChannel" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "publicPath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*research/private/)[^?#]+$"
+    },
+    "motionChannel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label", "nodes", "property", "from", "to"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "label": { "type": "string", "minLength": 1 },
+        "nodes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "property": {
+          "enum": [
+            "rotation.x",
+            "rotation.y",
+            "rotation.z",
+            "position.x",
+            "position.y",
+            "position.z"
+          ]
+        },
+        "from": { "type": "number" },
+        "to": { "type": "number" },
+        "phase": { "type": "number" },
+        "direction": { "enum": [1, -1] },
+        "mode": { "enum": ["offset", "absolute"] },
+        "autoplay": { "enum": ["sine", "ping-pong"] }
+      }
+    }
+  }
+}

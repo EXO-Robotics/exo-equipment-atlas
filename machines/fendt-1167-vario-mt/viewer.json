@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0.0",
+  "machineId": "fendt-1167-vario-mt",
+  "displayName": "Fendt 1167 Vario MT",
+  "className": "Twin-track agricultural tractor",
+  "category": "Farm tractors",
+  "assets": {
+    "glb": "machines/fendt-1167-vario-mt/assets/fendt-1167-vario-mt-structural-study.glb",
+    "configuration": "machines/fendt-1167-vario-mt/configuration.json",
+    "facts": "machines/fendt-1167-vario-mt/evidence/facts.json",
+    "receipt": "machines/fendt-1167-vario-mt/production/asset-receipt.json",
+    "validation": "machines/fendt-1167-vario-mt/production/validation.json",
+    "poster": "machines/fendt-1167-vario-mt/review/renders/fendt-1167-vario-mt-front-three-quarter.png"
+  },
+  "evidence": {
+    "boundary": "North American Tier 4 Final source freeze; neutral unbranded geometry. Hidden pivots, belt mechanics, suspension, cab, hitch and drawbar kinematics are reconstructed presentation studies, not engineering or operating authority.",
+    "lede": "The 2025 North American brochure controls the 673 hp identity, standard-gauge 30-inch track envelope, SmartRide and rear-interface facts. The 28-degree versus 11.5-degree drawbar conflict remains unresolved, so drawbar yaw stays static.",
+    "factIds": [
+      "constant-power-hp",
+      "engine-displacement",
+      "overall-length",
+      "standard-gauge-overall-width",
+      "overall-height",
+      "track-wheelbase",
+      "smartride-hardbar-travel",
+      "cab-rear-suspension-travel"
+    ]
+  },
+  "camera": {
+    "azimuth": 0.72,
+    "elevation": 0.31,
+    "distance": 1.58
+  },
+  "accent": "#9aa8b4",
+  "motion": {
+    "autoplay": true,
+    "durationSeconds": 16,
+    "mode": "sine",
+    "damping": 7.5,
+    "channels": [
+      {
+        "id": "left-track-compliance",
+        "label": "Left track compliance",
+        "nodes": ["Track_L_ROOT"],
+        "property": "rotation.z",
+        "from": -0.035,
+        "to": 0.035,
+        "phase": 0.0,
+        "mode": "offset"
+      },
+      {
+        "id": "right-track-compliance",
+        "label": "Right track compliance",
+        "nodes": ["Track_R_ROOT"],
+        "property": "rotation.z",
+        "from": -0.035,
+        "to": 0.035,
+        "phase": 0.5,
+        "mode": "offset"
+      },
+      {
+        "id": "smartride-leveling",
+        "label": "SmartRide leveling study",
+        "nodes": ["SmartRide_Level_ROOT"],
+        "property": "rotation.z",
+        "from": -0.018,
+        "to": 0.018,
+        "phase": 0.18,
+        "mode": "offset"
+      },
+      {
+        "id": "cab-suspension",
+        "label": "Cab suspension response",
+        "nodes": ["Cab_Suspension_ROOT"],
+        "property": "position.y",
+        "from": 0.0,
+        "to": 0.04,
+        "phase": 0.36,
+        "mode": "offset"
+      },
+      {
+        "id": "rear-lift",
+        "label": "Rear three-point lift",
+        "nodes": ["Rear_Hitch_Pivot"],
+        "property": "rotation.z",
+        "from": -0.1,
+        "to": 0.22,
+        "phase": 0.68,
+        "mode": "offset",
+        "autoplay": "ping-pong"
+      }
+    ]
+  }
+}

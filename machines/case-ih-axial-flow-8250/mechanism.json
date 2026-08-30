@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "case-ih-axial-flow-8250",
+  "configuration_id": "CASEIH-AF8250-NAM-250-WHEELED-GT410-UA45-CANDIDATE-MYUNRESOLVED",
+  "coordinate_system": {
+    "longitudinal": "+X toward feederhouse",
+    "vertical": "+Y",
+    "lateral": "+Z machine right"
+  },
+  "joints": [
+    {"id":"feederhouse_raise_lower","type":"paired_hydraulic_revolute","axis":"+Z nominal","authority":"reconstructed","source_ids":["CASEIH-AF250-US-BROCHURE-2022"],"unresolved":["feeder pivot, cylinder anchors, selected cylinder bore, lift endpoint and header mass"]},
+    {"id":"feederhouse_lateral_tilt","type":"revolute","axis":"+X nominal","published_range_deg":[-5,5],"authority":"reconstructed","source_ids":["CASEIH-AF250-US-BROCHURE-2022"],"unresolved":["faceplate pivot center, control link and combined envelope"]},
+    {"id":"feeder_faceplate_fore_aft","type":"revolute","axis":"+Z nominal","published_total_range_deg":12,"authority":"reconstructed","source_ids":["CASEIH-AF250-US-BROCHURE-2022"],"unresolved":["zero angle, direction, pivot and cylinder anchors"]},
+    {"id":"afx_rotor","type":"revolute","axis":"longitudinal nominal","published_speed_rpm":[220,1180],"authority":"reconstructed","source_ids":["CASEIH-AF250-US-BROCHURE-2022"],"unresolved":["rotor centerline, phase, crop interaction and exact element profile"]},
+    {"id":"self_leveling_cleaning_system","type":"compound_leveling_platform","published_slope_deg":7,"authority":"reconstructed","source_ids":["CASEIH-AF250-US-BROCHURE-2022"],"unresolved":["leveling axis, pan and sieve linkage, response curve and side-clearance envelope"]},
+    {"id":"unloading_auger_swing_fold","type":"compound_revolute","authority":"reconstructed","source_ids":["CASEIH-AF250-US-BROCHURE-2022"],"unresolved":["swing and fold axes, fold sequence, transport latch and tube overlap"]},
+    {"id":"unloading_spout_trim","type":"revolute","authority":"reconstructed","source_ids":["CASEIH-AF250-US-BROCHURE-2022"],"unresolved":["pivot center and published angular range"]},
+    {"id":"rear_axle_steering","type":"paired_revolute_linkage","axis":"+Y nominal","authority":"reconstructed","source_ids":["CASEIH-AF250-US-BROCHURE-2022"],"unresolved":["kingpin geometry, steering range, Ackermann relationship and cylinder anchors"]}
+  ],
+  "presentation_motion": {
+    "sequence": ["feederhouse lift and faceplate trim","single AFX rotor cutaway rotation","self-leveling cleaning shoe cue","unloading auger unfold and sweep","rear steering cue"],
+    "boundary": "Presentation reveals topology only. It does not represent harvest timing, material flow, yield, automation response, load or clearance authority."
+  },
+  "required_gates": ["model_year_boundary_visible","frozen_visible_configuration","single_identity_root","wheeled_contact","feeder_and_faceplate_continuity","rotor_containment","cleaning_system_clearance","unloader_fold_swing_continuity","ground_collision","self_collision","swept_volume_collision"],
+  "release_state": "no_geometry_no_solver_no_claim"
+}

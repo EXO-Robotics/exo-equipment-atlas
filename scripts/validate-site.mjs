@@ -4,29 +4,15 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const catalog = JSON.parse(await readFile(path.join(ROOT, "catalog.json"), "utf8"));
-const EXPECTED_MACHINE_ORDER = [
-  "cat-320",
-  "john-deere-333-p-tier",
-  "john-deere-310-p-tier",
-  "cat-950",
-  "cat-d6",
-  "cat-725",
-  "cat-140",
-  "john-deere-1270g",
-  "john-deere-470-p-tier",
-  "bobcat-s76-2",
-  "komatsu-wa475-10",
-  "volvo-dd128c",
-  "liebherr-ltm-1100-5-3"
-];
-const MACHINE_PATH_PROPERTIES = {
-  glb: (id) => `machines/${id}/assets/${id}-structural-study.glb`,
-  configuration: (id) => `machines/${id}/configuration.json`,
-  facts: (id) => `machines/${id}/evidence/facts.json`,
-  receipt: (id) => `machines/${id}/production/asset-receipt.json`,
-  validation: (id) => `machines/${id}/production/validation.json`
-};
+const ASSET_KEYS = ["glb", "configuration", "facts", "receipt", "validation"];
+const MOTION_PROPERTIES = new Set([
+  "rotation.x",
+  "rotation.y",
+  "rotation.z",
+  "position.x",
+  "position.y",
+  "position.z"
+]);
 const errors = [];
 
 function duplicateValues(values) {
@@ -39,98 +25,197 @@ function duplicateValues(values) {
   return [...duplicates];
 }
 
-function compareExactOrder(label, actual, expected) {
-  const duplicates = duplicateValues(actual);
-  if (duplicates.length > 0) errors.push(`${label}: duplicate value(s): ${duplicates.join(", ")}`);
-  if (actual.length !== expected.length || actual.some((value, index) => value !== expected[index])) {
-    errors.push(`${label}: exact order mismatch (${actual.join(", ")} != ${expected.join(", ")})`);
+function isSafePublicPath(value) {
+  if (typeof value !== "string" || !value || value.startsWith("/") || value.includes("\\") || /^[a-z]+:/iu.test(value)) return false;
+  const parts = value.split("/");
+  return !parts.includes("..") && !value.includes("?") && !value.includes("#") && !value.includes("research/private/");
+}
+
+async function requireFile(relativePath) {
+  try {
+    const fileStat = await stat(path.join(ROOT, relativePath));
+    if (!fileStat.isFile()) errors.push(`${relativePath}: not a file`);
+    else if (relativePath !== ".nojekyll" && fileStat.size === 0) errors.push(`${relativePath}: empty file`);
+  } catch {
+    errors.push(`${relativePath}: missing`);
   }
 }
 
-function parseMachineDefinitions(source) {
-  const startMarker = "const MACHINE_DEFINITIONS = {";
-  const start = source.indexOf(startMarker);
-  const endMarker = "\n};\n\nconst dom =";
-  const end = start < 0 ? -1 : source.indexOf(endMarker, start + startMarker.length);
-  if (start < 0 || end < 0) {
-    errors.push("app.js: cannot isolate MACHINE_DEFINITIONS literal");
-    return [];
+function parseGlbNodeNames(bytes, label) {
+  try {
+    if (bytes.length < 20 || bytes.toString("utf8", 0, 4) !== "glTF") throw new Error("invalid GLB header");
+    let offset = 12;
+    while (offset + 8 <= bytes.length) {
+      const length = bytes.readUInt32LE(offset);
+      const type = bytes.readUInt32LE(offset + 4);
+      const start = offset + 8;
+      const end = start + length;
+      if (end > bytes.length) throw new Error("truncated GLB chunk");
+      if (type === 0x4e4f534a) {
+        const document = JSON.parse(bytes.toString("utf8", start, end).replace(/\u0000+$/u, "").trim());
+        return new Set((document.nodes ?? []).map((node) => node.name).filter(Boolean));
+      }
+      offset = end;
+    }
+    throw new Error("missing GLB JSON chunk");
+  } catch (error) {
+    errors.push(`${label}: ${error.message}`);
+    return new Set();
   }
-  const bodyStart = start + startMarker.length;
-  const body = source.slice(bodyStart, end);
-  const entryMatches = [...body.matchAll(/^  "([a-z0-9-]+)": \{$/gmu)];
-  if (entryMatches.length === 0) {
-    errors.push("app.js: MACHINE_DEFINITIONS contains no parseable top-level entries");
-    return [];
+}
+
+function validateViewerShape(viewer, machineId, viewerPath) {
+  if (!viewer || typeof viewer !== "object" || Array.isArray(viewer)) {
+    errors.push(`${viewerPath}: must be an object`);
+    return;
   }
-  return entryMatches.map((match, index) => {
-    const blockStart = match.index;
-    const blockEnd = index + 1 < entryMatches.length ? entryMatches[index + 1].index : body.length;
-    const block = body.slice(blockStart, blockEnd);
-    const paths = {};
-    for (const property of Object.keys(MACHINE_PATH_PROPERTIES)) {
-      const matches = [...block.matchAll(new RegExp(`^    ${property}: "([^"]+)",?$`, "gmu"))];
-      if (matches.length !== 1) {
-        errors.push(`app.js: ${match[1]} must declare exactly one string ${property} path`);
-      } else {
-        paths[property] = matches[0][1];
+  if (viewer.schema_version !== "1.0.0") errors.push(`${viewerPath}: schema_version must be 1.0.0`);
+  if (viewer.machineId !== machineId) errors.push(`${viewerPath}: machineId must be ${machineId}`);
+  for (const key of ["displayName", "className", "category"]) {
+    if (typeof viewer[key] !== "string" || !viewer[key].trim()) errors.push(`${viewerPath}: ${key} must be a non-empty string`);
+  }
+  if (!/^#[0-9a-f]{6}$/iu.test(viewer.accent ?? "")) errors.push(`${viewerPath}: accent must be a six-digit hex color`);
+  if (typeof viewer.evidence?.boundary !== "string" || !viewer.evidence.boundary.trim()) errors.push(`${viewerPath}: evidence.boundary required`);
+  if (typeof viewer.evidence?.lede !== "string" || !viewer.evidence.lede.trim()) errors.push(`${viewerPath}: evidence.lede required`);
+  if (!Array.isArray(viewer.evidence?.factIds) || viewer.evidence.factIds.length === 0) {
+    errors.push(`${viewerPath}: evidence.factIds must be a non-empty array`);
+  } else {
+    const invalid = viewer.evidence.factIds.some((id) => typeof id !== "string" || !id);
+    if (invalid) errors.push(`${viewerPath}: evidence.factIds must contain non-empty strings`);
+    const duplicates = duplicateValues(viewer.evidence.factIds);
+    if (duplicates.length) errors.push(`${viewerPath}: duplicate evidence factIds ${duplicates.join(", ")}`);
+  }
+  for (const key of ["azimuth", "elevation", "distance"]) {
+    if (!Number.isFinite(viewer.camera?.[key])) errors.push(`${viewerPath}: camera.${key} must be finite`);
+  }
+  if (Number.isFinite(viewer.camera?.distance) && viewer.camera.distance <= 0) errors.push(`${viewerPath}: camera.distance must be positive`);
+
+  for (const key of ASSET_KEYS) {
+    const assetPath = viewer.assets?.[key];
+    if (!isSafePublicPath(assetPath)) errors.push(`${viewerPath}: assets.${key} must be a safe public path`);
+    else if (!assetPath.startsWith(`machines/${machineId}/`)) errors.push(`${viewerPath}: assets.${key} must stay inside its machine package`);
+  }
+  if (viewer.assets?.poster && (!isSafePublicPath(viewer.assets.poster) || !viewer.assets.poster.startsWith(`machines/${machineId}/`))) {
+    errors.push(`${viewerPath}: assets.poster must be a safe path inside its machine package`);
+  }
+
+  if (viewer.motion === undefined) return;
+  if (!viewer.motion || !Array.isArray(viewer.motion.channels)) {
+    errors.push(`${viewerPath}: motion.channels must be an array`);
+    return;
+  }
+  if (viewer.motion.autoplay !== undefined && typeof viewer.motion.autoplay !== "boolean") errors.push(`${viewerPath}: motion.autoplay must be boolean`);
+  if (viewer.motion.durationSeconds !== undefined && (!Number.isFinite(viewer.motion.durationSeconds) || viewer.motion.durationSeconds <= 0)) {
+    errors.push(`${viewerPath}: motion.durationSeconds must be positive`);
+  }
+  if (viewer.motion.damping !== undefined && (!Number.isFinite(viewer.motion.damping) || viewer.motion.damping <= 0)) {
+    errors.push(`${viewerPath}: motion.damping must be positive`);
+  }
+  if (viewer.motion.mode !== undefined && !["sine", "ping-pong"].includes(viewer.motion.mode)) errors.push(`${viewerPath}: unsupported motion.mode`);
+  const channelIds = viewer.motion.channels.map((channel) => channel?.id);
+  const duplicateIds = duplicateValues(channelIds);
+  if (duplicateIds.length) errors.push(`${viewerPath}: duplicate motion channel ids ${duplicateIds.join(", ")}`);
+  const transformOwners = new Set();
+  for (const [index, channel] of viewer.motion.channels.entries()) {
+    const label = `${viewerPath}: motion channel ${channel?.id ?? index}`;
+    if (typeof channel?.id !== "string" || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/u.test(channel.id)) errors.push(`${label} id must be a slug`);
+    if (typeof channel?.label !== "string" || !channel.label.trim()) errors.push(`${label} label required`);
+    if (!Array.isArray(channel?.nodes) || channel.nodes.length === 0 || channel.nodes.some((node) => typeof node !== "string" || !node)) {
+      errors.push(`${label} nodes must be a non-empty string array`);
+    } else {
+      const duplicateNodes = duplicateValues(channel.nodes);
+      if (duplicateNodes.length) errors.push(`${label} duplicate nodes ${duplicateNodes.join(", ")}`);
+      for (const node of channel.nodes) {
+        const owner = `${node}:${channel.property}`;
+        if (transformOwners.has(owner)) errors.push(`${label} conflicts with another channel on ${owner}`);
+        transformOwners.add(owner);
       }
     }
-    return { id: match[1], paths };
-  });
-}
-
-function parseAttributes(tag) {
-  const attributes = new Map();
-  for (const match of tag.matchAll(/([:\w-]+)\s*=\s*"([^"]*)"/gu)) {
-    if (attributes.has(match[1])) errors.push(`index.html: duplicate ${match[1]} attribute on machine tab`);
-    attributes.set(match[1], match[2]);
+    if (!MOTION_PROPERTIES.has(channel?.property)) errors.push(`${label} property is unsupported`);
+    if (!Number.isFinite(channel?.from) || !Number.isFinite(channel?.to)) errors.push(`${label} from/to must be finite`);
+    if (channel?.direction !== undefined && ![1, -1].includes(channel.direction)) errors.push(`${label} direction must be 1 or -1`);
+    if (channel?.mode !== undefined && !["offset", "absolute"].includes(channel.mode)) errors.push(`${label} mode must be offset or absolute`);
+    if (channel?.autoplay !== undefined && !["sine", "ping-pong"].includes(channel.autoplay)) errors.push(`${label} autoplay must be sine or ping-pong`);
   }
-  return attributes;
 }
 
+const catalog = JSON.parse(await readFile(path.join(ROOT, "catalog.json"), "utf8"));
 const catalogMachines = Array.isArray(catalog.machines) ? catalog.machines : [];
-if (!Array.isArray(catalog.machines)) errors.push("catalog.json: machines must be an array");
+if (!Array.isArray(catalog.machines) || catalogMachines.length === 0) errors.push("catalog.json: machines must be a non-empty array");
 const catalogIds = catalogMachines.map((machine) => machine?.id);
-compareExactOrder("catalog.json machine ids", catalogIds, EXPECTED_MACHINE_ORDER);
+const duplicateIds = duplicateValues(catalogIds);
+if (duplicateIds.length) errors.push(`catalog.json: duplicate machine ids ${duplicateIds.join(", ")}`);
 for (const [index, machine] of catalogMachines.entries()) {
-  if (!Number.isInteger(machine?.priority) || machine.priority !== index + 1) {
-    errors.push(`${machine?.id ?? `machine-${index + 1}`}: catalog priority must be ${index + 1}`);
-  }
+  if (typeof machine?.id !== "string" || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/u.test(machine.id)) errors.push(`catalog.json: machine ${index + 1} id must be a slug`);
+  if (!Number.isInteger(machine?.priority) || machine.priority <= 0) errors.push(`${machine?.id ?? index}: priority must be a positive integer`);
 }
-const machineRequiredFiles = (catalog.machines ?? []).map(({ id }) =>
-  `machines/${id}/assets/${id}-structural-study.glb`
-);
-const requiredFiles = [
+const duplicatePriorities = duplicateValues(catalogMachines.map((machine) => machine?.priority));
+if (duplicatePriorities.length) errors.push(`catalog.json: duplicate priorities ${duplicatePriorities.join(", ")}`);
+
+const sharedRequiredFiles = [
   "index.html",
   "404.html",
   ".nojekyll",
+  "catalog.json",
+  "schemas/viewer.schema.json",
   "assets/site/styles.css",
   "assets/site/app.js",
+  "assets/site/motion.js",
   "assets/vendor/three-r160/LICENSE",
   "assets/vendor/three-r160/manifest.json",
   "assets/vendor/three-r160/build/three.module.min.js",
   "assets/vendor/three-r160/examples/jsm/loaders/GLTFLoader.js",
   "assets/vendor/three-r160/examples/jsm/controls/OrbitControls.js",
   "assets/vendor/three-r160/examples/jsm/utils/BufferGeometryUtils.js",
-  ".github/workflows/pages.yml",
-  ...machineRequiredFiles
+  ".github/workflows/pages.yml"
 ];
+await Promise.all(sharedRequiredFiles.map(requireFile));
 
-for (const file of requiredFiles) {
+for (const { id } of catalogMachines) {
+  const viewerPath = `machines/${id}/viewer.json`;
+  let viewer;
   try {
-    const fileStat = await stat(path.join(ROOT, file));
-    if (fileStat.isFile() && file !== ".nojekyll" && fileStat.size === 0) errors.push(`${file}: empty file`);
-  } catch {
-    errors.push(`${file}: missing`);
+    viewer = JSON.parse(await readFile(path.join(ROOT, viewerPath), "utf8"));
+  } catch (error) {
+    errors.push(`${viewerPath}: ${error.code === "ENOENT" ? "missing" : error.message}`);
+    continue;
+  }
+  validateViewerShape(viewer, id, viewerPath);
+  const assetPaths = [...ASSET_KEYS.map((key) => viewer.assets?.[key]), viewer.assets?.poster].filter(isSafePublicPath);
+  await Promise.all(assetPaths.map(requireFile));
+
+  try {
+    const facts = JSON.parse(await readFile(path.join(ROOT, viewer.assets.facts), "utf8"));
+    const factsById = new Set((facts.facts ?? []).map((fact) => fact.id));
+    for (const factId of viewer.evidence?.factIds ?? []) {
+      if (!factsById.has(factId)) errors.push(`${viewerPath}: evidence fact ${factId} is absent from ${viewer.assets.facts}`);
+    }
+  } catch (error) {
+    errors.push(`${viewerPath}: cannot validate facts (${error.message})`);
+  }
+
+  if ((viewer.motion?.channels?.length ?? 0) > 0 && isSafePublicPath(viewer.assets?.glb)) {
+    try {
+      const glb = await readFile(path.join(ROOT, viewer.assets.glb));
+      const nodeNames = parseGlbNodeNames(glb, viewer.assets.glb);
+      for (const channel of viewer.motion.channels) {
+        for (const nodeName of channel.nodes ?? []) {
+          if (!nodeNames.has(nodeName)) errors.push(`${viewerPath}: motion node ${nodeName} is absent from the exported GLB`);
+        }
+      }
+    } catch (error) {
+      errors.push(`${viewerPath}: cannot validate motion nodes (${error.message})`);
+    }
   }
 }
 
-const [html, css, app, workflow] = await Promise.all([
+const [html, css, app, motionSource, workflow, viewerSchema] = await Promise.all([
   readFile(path.join(ROOT, "index.html"), "utf8"),
   readFile(path.join(ROOT, "assets/site/styles.css"), "utf8"),
   readFile(path.join(ROOT, "assets/site/app.js"), "utf8"),
-  readFile(path.join(ROOT, ".github/workflows/pages.yml"), "utf8")
+  readFile(path.join(ROOT, "assets/site/motion.js"), "utf8"),
+  readFile(path.join(ROOT, ".github/workflows/pages.yml"), "utf8"),
+  readFile(path.join(ROOT, "schemas/viewer.schema.json"), "utf8")
 ]);
 
 for (const token of [
@@ -143,84 +228,70 @@ for (const token of [
   "class=\"viewer-panel\"",
   "id=\"viewer-panel-title\"",
   "href=\"#scene\">Skip to interactive viewer",
-  "legend-mobile",
   "role=\"tablist\"",
-  "aria-controls=\"machine-panel\"",
-  "technical-view",
-  "Pass / pending / fail",
-  "Research candidate · technical structural study",
+  "id=\"machine-search\"",
+  "id=\"category-filters\"",
+  "id=\"motion-panel\"",
+  "id=\"motion-channel-template\"",
   "Not released:"
 ]) {
   if (!html.includes(token)) errors.push(`index.html: missing ${token}`);
 }
+if (/\bdata-machine\s*=/u.test(html)) errors.push("index.html: machine rows must be generated from catalog, not hardcoded");
+if (/\b(?:Thirteen|Twenty|Thirty-three) machines\b/iu.test(html)) errors.push("index.html: machine count must be generated from catalog");
+
 for (const token of [
   "prefers-reduced-motion",
   "100svh",
   ":focus-visible",
   "@media (max-width: 840px)",
-  ":root { --header-height: 58px; --gutter: 16px; }",
-  ".viewer-panel {",
-  ".hero-statement,\n  .hero-boundary,\n  .hero-metrics { display: none; }",
-  "grid-template-columns: repeat(3, minmax(0, 1fr));",
-  ".hero-copy :is(a, button, input, select, textarea, [tabindex]) { pointer-events: auto; }",
-  ".legend-mobile { display: inline; }",
-  ".scene { z-index: -2; pointer-events: auto; }"
+  ".machine-search",
+  ".category-filters",
+  ".motion-panel",
+  ".scene-fallback",
+  "[hidden] { display: none !important; }"
 ]) {
   if (!css.includes(token)) errors.push(`styles.css: missing ${token}`);
 }
-for (const token of [
-  "GLTFLoader",
-  "OrbitControls"
-]) {
-  if (!app.includes(token)) errors.push(`app.js: missing ${token}`);
-}
 
-const definitions = parseMachineDefinitions(app);
-const definitionIds = definitions.map(({ id }) => id);
-compareExactOrder("app.js MACHINE_DEFINITIONS ids", definitionIds, catalogIds);
-for (const definition of definitions) {
-  for (const [property, canonicalPath] of Object.entries(MACHINE_PATH_PROPERTIES)) {
-    const expectedPath = canonicalPath(definition.id);
-    if (definition.paths[property] !== expectedPath) {
-      errors.push(
-        `app.js: ${definition.id}.${property} must be ${expectedPath} ` +
-        `(found ${definition.paths[property] ?? "missing"})`
-      );
-    }
-  }
-}
-
-const tabTags = [...html.matchAll(/<button\b[^>]*\brole\s*=\s*"tab"[^>]*>/gsu)].map((match) => match[0]);
-const tabs = tabTags.map((tag) => parseAttributes(tag));
-const tabMachineIds = tabs.map((attributes) => attributes.get("data-machine"));
-const tabElementIds = tabs.map((attributes) => attributes.get("id"));
-compareExactOrder("index.html machine tab data-machine ids", tabMachineIds, catalogIds);
-compareExactOrder("index.html machine tab element ids", tabElementIds, catalogIds.map((id) => `machine-tab-${id}`));
-const allHtmlMachineIds = [...html.matchAll(/\bdata-machine\s*=\s*"([^"]+)"/gu)].map((match) => match[1]);
-compareExactOrder("index.html all data-machine ids", allHtmlMachineIds, catalogIds);
 for (const token of [
-  "selectAdjacentTab",
-  "currentTechnicalCamera",
-  "dom.scene.addEventListener(\"keydown\"",
+  "fetchJson(CATALOG_URL",
+  "machines/${entry.id}/viewer.json",
+  "new URL(window.location.href).searchParams.get(\"machine\")",
+  "history[`${mode}State`]",
+  "renderCategoryFilters",
+  "renderMachineIndex",
+  "MANUAL_OVERRIDE_MS",
+  "updateMotion",
+  "reducedMotionQuery",
+  "scene-fallback",
   "Higher-stage PENDING gates are not release approval",
-  "Declared ${candidateClass} input verdict",
   "sceneData.triangles ?? sceneData.triangle_count ?? counts.triangles",
   "sceneData.objects ?? sceneData.object_count ?? counts.objects ?? counts.nodes"
 ]) {
-  if (!app.includes(token)) errors.push(`app.js: missing interaction or release-boundary token ${token}`);
+  if (!app.includes(token)) errors.push(`app.js: missing catalog, accessibility, evidence, or motion token ${token}`);
 }
-for (const forbidden of ["https://cdn.jsdelivr.net", "gltfRotationX"]) {
-  if (html.includes(forbidden) || app.includes(forbidden)) errors.push(`site: forbidden fragile or machine-specific transform token ${forbidden}`);
+if (app.includes("MACHINE_DEFINITIONS")) errors.push("app.js: hardcoded MACHINE_DEFINITIONS are forbidden");
+for (const token of ["MANUAL_OVERRIDE_MS = 6000", "Math.exp(-rate * delta)", "autoplayProgress", "ping-pong"]) {
+  if (!motionSource.includes(token)) errors.push(`motion.js: missing ${token}`);
 }
-for (const forbidden of ["research/private/", "manufacturer_cad", "file://", "/Users/"]) {
-  if (html.includes(forbidden) || app.includes(forbidden)) errors.push(`site: forbidden private or local token ${forbidden}`);
+
+for (const forbidden of ["https://cdn.jsdelivr.net", "gltfRotationX", "research/private/", "manufacturer_cad", "file://", "/Users/"]) {
+  if (html.includes(forbidden) || app.includes(forbidden)) errors.push(`site: forbidden fragile, private, or local token ${forbidden}`);
 }
 for (const token of ["actions/configure-pages@v5", "actions/upload-pages-artifact@v3", "actions/deploy-pages@v4", "npm run check:site"]) {
   if (!workflow.includes(token)) errors.push(`pages workflow: missing ${token}`);
 }
 
-await access(path.join(ROOT, ".nojekyll"));
+try {
+  const schema = JSON.parse(viewerSchema);
+  if (schema.$schema !== "https://json-schema.org/draft/2020-12/schema") errors.push("viewer schema: must use JSON Schema draft 2020-12");
+  if (schema.properties?.schema_version?.const !== "1.0.0") errors.push("viewer schema: unexpected contract version");
+} catch (error) {
+  errors.push(`viewer schema: ${error.message}`);
+}
 
+await access(path.join(ROOT, ".nojekyll"));
 const vendorBase = path.join(ROOT, "assets/vendor/three-r160");
 try {
   const manifest = JSON.parse(await readFile(path.join(vendorBase, "manifest.json"), "utf8"));
@@ -241,5 +312,8 @@ if (errors.length) {
   for (const error of errors) console.error(`FAIL ${error}`);
   process.exitCode = 1;
 } else {
-  console.log(`PASS static atlas entrypoint, responsive viewer contract, ${machineRequiredFiles.length} GLBs, and Pages workflow`);
+  console.log(
+    `PASS catalog-driven responsive atlas, ${catalogMachines.length} viewer contracts, deep links, ` +
+    "accessible filters, static fallback, and capability-driven motion"
+  );
 }

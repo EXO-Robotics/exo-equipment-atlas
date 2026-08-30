@@ -1,0 +1,170 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "fendt-1167-vario-mt",
+  "configuration_id": "FENDT-1167-NA-T4F-SG30-SRPLUS-3PT-CANDIDATE",
+  "coordinate_system": {
+    "longitudinal": "+X toward engine hood/front idlers",
+    "vertical": "+Y",
+    "lateral": "+Z machine right"
+  },
+  "joints": [
+    {
+      "id": "left_track_propulsion",
+      "type": "continuous_belt_visual_drive",
+      "axis": "+Z",
+      "authority": "reconstructed",
+      "published_constraints": {
+        "belt_width_in": 30,
+        "maximum_forward_speed_kph": 40
+      },
+      "source_ids": ["FENDT-1100-MT-NA-2025"],
+      "unresolved": [
+        "drive ratio and sprocket pitch",
+        "belt-lug engagement and deformation",
+        "slip, tension, and soil interaction",
+        "all rotating-node centers and phases"
+      ]
+    },
+    {
+      "id": "right_track_propulsion",
+      "type": "continuous_belt_visual_drive",
+      "axis": "+Z",
+      "authority": "reconstructed",
+      "published_constraints": {
+        "belt_width_in": 30,
+        "maximum_forward_speed_kph": 40
+      },
+      "source_ids": ["FENDT-1100-MT-NA-2025"],
+      "unresolved": [
+        "drive ratio and sprocket pitch",
+        "belt-lug engagement and deformation",
+        "slip, tension, and soil interaction",
+        "all rotating-node centers and phases"
+      ]
+    },
+    {
+      "id": "left_hardbar_compliance",
+      "type": "suspended_track_frame_oscillation",
+      "authority": "reconstructed",
+      "published_travel_in": 10,
+      "source_ids": ["FENDT-1100-MT-NA-2025", "FENDT-1100-MT-US-PAGE"],
+      "unresolved": [
+        "hardbar pivot coordinates and rotation axis",
+        "how published travel maps to angle or translation",
+        "spring and damper anchors",
+        "mechanical stops and belt clearance"
+      ]
+    },
+    {
+      "id": "right_hardbar_compliance",
+      "type": "suspended_track_frame_oscillation",
+      "authority": "reconstructed",
+      "published_travel_in": 10,
+      "source_ids": ["FENDT-1100-MT-NA-2025", "FENDT-1100-MT-US-PAGE"],
+      "unresolved": [
+        "hardbar pivot coordinates and rotation axis",
+        "how published travel maps to angle or translation",
+        "spring and damper anchors",
+        "mechanical stops and belt clearance"
+      ]
+    },
+    {
+      "id": "pivoting_midwheels",
+      "type": "dual_side_multi_midwheel_terrain_compliance",
+      "authority": "reconstructed",
+      "published_sets_per_side": 4,
+      "source_ids": ["FENDT-1100-MT-NA-2025", "FENDT-1100-MT-US-PAGE"],
+      "unresolved": [
+        "individual midwheel centers, rocker pivots, travel and phasing",
+        "belt contact and load distribution",
+        "terrain-response control and travel limits"
+      ]
+    },
+    {
+      "id": "smartride_plus_leveling",
+      "type": "hydraulic_chassis_pitch_leveling",
+      "authority": "reconstructed",
+      "source_ids": ["FENDT-1100-MT-NA-2025", "FENDT-1100-MT-US-PAGE"],
+      "unresolved": [
+        "leveling range and reference plane",
+        "hydraulic actuator anchors and strokes",
+        "relationship to independent undercarriage motion",
+        "load-sensing control law and collision envelope"
+      ]
+    },
+    {
+      "id": "cab_rear_suspension",
+      "type": "two_point_suspended_cab_visual",
+      "authority": "reconstructed",
+      "published_rear_travel_mm": 100,
+      "source_ids": ["FENDT-1100-MT-NA-2025"],
+      "unresolved": [
+        "front cab pivots and rear isolator centers",
+        "whether published travel is total, symmetric, or one-directional",
+        "cab pitch response, stops, damping and chassis coupling"
+      ]
+    },
+    {
+      "id": "rear_three_point_lift",
+      "type": "steerable_three_point_lift",
+      "authority": "reconstructed",
+      "published_capacity_kg": 6800,
+      "source_ids": ["FENDT-1100-MT-NA-2025", "FENDT-1100-MT-US-PAGE"],
+      "unresolved": [
+        "lift-arm, top-link and stabilizer pivots",
+        "actuator anchors and stroke",
+        "lift and lateral-steer ranges",
+        "category adapter, drawbar and PTO clearances"
+      ]
+    },
+    {
+      "id": "controlled_drawbar_yaw",
+      "type": "revolute",
+      "axis": "+Y",
+      "authority": "reconstructed",
+      "source_ids": ["FENDT-1100-MT-NA-2025", "FENDT-1100-MT-US-PAGE"],
+      "unresolved": [
+        "numeric range withheld because admitted first-party statements conflict between 28 degrees and 11.5 degrees",
+        "pivot coordinates, roller or hydraulic linkage, stops, and mode logic",
+        "coupling to the steerable three-point and implement"
+      ]
+    },
+    {
+      "id": "rear_pto_visual_rotation",
+      "type": "continuous_rotation",
+      "axis": "+X",
+      "authority": "reconstructed",
+      "published_speeds_rpm": [1000, "1000E"],
+      "source_ids": ["FENDT-1100-MT-NA-2025"],
+      "unresolved": [
+        "shaft spline geometry and exact axis location",
+        "guarding, speed-mode state, driveline connection and load behavior"
+      ]
+    }
+  ],
+  "motion_constraints": [
+    "Left and right propulsion channels must remain distinguishable so differential track behavior is not misrepresented as a rigid-wheel steering axle.",
+    "Hardbar compliance, SmartRide Plus leveling, cab suspension and midwheel compliance must not be collapsed into one transform.",
+    "The rear three-point lift and controlled drawbar yaw must be independently adjustable and must not imply an attached implement.",
+    "No numeric drawbar-yaw limit may be exposed until the 28 degree versus 11.5 degree first-party conflict is resolved.",
+    "Autoplay is a slow technical demonstration, not a simulated operating cycle, and must avoid simultaneous extreme poses."
+  ],
+  "required_gates": [
+    "published_length_envelope",
+    "published_standard_width_envelope",
+    "published_height_envelope",
+    "track_wheelbase",
+    "ground_clearance",
+    "left_right_track_separation",
+    "track_component_continuity",
+    "independent_hardbar_compliance",
+    "smartride_plus_leveling_continuity",
+    "cab_suspension_continuity",
+    "three_point_linkage_continuity",
+    "drawbar_range_not_claimed",
+    "ground_collision",
+    "self_collision",
+    "neutral_unbranded_material_review"
+  ],
+  "release_state": "no_geometry_no_solver_no_claim"
+}

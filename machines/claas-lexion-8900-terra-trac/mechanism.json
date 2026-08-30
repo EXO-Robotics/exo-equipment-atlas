@@ -1,0 +1,143 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "claas-lexion-8900-terra-trac",
+  "configuration_id": "CLAAS-L8900TT-NA25-CF1530-GT510-UL51-CANDIDATE",
+  "coordinate_system": {
+    "longitudinal": "+X toward header",
+    "vertical": "+Y",
+    "lateral": "+Z machine right"
+  },
+  "joints": [
+    {
+      "id": "header_lift",
+      "type": "revolute_linkage",
+      "axis": "+Z",
+      "authority": "reconstructed",
+      "source_ids": ["CLAAS-L8900-NA-PRESS", "CLAAS-L8000-NA-PRODUCT"],
+      "unresolved": ["feederhouse pivot, cylinder anchors, lift limits, and header mass response"]
+    },
+    {
+      "id": "header_tilt_and_float",
+      "type": "revolute_linkage",
+      "axis": "+Z",
+      "authority": "reconstructed",
+      "source_ids": ["CLAAS-L8900-NA-PRESS"],
+      "unresolved": ["ACTIVE FLOAT linkage geometry, tilt range, flex segmentation, and controller response"]
+    },
+    {
+      "id": "header_reel",
+      "type": "continuous_revolute",
+      "axis": "+Z",
+      "authority": "observed",
+      "source_ids": ["CLAAS-L8900-NA-PRESS"],
+      "unresolved": ["reel center, bat geometry, rotational direction, and speed relationship"]
+    },
+    {
+      "id": "header_draper_belts",
+      "type": "looped_visual",
+      "authority": "reconstructed",
+      "source_ids": ["CLAAS-L8900-NA-PRESS"],
+      "unresolved": ["belt path, slat pitch, center-feed transition, direction, and AUTO BELT SPEED curve"]
+    },
+    {
+      "id": "left_track_belt",
+      "type": "looped_visual",
+      "authority": "reconstructed",
+      "source_ids": ["CLAAS-L8000-NA-PRODUCT"],
+      "unresolved": ["belt pitch, wheel centers, sprocket phase, and travel ratio"]
+    },
+    {
+      "id": "right_track_belt",
+      "type": "looped_visual",
+      "authority": "reconstructed",
+      "source_ids": ["CLAAS-L8000-NA-PRODUCT"],
+      "unresolved": ["belt pitch, wheel centers, sprocket phase, and travel ratio"]
+    },
+    {
+      "id": "left_track_frame",
+      "type": "oscillating_bogie",
+      "axis": "+Z",
+      "authority": "observed",
+      "source_ids": ["CLAAS-L8000-NA-PRODUCT"],
+      "unresolved": ["frame pivot and allowed terrain-following travel"]
+    },
+    {
+      "id": "right_track_frame",
+      "type": "oscillating_bogie",
+      "axis": "+Z",
+      "authority": "observed",
+      "source_ids": ["CLAAS-L8000-NA-PRODUCT"],
+      "unresolved": ["frame pivot and allowed terrain-following travel"]
+    },
+    {
+      "id": "rear_steering",
+      "type": "steered_wheels",
+      "axis": "+Y",
+      "authority": "observed",
+      "source_ids": ["CLAAS-L8000-NA-BROCHURE"],
+      "unresolved": ["kingpin axes, Ackermann geometry, tire size, and steering limit"]
+    },
+    {
+      "id": "unloading_auger_swing",
+      "type": "revolute",
+      "axis": "+Y",
+      "authority": "reconstructed",
+      "source_ids": ["CLAAS-L8900-NA-BROCHURE"],
+      "published_constraints": ["unloading-auger-swing"],
+      "unresolved": ["hinge center, stowed clocking, tube branch, and collision envelope"]
+    },
+    {
+      "id": "unloading_auger_flight",
+      "type": "continuous_revolute",
+      "authority": "reconstructed",
+      "source_ids": ["CLAAS-L8000-NA-PRODUCT"],
+      "unresolved": ["internal flight geometry, shaft axis, direction, and rotational speed"]
+    },
+    {
+      "id": "threshing_drum",
+      "type": "continuous_revolute_cutaway",
+      "axis": "+Z",
+      "authority": "reconstructed",
+      "source_ids": ["CLAAS-L8900-NA-BROCHURE", "CLAAS-L8000-NA-PRODUCT"],
+      "published_constraints": ["threshing-drum-width", "threshing-drum-diameter", "threshing-drum-speed-range"],
+      "unresolved": ["hidden drum center, bar construction, rotation direction, and crop interaction"]
+    },
+    {
+      "id": "dual_roto_plus_rotors",
+      "type": "paired_continuous_revolute_cutaway",
+      "authority": "reconstructed",
+      "source_ids": ["CLAAS-L8900-NA-BROCHURE", "CLAAS-L8000-NA-PRODUCT"],
+      "published_constraints": ["rotor-count", "rotor-diameter", "rotor-length"],
+      "unresolved": ["hidden rotor centers, helix geometry, handedness, speed, and crop interaction"]
+    },
+    {
+      "id": "power_spreader",
+      "type": "counter_rotating_pair",
+      "authority": "observed",
+      "source_ids": ["CLAAS-L8000-NA-PRODUCT"],
+      "unresolved": ["disk centers, vane geometry, direction, speed, and spread trajectory"]
+    },
+    {
+      "id": "dynamic_cooling_fan",
+      "type": "continuous_revolute",
+      "authority": "observed",
+      "source_ids": ["CLAAS-L8000-NA-PRODUCT", "CLAAS-L8900-NA-PRESS"],
+      "unresolved": ["fan diameter, blade count, axis, variable speed curve, and dust-reversal behavior"]
+    }
+  ],
+  "required_gates": [
+    "configuration_and_header_identity",
+    "published_header_span",
+    "header_lift_visual_closure",
+    "header_to_feederhouse_clearance",
+    "track_phase_continuity",
+    "track_frame_ground_following_clearance",
+    "rear_steering_tire_clearance",
+    "unloading_auger_stowed_and_deployed_clearance",
+    "cutaway_only_internal_mechanism_labeling",
+    "ground_collision",
+    "self_collision",
+    "neutral_unbranded_materials"
+  ],
+  "release_state": "no_geometry_no_solver_no_claim"
+}

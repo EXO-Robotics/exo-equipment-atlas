@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "fendt-ideal-10t",
+  "display_name": "Fendt IDEAL 10T",
+  "configuration_id": "FENDT-IDEAL-10T-GB-STAGEV-TR30-PF1070-S210-A840F-SWINGFLOW-CANDIDATE",
+  "archetype": "combine",
+  "dimensions_m": {
+    "length": 10.63,
+    "width": 10.70,
+    "height": 3.99
+  },
+  "carrier_dimensions_m": {
+    "length": 10.63,
+    "width": 3.49,
+    "height": 3.99
+  },
+  "attachment_span_m": 10.70,
+  "tracked_front": true,
+  "palette": "slate",
+  "published_constraints_used": [
+    "carrier-length-without-header",
+    "selected-carrier-width",
+    "carrier-height",
+    "selected-powerflow-width",
+    "selected-track-width",
+    "selected-steering-axle-tyre",
+    "header-raised-ground-clearance",
+    "header-tilt-compensation",
+    "selected-discharge-tube",
+    "maximum-unloading-height",
+    "streamer-210-capacity"
+  ],
+  "reconstructed_values": {
+    "running_gear": "front_tracks_rear_wheels",
+    "carrier_width_m": 3.49,
+    "header_width_m": 10.70,
+    "header_visual_depth_m": 2.05,
+    "front_track_pod_visual_length_m": 3.28,
+    "front_track_pod_visual_height_m": 1.22,
+    "front_track_belt_nominal_width_m": 0.762,
+    "rear_steering_tire_visual_radius_m": 0.82,
+    "rear_steering_tire_visual_width_m": 0.52,
+    "rear_steering_presentation_limit_deg": 22,
+    "header_lift_presentation_range_deg": [0, 13],
+    "header_roll_presentation_range_deg": [-8, 8],
+    "reel_visual_radius_m": 1.02,
+    "unloader_total_length_m": 8.4,
+    "unloader_outer_segment_ratio": 0.46,
+    "unloader_swing_presentation_range_deg": [0, 76],
+    "unloader_fold_presentation_range_deg": [0, 142],
+    "neutral_material_policy": "matte slate and graphite body volumes, dark neutral rubber, neutral steel, restrained amber visibility cues, clear neutral glazing, no manufacturer colors, logos, wordmarks, decals, or copied textures",
+    "geometry_boundary": "Only the cited carrier envelope, selected header span, running-gear designation, nominal track width, capacities, and named equipment are manufacturer-bound. Body surfacing, header depth, undercarriage proportions, tyre shape, hidden structure, pivots, anchors, clearances, and detail placement are independently authored visualization choices."
+  },
+  "unresolved_choices": [
+    "exact production serial, order code, country-road equipment, and dealer-installed options",
+    "exact TrakRide belt, pad, guide-block, drive-wheel, roller, tensioner, and carrier-frame geometry",
+    "exact 520/85R30 loaded radius, tread, rim, pressure, offset, and steering geometry",
+    "overall length with the selected PowerFlow 10.70 m attachment",
+    "PowerFlow header depth, reel, tine, belt, intake-auger, crop-divider, and coupling geometry",
+    "all body panels, cab structure, grain-tank surfacing, service doors, lights, mirrors, rails, and vents",
+    "all manufacturer colors, graphics, badges, decals, wordmarks, and trade dress"
+  ],
+  "mechanical_gaps": [
+    "Track motion is a rigid presentation abstraction without physical lug engagement, tension, deformation, slip, soil contact, or differential-drive dynamics.",
+    "Header lift and lateral compensation use reconstructed pivots and do not model cylinder pressure, load, TerraControl response, field surface, or stability.",
+    "Reel, PowerFlow, intake, Dual Helix, RotorFeeder, ShortCut, chaff and SwingFlow motion omit crop particles, torque, speed control, clearances, guards, and internal driveline authority.",
+    "The 8.4 m unloader swing, fold and spout-flap choreography uses reconstructed hinges, angles and timing and is not an operating or clearance instruction.",
+    "Cooling-fan reversal and ladder motion are presentation cues without control logic, interlocks, service-state authority, or validated collision envelopes."
+  ]
+}

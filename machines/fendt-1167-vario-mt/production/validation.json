@@ -1,0 +1,425 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "fendt-1167-vario-mt",
+  "configuration_id": "FENDT-1167-NA-T4F-SG30-SRPLUS-3PT-CANDIDATE",
+  "archetype": "twin_track_tractor",
+  "candidate_class": "technical_structural_study",
+  "engineering_authority": false,
+  "verdict": "PASS",
+  "verdict_scope": "technical_structural_study_only",
+  "release_status": "PENDING",
+  "bounds": {
+    "min_m": [
+      -3.379,
+      -0.0,
+      -1.475
+    ],
+    "max_m": [
+      3.379,
+      3.754,
+      1.475
+    ],
+    "size_m": [
+      6.758,
+      3.754,
+      2.95
+    ]
+  },
+  "counts": {
+    "objects": 204,
+    "meshes": 190,
+    "triangles": 28472,
+    "materials": 5
+  },
+  "envelope_fit": {
+    "classification": "reconstructed_visible_envelope_calibration",
+    "source_bounds_m": {
+      "min_m": [
+        -3.31142,
+        -0.003939,
+        -1.475
+      ],
+      "max_m": [
+        2.3653,
+        3.754,
+        1.475
+      ],
+      "size_m": [
+        5.67672,
+        3.757939,
+        2.95
+      ]
+    },
+    "target_bounds_m": {
+      "min_m": [
+        -3.379,
+        0.0,
+        -1.475
+      ],
+      "max_m": [
+        3.379,
+        3.754,
+        1.475
+      ],
+      "size_m": [
+        6.758,
+        3.754,
+        2.95
+      ]
+    },
+    "axis_scale_factors": [
+      1.190476211,
+      0.998951736,
+      0.999999984
+    ],
+    "calibrated_bounds_m": {
+      "min_m": [
+        -3.379,
+        -0.0,
+        -1.475
+      ],
+      "max_m": [
+        3.379,
+        3.754,
+        1.475
+      ],
+      "size_m": [
+        6.758,
+        3.754,
+        2.95
+      ]
+    },
+    "authority": "reconstructed_not_machine_specific_engineering"
+  },
+  "glb_contract": {
+    "glb_version": "2.0",
+    "scene_count": 1,
+    "scene_root_count": 1,
+    "root_name": "Machine_Root",
+    "root_record": {},
+    "identity_root": true,
+    "nodes": 204,
+    "mesh_nodes": 190,
+    "mesh_definitions": 190,
+    "materials": 5,
+    "triangles": 28472,
+    "cameras": 0,
+    "punctual_lights": false,
+    "images": 0,
+    "textures": 0,
+    "nonidentity_mesh_scales": {},
+    "helper_like_mesh_nodes": [],
+    "semantic_motion_nodes": 13,
+    "bounds": {
+      "min_m": [
+        -3.379,
+        -0.0,
+        -1.475
+      ],
+      "max_m": [
+        3.379,
+        3.754,
+        1.475
+      ],
+      "size_m": [
+        6.758,
+        3.754,
+        2.95
+      ]
+    }
+  },
+  "gates": [
+    {
+      "id": "builder-execution",
+      "status": "PASS",
+      "detail": "Factory-startup background builder reached validation generation."
+    },
+    {
+      "id": "candidate-class-boundary",
+      "status": "PASS",
+      "detail": "technical_structural_study only; not engineering authority."
+    },
+    {
+      "id": "scene-units-and-axes",
+      "status": "PASS",
+      "detail": "Meters; +X forward, +Y up, +Z machine right."
+    },
+    {
+      "id": "independent-authoring-boundary",
+      "status": "PASS",
+      "detail": "No downloaded geometry, CAD, copied textures, logos, or opaque add-ons."
+    },
+    {
+      "id": "one-identity-root",
+      "status": "PASS",
+      "detail": {}
+    },
+    {
+      "id": "required-semantic-nodes",
+      "status": "PASS",
+      "detail": {
+        "Machine_Root": true,
+        "Fixed_Structure_ROOT": true,
+        "Running_Gear_ROOT": true,
+        "Hydraulics_ROOT": true,
+        "Service_Detail_ROOT": true,
+        "Track_L_ROOT": true,
+        "Track_R_ROOT": true,
+        "SmartRide_Level_ROOT": true,
+        "Cab_Suspension_ROOT": true,
+        "Rear_Hitch_Pivot": true,
+        "Rear_Hitch_ROOT": true,
+        "Drawbar_Pivot": true
+      }
+    },
+    {
+      "id": "semantic-motion-hierarchy",
+      "status": "PASS",
+      "detail": {
+        "semantic_motion_nodes": 13
+      }
+    },
+    {
+      "id": "export-mesh-scales-applied",
+      "status": "PASS",
+      "detail": {
+        "authoring_residual": {},
+        "glb_residual": {}
+      }
+    },
+    {
+      "id": "public-glb-no-cameras-lights",
+      "status": "PASS",
+      "detail": {
+        "cameras": 0,
+        "punctual_lights": false
+      }
+    },
+    {
+      "id": "public-glb-no-helpers",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "id": "public-glb-no-images-textures",
+      "status": "PASS",
+      "detail": {
+        "images": 0,
+        "textures": 0
+      }
+    },
+    {
+      "id": "node-density",
+      "status": "PASS",
+      "detail": {
+        "actual": 204,
+        "minimum": 200
+      }
+    },
+    {
+      "id": "mesh-density",
+      "status": "PASS",
+      "detail": {
+        "actual": 190,
+        "minimum": 180
+      }
+    },
+    {
+      "id": "triangle-density",
+      "status": "PASS",
+      "detail": {
+        "actual": 28472,
+        "minimum": 10000
+      }
+    },
+    {
+      "id": "finite-visible-bounds",
+      "status": "PASS",
+      "detail": {
+        "min_m": [
+          -3.379,
+          -0.0,
+          -1.475
+        ],
+        "max_m": [
+          3.379,
+          3.754,
+          1.475
+        ],
+        "size_m": [
+          6.758,
+          3.754,
+          2.95
+        ]
+      }
+    },
+    {
+      "id": "retained-visible-envelope",
+      "status": "PASS",
+      "detail": {
+        "actual_size_m": [
+          6.758,
+          3.754,
+          2.95
+        ],
+        "expected_size_m": [
+          6.758,
+          3.754,
+          2.95
+        ],
+        "absolute_tolerance_m": 0.03,
+        "minimum_y_m": -0.0
+      }
+    },
+    {
+      "id": "review-renders-nonempty",
+      "status": "PASS",
+      "detail": [
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/fendt-1167-vario-mt/review/renders/fendt-1167-vario-mt-operator-side.png",
+          "bytes": 274889
+        },
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/fendt-1167-vario-mt/review/renders/fendt-1167-vario-mt-front-three-quarter.png",
+          "bytes": 325212
+        },
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/fendt-1167-vario-mt/review/renders/fendt-1167-vario-mt-rear-three-quarter.png",
+          "bytes": 321075
+        },
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/fendt-1167-vario-mt/review/renders/fendt-1167-vario-mt-elevated-technical.png",
+          "bytes": 366871
+        },
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/fendt-1167-vario-mt/review/renders/fendt-1167-vario-mt-articulation-detail.png",
+          "bytes": 350984
+        },
+        {
+          "path": "/private/tmp/exo-equipment-atlas-20/machines/fendt-1167-vario-mt/review/renders/fendt-1167-vario-mt-right-side.png",
+          "bytes": 276230
+        }
+      ]
+    },
+    {
+      "id": "neutral-unbranded-materials",
+      "status": "PASS",
+      "detail": "Neutral palette and procedural materials only; no manufacturer marks or textures."
+    },
+    {
+      "id": "fendt-rear-interface-continuity",
+      "status": "PASS",
+      "detail": {
+        "classification": "reconstructed_rest_pose_aabb_continuity_only",
+        "authority": "Visualization continuity check only; not manufacturer-published pivot geometry, an operating limit, a load path, or engineering authority.",
+        "required_minimum_overlap_m": 0.001,
+        "chassis_to_hitch": {
+          "objects": [
+            "Rigid_Main_Frame",
+            "Rear_Hitch_Links"
+          ],
+          "first_bounds_m": {
+            "min_xyz": [
+              -2.252667,
+              1.091454,
+              -0.708
+            ],
+            "max_xyz": [
+              3.057191,
+              1.616463,
+              0.708
+            ]
+          },
+          "second_bounds_m": {
+            "min_xyz": [
+              -3.298548,
+              0.941451,
+              -0.236
+            ],
+            "max_xyz": [
+              -2.172214,
+              1.166455,
+              0.236
+            ]
+          },
+          "overlap_xyz_m": {
+            "x": 0.080452,
+            "y": 0.075001,
+            "z": 0.472
+          },
+          "minimum_overlap_m": 0.075001,
+          "passes_required_overlap": true
+        },
+        "hitch_to_drawbar": {
+          "objects": [
+            "Rear_Hitch_Links",
+            "Drawbar"
+          ],
+          "first_bounds_m": {
+            "min_xyz": [
+              -3.298548,
+              0.941451,
+              -0.236
+            ],
+            "max_xyz": [
+              -2.172214,
+              1.166455,
+              0.236
+            ]
+          },
+          "second_bounds_m": {
+            "min_xyz": [
+              -3.379,
+              0.819574,
+              -0.118
+            ],
+            "max_xyz": [
+              -2.413572,
+              0.988327,
+              0.118
+            ]
+          },
+          "overlap_xyz_m": {
+            "x": 0.884976,
+            "y": 0.046876,
+            "z": 0.236
+          },
+          "minimum_overlap_m": 0.046876,
+          "passes_required_overlap": true
+        },
+        "measured_minimum_overlap_m": 0.046876
+      }
+    },
+    {
+      "id": "configuration-freeze",
+      "status": "PENDING",
+      "detail": "Research candidate retains unresolved exact configuration and options."
+    },
+    {
+      "id": "machine-specific-mechanical-solver",
+      "status": "PENDING",
+      "detail": "Generic structural pivots do not establish evidence-bound limits, endpoints, or cylinder closure."
+    },
+    {
+      "id": "ground-self-swept-collision",
+      "status": "PENDING",
+      "detail": "No machine-specific swept-volume or collision solver exists."
+    },
+    {
+      "id": "critic-human-visual-review",
+      "status": "PENDING",
+      "detail": "A human critic must inspect the exact render and artifact hashes."
+    },
+    {
+      "id": "viewer-browser-accessibility-mobile-selection-performance",
+      "status": "PENDING",
+      "detail": "Viewer integration belongs to the publication lane."
+    },
+    {
+      "id": "publication-and-deployment",
+      "status": "PENDING",
+      "detail": "Only the publisher may advance this research artifact to release."
+    }
+  ],
+  "failed_gate_ids": []
+}

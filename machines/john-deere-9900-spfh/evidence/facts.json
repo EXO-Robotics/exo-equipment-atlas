@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-9900-spfh",
+  "configuration_id": "JD-9900SPFH-MY2024-NA-282DZ-4005-0415KM-5597-33M-CANDIDATE",
+  "facts": [
+    {"id":"model-identity","subject":"base-machine identity","value":"282DZ 9900 Self-Propelled Forage Harvester","unit":"order_code_and_identity","authority":"manufacturer_published","source_id":"JD-HAY-FORAGE-ORDER-GUIDE-2024-02","location":"PDF page 672; 282DZ page 1 of 23"},
+    {"id":"engine-model","subject":"engine","value":"Liebherr V12","unit":"identity","authority":"manufacturer_published","source_id":"JD-HAY-FORAGE-ORDER-GUIDE-2024-02","location":"PDF page 674; 282DZ page 3 of 23"},
+    {"id":"engine-displacement","subject":"engine displacement","value":24.2,"unit":"L","authority":"manufacturer_published","source_id":"JD-HAY-FORAGE-ORDER-GUIDE-2024-02","location":"PDF page 674; 282DZ page 3 of 23"},
+    {"id":"maximum-engine-power","subject":"maximum engine power at 1,800 rpm, ECE R120","value":713,"unit":"kW","authority":"manufacturer_published","source_id":"JD-HAY-FORAGE-ORDER-GUIDE-2024-02","location":"PDF page 674; 282DZ page 3 of 23"},
+    {"id":"maximum-engine-power-hp","subject":"maximum engine power at 1,800 rpm, ECE R120","value":956,"unit":"hp","authority":"manufacturer_published","source_id":"JD-HAY-FORAGE-ORDER-GUIDE-2024-02","location":"PDF page 674; 282DZ page 3 of 23"},
+    {"id":"fuel-capacity","subject":"diesel tank capacity","value":1500,"unit":"L","authority":"manufacturer_published","source_id":"JD-HAY-FORAGE-ORDER-GUIDE-2024-02","location":"PDF page 672; 282DZ page 1 of 23"},
+    {"id":"feedroll-count","subject":"feedroll count","value":4,"unit":"count","authority":"manufacturer_published","source_id":"JD-HAY-FORAGE-ORDER-GUIDE-2024-02","location":"PDF page 673; 282DZ page 2 of 23"},
+    {"id":"cutterhead-width","subject":"Dura-Drum cutterhead width","value":856,"unit":"mm","authority":"manufacturer_published","source_id":"JD-HAY-FORAGE-ORDER-GUIDE-2024-02","location":"PDF pages 673-674; 282DZ pages 2-3 of 23"},
+    {"id":"cutterhead-diameter","subject":"Dura-Drum cutterhead diameter","value":670,"unit":"mm","authority":"manufacturer_published","source_id":"JD-HAY-FORAGE-ORDER-GUIDE-2024-02","location":"PDF pages 673-674; 282DZ pages 2-3 of 23"},
+    {"id":"selected-knife-count","subject":"selected 4005 Dura-Drum knife-bracket count","value":40,"unit":"count","authority":"manufacturer_published","source_id":"JD-HAY-FORAGE-ORDER-GUIDE-2024-02","location":"PDF page 686; 282DZ page 15 of 23"},
+    {"id":"selected-cutterhead-speed","subject":"selected 4005 cutterhead speed","value":1170,"unit":"rpm","authority":"manufacturer_published","source_id":"JD-HAY-FORAGE-ORDER-GUIDE-2024-02","location":"PDF page 686; 282DZ page 15 of 23"},
+    {"id":"selected-length-of-cut","subject":"selected 4005 published length-of-cut range","value":[7,25],"unit":"mm range","authority":"manufacturer_published","source_id":"JD-HAY-FORAGE-ORDER-GUIDE-2024-02","location":"PDF page 686; 282DZ page 15 of 23"},
+    {"id":"accelerator-speed","subject":"crop accelerator speed","value":1890,"unit":"rpm","authority":"manufacturer_published","source_id":"JD-HAY-FORAGE-ORDER-GUIDE-2024-02","location":"PDF page 673; 282DZ page 2 of 23"},
+    {"id":"accelerator-width","subject":"crop accelerator width","value":632,"unit":"mm","authority":"manufacturer_published","source_id":"JD-HAY-FORAGE-ORDER-GUIDE-2024-02","location":"PDF page 673; 282DZ page 2 of 23"},
+    {"id":"accelerator-diameter","subject":"crop accelerator diameter","value":560,"unit":"mm","authority":"manufacturer_published","source_id":"JD-HAY-FORAGE-ORDER-GUIDE-2024-02","location":"PDF page 673; 282DZ page 2 of 23"},
+    {"id":"spout-swing","subject":"Next Gen spout turning angle","value":210,"unit":"deg","authority":"manufacturer_published","source_id":"JD-HAY-FORAGE-ORDER-GUIDE-2024-02","location":"PDF page 673; 282DZ page 2 of 23"},
+    {"id":"selected-spout","subject":"selected discharge spout","value":"5597 high-arch spout for eight-row and pickup use","unit":"order_code_and_identity","authority":"manufacturer_published","source_id":"JD-HAY-FORAGE-ORDER-GUIDE-2024-02","location":"PDF page 689; 282DZ page 18 of 23"},
+    {"id":"selected-header","subject":"selected front attachment","value":"0415KM 772 Rotary Crop Header","unit":"order_code_and_identity","authority":"manufacturer_published","source_id":"JD-HAY-FORAGE-ORDER-GUIDE-2024-02","location":"PDF pages 436-438; 0415KM pages 1-3 of 3"},
+    {"id":"header-working-width","subject":"772 header working width","value":9.0,"unit":"m","authority":"manufacturer_published","source_id":"JD-HAY-FORAGE-ORDER-GUIDE-2024-02","location":"PDF page 437; 0415KM page 2 of 3"},
+    {"id":"header-transport-width","subject":"772 header transport width","value":3.0,"unit":"m","authority":"manufacturer_published","source_id":"JD-HAY-FORAGE-ORDER-GUIDE-2024-02","location":"PDF page 437; 0415KM page 2 of 3"},
+    {"id":"header-length","subject":"772 header length","value":2.7,"unit":"m","authority":"manufacturer_published","source_id":"JD-HAY-FORAGE-ORDER-GUIDE-2024-02","location":"PDF page 437; 0415KM page 2 of 3"},
+    {"id":"header-height","subject":"772 header height","value":1.98,"unit":"m","authority":"manufacturer_published","source_id":"JD-HAY-FORAGE-ORDER-GUIDE-2024-02","location":"PDF page 437; 0415KM page 2 of 3"},
+    {"id":"header-weight","subject":"772 header weight","value":4150,"unit":"kg","authority":"manufacturer_published","source_id":"JD-HAY-FORAGE-ORDER-GUIDE-2024-02","location":"PDF page 437; 0415KM page 2 of 3"},
+    {"id":"carrier-width-class","subject":"selected 672L/6612 carrier width class","value":3.3,"unit":"m","authority":"manufacturer_published","source_id":"JD-HAY-FORAGE-ORDER-GUIDE-2024-02","location":"PDF pages 691-692; 282DZ pages 20-21 of 23"},
+    {"id":"public-envelope-z","subject":"retained selected 772 header overall lateral envelope","value":9.05,"unit":"m","authority":"manufacturer_published","source_id":"JD-HAY-FORAGE-ORDER-GUIDE-2024-02","location":"PDF page 437; 0415KM page 2 of 3, overall width 9050 mm"}
+  ],
+  "issues": [
+    {"id":"legacy-order-guide-basis","status":"documented","detail":"This candidate intentionally preserves the 9900 predecessor configuration present in the February 2024 Deere order guide; it is not represented as the current Deere forage-harvester flagship."},
+    {"id":"partial-public-envelope","status":"unresolved","detail":"Only the selected 772 header's 9.05 m overall lateral span is admitted as a complete visible envelope axis. Complete longitudinal X and vertical Y envelopes for the harvester-plus-header-plus-high-arch-spout configuration are not published in the admitted source."},
+    {"id":"hidden-mechanisms","status":"unresolved","detail":"Header lift/fold pivots, feedroll centers, cutterhead and accelerator centers, spout bearings, outlet flap, hydraulic anchors and every motion curve remain reconstructed visualization choices."}
+  ]
+}

@@ -1,0 +1,273 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "new-holland-bigbaler-340-high-density-cropcutter",
+  "configuration_id": "NH-BB340HD-NAM-CROPCUTTER120X90-29K-TANDEM600-CANDIDATE",
+  "configuration_status": "research_candidate",
+  "archetype": "square_baler",
+  "candidate_class": "technical_structural_study",
+  "engineering_authority": false,
+  "authority_boundary": "Independently authored neutral technical structural study. Not manufacturer CAD, engineering authority, load guidance, operator training, safety guidance, a digital twin, or a mechanically validated candidate.",
+  "rights_boundary": "Neutral unbranded procedural geometry and materials; no manufacturer CAD, logo, copied texture, or protected livery claim.",
+  "release_status": "PENDING",
+  "blender": {
+    "version": "5.1.1",
+    "factory_startup_required": true,
+    "background_required": true
+  },
+  "builder": {
+    "path": "source/blender/build_new_holland_bigbaler_340_high_density_cropcutter.py",
+    "sha256": "688cd40f77404f6e77989946577b7d4bc1b3087abeb785eba95c411436cd4430",
+    "bytes": 694,
+    "deterministic": true,
+    "network_used": false,
+    "downloaded_geometry_used": false,
+    "manufacturer_cad_used": false,
+    "copied_textures_used": false,
+    "opaque_addons_used": false
+  },
+  "shared_generator": {
+    "path": "../../scripts/fleet/build_machine.py",
+    "sha256": "02b99250651741b462b3dae8b2471db723beb689dfe89e1c7e251d7402fe0f55",
+    "bytes": 78579
+  },
+  "design": {
+    "path": "source/design.json",
+    "sha256": "7913fb48c593ed1b2bc2394475230f6fbbf5b0a4530d61766a258980ccc56589",
+    "bytes": 2200,
+    "schema_version": "1.0.0"
+  },
+  "artifacts": {
+    "blend": {
+      "path": "source/blender/new-holland-bigbaler-340-high-density-cropcutter-structural-study.blend",
+      "sha256": "492827f2768f5bced063cd433f316b1f8a437eeb4e3712ce58eb7c1613b148d9",
+      "bytes": 224746
+    },
+    "glb": {
+      "path": "assets/new-holland-bigbaler-340-high-density-cropcutter-structural-study.glb",
+      "sha256": "9f8d8cc05ae47423a9a335c21298bc8d747ea86735258ba4aff31003123a6321",
+      "bytes": 1654784
+    },
+    "validation": {
+      "path": "production/validation.json",
+      "sha256": "38883a40f24f7439a61575533966fdedfff4e3aac3ecb8ce92ded46f4f850d1a",
+      "bytes": 8312
+    }
+  },
+  "scene": {
+    "units": "meters",
+    "axes": {
+      "longitudinal": "+X forward",
+      "vertical": "+Y up",
+      "lateral": "+Z machine right"
+    },
+    "bounds": {
+      "min_m": [
+        -4.467999,
+        0.0,
+        -1.4935
+      ],
+      "max_m": [
+        4.468,
+        3.454,
+        1.4935
+      ],
+      "size_m": [
+        8.936,
+        3.454,
+        2.987
+      ]
+    },
+    "visible_aabb_xyz_m": [
+      8.936,
+      3.454,
+      2.987
+    ],
+    "objects": 207,
+    "meshes": 190,
+    "triangles": 32512,
+    "materials": 4
+  },
+  "glb_contract": {
+    "glb_version": "2.0",
+    "scene_count": 1,
+    "scene_root_count": 1,
+    "root_name": "Machine_Root",
+    "root_record": {},
+    "identity_root": true,
+    "nodes": 207,
+    "mesh_nodes": 190,
+    "mesh_definitions": 190,
+    "materials": 4,
+    "triangles": 32512,
+    "cameras": 0,
+    "punctual_lights": false,
+    "images": 0,
+    "textures": 0,
+    "nonidentity_mesh_scales": {},
+    "helper_like_mesh_nodes": [],
+    "semantic_motion_nodes": 16,
+    "bounds": {
+      "min_m": [
+        -4.467999,
+        0.0,
+        -1.4935
+      ],
+      "max_m": [
+        4.468,
+        3.454,
+        1.4935
+      ],
+      "size_m": [
+        8.936,
+        3.454,
+        2.987
+      ]
+    }
+  },
+  "required_semantic_nodes": {
+    "Machine_Root": true,
+    "Fixed_Structure_ROOT": true,
+    "Running_Gear_ROOT": true,
+    "Hydraulics_ROOT": true,
+    "Service_Detail_ROOT": true,
+    "Drawbar_Yaw_Pivot": true,
+    "Drawbar_ROOT": true,
+    "Pickup_Lift_Pivot": true,
+    "Pickup_ROOT": true,
+    "Plunger_ROOT": true,
+    "Bale_Chute_Pivot": true,
+    "Bale_Chute_ROOT": true
+  },
+  "manufacturer_published_constraints_used": [
+    "public-envelope-x",
+    "public-envelope-y",
+    "public-envelope-z",
+    "pickup-width",
+    "cropcutter-rotor-width",
+    "cropcutter-knives",
+    "plunger-stroke",
+    "tandem-steering-angle",
+    "bale-width",
+    "bale-height"
+  ],
+  "reconstructed_values": {
+    "transport_pose": "Chute closed and handrails up define the retained manufacturer-published envelope.",
+    "crop_path": "Pickup, CropCutter, stuffer, plunger, knotter and bale chamber volumes are schematic visual cues without crop simulation.",
+    "running_gear": "Tandem running gear is abstracted to the generic square-baler archetype; tire identity remains unresolved because the brochure labels conflict.",
+    "materials": "Neutral unbranded sand, graphite, steel and rubber with no logos, decals or copied trade dress.",
+    "hidden_geometry": "PTO driveline, flywheel, stuffer crank, plunger crank, knotters, density doors and steering joints are reconstructed.",
+    "animation_ranges": "Plunger presentation displacement uses the published 0.748 m stroke span; phase, speed and every other range remain reconstructed.",
+    "generic_archetype_geometry": "square_baler proportions and visible detail are independently reconstructed for this technical study.",
+    "visible_envelope_calibration": {
+      "classification": "reconstructed_visible_envelope_calibration",
+      "source_bounds_m": {
+        "min_m": [
+          -4.296456,
+          0.0,
+          -1.4935
+        ],
+        "max_m": [
+          4.384041,
+          2.7632,
+          1.4935
+        ],
+        "size_m": [
+          8.680498,
+          2.7632,
+          2.987
+        ]
+      },
+      "target_bounds_m": {
+        "min_m": [
+          -4.468,
+          0.0,
+          -1.4935
+        ],
+        "max_m": [
+          4.468,
+          3.454,
+          1.4935
+        ],
+        "size_m": [
+          8.936,
+          3.454,
+          2.987
+        ]
+      },
+      "axis_scale_factors": [
+        1.029434068,
+        1.250000088,
+        1.000000004
+      ],
+      "calibrated_bounds_m": {
+        "min_m": [
+          -4.467999,
+          0.0,
+          -1.4935
+        ],
+        "max_m": [
+          4.468,
+          3.454,
+          1.4935
+        ],
+        "size_m": [
+          8.936,
+          3.454,
+          2.987
+        ]
+      },
+      "authority": "reconstructed_not_machine_specific_engineering"
+    }
+  },
+  "unresolved_choices": [
+    "exact serial number and order code",
+    "PTO and hitch connection geometry",
+    "tire size label conflict, manufacturer and tread pattern",
+    "optional gauge wheel arm style",
+    "twine package and service lighting",
+    "public material and branding authorization"
+  ],
+  "mechanical_gaps": [
+    "PTO, flywheel, gearbox, pickup reel and CropCutter phase authority",
+    "stuffer crank, plunger crank and knotter linkage closure",
+    "density-door hydraulic anchors and bale-pressure solver",
+    "tandem suspension and 14-degree steering geometry",
+    "tractor articulation, ground, self and swept-volume collision solver"
+  ],
+  "renders": [
+    {
+      "path": "review/renders/new-holland-bigbaler-340-high-density-cropcutter-operator-side.png",
+      "sha256": "ddfb42d83fb1c4e5d894a88b87c283a0ceaf26dd674d3849066af50118298828",
+      "bytes": 235804
+    },
+    {
+      "path": "review/renders/new-holland-bigbaler-340-high-density-cropcutter-front-three-quarter.png",
+      "sha256": "ec4a47ab4484524b21c7160544b31db09107ab76cce431bc4e855a3eb20b7579",
+      "bytes": 279513
+    },
+    {
+      "path": "review/renders/new-holland-bigbaler-340-high-density-cropcutter-rear-three-quarter.png",
+      "sha256": "b14f0488f0586ac66238f91f0690853920957d52c91f24bd94e2a33b1bcf777b",
+      "bytes": 266447
+    },
+    {
+      "path": "review/renders/new-holland-bigbaler-340-high-density-cropcutter-elevated-technical.png",
+      "sha256": "6e551c71717af0aabbd9ca66e9a9c5e26198e4650e964e9a78c04d98257ac9a3",
+      "bytes": 329802
+    },
+    {
+      "path": "review/renders/new-holland-bigbaler-340-high-density-cropcutter-articulation-detail.png",
+      "sha256": "a60c6334bd5f8b51bd1a933345c454d626c183a0e85edf574c1709cbb58818f0",
+      "bytes": 288720
+    },
+    {
+      "path": "review/renders/new-holland-bigbaler-340-high-density-cropcutter-right-side.png",
+      "sha256": "5c066cd399e76b79d375801ad80ee21bf86915a08de7ef568e89d8b79da06863",
+      "bytes": 232296
+    }
+  ],
+  "build_verdict": "PASS",
+  "validation_verdict": "PASS",
+  "validation_path": "production/validation.json",
+  "higher_stage_gates": "PENDING"
+}

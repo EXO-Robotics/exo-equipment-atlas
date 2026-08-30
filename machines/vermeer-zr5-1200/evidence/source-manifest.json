@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "vermeer-zr5-1200",
+  "configuration_id": "VERMEER-ZR5-1200-NA26-STAGEV-STDPICKUP-NET-RAMP-CANDIDATE",
+  "freeze_date": "2026-08-29",
+  "repository_policy": {
+    "source_binaries_committed": false,
+    "manufacturer_geometry_committed": false,
+    "manual_illustrations_are_scale_drawings": false,
+    "verification": "Official Vermeer product and literature URLs are frozen. No manufacturer geometry, imagery, logo, or publication binary is included in the public package."
+  },
+  "sources": [
+    {
+      "id": "VERMEER-ZR5-PRODUCT-2026",
+      "publisher": "Vermeer Corporation",
+      "kind": "official_product_page",
+      "title": "ZR5-1200 Self-propelled Baler",
+      "market": "North America",
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.vermeer.com/na/self-propelled-balers/zr5",
+      "admission": "primary",
+      "applicability": "Current identity, dimensions, engine, speeds, tires, suspension, steering, bale chamber, pickup, netwrap, ramp, automation and quarter-turn statements."
+    },
+    {
+      "id": "VERMEER-ZR5-LITERATURE-2024-09",
+      "publisher": "Vermeer Corporation",
+      "kind": "official_product_literature_pdf",
+      "title": "ZR5-1200 product literature",
+      "publication_date": "2024-09",
+      "market": "North America",
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.vermeer.com/getmedia/bfc9be76-b52d-4031-8911-a7d2ffd66cf8/zr5-1200-literature-september-2024.pdf?ext=.pdf",
+      "local_path": "research/private/vermeer-zr5-1200/primary-source.pdf",
+      "sha256": "678bfc5f17a69e71887fd72afef18bea497998905e88c02a10c008d0b6e4df6c",
+      "bytes": 552136,
+      "pages": 2,
+      "admission": "primary",
+      "applicability": "Configuration imagery, visible assembly topology, specification corroboration and option boundary; illustrations are not treated as scale drawings."
+    }
+  ]
+}

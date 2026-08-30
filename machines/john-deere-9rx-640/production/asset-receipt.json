@@ -1,0 +1,267 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-9rx-640",
+  "configuration_id": "JD-9RX640-MY2025-9540RW-JD14-E18-4X30AG3500-87-NOPTO-NOHITCH-CANDIDATE",
+  "configuration_status": "research_candidate",
+  "archetype": "tracked_tractor",
+  "candidate_class": "technical_structural_study",
+  "engineering_authority": false,
+  "authority_boundary": "Independently authored neutral technical structural study. Not manufacturer CAD, engineering authority, load guidance, operator training, safety guidance, a digital twin, or a mechanically validated candidate.",
+  "rights_boundary": "Neutral unbranded procedural geometry and materials; no manufacturer CAD, logo, copied texture, or protected livery claim.",
+  "release_status": "PENDING",
+  "blender": {
+    "version": "5.1.1",
+    "factory_startup_required": true,
+    "background_required": true
+  },
+  "builder": {
+    "path": "source/blender/build_john_deere_9rx_640.py",
+    "sha256": "41063d85c94802bc6a4874a88382265eb54c719880bd7c336651609f1e443926",
+    "bytes": 664,
+    "deterministic": true,
+    "network_used": false,
+    "downloaded_geometry_used": false,
+    "manufacturer_cad_used": false,
+    "copied_textures_used": false,
+    "opaque_addons_used": false
+  },
+  "shared_generator": {
+    "path": "../../scripts/fleet/build_machine.py",
+    "sha256": "02b99250651741b462b3dae8b2471db723beb689dfe89e1c7e251d7402fe0f55",
+    "bytes": 78579
+  },
+  "design": {
+    "path": "source/design.json",
+    "sha256": "671777556a52dd4731841227e436c6de922aa34ff3698ee96bc49020a382b317",
+    "bytes": 1537,
+    "schema_version": "1.0.0"
+  },
+  "artifacts": {
+    "blend": {
+      "path": "source/blender/john-deere-9rx-640-structural-study.blend",
+      "sha256": "b1316ffc453b1b97a0d2c77a76346b82363a0fb26af261c2570c4c36b3768a56",
+      "bytes": 218215
+    },
+    "glb": {
+      "path": "assets/john-deere-9rx-640-structural-study.glb",
+      "sha256": "1055b829bbec21452d6a9785c46a07ed2f730d38b454d51293d4018280086c8c",
+      "bytes": 1425860
+    },
+    "validation": {
+      "path": "production/validation.json",
+      "sha256": "ef1e7acd67d2514850fddba0a82a9ea857a70307c24034c353c8ee8e529c9927",
+      "bytes": 7931
+    }
+  },
+  "scene": {
+    "units": "meters",
+    "axes": {
+      "longitudinal": "+X forward",
+      "vertical": "+Y up",
+      "lateral": "+Z machine right"
+    },
+    "bounds": {
+      "min_m": [
+        -4.1545,
+        -0.0,
+        -1.49
+      ],
+      "max_m": [
+        4.1545,
+        3.71,
+        1.49
+      ],
+      "size_m": [
+        8.309,
+        3.71,
+        2.98
+      ]
+    },
+    "visible_aabb_xyz_m": [
+      8.309,
+      3.71,
+      2.98
+    ],
+    "objects": 205,
+    "meshes": 190,
+    "triangles": 27544,
+    "materials": 5
+  },
+  "glb_contract": {
+    "glb_version": "2.0",
+    "scene_count": 1,
+    "scene_root_count": 1,
+    "root_name": "Machine_Root",
+    "root_record": {},
+    "identity_root": true,
+    "nodes": 205,
+    "mesh_nodes": 190,
+    "mesh_definitions": 190,
+    "materials": 5,
+    "triangles": 27544,
+    "cameras": 0,
+    "punctual_lights": false,
+    "images": 0,
+    "textures": 0,
+    "nonidentity_mesh_scales": {},
+    "helper_like_mesh_nodes": [],
+    "semantic_motion_nodes": 14,
+    "bounds": {
+      "min_m": [
+        -4.1545,
+        -0.0,
+        -1.49
+      ],
+      "max_m": [
+        4.1545,
+        3.71,
+        1.49
+      ],
+      "size_m": [
+        8.309,
+        3.71,
+        2.98
+      ]
+    }
+  },
+  "required_semantic_nodes": {
+    "Machine_Root": true,
+    "Fixed_Structure_ROOT": true,
+    "Running_Gear_ROOT": true,
+    "Hydraulics_ROOT": true,
+    "Service_Detail_ROOT": true,
+    "Chassis_Yaw_Pivot": true,
+    "Front_Frame_ROOT": true,
+    "Rear_Frame_ROOT": true,
+    "Track_FL_ROOT": true,
+    "Track_FR_ROOT": true,
+    "Track_RL_ROOT": true,
+    "Track_RR_ROOT": true,
+    "Drawbar_Pivot": true
+  },
+  "manufacturer_published_constraints_used": [
+    "public-envelope-x",
+    "selected-track-width",
+    "selected-track-spacing",
+    "articulation-range",
+    "chassis-oscillation",
+    "undercarriage-oscillation"
+  ],
+  "reconstructed_values": {
+    "presentation_height_m": 3.71,
+    "visible_width_derivation_m": "2.218 m center spacing + 0.762 m belt width = 2.980 m",
+    "track_pod_visual_length_m": 2.0,
+    "articulation_visual_limit_rad": 0.18,
+    "track_pod_visual_pitch_rad": 0.04,
+    "neutral_material_policy": "matte slate and graphite with dark rubber belts; no logos, decals or manufacturer trade dress",
+    "hidden_geometry": "All hidden structure, pivot centers, anchors, linkage proportions, underbody volumes, and internal geometry are reconstructed visualization choices unless a design record explicitly identifies a manufacturer-published envelope constraint.",
+    "generic_archetype_geometry": "tracked_tractor proportions and visible detail are independently reconstructed for this technical study.",
+    "visible_envelope_calibration": {
+      "classification": "reconstructed_visible_envelope_calibration",
+      "source_bounds_m": {
+        "min_m": [
+          -4.07141,
+          -0.00376,
+          -1.49
+        ],
+        "max_m": [
+          3.15742,
+          3.71,
+          1.49
+        ],
+        "size_m": [
+          7.22883,
+          3.71376,
+          2.98
+        ]
+      },
+      "target_bounds_m": {
+        "min_m": [
+          -4.1545,
+          0.0,
+          -1.49
+        ],
+        "max_m": [
+          4.1545,
+          3.71,
+          1.49
+        ],
+        "size_m": [
+          8.309,
+          3.71,
+          2.98
+        ]
+      },
+      "axis_scale_factors": [
+        1.149425272,
+        0.998987683,
+        0.999999994
+      ],
+      "calibrated_bounds_m": {
+        "min_m": [
+          -4.1545,
+          -0.0,
+          -1.49
+        ],
+        "max_m": [
+          4.1545,
+          3.71,
+          1.49
+        ],
+        "size_m": [
+          8.309,
+          3.71,
+          2.98
+        ]
+      },
+      "authority": "reconstructed_not_machine_specific_engineering"
+    }
+  },
+  "unresolved_choices": [
+    "Manufacturer-published overall height and overall width for code 6829/6848",
+    "All belt, sprocket, idler, midroller and pod geometry",
+    "Hidden articulation and oscillation pivots, cylinders, anchors and stops",
+    "Exact exterior surfacing and service details"
+  ],
+  "mechanical_gaps": [
+    "Track belts are rigid visual abstractions without lug engagement, tension, deformation, slip or soil interaction.",
+    "Articulation, frame oscillation and pod pitch are independent visual transforms, not a coupled validated solver.",
+    "Powertrain, hydraulic, cooling and aftertreatment internals are not modeled."
+  ],
+  "renders": [
+    {
+      "path": "review/renders/john-deere-9rx-640-operator-side.png",
+      "sha256": "e40943142728ca630a09b97c216601c58364d6d101c6139f59b566feef05a58c",
+      "bytes": 247789
+    },
+    {
+      "path": "review/renders/john-deere-9rx-640-front-three-quarter.png",
+      "sha256": "08a38369ce596c86902d866fa83df2fedd2cdbd66a4db2a0060036a9ec081d17",
+      "bytes": 307192
+    },
+    {
+      "path": "review/renders/john-deere-9rx-640-rear-three-quarter.png",
+      "sha256": "a4124c93641fc0432ac239f38a3f26f1b30bbb600b406d9f75ec6f186d1d3dde",
+      "bytes": 285148
+    },
+    {
+      "path": "review/renders/john-deere-9rx-640-elevated-technical.png",
+      "sha256": "297301b4d6acd2fcb666377fa97d93c0889179f760469ac1071a63e98f23aba1",
+      "bytes": 349656
+    },
+    {
+      "path": "review/renders/john-deere-9rx-640-articulation-detail.png",
+      "sha256": "876db4799c2284c7115c78b80f9d810f351a7229d4d6906e2f1215c484f91718",
+      "bytes": 328662
+    },
+    {
+      "path": "review/renders/john-deere-9rx-640-right-side.png",
+      "sha256": "6974c3af00dfd82732d0f7a3db21fd825d85ae591c0184aff38cd8c5fc324da6",
+      "bytes": 247706
+    }
+  ],
+  "build_verdict": "PASS",
+  "validation_verdict": "PASS",
+  "validation_path": "production/validation.json",
+  "higher_stage_gates": "PENDING"
+}

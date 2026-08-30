@@ -1,0 +1,272 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "case-ih-trident-5550",
+  "configuration_id": "CASEIH-TRIDENT5550-NAM-LIQ1600-ALBOOM120-AIMCF2-4WD-CANDIDATE",
+  "configuration_status": "research_candidate",
+  "archetype": "high_clearance_sprayer",
+  "candidate_class": "technical_structural_study",
+  "engineering_authority": false,
+  "authority_boundary": "Independently authored neutral technical structural study. Not manufacturer CAD, engineering authority, load guidance, operator training, safety guidance, a digital twin, or a mechanically validated candidate.",
+  "rights_boundary": "Neutral unbranded procedural geometry and materials; no manufacturer CAD, logo, copied texture, or protected livery claim.",
+  "release_status": "PENDING",
+  "blender": {
+    "version": "5.1.1",
+    "factory_startup_required": true,
+    "background_required": true
+  },
+  "builder": {
+    "path": "source/blender/build_case_ih_trident_5550.py",
+    "sha256": "14f36826319a04e9e6e8a4ecf57295a9577acfb7a36631bba0fb9e8aaf6b1048",
+    "bytes": 666,
+    "deterministic": true,
+    "network_used": false,
+    "downloaded_geometry_used": false,
+    "manufacturer_cad_used": false,
+    "copied_textures_used": false,
+    "opaque_addons_used": false
+  },
+  "shared_generator": {
+    "path": "../../scripts/fleet/build_machine.py",
+    "sha256": "02b99250651741b462b3dae8b2471db723beb689dfe89e1c7e251d7402fe0f55",
+    "bytes": 78579
+  },
+  "design": {
+    "path": "source/design.json",
+    "sha256": "c25280b3294ca3fcbf6c583b2a6086b0a4e33b2940fb82b6811eb5af895e57e1",
+    "bytes": 2292,
+    "schema_version": "1.0.0"
+  },
+  "artifacts": {
+    "blend": {
+      "path": "source/blender/case-ih-trident-5550-structural-study.blend",
+      "sha256": "af0f60e92661e0803bf186338667570618ab9fcf043b3243e09756caf5080932",
+      "bytes": 245088
+    },
+    "glb": {
+      "path": "assets/case-ih-trident-5550-structural-study.glb",
+      "sha256": "5ccaa04d262528e1345883074dff26f728505fe81ea3777f19c0fd77f1361a0b",
+      "bytes": 1596540
+    },
+    "validation": {
+      "path": "production/validation.json",
+      "sha256": "3198a80dfd8eec267299bcca99469b20e0d98bb3ed10446811782b3d0f7692a3",
+      "bytes": 7908
+    }
+  },
+  "scene": {
+    "units": "meters",
+    "axes": {
+      "longitudinal": "+X forward",
+      "vertical": "+Y up",
+      "lateral": "+Z machine right"
+    },
+    "bounds": {
+      "min_m": [
+        -4.86,
+        0.0,
+        -2.105
+      ],
+      "max_m": [
+        4.86,
+        4.01,
+        2.105
+      ],
+      "size_m": [
+        9.72,
+        4.01,
+        4.21
+      ]
+    },
+    "visible_aabb_xyz_m": [
+      9.72,
+      4.01,
+      4.21
+    ],
+    "objects": 212,
+    "meshes": 190,
+    "triangles": 31032,
+    "materials": 6
+  },
+  "glb_contract": {
+    "glb_version": "2.0",
+    "scene_count": 1,
+    "scene_root_count": 1,
+    "root_name": "Machine_Root",
+    "root_record": {},
+    "identity_root": true,
+    "nodes": 212,
+    "mesh_nodes": 190,
+    "mesh_definitions": 190,
+    "materials": 6,
+    "triangles": 31032,
+    "cameras": 0,
+    "punctual_lights": false,
+    "images": 0,
+    "textures": 0,
+    "nonidentity_mesh_scales": {},
+    "helper_like_mesh_nodes": [],
+    "semantic_motion_nodes": 21,
+    "bounds": {
+      "min_m": [
+        -4.86,
+        0.0,
+        -2.105
+      ],
+      "max_m": [
+        4.86,
+        4.01,
+        2.105
+      ],
+      "size_m": [
+        9.72,
+        4.01,
+        4.21
+      ]
+    }
+  },
+  "required_semantic_nodes": {
+    "Machine_Root": true,
+    "Fixed_Structure_ROOT": true,
+    "Running_Gear_ROOT": true,
+    "Hydraulics_ROOT": true,
+    "Service_Detail_ROOT": true,
+    "Front_Axle_Oscillation_Pivot": true,
+    "Front_Axle_ROOT": true,
+    "Boom_Center_ROOT": true,
+    "Boom_L_Fold_Pivot": true,
+    "Boom_L_ROOT": true,
+    "Boom_R_Fold_Pivot": true,
+    "Boom_R_ROOT": true
+  },
+  "manufacturer_published_constraints_used": [
+    "public-envelope-x",
+    "public-envelope-y",
+    "public-envelope-z",
+    "boom-working-span",
+    "liquid-tank-capacity",
+    "selected-boom-width",
+    "wheelbase",
+    "drive-system"
+  ],
+  "reconstructed_values": {
+    "presentation_pose": "Folded carrier study retained for fleet-scale inspectability; the selected 120-foot / 36.5 m working span remains a published evidence fact but is not reconstructed as full-length public geometry.",
+    "carrier_transport_width_m": 4.21,
+    "carrier_transport_width_note": "Manufacturer-published with 710/60R46 tires; axle track setting within that basis remains unresolved.",
+    "solution_system": "Visible tank is a neutral volume cue for the selected 1,600 US gallon liquid system; plumbing and liquid behavior are not simulated.",
+    "materials": "Neutral unbranded slate, graphite, steel, rubber and glass with no logos, decals or copied trade dress.",
+    "hidden_geometry": "Boom hinges, self-centering linkage, suspension anchors, steering joints and plumbing are reconstructed.",
+    "animation_ranges": "Conservative presentation fold and axle ranges only; not operating limits.",
+    "generic_archetype_geometry": "high_clearance_sprayer proportions and visible detail are independently reconstructed for this technical study.",
+    "visible_envelope_calibration": {
+      "classification": "reconstructed_visible_envelope_calibration",
+      "source_bounds_m": {
+        "min_m": [
+          -3.6208,
+          0.0,
+          -2.105
+        ],
+        "max_m": [
+          3.6208,
+          4.01,
+          2.105
+        ],
+        "size_m": [
+          7.2416,
+          4.01,
+          4.21
+        ]
+      },
+      "target_bounds_m": {
+        "min_m": [
+          -4.86,
+          0.0,
+          -2.105
+        ],
+        "max_m": [
+          4.86,
+          4.01,
+          2.105
+        ],
+        "size_m": [
+          9.72,
+          4.01,
+          4.21
+        ]
+      },
+      "axis_scale_factors": [
+        1.342244801,
+        0.999999943,
+        0.999999991
+      ],
+      "calibrated_bounds_m": {
+        "min_m": [
+          -4.86,
+          0.0,
+          -2.105
+        ],
+        "max_m": [
+          4.86,
+          4.01,
+          2.105
+        ],
+        "size_m": [
+          9.72,
+          4.01,
+          4.21
+        ]
+      },
+      "authority": "reconstructed_not_machine_specific_engineering"
+    }
+  },
+  "unresolved_choices": [
+    "exact model year and dealer order code",
+    "boom nozzle spacing and tip package",
+    "wheel-track setting within the published 710/60R46 envelope basis",
+    "SenseApply model-year-specific hardware selection",
+    "tank plumbing, hose routing and breakaway geometry",
+    "public material and branding authorization"
+  ],
+  "mechanical_gaps": [
+    "120-foot boom section lengths, fold axes, self-centering links and breakaway endpoints",
+    "suspension travel, steering angles, tie rods and wheel-offset authority",
+    "tank mounts, pump, plumbing, nozzle and liquid-flow geometry",
+    "boom-to-cab and boom-to-ground swept clearance",
+    "ground, self and swept-volume collision solver"
+  ],
+  "renders": [
+    {
+      "path": "review/renders/case-ih-trident-5550-operator-side.png",
+      "sha256": "d6f9fd69619eab4c55e6517fcd61e4b8c2b0049f2875c812466d992bd2b4aa21",
+      "bytes": 239581
+    },
+    {
+      "path": "review/renders/case-ih-trident-5550-front-three-quarter.png",
+      "sha256": "6da7518c38524465c9185e1ea13baf4908bf7a9cc82c1f6f9dafd1da1cae48b4",
+      "bytes": 296554
+    },
+    {
+      "path": "review/renders/case-ih-trident-5550-rear-three-quarter.png",
+      "sha256": "a2d64c76b9f394c9300c6217ef9f887f7c0d7fe00307b231963e0a96b0a9c28b",
+      "bytes": 282943
+    },
+    {
+      "path": "review/renders/case-ih-trident-5550-elevated-technical.png",
+      "sha256": "a1c901210a1100916dd773d7a3c5f95d3de9f275c0ab87aa71f9c93fde6b1705",
+      "bytes": 349892
+    },
+    {
+      "path": "review/renders/case-ih-trident-5550-articulation-detail.png",
+      "sha256": "7d8d2823b0b74fa3ded5fc641d7ae39d1ba028ff7aabf4bbd5360a927ef5ab59",
+      "bytes": 314332
+    },
+    {
+      "path": "review/renders/case-ih-trident-5550-right-side.png",
+      "sha256": "91f66aa9335fd2de6e70aaa789fafb01e9cafc81508deb8a01e5c561032c2375",
+      "bytes": 238478
+    }
+  ],
+  "build_verdict": "PASS",
+  "validation_verdict": "PASS",
+  "validation_path": "production/validation.json",
+  "higher_stage_gates": "PENDING"
+}

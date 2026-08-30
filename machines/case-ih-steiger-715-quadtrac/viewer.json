@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0.0",
+  "machineId": "case-ih-steiger-715-quadtrac",
+  "displayName": "Case IH Steiger 715 Quadtrac",
+  "className": "Articulated four-track tractor",
+  "category": "Agriculture",
+  "assets": {
+    "glb": "machines/case-ih-steiger-715-quadtrac/assets/case-ih-steiger-715-quadtrac-structural-study.glb",
+    "configuration": "machines/case-ih-steiger-715-quadtrac/configuration.json",
+    "facts": "machines/case-ih-steiger-715-quadtrac/evidence/facts.json",
+    "receipt": "machines/case-ih-steiger-715-quadtrac/production/asset-receipt.json",
+    "validation": "machines/case-ih-steiger-715-quadtrac/production/validation.json",
+    "poster": "machines/case-ih-steiger-715-quadtrac/review/renders/case-ih-steiger-715-quadtrac-operator-side.png"
+  },
+  "evidence": {
+    "boundary": "Neutral Steiger 715 Quadtrac HDS structural study. Published worldwide 30-inch-track dimensions constrain the envelope; articulation, suspension, hitch linkage and motion limits remain reconstructed.",
+    "lede": "Official Case IH sources publish the 8.290 x 2.997 x 3.918 m envelope, 715 power, four-track topology, 154-inch wheelbase and seven-inch HDS travel without establishing manufacturer CAD or kinematic authority.",
+    "factIds": ["public-envelope-x", "public-envelope-y", "public-envelope-z", "rated-engine-power", "quadtrac-topology", "hds-total-travel"]
+  },
+  "camera": {"azimuth": 0.64, "elevation": 0.31, "distance": 1.52},
+  "accent": "#b46543",
+  "motion": {
+    "autoplay": true,
+    "durationSeconds": 14,
+    "mode": "sine",
+    "damping": 6.5,
+    "channels": [
+      {"id":"chassis-articulation","label":"Center articulation - reconstructed","nodes":["Chassis_Yaw_Pivot"],"property":"rotation.y","from":-0.12,"to":0.12,"phase":0.0,"mode":"offset"},
+      {"id":"left-track-oscillation","label":"Left track oscillation - reconstructed","nodes":["Track_FL_ROOT","Track_RL_ROOT"],"property":"rotation.z","from":-0.035,"to":0.035,"phase":0.18,"mode":"offset"},
+      {"id":"right-track-oscillation","label":"Right track oscillation - reconstructed","nodes":["Track_FR_ROOT","Track_RR_ROOT"],"property":"rotation.z","from":-0.035,"to":0.035,"phase":0.68,"direction":-1,"mode":"offset"},
+      {"id":"drawbar-sweep","label":"Drawbar trim - reconstructed","nodes":["Drawbar_Pivot"],"property":"rotation.y","from":-0.08,"to":0.08,"phase":0.5,"mode":"offset"}
+    ]
+  }
+}

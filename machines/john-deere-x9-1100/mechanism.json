@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-x9-1100",
+  "configuration_id": "JD-X9-1100-MY2024-NA-WHEEL-HD50R-AUGER31-CANDIDATE",
+  "coordinate_system": {"longitudinal": "+X forward", "vertical": "+Y", "lateral": "+Z machine right"},
+  "joints": [
+    {
+      "id": "feederhouse_raise_lower",
+      "type": "hydraulic_feederhouse_pitch",
+      "axis": "+Z",
+      "authority": "reconstructed",
+      "published_constraints": {"feederhouse_width_m": 1.72},
+      "source_ids": ["JD-X-SERIES-COMBINES-2024"],
+      "unresolved": ["main pivot center", "lift cylinders, anchors and stroke", "tilt compensation, stops and carrier collision envelope"]
+    },
+    {
+      "id": "header_lift_and_tilt",
+      "type": "attached_draper_pitch_visual",
+      "axis": "+Z",
+      "authority": "reconstructed",
+      "published_constraints": {"selected_header": "HD50R", "nominal_span_m": 15.2},
+      "source_ids": ["JD-X-SERIES-COMBINES-2024"],
+      "unresolved": ["attachment interface, pivot and tilt centers", "cylinder anchors, stroke and stops", "header mass, ground following and crop interaction"]
+    },
+    {
+      "id": "header_reel_rotation",
+      "type": "continuous_rotation",
+      "axis": "+Z",
+      "authority": "reconstructed",
+      "source_ids": ["JD-X-SERIES-COMBINES-2024"],
+      "unresolved": ["reel diameter, bat profile and tine geometry", "speed range and automatic ratio", "fore-aft and height linkage"]
+    },
+    {
+      "id": "feeder_conveyor_travel",
+      "type": "continuous_chain_visual_drive",
+      "authority": "reconstructed",
+      "published_constraints": {"chains": 4, "slat_type": "formed steel"},
+      "source_ids": ["JD-X-SERIES-COMBINES-2024"],
+      "unresolved": ["sprocket centers, pitch and ratios", "slat spacing, chain path, tension and crop interaction"]
+    },
+    {
+      "id": "dual_rotor_rotation",
+      "type": "dual_continuous_rotation_internal",
+      "axis": "+X",
+      "authority": "reconstructed",
+      "published_constraints": {"rotor_count": 2, "rotor_length_m": 3.5, "rotor_diameter_m": 0.6, "speed_range_rpm": [300, 1300]},
+      "source_ids": ["JD-X-SERIES-COMBINES-2024"],
+      "unresolved": ["rotor centers and helix geometry", "drive ratios and phasing", "concave clearance, material flow and load behavior"]
+    },
+    {
+      "id": "unloading_auger_swing",
+      "type": "folding_auger_swing",
+      "axis": "+Y",
+      "authority": "reconstructed",
+      "published_constraints": {"selected_auger_length_m": 9.45, "peak_unloading_rate_l_s": 186.7},
+      "source_ids": ["JD-X-SERIES-COMBINES-2024"],
+      "unresolved": ["hinge axis and folded/stowed pose", "cylinder anchors, stroke and stops", "tube joints, internal screw and outlet geometry", "grain trajectory and collision envelope"]
+    }
+  ],
+  "motion_constraints": [
+    "Feederhouse and header transforms remain separate so header motion does not imply a verified ground-following system.",
+    "The header reel is a visual rotary cue with no crop contact or speed-control claim.",
+    "The unloading auger must clear the grain tank and header in all autoplay poses.",
+    "Internal dual rotors are documented but not exposed as public viewer animation unless their geometry is independently visible and validated.",
+    "Autoplay must avoid maximum feeder/header lift and maximum auger swing simultaneously."
+  ],
+  "required_gates": ["selected_header_span_envelope", "carrier_length_unresolved", "carrier_height_unresolved", "wheeled_running_gear", "feederhouse_continuity", "header_attachment_continuity", "reel_axis_continuity", "unloader_hinge_continuity", "auger_header_clearance", "ground_collision", "self_collision", "neutral_unbranded_material_review"],
+  "release_state": "no_geometry_no_solver_no_claim"
+}

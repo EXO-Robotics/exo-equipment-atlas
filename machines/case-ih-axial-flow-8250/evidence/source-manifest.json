@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "case-ih-axial-flow-8250",
+  "configuration_id": "CASEIH-AF8250-NAM-250-WHEELED-GT410-UA45-CANDIDATE-MYUNRESOLVED",
+  "freeze_date": "2026-08-29",
+  "repository_policy": {
+    "source_binaries_committed": false,
+    "manufacturer_geometry_committed": false,
+    "manual_illustrations_are_scale_drawings": false,
+    "verification": "The admitted 250 Series brochure is manufacturer-published but its 2022 specification snapshot is not treated as proof of an exact production year or dealer order."
+  },
+  "sources": [
+    {
+      "id": "CASEIH-AF250-US-BROCHURE-2022",
+      "publisher": "Case IH / CNH Industrial America LLC",
+      "kind": "official_brochure",
+      "title": "Axial-Flow 250 Series Combine",
+      "publication": "CIH21092101",
+      "market": "North America",
+      "pages": 20,
+      "retrieved": "2026-08-29",
+      "official_url": "https://cnhi-p-001-delivery.sitecorecontenthub.cloud/api/public/content/fa9644bde5e640189efdc8daf01a6306?v=646ab566",
+      "local_path": "research/private/case-ih-axial-flow-8250/primary-source.pdf",
+      "sha256": "c824dd8b25d2c80466ecd23ee117b614d7c05a726c5dba1fe812fbbf5553708a",
+      "bytes": 3544348,
+      "admission": "primary",
+      "applicability": "Copyright 2022 North American 7250/8250/9250 publication; controls cited 8250 specifications and 250 Series functional topology, without resolving the exact machine model year."
+    },
+    {
+      "id": "CASEIH-PERFECT-FLOW-US-PAGE-2026",
+      "publisher": "Case IH / CNH Industrial America LLC",
+      "kind": "official_campaign_page",
+      "title": "High-Efficiency Harvesting - Perfect Flow",
+      "market": "United States",
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.caseih.com/en-us/unitedstates/campaigns/perfect-flow",
+      "admission": "primary",
+      "applicability": "Current historical product-family context for the Axial-Flow 8250 and the 250 Series single-rotor, adjustable-cage-vane, Harvest Command platform."
+    }
+  ]
+}

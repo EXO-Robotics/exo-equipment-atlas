@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "new-holland-bigbaler-340-high-density-cropcutter",
+  "display_name": "New Holland BigBaler 340 High Density CropCutter",
+  "configuration_id": "NH-BB340HD-NAM-CROPCUTTER120X90-29K-TANDEM600-CANDIDATE",
+  "archetype": "square_baler",
+  "dimensions_m": {
+    "length": 8.936,
+    "width": 2.987,
+    "height": 3.454
+  },
+  "palette": "sand",
+  "published_constraints_used": [
+    "public-envelope-x",
+    "public-envelope-y",
+    "public-envelope-z",
+    "pickup-width",
+    "cropcutter-rotor-width",
+    "cropcutter-knives",
+    "plunger-stroke",
+    "tandem-steering-angle",
+    "bale-width",
+    "bale-height"
+  ],
+  "reconstructed_values": {
+    "transport_pose": "Chute closed and handrails up define the retained manufacturer-published envelope.",
+    "crop_path": "Pickup, CropCutter, stuffer, plunger, knotter and bale chamber volumes are schematic visual cues without crop simulation.",
+    "running_gear": "Tandem running gear is abstracted to the generic square-baler archetype; tire identity remains unresolved because the brochure labels conflict.",
+    "materials": "Neutral unbranded sand, graphite, steel and rubber with no logos, decals or copied trade dress.",
+    "hidden_geometry": "PTO driveline, flywheel, stuffer crank, plunger crank, knotters, density doors and steering joints are reconstructed.",
+    "animation_ranges": "Plunger presentation displacement uses the published 0.748 m stroke span; phase, speed and every other range remain reconstructed."
+  },
+  "unresolved_choices": [
+    "exact serial number and order code",
+    "PTO and hitch connection geometry",
+    "tire size label conflict, manufacturer and tread pattern",
+    "optional gauge wheel arm style",
+    "twine package and service lighting",
+    "public material and branding authorization"
+  ],
+  "mechanical_gaps": [
+    "PTO, flywheel, gearbox, pickup reel and CropCutter phase authority",
+    "stuffer crank, plunger crank and knotter linkage closure",
+    "density-door hydraulic anchors and bale-pressure solver",
+    "tandem suspension and 14-degree steering geometry",
+    "tractor articulation, ground, self and swept-volume collision solver"
+  ]
+}

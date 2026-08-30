@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "fendt-1167-vario-mt",
+  "configuration_id": "FENDT-1167-NA-T4F-SG30-SRPLUS-3PT-CANDIDATE",
+  "freeze_date": "2026-08-29",
+  "repository_policy": {
+    "source_binaries_committed": false,
+    "manufacturer_geometry_committed": false,
+    "manufacturer_imagery_committed": false,
+    "manual_illustrations_are_scale_drawings": false,
+    "verification": "The official 2025 North American PDF was retrieved from AGCO, inspected and hash-bound outside the repository. No first-party PDF, image, texture, logo or geometry is redistributed in this public package."
+  },
+  "sources": [
+    {
+      "id": "FENDT-1100-MT-NA-2025",
+      "publisher": "Fendt / AGCO Corporation",
+      "kind": "official_north_american_product_brochure",
+      "title": "Fendt 1100 Vario MT Series",
+      "publication": "North American brochure; Adobe InDesign creation date 2025-04-03",
+      "market": "North America",
+      "pages": 9,
+      "retrieved": "2026-08-29",
+      "official_url": "https://assets.agcocorp.com/adobe/assets/urn:aaid:aem:62126622-67cf-4532-8b8e-0094f4a7e4a0/original/as/62126622-67cf-4532-8b8e-0094f4a7e4a0.pdf",
+      "local_path": "research/private/fendt-1167-vario-mt/primary-source.pdf",
+      "sha256": "eee16678aa0069eb77cdd7928d4d648872c517f7cd0812cf11aff91ff812f4e7",
+      "bytes": 2476793,
+      "admission": "primary",
+      "use": "Primary North American authority for Tier 4 Final series identity, 1167 powertrain, 30 in General Ag track dimension basis, envelope, weight, suspension, rear-interface and performance statements. Page imagery is reference-only and not scale authority."
+    },
+    {
+      "id": "FENDT-1100-MT-US-PAGE",
+      "publisher": "Fendt / AGCO Corporation",
+      "kind": "official_us_product_page",
+      "title": "Fendt 1100 Vario MT | Tractors",
+      "market": "United States",
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.fendt.com/us/products/tractors/fendt-1100-vario-mt",
+      "admission": "corroborating",
+      "use": "Current U.S. corroboration for the 1167 identity and output, VarioDrive, SmartRide Plus, independent undercarriage behavior, 118 in wheelbase, Cat. 5 drawbar family and the page's 28 degree each-way swivel-drawbar statement."
+    }
+  ]
+}

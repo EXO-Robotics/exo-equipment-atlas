@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "krone-big-m-450-cv",
+  "display_name": "KRONE BiG M 450 CV",
+  "configuration_id": "KRONE-BIGM450-CV-EU-STAGEV-990-DUOGRIP-SM-AUGER-CANDIDATE",
+  "archetype": "self_propelled_mower",
+  "dimensions_m": {"length":8.45,"width":9.9,"height":4.0},
+  "carrier_dimensions_m": {"length":8.45,"width":3.0,"height":4.0},
+  "attachment_span_m": 9.9,
+  "palette": "sage",
+  "published_constraints_used": ["public-envelope-x","public-envelope-y","public-envelope-z","working-width","running-gear-height-change"],
+  "reconstructed_values": {"hidden_geometry":"All pivots, anchors, deck thicknesses, mower folds, disc and conditioner geometry, swath-auger geometry, running gear, motion curves and internal construction are reconstructed."},
+  "unresolved_choices": ["exact market order","tire and track-width package","GPS, lighting and telemetry package"],
+  "mechanical_gaps": ["No authoritative mower hinge coordinates or break-back solver","No collision or swept-volume proof"]
+}

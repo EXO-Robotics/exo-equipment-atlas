@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "case-ih-trident-5550",
+  "configuration_id": "CASEIH-TRIDENT5550-NAM-LIQ1600-ALBOOM120-AIMCF2-4WD-CANDIDATE",
+  "freeze_date": "2026-08-29",
+  "repository_policy": {
+    "source_binaries_committed": false,
+    "manufacturer_geometry_committed": false,
+    "manual_illustrations_are_scale_drawings": false,
+    "verification": "The current official product page is the configuration authority. Gallery media informs observation only and is not copied or treated as scale geometry."
+  },
+  "sources": [
+    {
+      "id": "CASEIH-TRIDENT5550-US-BROCHURE-CURRENT",
+      "publisher": "Case IH / CNH Industrial America LLC",
+      "kind": "official_brochure",
+      "title": "Trident 5550 Brochure",
+      "market": "United States",
+      "retrieved": "2026-08-29",
+      "official_url": "https://cnhi-p-001-delivery.sitecorecontenthub.cloud/api/public/content/5fc33b2aad7a4eb38dd0e75f5fe5eaa2?v=64288f44",
+      "local_path": "research/private/case-ih-trident-5550/primary-source.pdf",
+      "sha256": "b98d6f8402ed2c3d54b60b40b963035be595cd5445f4d75e257b3c035eb8de7b",
+      "bytes": 60567985,
+      "admission": "primary",
+      "applicability": "Current brochure linked directly from the current United States Trident 5550 model page; used as the private hash-bound primary source for this candidate."
+    },
+    {
+      "id": "CASEIH-TRIDENT5550-US-PRODUCT-2026",
+      "publisher": "Case IH / CNH Industrial America LLC",
+      "kind": "official_product_page",
+      "title": "Trident Combination Fertilizer Sprayer & Spreader",
+      "market": "United States",
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.caseih.com/en-us/unitedstates/products/application-equipment/trident-combination-applicator",
+      "admission": "primary",
+      "applicability": "Current Trident 5550 product page; establishes 1,600-gallon liquid capacity, available 120-foot aluminum boom and recirculation, 390 horsepower, 40 mph road speed, hydrostatic 4WD, load-compensating suspension and liquid/dry conversion topology."
+    }
+  ]
+}

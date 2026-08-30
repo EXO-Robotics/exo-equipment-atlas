@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "machineId": "new-holland-cr11",
+  "displayName": "New Holland CR11",
+  "className": "Twin-rotor combine",
+  "category": "Grain harvesting",
+  "assets": {
+    "glb": "machines/new-holland-cr11/assets/new-holland-cr11-structural-study.glb",
+    "configuration": "machines/new-holland-cr11/configuration.json",
+    "facts": "machines/new-holland-cr11/evidence/facts.json",
+    "receipt": "machines/new-holland-cr11/production/asset-receipt.json",
+    "validation": "machines/new-holland-cr11/production/validation.json",
+    "poster": "machines/new-holland-cr11/review/renders/new-holland-cr11-operator-side.png"
+  },
+  "evidence": {
+    "boundary": "Neutral North American wheeled CR11 study with 567-bushel tank and 6.0-bushel-per-second unload option. Hidden feeder, rotor, TwinClean, auger and residue geometry is reconstructed.",
+    "lede": "Published dual-wheel transport dimensions, twin-rotor geometry, grain capacity and unloading performance constrain a static structural study with no named header claim.",
+    "factIds": ["public-envelope-x", "public-envelope-y", "public-envelope-z", "rotor-count", "grain-tank-capacity", "unloading-rate"]
+  },
+  "camera": {"azimuth": 0.59, "elevation": 0.33, "distance": 1.55},
+  "accent": "#728b5f",
+  "motion": {
+    "autoplay": true,
+    "durationSeconds": 16,
+    "mode": "sine",
+    "damping": 6.0,
+    "channels": [
+      {"id":"feeder-lift","label":"Feeder/header interface lift - reconstructed","nodes":["Header_Lift_Pivot"],"property":"rotation.z","from":-0.06,"to":0.17,"phase":0.0,"mode":"offset"},
+      {"id":"reel-study","label":"Generic interface reel study","nodes":["Reel_ROOT"],"property":"rotation.z","from":-0.72,"to":0.72,"phase":0.42,"mode":"offset"},
+      {"id":"unloader-swivel","label":"Unloader swivel study","nodes":["Unloader_Swing_Pivot"],"property":"rotation.y","from":0.0,"to":1.22,"phase":0.68,"mode":"offset","autoplay":"ping-pong"}
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0.0",
+  "machineId": "jcb-fastrac-8330-icon",
+  "displayName": "JCB Fastrac 8330 iCON",
+  "className": "High-speed wheeled tractor",
+  "category": "Agriculture",
+  "assets": {
+    "glb": "machines/jcb-fastrac-8330-icon/assets/jcb-fastrac-8330-icon-structural-study.glb",
+    "configuration": "machines/jcb-fastrac-8330-icon/configuration.json",
+    "facts": "machines/jcb-fastrac-8330-icon/evidence/facts.json",
+    "receipt": "machines/jcb-fastrac-8330-icon/production/asset-receipt.json",
+    "validation": "machines/jcb-fastrac-8330-icon/production/validation.json",
+    "poster": "machines/jcb-fastrac-8330-icon/review/renders/jcb-fastrac-8330-icon-operator-side.png"
+  },
+  "evidence": {
+    "boundary": "Neutral technical structural study; suspension, steering, hitch, PTO and hidden geometry are reconstructed, not engineering authority. The front linkage is a selected reconstructed three-point presentation constrained by the published optional 3500 kg capacity; no Category 3N class or geometry is claimed.",
+    "lede": "Current US 8330 iCON performance is paired with an explicitly identified 8000-series static-dimension reference; the two regional power calibrations are not blended.",
+    "factIds": ["public-envelope-x","public-envelope-y","public-envelope-z","rated-power","maximum-power","maximum-road-speed","rear-linkage-capacity","suspension-cylinder-diameter"]
+  },
+  "camera": {"azimuth":-0.72,"elevation":0.34,"distance":9.8},
+  "accent": "#7797a7",
+  "motion": {
+    "autoplay": true,
+    "durationSeconds": 15,
+    "mode": "sine",
+    "damping": 6.5,
+    "channels": [
+      {"id":"front-suspension","label":"Hydropneumatic front ride","nodes":["Front_Axle_ROOT"],"property":"position.y","from":-0.035,"to":0.045,"phase":0.0},
+      {"id":"front-steering","label":"Front steering","nodes":["Steering_L_Pivot","Steering_R_Pivot"],"property":"rotation.y","from":-0.24,"to":0.24,"phase":0.25},
+      {"id":"rear-suspension","label":"Hydropneumatic rear ride","nodes":["Rear_Axle_ROOT"],"property":"position.y","from":-0.025,"to":0.035,"phase":0.36},
+      {"id":"front-linkage","label":"Selected front linkage study","nodes":["Front_Hitch_ROOT"],"property":"rotation.z","from":-0.20,"to":0.12,"phase":0.42},
+      {"id":"rear-linkage","label":"Rear three-point linkage","nodes":["Rear_Hitch_ROOT"],"property":"rotation.z","from":-0.08,"to":0.34,"phase":0.5},
+      {"id":"rear-pto","label":"Rear PTO study","nodes":["PTO_ROOT"],"property":"rotation.x","from":-0.65,"to":0.65,"phase":0.75}
+    ]
+  }
+}

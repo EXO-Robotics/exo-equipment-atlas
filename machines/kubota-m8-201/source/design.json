@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "kubota-m8-201",
+  "display_name": "Kubota M8-201",
+  "configuration_id": "KUB-M8-201-NA-KVT-SFA50-3R-C3STD-CANDIDATE",
+  "archetype": "wheeled_tractor",
+  "dimensions_m": {
+    "length": 5.75,
+    "width": 2.65,
+    "height": 3.25
+  },
+  "palette": "amber",
+  "published_constraints_used": [
+    "public-envelope-y"
+  ],
+  "reconstructed_values": {
+    "overall_length_m": 5.75,
+    "overall_width_m": 2.65,
+    "front_tire_radius_m": 0.71,
+    "rear_tire_radius_m": 0.96,
+    "front_suspension_presentation_travel_m": 0.10,
+    "front_steering_presentation_limit_deg": 28,
+    "rear_hitch_presentation_lift_deg": 24,
+    "geometry_boundary": "Overall length and width, tires, track, proportions, all pivots, anchors, suspension travel, hitch arcs, PTO shaft detail, materials, and hidden construction are independently authored visualization choices."
+  },
+  "unresolved_choices": [
+    "manufacturer-published overall +X length and +Z width are unavailable in the admitted current sources; the retained 5.75 m by 2.65 m horizontal envelope is reconstructed",
+    "exact tire sizes, loaded radii, wheel offsets, tread setting, fender width, and ballast",
+    "exact dealer order and serial number",
+    "minor cab, mirror, lighting, and hydraulic-remote placement"
+  ],
+  "mechanical_gaps": [
+    "No manufacturer-authoritative steering, suspension, rear-hitch, or PTO pivot coordinates",
+    "No published suspension travel, damping law, hitch lift arc, mechanical stop, or collision envelope",
+    "Presentation motion is not a simulation of travel speed, PTO rpm, hydraulic timing, load, stability, or safety interlocks"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-x9-1100",
+  "configuration_id": "JD-X9-1100-MY2024-NA-WHEEL-HD50R-AUGER31-CANDIDATE",
+  "freeze_date": "2026-08-29",
+  "repository_policy": {
+    "source_binaries_committed": false,
+    "manufacturer_geometry_committed": false,
+    "manufacturer_imagery_committed": false,
+    "manual_illustrations_are_scale_drawings": false,
+    "verification": "The official Deere X Series brochure was inspected and hash-bound under research/private. No manufacturer PDF, imagery, texture, logo or geometry is redistributed."
+  },
+  "sources": [
+    {
+      "id": "JD-X-SERIES-COMBINES-2024",
+      "publisher": "Deere & Company",
+      "kind": "official_product_brochure_and_specification",
+      "title": "X Series Combines: X9 1000 and X9 1100",
+      "publication": "2024 source edition",
+      "market": "North America / English",
+      "pages": 24,
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.deere.com/assets/pdfs/region-4/products/harvesting/x-series-combines/4592750-x-series-combines.pdf",
+      "local_path": "research/private/john-deere-x9-1100/primary-source.pdf",
+      "sha256": "60e4a67ccbd042b2c0877b62b5dbe696ba3ac9833d2640bade84a1016596a07b",
+      "bytes": 9341451,
+      "admission": "primary",
+      "use": "Primary authority for X9 1100 engine, feederhouse, dual rotors, grain handling, auger lengths, tyre families, HD50R compatibility and 50-ft / 15.2-m header-class span. Illustrations are visual reference only."
+    }
+  ]
+}

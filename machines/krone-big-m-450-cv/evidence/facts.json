@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "krone-big-m-450-cv",
+  "configuration_id": "KRONE-BIGM450-CV-EU-STAGEV-990-DUOGRIP-SM-AUGER-CANDIDATE",
+  "facts": [
+    {"id":"public-envelope-x","subject":"transport envelope along +X longitudinal axis","value":8.45,"unit":"m","authority":"manufacturer_published","source_id":"KRONE-BIGM450-BROCHURE-16432","location":"PDF page 30, Overall dimensions, Transport length"},
+    {"id":"public-envelope-y","subject":"transport envelope along +Y vertical axis","value":4.00,"unit":"m","authority":"manufacturer_published","source_id":"KRONE-BIGM450-BROCHURE-16432","location":"PDF page 30, Overall dimensions, Transport height"},
+    {"id":"public-envelope-z","subject":"maximum visible mower working span along +Z lateral axis","value":9.90,"unit":"m","authority":"manufacturer_published","source_id":"KRONE-BIGM450-BROCHURE-16432","location":"PDF page 30, Mowers, Work width"},
+    {"id":"working-width","subject":"combined mowing working width","value":9.90,"unit":"m","authority":"manufacturer_published","source_id":"KRONE-BIGM450-PRODUCT-2026","location":"Product overview and technical-data section"},
+    {"id":"transport-width","subject":"transport width","value":3.0,"unit":"m","authority":"manufacturer_published","source_id":"KRONE-BIGM450-BROCHURE-16432","location":"PDF page 30, Overall dimensions"},
+    {"id":"transport-length","subject":"transport length","value":8.45,"unit":"m","authority":"manufacturer_published","source_id":"KRONE-BIGM450-BROCHURE-16432","location":"PDF page 30, Overall dimensions"},
+    {"id":"transport-height","subject":"transport height","value":4.0,"unit":"m","authority":"manufacturer_published","source_id":"KRONE-BIGM450-BROCHURE-16432","location":"PDF page 30, Overall dimensions"},
+    {"id":"maximum-power","subject":"maximum engine output at 1650 rpm under ECE R120","value":330,"unit":"kW","authority":"manufacturer_published","source_id":"KRONE-BIGM450-PRODUCT-2026","location":"Engine and technical-data sections"},
+    {"id":"engine-displacement","subject":"Liebherr D946 A7-05 six-cylinder displacement","value":12.0,"unit":"L","authority":"manufacturer_published","source_id":"KRONE-BIGM450-PRODUCT-2026","location":"Engine section"},
+    {"id":"maximum-field-speed","subject":"maximum in-field speed","value":25,"unit":"km/h","authority":"manufacturer_published","source_id":"KRONE-BIGM450-PRODUCT-2026","location":"Running gear and road travel section"},
+    {"id":"maximum-road-speed","subject":"maximum road speed","value":40,"unit":"km/h","authority":"manufacturer_published","source_id":"KRONE-BIGM450-PRODUCT-2026","location":"Road travel section"},
+    {"id":"steering-angle","subject":"rear axle steering angle","value":53,"unit":"deg","authority":"manufacturer_published","source_id":"KRONE-BIGM450-BROCHURE-16432","location":"PDF page 30, Axles"},
+    {"id":"running-gear-height-change","subject":"hydraulic field to transport running-gear height change","value":0.15,"unit":"m","authority":"manufacturer_published","source_id":"KRONE-BIGM450-PRODUCT-2026","location":"Running gear section"},
+    {"id":"weight-distribution","subject":"front to rear weight distribution","value":[64,36],"unit":"percent_front_rear","authority":"manufacturer_published","source_id":"KRONE-BIGM450-PRODUCT-2026","location":"Running gear section"},
+    {"id":"fuel-capacity","subject":"diesel tank capacity","value":780,"unit":"L","authority":"manufacturer_published","source_id":"KRONE-BIGM450-PRODUCT-2026","location":"Plenty of fuel in store"},
+    {"id":"urea-capacity","subject":"urea tank capacity","value":80,"unit":"L","authority":"manufacturer_published","source_id":"KRONE-BIGM450-PRODUCT-2026","location":"Plenty of fuel in store"},
+    {"id":"mower-unit-count","subject":"front and side mower unit count","value":3,"unit":"count","authority":"manufacturer_published","source_id":"KRONE-BIGM450-BROCHURE-16432","location":"Mower-system overview"},
+    {"id":"conditioner-choice","subject":"selected conditioner type","value":"CV V-type steel-tine conditioner","unit":"choice","authority":"manufacturer_published","source_id":"KRONE-BIGM450-BROCHURE-16432","location":"CV and CR conditioner comparison"},
+    {"id":"swath-merger-choice","subject":"selected optional swath merger","value":"independent left and right cross-conveyor augers","unit":"choice","authority":"manufacturer_published","source_id":"KRONE-BIGM450-PRODUCT-2026","location":"Swath merger section"}
+  ],
+  "issues": [
+    {"id":"cv-versus-cr","status":"resolved_for_candidate","detail":"The candidate freezes the CV steel-tine conditioner. CR roller geometry is excluded."},
+    {"id":"option-bundle","status":"documented","detail":"Swath-merger augers, hydraulic end curtains and front mower side-shift are option-dependent and are explicitly selected for this candidate."},
+    {"id":"web-versus-table-envelope-wording","status":"documented","detail":"Feature prose says transport width is under 3 m and height under 4 m; the brochure technical table lists 3.00 m and 4.00 m. The exact technical-table values control the transport-envelope facts."},
+    {"id":"rear-steering-source-variance","status":"unresolved_source_variance","detail":"The current official product page states a maximum rear steering angle of 50 degrees, while the 32-page official brochure technical table on PDF page 30 lists 53 degrees. This frozen candidate retains the brochure-bound 53-degree fact; product-version applicability remains unresolved and no modeled steering endpoint is claimed."},
+    {"id":"hidden-mechanics","status":"unresolved","detail":"All mower pivots, disc directions, conditioner phase, break-back path, guard hinges, auger drive, running-gear suspension and collision envelopes remain reconstructed."}
+  ]
+}

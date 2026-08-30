@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "claas-lexion-8900-terra-trac",
+  "display_name": "CLAAS LEXION 8900 TERRA TRAC",
+  "configuration_id": "CLAAS-L8900TT-NA25-CF1530-GT510-UL51-CANDIDATE",
+  "archetype": "combine",
+  "dimensions_m": {
+    "length": 10.75,
+    "width": 15.3,
+    "height": 4.0
+  },
+  "carrier_dimensions_m": {
+    "length": 10.75,
+    "width": 3.8,
+    "height": 4.0
+  },
+  "attachment_span_m": 15.3,
+  "tracked_front": true,
+  "palette": "sage",
+  "published_constraints_used": [
+    "header-working-width",
+    "public-envelope-z",
+    "header-flex-range",
+    "grain-tank-capacity",
+    "grain-unloading-rate",
+    "threshing-drum-width",
+    "threshing-drum-diameter",
+    "rotor-count",
+    "rotor-diameter",
+    "rotor-length"
+  ],
+  "reconstructed_values": {
+    "running_gear": "front_terra_trac_rear_wheels",
+    "carrier_display_envelope_m": [10.75, 3.8, 4.0],
+    "carrier_display_envelope_note": "Selected for coherent neutral presentation because no admitted configuration-complete carrier envelope is available; not manufacturer published.",
+    "selected_header_working_span_m": 15.3,
+    "selected_header_span_note": "Manufacturer-published working width; header depth, folded pose, linkage, and flex segmentation remain reconstructed.",
+    "materials": "Neutral unbranded sage, warm gray, graphite, steel, rubber, and glass; no logos or protected livery claim.",
+    "all_hidden_pivots": "Reconstructed visual hierarchy only.",
+    "all_animation_ranges": "Conservative presentation ranges, not operator limits.",
+    "internal_crop_flow": "Cutaway-only schematic study; no crop simulation or hidden assembly authority."
+  },
+  "unresolved_choices": [
+    "exact model year and order code",
+    "TERRA TRAC belt width and transport-width package",
+    "unloading tube length and grain-cart clearance package",
+    "powered rear axle and tire selection",
+    "cab, lighting, camera, guidance, and crop-equipment options",
+    "public material and branding authorization"
+  ],
+  "mechanical_gaps": [
+    "header and feederhouse pivot authority",
+    "track wheel centers, belt pitch, and terrain-following limits",
+    "rear steering geometry",
+    "unloading auger hinge and swept-volume clearance",
+    "internal drum, rotor, spreader, and fan centers and rates",
+    "ground, self, and swept-volume collision solver"
+  ]
+}

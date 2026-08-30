@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "komatsu-pc210lc-11",
+  "configuration_id": "KOMATSU-PC210LC11-CONV-T4F-57B-2925A-700SH-TL085-CANDIDATE",
+  "facts": [
+    {"id":"public-envelope-x","subject":"public transport envelope along +X longitudinal axis","value":9.705,"unit":"m","authority":"manufacturer_published","source_id":"KOMATSU-PC210LC11-BR02-0225-V2","location":"Dimensions table, A"},
+    {"id":"public-envelope-y","subject":"public transport envelope along +Y vertical axis to handrail","value":3.135,"unit":"m","authority":"manufacturer_published","source_id":"KOMATSU-PC210LC11-BR02-0225-V2","location":"Dimensions table, F"},
+    {"id":"public-envelope-z","subject":"public transport envelope along +Z lateral axis","value":3.080,"unit":"m","authority":"manufacturer_published","source_id":"KOMATSU-PC210LC11-BR02-0225-V2","location":"Dimensions table, D and N"},
+    {"id":"engine-power","subject":"Komatsu SAA6D107E-3 engine output at 2000 rpm","value":123,"unit":"kW","authority":"manufacturer_published","source_id":"KOMATSU-PC210LC11-BR02-0225-V2","location":"Specifications, engine"},
+    {"id":"operating-weight-range","subject":"conventional machine operating weight range","value":[23313,24440],"unit":"kg","authority":"manufacturer_published","source_id":"KOMATSU-PC210LC11-BR02-0225-V2","location":"Specifications summary"},
+    {"id":"bucket-capacity-family","subject":"published compatible bucket capacity range","value":[0.50,1.20],"unit":"m3","authority":"manufacturer_published","source_id":"KOMATSU-PC210LC11-BR02-0225-V2","location":"Backhoe bucket, arm and boom combination table"},
+    {"id":"selected-bucket-capacity","subject":"selected Komatsu TL bucket capacity","value":0.85,"unit":"m3","authority":"manufacturer_published","source_id":"KOMATSU-PC210LC11-BR02-0225-V2","location":"Backhoe bucket, arm and boom combination table"},
+    {"id":"selected-bucket-width","subject":"selected Komatsu TL bucket width","value":0.914,"unit":"m","authority":"manufacturer_published","source_id":"KOMATSU-PC210LC11-BR02-0225-V2","location":"Backhoe bucket, arm and boom combination table"},
+    {"id":"boom-length","subject":"one-piece boom length","value":5.7,"unit":"m","authority":"manufacturer_published","source_id":"KOMATSU-PC210LC11-BR02-0225-V2","location":"Bucket compatibility and working range basis"},
+    {"id":"arm-length","subject":"arm length","value":2.925,"unit":"m","authority":"manufacturer_published","source_id":"KOMATSU-PC210LC11-BR02-0225-V2","location":"Dimensions and working-range tables"},
+    {"id":"overall-length","subject":"transport overall length","value":9.705,"unit":"m","authority":"manufacturer_published","source_id":"KOMATSU-PC210LC11-BR02-0225-V2","location":"Dimensions table, A"},
+    {"id":"overall-width","subject":"overall width with selected 700 mm shoes","value":3.080,"unit":"m","authority":"manufacturer_published","source_id":"KOMATSU-PC210LC11-BR02-0225-V2","location":"Dimensions table, D and N"},
+    {"id":"overall-visible-height","subject":"overall height to top of handrail","value":3.135,"unit":"m","authority":"manufacturer_published","source_id":"KOMATSU-PC210LC11-BR02-0225-V2","location":"Dimensions table, F"},
+    {"id":"cab-height","subject":"overall height to top of cab","value":3.045,"unit":"m","authority":"manufacturer_published","source_id":"KOMATSU-PC210LC11-BR02-0225-V2","location":"Dimensions table, E"},
+    {"id":"shoe-width","subject":"selected crawler shoe width","value":0.700,"unit":"m","authority":"manufacturer_published","source_id":"KOMATSU-PC210LC11-BR02-0225-V2","location":"Dimensions table, O"},
+    {"id":"track-length","subject":"overall track length","value":4.450,"unit":"m","authority":"manufacturer_published","source_id":"KOMATSU-PC210LC11-BR02-0225-V2","location":"Dimensions table, L"},
+    {"id":"track-gauge","subject":"track gauge","value":2.380,"unit":"m","authority":"manufacturer_published","source_id":"KOMATSU-PC210LC11-BR02-0225-V2","location":"Dimensions table, M"},
+    {"id":"maximum-digging-height","subject":"maximum digging height","value":9.970,"unit":"m","authority":"manufacturer_published","source_id":"KOMATSU-PC210LC11-BR02-0225-V2","location":"Working range, A"},
+    {"id":"maximum-dumping-height","subject":"maximum dumping height","value":7.110,"unit":"m","authority":"manufacturer_published","source_id":"KOMATSU-PC210LC11-BR02-0225-V2","location":"Working range, B"},
+    {"id":"maximum-digging-depth","subject":"maximum digging depth","value":6.620,"unit":"m","authority":"manufacturer_published","source_id":"KOMATSU-PC210LC11-BR02-0225-V2","location":"Working range, C"},
+    {"id":"maximum-ground-reach","subject":"maximum digging reach at ground level","value":9.700,"unit":"m","authority":"manufacturer_published","source_id":"KOMATSU-PC210LC11-BR02-0225-V2","location":"Working range, G"},
+    {"id":"counterweight-mass","subject":"standard counterweight mass","value":4370,"unit":"kg","authority":"manufacturer_published","source_id":"KOMATSU-PC210LC11-BR02-0225-V2","location":"Standard equipment"}
+  ],
+  "issues": [
+    {"id":"regional-lifecycle","status":"documented","detail":"The PC210LC-11 remains referenced on Komatsu's New Zealand site while the PC220LC-12 supersedes it in the current United States lineup. This is a clearly labeled -11 conventional research candidate, not a claim of current US sale."},
+    {"id":"imc-boundary","status":"resolved_for_candidate","detail":"The shared brochure also documents PC210LCi-11. GNSS antennas, iMC sensors and intelligent-machine-control hardware are excluded from this conventional PC210LC-11 candidate."},
+    {"id":"hidden-mechanics","status":"unresolved","detail":"Every front-equipment pivot, cylinder anchor, bucket linkage dimension, swing-bearing detail, track route, roller center, hose path, motion curve and collision envelope remains reconstructed."}
+  ]
+}

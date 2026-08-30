@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-x9-1100",
+  "configuration_id": "JD-X9-1100-MY2024-NA-WHEEL-HD50R-AUGER31-CANDIDATE",
+  "status": "research_candidate",
+  "identity": {
+    "manufacturer": "Deere & Company",
+    "brand": "John Deere",
+    "model": "X9 1100",
+    "product_class": "self_propelled_dual_rotor_combine",
+    "market": "North America",
+    "source_model_year_basis": "2024 brochure"
+  },
+  "choices": {
+    "engine": "JD14 13.6 L, 450 kW rated / 515 kW peak",
+    "running_gear": "wheeled configuration; VF 900/60R38 front and VF 620/70R26 rear presentation selection",
+    "front_end": "HD50R rigid cutterbar draper attachment study, 50 ft / 15.2 m class",
+    "unloading_auger": "9.45 m / 31 ft option",
+    "grain_tank": "16,210 L / 460 bu",
+    "public_geometry": "independently authored neutral unbranded structural study",
+    "public_materials": "matte slate and graphite; no trade dress, logos, decals, copied textures or manufacturer geometry"
+  },
+  "unresolved_choices": [
+    "The admitted brochure does not publish a configuration-specific carrier overall length or overall height; public-envelope X and Y remain unresolved.",
+    "The 15.2 m public lateral constraint is the selected 50-ft header working-span class, not a carrier transport-width claim.",
+    "The brochure lists compatible tyre families but does not prove the selected front/rear pair, wheel offsets, final carrier width or ballast as one ordered machine.",
+    "Feederhouse lift/tilt pivots, cylinders, header attachment geometry, reel drive, auger hinge, fold law and support hardware are not published.",
+    "Internal rotor, conveyor, grain, cleaning and crop-flow geometry is not scale-authoritative in public literature.",
+    "Exact panels, cab/glazing, access systems, residue system, lighting, hoses, wiring and service hardware remain unresolved.",
+    "Manufacturer colors, graphics, badges and decals are outside the public structural study."
+  ],
+  "boundary": "MY2024 North American X9 1100 wheeled combine candidate with HD50R 50-ft-class draper and 31-ft auger selected. Manufacturer facts constrain engine, feederhouse width, dual-rotor identity, header compatibility/span, grain handling and compatible running-gear families. Carrier length/height, final tyres, hidden feeder/header/auger pivots and internal crop-flow mechanics remain reconstructed or unresolved. Neutral unbranded visualization only; not manufacturer CAD, an agronomic model, engineering authority, safety guidance or proof of one delivered machine."
+}

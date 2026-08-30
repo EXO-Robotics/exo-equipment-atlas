@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "machineId": "volvo-a40j",
+  "displayName": "Volvo A40J",
+  "className": "Articulated hauler",
+  "category": "Construction and earthmoving",
+  "assets": {
+    "glb": "machines/volvo-a40j/assets/volvo-a40j-structural-study.glb",
+    "configuration": "machines/volvo-a40j/configuration.json",
+    "facts": "machines/volvo-a40j/evidence/facts.json",
+    "receipt": "machines/volvo-a40j/production/asset-receipt.json",
+    "validation": "machines/volvo-a40j/production/validation.json",
+    "poster": "machines/volvo-a40j/review/renders/volvo-a40j-operator-side.png"
+  },
+  "evidence": {
+    "boundary": "Neutral technical structural study for the selected 29.5R25 tire basis; articulation, frame oscillation, bogies, dump hinge, twin under-bed hoist and hidden chassis geometry are reconstructed.",
+    "lede": "A Tier 4 Final / Stage V A40J with the selected 29.5R25 tire basis and standard 24 m3 body is frozen without tailgate or body extensions.",
+    "factIds": ["public-envelope-x","public-envelope-y","public-envelope-z","payload-capacity","body-volume","articulation-range","body-tip-angle","body-raise-time"]
+  },
+  "camera": {"azimuth":-0.76,"elevation":0.34,"distance":17.2},
+  "accent": "#b66b43",
+  "motion": {
+    "autoplay": true,
+    "durationSeconds": 16,
+    "mode": "sine",
+    "damping": 6.5,
+    "channels": [
+      {"id":"frame-articulation","label":"Articulated steering","nodes":["Chassis_Yaw_Pivot"],"property":"rotation.y","from":-0.36,"to":0.36,"phase":0.0},
+      {"id":"frame-oscillation","label":"Rear frame oscillation study","nodes":["Rear_Frame_ROOT"],"property":"rotation.x","from":-0.07,"to":0.07,"phase":0.22},
+      {"id":"dump-body","label":"Body tip to 69 degrees","nodes":["Bed_ROOT"],"property":"rotation.z","from":0.0,"to":-1.204277,"phase":0.54,"autoplay":"ping-pong"}
+    ]
+  }
+}

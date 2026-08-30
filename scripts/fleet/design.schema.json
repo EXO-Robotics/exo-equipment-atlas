@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://exo-robotics.github.io/equipment-atlas/schemas/fleet-design-1.0.0.json",
+  "title": "EXO Equipment Atlas deterministic fleet design",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "machine_id",
+    "display_name",
+    "configuration_id",
+    "archetype",
+    "dimensions_m"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "machine_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "display_name": { "type": "string", "minLength": 1, "maxLength": 120 },
+    "configuration_id": {
+      "type": "string",
+      "pattern": "^[A-Z0-9]+(?:[A-Z0-9._-]*[A-Z0-9])?$"
+    },
+    "archetype": {
+      "enum": [
+        "wheeled_tractor",
+        "tracked_tractor",
+        "twin_track_tractor",
+        "combine",
+        "forage_harvester",
+        "high_clearance_sprayer",
+        "self_propelled_mower",
+        "square_baler",
+        "self_propelled_round_baler",
+        "articulated_hauler",
+        "excavator"
+      ]
+    },
+    "dimensions_m": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["length", "width", "height"],
+      "properties": {
+        "length": { "type": "number", "minimum": 1.5, "maximum": 35 },
+        "width": { "type": "number", "minimum": 1, "maximum": 60 },
+        "height": { "type": "number", "minimum": 1, "maximum": 12 }
+      }
+    },
+    "carrier_dimensions_m": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["length", "width", "height"],
+      "properties": {
+        "length": { "type": "number", "exclusiveMinimum": 0, "maximum": 35 },
+        "width": { "type": "number", "exclusiveMinimum": 0, "maximum": 60 },
+        "height": { "type": "number", "exclusiveMinimum": 0, "maximum": 12 }
+      }
+    },
+    "attachment_span_m": { "type": "number", "minimum": 0.5, "maximum": 60 },
+    "tracked_front": { "type": "boolean" },
+    "tailgate": { "type": "boolean" },
+    "palette": { "enum": ["oxide", "sand", "sage", "slate", "amber"] },
+    "published_constraints_used": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "reconstructed_values": { "type": "object" },
+    "unresolved_choices": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "mechanical_gaps": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    }
+  }
+}

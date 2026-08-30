@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0.0",
+  "machineId": "claas-lexion-8900-terra-trac",
+  "displayName": "CLAAS LEXION 8900 TERRA TRAC",
+  "className": "Tracked combine harvester",
+  "category": "Harvesting",
+  "assets": {
+    "glb": "machines/claas-lexion-8900-terra-trac/assets/claas-lexion-8900-terra-trac-structural-study.glb",
+    "configuration": "machines/claas-lexion-8900-terra-trac/configuration.json",
+    "facts": "machines/claas-lexion-8900-terra-trac/evidence/facts.json",
+    "receipt": "machines/claas-lexion-8900-terra-trac/production/asset-receipt.json",
+    "validation": "machines/claas-lexion-8900-terra-trac/production/validation.json",
+    "poster": "machines/claas-lexion-8900-terra-trac/review/renders/claas-lexion-8900-terra-trac-front-three-quarter.png"
+  },
+  "evidence": {
+    "boundary": "Independent neutral structural study of the North American 8900 TERRA TRAC with CONVIO FLEX 1530. Hidden pivots, belt paths, crop-flow geometry, and motion curves are reconstructed.",
+    "lede": "The 15.3 m header span, 510 bu tank, 5.1 bu/s unload rate, and TERRA TRAC identity are manufacturer-published. The model is not manufacturer CAD or mechanical authority.",
+    "factIds": [
+      "maximum-engine-power-na",
+      "public-envelope-z",
+      "grain-tank-capacity",
+      "grain-unloading-rate"
+    ]
+  },
+  "camera": {
+    "azimuth": 0.62,
+    "elevation": 0.3,
+    "distance": 1.62
+  },
+  "accent": "#718066",
+  "motion": {
+    "autoplay": true,
+    "durationSeconds": 18,
+    "mode": "sine",
+    "damping": 5.6,
+    "channels": [
+      {
+        "id": "header-lift",
+        "label": "Header lift - reconstructed linkage",
+        "nodes": ["Header_Lift_Pivot"],
+        "property": "rotation.z",
+        "from": 0,
+        "to": 0.14,
+        "phase": 0,
+        "direction": 1,
+        "mode": "offset",
+        "autoplay": "sine"
+      },
+      {
+        "id": "unloader-swing",
+        "label": "Unloader swing - 105 deg published envelope",
+        "nodes": ["Unloader_Swing_Pivot"],
+        "property": "rotation.y",
+        "from": 0,
+        "to": 1.8326,
+        "phase": 0.48,
+        "direction": 1,
+        "mode": "offset",
+        "autoplay": "sine"
+      }
+    ]
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "jcb-fastrac-8330-icon",
+  "configuration_id": "JCB-F8330-ICON-NA26-AG-VF540R38-VF710R42-FL35-RL10-CANDIDATE",
+  "facts": [
+    {"id":"public-envelope-x","subject":"public static envelope along +X longitudinal axis","value":5.65,"unit":"m","authority":"manufacturer_published","source_id":"JCB-4000-8000-TECH-FR-ISSUE1","location":"PDF page 6, static dimensions E"},
+    {"id":"public-envelope-y","subject":"public static envelope along +Y vertical axis","value":3.45,"unit":"m","authority":"manufacturer_published","source_id":"JCB-4000-8000-TECH-FR-ISSUE1","location":"PDF page 6, static dimensions A"},
+    {"id":"public-envelope-z","subject":"public static envelope along +Z lateral axis","value":2.55,"unit":"m","authority":"manufacturer_published","source_id":"JCB-4000-8000-TECH-FR-ISSUE1","location":"PDF page 6, static dimensions F"},
+    {"id":"rated-power","subject":"US rated engine power","value":252,"unit":"kW","authority":"manufacturer_published","source_id":"JCB-8330-US-PRODUCT-2026","location":"Model specifications table"},
+    {"id":"maximum-power","subject":"US maximum engine power","value":268,"unit":"kW","authority":"manufacturer_published","source_id":"JCB-8330-US-PRODUCT-2026","location":"Model specifications table"},
+    {"id":"maximum-torque","subject":"maximum torque","value":1450,"unit":"Nm","authority":"manufacturer_published","source_id":"JCB-8330-US-PRODUCT-2026","location":"Model specifications table"},
+    {"id":"maximum-road-speed","subject":"maximum road speed","value":70,"unit":"km/h","authority":"manufacturer_published","source_id":"JCB-8330-US-PRODUCT-2026","location":"Product feature text states 43 mph"},
+    {"id":"rear-linkage-capacity","subject":"rear three-point linkage lift capacity","value":10000,"unit":"kg","authority":"manufacturer_published","source_id":"JCB-8330-US-PRODUCT-2026","location":"Model specifications table"},
+    {"id":"front-linkage-capacity","subject":"optional front three-point linkage lift capacity","value":3500,"unit":"kg","authority":"manufacturer_published","source_id":"JCB-8330-US-PRODUCT-2026","location":"Model specifications table"},
+    {"id":"maximum-hydraulic-flow","subject":"maximum hydraulic flow","value":178,"unit":"L/min","authority":"manufacturer_published","source_id":"JCB-8330-US-PRODUCT-2026","location":"Model specifications table"},
+    {"id":"weight-distribution","subject":"nominal front to rear weight distribution","value":[50,50],"unit":"percent_front_rear","authority":"manufacturer_published","source_id":"JCB-8330-US-PRODUCT-2026","location":"Renowned productivity feature text"},
+    {"id":"overall-length","subject":"8000-series overall static length","value":5.65,"unit":"m","authority":"manufacturer_published","source_id":"JCB-4000-8000-TECH-FR-ISSUE1","location":"PDF page 6, static dimensions E"},
+    {"id":"overall-width","subject":"8000-series overall static width","value":2.55,"unit":"m","authority":"manufacturer_published","source_id":"JCB-4000-8000-TECH-FR-ISSUE1","location":"PDF page 6, static dimensions F"},
+    {"id":"cab-height","subject":"8000-series cab height","value":3.45,"unit":"m","authority":"manufacturer_published","source_id":"JCB-4000-8000-TECH-FR-ISSUE1","location":"PDF page 6, static dimensions A"},
+    {"id":"wheelbase","subject":"8000-series wheelbase","value":3.13,"unit":"m","authority":"manufacturer_published","source_id":"JCB-4000-8000-TECH-FR-ISSUE1","location":"PDF page 6, static dimensions C"},
+    {"id":"ground-clearance","subject":"8000-series ground clearance","value":0.60,"unit":"m","authority":"manufacturer_published","source_id":"JCB-4000-8000-TECH-FR-ISSUE1","location":"PDF page 6, static dimensions G"},
+    {"id":"suspension-cylinder-diameter","subject":"8000-series front and rear hydropneumatic suspension double-acting cylinder diameter","value":63,"unit":"mm","authority":"manufacturer_published","source_id":"JCB-4000-8000-TECH-FR-ISSUE1","location":"PDF page 6, suspension table"},
+    {"id":"fuel-capacity","subject":"8000-series fuel capacity","value":600,"unit":"L","authority":"manufacturer_published","source_id":"JCB-4000-8000-TECH-FR-ISSUE1","location":"PDF page 6, capacities"},
+    {"id":"rear-pto-speeds","subject":"8330 rear PTO speeds","value":["540E",1000],"unit":"rpm_modes","authority":"manufacturer_published","source_id":"JCB-4000-8000-TECH-FR-ISSUE1","location":"PDF page 7, PTO table"}
+  ],
+  "issues": [
+    {"id":"retired-cross-market-asset","status":"documented","detail":"The eight-page 2022 French JCB technical-data PDF supplied the metric 8290/8330 geometry and topology facts, but its direct JCB asset URL now returns 404. The manifest points to the current live JCB 8000-series landing page and preserves the retired official asset URL separately; these facts remain explicitly cross-market configuration constraints."},
+    {"id":"front-linkage-presentation","status":"unresolved","detail":"The current US page proves an optional 3500 kg front three-point lift capacity. This package does not publish a Category 3N fact; its visible front linkage class, pivots, links, coupler and fold presentation are selected reconstructed visualization choices."},
+    {"id":"market-power-calibration","status":"documented","detail":"The current US page publishes 338/359 hp while the French technical sheet publishes 335/348 hp. US power facts control; the French publication is used only for explicitly identified 8000-series geometry and topology."},
+    {"id":"us-page-speed-copy-error","status":"documented","detail":"One US bullet says 70 mph, conflicting with repeated official 43 mph and 70 km/h statements. This package uses 70 km/h."},
+    {"id":"hidden-mechanics","status":"unresolved","detail":"Suspension pivots, ride-height response, steering linkage, hitch anchors, PTO shaft detail, damping, and all collision limits remain reconstructed."}
+  ]
+}

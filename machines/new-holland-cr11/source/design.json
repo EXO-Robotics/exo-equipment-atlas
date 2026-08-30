@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "new-holland-cr11",
+  "display_name": "New Holland CR11",
+  "configuration_id": "NH-CR11-NAM-C16-WHEEL2WD-GT567-UR6-TWINCLEAN-DISC45-CANDIDATE",
+  "archetype": "combine",
+  "dimensions_m": {
+    "length": 11.252,
+    "width": 5.512,
+    "height": 4.013
+  },
+  "carrier_dimensions_m": {
+    "length": 11.252,
+    "width": 5.512,
+    "height": 4.013
+  },
+  "attachment_span_m": 5.512,
+  "palette": "sage",
+  "published_constraints_used": [
+    "public-envelope-x",
+    "public-envelope-y",
+    "public-envelope-z",
+    "rotor-count",
+    "rotor-diameter",
+    "rotor-length",
+    "grain-tank-capacity",
+    "unloading-rate",
+    "unloading-auger-swivel"
+  ],
+  "reconstructed_values": {
+    "transport_pose": "Rigid-unloader length, grain-tank-closed height and 710/70 R42 dual width define the retained published envelope.",
+    "header_interface": "Generic narrow feeder/header interface cue only; no named header or harvesting width claim.",
+    "running_gear": "Wheeled dual-front 2WD carrier cue; rim offset, loaded radius and rear tire selection are reconstructed.",
+    "materials": "Neutral unbranded sage, graphite, steel, rubber and glass with no logos, decals or copied trade dress.",
+    "hidden_geometry": "Twin rotors, Dynamic Feed Roll, TwinClean links, auger hinges and residue drives are reconstructed.",
+    "animation_ranges": "Conservative presentation ranges only; not machine-specific operating limits."
+  },
+  "unresolved_choices": [
+    "exact serial number and dealer order code",
+    "front dual rim offset and rear tire size",
+    "unloading tube length within the selected reach family",
+    "grain tank cover panel geometry",
+    "lighting and camera package",
+    "named header attachment",
+    "public material and branding authorization"
+  ],
+  "mechanical_gaps": [
+    "feeder lift cylinder anchors and attachment coupler authority",
+    "twin rotor axes, crop-flow geometry and component phase",
+    "TwinClean side-shake linkage and slope-response solver",
+    "unloading auger hinge, fold joint and swept clearance",
+    "steering, ground, self and swept-volume collision solvers"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "krone-big-m-450-cv",
+  "configuration_id": "KRONE-BIGM450-CV-EU-STAGEV-990-DUOGRIP-SM-AUGER-CANDIDATE",
+  "freeze_date": "2026-08-29",
+  "repository_policy": {
+    "source_binaries_committed": false,
+    "manufacturer_geometry_committed": false,
+    "manual_illustrations_are_scale_drawings": false,
+    "verification": "Official KRONE web and brochure sources are URL-bound. No manufacturer geometry, imagery, logo, or brochure binary is included."
+  },
+  "sources": [
+    {
+      "id": "KRONE-BIGM450-PRODUCT-2026",
+      "publisher": "Maschinenfabrik Bernard Krone GmbH & Co. KG",
+      "kind": "official_product_page",
+      "title": "BiG M 450 High-capacity mower conditioner",
+      "market": "International English",
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.krone-agriculture.com/en/products/mower-conditioner/big-m-450/",
+      "admission": "primary",
+      "applicability": "Current identity, working width, engine, transport envelope, steering, running-gear adjustment, mower/conditioner topology, side-unit fold and break-back, DuoGrip, and optional swath-merger functions."
+    },
+    {
+      "id": "KRONE-BIGM450-BROCHURE-16432",
+      "publisher": "Maschinenfabrik Bernard Krone GmbH & Co. KG",
+      "kind": "official_product_brochure",
+      "title": "BiG M 450 product brochure",
+      "market": "International English",
+      "retrieved": "2026-08-29",
+      "official_url": "https://media.mykrone.green/getmedia.php?file_uid=16432",
+      "local_path": "research/private/krone-big-m-450-cv/primary-source.pdf",
+      "sha256": "fbbe0f0b2c02355049dd6b69ffaaf48405824866b1c425feb8e78adc3ef41c11",
+      "bytes": 12299311,
+      "pages": 32,
+      "admission": "primary",
+      "applicability": "Current product-family diagrams, mower-system construction, specification tables, and option distinctions; illustrations are not treated as scale drawings."
+    }
+  ]
+}

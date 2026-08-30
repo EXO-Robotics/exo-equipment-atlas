@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "vermeer-zr5-1200",
+  "display_name": "Vermeer ZR5-1200",
+  "configuration_id": "VERMEER-ZR5-1200-NA26-STAGEV-STDPICKUP-NET-RAMP-CANDIDATE",
+  "archetype": "self_propelled_round_baler",
+  "dimensions_m": {"length":6.299,"width":3.607,"height":3.15},
+  "palette": "amber",
+  "published_constraints_used": ["public-envelope-x","public-envelope-y","public-envelope-z","pickup-tooth-width","pickup-bars","pickup-teeth","chamber-belts"],
+  "reconstructed_values": {
+    "hidden_geometry": "All pivots, pickup cam path, tailgate and ramp axes, chamber internals, suspension and steering geometry, crop/bale representation and motion curves are reconstructed.",
+    "pickup_feed_topology": "The pickup is placed below the leading edge of the bale chamber and connected by a reconstructed slat-and-transfer-rotor crop path based on topology visible in official literature; no dimensions, pivot centers, or kinematics are manufacturer-authoritative."
+  },
+  "unresolved_choices": ["exact production revision","tire construction","hidden belt and roller arrangement"],
+  "mechanical_gaps": ["No authoritative bale-formation or ejection solver","No collision or swept-volume proof"]
+}

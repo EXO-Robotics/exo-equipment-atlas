@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "machineId": "cat-140",
+  "displayName": "Cat 140",
+  "className": "Motor grader",
+  "category": "Roadbuilding",
+  "assets": {
+    "glb": "machines/cat-140/assets/cat-140-structural-study.glb",
+    "configuration": "machines/cat-140/configuration.json",
+    "facts": "machines/cat-140/evidence/facts.json",
+    "receipt": "machines/cat-140/production/asset-receipt.json",
+    "validation": "machines/cat-140/production/validation.json"
+  },
+  "evidence": {
+    "boundary": "Independent 16A non-AWD study. Steering linkage, circle teeth, pivots, cylinder anchors, hose routing, and motion interpolation remain reconstructed.",
+    "lede": "Published dimensions constrain the tandem carrier, 12 ft moldboard, drawbar circle, wheel lean, articulation, and rear-ripper envelope. Hidden mechanics remain unresolved.",
+    "factIds": [
+      "push-plate-to-ripper-length",
+      "cab-height",
+      "moldboard-width",
+      "front-axle-to-rear-axle"
+    ]
+  },
+  "camera": {
+    "azimuth": 0.64,
+    "elevation": 0.29,
+    "distance": 1.52
+  },
+  "accent": "#ca8e42"
+}

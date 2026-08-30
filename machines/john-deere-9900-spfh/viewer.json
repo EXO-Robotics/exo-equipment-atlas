@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0.0",
+  "machineId": "john-deere-9900-spfh",
+  "displayName": "John Deere 9900 SPFH",
+  "className": "Self-propelled forage harvester",
+  "category": "Forage harvesting",
+  "assets": {
+    "glb": "machines/john-deere-9900-spfh/assets/john-deere-9900-spfh-structural-study.glb",
+    "configuration": "machines/john-deere-9900-spfh/configuration.json",
+    "facts": "machines/john-deere-9900-spfh/evidence/facts.json",
+    "receipt": "machines/john-deere-9900-spfh/production/asset-receipt.json",
+    "validation": "machines/john-deere-9900-spfh/production/validation.json",
+    "poster": "machines/john-deere-9900-spfh/review/renders/john-deere-9900-spfh-front-three-quarter.png"
+  },
+  "evidence": {
+    "boundary": "MY2024 legacy 9900 source freeze: 282DZ carrier, 4005 40-knife Dura-Drum, 0415KM 772 header, 5597 high-arch spout and 3.3 m tire package. Only the 772 header's 9.05 m lateral envelope is retained as complete public geometry; length, height and hidden mechanisms are reconstructed.",
+    "lede": "The official order guide publishes 713 kW maximum power, four feedrolls, the selected 40-knife crop setup, a 210-degree spout turn and the 772 header dimensions. Motion is a neutral presentation study, not operating guidance.",
+    "factIds": ["maximum-engine-power", "selected-knife-count", "feedroll-count", "spout-swing", "public-envelope-z", "carrier-width-class"]
+  },
+  "camera": {"azimuth": 0.62, "elevation": 0.30, "distance": 1.62},
+  "accent": "#687d8a",
+  "motion": {
+    "autoplay": true,
+    "durationSeconds": 20,
+    "mode": "sine",
+    "damping": 6.2,
+    "channels": [
+      {"id":"header-lift","label":"772 header lift - reconstructed linkage","nodes":["Header_Lift_Pivot"],"property":"rotation.z","from":-0.04,"to":0.14,"phase":0.0,"mode":"offset","autoplay":"ping-pong"},
+      {"id":"feedroll-cue","label":"Four-feedroll crop-flow cue","nodes":["Feedroll_ROOT"],"property":"rotation.z","from":0,"to":6.283185,"phase":0.24,"mode":"offset"},
+      {"id":"spout-yaw","label":"High-arch spout sweep - 210 deg published turn","nodes":["Spout_Yaw_Pivot"],"property":"rotation.y","from":-1.45,"to":1.45,"phase":0.48,"mode":"offset","autoplay":"sine"},
+      {"id":"spout-tip","label":"Outlet flap trim - reconstructed","nodes":["Spout_Tip_Pivot"],"property":"rotation.z","from":-0.18,"to":0.12,"phase":0.74,"mode":"offset","autoplay":"sine"}
+    ]
+  }
+}

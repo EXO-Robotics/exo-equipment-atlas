@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-9rx-640",
+  "configuration_id": "JD-9RX640-MY2025-9540RW-JD14-E18-4X30AG3500-87-NOPTO-NOHITCH-CANDIDATE",
+  "status": "research_candidate",
+  "identity": {
+    "manufacturer": "Deere & Company",
+    "brand": "John Deere",
+    "model": "9RX 640",
+    "product_class": "four_track_articulated_agricultural_tractor",
+    "market": "North America",
+    "model_year": 2025,
+    "base_code": "9540RW"
+  },
+  "choices": {
+    "engine": "code 3044 JD14 13.6 L Tier 4 / Stage V",
+    "transmission": "code 1492 e18 18F/6R PowerShift, 40 km/h",
+    "tracks": "code 6829, four 762 mm Camso AG 3500 belts",
+    "track_spacing": "code 6848, fixed 2.218 m center-to-center",
+    "rear_hitch": "code 4000, less rear three-point hitch",
+    "rear_pto": "code 3800, less rear PTO",
+    "drawbar": "code 4325 Category 5, two-position, 70 mm pin",
+    "public_geometry": "independently authored neutral unbranded structural study",
+    "public_materials": "matte slate and graphite; no trade dress, logos, decals, copied textures or manufacturer geometry"
+  },
+  "unresolved_choices": [
+    "The admitted first-party sources publish overall length but not configuration-specific overall width or height; public-envelope Y and Z remain unresolved.",
+    "The visible 2.980 m track envelope is evidence-derived from 2.218 m center spacing plus one 0.762 m belt width, not a manufacturer-published overall-width claim.",
+    "Track pad, drive-lug, sprocket, idler, midroller, frame, tensioning, oscillation and axle geometry are not published.",
+    "Articulation gudgeon, oscillation pivot, cylinders, anchors, hard stops and cab-to-frame transforms are not published.",
+    "Exact body panels, cab/glazing, cooling, aftertreatment, lighting, hoses, wiring, ballast and service hardware remain unresolved.",
+    "Manufacturer colors, graphics, badges and decals are outside the public structural study."
+  ],
+  "boundary": "MY2025 North American 9RX 640 code 9540RW candidate with JD14, e18, base 30-inch AG3500 tracks at 87-inch spacing, less PTO and less rear hitch. Official sources constrain identity, code selections, length, track belt and spacing, drawbar, wheelbase and articulated/oscillating topology. Overall width/height, belt mechanics and hidden articulation geometry remain derived, reconstructed or unresolved. Neutral unbranded visualization only; not manufacturer CAD, a traction model, an engineering solver, safety guidance or proof of one delivered serial-number machine."
+}

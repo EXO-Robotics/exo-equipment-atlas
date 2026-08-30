@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-r4045",
+  "configuration_id": "JD-R4045-MY2020-NA-06W5N-4920-5165-4995-CANDIDATE",
+  "freeze_date": "2026-08-29",
+  "repository_policy": {
+    "source_binaries_committed": false,
+    "manufacturer_geometry_committed": false,
+    "manufacturer_imagery_committed": false,
+    "manual_illustrations_are_scale_drawings": false,
+    "verification": "The official Deere agricultural price page was inspected and hash-bound under research/private. Public output redistributes no manufacturer PDF, imagery, logo, texture or geometry."
+  },
+  "sources": [
+    {
+      "id": "JD-AG-SPRAYER-PRICE-PAGES-2019-11",
+      "publisher": "Deere & Company",
+      "kind": "official_government_price_page_and_order_guide",
+      "title": "Agricultural Products Price Pages: John Deere Sprayers",
+      "publication": "29 November 2019",
+      "market": "United States and Canada",
+      "pages": 326,
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.deere.com/assets/pdfs/region-4/industries/government-and-military-sales/contracts/price-pages/agricultural/A8_20191129.pdf",
+      "local_path": "research/private/john-deere-r4045/primary-source.pdf",
+      "sha256": "2a426fb90b62f491ec8a40be4c8a49fcb27e5af6655c2aebcd87e79faf449944",
+      "bytes": 831984,
+      "admission": "primary",
+      "use": "Configuration and specification authority for MY2020 base code 06W5N, 1,200-gallon tank, engine, chassis, crop clearance, tread range, 120-foot steel boom, 20-inch stainless plumbing and five-sensor leveling. Illustrations are visual reference only."
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "kubota-m8-201",
+  "configuration_id": "KUB-M8-201-NA-KVT-SFA50-3R-C3STD-CANDIDATE",
+  "freeze_date": "2026-08-29",
+  "repository_policy": {
+    "source_binaries_committed": false,
+    "manufacturer_geometry_committed": false,
+    "manufacturer_imagery_committed": false,
+    "manual_illustrations_are_scale_drawings": false,
+    "verification": "The admitted brochure was retrieved from the official Kubota USA URL and hashed for this research pass. No Kubota PDF, image, logo, or geometry is committed in the public machine package."
+  },
+  "sources": [
+    {
+      "id": "KUB-M8-CURRENT-PRODUCT-2026",
+      "publisher": "Kubota Tractor Corporation",
+      "kind": "official_current_product_page",
+      "title": "M8 Series",
+      "market": "United States",
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.kubotausa.com/products/tractors/agriculture/m8-series",
+      "admission": "primary_current_identity",
+      "applicability": "Current M8-181 and M8-201 model identity, current M8-201 200 hp listing, KVT and semi-powershift option descriptions, and current North American product positioning."
+    },
+    {
+      "id": "KUB-M8-NA-BROCHURE-2023",
+      "publisher": "Kubota Tractor Corporation and Kubota Canada Ltd.",
+      "kind": "official_product_brochure_and_specification",
+      "title": "M8 Series Brochure",
+      "market": "United States, US territories, and Canada",
+      "document_date": "2021 copyright; PDF metadata modified 2023-02-27",
+      "pages": 12,
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.kubotausa.com/docs/default-source/brochure-sheets/m8-brochureupdate.pdf?sfvrsn=1c788cad_3",
+      "local_path": "research/private/kubota-m8-201/primary-source.pdf",
+      "sha256": "5a4ca4c5512ee8de865129ada03cab89a08327ebcc65aac8bd667c18741f0096",
+      "bytes": 2037436,
+      "retrieved_sha256": "5a4ca4c5512ee8de865129ada03cab89a08327ebcc65aac8bd667c18741f0096",
+      "retrieved_bytes": 2037436,
+      "admission": "primary",
+      "applicability": "M8-201 powertrain, PTO, hydraulic, hitch, front-axle, cab, wheelbase, height, and option matrix. It does not publish overall length, field width, tire sizes, tread setting, or kinematic pivot coordinates."
+    },
+    {
+      "id": "KUB-M8-LAUNCH-HISTORY-2019",
+      "publisher": "Kubota Corporation",
+      "kind": "official_historical_news_release",
+      "title": "Kubota Moves to Expand Large Tractor Business in North America with Rollout of High-Power Models",
+      "market": "North America historical context",
+      "published": "2019-07-31",
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.kubota.com/news/2019/20190731.html",
+      "admission": "historical_context_only",
+      "applicability": "Historical M8 launch lineage only. It does not override the current Kubota USA M8-201 identity and supplies no active configuration facts."
+    }
+  ]
+}

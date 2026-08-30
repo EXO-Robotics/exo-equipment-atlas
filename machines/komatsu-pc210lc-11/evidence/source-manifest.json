@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "komatsu-pc210lc-11",
+  "configuration_id": "KOMATSU-PC210LC11-CONV-T4F-57B-2925A-700SH-TL085-CANDIDATE",
+  "freeze_date": "2026-08-29",
+  "repository_policy": {
+    "source_binaries_committed": false,
+    "manufacturer_geometry_committed": false,
+    "manual_illustrations_are_scale_drawings": false,
+    "verification": "Official Komatsu product and brochure sources are URL-bound. Published drawings constrain listed dimensions only and are not imported as scale geometry."
+  },
+  "sources": [
+    {
+      "id": "KOMATSU-PC210LC11-NZ-PRODUCT-2026",
+      "publisher": "Komatsu",
+      "kind": "official_product_page",
+      "title": "PC210LC-11 Mid-size Excavator",
+      "market": "New Zealand",
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.komatsu.com/en-nz/products/equipment/excavators/mid-size-excavators/pc210lc-11",
+      "admission": "primary",
+      "applicability": "Current regional PC210LC-11 conventional identity, Tier 4 Final engine family, application class and hydraulic circuit topology."
+    },
+    {
+      "id": "KOMATSU-PC210LC11-BR02-0225-V2",
+      "publisher": "Komatsu",
+      "kind": "official_product_brochure_pdf",
+      "title": "PC210LC-11 / PC210LCi-11",
+      "publication": "EN-PC210LCi-11BR02-0225-V2",
+      "market": "North America",
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.komatsu.com/content/dam/komatsu/websites/en-us/miscellaneous-web-site-assets/EN-PC210LCi-11BR02-0225-V2.pdf",
+      "local_path": "research/private/komatsu-pc210lc-11/primary-source.pdf",
+      "sha256": "fcb292ae75e1d7c523125fd10405c12fd63bf3d7a8de94785aa56c345c79bfc7",
+      "bytes": 28959740,
+      "pages": 24,
+      "admission": "primary",
+      "applicability": "The conventional PC210LC-11 column establishes engine, operating-weight range, 5.7 m boom, 2.925 m arm, 700 mm shoes, transport dimensions, working range, counterweight and compatible TL bucket. iMC hardware is excluded."
+    }
+  ]
+}

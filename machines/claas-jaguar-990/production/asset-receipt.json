@@ -1,0 +1,285 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "claas-jaguar-990",
+  "configuration_id": "CLAAS-J990-INT-STGV-WHEEL-ORBIS900-VMAX42-MCCMAX-M-CANDIDATE",
+  "configuration_status": "research_candidate",
+  "archetype": "forage_harvester",
+  "candidate_class": "technical_structural_study",
+  "engineering_authority": false,
+  "authority_boundary": "Independently authored neutral technical structural study. Not manufacturer CAD, engineering authority, load guidance, operator training, safety guidance, a digital twin, or a mechanically validated candidate.",
+  "rights_boundary": "Neutral unbranded procedural geometry and materials; no manufacturer CAD, logo, copied texture, or protected livery claim.",
+  "release_status": "PENDING",
+  "blender": {
+    "version": "5.1.1",
+    "factory_startup_required": true,
+    "background_required": true
+  },
+  "builder": {
+    "path": "source/blender/build_claas_jaguar_990.py",
+    "sha256": "32882e2f5688a2e65996b037a33502222e656cd508cc32ad0cf000c4eb699253",
+    "bytes": 662,
+    "deterministic": true,
+    "network_used": false,
+    "downloaded_geometry_used": false,
+    "manufacturer_cad_used": false,
+    "copied_textures_used": false,
+    "opaque_addons_used": false
+  },
+  "shared_generator": {
+    "path": "../../scripts/fleet/build_machine.py",
+    "sha256": "02b99250651741b462b3dae8b2471db723beb689dfe89e1c7e251d7402fe0f55",
+    "bytes": 78579
+  },
+  "design": {
+    "path": "source/design.json",
+    "sha256": "b86b226f2e89b8158b57053feb6b0d23ae73a91ac2d7eb92a1e069a9e1ef306f",
+    "bytes": 2463,
+    "schema_version": "1.0.0"
+  },
+  "artifacts": {
+    "blend": {
+      "path": "source/blender/claas-jaguar-990-structural-study.blend",
+      "sha256": "29f4d2ef18a94b43323a2d6c53f5350e283d11a96faca537e2e3d618607aa518",
+      "bytes": 233653
+    },
+    "glb": {
+      "path": "assets/claas-jaguar-990-structural-study.glb",
+      "sha256": "1bb9c0e9410797cb89974d79294a4a995bd737df180e9d4ce7debd498e6c2cd5",
+      "bytes": 1515228
+    },
+    "validation": {
+      "path": "production/validation.json",
+      "sha256": "4dc610046e3c727608293a433b7c45a78ac59eea12f365769722d00d56485897",
+      "bytes": 7880
+    }
+  },
+  "scene": {
+    "units": "meters",
+    "axes": {
+      "longitudinal": "+X forward",
+      "vertical": "+Y up",
+      "lateral": "+Z machine right"
+    },
+    "bounds": {
+      "min_m": [
+        -3.2475,
+        0.0,
+        -4.465
+      ],
+      "max_m": [
+        3.2475,
+        3.945,
+        4.465
+      ],
+      "size_m": [
+        6.495,
+        3.945,
+        8.93
+      ]
+    },
+    "visible_aabb_xyz_m": [
+      6.495,
+      3.945,
+      8.93
+    ],
+    "objects": 212,
+    "meshes": 190,
+    "triangles": 29560,
+    "materials": 6
+  },
+  "glb_contract": {
+    "glb_version": "2.0",
+    "scene_count": 1,
+    "scene_root_count": 1,
+    "root_name": "Machine_Root",
+    "root_record": {},
+    "identity_root": true,
+    "nodes": 212,
+    "mesh_nodes": 190,
+    "mesh_definitions": 190,
+    "materials": 6,
+    "triangles": 29560,
+    "cameras": 0,
+    "punctual_lights": false,
+    "images": 0,
+    "textures": 0,
+    "nonidentity_mesh_scales": {},
+    "helper_like_mesh_nodes": [],
+    "semantic_motion_nodes": 21,
+    "bounds": {
+      "min_m": [
+        -3.2475,
+        0.0,
+        -4.465
+      ],
+      "max_m": [
+        3.2475,
+        3.945,
+        4.465
+      ],
+      "size_m": [
+        6.495,
+        3.945,
+        8.93
+      ]
+    }
+  },
+  "required_semantic_nodes": {
+    "Machine_Root": true,
+    "Fixed_Structure_ROOT": true,
+    "Running_Gear_ROOT": true,
+    "Hydraulics_ROOT": true,
+    "Service_Detail_ROOT": true,
+    "Header_Lift_Pivot": true,
+    "Header_ROOT": true,
+    "Feedroll_ROOT": true,
+    "Spout_Yaw_Pivot": true,
+    "Spout_ROOT": true,
+    "Spout_Tip_Pivot": true,
+    "Spout_Tip_ROOT": true
+  },
+  "manufacturer_published_constraints_used": [
+    "public-envelope-x",
+    "public-envelope-y",
+    "public-envelope-z",
+    "orbis-working-width",
+    "orbis-transport-width",
+    "feeder-width",
+    "feed-roller-count",
+    "chopping-cylinder-width",
+    "chopping-cylinder-diameter",
+    "vmax42-knife-count",
+    "mcc-max-diameter",
+    "accelerator-width",
+    "accelerator-diameter",
+    "standard-chute-swing"
+  ],
+  "reconstructed_values": {
+    "carrier_display_envelope_m": [
+      6.495,
+      3.0,
+      3.945
+    ],
+    "carrier_width_note": "The 3.0 m value is the selected ORBIS transport-protection span used as a conservative display width, not a configuration-complete carrier width claim.",
+    "selected_orbis_working_span_m": 8.93,
+    "selected_orbis_span_note": "Manufacturer-published working width; header depth, wing hinges, row-unit centers, and folded geometry remain reconstructed.",
+    "materials": "Neutral unbranded slate, sand, graphite, steel, rubber, and glass; no logos or protected livery claim.",
+    "all_hidden_pivots": "Reconstructed visual hierarchy only.",
+    "all_animation_ranges": "Conservative presentation ranges, not operator limits.",
+    "internal_crop_flow": "Cutaway-only schematic study; no crop simulation or hidden assembly authority.",
+    "hidden_geometry": "All hidden structure, pivot centers, anchors, linkage proportions, underbody volumes, and internal geometry are reconstructed visualization choices unless a design record explicitly identifies a manufacturer-published envelope constraint.",
+    "generic_archetype_geometry": "forage_harvester proportions and visible detail are independently reconstructed for this technical study.",
+    "visible_envelope_calibration": {
+      "classification": "reconstructed_visible_envelope_calibration",
+      "source_bounds_m": {
+        "min_m": [
+          -2.4243,
+          0.0,
+          -4.465
+        ],
+        "max_m": [
+          3.451005,
+          3.988627,
+          4.465
+        ],
+        "size_m": [
+          5.875305,
+          3.988627,
+          8.93
+        ]
+      },
+      "target_bounds_m": {
+        "min_m": [
+          -3.2475,
+          0.0,
+          -4.465
+        ],
+        "max_m": [
+          3.2475,
+          3.945,
+          4.465
+        ],
+        "size_m": [
+          6.495,
+          3.945,
+          8.93
+        ]
+      },
+      "axis_scale_factors": [
+        1.105474536,
+        0.989062221,
+        0.999999966
+      ],
+      "calibrated_bounds_m": {
+        "min_m": [
+          -3.2475,
+          0.0,
+          -4.465
+        ],
+        "max_m": [
+          3.2475,
+          3.945,
+          4.465
+        ],
+        "size_m": [
+          6.495,
+          3.945,
+          8.93
+        ]
+      },
+      "authority": "reconstructed_not_machine_specific_engineering"
+    }
+  },
+  "unresolved_choices": [
+    "exact model year and order code",
+    "front and rear tire sizes, spacers, and track width",
+    "rear powered steering axle and tire-pressure-control options",
+    "discharge chute extension length",
+    "AUTO FILL, OPTI FILL, NIR, additive, camera, guidance, and cab options",
+    "rear ballast and regional road equipment",
+    "public material and branding authorization"
+  ],
+  "mechanical_gaps": [
+    "front attachment coupler, lift, and fold pivot authority",
+    "wheel rolling radius and rear steering geometry",
+    "feeder, chopping cylinder, cracker, and accelerator centers and rates",
+    "standard chute hinge and swept-volume clearance",
+    "ground, self, and swept-volume collision solver"
+  ],
+  "renders": [
+    {
+      "path": "review/renders/claas-jaguar-990-operator-side.png",
+      "sha256": "58f81f66c6a45fa87d0520f709add64a5b92810507a4a309cd5f63d2c1452d2c",
+      "bytes": 294355
+    },
+    {
+      "path": "review/renders/claas-jaguar-990-front-three-quarter.png",
+      "sha256": "89ae6e4e737aa1a24b4ef1bc6dfdfee23dc374136cca100d835deb62e94e3e68",
+      "bytes": 266740
+    },
+    {
+      "path": "review/renders/claas-jaguar-990-rear-three-quarter.png",
+      "sha256": "ea21083a99912c4aa7bda845fe2747d33cc0aa0bec7711f6a70bd58d15633b00",
+      "bytes": 293809
+    },
+    {
+      "path": "review/renders/claas-jaguar-990-elevated-technical.png",
+      "sha256": "2b9962bca650ffa64b6fd447421cbf43ef43d921dfe1d7082d725410dac230be",
+      "bytes": 337589
+    },
+    {
+      "path": "review/renders/claas-jaguar-990-articulation-detail.png",
+      "sha256": "09dd2cdf50c2a2e8f3845bdddc6a29996d11b66953e7675693fafeba8bbd682e",
+      "bytes": 330639
+    },
+    {
+      "path": "review/renders/claas-jaguar-990-right-side.png",
+      "sha256": "d1e25c6837acf051691a264f9840b9d1c4481ace46b0602bd2bde3c5ab8ad086",
+      "bytes": 292597
+    }
+  ],
+  "build_verdict": "PASS",
+  "validation_verdict": "PASS",
+  "validation_path": "production/validation.json",
+  "higher_stage_gates": "PENDING"
+}

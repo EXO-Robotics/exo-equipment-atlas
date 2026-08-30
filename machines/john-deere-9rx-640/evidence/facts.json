@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-9rx-640",
+  "configuration_id": "JD-9RX640-MY2025-9540RW-JD14-E18-4X30AG3500-87-NOPTO-NOHITCH-CANDIDATE",
+  "facts": [
+    {"id": "model-and-base-code", "subject": "model and base code", "value": "9RX 640 / 9540RW", "unit": "identity", "authority": "manufacturer_published", "source_id": "JD-9RX640-PRICEBOOK-2024-11", "location": "PDF page 3213, base machine, Model Year 2025"},
+    {"id": "rated-engine-power", "subject": "rated engine power", "value": 471, "unit": "kW", "authority": "manufacturer_published", "source_id": "JD-9RX640-PRICEBOOK-2024-11", "location": "PDF page 3210, standard base features"},
+    {"id": "rated-engine-power-hp", "subject": "rated engine power", "value": 640, "unit": "hp ISO", "authority": "manufacturer_published", "source_id": "JD-9RX640-PRICEBOOK-2024-11", "location": "PDF page 3210, standard base features"},
+    {"id": "jd14-displacement", "subject": "JD14 engine displacement", "value": 13.6, "unit": "L", "authority": "manufacturer_published", "source_id": "JD-9RX640-PRICEBOOK-2024-11", "location": "PDF page 3215, code 3044"},
+    {"id": "e18-speed", "subject": "e18 maximum forward speed", "value": 40, "unit": "km/h", "authority": "manufacturer_published", "source_id": "JD-9RX640-PRICEBOOK-2024-11", "location": "PDF page 3215, code 1492"},
+    {"id": "selected-track-width", "subject": "code 6829 AG3500 belt width", "value": 0.762, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-9RX640-PRICEBOOK-2024-11", "location": "PDF page 3243, code 6829"},
+    {"id": "selected-track-spacing", "subject": "code 6848 fixed track center spacing", "value": 2.218, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-9RX640-PRICEBOOK-2024-11", "location": "PDF page 3243, code 6848"},
+    {"id": "evidence-derived-track-envelope", "subject": "derived visible width over selected belts", "value": 2.98, "unit": "m", "authority": "evidence_derived", "source_id": "JD-9RX640-PRICEBOOK-2024-11", "location": "2.218 m center spacing plus one 0.762 m belt width; not a manufacturer overall-width claim"},
+    {"id": "articulation-range", "subject": "standard 9RX degrees of articulation", "value": 36, "unit": "deg", "authority": "manufacturer_published", "source_id": "JD-9-SERIES-AUNZ-2023", "location": "PDF page 30, Specifications 9RX Tractors"},
+    {"id": "chassis-oscillation", "subject": "standard 9RX degrees of oscillation", "value": 15, "unit": "deg", "authority": "manufacturer_published", "source_id": "JD-9-SERIES-AUNZ-2023", "location": "PDF page 30, Specifications 9RX Tractors"},
+    {"id": "undercarriage-oscillation", "subject": "track undercarriage oscillation", "value": [-10, 10], "unit": "deg range", "authority": "manufacturer_published", "source_id": "JD-9-SERIES-AUNZ-2023", "location": "PDF page 30, Specifications 9RX Tractors"},
+    {"id": "drawbar-vertical-load", "subject": "code 4325 Category 5 drawbar maximum vertical load in shortest position", "value": 5440, "unit": "kg", "authority": "manufacturer_published", "source_id": "JD-9RX640-PRICEBOOK-2024-11", "location": "PDF page 3241, code 4325"},
+    {"id": "public-envelope-x", "subject": "overall length excluding hitch", "value": 8.309, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-9RX640-CA-PAGE", "location": "Official product page, Dimensions"}
+  ],
+  "issues": [
+    {"id": "partial-public-envelope", "status": "unresolved", "detail": "Only longitudinal X is admitted as a manufacturer-published overall envelope. Overall height Y and overall width Z are not published for the selected code 6829/6848 configuration."},
+    {"id": "track-envelope-derived", "status": "bounded", "detail": "The 2.980 m width is arithmetic from published belt width and center spacing and remains evidence-derived, not manufacturer-published."}
+  ]
+}

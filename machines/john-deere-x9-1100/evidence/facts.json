@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-x9-1100",
+  "configuration_id": "JD-X9-1100-MY2024-NA-WHEEL-HD50R-AUGER31-CANDIDATE",
+  "facts": [
+    {"id": "model-identity", "subject": "model identity", "value": "X9 1100", "unit": "identity", "authority": "manufacturer_published", "source_id": "JD-X-SERIES-COMBINES-2024", "location": "PDF page 22, X Series specifications"},
+    {"id": "rated-engine-power", "subject": "rated engine power at rated speed", "value": 450, "unit": "kW", "authority": "manufacturer_published", "source_id": "JD-X-SERIES-COMBINES-2024", "location": "PDF page 22, X9 1100 column"},
+    {"id": "rated-engine-power-hp", "subject": "rated engine power at rated speed", "value": 603, "unit": "hp", "authority": "manufacturer_published", "source_id": "JD-X-SERIES-COMBINES-2024", "location": "PDF page 22, X9 1100 column"},
+    {"id": "peak-engine-power", "subject": "peak engine power", "value": 515, "unit": "kW", "authority": "manufacturer_published", "source_id": "JD-X-SERIES-COMBINES-2024", "location": "PDF page 22, X9 1100 column"},
+    {"id": "engine-displacement", "subject": "JD14 engine displacement", "value": 13.6, "unit": "L", "authority": "manufacturer_published", "source_id": "JD-X-SERIES-COMBINES-2024", "location": "PDF page 22, engine specifications"},
+    {"id": "feederhouse-width", "subject": "feederhouse width", "value": 1.72, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-X-SERIES-COMBINES-2024", "location": "PDF page 22, feeding width"},
+    {"id": "rotor-count", "subject": "separator rotor count", "value": 2, "unit": "count", "authority": "manufacturer_published", "source_id": "JD-X-SERIES-COMBINES-2024", "location": "PDF page 4 and page 22, dual rotor"},
+    {"id": "rotor-length", "subject": "each rotor length", "value": 3.5, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-X-SERIES-COMBINES-2024", "location": "PDF page 22, threshing/separating"},
+    {"id": "rotor-diameter", "subject": "each rotor diameter", "value": 0.6, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-X-SERIES-COMBINES-2024", "location": "PDF page 22, threshing/separating"},
+    {"id": "grain-tank-capacity", "subject": "grain tank capacity", "value": 16210, "unit": "L", "authority": "manufacturer_published", "source_id": "JD-X-SERIES-COMBINES-2024", "location": "PDF page 22, grain handling"},
+    {"id": "selected-auger-length", "subject": "selected unloading auger option length", "value": 9.45, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-X-SERIES-COMBINES-2024", "location": "PDF page 22, unloading auger lengths"},
+    {"id": "peak-unloading-rate", "subject": "peak unloading rate", "value": 186.7, "unit": "L/s", "authority": "manufacturer_published", "source_id": "JD-X-SERIES-COMBINES-2024", "location": "PDF page 22, grain handling"},
+    {"id": "hd50r-compatibility", "subject": "HD50R header compatibility with X9 1100", "value": true, "unit": "boolean", "authority": "manufacturer_published", "source_id": "JD-X-SERIES-COMBINES-2024", "location": "PDF page 22, front-end equipment compatibility"},
+    {"id": "public-envelope-z", "subject": "selected 50-ft header-class visible working span", "value": 15.2, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-X-SERIES-COMBINES-2024", "location": "PDF page 4, 50-ft / 15.2-m HDR header statement; page 22 identifies HD50R compatibility"}
+  ],
+  "issues": [
+    {"id": "partial-public-envelope", "status": "unresolved", "detail": "Only lateral Z is admitted, using the selected 50-ft / 15.2-m header-class working span. Carrier overall length X and overall height Y are not published in the admitted source."},
+    {"id": "header-span-semantics", "status": "bounded", "detail": "The 15.2 m value is a working-span constraint for the selected visible header class, not a transport-width or carrier-body claim."},
+    {"id": "running-gear-combination", "status": "unresolved", "detail": "The visible tyre pair is selected from compatible families but not proven as one delivered order configuration."}
+  ]
+}

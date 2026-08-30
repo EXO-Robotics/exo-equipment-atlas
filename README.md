@@ -5,8 +5,9 @@ authored, mechanically meaningful heavy-equipment explorers. It extracts the
 repeatable evidence and validation method proven in the JLG equipment case
 studies without copying the JLG runtime or its dirty working state.
 
-The repository contains thirteen research candidates across distinct mechanism
-classes:
+The repository contains thirty-three research candidates across construction,
+forestry, lifting, roadbuilding, and agricultural mechanism classes. The
+original thirteen-machine foundation is:
 
 1. Cat 320 hydraulic excavator.
 2. John Deere 333 P-Tier compact track loader.
@@ -21,6 +22,14 @@ classes:
 11. Komatsu WA475-10 articulated wheel loader.
 12. Volvo DD128C tandem asphalt compactor.
 13. Liebherr LTM 1100-5.3 all-terrain mobile crane.
+
+The twenty-machine farm expansion adds tractors, tracked tractors, combines,
+forage harvesters, a high-clearance applicator, balers, a mower-conditioner,
+and two complementary earthmoving studies. The exact roster, market/configuration
+boundaries, and interaction thesis are recorded in
+[`docs/FLEET_EXPANSION_20.md`](docs/FLEET_EXPANSION_20.md).
+The independent Grok shipment review and finding dispositions are recorded in
+[`docs/GROK_FLEET_20_REVIEW_2026-08-30.md`](docs/GROK_FLEET_20_REVIEW_2026-08-30.md).
 
 ## Non-negotiable boundaries
 
@@ -49,6 +58,9 @@ machines/<machine>/
   review/renders/               direct visual-review evidence
 schemas/                         documented JSON contracts
 scripts/validate-repository.mjs  fail-closed repository and source validator
+scripts/fleet/                   shared deterministic neutral-study builder
+scripts/generate-public-manifest.mjs exact public bundle attestation
+scripts/verify-deployed-pages.mjs deployed SHA-256 and source-commit verifier
 research/private/                gitignored manufacturer research inputs
 docs/                            evidence, rights, and platform policies
 ```
@@ -69,7 +81,8 @@ requires the private PDFs to exist locally and match the tracked SHA-256 hashes.
 ## Current state
 
 This is a research foundation with a public-facing structural-study gallery, not
-a mechanical release. All thirteen machine packages remain `research_candidate`.
-The web viewer presents the admitted neutral GLBs and evidence boundaries; it
-does not promote them to solved mechanisms, engineering data, or manufacturer
-authority.
+a mechanical release. All thirty-three machine packages remain
+`research_candidate`. The catalog-driven web viewer presents admitted neutral
+GLBs, searchable fleet filters, stable deep links, and capability-driven motion
+channels with a six-second manual override. It does not promote reconstructed
+motion to solved mechanisms, engineering data, or manufacturer authority.

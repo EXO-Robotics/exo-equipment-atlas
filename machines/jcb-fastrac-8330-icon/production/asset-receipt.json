@@ -1,0 +1,273 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "jcb-fastrac-8330-icon",
+  "configuration_id": "JCB-F8330-ICON-NA26-AG-VF540R38-VF710R42-FL35-RL10-CANDIDATE",
+  "configuration_status": "research_candidate",
+  "archetype": "wheeled_tractor",
+  "candidate_class": "technical_structural_study",
+  "engineering_authority": false,
+  "authority_boundary": "Independently authored neutral technical structural study. Not manufacturer CAD, engineering authority, load guidance, operator training, safety guidance, a digital twin, or a mechanically validated candidate.",
+  "rights_boundary": "Neutral unbranded procedural geometry and materials; no manufacturer CAD, logo, copied texture, or protected livery claim.",
+  "release_status": "PENDING",
+  "blender": {
+    "version": "5.1.1",
+    "factory_startup_required": true,
+    "background_required": true
+  },
+  "builder": {
+    "path": "source/blender/build_jcb_fastrac_8330_icon.py",
+    "sha256": "5ea7ab4b52779178a89f7d2daf5dbca867519966f26722a7ddf7e908225a7697",
+    "bytes": 11609,
+    "deterministic": true,
+    "network_used": false,
+    "downloaded_geometry_used": false,
+    "manufacturer_cad_used": false,
+    "copied_textures_used": false,
+    "opaque_addons_used": false
+  },
+  "shared_generator": {
+    "path": "../../scripts/fleet/build_machine.py",
+    "sha256": "02b99250651741b462b3dae8b2471db723beb689dfe89e1c7e251d7402fe0f55",
+    "bytes": 78579
+  },
+  "design": {
+    "path": "source/design.json",
+    "sha256": "dec4e0ca24f5a06ba860318fa557529c95a174d77fa033ef2a560b0a62cc051b",
+    "bytes": 1200,
+    "schema_version": "1.0.0"
+  },
+  "artifacts": {
+    "blend": {
+      "path": "source/blender/jcb-fastrac-8330-icon-structural-study.blend",
+      "sha256": "9b10fa875411ffadf569208eb3fbc8909d73e37ca83a8c1d1556ef14facf53f4",
+      "bytes": 269253
+    },
+    "glb": {
+      "path": "assets/jcb-fastrac-8330-icon-structural-study.glb",
+      "sha256": "8740b6e65454a7ba01044852febbb90d772ec76d5ec2d3942c19f28ee1ea656e",
+      "bytes": 1426348
+    },
+    "validation": {
+      "path": "production/validation.json",
+      "sha256": "0f7dd3fcd88e04ab4d372eb018570813051e6ae502ef780f7182a6ce5b18f804",
+      "bytes": 8517
+    }
+  },
+  "scene": {
+    "units": "meters",
+    "axes": {
+      "longitudinal": "+X forward",
+      "vertical": "+Y up",
+      "lateral": "+Z machine right"
+    },
+    "bounds": {
+      "min_m": [
+        -2.825,
+        -0.0,
+        -1.275
+      ],
+      "max_m": [
+        2.825,
+        3.45,
+        1.275
+      ],
+      "size_m": [
+        5.65,
+        3.45,
+        2.55
+      ]
+    },
+    "visible_aabb_xyz_m": [
+      5.65,
+      3.45,
+      2.55
+    ],
+    "objects": 216,
+    "meshes": 190,
+    "triangles": 26920,
+    "materials": 8
+  },
+  "glb_contract": {
+    "glb_version": "2.0",
+    "scene_count": 1,
+    "scene_root_count": 1,
+    "root_name": "Machine_Root",
+    "root_record": {},
+    "identity_root": true,
+    "nodes": 216,
+    "mesh_nodes": 190,
+    "mesh_definitions": 190,
+    "materials": 8,
+    "triangles": 26920,
+    "cameras": 0,
+    "punctual_lights": false,
+    "images": 0,
+    "textures": 0,
+    "nonidentity_mesh_scales": {},
+    "helper_like_mesh_nodes": [],
+    "semantic_motion_nodes": 25,
+    "bounds": {
+      "min_m": [
+        -2.825,
+        -0.0,
+        -1.275
+      ],
+      "max_m": [
+        2.825,
+        3.45,
+        1.275
+      ],
+      "size_m": [
+        5.65,
+        3.45,
+        2.55
+      ]
+    }
+  },
+  "required_semantic_nodes": {
+    "Machine_Root": true,
+    "Fixed_Structure_ROOT": true,
+    "Running_Gear_ROOT": true,
+    "Hydraulics_ROOT": true,
+    "Service_Detail_ROOT": true,
+    "Front_Axle_Oscillation_Pivot": true,
+    "Front_Axle_ROOT": true,
+    "Steering_L_Pivot": true,
+    "Steering_R_Pivot": true,
+    "Rear_Hitch_Pivot": true,
+    "Rear_Hitch_ROOT": true,
+    "PTO_ROOT": true,
+    "Rear_Axle_Oscillation_Pivot": true,
+    "Rear_Axle_ROOT": true,
+    "Front_Hitch_Pivot": true,
+    "Front_Hitch_ROOT": true,
+    "Front_Hitch_Crossmember": true,
+    "Front_Hitch_L_Lower_Link": true,
+    "Front_Hitch_R_Lower_Link": true,
+    "Front_Hitch_Top_Link": true,
+    "Front_Hitch_Coupler": true,
+    "Front_Linkage_End_Structure": true,
+    "Rear_Hitch_L_Lower_Link": true,
+    "Rear_Hitch_R_Lower_Link": true,
+    "Rear_Hitch_Top_Link": true,
+    "Rear_Hitch_Coupler": true,
+    "Rear_540E_1000_PTO_Shaft": true
+  },
+  "manufacturer_published_constraints_used": [
+    "public-envelope-x",
+    "public-envelope-y",
+    "public-envelope-z",
+    "wheelbase",
+    "ground-clearance"
+  ],
+  "reconstructed_values": {
+    "hidden_geometry": "All pivots, hydraulic anchors, suspension travel, steering geometry, tire surfaces, hitch kinematics, PTO geometry, motion curves and internal construction are reconstructed visualization choices.",
+    "front_linkage_presentation": "The visible front three-point layout is a selected reconstructed presentation constrained only by the published optional 3500 kg front-lift capacity; no Category 3N class or geometry is claimed.",
+    "generic_archetype_geometry": "wheeled_tractor proportions and visible detail are independently reconstructed for this technical study.",
+    "visible_envelope_calibration": {
+      "classification": "reconstructed_visible_envelope_calibration",
+      "source_bounds_m": {
+        "min_m": [
+          -2.825,
+          -0.0,
+          -1.275
+        ],
+        "max_m": [
+          2.825,
+          3.46014,
+          1.275
+        ],
+        "size_m": [
+          5.65,
+          3.46014,
+          2.55
+        ]
+      },
+      "target_bounds_m": {
+        "min_m": [
+          -2.825,
+          0.0,
+          -1.275
+        ],
+        "max_m": [
+          2.825,
+          3.45,
+          1.275
+        ],
+        "size_m": [
+          5.65,
+          3.45,
+          2.55
+        ]
+      },
+      "axis_scale_factors": [
+        0.999999983,
+        0.997069537,
+        0.999999925
+      ],
+      "calibrated_bounds_m": {
+        "min_m": [
+          -2.825,
+          0.0,
+          -1.275
+        ],
+        "max_m": [
+          2.825,
+          3.45,
+          1.275
+        ],
+        "size_m": [
+          5.65,
+          3.45,
+          2.55
+        ]
+      },
+      "authority": "reconstructed_not_machine_specific_engineering"
+    }
+  },
+  "unresolved_choices": [
+    "exact dealer order and serial number",
+    "US availability of selected tire basis",
+    "cab, lighting, ballast and rear-deck packages"
+  ],
+  "mechanical_gaps": [
+    "Suspension and hitch solvers are not manufacturer-authoritative",
+    "No collision or swept-volume proof"
+  ],
+  "renders": [
+    {
+      "path": "review/renders/jcb-fastrac-8330-icon-operator-side.png",
+      "sha256": "5d0cb959329323f72b32bb678874af220f1c51805bb5dc8ede082de0a7cc94e3",
+      "bytes": 310398
+    },
+    {
+      "path": "review/renders/jcb-fastrac-8330-icon-front-three-quarter.png",
+      "sha256": "58294041beeb86c93a805a35992839f14babe4af8a1b0377b67de26b5d46d653",
+      "bytes": 348661
+    },
+    {
+      "path": "review/renders/jcb-fastrac-8330-icon-rear-three-quarter.png",
+      "sha256": "51445bbff4e972a909113f702509149d0c53ee01e2f1989611418e7735480a11",
+      "bytes": 338868
+    },
+    {
+      "path": "review/renders/jcb-fastrac-8330-icon-elevated-technical.png",
+      "sha256": "5b9c12e421aedd010e4f42b9c3e7ae29e414711a470663e012ce55a2b627fb71",
+      "bytes": 405849
+    },
+    {
+      "path": "review/renders/jcb-fastrac-8330-icon-articulation-detail.png",
+      "sha256": "26add73192675cd08ba60208a24785a56334af677f963a8ae6a7feeff0d1da25",
+      "bytes": 357423
+    },
+    {
+      "path": "review/renders/jcb-fastrac-8330-icon-right-side.png",
+      "sha256": "297af6af67440c95c1a1f0543585e79bd3c1e85ee5f613be7b2fb901cf315d31",
+      "bytes": 302698
+    }
+  ],
+  "build_verdict": "PASS",
+  "validation_verdict": "PASS",
+  "validation_path": "production/validation.json",
+  "higher_stage_gates": "PENDING"
+}

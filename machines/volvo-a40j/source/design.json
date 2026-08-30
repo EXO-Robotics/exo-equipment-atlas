@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "volvo-a40j",
+  "display_name": "Volvo A40J",
+  "configuration_id": "VOLVO-A40J-NA-T4F-SV-29.5R25-24M3-NOTAIL-NOEXT-CANDIDATE",
+  "archetype": "articulated_hauler",
+  "dimensions_m": {"length":11.261,"width":3.401,"height":3.626},
+  "tailgate": false,
+  "palette": "oxide",
+  "published_constraints_used": ["public-envelope-x","public-envelope-y","public-envelope-z","ground-clearance","articulation-range","body-tip-angle"],
+  "reconstructed_values": {"hidden_geometry":"All articulation and oscillation centers, bogies, body hinge, cylinder anchors, underbody, tire surfaces, motion curves and internal construction are reconstructed visualization choices.","dump_hoist_geometry":"Twin low-profile tipping cylinders, moving clevises and final under-bed knuckles are independently reconstructed. They remain rigidly below the bed floor through the bounded 0 to 69 degree Bed_ROOT presentation; this is not a kinematic or load solver."},
+  "unresolved_choices": ["exact regional order","body liner and heating","cab, lighting and weighing hardware"],
+  "mechanical_gaps": ["No authoritative articulation, bogie or dump-body solver","No collision or swept-volume proof"]
+}

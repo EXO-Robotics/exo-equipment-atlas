@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "volvo-a40j",
+  "configuration_id": "VOLVO-A40J-NA-T4F-SV-29.5R25-24M3-NOTAIL-NOEXT-CANDIDATE",
+  "freeze_date": "2026-08-29",
+  "repository_policy": {
+    "source_binaries_committed": false,
+    "manufacturer_geometry_committed": false,
+    "manual_illustrations_are_scale_drawings": false,
+    "verification": "The current official product guide is URL-bound; its technical drawings provide dimension values but are not imported or treated as CAD. No manufacturer image, logo, or binary is shipped."
+  },
+  "sources": [
+    {
+      "id": "VOLVO-A40-CANADA-PRODUCT-2026",
+      "publisher": "Volvo Construction Equipment",
+      "kind": "official_product_page",
+      "title": "A40 Articulated Hauler",
+      "market": "Canada English",
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.volvoce.com/canada/en-ca/products/articulated-haulers/a40/",
+      "admission": "primary",
+      "applicability": "Current A40J identity, payload, body volume, weight, D13J engine, power, torque, speed, drivetrain, differential locks, all-terrain bogie and hydro-mechanical steering."
+    },
+    {
+      "id": "VOLVO-A40J-T4F-PG-20064352-D",
+      "publisher": "Volvo Construction Equipment",
+      "kind": "official_product_guide_pdf",
+      "title": "Volvo Product Guide Articulated Hauler A40 — Tier 4 Final",
+      "publication": "20064352-D",
+      "market": "North America",
+      "retrieved": "2026-08-29",
+      "official_url": "https://www.volvoce.com/-/media/aprimo/pdf/articulated-haulers/a40/product-guide-a40-t4f-en-22-20064352-d.pdf?v=Z4J4Pw",
+      "local_path": "research/private/volvo-a40j/primary-source.pdf",
+      "sha256": "75574c276b5c60d39aa41b765c2079d641dcb3e8f0e65c47576115959adcc31e",
+      "bytes": 710284,
+      "pages": 12,
+      "admission": "primary",
+      "applicability": "A40J dimensional table, 29.5R25 basis, payload and weight, engine and speed tables, articulation and body-dump geometry and timing."
+    }
+  ]
+}

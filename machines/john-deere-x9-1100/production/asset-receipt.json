@@ -16,8 +16,8 @@
   },
   "builder": {
     "path": "source/blender/build_john_deere_x9_1100.py",
-    "sha256": "bb7ac9d07d197869d701c42c51938affd19931521d16ab5f4e62c189dadf2bc1",
-    "bytes": 664,
+    "sha256": "c09417ddffe2374142243042d135e02d05866a9f24069c7d11ef8e8d950a2110",
+    "bytes": 39573,
     "deterministic": true,
     "network_used": false,
     "downloaded_geometry_used": false,
@@ -27,30 +27,30 @@
   },
   "shared_generator": {
     "path": "../../scripts/fleet/build_machine.py",
-    "sha256": "02b99250651741b462b3dae8b2471db723beb689dfe89e1c7e251d7402fe0f55",
-    "bytes": 78579
+    "sha256": "9e36599f0c9bbac097422a8766e3ef1c81e6fc9432f024d99a24b79da18264df",
+    "bytes": 81778
   },
   "design": {
     "path": "source/design.json",
-    "sha256": "86f2a4f57f09a1fb039bc387e538a4a2601875ceb539ead67298cd19227efd6f",
-    "bytes": 1826,
+    "sha256": "f6c4d13f20b48814b94fd9e8faea7831cb870b749aef16a37486a2bf96216162",
+    "bytes": 2005,
     "schema_version": "1.0.0"
   },
   "artifacts": {
     "blend": {
       "path": "source/blender/john-deere-x9-1100-structural-study.blend",
-      "sha256": "12781de23d6fde5a6b3adb2eff08f7531d7707b2385cc910ae29fb09d0779b3f",
-      "bytes": 240890
+      "sha256": "b97c780caf80f5e761ebd0676e2f0a2055c7a4595987ac410909853728402a3a",
+      "bytes": 351207
     },
     "glb": {
       "path": "assets/john-deere-x9-1100-structural-study.glb",
-      "sha256": "c9c48ed59862e2dd0cb1c128214b709dcb9e5cfe6ca22d01701b3f8098d87546",
-      "bytes": 1550228
+      "sha256": "3b3e1d53738cdee979e373f970204016c4bf7db37f050097dc31646deef5a732",
+      "bytes": 2435740
     },
     "validation": {
       "path": "production/validation.json",
-      "sha256": "ab1e43db63a5f47346d78a077fe569a03c4f428aeaf3df0ac679d4228b73508f",
-      "bytes": 7795
+      "sha256": "5e68cbf6b0e51a945ebb855e3bb2e825948c111ac6015d14a48100197644bcf9",
+      "bytes": 64221
     }
   },
   "scene": {
@@ -67,25 +67,25 @@
         -7.6
       ],
       "max_m": [
-        5.05,
+        5.065605,
         4.0,
         7.6
       ],
       "size_m": [
-        10.1,
+        10.115605,
         4.0,
         15.2
       ]
     },
     "visible_aabb_xyz_m": [
-      10.1,
+      10.115605,
       4.0,
       15.2
     ],
-    "objects": 212,
-    "meshes": 190,
-    "triangles": 29992,
-    "materials": 7
+    "objects": 356,
+    "meshes": 315,
+    "triangles": 47044,
+    "materials": 8
   },
   "glb_contract": {
     "glb_version": "2.0",
@@ -94,18 +94,18 @@
     "root_name": "Machine_Root",
     "root_record": {},
     "identity_root": true,
-    "nodes": 212,
-    "mesh_nodes": 190,
-    "mesh_definitions": 190,
-    "materials": 7,
-    "triangles": 29992,
+    "nodes": 356,
+    "mesh_nodes": 315,
+    "mesh_definitions": 315,
+    "materials": 8,
+    "triangles": 47044,
     "cameras": 0,
     "punctual_lights": false,
     "images": 0,
     "textures": 0,
     "nonidentity_mesh_scales": {},
     "helper_like_mesh_nodes": [],
-    "semantic_motion_nodes": 21,
+    "semantic_motion_nodes": 42,
     "bounds": {
       "min_m": [
         -5.05,
@@ -113,12 +113,12 @@
         -7.6
       ],
       "max_m": [
-        5.05,
+        5.065605,
         4.0,
         7.6
       ],
       "size_m": [
-        10.1,
+        10.115605,
         4.0,
         15.2
       ]
@@ -129,22 +129,299 @@
     "Fixed_Structure_ROOT": true,
     "Running_Gear_ROOT": true,
     "Hydraulics_ROOT": true,
-    "Service_Detail_ROOT": true,
     "Header_Lift_Pivot": true,
     "Header_ROOT": true,
     "Reel_Pivot": true,
     "Reel_ROOT": true,
     "Feederhouse_ROOT": true,
     "Unloader_Swing_Pivot": true,
-    "Unloader_ROOT": true
+    "Unloader_ROOT": true,
+    "Feeder_Chain_1_ROOT": true,
+    "Feeder_Chain_2_ROOT": true,
+    "Feeder_Chain_3_ROOT": true,
+    "Feeder_Chain_4_ROOT": true,
+    "Dual_Rotor_L_ROOT": true,
+    "Dual_Rotor_R_ROOT": true,
+    "HD50R_L_Wing_Hinge_Pivot": true,
+    "HD50R_R_Wing_Hinge_Pivot": true
   },
-  "manufacturer_published_constraints_used": [
+  "semantic_node_roles": {},
+  "published_constraint_ids_declared": [
     "public-envelope-z",
     "feederhouse-width",
+    "feeder-chain-count",
     "rotor-count",
     "rotor-length",
     "rotor-diameter",
-    "selected-auger-length"
+    "grain-tank-capacity",
+    "selected-auger-length",
+    "hd50r-compatibility"
+  ],
+  "machine_specific_gate_evidence": [
+    {
+      "id": "selected_header_span_envelope",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local metric measurement and exported-hierarchy assertion",
+        "evidence": {
+          "measured_span_m": 15.2,
+          "published_span_m": 15.2
+        },
+        "semantic_nodes": [
+          "Header_ROOT",
+          "HD50R_Main_Backbone"
+        ],
+        "fact_ids": [
+          "public-envelope-z",
+          "hd50r-compatibility"
+        ]
+      }
+    },
+    {
+      "id": "carrier_length_unresolved",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local metric measurement and exported-hierarchy assertion",
+        "evidence": {
+          "unresolved_marker": "carrier overall length",
+          "presentation_envelope_m": 10.1,
+          "claim_status": "reconstructed presentation envelope; not a manufacturer dimension"
+        },
+        "semantic_nodes": [],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "carrier_height_unresolved",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local metric measurement and exported-hierarchy assertion",
+        "evidence": {
+          "unresolved_marker": "overall height",
+          "presentation_envelope_m": 4.0,
+          "claim_status": "reconstructed presentation envelope; not a manufacturer dimension"
+        },
+        "semantic_nodes": [],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "wheeled_running_gear",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local metric measurement and exported-hierarchy assertion",
+        "evidence": {
+          "tire_nodes": [
+            "Front_L_Tire",
+            "Front_R_Tire",
+            "Rear_L_Tire",
+            "Rear_R_Tire"
+          ],
+          "mesh_scales": {
+            "Rear_R_Tire": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Rear_L_Tire": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Front_L_Tire": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Front_R_Tire": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "track_nodes": []
+        },
+        "semantic_nodes": [
+          "Running_Gear_ROOT",
+          "Front_L_Wheel_ROOT",
+          "Front_R_Wheel_ROOT",
+          "Rear_L_Wheel_ROOT",
+          "Rear_R_Wheel_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "feederhouse_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local metric measurement and exported-hierarchy assertion",
+        "evidence": {
+          "measured_width_m": 1.72,
+          "published_width_m": 1.72,
+          "chain_roots": 4
+        },
+        "semantic_nodes": [
+          "Feederhouse_ROOT",
+          "Feeder_Chain_1_ROOT",
+          "Feeder_Chain_2_ROOT",
+          "Feeder_Chain_3_ROOT",
+          "Feeder_Chain_4_ROOT"
+        ],
+        "fact_ids": [
+          "feederhouse-width",
+          "feeder-chain-count"
+        ]
+      }
+    },
+    {
+      "id": "header_attachment_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local metric measurement and exported-hierarchy assertion",
+        "evidence": {
+          "hierarchy": "Feederhouse_ROOT -> Header_Lift_Pivot -> Header_ROOT -> two HD50R wing roots",
+          "left_wing_descends_from_header": true,
+          "right_wing_descends_from_header": true
+        },
+        "semantic_nodes": [
+          "Feederhouse_ROOT",
+          "Header_Lift_Pivot",
+          "Header_ROOT",
+          "HD50R_L_Wing_ROOT",
+          "HD50R_R_Wing_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "reel_axis_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local metric measurement and exported-hierarchy assertion",
+        "evidence": {
+          "reel_descends_from_header": true,
+          "reel_axle_present": true,
+          "reconstructed_axle_span_m": 14.7
+        },
+        "semantic_nodes": [
+          "Header_ROOT",
+          "Reel_Pivot",
+          "Reel_ROOT",
+          "HD50R_Reel_Axle"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "unloader_hinge_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local metric measurement and exported-hierarchy assertion",
+        "evidence": {
+          "measured_tube_centerline_m": 9.45,
+          "selected_option_m": 9.45
+        },
+        "semantic_nodes": [
+          "Unloader_Swing_Pivot",
+          "Unloader_ROOT",
+          "Unloader_Auger_9_45m_Tube"
+        ],
+        "fact_ids": [
+          "selected-auger-length"
+        ]
+      }
+    },
+    {
+      "id": "auger_header_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local metric measurement and exported-hierarchy assertion",
+        "evidence": {
+          "neutral_pose_min_vertical_clearance_m": 0.891995,
+          "scope": "authored neutral pose"
+        },
+        "semantic_nodes": [
+          "Unloader_ROOT",
+          "Unloader_Auger_9_45m_Tube",
+          "Header_ROOT",
+          "HD50R_Main_Backbone"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "ground_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local metric measurement and exported-hierarchy assertion",
+        "evidence": {
+          "minimum_visible_y_m": 0.0,
+          "ground_y_m": 0.0
+        },
+        "semantic_nodes": [
+          "Running_Gear_ROOT",
+          "Front_L_Tire",
+          "Front_R_Tire",
+          "Rear_L_Tire",
+          "Rear_R_Tire"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "self_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local metric measurement and exported-hierarchy assertion",
+        "evidence": {
+          "neutral_auger_header_gap_m": 0.891995,
+          "tank_gross_profile_prism_m3": 20.65284,
+          "tank_nominal_capacity_m3": 16.21,
+          "nominal_capacity_fraction_of_gross": 0.78488,
+          "dual_rotor_count": 2,
+          "each_rotor_length_m": 3.5,
+          "each_rotor_diameter_m": 0.6,
+          "scope": "neutral structural pose and component containment; swept-volume solver remains outside claim"
+        },
+        "semantic_nodes": [
+          "Unloader_ROOT",
+          "Header_ROOT",
+          "Grain_Tank_External_Volume"
+        ],
+        "fact_ids": [
+          "rotor-count",
+          "rotor-length",
+          "rotor-diameter",
+          "grain-tank-capacity"
+        ]
+      }
+    },
+    {
+      "id": "neutral_unbranded_material_review",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local metric measurement and exported-hierarchy assertion",
+        "evidence": {
+          "public_materials": [
+            "Neutral_Body",
+            "Neutral_Body_Shadow",
+            "Neutral_Glass",
+            "Neutral_Graphite",
+            "Neutral_Rod",
+            "Neutral_Rubber",
+            "Neutral_Steel",
+            "Neutral_Visibility_Cue"
+          ],
+          "images": 0,
+          "textures": 0
+        },
+        "semantic_nodes": [
+          "Machine_Root"
+        ],
+        "fact_ids": []
+      }
+    }
   ],
   "reconstructed_values": {
     "presentation_carrier_length_m": 10.1,
@@ -164,20 +441,20 @@
     "hidden_geometry": "All hidden structure, pivot centers, anchors, linkage proportions, underbody volumes, and internal geometry are reconstructed visualization choices unless a design record explicitly identifies a manufacturer-published envelope constraint.",
     "generic_archetype_geometry": "combine proportions and visible detail are independently reconstructed for this technical study.",
     "visible_envelope_calibration": {
-      "classification": "reconstructed_visible_envelope_calibration",
+      "classification": "authored_visible_envelope_measurement",
       "source_bounds_m": {
         "min_m": [
-          -4.651845,
+          -5.05,
           0.0,
           -7.6
         ],
         "max_m": [
-          5.454,
+          5.065605,
           4.0,
           7.6
         ],
         "size_m": [
-          10.105845,
+          10.115605,
           4.0,
           15.2
         ]
@@ -200,9 +477,9 @@
         ]
       },
       "axis_scale_factors": [
-        0.999421577,
         1.0,
-        1.000000013
+        1.0,
+        1.0
       ],
       "calibrated_bounds_m": {
         "min_m": [
@@ -211,17 +488,17 @@
           -7.6
         ],
         "max_m": [
-          5.05,
+          5.065605,
           4.0,
           7.6
         ],
         "size_m": [
-          10.1,
+          10.115605,
           4.0,
           15.2
         ]
       },
-      "authority": "reconstructed_not_machine_specific_engineering"
+      "authority": "independently_measured_from_authored_geometry"
     }
   },
   "unresolved_choices": [
@@ -232,40 +509,40 @@
   ],
   "mechanical_gaps": [
     "Header and feeder motions are reconstructed visual transforms without ground following, header mass or crop interaction.",
-    "The reel and feeder are visual cues without a crop-flow or speed-control solver.",
-    "Unloading auger motion omits internal screw, grain flow, hydraulic loads and validated stowed collision closure.",
-    "Dual rotors and cleaning systems are documented but not modeled as validated internal machinery."
+    "The four-chain conveyor, reel, and exposed dual-rotor cutaway are schematic technical cues without crop-flow, concave-clearance, load, phasing, or speed-control solvers.",
+    "Unloading auger motion omits internal screw, grain flow, hydraulic loads and validated swept-volume or stowed collision closure.",
+    "Cleaning, residue, grain-transfer and powertrain internals remain outside the public structural study."
   ],
   "renders": [
     {
       "path": "review/renders/john-deere-x9-1100-operator-side.png",
-      "sha256": "d92faa824a80b5fd30922a6a77708ff67e96157ef88c4381633d420cb4dd2fe2",
-      "bytes": 238356
+      "sha256": "27c360b0794b8d72039a1b2574d572b06995a12ef39f3f5b59ca9e01059d84e7",
+      "bytes": 256241
     },
     {
       "path": "review/renders/john-deere-x9-1100-front-three-quarter.png",
-      "sha256": "84de215530fcc9926042dfecd1a3317c2a05437ea5585ee8270c4c5aaca7146a",
-      "bytes": 219806
+      "sha256": "2f6f1e67924d2933393976c14caad58479a487fe9cb9e7719e537e6f7eca4c30",
+      "bytes": 229145
     },
     {
       "path": "review/renders/john-deere-x9-1100-rear-three-quarter.png",
-      "sha256": "2c488b007b4369ce10990be31313fb847ac7efc6cb4203a9d89ba6a8049fc05f",
-      "bytes": 249519
+      "sha256": "05a57aef74c85d8847d0e84bf10c858ff83719989ade1c209175f9ab68b7daf7",
+      "bytes": 265630
     },
     {
       "path": "review/renders/john-deere-x9-1100-elevated-technical.png",
-      "sha256": "2fe88a6c30f994ec5b142c7108c3e96373a91da2e93fdfdac945401fb9446cc7",
-      "bytes": 330548
+      "sha256": "8fe331f3731cfe6dc5f0c7a9daafed144beed85816a06147bfe66c0a06ae8af8",
+      "bytes": 353627
     },
     {
       "path": "review/renders/john-deere-x9-1100-articulation-detail.png",
-      "sha256": "268d5868d01e82ea94d556161f8736bcb4b606ac120159719449696c8e2f07c3",
-      "bytes": 274691
+      "sha256": "8f2daa4d8cce9070419a5b770cf24d3e02fc772794d0911474a28d0920d4245a",
+      "bytes": 353515
     },
     {
       "path": "review/renders/john-deere-x9-1100-right-side.png",
-      "sha256": "a9365e4e36b52836465dccac24a81f953345fcc450d9b6d6ece7d9e03782f42f",
-      "bytes": 237811
+      "sha256": "5ff2ca1cb32d825e8abb3a0ffea7bfbf737621639fc8e6fba7935e9691768e46",
+      "bytes": 252213
     }
   ],
   "build_verdict": "PASS",

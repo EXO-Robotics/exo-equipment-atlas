@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "machine_id": "case-ih-steiger-715-quadtrac",
-  "configuration_id": "CASEIH-STEIGER715-NAM-AG-QUADTRAC-PWRDRIVE-HDS-CAT4N-CANDIDATE",
+  "configuration_id": "CASEIH-STEIGER715-XMARKET-30IN-HDS-CAT4N-STUDY-CANDIDATE",
   "facts": [
     {"id":"rated-engine-power","subject":"Steiger 715 rated engine power","value":715,"unit":"hp","authority":"manufacturer_published","source_id":"CASEIH-STEIGER-US-BROCHURE-2025","location":"PDF page 23, 715 Quadtrac column"},
     {"id":"maximum-engine-power","subject":"Steiger 715 maximum engine power","value":778,"unit":"hp","authority":"manufacturer_published","source_id":"CASEIH-STEIGER-US-BROCHURE-2025","location":"PDF page 23, 715 Quadtrac column"},
@@ -20,13 +20,14 @@
     {"id":"hitch-category","subject":"available three-point hitch category","value":"Category 4N","unit":"category","authority":"manufacturer_published","source_id":"CASEIH-STEIGER-US-BROCHURE-2025","location":"PDF page 23"},
     {"id":"hitch-lift-capacity","subject":"three-point hitch lift capacity","value":10092,"unit":"kg","authority":"manufacturer_published","source_id":"CASEIH-STEIGER-US-BROCHURE-2025","location":"PDF page 23"},
     {"id":"quadtrac-ag-configuration","subject":"715 configuration availability","value":{"ag":true,"scraper":false},"unit":"availability","authority":"manufacturer_published","source_id":"CASEIH-STEIGER-US-BROCHURE-2025","location":"PDF page 6 model matrix"},
+    {"id":"selected-track-width","subject":"selected worldwide-study Quadtrac belt width","value":0.762,"unit":"m","authority":"manufacturer_published","source_id":"CASEIH-QUADTRAC-STEIGER-WORLD-TECH-2024","location":"PDF pages 11 and 16, 30-inch rubber-track configuration"},
     {"id":"public-envelope-x","subject":"Quadtrac 715 total longitudinal envelope","value":8.29,"unit":"m","authority":"manufacturer_published","source_id":"CASEIH-QUADTRAC-STEIGER-WORLD-TECH-2024","location":"PDF page 16, 8,290 mm total length, Quadtrac 715 column"},
     {"id":"public-envelope-y","subject":"Quadtrac 715 total vertical envelope","value":3.918,"unit":"m","authority":"manufacturer_published","source_id":"CASEIH-QUADTRAC-STEIGER-WORLD-TECH-2024","location":"PDF page 16, 3,918 mm total height, Quadtrac 715 column"},
     {"id":"public-envelope-z","subject":"Quadtrac 715 total lateral envelope with 30-inch tracks","value":2.997,"unit":"m","authority":"manufacturer_published","source_id":"CASEIH-QUADTRAC-STEIGER-WORLD-TECH-2024","location":"PDF pages 11 and 16, 2,997 mm total width with 30-inch rubber tracks"}
   ],
   "issues": [
-    {"id":"public-envelope-market-basis","status":"documented","detail":"The total dimensions come from an official Case IH worldwide-circulation technical brochure and the width is explicitly tied to 30-inch tracks. North American power and option availability remain controlled by the separate US brochure."},
-    {"id":"track-width-order-unresolved","status":"unresolved","detail":"The North American brochure identifies Quadtrac topology but does not bind one track width to this notional 715 order. Track width and belt profile remain reconstructed and are not presented as a sourced dimension."},
+    {"id":"public-envelope-market-basis","status":"documented","detail":"The visible-study total dimensions and 30-inch track width come from an official Case IH worldwide-circulation technical brochure. North American HDS, Category 4N and power references remain controlled by the separate US brochure; the study does not claim the cross-market combination is a dealer-orderable configuration."},
+    {"id":"track-width-order-unresolved","status":"documented","detail":"The visible study is explicitly frozen to the worldwide publication's 30-inch (0.762 m) belt basis. Dealer-order compatibility with the separately sourced North American HDS / Category 4N cues remains unresolved, and belt carcass and tread profile are reconstructed."},
     {"id":"hds-option-selection","status":"documented","detail":"HDS is an available option rather than universal standard equipment. This presentation explicitly selects it and excludes standard-undercarriage claims."},
     {"id":"static-geometry-boundary","status":"unresolved","detail":"Overall envelope, articulation center, four track-module pivots, roller suspension links, belt phase, hitch links and every hydraulic anchor are not established by the admitted publications."}
   ]

@@ -26,5 +26,14 @@
     "elevation": 0.33,
     "distance": 1.58
   },
-  "accent": "#bda575"
+  "accent": "#bda575",
+  "motion": {
+    "autoplay": true,
+    "durationSeconds": 18,
+    "mode": "sine",
+    "damping": 8,
+    "channels": [
+      {"id":"backhoe-swing","mechanismJointId":"backhoe_swing","label":"Backhoe rigid swing inspection - boom/linkages remain static","nodes":["Pivot_BackhoeSwing"],"property":"rotation.y","from":-0.18,"to":0.18,"phase":0.0,"mode":"offset","autoplay":"sine"}
+    ]
+  }
 }

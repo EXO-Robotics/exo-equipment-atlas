@@ -9,7 +9,8 @@
     "configuration": "machines/komatsu-wa475-10/configuration.json",
     "facts": "machines/komatsu-wa475-10/evidence/facts.json",
     "receipt": "machines/komatsu-wa475-10/production/asset-receipt.json",
-    "validation": "machines/komatsu-wa475-10/production/validation.json"
+    "validation": "machines/komatsu-wa475-10/production/validation.json",
+    "poster": "machines/komatsu-wa475-10/review/renders/wa475-10-technical-side.png"
   },
   "evidence": {
     "boundary": "Independent standard-boom study. Hitch, pivots, anchors, driveline, tire construction, bucket section, and motion interpolation remain reconstructed.",
@@ -26,5 +27,55 @@
     "elevation": 0.32,
     "distance": 1.52
   },
-  "accent": "#a9845d"
+  "accent": "#a9845d",
+  "motion": {
+    "autoplay": true,
+    "durationSeconds": 18,
+    "mode": "sine",
+    "damping": 8,
+    "channels": [
+      {
+        "id": "frame-articulation",
+        "mechanismJointId": "frame_articulation",
+        "label": "Articulated steering study",
+        "nodes": ["Articulation_FrontFrame_Root_Reconstructed"],
+        "property": "rotation.y",
+        "from": -0.32,
+        "to": 0.32,
+        "phase": 0.0,
+        "mode": "offset",
+        "autoplay": "sine"
+      },
+      {
+        "id": "front-wheel-rotation",
+        "mechanismJointId": "front_wheels",
+        "label": "Front-wheel travel study",
+        "nodes": [
+          "FrontWheel_L_Pivot_ROOT",
+          "FrontWheel_R_Pivot_ROOT"
+        ],
+        "property": "rotation.z",
+        "from": -0.40,
+        "to": 0.40,
+        "phase": 0.58,
+        "mode": "offset",
+        "autoplay": "sine"
+      },
+      {
+        "id": "rear-wheel-rotation",
+        "mechanismJointId": "rear_wheels",
+        "label": "Rear-wheel travel study",
+        "nodes": [
+          "RearWheel_L_Pivot_ROOT",
+          "RearWheel_R_Pivot_ROOT"
+        ],
+        "property": "rotation.z",
+        "from": -0.40,
+        "to": 0.40,
+        "phase": 0.58,
+        "mode": "offset",
+        "autoplay": "sine"
+      }
+    ]
+  }
 }

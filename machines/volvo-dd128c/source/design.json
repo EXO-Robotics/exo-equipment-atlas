@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "volvo-dd128c",
+  "display_name": "Volvo DD128C",
+  "configuration_id": "VOLVO-DD128C-NAM-T4F-2000MM-OPEN-ROPS-CANDIDATE",
+  "archetype": "wheeled_tractor",
+  "dimensions_m": {"length": 5.973, "width": 2.218, "height": 3.177},
+  "palette": "slate",
+  "published_constraints_used": [
+    "overall-length",
+    "overall-height",
+    "overall-width",
+    "drum-width",
+    "drum-diameter",
+    "drum-shell-thickness",
+    "drum-center-distance",
+    "water-capacity",
+    "spray-bars-per-drum",
+    "nozzles-per-spray-bar",
+    "drum-wipers",
+    "articulation-limit",
+    "oscillation-limit",
+    "auto-reversing-eccentrics"
+  ],
+  "reconstructed_values": {
+    "schema_archetype_boundary": "wheeled_tractor is only the nearest admitted carrier-envelope schema token; the machine-local builder and public topology are a tandem asphalt compactor and do not reuse tractor geometry.",
+    "pivot_centers": "Articulation and oscillation centers are reconstructed visual datums constrained by the published ranges.",
+    "water_enclosures": "Front and rear external gross enclosure volumes are larger than 1,280 L combined capacity; no internal capacity or equal split is claimed.",
+    "drum_construction": "Both public drum shells are closed annular meshes with 0.700 m outer and 0.680 m inner radii, making the published 20 mm wall directly inspectable.",
+    "viewer_motion": "Bounded 18-second presentation motion exposes articulation, oscillation, rolling drums, and opposed eccentric cues; it is not an operating or compaction solver."
+  },
+  "unresolved_choices": [
+    "exact serial and order family",
+    "tank internal shapes and capacity split",
+    "articulation and oscillation bearing construction",
+    "public material and branding authorization"
+  ],
+  "mechanical_gaps": [
+    "No terrain, compaction, hydraulic, vibration-force, swept-volume, or steering-force solver is claimed.",
+    "Steering-cylinder anchors, eccentric weights, bearing internals, scraper compliance, and spray routing remain reconstructed.",
+    "The full published oscillation endpoint describes terrain conformity and is not used as a flat-grade viewer pose."
+  ]
+}

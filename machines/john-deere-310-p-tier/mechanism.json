@@ -14,6 +14,7 @@
     {"id": "right_stabilizer", "type": "coupled_revolute", "authority": "reconstructed", "source_ids": ["JD-310P-MB310PAU"], "unresolved": ["pivots, cylinder and foot geometry"]},
     {"id": "front_steering", "type": "paired_revolute", "axis": "+Y", "authority": "reconstructed", "source_ids": ["JD-310P-MB310PAU"], "unresolved": ["knuckle, tie-rod and cylinder geometry"]}
   ],
-  "required_gates": ["transport_envelope", "front_loader_linkage_closure", "backhoe_linkage_closure", "backhoe_swing_arc", "stabilizer_continuity", "steering_continuity", "all_cylinder_length_continuity", "ground_collision", "self_collision", "front_rear_pose_interference"],
-  "release_state": "no_geometry_no_solver_no_claim"
+  "required_gates": ["decoded_public_transport_envelope", "decoded_public_pivot_world_positions", "viewer_motion_nodes_resolve", "public_semantic_hierarchy", "decoded_public_asset_counts", "source_design_contract_binding"],
+  "static_only_limits": ["front-loader lift and bucket linkage", "backhoe boom/dipper/bucket linkage", "stabilizer deployment", "steering tie rod and cylinder", "hydraulic cylinder length solve", "ground and self collision"],
+  "release_state": "technical_structural_study_built_solver_unverified"
 }

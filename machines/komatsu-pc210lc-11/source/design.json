@@ -5,12 +5,13 @@
   "configuration_id": "KOMATSU-PC210LC11-CONV-T4F-57B-2925A-700SH-TL085-CANDIDATE",
   "archetype": "excavator",
   "dimensions_m": {"length":9.705,"width":3.08,"height":3.135},
-  "palette": "sand",
-  "published_constraints_used": ["public-envelope-x","public-envelope-y","public-envelope-z","boom-length","arm-length","shoe-width","track-length","track-gauge","selected-bucket-capacity","selected-bucket-width"],
+  "palette": "slate",
+  "published_constraints_used": ["public-envelope-x","public-envelope-y","public-envelope-z","boom-length","arm-length","shoe-width","track-length","track-gauge","selected-bucket-width","maximum-digging-height","maximum-dumping-height","maximum-digging-depth","maximum-ground-reach","boom-cylinder-stroke","arm-cylinder-stroke","bucket-cylinder-stroke"],
   "reconstructed_values": {
     "hidden_geometry":"All front-equipment pivots and hydraulic anchors, bucket four-bar geometry, swing bearing, undercarriage rollers and belt route, hose paths, motion curves and internal construction are reconstructed visualization choices.",
-    "visible_actuation_study":"The fixed boom-lift cylinder, arm-crowd barrel and overlapping rod, bucket-curl barrel and overlapping rod, H-link, paired dogbones, pins, clevis and bucket ears are independently reconstructed for static visual closure. They are not manufacturer anchor coordinates or a solved linkage."
+    "visible_actuation_study":"Two boom-lift cylinder assemblies, the arm-crowd assembly, bucket-curl assembly, pivoted H-link, paired dogbones, pins, clevises and bucket ears are independently reconstructed. Fixed and moving cylinder halves are parented to their owning structures, overlap in the neutral pose, and are sampled against published strokes; anchors remain reconstructed.",
+    "finite_pose_solver":"A deterministic planar visualization solver samples the declared boom, arm, bucket and swing presentation limits for stroke feasibility, bucket four-bar closure, ground clearance and non-adjacent track clearance. It is not a dynamics, load, safety or manufacturer-authoritative solver."
   },
   "unresolved_choices": ["exact regional serial and equipment revision","coupler and tooth package","guards, cameras, lighting and hydraulics"],
-  "mechanical_gaps": ["No manufacturer-authoritative front-equipment solver","No collision or swept-volume proof"]
+  "mechanical_gaps": ["No manufacturer-authoritative pivot or cylinder-anchor coordinates","No force, stability, load, hose, wear, interference-volume or safety certification"]
 }

@@ -26,5 +26,37 @@
     "elevation": 0.34,
     "distance": 1.58
   },
-  "accent": "#c47a50"
+  "accent": "#c47a50",
+  "motion": {
+    "autoplay": true,
+    "durationSeconds": 18,
+    "mode": "sine",
+    "damping": 8,
+    "channels": [
+      {
+        "id": "lift-group-inspection",
+        "mechanismJointId": "lift_group",
+        "label": "Lift-group inspection motion - reconstructed",
+        "nodes": ["LiftMotion_ROOT"],
+        "property": "rotation.z",
+        "from": 0.0,
+        "to": 0.03,
+        "phase": 0.0,
+        "mode": "offset",
+        "autoplay": "sine"
+      },
+      {
+        "id": "bucket-tilt-inspection",
+        "mechanismJointId": "bucket_tilt",
+        "label": "Bucket tilt inspection motion - reconstructed",
+        "nodes": ["BucketPivotRoot"],
+        "property": "rotation.z",
+        "from": 0.0,
+        "to": 0.20,
+        "phase": 0.48,
+        "mode": "offset",
+        "autoplay": "sine"
+      }
+    ]
+  }
 }

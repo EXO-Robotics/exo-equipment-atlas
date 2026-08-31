@@ -26,5 +26,15 @@
     "elevation": 0.34,
     "distance": 1.62
   },
-  "accent": "#c8a45b"
+  "accent": "#c8a45b",
+  "motion": {
+    "autoplay": true,
+    "durationSeconds": 18,
+    "mode": "sine",
+    "damping": 8,
+    "channels": [
+      {"id":"left-drive-sprocket-cue","mechanismJointId":"left_track","label":"Reconstructed left drive-sprocket inspection cue - track belt static","nodes":["DriveSprocket_Root_L"],"property":"rotation.z","from":0,"to":6.283185,"phase":0.0,"mode":"offset","autoplay":"sine"},
+      {"id":"right-drive-sprocket-cue","mechanismJointId":"right_track","label":"Reconstructed right drive-sprocket inspection cue - track belt static","nodes":["DriveSprocket_Root_R"],"property":"rotation.z","from":0,"to":6.283185,"phase":0.5,"mode":"offset","autoplay":"sine"}
+    ]
+  }
 }

@@ -10,24 +10,44 @@
     "facts": "machines/vermeer-zr5-1200/evidence/facts.json",
     "receipt": "machines/vermeer-zr5-1200/production/asset-receipt.json",
     "validation": "machines/vermeer-zr5-1200/production/validation.json",
-    "poster": "machines/vermeer-zr5-1200/review/renders/vermeer-zr5-1200-operator-side.png"
+    "poster": "machines/vermeer-zr5-1200/review/renders/vermeer-zr5-1200-front-three-quarter.png"
   },
   "evidence": {
-    "boundary": "Neutral technical structural study; pickup cam path, round chamber internals, tailgate, quarter-turn ramp, steering and suspension geometry are reconstructed.",
-    "lede": "A current Stage V ZR5-1200 is frozen with the standard cammed pickup, netwrap and quarter-turn ramp, while normally hidden bale formation remains an explicit reconstruction.",
-    "factIds": ["public-envelope-x","public-envelope-y","public-envelope-z","engine-power","bale-diameter-range","pickup-tooth-width","pickup-bars","pickup-teeth","quarter-turn-function"]
+    "boundary": "Neutral technical structural study; pickup cam path, eight-belt chamber routing, tailgate, quarter-turn ramp, steering and independent suspension geometry are reconstructed.",
+    "lede": "The current ZR5-1200 is frozen with a 1.956 m five-bar, 65-double-tooth pickup, eight chamber belts, standard netwrap and integrated quarter-turn ramp.",
+    "factIds": [
+      "public-envelope-x",
+      "public-envelope-y",
+      "public-envelope-z",
+      "engine-power",
+      "bale-diameter-range",
+      "pickup-tooth-width",
+      "pickup-bars",
+      "pickup-teeth",
+      "chamber-belts",
+      "suspension-type",
+      "steering-modes",
+      "quarter-turn-function"
+    ]
   },
-  "camera": {"azimuth":-0.74,"elevation":0.36,"distance":10.8},
-  "accent": "#cf8a34",
+  "camera": {"azimuth": -0.74, "elevation": 0.36, "distance": 10.8},
+  "accent": "#807b70",
   "motion": {
     "autoplay": true,
-    "durationSeconds": 15,
+    "durationSeconds": 18,
     "mode": "sine",
-    "damping": 6.5,
+    "damping": 8,
     "channels": [
-      {"id":"front-suspension","label":"Independent front suspension study","nodes":["Front_Axle_ROOT"],"property":"position.y","from":-0.035,"to":0.045,"phase":0.0},
-      {"id":"pickup-lift","label":"Hydraulic pickup lift","nodes":["Pickup_ROOT"],"property":"rotation.z","from":-0.10,"to":0.24,"phase":0.24},
-      {"id":"tailgate","label":"Round-chamber tailgate","nodes":["Tailgate_ROOT"],"property":"rotation.z","from":0.0,"to":1.02,"phase":0.58,"autoplay":"ping-pong"}
+      {"id":"front-suspension","mechanismJointId":"independent_double_a_arm_suspension","label":"Independent front suspension","nodes":["Front_L_Suspension_ROOT","Front_R_Suspension_ROOT"],"property":"position.y","from":0.0,"to":0.08,"phase":0.0},
+      {"id":"rear-suspension","mechanismJointId":"independent_double_a_arm_suspension","label":"Independent rear suspension","nodes":["Rear_L_Suspension_ROOT","Rear_R_Suspension_ROOT"],"property":"position.y","from":0.0,"to":0.07,"phase":0.12},
+      {"id":"front-counter-steer","mechanismJointId":"four_wheel_counter_steering","label":"Front counter steering","nodes":["Front_L_Steering_Pivot","Front_R_Steering_Pivot"],"property":"rotation.y","from":-0.62,"to":0.62,"phase":0.20},
+      {"id":"rear-counter-steer","mechanismJointId":"four_wheel_counter_steering","label":"Rear counter steering","nodes":["Rear_L_Steering_Pivot","Rear_R_Steering_Pivot"],"property":"rotation.y","from":0.62,"to":-0.62,"phase":0.20},
+      {"id":"pickup-lift","mechanismJointId":"pickup_raise_lower","label":"Hydraulic pickup lift","nodes":["Pickup_ROOT"],"property":"rotation.z","from":0.0,"to":0.20,"phase":0.32},
+      {"id":"pickup-reel","mechanismJointId":"pickup_reel_rotation","label":"Five-bar pickup reel","nodes":["Pickup_Rotor_ROOT"],"property":"rotation.z","from":-0.85,"to":0.85,"phase":0.40},
+      {"id":"chamber-belts","mechanismJointId":"chamber_belt_and_roller_motion","label":"Eight-belt chamber cutaway","nodes":["Chamber_Belt_01_ROOT","Chamber_Belt_02_ROOT","Chamber_Belt_03_ROOT","Chamber_Belt_04_ROOT","Chamber_Belt_05_ROOT","Chamber_Belt_06_ROOT","Chamber_Belt_07_ROOT","Chamber_Belt_08_ROOT"],"property":"rotation.z","from":-0.72,"to":0.72,"phase":0.52},
+      {"id":"tailgate","mechanismJointId":"tailgate_raise_lower","label":"Round-chamber tailgate","nodes":["Tailgate_ROOT"],"property":"rotation.z","from":0.0,"to":0.88,"phase":0.64},
+      {"id":"quarter-turn-ramp","mechanismJointId":"quarter_turn_ramp","label":"Integrated quarter-turn ramp","nodes":["Quarter_Turn_Ramp_ROOT"],"property":"rotation.z","from":0.0,"to":-0.32,"phase":0.72},
+      {"id":"quarter-turn-cradle","mechanismJointId":"quarter_turn_cradle","label":"Quarter-turn cradle","nodes":["Quarter_Turn_Cradle_ROOT"],"property":"rotation.x","from":0.0,"to":1.0,"phase":0.78}
     ]
   }
 }

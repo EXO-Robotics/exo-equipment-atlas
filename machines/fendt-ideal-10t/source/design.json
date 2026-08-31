@@ -17,21 +17,10 @@
   "attachment_span_m": 10.70,
   "tracked_front": true,
   "palette": "slate",
-  "published_constraints_used": [
-    "carrier-length-without-header",
-    "selected-carrier-width",
-    "carrier-height",
-    "selected-powerflow-width",
-    "selected-track-width",
-    "selected-steering-axle-tyre",
-    "header-raised-ground-clearance",
-    "header-tilt-compensation",
-    "selected-discharge-tube",
-    "maximum-unloading-height",
-    "streamer-210-capacity"
-  ],
+  "published_constraints_used": [],
   "reconstructed_values": {
     "running_gear": "front_tracks_rear_wheels",
+    "source_freeze_boundary": "Only the two-step MotionShift fact is admitted from the hash-bound current GB table. Every visible dimension, selected option, mechanism topology and motion endpoint below is reconstructed and unresolved pending an applicable first-party technical freeze.",
     "carrier_width_m": 3.49,
     "header_width_m": 10.70,
     "header_visual_depth_m": 2.05,
@@ -49,9 +38,10 @@
     "unloader_swing_presentation_range_deg": [0, 76],
     "unloader_fold_presentation_range_deg": [0, 142],
     "neutral_material_policy": "matte slate and graphite body volumes, dark neutral rubber, neutral steel, restrained amber visibility cues, clear neutral glazing, no manufacturer colors, logos, wordmarks, decals, or copied textures",
-    "geometry_boundary": "Only the cited carrier envelope, selected header span, running-gear designation, nominal track width, capacities, and named equipment are manufacturer-bound. Body surfacing, header depth, undercarriage proportions, tyre shape, hidden structure, pivots, anchors, clearances, and detail placement are independently authored visualization choices."
+    "geometry_boundary": "No visible envelope, attachment span, running-gear dimension, capacity, or mechanism dimension is manufacturer-bound by the admitted freeze. Body surfacing, header depth, undercarriage proportions, tyre shape, hidden structure, pivots, anchors, clearances, and detail placement are independently authored visualization choices."
   },
   "unresolved_choices": [
+    "applicable first-party overall dimensions and selected-option technical matrix",
     "exact production serial, order code, country-road equipment, and dealer-installed options",
     "exact TrakRide belt, pad, guide-block, drive-wheel, roller, tensioner, and carrier-frame geometry",
     "exact 520/85R30 loaded radius, tread, rim, pressure, offset, and steering geometry",

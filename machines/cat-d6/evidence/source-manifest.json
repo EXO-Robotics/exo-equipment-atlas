@@ -41,8 +41,8 @@
       "local_path": "research/private/cat-d6/cat-d6-aexq4170-20c-product-brochure.pdf",
       "sha256": "cf6ebebf928944fcf89f5f6cd5aff84298c81e4bee4f5e9603f286f6ab9c5e1d",
       "bytes": 2532569,
-      "admission": "reference_only",
-      "note": "Used for visible construction and standard-equipment observations, not scale extraction."
+      "admission": "primary",
+      "note": "Admitted only as first-party visible-form and standard-equipment authority, including the outside-mounted sprocket-segment arrangement. It is not dimensional or scale-drawing authority; segment count and geometry remain reconstructed."
     },
     {
       "id": "CAT-D6-PRODUCT-PAGE-AU-126600",

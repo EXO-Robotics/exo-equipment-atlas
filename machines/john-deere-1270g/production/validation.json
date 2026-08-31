@@ -29,8 +29,8 @@
   "gates": [
     {
       "id": "published-base-carrier-length",
-      "status": "PASS",
-      "detail": "Published configuration constraint represented by an explicit independently authored datum; publication art is not treated as a scale drawing.",
+      "status": "PENDING",
+      "detail": "Design-input datum retained for reconstruction; this does not claim an independently decoded public-geometry measurement.",
       "expected": {
         "value": 7.927,
         "tolerance": 0.001
@@ -42,8 +42,8 @@
     },
     {
       "id": "published-front-axle-middle-joint",
-      "status": "PASS",
-      "detail": "Published configuration constraint represented by an explicit independently authored datum; publication art is not treated as a scale drawing.",
+      "status": "PENDING",
+      "detail": "Design-input datum retained for reconstruction; this does not claim an independently decoded public-geometry measurement.",
       "expected": {
         "value": 2.15,
         "tolerance": 0.001
@@ -55,8 +55,8 @@
     },
     {
       "id": "published-rear-axle-middle-joint",
-      "status": "PASS",
-      "detail": "Published configuration constraint represented by an explicit independently authored datum; publication art is not treated as a scale drawing.",
+      "status": "PENDING",
+      "detail": "Design-input datum retained for reconstruction; this does not claim an independently decoded public-geometry measurement.",
       "expected": {
         "value": 2.28,
         "tolerance": 0.001
@@ -68,8 +68,8 @@
     },
     {
       "id": "published-wheelbase",
-      "status": "PASS",
-      "detail": "Published configuration constraint represented by an explicit independently authored datum; publication art is not treated as a scale drawing.",
+      "status": "PENDING",
+      "detail": "Design-input datum retained for reconstruction; this does not claim an independently decoded public-geometry measurement.",
       "expected": {
         "value": 4.43,
         "tolerance": 0.001
@@ -81,8 +81,8 @@
     },
     {
       "id": "published-minimum-width-600",
-      "status": "PASS",
-      "detail": "Published configuration constraint represented by an explicit independently authored datum; publication art is not treated as a scale drawing.",
+      "status": "PENDING",
+      "detail": "Design-input datum retained for reconstruction; this does not claim an independently decoded public-geometry measurement.",
       "expected": {
         "value": 2.746,
         "tolerance": 0.001
@@ -94,8 +94,8 @@
     },
     {
       "id": "published-transport-height",
-      "status": "PASS",
-      "detail": "Published configuration constraint represented by an explicit independently authored datum; publication art is not treated as a scale drawing.",
+      "status": "PENDING",
+      "detail": "Design-input datum retained for reconstruction; this does not claim an independently decoded public-geometry measurement.",
       "expected": {
         "value": 3.881,
         "tolerance": 0.001
@@ -107,8 +107,8 @@
     },
     {
       "id": "published-ground-clearance",
-      "status": "PASS",
-      "detail": "Published configuration constraint represented by an explicit independently authored datum; publication art is not treated as a scale drawing.",
+      "status": "PENDING",
+      "detail": "Design-input datum retained for reconstruction; this does not claim an independently decoded public-geometry measurement.",
       "expected": {
         "value": 0.717,
         "tolerance": 0.001
@@ -120,8 +120,8 @@
     },
     {
       "id": "published-selected-maximum-reach",
-      "status": "PASS",
-      "detail": "The selected 8.6 m head-included choice is represented in the max-reach review pose. Crane pivot, segment lengths and head reference point remain reconstructed.",
+      "status": "PENDING",
+      "detail": "The 8.6 m choice is represented only by a transient reconstructed review pose; it is not shipped motion or manufacturer-bound pivot proof.",
       "expected": {
         "value_m": 8.6,
         "tolerance_m": 0.001,
@@ -184,6 +184,9 @@
         "CabLeveling_Root_Reconstructed",
         "PowerUnit_Core",
         "CH7_Slew_Root_Reconstructed",
+        "CH7_Lift_Pivot_Reconstructed",
+        "CH7_Fold_Pivot_Reconstructed",
+        "CH7_Telescope_Pivot_Reconstructed",
         "CH7_InnerBoom",
         "CH7_OuterBoom",
         "CH7_TelescopeHousing",
@@ -293,7 +296,7 @@
           "sampled_luminance_range": 0.96362
         },
         "review/renders/1270g-rear-three-quarter.png": {
-          "bytes": 725386,
+          "bytes": 725385,
           "sampled_luminance_range": 0.91351
         },
         "review/renders/1270g-front-three-quarter.png": {
@@ -305,8 +308,8 @@
           "sampled_luminance_range": 0.94785
         },
         "review/renders/1270g-front-bogie-detail.png": {
-          "bytes": 537420,
-          "sampled_luminance_range": 0.81232
+          "bytes": 707127,
+          "sampled_luminance_range": 0.91544
         },
         "review/renders/1270g-cab-operator-side.png": {
           "bytes": 1072990,
@@ -379,6 +382,286 @@
       "id": "publication-release-deployment",
       "status": "PENDING",
       "detail": "Only the overall publisher may catalog, release, push or deploy this candidate."
+    },
+    {
+      "id": "decoded_public_envelope",
+      "status": "PASS",
+      "detail": {
+        "method": "Decode every reachable shipped-GLB POSITION vertex, compose node transforms, and compare the lateral AABB dimension to the published 600-series minimum-width datum.",
+        "evidence": {
+          "decoded_visible_aabb_m": {
+            "min_m": [
+              -4.15,
+              0.008182,
+              -1.388
+            ],
+            "max_m": [
+              8.617158,
+              4.858662,
+              1.41
+            ],
+            "size_m": [
+              12.767158,
+              4.850481,
+              2.798
+            ],
+            "decoded_position_vertices": 141374
+          },
+          "published_minimum_width_m": 2.746,
+          "absolute_delta_m": 0.052,
+          "tolerance_m": 0.07
+        },
+        "semantic_nodes": [
+          "JD1270G_Root"
+        ],
+        "fact_ids": [
+          "minimum-width-600"
+        ]
+      }
+    },
+    {
+      "id": "decoded_public_pivot_world_positions",
+      "status": "PASS",
+      "detail": {
+        "method": "Compose shipped-GLB node TRS from the active scene roots and compare every deterministic build-input pivot world translation.",
+        "evidence": {
+          "expected_xyz_m": {
+            "FrameSteer_Pivot_Reconstructed": [
+              0.0,
+              1.08,
+              0.0
+            ],
+            "FrontBalancedBogie_Pivot_Reconstructed": [
+              2.15,
+              0.83,
+              0.0
+            ],
+            "CabRotation_Root_Reconstructed": [
+              0.72,
+              1.2,
+              0.0
+            ],
+            "CabLeveling_Root_Reconstructed": [
+              0.72,
+              1.36,
+              0.0
+            ],
+            "CH7_Slew_Root_Reconstructed": [
+              1.65,
+              2.05,
+              0.0
+            ],
+            "CH7_Lift_Pivot_Reconstructed": [
+              1.65,
+              2.2,
+              0.0
+            ],
+            "CH7_Fold_Pivot_Reconstructed": [
+              3.6,
+              4.45,
+              0.0
+            ],
+            "CH7_Telescope_Pivot_Reconstructed": [
+              5.78,
+              3.62,
+              0.0
+            ]
+          },
+          "decoded_actual_xyz_m": {
+            "FrameSteer_Pivot_Reconstructed": [
+              0.0,
+              1.08,
+              0.0
+            ],
+            "FrontBalancedBogie_Pivot_Reconstructed": [
+              2.15,
+              0.83,
+              0.0
+            ],
+            "CabRotation_Root_Reconstructed": [
+              0.72,
+              1.2,
+              0.0
+            ],
+            "CabLeveling_Root_Reconstructed": [
+              0.72,
+              1.36,
+              0.0
+            ],
+            "CH7_Slew_Root_Reconstructed": [
+              1.65,
+              2.05,
+              0.0
+            ],
+            "CH7_Lift_Pivot_Reconstructed": [
+              1.65,
+              2.2,
+              0.0
+            ],
+            "CH7_Fold_Pivot_Reconstructed": [
+              3.6,
+              4.45,
+              0.0
+            ],
+            "CH7_Telescope_Pivot_Reconstructed": [
+              5.78,
+              3.62,
+              0.0
+            ]
+          },
+          "maximum_errors_m": {
+            "FrameSteer_Pivot_Reconstructed": 0.0,
+            "FrontBalancedBogie_Pivot_Reconstructed": 0.0,
+            "CabRotation_Root_Reconstructed": 0.0,
+            "CabLeveling_Root_Reconstructed": 0.0,
+            "CH7_Slew_Root_Reconstructed": 0.0,
+            "CH7_Lift_Pivot_Reconstructed": 0.0,
+            "CH7_Fold_Pivot_Reconstructed": 0.0,
+            "CH7_Telescope_Pivot_Reconstructed": 0.0
+          },
+          "tolerance_m": 1e-05
+        },
+        "semantic_nodes": [
+          "FrameSteer_Pivot_Reconstructed",
+          "FrontBalancedBogie_Pivot_Reconstructed",
+          "CabRotation_Root_Reconstructed",
+          "CabLeveling_Root_Reconstructed",
+          "CH7_Slew_Root_Reconstructed",
+          "CH7_Lift_Pivot_Reconstructed",
+          "CH7_Fold_Pivot_Reconstructed",
+          "CH7_Telescope_Pivot_Reconstructed"
+        ],
+        "fact_ids": [
+          "front-axle-middle-joint"
+        ]
+      }
+    },
+    {
+      "id": "exported_ch7_joint_hierarchy",
+      "status": "PASS",
+      "detail": {
+        "method": "Decode shipped-GLB parent indices and compare the CH7 slew/lift/fold/telescope/head chain to the required exported hierarchy.",
+        "evidence": {
+          "expected_parent": {
+            "CH7_Lift_Pivot_Reconstructed": "CH7_Slew_Root_Reconstructed",
+            "CH7_Fold_Pivot_Reconstructed": "CH7_Lift_Pivot_Reconstructed",
+            "CH7_Telescope_Pivot_Reconstructed": "CH7_Fold_Pivot_Reconstructed",
+            "Head_Rotator_Root_Reconstructed": "CH7_Telescope_Pivot_Reconstructed"
+          },
+          "decoded_parent": {
+            "CH7_Lift_Pivot_Reconstructed": "CH7_Slew_Root_Reconstructed",
+            "CH7_Fold_Pivot_Reconstructed": "CH7_Lift_Pivot_Reconstructed",
+            "CH7_Telescope_Pivot_Reconstructed": "CH7_Fold_Pivot_Reconstructed",
+            "Head_Rotator_Root_Reconstructed": "CH7_Telescope_Pivot_Reconstructed"
+          }
+        },
+        "semantic_nodes": [
+          "CH7_Lift_Pivot_Reconstructed",
+          "CH7_Fold_Pivot_Reconstructed",
+          "CH7_Telescope_Pivot_Reconstructed",
+          "Head_Rotator_Root_Reconstructed"
+        ],
+        "fact_ids": [
+          "boom-type"
+        ]
+      }
+    },
+    {
+      "id": "viewer_motion_nodes_resolve",
+      "status": "PASS",
+      "detail": {
+        "method": "Resolve every viewer Auto/manual motion target by exact name in the decoded shipped-GLB node table.",
+        "evidence": {
+          "resolved": {
+            "FrameSteer_Pivot_Reconstructed": true,
+            "FrontBalancedBogie_Pivot_Reconstructed": true,
+            "CabRotation_Root_Reconstructed": true,
+            "CH7_Slew_Root_Reconstructed": true
+          },
+          "static_only": [
+            "CH7 lift/fold/telescope",
+            "cab leveling",
+            "hydraulic endpoint solve",
+            "head processing functions"
+          ]
+        },
+        "semantic_nodes": [
+          "FrameSteer_Pivot_Reconstructed",
+          "FrontBalancedBogie_Pivot_Reconstructed",
+          "CabRotation_Root_Reconstructed",
+          "CH7_Slew_Root_Reconstructed"
+        ],
+        "fact_ids": [
+          "turning-angle",
+          "cab-rotation",
+          "boom-slewing-angle"
+        ]
+      }
+    },
+    {
+      "id": "static_hydraulic_components_present",
+      "status": "PASS",
+      "detail": {
+        "method": "Resolve each explicitly static CH7 hydraulic barrel/rod component by exact name in the decoded shipped GLB; no dynamic closure is claimed.",
+        "evidence": {
+          "resolved": {
+            "CH7_LiftCylinder": true,
+            "CH7_LiftRod": true,
+            "CH7_FoldCylinder": true,
+            "CH7_FoldRod": true,
+            "CH7_TelescopeCylinder": true,
+            "CH7_TelescopeRod": true
+          },
+          "dynamic_solver": false
+        },
+        "semantic_nodes": [
+          "CH7_LiftCylinder",
+          "CH7_LiftRod",
+          "CH7_FoldCylinder",
+          "CH7_FoldRod",
+          "CH7_TelescopeCylinder",
+          "CH7_TelescopeRod"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "source_design_contract_binding",
+      "status": "PASS",
+      "detail": {
+        "method": "Hash the deterministic build-input file, verify its machine/configuration identity at load time, and bind its unique retained fact IDs to the manufacturer constraints copied into the receipt.",
+        "evidence": {
+          "build_input_path": "source/build-input.json",
+          "build_input_sha256": "c85980ba74b0ed9486f73d6205d9e00dd65f28a883f8dff281505fc7a806c47e",
+          "design_path": "source/design.json",
+          "design_sha256": "2af4859bd65e69a90bfb4752d1ed0481e8749a144126a0180bcc3294a33f371d",
+          "primary_source_sha256": "b93cbf91f1e72fd91b78b53b8f52dd4aeaf917537db3d77903c3731d46720e22",
+          "retained_fact_count": 19,
+          "unique_fact_count": 19
+        },
+        "semantic_nodes": [],
+        "fact_ids": [
+          "base-carrier-length",
+          "front-axle-middle-joint",
+          "rear-axle-middle-joint",
+          "wheelbase",
+          "minimum-width-600",
+          "transport-height",
+          "transport-length",
+          "ground-clearance",
+          "selected-maximum-reach",
+          "turning-angle",
+          "boom-slewing-angle",
+          "cab-rotation",
+          "cab-sideways-tilt",
+          "cab-fore-aft-tilt",
+          "drive-configuration",
+          "boom-type",
+          "reference-head",
+          "tire-front",
+          "tire-rear"
+        ]
+      }
     },
     {
       "id": "public-mesh-identity-scales",
@@ -479,35 +762,35 @@
             ]
           },
           {
-            "node": "CabFrontPillar_L",
+            "node": "CH7_Telescope",
             "before": [
-              1.01814783,
-              0.05,
-              0.055
+              0.44229522,
+              0.14,
+              0.125
             ]
           },
           {
-            "node": "CabFrontPillar_R",
+            "node": "CH7_TelescopeCylinder",
             "before": [
-              1.01814783,
-              0.05,
-              0.055
+              0.072,
+              0.072,
+              0.63031745
             ]
           },
           {
-            "node": "CabRearPillar_L",
+            "node": "CH7_TelescopeHousing",
             "before": [
-              1.01560318,
-              0.05,
-              0.055
+              0.75802368,
+              0.19,
+              0.16
             ]
           },
           {
-            "node": "CabRearPillar_R",
+            "node": "CH7_TelescopeRod",
             "before": [
-              1.01560318,
-              0.05,
-              0.055
+              0.041,
+              0.041,
+              0.38160825
             ]
           },
           {
@@ -524,6 +807,14 @@
               0.052,
               0.052,
               0.61917502
+            ]
+          },
+          {
+            "node": "CH7_OuterBoom",
+            "before": [
+              1.16632986,
+              0.23,
+              0.2
             ]
           },
           {
@@ -559,43 +850,35 @@
             ]
           },
           {
-            "node": "CH7_OuterBoom",
+            "node": "CabFrontPillar_L",
             "before": [
-              1.16632986,
-              0.23,
-              0.2
+              1.01814783,
+              0.05,
+              0.055
             ]
           },
           {
-            "node": "CH7_Telescope",
+            "node": "CabFrontPillar_R",
             "before": [
-              0.44229522,
-              0.14,
-              0.125
+              1.01814783,
+              0.05,
+              0.055
             ]
           },
           {
-            "node": "CH7_TelescopeCylinder",
+            "node": "CabRearPillar_L",
             "before": [
-              0.072,
-              0.072,
-              0.63031745
+              1.01560307,
+              0.05,
+              0.055
             ]
           },
           {
-            "node": "CH7_TelescopeHousing",
+            "node": "CabRearPillar_R",
             "before": [
-              0.75802368,
-              0.19,
-              0.16
-            ]
-          },
-          {
-            "node": "CH7_TelescopeRod",
-            "before": [
-              0.041,
-              0.041,
-              0.38160825
+              1.01560307,
+              0.05,
+              0.055
             ]
           },
           {
@@ -699,7 +982,7 @@
         "default_scene_direct_root_count": 1,
         "default_scene_root_name": "JD1270G_Root",
         "identity_root": true,
-        "nodes": 442,
+        "nodes": 445,
         "meshes": 424,
         "materials": 10,
         "triangles": 73956,
@@ -724,9 +1007,2691 @@
             2.798
           ],
           "decoded_position_vertices": 141374
+        },
+        "node_world_translation_xyz_m": {
+          "JD1270G_Root": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "FrameSteer_Kingpin": [
+            0.0,
+            1.09,
+            0.0
+          ],
+          "FrameSteer_Pivot_Reconstructed": [
+            0.0,
+            1.08,
+            0.0
+          ],
+          "FrontFrame_Root": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "CabLevelCylinder_L": [
+            0.44,
+            1.37,
+            0.5
+          ],
+          "CabLevelCylinder_R": [
+            0.44,
+            1.37,
+            -0.5
+          ],
+          "CabLevelRod_L": [
+            0.54,
+            1.645,
+            0.455
+          ],
+          "CabLevelRod_R": [
+            0.54,
+            1.645,
+            -0.455
+          ],
+          "CabRotation_Root_Reconstructed": [
+            0.72,
+            1.2,
+            0.0
+          ],
+          "CabLeveling_Root_Reconstructed": [
+            0.72,
+            1.36,
+            0.0
+          ],
+          "CabDoorHinge_L_1": [
+            0.15,
+            2.0,
+            0.71
+          ],
+          "CabDoorHinge_L_2": [
+            1.28,
+            2.0,
+            0.71
+          ],
+          "CabDoorHinge_R_1": [
+            0.15,
+            2.0,
+            -0.71
+          ],
+          "CabDoorHinge_R_2": [
+            1.28,
+            2.0,
+            -0.71
+          ],
+          "CabDoorLower_L": [
+            0.74,
+            1.78,
+            0.675
+          ],
+          "CabDoorLower_R": [
+            0.74,
+            1.78,
+            -0.675
+          ],
+          "CabFrontGlass": [
+            1.48,
+            2.58,
+            0.0
+          ],
+          "CabFrontHeader": [
+            1.43,
+            3.52,
+            0.0
+          ],
+          "CabFrontPillar_L": [
+            1.5,
+            2.565,
+            0.66
+          ],
+          "CabFrontPillar_R": [
+            1.5,
+            2.565,
+            -0.66
+          ],
+          "CabLowerSill_L": [
+            0.76,
+            1.62,
+            0.66
+          ],
+          "CabLowerSill_R": [
+            0.76,
+            1.62,
+            -0.66
+          ],
+          "CabRearGlass": [
+            -0.02,
+            2.56,
+            0.0
+          ],
+          "CabRearHeader": [
+            0.0,
+            3.52,
+            0.0
+          ],
+          "CabRearPillar_L": [
+            -0.015,
+            2.565,
+            0.66
+          ],
+          "CabRearPillar_R": [
+            -0.015,
+            2.565,
+            -0.66
+          ],
+          "CabRoof": [
+            0.72,
+            3.65,
+            0.0
+          ],
+          "CabRoofLamp_01": [
+            1.25,
+            3.831,
+            0.5
+          ],
+          "CabRoofLamp_02": [
+            1.25,
+            3.831,
+            0.17
+          ],
+          "CabRoofLamp_03": [
+            1.25,
+            3.831,
+            -0.17
+          ],
+          "CabRoofLamp_04": [
+            1.25,
+            3.831,
+            -0.5
+          ],
+          "CabRoofRail_L": [
+            0.73,
+            3.57,
+            0.66
+          ],
+          "CabRoofRail_R": [
+            0.73,
+            3.57,
+            -0.66
+          ],
+          "CabRotation_BearingUpper": [
+            0.72,
+            1.34,
+            0.0
+          ],
+          "CabSideGlass_L": [
+            0.75,
+            2.57,
+            0.645
+          ],
+          "CabSideGlass_R": [
+            0.75,
+            2.57,
+            -0.645
+          ],
+          "OperatorConsole_L": [
+            0.78,
+            1.92,
+            0.42
+          ],
+          "OperatorConsole_R": [
+            0.78,
+            1.92,
+            -0.42
+          ],
+          "OperatorDisplay": [
+            1.2,
+            2.34,
+            0.38
+          ],
+          "OperatorHeadrest": [
+            0.34,
+            2.73,
+            0.0
+          ],
+          "OperatorJoystick_L": [
+            0.98,
+            2.12,
+            0.42
+          ],
+          "OperatorJoystick_R": [
+            0.98,
+            2.12,
+            -0.42
+          ],
+          "OperatorSeat_Back": [
+            0.35,
+            2.22,
+            0.0
+          ],
+          "OperatorSeat_Base": [
+            0.58,
+            1.75,
+            0.0
+          ],
+          "CabRotation_BearingLower": [
+            0.72,
+            1.2,
+            0.0
+          ],
+          "CarrierFrontDatumCap": [
+            3.727,
+            1.02,
+            0.0
+          ],
+          "CH7_Slew_Root_Reconstructed": [
+            1.65,
+            2.05,
+            0.0
+          ],
+          "CH7_CranePedestal": [
+            1.65,
+            1.86,
+            0.0
+          ],
+          "CH7_Hose_L_1": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "CH7_Hose_L_2": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "CH7_Hose_R_1": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "CH7_Hose_R_2": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "CH7_Lift_Pivot_Reconstructed": [
+            1.65,
+            2.2,
+            0.0
+          ],
+          "CH7_BasePin": [
+            1.65,
+            2.2,
+            0.0
+          ],
+          "CH7_Fold_Pivot_Reconstructed": [
+            3.6,
+            4.45,
+            0.0
+          ],
+          "CH7_ElbowPin": [
+            3.6,
+            4.45,
+            0.0
+          ],
+          "CH7_FoldCylinder": [
+            3.8178,
+            4.3657,
+            -0.3
+          ],
+          "CH7_FoldRod": [
+            5.0351,
+            3.92315,
+            -0.3
+          ],
+          "CH7_OuterBoom": [
+            4.69,
+            4.035,
+            0.0
+          ],
+          "CH7_Telescope_Pivot_Reconstructed": [
+            5.78,
+            3.62,
+            0.0
+          ],
+          "CH7_Telescope": [
+            7.325,
+            2.42,
+            0.0
+          ],
+          "CH7_TelescopeCylinder": [
+            6.35,
+            3.02,
+            -0.24
+          ],
+          "CH7_TelescopeHousing": [
+            6.39,
+            3.17,
+            0.0
+          ],
+          "CH7_TelescopeRod": [
+            7.105,
+            2.4,
+            -0.24
+          ],
+          "CH7_WristPin": [
+            5.78,
+            3.62,
+            0.0
+          ],
+          "Head_Rotator_Root_Reconstructed": [
+            7.65,
+            2.12,
+            0.0
+          ],
+          "H480C_ReferenceHead_Root_Reconstructed": [
+            7.65,
+            2.12,
+            0.0
+          ],
+          "H480C_Backbone_Reconstructed": [
+            7.462438,
+            1.730102,
+            0.0
+          ],
+          "H480C_DelimbingKnife_Lower_L_Reconstructed": [
+            7.7782,
+            1.279664,
+            0.43
+          ],
+          "H480C_DelimbingKnife_Lower_R_Reconstructed": [
+            7.7782,
+            1.279664,
+            -0.43
+          ],
+          "H480C_DelimbingKnife_Upper_L_Reconstructed": [
+            7.708025,
+            2.138253,
+            0.46
+          ],
+          "H480C_DelimbingKnife_Upper_R_Reconstructed": [
+            7.708025,
+            2.138253,
+            -0.46
+          ],
+          "H480C_FeedArm_L_Reconstructed": [
+            7.69036,
+            1.832822,
+            0.38
+          ],
+          "H480C_FeedArm_R_Reconstructed": [
+            7.69036,
+            1.832822,
+            -0.38
+          ],
+          "H480C_FeedBar_L_01_Reconstructed": [
+            8.248149,
+            1.779936,
+            0.43
+          ],
+          "H480C_FeedBar_L_02_Reconstructed": [
+            8.182415,
+            1.934795,
+            0.43
+          ],
+          "H480C_FeedBar_L_03_Reconstructed": [
+            8.048059,
+            2.03604,
+            0.43
+          ],
+          "H480C_FeedBar_L_04_Reconstructed": [
+            7.88108,
+            2.056543,
+            0.43
+          ],
+          "H480C_FeedBar_L_05_Reconstructed": [
+            7.726223,
+            1.990809,
+            0.43
+          ],
+          "H480C_FeedBar_L_06_Reconstructed": [
+            7.624978,
+            1.856452,
+            0.43
+          ],
+          "H480C_FeedBar_L_07_Reconstructed": [
+            7.604475,
+            1.689474,
+            0.43
+          ],
+          "H480C_FeedBar_L_08_Reconstructed": [
+            7.670209,
+            1.534615,
+            0.43
+          ],
+          "H480C_FeedBar_L_09_Reconstructed": [
+            7.804565,
+            1.43337,
+            0.43
+          ],
+          "H480C_FeedBar_L_10_Reconstructed": [
+            7.971543,
+            1.412868,
+            0.43
+          ],
+          "H480C_FeedBar_L_11_Reconstructed": [
+            8.126403,
+            1.478602,
+            0.43
+          ],
+          "H480C_FeedBar_L_12_Reconstructed": [
+            8.227647,
+            1.612958,
+            0.43
+          ],
+          "H480C_FeedBar_R_01_Reconstructed": [
+            8.248149,
+            1.779936,
+            -0.43
+          ],
+          "H480C_FeedBar_R_02_Reconstructed": [
+            8.182415,
+            1.934795,
+            -0.43
+          ],
+          "H480C_FeedBar_R_03_Reconstructed": [
+            8.048059,
+            2.03604,
+            -0.43
+          ],
+          "H480C_FeedBar_R_04_Reconstructed": [
+            7.88108,
+            2.056543,
+            -0.43
+          ],
+          "H480C_FeedBar_R_05_Reconstructed": [
+            7.726223,
+            1.990809,
+            -0.43
+          ],
+          "H480C_FeedBar_R_06_Reconstructed": [
+            7.624978,
+            1.856452,
+            -0.43
+          ],
+          "H480C_FeedBar_R_07_Reconstructed": [
+            7.604475,
+            1.689474,
+            -0.43
+          ],
+          "H480C_FeedBar_R_08_Reconstructed": [
+            7.670209,
+            1.534615,
+            -0.43
+          ],
+          "H480C_FeedBar_R_09_Reconstructed": [
+            7.804565,
+            1.43337,
+            -0.43
+          ],
+          "H480C_FeedBar_R_10_Reconstructed": [
+            7.971543,
+            1.412868,
+            -0.43
+          ],
+          "H480C_FeedBar_R_11_Reconstructed": [
+            8.126403,
+            1.478602,
+            -0.43
+          ],
+          "H480C_FeedBar_R_12_Reconstructed": [
+            8.227647,
+            1.612958,
+            -0.43
+          ],
+          "H480C_FeedCylinder_L_Reconstructed": [
+            7.497124,
+            2.058121,
+            0.33
+          ],
+          "H480C_FeedCylinder_R_Reconstructed": [
+            7.497124,
+            2.058121,
+            -0.33
+          ],
+          "H480C_FeedRod_L_Reconstructed": [
+            7.739874,
+            1.839781,
+            0.405
+          ],
+          "H480C_FeedRod_R_Reconstructed": [
+            7.739874,
+            1.839781,
+            -0.405
+          ],
+          "H480C_FeedRoller_L_Reconstructed": [
+            7.926312,
+            1.734705,
+            0.43
+          ],
+          "H480C_FeedRoller_R_Reconstructed": [
+            7.926312,
+            1.734705,
+            -0.43
+          ],
+          "H480C_FeedRollerHub_L_Reconstructed": [
+            7.926312,
+            1.734705,
+            0.43
+          ],
+          "H480C_FeedRollerHub_R_Reconstructed": [
+            7.926312,
+            1.734705,
+            -0.43
+          ],
+          "H480C_HeadMainHousing_Reconstructed": [
+            7.65,
+            2.12,
+            0.0
+          ],
+          "H480C_HoseManifold_Reconstructed": [
+            7.409873,
+            2.247825,
+            0.0
+          ],
+          "H480C_HosePort_01_Reconstructed": [
+            7.25855,
+            2.246754,
+            0.25
+          ],
+          "H480C_HosePort_02_Reconstructed": [
+            7.25855,
+            2.246754,
+            0.08
+          ],
+          "H480C_HosePort_03_Reconstructed": [
+            7.25855,
+            2.246754,
+            -0.08
+          ],
+          "H480C_HosePort_04_Reconstructed": [
+            7.25855,
+            2.246754,
+            -0.25
+          ],
+          "H480C_KnifePivot_Lower_L_Reconstructed": [
+            7.421864,
+            1.300272,
+            0.3
+          ],
+          "H480C_KnifePivot_Lower_R_Reconstructed": [
+            7.421864,
+            1.300272,
+            -0.3
+          ],
+          "H480C_KnifePivot_Upper_L_Reconstructed": [
+            7.327869,
+            2.256496,
+            0.34
+          ],
+          "H480C_KnifePivot_Upper_R_Reconstructed": [
+            7.327869,
+            2.256496,
+            -0.34
+          ],
+          "H480C_LocalHoseBundle_Reconstructed": [
+            7.65,
+            2.12,
+            0.0
+          ],
+          "H480C_LowerGuide_L_Reconstructed": [
+            7.999753,
+            1.068442,
+            0.31
+          ],
+          "H480C_LowerGuide_R_Reconstructed": [
+            7.999753,
+            1.068442,
+            -0.31
+          ],
+          "H480C_MeasuringWheel_Reconstructed": [
+            8.099957,
+            2.22363,
+            0.39
+          ],
+          "H480C_RotatorHousing_Reconstructed": [
+            7.579022,
+            2.625036,
+            0.0
+          ],
+          "H480C_RotatorPin_Reconstructed": [
+            7.579022,
+            2.625036,
+            0.0
+          ],
+          "H480C_SawBar_Reconstructed": [
+            8.135608,
+            1.107732,
+            0.57
+          ],
+          "H480C_SawChainCue_01_Reconstructed": [
+            7.786068,
+            1.008116,
+            0.59
+          ],
+          "H480C_SawChainCue_02_Reconstructed": [
+            7.885095,
+            1.022033,
+            0.59
+          ],
+          "H480C_SawChainCue_03_Reconstructed": [
+            7.984123,
+            1.035951,
+            0.59
+          ],
+          "H480C_SawChainCue_04_Reconstructed": [
+            8.083149,
+            1.049868,
+            0.59
+          ],
+          "H480C_SawChainCue_05_Reconstructed": [
+            8.182176,
+            1.063785,
+            0.59
+          ],
+          "H480C_SawChainCue_06_Reconstructed": [
+            8.281202,
+            1.077703,
+            0.59
+          ],
+          "H480C_SawChainCue_07_Reconstructed": [
+            8.380229,
+            1.09162,
+            0.59
+          ],
+          "H480C_SawChainCue_08_Reconstructed": [
+            8.479256,
+            1.105537,
+            0.59
+          ],
+          "H480C_SawChainCue_09_Reconstructed": [
+            8.578283,
+            1.119455,
+            0.59
+          ],
+          "H480C_SawDiscWitness_Reconstructed": [
+            7.623611,
+            1.086267,
+            0.565
+          ],
+          "H480C_SawGuard_Reconstructed": [
+            7.623611,
+            1.086267,
+            0.53
+          ],
+          "H480C_SawMotor_Reconstructed": [
+            7.438565,
+            1.18144,
+            0.43
+          ],
+          "H480C_ValveCover_Reconstructed": [
+            7.9231,
+            2.188676,
+            0.0
+          ],
+          "CH7_InnerBoom": [
+            2.625,
+            3.325,
+            0.0
+          ],
+          "CH7_InnerBoom_ParallelLink": [
+            2.665,
+            3.715,
+            0.38
+          ],
+          "CH7_LiftCylinder": [
+            1.92925,
+            2.50375,
+            0.3
+          ],
+          "CH7_LiftRod": [
+            2.925,
+            3.665,
+            0.3
+          ],
+          "CH7_PedestalCheek_L": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "CH7_PedestalCheek_R": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "CH7_SlewBearing_Upper": [
+            1.65,
+            1.68,
+            0.0
+          ],
+          "CH7_SlewBearing_Lower": [
+            1.65,
+            1.41,
+            0.0
+          ],
+          "FrontArticulationYoke": [
+            0.19,
+            1.09,
+            0.0
+          ],
+          "FrontBalancedBogie_Pivot_Reconstructed": [
+            2.15,
+            0.83,
+            0.0
+          ],
+          "Front_Front_L_Root": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Front_Front_L_Hub": [
+            2.88,
+            0.83,
+            1.083
+          ],
+          "Front_Front_L_Lug_01": [
+            3.06,
+            0.83,
+            1.368
+          ],
+          "Front_Front_L_Lug_02": [
+            3.007279,
+            0.957279,
+            1.368
+          ],
+          "Front_Front_L_Lug_03": [
+            2.88,
+            1.01,
+            1.368
+          ],
+          "Front_Front_L_Lug_04": [
+            2.752721,
+            0.957279,
+            1.368
+          ],
+          "Front_Front_L_Lug_05": [
+            2.7,
+            0.83,
+            1.368
+          ],
+          "Front_Front_L_Lug_06": [
+            2.752721,
+            0.702721,
+            1.368
+          ],
+          "Front_Front_L_Lug_07": [
+            2.88,
+            0.65,
+            1.368
+          ],
+          "Front_Front_L_Lug_08": [
+            3.007279,
+            0.702721,
+            1.368
+          ],
+          "Front_Front_L_RimOuter": [
+            2.88,
+            0.83,
+            1.083
+          ],
+          "Front_Front_L_Tire": [
+            2.88,
+            0.83,
+            1.083
+          ],
+          "Front_Front_L_Tread_01": [
+            3.61,
+            0.83,
+            1.083
+          ],
+          "Front_Front_L_Tread_02": [
+            3.565976,
+            1.079675,
+            1.083
+          ],
+          "Front_Front_L_Tread_03": [
+            3.439213,
+            1.299235,
+            1.083
+          ],
+          "Front_Front_L_Tread_04": [
+            3.245,
+            1.462198,
+            1.083
+          ],
+          "Front_Front_L_Tread_05": [
+            3.006763,
+            1.54891,
+            1.083
+          ],
+          "Front_Front_L_Tread_06": [
+            2.753237,
+            1.54891,
+            1.083
+          ],
+          "Front_Front_L_Tread_07": [
+            2.515,
+            1.462198,
+            1.083
+          ],
+          "Front_Front_L_Tread_08": [
+            2.320788,
+            1.299235,
+            1.083
+          ],
+          "Front_Front_L_Tread_09": [
+            2.194024,
+            1.079675,
+            1.083
+          ],
+          "Front_Front_L_Tread_10": [
+            2.15,
+            0.83,
+            1.083
+          ],
+          "Front_Front_L_Tread_11": [
+            2.194024,
+            0.580325,
+            1.083
+          ],
+          "Front_Front_L_Tread_12": [
+            2.320788,
+            0.360765,
+            1.083
+          ],
+          "Front_Front_L_Tread_13": [
+            2.515,
+            0.197801,
+            1.083
+          ],
+          "Front_Front_L_Tread_14": [
+            2.753237,
+            0.11109,
+            1.083
+          ],
+          "Front_Front_L_Tread_15": [
+            3.006763,
+            0.11109,
+            1.083
+          ],
+          "Front_Front_L_Tread_16": [
+            3.245,
+            0.197801,
+            1.083
+          ],
+          "Front_Front_L_Tread_17": [
+            3.439213,
+            0.360765,
+            1.083
+          ],
+          "Front_Front_L_Tread_18": [
+            3.565976,
+            0.580325,
+            1.083
+          ],
+          "Front_Front_R_Root": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Front_Front_R_Hub": [
+            2.88,
+            0.83,
+            -1.083
+          ],
+          "Front_Front_R_Lug_01": [
+            3.06,
+            0.83,
+            -1.368
+          ],
+          "Front_Front_R_Lug_02": [
+            3.007279,
+            0.957279,
+            -1.368
+          ],
+          "Front_Front_R_Lug_03": [
+            2.88,
+            1.01,
+            -1.368
+          ],
+          "Front_Front_R_Lug_04": [
+            2.752721,
+            0.957279,
+            -1.368
+          ],
+          "Front_Front_R_Lug_05": [
+            2.7,
+            0.83,
+            -1.368
+          ],
+          "Front_Front_R_Lug_06": [
+            2.752721,
+            0.702721,
+            -1.368
+          ],
+          "Front_Front_R_Lug_07": [
+            2.88,
+            0.65,
+            -1.368
+          ],
+          "Front_Front_R_Lug_08": [
+            3.007279,
+            0.702721,
+            -1.368
+          ],
+          "Front_Front_R_RimOuter": [
+            2.88,
+            0.83,
+            -1.083
+          ],
+          "Front_Front_R_Tire": [
+            2.88,
+            0.83,
+            -1.083
+          ],
+          "Front_Front_R_Tread_01": [
+            3.61,
+            0.83,
+            -1.083
+          ],
+          "Front_Front_R_Tread_02": [
+            3.565976,
+            1.079675,
+            -1.083
+          ],
+          "Front_Front_R_Tread_03": [
+            3.439213,
+            1.299235,
+            -1.083
+          ],
+          "Front_Front_R_Tread_04": [
+            3.245,
+            1.462198,
+            -1.083
+          ],
+          "Front_Front_R_Tread_05": [
+            3.006763,
+            1.54891,
+            -1.083
+          ],
+          "Front_Front_R_Tread_06": [
+            2.753237,
+            1.54891,
+            -1.083
+          ],
+          "Front_Front_R_Tread_07": [
+            2.515,
+            1.462198,
+            -1.083
+          ],
+          "Front_Front_R_Tread_08": [
+            2.320788,
+            1.299235,
+            -1.083
+          ],
+          "Front_Front_R_Tread_09": [
+            2.194024,
+            1.079675,
+            -1.083
+          ],
+          "Front_Front_R_Tread_10": [
+            2.15,
+            0.83,
+            -1.083
+          ],
+          "Front_Front_R_Tread_11": [
+            2.194024,
+            0.580325,
+            -1.083
+          ],
+          "Front_Front_R_Tread_12": [
+            2.320788,
+            0.360765,
+            -1.083
+          ],
+          "Front_Front_R_Tread_13": [
+            2.515,
+            0.197801,
+            -1.083
+          ],
+          "Front_Front_R_Tread_14": [
+            2.753237,
+            0.11109,
+            -1.083
+          ],
+          "Front_Front_R_Tread_15": [
+            3.006763,
+            0.11109,
+            -1.083
+          ],
+          "Front_Front_R_Tread_16": [
+            3.245,
+            0.197801,
+            -1.083
+          ],
+          "Front_Front_R_Tread_17": [
+            3.439213,
+            0.360765,
+            -1.083
+          ],
+          "Front_Front_R_Tread_18": [
+            3.565976,
+            0.580325,
+            -1.083
+          ],
+          "Front_Rear_L_Root": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Front_Rear_L_Hub": [
+            1.42,
+            0.83,
+            1.083
+          ],
+          "Front_Rear_L_Lug_01": [
+            1.6,
+            0.83,
+            1.368
+          ],
+          "Front_Rear_L_Lug_02": [
+            1.547279,
+            0.957279,
+            1.368
+          ],
+          "Front_Rear_L_Lug_03": [
+            1.42,
+            1.01,
+            1.368
+          ],
+          "Front_Rear_L_Lug_04": [
+            1.292721,
+            0.957279,
+            1.368
+          ],
+          "Front_Rear_L_Lug_05": [
+            1.24,
+            0.83,
+            1.368
+          ],
+          "Front_Rear_L_Lug_06": [
+            1.292721,
+            0.702721,
+            1.368
+          ],
+          "Front_Rear_L_Lug_07": [
+            1.42,
+            0.65,
+            1.368
+          ],
+          "Front_Rear_L_Lug_08": [
+            1.547279,
+            0.702721,
+            1.368
+          ],
+          "Front_Rear_L_RimOuter": [
+            1.42,
+            0.83,
+            1.083
+          ],
+          "Front_Rear_L_Tire": [
+            1.42,
+            0.83,
+            1.083
+          ],
+          "Front_Rear_L_Tread_01": [
+            2.15,
+            0.83,
+            1.083
+          ],
+          "Front_Rear_L_Tread_02": [
+            2.105976,
+            1.079675,
+            1.083
+          ],
+          "Front_Rear_L_Tread_03": [
+            1.979212,
+            1.299235,
+            1.083
+          ],
+          "Front_Rear_L_Tread_04": [
+            1.785,
+            1.462198,
+            1.083
+          ],
+          "Front_Rear_L_Tread_05": [
+            1.546763,
+            1.54891,
+            1.083
+          ],
+          "Front_Rear_L_Tread_06": [
+            1.293237,
+            1.54891,
+            1.083
+          ],
+          "Front_Rear_L_Tread_07": [
+            1.055,
+            1.462198,
+            1.083
+          ],
+          "Front_Rear_L_Tread_08": [
+            0.860788,
+            1.299235,
+            1.083
+          ],
+          "Front_Rear_L_Tread_09": [
+            0.734024,
+            1.079675,
+            1.083
+          ],
+          "Front_Rear_L_Tread_10": [
+            0.69,
+            0.83,
+            1.083
+          ],
+          "Front_Rear_L_Tread_11": [
+            0.734024,
+            0.580325,
+            1.083
+          ],
+          "Front_Rear_L_Tread_12": [
+            0.860788,
+            0.360765,
+            1.083
+          ],
+          "Front_Rear_L_Tread_13": [
+            1.055,
+            0.197801,
+            1.083
+          ],
+          "Front_Rear_L_Tread_14": [
+            1.293237,
+            0.11109,
+            1.083
+          ],
+          "Front_Rear_L_Tread_15": [
+            1.546763,
+            0.11109,
+            1.083
+          ],
+          "Front_Rear_L_Tread_16": [
+            1.785,
+            0.197801,
+            1.083
+          ],
+          "Front_Rear_L_Tread_17": [
+            1.979212,
+            0.360765,
+            1.083
+          ],
+          "Front_Rear_L_Tread_18": [
+            2.105976,
+            0.580325,
+            1.083
+          ],
+          "Front_Rear_R_Root": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Front_Rear_R_Hub": [
+            1.42,
+            0.83,
+            -1.083
+          ],
+          "Front_Rear_R_Lug_01": [
+            1.6,
+            0.83,
+            -1.368
+          ],
+          "Front_Rear_R_Lug_02": [
+            1.547279,
+            0.957279,
+            -1.368
+          ],
+          "Front_Rear_R_Lug_03": [
+            1.42,
+            1.01,
+            -1.368
+          ],
+          "Front_Rear_R_Lug_04": [
+            1.292721,
+            0.957279,
+            -1.368
+          ],
+          "Front_Rear_R_Lug_05": [
+            1.24,
+            0.83,
+            -1.368
+          ],
+          "Front_Rear_R_Lug_06": [
+            1.292721,
+            0.702721,
+            -1.368
+          ],
+          "Front_Rear_R_Lug_07": [
+            1.42,
+            0.65,
+            -1.368
+          ],
+          "Front_Rear_R_Lug_08": [
+            1.547279,
+            0.702721,
+            -1.368
+          ],
+          "Front_Rear_R_RimOuter": [
+            1.42,
+            0.83,
+            -1.083
+          ],
+          "Front_Rear_R_Tire": [
+            1.42,
+            0.83,
+            -1.083
+          ],
+          "Front_Rear_R_Tread_01": [
+            2.15,
+            0.83,
+            -1.083
+          ],
+          "Front_Rear_R_Tread_02": [
+            2.105976,
+            1.079675,
+            -1.083
+          ],
+          "Front_Rear_R_Tread_03": [
+            1.979212,
+            1.299235,
+            -1.083
+          ],
+          "Front_Rear_R_Tread_04": [
+            1.785,
+            1.462198,
+            -1.083
+          ],
+          "Front_Rear_R_Tread_05": [
+            1.546763,
+            1.54891,
+            -1.083
+          ],
+          "Front_Rear_R_Tread_06": [
+            1.293237,
+            1.54891,
+            -1.083
+          ],
+          "Front_Rear_R_Tread_07": [
+            1.055,
+            1.462198,
+            -1.083
+          ],
+          "Front_Rear_R_Tread_08": [
+            0.860788,
+            1.299235,
+            -1.083
+          ],
+          "Front_Rear_R_Tread_09": [
+            0.734024,
+            1.079675,
+            -1.083
+          ],
+          "Front_Rear_R_Tread_10": [
+            0.69,
+            0.83,
+            -1.083
+          ],
+          "Front_Rear_R_Tread_11": [
+            0.734024,
+            0.580325,
+            -1.083
+          ],
+          "Front_Rear_R_Tread_12": [
+            0.860788,
+            0.360765,
+            -1.083
+          ],
+          "Front_Rear_R_Tread_13": [
+            1.055,
+            0.197801,
+            -1.083
+          ],
+          "Front_Rear_R_Tread_14": [
+            1.293237,
+            0.11109,
+            -1.083
+          ],
+          "Front_Rear_R_Tread_15": [
+            1.546763,
+            0.11109,
+            -1.083
+          ],
+          "Front_Rear_R_Tread_16": [
+            1.785,
+            0.197801,
+            -1.083
+          ],
+          "Front_Rear_R_Tread_17": [
+            1.979212,
+            0.360765,
+            -1.083
+          ],
+          "Front_Rear_R_Tread_18": [
+            2.105976,
+            0.580325,
+            -1.083
+          ],
+          "FrontBogieAxle_L_Front": [
+            2.88,
+            0.83,
+            1.083
+          ],
+          "FrontBogieAxle_L_Rear": [
+            1.42,
+            0.83,
+            1.083
+          ],
+          "FrontBogieAxle_R_Front": [
+            2.88,
+            0.83,
+            -1.083
+          ],
+          "FrontBogieAxle_R_Rear": [
+            1.42,
+            0.83,
+            -1.083
+          ],
+          "FrontBogieBeam_L": [
+            2.15,
+            0.83,
+            1.083
+          ],
+          "FrontBogieBeam_R": [
+            2.15,
+            0.83,
+            -1.083
+          ],
+          "FrontBogieHub_L": [
+            2.15,
+            0.83,
+            1.083
+          ],
+          "FrontBogieHub_R": [
+            2.15,
+            0.83,
+            -1.083
+          ],
+          "FrontFrame_BellyPan": [
+            1.92,
+            0.767,
+            0.0
+          ],
+          "FrontFrame_MainRail": [
+            1.95,
+            0.91,
+            0.0
+          ],
+          "RearFrame_Root": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "CarrierRearDatumCap": [
+            -4.1,
+            1.02,
+            0.0
+          ],
+          "CoolingGrille_L_01": [
+            -3.34,
+            1.45,
+            1.14
+          ],
+          "CoolingGrille_L_02": [
+            -3.34,
+            1.61,
+            1.14
+          ],
+          "CoolingGrille_L_03": [
+            -3.34,
+            1.77,
+            1.14
+          ],
+          "CoolingGrille_L_04": [
+            -3.34,
+            1.93,
+            1.14
+          ],
+          "CoolingGrille_L_05": [
+            -3.34,
+            2.09,
+            1.14
+          ],
+          "CoolingGrille_L_06": [
+            -3.34,
+            2.25,
+            1.14
+          ],
+          "CoolingGrille_R_01": [
+            -3.34,
+            1.45,
+            -1.14
+          ],
+          "CoolingGrille_R_02": [
+            -3.34,
+            1.61,
+            -1.14
+          ],
+          "CoolingGrille_R_03": [
+            -3.34,
+            1.77,
+            -1.14
+          ],
+          "CoolingGrille_R_04": [
+            -3.34,
+            1.93,
+            -1.14
+          ],
+          "CoolingGrille_R_05": [
+            -3.34,
+            2.09,
+            -1.14
+          ],
+          "CoolingGrille_R_06": [
+            -3.34,
+            2.25,
+            -1.14
+          ],
+          "ExhaustStack": [
+            -3.58,
+            2.88,
+            -0.62
+          ],
+          "ExhaustTip": [
+            -3.54,
+            3.27,
+            -0.62
+          ],
+          "FrameSteerCylinder_L": [
+            -0.2,
+            1.2,
+            0.375
+          ],
+          "FrameSteerCylinder_R": [
+            -0.2,
+            1.2,
+            -0.375
+          ],
+          "FrameSteerRod_L": [
+            0.36,
+            1.18,
+            0.375
+          ],
+          "FrameSteerRod_R": [
+            0.36,
+            1.18,
+            -0.375
+          ],
+          "PanelFastener_L_01": [
+            -3.72,
+            1.28,
+            1.155
+          ],
+          "PanelFastener_L_02": [
+            -2.92,
+            1.4,
+            1.155
+          ],
+          "PanelFastener_L_03": [
+            -2.1,
+            1.28,
+            1.155
+          ],
+          "PanelFastener_L_04": [
+            -1.28,
+            1.4,
+            1.155
+          ],
+          "PanelFastener_L_05": [
+            -0.79,
+            1.28,
+            1.155
+          ],
+          "PanelFastener_R_01": [
+            -3.72,
+            1.28,
+            -1.155
+          ],
+          "PanelFastener_R_02": [
+            -2.92,
+            1.4,
+            -1.155
+          ],
+          "PanelFastener_R_03": [
+            -2.1,
+            1.28,
+            -1.155
+          ],
+          "PanelFastener_R_04": [
+            -1.28,
+            1.4,
+            -1.155
+          ],
+          "PanelFastener_R_05": [
+            -0.79,
+            1.28,
+            -1.155
+          ],
+          "PowerServicePanel_L": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "PowerServicePanel_R": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "PowerUnit_Core": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "PowerUnit_Handrail": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "PowerUnit_TopDeck": [
+            -2.24,
+            2.53,
+            0.0
+          ],
+          "Rear_Front_L_Root": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Rear_Front_L_Hub": [
+            -1.55,
+            0.83,
+            1.083
+          ],
+          "Rear_Front_L_Lug_01": [
+            -1.37,
+            0.83,
+            1.368
+          ],
+          "Rear_Front_L_Lug_02": [
+            -1.422721,
+            0.957279,
+            1.368
+          ],
+          "Rear_Front_L_Lug_03": [
+            -1.55,
+            1.01,
+            1.368
+          ],
+          "Rear_Front_L_Lug_04": [
+            -1.677279,
+            0.957279,
+            1.368
+          ],
+          "Rear_Front_L_Lug_05": [
+            -1.73,
+            0.83,
+            1.368
+          ],
+          "Rear_Front_L_Lug_06": [
+            -1.677279,
+            0.702721,
+            1.368
+          ],
+          "Rear_Front_L_Lug_07": [
+            -1.55,
+            0.65,
+            1.368
+          ],
+          "Rear_Front_L_Lug_08": [
+            -1.422721,
+            0.702721,
+            1.368
+          ],
+          "Rear_Front_L_RimOuter": [
+            -1.55,
+            0.83,
+            1.083
+          ],
+          "Rear_Front_L_Tire": [
+            -1.55,
+            0.83,
+            1.083
+          ],
+          "Rear_Front_L_Tread_01": [
+            -0.82,
+            0.83,
+            1.083
+          ],
+          "Rear_Front_L_Tread_02": [
+            -0.864024,
+            1.079675,
+            1.083
+          ],
+          "Rear_Front_L_Tread_03": [
+            -0.990788,
+            1.299235,
+            1.083
+          ],
+          "Rear_Front_L_Tread_04": [
+            -1.185,
+            1.462198,
+            1.083
+          ],
+          "Rear_Front_L_Tread_05": [
+            -1.423237,
+            1.54891,
+            1.083
+          ],
+          "Rear_Front_L_Tread_06": [
+            -1.676763,
+            1.54891,
+            1.083
+          ],
+          "Rear_Front_L_Tread_07": [
+            -1.915,
+            1.462198,
+            1.083
+          ],
+          "Rear_Front_L_Tread_08": [
+            -2.109212,
+            1.299235,
+            1.083
+          ],
+          "Rear_Front_L_Tread_09": [
+            -2.235976,
+            1.079675,
+            1.083
+          ],
+          "Rear_Front_L_Tread_10": [
+            -2.28,
+            0.83,
+            1.083
+          ],
+          "Rear_Front_L_Tread_11": [
+            -2.235976,
+            0.580325,
+            1.083
+          ],
+          "Rear_Front_L_Tread_12": [
+            -2.109212,
+            0.360765,
+            1.083
+          ],
+          "Rear_Front_L_Tread_13": [
+            -1.915,
+            0.197801,
+            1.083
+          ],
+          "Rear_Front_L_Tread_14": [
+            -1.676763,
+            0.11109,
+            1.083
+          ],
+          "Rear_Front_L_Tread_15": [
+            -1.423237,
+            0.11109,
+            1.083
+          ],
+          "Rear_Front_L_Tread_16": [
+            -1.185,
+            0.197801,
+            1.083
+          ],
+          "Rear_Front_L_Tread_17": [
+            -0.990788,
+            0.360765,
+            1.083
+          ],
+          "Rear_Front_L_Tread_18": [
+            -0.864024,
+            0.580325,
+            1.083
+          ],
+          "Rear_Front_R_Root": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Rear_Front_R_Hub": [
+            -1.55,
+            0.83,
+            -1.083
+          ],
+          "Rear_Front_R_Lug_01": [
+            -1.37,
+            0.83,
+            -1.368
+          ],
+          "Rear_Front_R_Lug_02": [
+            -1.422721,
+            0.957279,
+            -1.368
+          ],
+          "Rear_Front_R_Lug_03": [
+            -1.55,
+            1.01,
+            -1.368
+          ],
+          "Rear_Front_R_Lug_04": [
+            -1.677279,
+            0.957279,
+            -1.368
+          ],
+          "Rear_Front_R_Lug_05": [
+            -1.73,
+            0.83,
+            -1.368
+          ],
+          "Rear_Front_R_Lug_06": [
+            -1.677279,
+            0.702721,
+            -1.368
+          ],
+          "Rear_Front_R_Lug_07": [
+            -1.55,
+            0.65,
+            -1.368
+          ],
+          "Rear_Front_R_Lug_08": [
+            -1.422721,
+            0.702721,
+            -1.368
+          ],
+          "Rear_Front_R_RimOuter": [
+            -1.55,
+            0.83,
+            -1.083
+          ],
+          "Rear_Front_R_Tire": [
+            -1.55,
+            0.83,
+            -1.083
+          ],
+          "Rear_Front_R_Tread_01": [
+            -0.82,
+            0.83,
+            -1.083
+          ],
+          "Rear_Front_R_Tread_02": [
+            -0.864024,
+            1.079675,
+            -1.083
+          ],
+          "Rear_Front_R_Tread_03": [
+            -0.990788,
+            1.299235,
+            -1.083
+          ],
+          "Rear_Front_R_Tread_04": [
+            -1.185,
+            1.462198,
+            -1.083
+          ],
+          "Rear_Front_R_Tread_05": [
+            -1.423237,
+            1.54891,
+            -1.083
+          ],
+          "Rear_Front_R_Tread_06": [
+            -1.676763,
+            1.54891,
+            -1.083
+          ],
+          "Rear_Front_R_Tread_07": [
+            -1.915,
+            1.462198,
+            -1.083
+          ],
+          "Rear_Front_R_Tread_08": [
+            -2.109212,
+            1.299235,
+            -1.083
+          ],
+          "Rear_Front_R_Tread_09": [
+            -2.235976,
+            1.079675,
+            -1.083
+          ],
+          "Rear_Front_R_Tread_10": [
+            -2.28,
+            0.83,
+            -1.083
+          ],
+          "Rear_Front_R_Tread_11": [
+            -2.235976,
+            0.580325,
+            -1.083
+          ],
+          "Rear_Front_R_Tread_12": [
+            -2.109212,
+            0.360765,
+            -1.083
+          ],
+          "Rear_Front_R_Tread_13": [
+            -1.915,
+            0.197801,
+            -1.083
+          ],
+          "Rear_Front_R_Tread_14": [
+            -1.676763,
+            0.11109,
+            -1.083
+          ],
+          "Rear_Front_R_Tread_15": [
+            -1.423237,
+            0.11109,
+            -1.083
+          ],
+          "Rear_Front_R_Tread_16": [
+            -1.185,
+            0.197801,
+            -1.083
+          ],
+          "Rear_Front_R_Tread_17": [
+            -0.990788,
+            0.360765,
+            -1.083
+          ],
+          "Rear_Front_R_Tread_18": [
+            -0.864024,
+            0.580325,
+            -1.083
+          ],
+          "Rear_Rear_L_Root": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Rear_Rear_L_Hub": [
+            -3.01,
+            0.83,
+            1.083
+          ],
+          "Rear_Rear_L_Lug_01": [
+            -2.83,
+            0.83,
+            1.368
+          ],
+          "Rear_Rear_L_Lug_02": [
+            -2.882721,
+            0.957279,
+            1.368
+          ],
+          "Rear_Rear_L_Lug_03": [
+            -3.01,
+            1.01,
+            1.368
+          ],
+          "Rear_Rear_L_Lug_04": [
+            -3.137279,
+            0.957279,
+            1.368
+          ],
+          "Rear_Rear_L_Lug_05": [
+            -3.19,
+            0.83,
+            1.368
+          ],
+          "Rear_Rear_L_Lug_06": [
+            -3.137279,
+            0.702721,
+            1.368
+          ],
+          "Rear_Rear_L_Lug_07": [
+            -3.01,
+            0.65,
+            1.368
+          ],
+          "Rear_Rear_L_Lug_08": [
+            -2.882721,
+            0.702721,
+            1.368
+          ],
+          "Rear_Rear_L_RimOuter": [
+            -3.01,
+            0.83,
+            1.083
+          ],
+          "Rear_Rear_L_Tire": [
+            -3.01,
+            0.83,
+            1.083
+          ],
+          "Rear_Rear_L_Tread_01": [
+            -2.28,
+            0.83,
+            1.083
+          ],
+          "Rear_Rear_L_Tread_02": [
+            -2.324024,
+            1.079675,
+            1.083
+          ],
+          "Rear_Rear_L_Tread_03": [
+            -2.450788,
+            1.299235,
+            1.083
+          ],
+          "Rear_Rear_L_Tread_04": [
+            -2.645,
+            1.462198,
+            1.083
+          ],
+          "Rear_Rear_L_Tread_05": [
+            -2.883237,
+            1.54891,
+            1.083
+          ],
+          "Rear_Rear_L_Tread_06": [
+            -3.136763,
+            1.54891,
+            1.083
+          ],
+          "Rear_Rear_L_Tread_07": [
+            -3.375,
+            1.462198,
+            1.083
+          ],
+          "Rear_Rear_L_Tread_08": [
+            -3.569212,
+            1.299235,
+            1.083
+          ],
+          "Rear_Rear_L_Tread_09": [
+            -3.695976,
+            1.079675,
+            1.083
+          ],
+          "Rear_Rear_L_Tread_10": [
+            -3.74,
+            0.83,
+            1.083
+          ],
+          "Rear_Rear_L_Tread_11": [
+            -3.695976,
+            0.580325,
+            1.083
+          ],
+          "Rear_Rear_L_Tread_12": [
+            -3.569212,
+            0.360765,
+            1.083
+          ],
+          "Rear_Rear_L_Tread_13": [
+            -3.375,
+            0.197801,
+            1.083
+          ],
+          "Rear_Rear_L_Tread_14": [
+            -3.136763,
+            0.11109,
+            1.083
+          ],
+          "Rear_Rear_L_Tread_15": [
+            -2.883237,
+            0.11109,
+            1.083
+          ],
+          "Rear_Rear_L_Tread_16": [
+            -2.645,
+            0.197801,
+            1.083
+          ],
+          "Rear_Rear_L_Tread_17": [
+            -2.450788,
+            0.360765,
+            1.083
+          ],
+          "Rear_Rear_L_Tread_18": [
+            -2.324024,
+            0.580325,
+            1.083
+          ],
+          "Rear_Rear_R_Root": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Rear_Rear_R_Hub": [
+            -3.01,
+            0.83,
+            -1.083
+          ],
+          "Rear_Rear_R_Lug_01": [
+            -2.83,
+            0.83,
+            -1.368
+          ],
+          "Rear_Rear_R_Lug_02": [
+            -2.882721,
+            0.957279,
+            -1.368
+          ],
+          "Rear_Rear_R_Lug_03": [
+            -3.01,
+            1.01,
+            -1.368
+          ],
+          "Rear_Rear_R_Lug_04": [
+            -3.137279,
+            0.957279,
+            -1.368
+          ],
+          "Rear_Rear_R_Lug_05": [
+            -3.19,
+            0.83,
+            -1.368
+          ],
+          "Rear_Rear_R_Lug_06": [
+            -3.137279,
+            0.702721,
+            -1.368
+          ],
+          "Rear_Rear_R_Lug_07": [
+            -3.01,
+            0.65,
+            -1.368
+          ],
+          "Rear_Rear_R_Lug_08": [
+            -2.882721,
+            0.702721,
+            -1.368
+          ],
+          "Rear_Rear_R_RimOuter": [
+            -3.01,
+            0.83,
+            -1.083
+          ],
+          "Rear_Rear_R_Tire": [
+            -3.01,
+            0.83,
+            -1.083
+          ],
+          "Rear_Rear_R_Tread_01": [
+            -2.28,
+            0.83,
+            -1.083
+          ],
+          "Rear_Rear_R_Tread_02": [
+            -2.324024,
+            1.079675,
+            -1.083
+          ],
+          "Rear_Rear_R_Tread_03": [
+            -2.450788,
+            1.299235,
+            -1.083
+          ],
+          "Rear_Rear_R_Tread_04": [
+            -2.645,
+            1.462198,
+            -1.083
+          ],
+          "Rear_Rear_R_Tread_05": [
+            -2.883237,
+            1.54891,
+            -1.083
+          ],
+          "Rear_Rear_R_Tread_06": [
+            -3.136763,
+            1.54891,
+            -1.083
+          ],
+          "Rear_Rear_R_Tread_07": [
+            -3.375,
+            1.462198,
+            -1.083
+          ],
+          "Rear_Rear_R_Tread_08": [
+            -3.569212,
+            1.299235,
+            -1.083
+          ],
+          "Rear_Rear_R_Tread_09": [
+            -3.695976,
+            1.079675,
+            -1.083
+          ],
+          "Rear_Rear_R_Tread_10": [
+            -3.74,
+            0.83,
+            -1.083
+          ],
+          "Rear_Rear_R_Tread_11": [
+            -3.695976,
+            0.580325,
+            -1.083
+          ],
+          "Rear_Rear_R_Tread_12": [
+            -3.569212,
+            0.360765,
+            -1.083
+          ],
+          "Rear_Rear_R_Tread_13": [
+            -3.375,
+            0.197801,
+            -1.083
+          ],
+          "Rear_Rear_R_Tread_14": [
+            -3.136763,
+            0.11109,
+            -1.083
+          ],
+          "Rear_Rear_R_Tread_15": [
+            -2.883237,
+            0.11109,
+            -1.083
+          ],
+          "Rear_Rear_R_Tread_16": [
+            -2.645,
+            0.197801,
+            -1.083
+          ],
+          "Rear_Rear_R_Tread_17": [
+            -2.450788,
+            0.360765,
+            -1.083
+          ],
+          "Rear_Rear_R_Tread_18": [
+            -2.324024,
+            0.580325,
+            -1.083
+          ],
+          "RearArticulationYoke": [
+            -0.2,
+            1.09,
+            0.0
+          ],
+          "RearFrame_BellyPan": [
+            -2.0,
+            0.767,
+            0.0
+          ],
+          "RearFrame_MainRail": [
+            -2.0,
+            0.91,
+            0.0
+          ],
+          "RearRigidAxle_Front": [
+            -1.55,
+            0.83,
+            0.0
+          ],
+          "RearRigidAxle_Rear": [
+            -3.01,
+            0.83,
+            0.0
+          ],
+          "ServicePanelBreak_L_-1.46": [
+            -1.46,
+            1.78,
+            1.13
+          ],
+          "ServicePanelBreak_L_-2.30": [
+            -2.3,
+            1.78,
+            1.13
+          ],
+          "ServicePanelBreak_L_-3.12": [
+            -3.12,
+            1.78,
+            1.13
+          ],
+          "ServicePanelBreak_R_-1.46": [
+            -1.46,
+            1.78,
+            -1.13
+          ],
+          "ServicePanelBreak_R_-2.30": [
+            -2.3,
+            1.78,
+            -1.13
+          ],
+          "ServicePanelBreak_R_-3.12": [
+            -3.12,
+            1.78,
+            -1.13
+          ],
+          "ServiceStep_01": [
+            -0.92,
+            0.92,
+            1.24
+          ],
+          "ServiceStep_02": [
+            -0.58,
+            1.1,
+            1.24
+          ],
+          "ServiceStep_03": [
+            -0.25,
+            1.28,
+            1.24
+          ]
+        },
+        "node_parent": {
+          "JD1270G_Root": null,
+          "FrameSteer_Kingpin": "JD1270G_Root",
+          "FrameSteer_Pivot_Reconstructed": "JD1270G_Root",
+          "FrontFrame_Root": "FrameSteer_Pivot_Reconstructed",
+          "CabLevelCylinder_L": "FrontFrame_Root",
+          "CabLevelCylinder_R": "FrontFrame_Root",
+          "CabLevelRod_L": "FrontFrame_Root",
+          "CabLevelRod_R": "FrontFrame_Root",
+          "CabRotation_Root_Reconstructed": "FrontFrame_Root",
+          "CabLeveling_Root_Reconstructed": "CabRotation_Root_Reconstructed",
+          "CabDoorHinge_L_1": "CabLeveling_Root_Reconstructed",
+          "CabDoorHinge_L_2": "CabLeveling_Root_Reconstructed",
+          "CabDoorHinge_R_1": "CabLeveling_Root_Reconstructed",
+          "CabDoorHinge_R_2": "CabLeveling_Root_Reconstructed",
+          "CabDoorLower_L": "CabLeveling_Root_Reconstructed",
+          "CabDoorLower_R": "CabLeveling_Root_Reconstructed",
+          "CabFrontGlass": "CabLeveling_Root_Reconstructed",
+          "CabFrontHeader": "CabLeveling_Root_Reconstructed",
+          "CabFrontPillar_L": "CabLeveling_Root_Reconstructed",
+          "CabFrontPillar_R": "CabLeveling_Root_Reconstructed",
+          "CabLowerSill_L": "CabLeveling_Root_Reconstructed",
+          "CabLowerSill_R": "CabLeveling_Root_Reconstructed",
+          "CabRearGlass": "CabLeveling_Root_Reconstructed",
+          "CabRearHeader": "CabLeveling_Root_Reconstructed",
+          "CabRearPillar_L": "CabLeveling_Root_Reconstructed",
+          "CabRearPillar_R": "CabLeveling_Root_Reconstructed",
+          "CabRoof": "CabLeveling_Root_Reconstructed",
+          "CabRoofLamp_01": "CabLeveling_Root_Reconstructed",
+          "CabRoofLamp_02": "CabLeveling_Root_Reconstructed",
+          "CabRoofLamp_03": "CabLeveling_Root_Reconstructed",
+          "CabRoofLamp_04": "CabLeveling_Root_Reconstructed",
+          "CabRoofRail_L": "CabLeveling_Root_Reconstructed",
+          "CabRoofRail_R": "CabLeveling_Root_Reconstructed",
+          "CabRotation_BearingUpper": "CabLeveling_Root_Reconstructed",
+          "CabSideGlass_L": "CabLeveling_Root_Reconstructed",
+          "CabSideGlass_R": "CabLeveling_Root_Reconstructed",
+          "OperatorConsole_L": "CabLeveling_Root_Reconstructed",
+          "OperatorConsole_R": "CabLeveling_Root_Reconstructed",
+          "OperatorDisplay": "CabLeveling_Root_Reconstructed",
+          "OperatorHeadrest": "CabLeveling_Root_Reconstructed",
+          "OperatorJoystick_L": "CabLeveling_Root_Reconstructed",
+          "OperatorJoystick_R": "CabLeveling_Root_Reconstructed",
+          "OperatorSeat_Back": "CabLeveling_Root_Reconstructed",
+          "OperatorSeat_Base": "CabLeveling_Root_Reconstructed",
+          "CabRotation_BearingLower": "CabRotation_Root_Reconstructed",
+          "CarrierFrontDatumCap": "FrontFrame_Root",
+          "CH7_Slew_Root_Reconstructed": "FrontFrame_Root",
+          "CH7_CranePedestal": "CH7_Slew_Root_Reconstructed",
+          "CH7_Hose_L_1": "CH7_Slew_Root_Reconstructed",
+          "CH7_Hose_L_2": "CH7_Slew_Root_Reconstructed",
+          "CH7_Hose_R_1": "CH7_Slew_Root_Reconstructed",
+          "CH7_Hose_R_2": "CH7_Slew_Root_Reconstructed",
+          "CH7_Lift_Pivot_Reconstructed": "CH7_Slew_Root_Reconstructed",
+          "CH7_BasePin": "CH7_Lift_Pivot_Reconstructed",
+          "CH7_Fold_Pivot_Reconstructed": "CH7_Lift_Pivot_Reconstructed",
+          "CH7_ElbowPin": "CH7_Fold_Pivot_Reconstructed",
+          "CH7_FoldCylinder": "CH7_Fold_Pivot_Reconstructed",
+          "CH7_FoldRod": "CH7_Fold_Pivot_Reconstructed",
+          "CH7_OuterBoom": "CH7_Fold_Pivot_Reconstructed",
+          "CH7_Telescope_Pivot_Reconstructed": "CH7_Fold_Pivot_Reconstructed",
+          "CH7_Telescope": "CH7_Telescope_Pivot_Reconstructed",
+          "CH7_TelescopeCylinder": "CH7_Telescope_Pivot_Reconstructed",
+          "CH7_TelescopeHousing": "CH7_Telescope_Pivot_Reconstructed",
+          "CH7_TelescopeRod": "CH7_Telescope_Pivot_Reconstructed",
+          "CH7_WristPin": "CH7_Telescope_Pivot_Reconstructed",
+          "Head_Rotator_Root_Reconstructed": "CH7_Telescope_Pivot_Reconstructed",
+          "H480C_ReferenceHead_Root_Reconstructed": "Head_Rotator_Root_Reconstructed",
+          "H480C_Backbone_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_DelimbingKnife_Lower_L_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_DelimbingKnife_Lower_R_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_DelimbingKnife_Upper_L_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_DelimbingKnife_Upper_R_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_FeedArm_L_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_FeedArm_R_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_FeedBar_L_01_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_FeedBar_L_02_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_FeedBar_L_03_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_FeedBar_L_04_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_FeedBar_L_05_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_FeedBar_L_06_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_FeedBar_L_07_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_FeedBar_L_08_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_FeedBar_L_09_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_FeedBar_L_10_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_FeedBar_L_11_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_FeedBar_L_12_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_FeedBar_R_01_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_FeedBar_R_02_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_FeedBar_R_03_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_FeedBar_R_04_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_FeedBar_R_05_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_FeedBar_R_06_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_FeedBar_R_07_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_FeedBar_R_08_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_FeedBar_R_09_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_FeedBar_R_10_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_FeedBar_R_11_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_FeedBar_R_12_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_FeedCylinder_L_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_FeedCylinder_R_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_FeedRod_L_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_FeedRod_R_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_FeedRoller_L_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_FeedRoller_R_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_FeedRollerHub_L_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_FeedRollerHub_R_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_HeadMainHousing_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_HoseManifold_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_HosePort_01_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_HosePort_02_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_HosePort_03_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_HosePort_04_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_KnifePivot_Lower_L_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_KnifePivot_Lower_R_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_KnifePivot_Upper_L_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_KnifePivot_Upper_R_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_LocalHoseBundle_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_LowerGuide_L_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_LowerGuide_R_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_MeasuringWheel_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_RotatorHousing_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_RotatorPin_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_SawBar_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_SawChainCue_01_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_SawChainCue_02_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_SawChainCue_03_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_SawChainCue_04_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_SawChainCue_05_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_SawChainCue_06_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_SawChainCue_07_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_SawChainCue_08_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_SawChainCue_09_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_SawDiscWitness_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_SawGuard_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_SawMotor_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "H480C_ValveCover_Reconstructed": "H480C_ReferenceHead_Root_Reconstructed",
+          "CH7_InnerBoom": "CH7_Lift_Pivot_Reconstructed",
+          "CH7_InnerBoom_ParallelLink": "CH7_Lift_Pivot_Reconstructed",
+          "CH7_LiftCylinder": "CH7_Lift_Pivot_Reconstructed",
+          "CH7_LiftRod": "CH7_Lift_Pivot_Reconstructed",
+          "CH7_PedestalCheek_L": "CH7_Slew_Root_Reconstructed",
+          "CH7_PedestalCheek_R": "CH7_Slew_Root_Reconstructed",
+          "CH7_SlewBearing_Upper": "CH7_Slew_Root_Reconstructed",
+          "CH7_SlewBearing_Lower": "FrontFrame_Root",
+          "FrontArticulationYoke": "FrontFrame_Root",
+          "FrontBalancedBogie_Pivot_Reconstructed": "FrontFrame_Root",
+          "Front_Front_L_Root": "FrontBalancedBogie_Pivot_Reconstructed",
+          "Front_Front_L_Hub": "Front_Front_L_Root",
+          "Front_Front_L_Lug_01": "Front_Front_L_Root",
+          "Front_Front_L_Lug_02": "Front_Front_L_Root",
+          "Front_Front_L_Lug_03": "Front_Front_L_Root",
+          "Front_Front_L_Lug_04": "Front_Front_L_Root",
+          "Front_Front_L_Lug_05": "Front_Front_L_Root",
+          "Front_Front_L_Lug_06": "Front_Front_L_Root",
+          "Front_Front_L_Lug_07": "Front_Front_L_Root",
+          "Front_Front_L_Lug_08": "Front_Front_L_Root",
+          "Front_Front_L_RimOuter": "Front_Front_L_Root",
+          "Front_Front_L_Tire": "Front_Front_L_Root",
+          "Front_Front_L_Tread_01": "Front_Front_L_Root",
+          "Front_Front_L_Tread_02": "Front_Front_L_Root",
+          "Front_Front_L_Tread_03": "Front_Front_L_Root",
+          "Front_Front_L_Tread_04": "Front_Front_L_Root",
+          "Front_Front_L_Tread_05": "Front_Front_L_Root",
+          "Front_Front_L_Tread_06": "Front_Front_L_Root",
+          "Front_Front_L_Tread_07": "Front_Front_L_Root",
+          "Front_Front_L_Tread_08": "Front_Front_L_Root",
+          "Front_Front_L_Tread_09": "Front_Front_L_Root",
+          "Front_Front_L_Tread_10": "Front_Front_L_Root",
+          "Front_Front_L_Tread_11": "Front_Front_L_Root",
+          "Front_Front_L_Tread_12": "Front_Front_L_Root",
+          "Front_Front_L_Tread_13": "Front_Front_L_Root",
+          "Front_Front_L_Tread_14": "Front_Front_L_Root",
+          "Front_Front_L_Tread_15": "Front_Front_L_Root",
+          "Front_Front_L_Tread_16": "Front_Front_L_Root",
+          "Front_Front_L_Tread_17": "Front_Front_L_Root",
+          "Front_Front_L_Tread_18": "Front_Front_L_Root",
+          "Front_Front_R_Root": "FrontBalancedBogie_Pivot_Reconstructed",
+          "Front_Front_R_Hub": "Front_Front_R_Root",
+          "Front_Front_R_Lug_01": "Front_Front_R_Root",
+          "Front_Front_R_Lug_02": "Front_Front_R_Root",
+          "Front_Front_R_Lug_03": "Front_Front_R_Root",
+          "Front_Front_R_Lug_04": "Front_Front_R_Root",
+          "Front_Front_R_Lug_05": "Front_Front_R_Root",
+          "Front_Front_R_Lug_06": "Front_Front_R_Root",
+          "Front_Front_R_Lug_07": "Front_Front_R_Root",
+          "Front_Front_R_Lug_08": "Front_Front_R_Root",
+          "Front_Front_R_RimOuter": "Front_Front_R_Root",
+          "Front_Front_R_Tire": "Front_Front_R_Root",
+          "Front_Front_R_Tread_01": "Front_Front_R_Root",
+          "Front_Front_R_Tread_02": "Front_Front_R_Root",
+          "Front_Front_R_Tread_03": "Front_Front_R_Root",
+          "Front_Front_R_Tread_04": "Front_Front_R_Root",
+          "Front_Front_R_Tread_05": "Front_Front_R_Root",
+          "Front_Front_R_Tread_06": "Front_Front_R_Root",
+          "Front_Front_R_Tread_07": "Front_Front_R_Root",
+          "Front_Front_R_Tread_08": "Front_Front_R_Root",
+          "Front_Front_R_Tread_09": "Front_Front_R_Root",
+          "Front_Front_R_Tread_10": "Front_Front_R_Root",
+          "Front_Front_R_Tread_11": "Front_Front_R_Root",
+          "Front_Front_R_Tread_12": "Front_Front_R_Root",
+          "Front_Front_R_Tread_13": "Front_Front_R_Root",
+          "Front_Front_R_Tread_14": "Front_Front_R_Root",
+          "Front_Front_R_Tread_15": "Front_Front_R_Root",
+          "Front_Front_R_Tread_16": "Front_Front_R_Root",
+          "Front_Front_R_Tread_17": "Front_Front_R_Root",
+          "Front_Front_R_Tread_18": "Front_Front_R_Root",
+          "Front_Rear_L_Root": "FrontBalancedBogie_Pivot_Reconstructed",
+          "Front_Rear_L_Hub": "Front_Rear_L_Root",
+          "Front_Rear_L_Lug_01": "Front_Rear_L_Root",
+          "Front_Rear_L_Lug_02": "Front_Rear_L_Root",
+          "Front_Rear_L_Lug_03": "Front_Rear_L_Root",
+          "Front_Rear_L_Lug_04": "Front_Rear_L_Root",
+          "Front_Rear_L_Lug_05": "Front_Rear_L_Root",
+          "Front_Rear_L_Lug_06": "Front_Rear_L_Root",
+          "Front_Rear_L_Lug_07": "Front_Rear_L_Root",
+          "Front_Rear_L_Lug_08": "Front_Rear_L_Root",
+          "Front_Rear_L_RimOuter": "Front_Rear_L_Root",
+          "Front_Rear_L_Tire": "Front_Rear_L_Root",
+          "Front_Rear_L_Tread_01": "Front_Rear_L_Root",
+          "Front_Rear_L_Tread_02": "Front_Rear_L_Root",
+          "Front_Rear_L_Tread_03": "Front_Rear_L_Root",
+          "Front_Rear_L_Tread_04": "Front_Rear_L_Root",
+          "Front_Rear_L_Tread_05": "Front_Rear_L_Root",
+          "Front_Rear_L_Tread_06": "Front_Rear_L_Root",
+          "Front_Rear_L_Tread_07": "Front_Rear_L_Root",
+          "Front_Rear_L_Tread_08": "Front_Rear_L_Root",
+          "Front_Rear_L_Tread_09": "Front_Rear_L_Root",
+          "Front_Rear_L_Tread_10": "Front_Rear_L_Root",
+          "Front_Rear_L_Tread_11": "Front_Rear_L_Root",
+          "Front_Rear_L_Tread_12": "Front_Rear_L_Root",
+          "Front_Rear_L_Tread_13": "Front_Rear_L_Root",
+          "Front_Rear_L_Tread_14": "Front_Rear_L_Root",
+          "Front_Rear_L_Tread_15": "Front_Rear_L_Root",
+          "Front_Rear_L_Tread_16": "Front_Rear_L_Root",
+          "Front_Rear_L_Tread_17": "Front_Rear_L_Root",
+          "Front_Rear_L_Tread_18": "Front_Rear_L_Root",
+          "Front_Rear_R_Root": "FrontBalancedBogie_Pivot_Reconstructed",
+          "Front_Rear_R_Hub": "Front_Rear_R_Root",
+          "Front_Rear_R_Lug_01": "Front_Rear_R_Root",
+          "Front_Rear_R_Lug_02": "Front_Rear_R_Root",
+          "Front_Rear_R_Lug_03": "Front_Rear_R_Root",
+          "Front_Rear_R_Lug_04": "Front_Rear_R_Root",
+          "Front_Rear_R_Lug_05": "Front_Rear_R_Root",
+          "Front_Rear_R_Lug_06": "Front_Rear_R_Root",
+          "Front_Rear_R_Lug_07": "Front_Rear_R_Root",
+          "Front_Rear_R_Lug_08": "Front_Rear_R_Root",
+          "Front_Rear_R_RimOuter": "Front_Rear_R_Root",
+          "Front_Rear_R_Tire": "Front_Rear_R_Root",
+          "Front_Rear_R_Tread_01": "Front_Rear_R_Root",
+          "Front_Rear_R_Tread_02": "Front_Rear_R_Root",
+          "Front_Rear_R_Tread_03": "Front_Rear_R_Root",
+          "Front_Rear_R_Tread_04": "Front_Rear_R_Root",
+          "Front_Rear_R_Tread_05": "Front_Rear_R_Root",
+          "Front_Rear_R_Tread_06": "Front_Rear_R_Root",
+          "Front_Rear_R_Tread_07": "Front_Rear_R_Root",
+          "Front_Rear_R_Tread_08": "Front_Rear_R_Root",
+          "Front_Rear_R_Tread_09": "Front_Rear_R_Root",
+          "Front_Rear_R_Tread_10": "Front_Rear_R_Root",
+          "Front_Rear_R_Tread_11": "Front_Rear_R_Root",
+          "Front_Rear_R_Tread_12": "Front_Rear_R_Root",
+          "Front_Rear_R_Tread_13": "Front_Rear_R_Root",
+          "Front_Rear_R_Tread_14": "Front_Rear_R_Root",
+          "Front_Rear_R_Tread_15": "Front_Rear_R_Root",
+          "Front_Rear_R_Tread_16": "Front_Rear_R_Root",
+          "Front_Rear_R_Tread_17": "Front_Rear_R_Root",
+          "Front_Rear_R_Tread_18": "Front_Rear_R_Root",
+          "FrontBogieAxle_L_Front": "FrontBalancedBogie_Pivot_Reconstructed",
+          "FrontBogieAxle_L_Rear": "FrontBalancedBogie_Pivot_Reconstructed",
+          "FrontBogieAxle_R_Front": "FrontBalancedBogie_Pivot_Reconstructed",
+          "FrontBogieAxle_R_Rear": "FrontBalancedBogie_Pivot_Reconstructed",
+          "FrontBogieBeam_L": "FrontBalancedBogie_Pivot_Reconstructed",
+          "FrontBogieBeam_R": "FrontBalancedBogie_Pivot_Reconstructed",
+          "FrontBogieHub_L": "FrontBalancedBogie_Pivot_Reconstructed",
+          "FrontBogieHub_R": "FrontBalancedBogie_Pivot_Reconstructed",
+          "FrontFrame_BellyPan": "FrontFrame_Root",
+          "FrontFrame_MainRail": "FrontFrame_Root",
+          "RearFrame_Root": "JD1270G_Root",
+          "CarrierRearDatumCap": "RearFrame_Root",
+          "CoolingGrille_L_01": "RearFrame_Root",
+          "CoolingGrille_L_02": "RearFrame_Root",
+          "CoolingGrille_L_03": "RearFrame_Root",
+          "CoolingGrille_L_04": "RearFrame_Root",
+          "CoolingGrille_L_05": "RearFrame_Root",
+          "CoolingGrille_L_06": "RearFrame_Root",
+          "CoolingGrille_R_01": "RearFrame_Root",
+          "CoolingGrille_R_02": "RearFrame_Root",
+          "CoolingGrille_R_03": "RearFrame_Root",
+          "CoolingGrille_R_04": "RearFrame_Root",
+          "CoolingGrille_R_05": "RearFrame_Root",
+          "CoolingGrille_R_06": "RearFrame_Root",
+          "ExhaustStack": "RearFrame_Root",
+          "ExhaustTip": "RearFrame_Root",
+          "FrameSteerCylinder_L": "RearFrame_Root",
+          "FrameSteerCylinder_R": "RearFrame_Root",
+          "FrameSteerRod_L": "RearFrame_Root",
+          "FrameSteerRod_R": "RearFrame_Root",
+          "PanelFastener_L_01": "RearFrame_Root",
+          "PanelFastener_L_02": "RearFrame_Root",
+          "PanelFastener_L_03": "RearFrame_Root",
+          "PanelFastener_L_04": "RearFrame_Root",
+          "PanelFastener_L_05": "RearFrame_Root",
+          "PanelFastener_R_01": "RearFrame_Root",
+          "PanelFastener_R_02": "RearFrame_Root",
+          "PanelFastener_R_03": "RearFrame_Root",
+          "PanelFastener_R_04": "RearFrame_Root",
+          "PanelFastener_R_05": "RearFrame_Root",
+          "PowerServicePanel_L": "RearFrame_Root",
+          "PowerServicePanel_R": "RearFrame_Root",
+          "PowerUnit_Core": "RearFrame_Root",
+          "PowerUnit_Handrail": "RearFrame_Root",
+          "PowerUnit_TopDeck": "RearFrame_Root",
+          "Rear_Front_L_Root": "RearFrame_Root",
+          "Rear_Front_L_Hub": "Rear_Front_L_Root",
+          "Rear_Front_L_Lug_01": "Rear_Front_L_Root",
+          "Rear_Front_L_Lug_02": "Rear_Front_L_Root",
+          "Rear_Front_L_Lug_03": "Rear_Front_L_Root",
+          "Rear_Front_L_Lug_04": "Rear_Front_L_Root",
+          "Rear_Front_L_Lug_05": "Rear_Front_L_Root",
+          "Rear_Front_L_Lug_06": "Rear_Front_L_Root",
+          "Rear_Front_L_Lug_07": "Rear_Front_L_Root",
+          "Rear_Front_L_Lug_08": "Rear_Front_L_Root",
+          "Rear_Front_L_RimOuter": "Rear_Front_L_Root",
+          "Rear_Front_L_Tire": "Rear_Front_L_Root",
+          "Rear_Front_L_Tread_01": "Rear_Front_L_Root",
+          "Rear_Front_L_Tread_02": "Rear_Front_L_Root",
+          "Rear_Front_L_Tread_03": "Rear_Front_L_Root",
+          "Rear_Front_L_Tread_04": "Rear_Front_L_Root",
+          "Rear_Front_L_Tread_05": "Rear_Front_L_Root",
+          "Rear_Front_L_Tread_06": "Rear_Front_L_Root",
+          "Rear_Front_L_Tread_07": "Rear_Front_L_Root",
+          "Rear_Front_L_Tread_08": "Rear_Front_L_Root",
+          "Rear_Front_L_Tread_09": "Rear_Front_L_Root",
+          "Rear_Front_L_Tread_10": "Rear_Front_L_Root",
+          "Rear_Front_L_Tread_11": "Rear_Front_L_Root",
+          "Rear_Front_L_Tread_12": "Rear_Front_L_Root",
+          "Rear_Front_L_Tread_13": "Rear_Front_L_Root",
+          "Rear_Front_L_Tread_14": "Rear_Front_L_Root",
+          "Rear_Front_L_Tread_15": "Rear_Front_L_Root",
+          "Rear_Front_L_Tread_16": "Rear_Front_L_Root",
+          "Rear_Front_L_Tread_17": "Rear_Front_L_Root",
+          "Rear_Front_L_Tread_18": "Rear_Front_L_Root",
+          "Rear_Front_R_Root": "RearFrame_Root",
+          "Rear_Front_R_Hub": "Rear_Front_R_Root",
+          "Rear_Front_R_Lug_01": "Rear_Front_R_Root",
+          "Rear_Front_R_Lug_02": "Rear_Front_R_Root",
+          "Rear_Front_R_Lug_03": "Rear_Front_R_Root",
+          "Rear_Front_R_Lug_04": "Rear_Front_R_Root",
+          "Rear_Front_R_Lug_05": "Rear_Front_R_Root",
+          "Rear_Front_R_Lug_06": "Rear_Front_R_Root",
+          "Rear_Front_R_Lug_07": "Rear_Front_R_Root",
+          "Rear_Front_R_Lug_08": "Rear_Front_R_Root",
+          "Rear_Front_R_RimOuter": "Rear_Front_R_Root",
+          "Rear_Front_R_Tire": "Rear_Front_R_Root",
+          "Rear_Front_R_Tread_01": "Rear_Front_R_Root",
+          "Rear_Front_R_Tread_02": "Rear_Front_R_Root",
+          "Rear_Front_R_Tread_03": "Rear_Front_R_Root",
+          "Rear_Front_R_Tread_04": "Rear_Front_R_Root",
+          "Rear_Front_R_Tread_05": "Rear_Front_R_Root",
+          "Rear_Front_R_Tread_06": "Rear_Front_R_Root",
+          "Rear_Front_R_Tread_07": "Rear_Front_R_Root",
+          "Rear_Front_R_Tread_08": "Rear_Front_R_Root",
+          "Rear_Front_R_Tread_09": "Rear_Front_R_Root",
+          "Rear_Front_R_Tread_10": "Rear_Front_R_Root",
+          "Rear_Front_R_Tread_11": "Rear_Front_R_Root",
+          "Rear_Front_R_Tread_12": "Rear_Front_R_Root",
+          "Rear_Front_R_Tread_13": "Rear_Front_R_Root",
+          "Rear_Front_R_Tread_14": "Rear_Front_R_Root",
+          "Rear_Front_R_Tread_15": "Rear_Front_R_Root",
+          "Rear_Front_R_Tread_16": "Rear_Front_R_Root",
+          "Rear_Front_R_Tread_17": "Rear_Front_R_Root",
+          "Rear_Front_R_Tread_18": "Rear_Front_R_Root",
+          "Rear_Rear_L_Root": "RearFrame_Root",
+          "Rear_Rear_L_Hub": "Rear_Rear_L_Root",
+          "Rear_Rear_L_Lug_01": "Rear_Rear_L_Root",
+          "Rear_Rear_L_Lug_02": "Rear_Rear_L_Root",
+          "Rear_Rear_L_Lug_03": "Rear_Rear_L_Root",
+          "Rear_Rear_L_Lug_04": "Rear_Rear_L_Root",
+          "Rear_Rear_L_Lug_05": "Rear_Rear_L_Root",
+          "Rear_Rear_L_Lug_06": "Rear_Rear_L_Root",
+          "Rear_Rear_L_Lug_07": "Rear_Rear_L_Root",
+          "Rear_Rear_L_Lug_08": "Rear_Rear_L_Root",
+          "Rear_Rear_L_RimOuter": "Rear_Rear_L_Root",
+          "Rear_Rear_L_Tire": "Rear_Rear_L_Root",
+          "Rear_Rear_L_Tread_01": "Rear_Rear_L_Root",
+          "Rear_Rear_L_Tread_02": "Rear_Rear_L_Root",
+          "Rear_Rear_L_Tread_03": "Rear_Rear_L_Root",
+          "Rear_Rear_L_Tread_04": "Rear_Rear_L_Root",
+          "Rear_Rear_L_Tread_05": "Rear_Rear_L_Root",
+          "Rear_Rear_L_Tread_06": "Rear_Rear_L_Root",
+          "Rear_Rear_L_Tread_07": "Rear_Rear_L_Root",
+          "Rear_Rear_L_Tread_08": "Rear_Rear_L_Root",
+          "Rear_Rear_L_Tread_09": "Rear_Rear_L_Root",
+          "Rear_Rear_L_Tread_10": "Rear_Rear_L_Root",
+          "Rear_Rear_L_Tread_11": "Rear_Rear_L_Root",
+          "Rear_Rear_L_Tread_12": "Rear_Rear_L_Root",
+          "Rear_Rear_L_Tread_13": "Rear_Rear_L_Root",
+          "Rear_Rear_L_Tread_14": "Rear_Rear_L_Root",
+          "Rear_Rear_L_Tread_15": "Rear_Rear_L_Root",
+          "Rear_Rear_L_Tread_16": "Rear_Rear_L_Root",
+          "Rear_Rear_L_Tread_17": "Rear_Rear_L_Root",
+          "Rear_Rear_L_Tread_18": "Rear_Rear_L_Root",
+          "Rear_Rear_R_Root": "RearFrame_Root",
+          "Rear_Rear_R_Hub": "Rear_Rear_R_Root",
+          "Rear_Rear_R_Lug_01": "Rear_Rear_R_Root",
+          "Rear_Rear_R_Lug_02": "Rear_Rear_R_Root",
+          "Rear_Rear_R_Lug_03": "Rear_Rear_R_Root",
+          "Rear_Rear_R_Lug_04": "Rear_Rear_R_Root",
+          "Rear_Rear_R_Lug_05": "Rear_Rear_R_Root",
+          "Rear_Rear_R_Lug_06": "Rear_Rear_R_Root",
+          "Rear_Rear_R_Lug_07": "Rear_Rear_R_Root",
+          "Rear_Rear_R_Lug_08": "Rear_Rear_R_Root",
+          "Rear_Rear_R_RimOuter": "Rear_Rear_R_Root",
+          "Rear_Rear_R_Tire": "Rear_Rear_R_Root",
+          "Rear_Rear_R_Tread_01": "Rear_Rear_R_Root",
+          "Rear_Rear_R_Tread_02": "Rear_Rear_R_Root",
+          "Rear_Rear_R_Tread_03": "Rear_Rear_R_Root",
+          "Rear_Rear_R_Tread_04": "Rear_Rear_R_Root",
+          "Rear_Rear_R_Tread_05": "Rear_Rear_R_Root",
+          "Rear_Rear_R_Tread_06": "Rear_Rear_R_Root",
+          "Rear_Rear_R_Tread_07": "Rear_Rear_R_Root",
+          "Rear_Rear_R_Tread_08": "Rear_Rear_R_Root",
+          "Rear_Rear_R_Tread_09": "Rear_Rear_R_Root",
+          "Rear_Rear_R_Tread_10": "Rear_Rear_R_Root",
+          "Rear_Rear_R_Tread_11": "Rear_Rear_R_Root",
+          "Rear_Rear_R_Tread_12": "Rear_Rear_R_Root",
+          "Rear_Rear_R_Tread_13": "Rear_Rear_R_Root",
+          "Rear_Rear_R_Tread_14": "Rear_Rear_R_Root",
+          "Rear_Rear_R_Tread_15": "Rear_Rear_R_Root",
+          "Rear_Rear_R_Tread_16": "Rear_Rear_R_Root",
+          "Rear_Rear_R_Tread_17": "Rear_Rear_R_Root",
+          "Rear_Rear_R_Tread_18": "Rear_Rear_R_Root",
+          "RearArticulationYoke": "RearFrame_Root",
+          "RearFrame_BellyPan": "RearFrame_Root",
+          "RearFrame_MainRail": "RearFrame_Root",
+          "RearRigidAxle_Front": "RearFrame_Root",
+          "RearRigidAxle_Rear": "RearFrame_Root",
+          "ServicePanelBreak_L_-1.46": "RearFrame_Root",
+          "ServicePanelBreak_L_-2.30": "RearFrame_Root",
+          "ServicePanelBreak_L_-3.12": "RearFrame_Root",
+          "ServicePanelBreak_R_-1.46": "RearFrame_Root",
+          "ServicePanelBreak_R_-2.30": "RearFrame_Root",
+          "ServicePanelBreak_R_-3.12": "RearFrame_Root",
+          "ServiceStep_01": "RearFrame_Root",
+          "ServiceStep_02": "RearFrame_Root",
+          "ServiceStep_03": "RearFrame_Root"
         }
       }
     }
+  ],
+  "required_machine_gate_ids": [
+    "decoded_public_envelope",
+    "decoded_public_pivot_world_positions",
+    "exported_ch7_joint_hierarchy",
+    "viewer_motion_nodes_resolve",
+    "static_hydraulic_components_present",
+    "source_design_contract_binding"
   ],
   "decoded_public_glb_visible_bounds_m": {
     "min_m": [

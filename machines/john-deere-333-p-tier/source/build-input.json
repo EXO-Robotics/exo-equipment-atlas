@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-333-p-tier",
+  "configuration_id": "JD-333P-NAM-STD-T450-FB-CANDIDATE",
+  "primary_source_sha256": "9c214b9253ba073f685935e44a4c73f42db766d346c7041dde73880a7a5c55fe",
+  "retained_fact_ids": [
+    "length-no-bucket",
+    "length-foundry-bucket",
+    "width-450-track",
+    "rops-height",
+    "hinge-pin-height",
+    "dump-height",
+    "dump-reach",
+    "ground-clearance",
+    "dump-angle",
+    "rollback-angle",
+    "departure-angle",
+    "front-turn-radius",
+    "track-rollers-per-side",
+    "track-idlers-per-side"
+  ],
+  "export_pivots_world_xyz_m": {
+    "Pivot_LiftLower_L": [-0.92, 1.03, -0.66],
+    "Pivot_LiftLower_R": [-0.92, 1.03, 0.66],
+    "Pivot_LiftUpper_L": [-0.72, 1.48, -0.66],
+    "Pivot_LiftUpper_R": [-0.72, 1.48, 0.66],
+    "BucketPivot_Root": [1.3427, 0.5634, 0.0],
+    "DriveSprocket_Root_L": [-1.20, 0.47, -0.995],
+    "DriveSprocket_Root_R": [-1.20, 0.47, 0.995]
+  },
+  "viewer_motion_nodes": ["DriveSprocket_Root_L", "DriveSprocket_Root_R"],
+  "static_only": ["coupled lift path", "bucket linkage", "hydraulic endpoint solve", "track belt phase"]
+}

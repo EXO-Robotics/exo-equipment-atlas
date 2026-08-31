@@ -13,7 +13,8 @@
     "assets",
     "evidence",
     "camera",
-    "accent"
+    "accent",
+    "motion"
   ],
   "properties": {
     "schema_version": { "const": "1.0.0" },
@@ -65,12 +66,13 @@
       "additionalProperties": false,
       "required": ["channels"],
       "properties": {
-        "autoplay": { "type": "boolean" },
-        "durationSeconds": { "type": "number", "exclusiveMinimum": 0 },
-        "mode": { "enum": ["sine", "ping-pong"] },
-        "damping": { "type": "number", "exclusiveMinimum": 0 },
+        "autoplay": { "const": true },
+        "durationSeconds": { "const": 18 },
+        "mode": { "const": "sine" },
+        "damping": { "const": 8 },
         "channels": {
           "type": "array",
+          "minItems": 1,
           "items": { "$ref": "#/$defs/motionChannel" }
         }
       }
@@ -85,10 +87,11 @@
     "motionChannel": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "label", "nodes", "property", "from", "to"],
+      "required": ["id", "label", "mechanismJointId", "nodes", "property", "from", "to"],
       "properties": {
         "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
         "label": { "type": "string", "minLength": 1 },
+        "mechanismJointId": { "type": "string", "pattern": "^[a-z0-9]+(?:[-_][a-z0-9]+)*$" },
         "nodes": {
           "type": "array",
           "minItems": 1,

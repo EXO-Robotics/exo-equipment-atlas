@@ -71,5 +71,5 @@
     "self_collision",
     "track_phase_continuity"
   ],
-  "release_state": "no_geometry_no_solver_no_claim"
+  "release_state": "technical_structural_study_built_solver_unverified"
 }

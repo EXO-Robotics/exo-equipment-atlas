@@ -20,7 +20,7 @@
     {
       "id": "front_axle_suspension",
       "type": "suspended_oscillating_axle",
-      "axis": "+X nominal chassis-roll axis",
+      "axis": "+Y reconstructed vertical presentation travel",
       "authority": "reconstructed",
       "source_ids": ["KUB-M8-NA-BROCHURE-2023"],
       "published_constraints": ["suspended full-locking differential front axle is optional and selected"],
@@ -96,5 +96,5 @@
     "self_collision",
     "swept_volume_collision"
   ],
-  "release_state": "no_geometry_no_solver_no_claim"
+  "release_state": "technical_structural_study_built_solver_unverified"
 }

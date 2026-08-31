@@ -32,59 +32,69 @@
   "accent": "#c39a45",
   "motion": {
     "autoplay": true,
-    "durationSeconds": 10,
+    "durationSeconds": 18,
     "mode": "sine",
-    "damping": 7,
+    "damping": 8,
     "channels": [
       {
         "id": "front-steering",
+        "mechanismJointId": "front_steering",
         "label": "Front steering",
         "nodes": ["Steering_L_Pivot", "Steering_R_Pivot"],
         "property": "rotation.y",
         "from": -0.48,
         "to": 0.48,
         "phase": 0,
-        "mode": "offset"
+        "mode": "offset",
+        "autoplay": "sine"
       },
       {
         "id": "field-travel",
+        "mechanismJointId": "wheel_rotation",
         "label": "Field travel",
         "nodes": ["Front_L_Wheel_Pivot", "Front_R_Wheel_Pivot", "Rear_L_Wheel_Pivot", "Rear_R_Wheel_Pivot"],
         "property": "rotation.z",
         "from": 0,
         "to": 6.283185307179586,
         "phase": 0,
-        "mode": "offset"
+        "mode": "offset",
+        "autoplay": "sine"
       },
       {
         "id": "front-axle-ride",
+        "mechanismJointId": "front_axle_suspension",
         "label": "Suspended front axle",
-        "nodes": ["Front_Axle_Oscillation_Pivot"],
-        "property": "rotation.x",
-        "from": -0.07,
-        "to": 0.07,
+        "nodes": ["Front_Axle_ROOT"],
+        "property": "position.y",
+        "from": 0,
+        "to": 0.04,
         "phase": 0.25,
-        "mode": "offset"
+        "mode": "offset",
+        "autoplay": "sine"
       },
       {
         "id": "rear-hitch",
+        "mechanismJointId": "rear_three_point_hitch",
         "label": "Rear three-point hitch",
         "nodes": ["Rear_Hitch_Pivot"],
         "property": "rotation.z",
         "from": 0,
-        "to": -0.42,
+        "to": -0.18,
         "phase": 0.5,
-        "mode": "offset"
+        "mode": "offset",
+        "autoplay": "sine"
       },
       {
         "id": "rear-pto",
+        "mechanismJointId": "rear_pto_rotation",
         "label": "Rear PTO",
-        "nodes": ["PTO_ROOT"],
+        "nodes": ["PTO_Shaft_ROTATION_ROOT"],
         "property": "rotation.x",
         "from": 0,
         "to": 6.283185307179586,
         "phase": 0.1,
-        "mode": "offset"
+        "mode": "offset",
+        "autoplay": "sine"
       }
     ]
   }

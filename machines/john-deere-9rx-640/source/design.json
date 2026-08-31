@@ -6,15 +6,18 @@
   "archetype": "tracked_tractor",
   "dimensions_m": {"length": 8.309, "width": 2.98, "height": 3.71},
   "palette": "slate",
-  "published_constraints_used": ["public-envelope-x", "selected-track-width", "selected-track-spacing", "articulation-range", "chassis-oscillation", "undercarriage-oscillation"],
+  "published_constraints_used": ["public-envelope-x", "selected-track-width", "selected-track-spacing", "less-pto-base", "less-hitch-base", "category-five-drawbar-interface"],
   "reconstructed_values": {
     "presentation_height_m": 3.71,
     "visible_width_derivation_m": "2.218 m center spacing + 0.762 m belt width = 2.980 m",
-    "track_pod_visual_length_m": 2.0,
-    "articulation_visual_limit_rad": 0.18,
-    "track_pod_visual_pitch_rad": 0.04,
+    "track_pod_visual_length_m": 2.36,
+    "track_pod_visual_height_m": 1.12,
+    "track_pod_static_ground_clearance_m": 0.035,
+    "articulation_visual_limit_rad": 0.2,
+    "frame_roll_visual_limit_rad": 0.006,
+    "track_pod_visual_pitch_rad": 0.006,
     "neutral_material_policy": "matte slate and graphite with dark rubber belts; no logos, decals or manufacturer trade dress"
   },
-  "unresolved_choices": ["Manufacturer-published overall height and overall width for code 6829/6848", "All belt, sprocket, idler, midroller and pod geometry", "Hidden articulation and oscillation pivots, cylinders, anchors and stops", "Exact exterior surfacing and service details"],
+  "unresolved_choices": ["Manufacturer-published overall height and overall width for code 6829/6848", "Selected North American articulation, chassis-oscillation and undercarriage-oscillation limits", "Longitudinal spacing between front and rear track-pod centers", "All belt, sprocket, idler, midroller and pod geometry", "Hidden articulation and oscillation pivots, cylinders, anchors and stops", "Exact exterior surfacing and service details"],
   "mechanical_gaps": ["Track belts are rigid visual abstractions without lug engagement, tension, deformation, slip or soil interaction.", "Articulation, frame oscillation and pod pitch are independent visual transforms, not a coupled validated solver.", "Powertrain, hydraulic, cooling and aftertreatment internals are not modeled."]
 }

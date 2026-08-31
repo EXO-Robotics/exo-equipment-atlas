@@ -21,14 +21,15 @@
   "accent": "#a0acb7",
   "motion": {
     "autoplay": true,
-    "durationSeconds": 22,
+    "durationSeconds": 18,
     "mode": "sine",
-    "damping": 8.5,
+    "damping": 8,
     "channels": [
-      {"id": "feederhouse-pitch", "label": "Feederhouse pitch study", "nodes": ["Feederhouse_ROOT"], "property": "rotation.z", "from": -0.03, "to": 0.08, "phase": 0.0, "mode": "offset"},
-      {"id": "header-lift", "label": "Header lift study", "nodes": ["Header_ROOT"], "property": "rotation.z", "from": -0.08, "to": 0.18, "phase": 0.18, "mode": "offset", "autoplay": "ping-pong"},
-      {"id": "reel-rotation", "label": "Header reel visual cue", "nodes": ["Reel_ROOT"], "property": "rotation.z", "from": 0, "to": 6.283185, "phase": 0.42, "mode": "offset"},
-      {"id": "unloader-swing", "label": "Unloading auger swing study", "nodes": ["Unloader_ROOT"], "property": "rotation.y", "from": 0, "to": 1.65, "phase": 0.68, "mode": "offset", "autoplay": "ping-pong"}
+      {"id": "feederhouse-pitch", "mechanismJointId": "feederhouse_raise_lower", "label": "Feederhouse raise study", "nodes": ["Feederhouse_ROOT"], "property": "rotation.z", "from": 0, "to": 0.08, "phase": 0.0, "mode": "offset"},
+      {"id": "header-lift", "mechanismJointId": "header_lift_and_tilt", "label": "Header raise study", "nodes": ["Header_ROOT"], "property": "rotation.z", "from": 0, "to": 0.18, "phase": 0.18, "mode": "offset", "autoplay": "ping-pong"},
+      {"id": "reel-rotation", "mechanismJointId": "header_reel_rotation", "label": "Header reel visual cue", "nodes": ["Reel_ROOT"], "property": "rotation.z", "from": 0, "to": 6.283185, "phase": 0.42, "mode": "offset"},
+      {"id": "dual-rotors", "mechanismJointId": "dual_rotor_rotation", "label": "Dual separator rotor cutaway cue", "nodes": ["Dual_Rotor_L_ROOT", "Dual_Rotor_R_ROOT"], "property": "rotation.x", "from": 0, "to": 6.283185, "phase": 0.54, "mode": "offset"},
+      {"id": "unloader-swing", "mechanismJointId": "unloading_auger_swing", "label": "Unloading auger swing study", "nodes": ["Unloader_ROOT"], "property": "rotation.y", "from": 0, "to": 1.65, "phase": 0.68, "mode": "offset", "autoplay": "ping-pong"}
     ]
   }
 }

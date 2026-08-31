@@ -26,26 +26,26 @@
     ]
   },
   "counts": {
-    "objects": 212,
-    "meshes": 190,
-    "triangles": 28968,
-    "materials": 7
+    "objects": 292,
+    "meshes": 255,
+    "triangles": 37356,
+    "materials": 10
   },
   "envelope_fit": {
-    "classification": "reconstructed_visible_envelope_calibration",
+    "classification": "authored_visible_envelope_measurement",
     "source_bounds_m": {
       "min_m": [
-        -4.146246,
+        -4.5,
         0.0,
         -1.981
       ],
       "max_m": [
-        4.86,
+        4.5,
         3.904,
         1.981
       ],
       "size_m": [
-        9.006246,
+        9.0,
         3.904,
         3.962
       ]
@@ -68,9 +68,9 @@
       ]
     },
     "axis_scale_factors": [
-      0.999306471,
-      0.999999989,
-      1.000000027
+      1.0,
+      1.0,
+      1.0
     ],
     "calibrated_bounds_m": {
       "min_m": [
@@ -89,7 +89,7 @@
         3.962
       ]
     },
-    "authority": "reconstructed_not_machine_specific_engineering"
+    "authority": "independently_measured_from_authored_geometry"
   },
   "glb_contract": {
     "glb_version": "2.0",
@@ -98,18 +98,18 @@
     "root_name": "Machine_Root",
     "root_record": {},
     "identity_root": true,
-    "nodes": 212,
-    "mesh_nodes": 190,
-    "mesh_definitions": 190,
-    "materials": 7,
-    "triangles": 28968,
+    "nodes": 292,
+    "mesh_nodes": 255,
+    "mesh_definitions": 255,
+    "materials": 10,
+    "triangles": 37356,
     "cameras": 0,
     "punctual_lights": false,
     "images": 0,
     "textures": 0,
     "nonidentity_mesh_scales": {},
     "helper_like_mesh_nodes": [],
-    "semantic_motion_nodes": 21,
+    "semantic_motion_nodes": 37,
     "bounds": {
       "min_m": [
         -4.5,
@@ -128,11 +128,29 @@
       ]
     }
   },
+  "required_machine_gate_ids": [
+    "model_year_boundary_visible",
+    "frozen_visible_configuration",
+    "single_identity_root",
+    "wheeled_contact",
+    "feeder_and_faceplate_continuity",
+    "rotor_containment",
+    "cleaning_system_clearance",
+    "unloader_fold_swing_continuity",
+    "ground_collision",
+    "self_collision",
+    "swept_volume_collision"
+  ],
   "gates": [
     {
       "id": "builder-execution",
       "status": "PASS",
       "detail": "Factory-startup background builder reached validation generation."
+    },
+    {
+      "id": "machine-specific-builder",
+      "status": "PASS",
+      "detail": "Machine-local subclass owns the selected machine topology."
     },
     {
       "id": "candidate-class-boundary",
@@ -158,25 +176,937 @@
       "id": "required-semantic-nodes",
       "status": "PASS",
       "detail": {
-        "Machine_Root": true,
-        "Fixed_Structure_ROOT": true,
-        "Running_Gear_ROOT": true,
-        "Hydraulics_ROOT": true,
-        "Service_Detail_ROOT": true,
-        "Header_Lift_Pivot": true,
-        "Header_ROOT": true,
-        "Reel_Pivot": true,
-        "Reel_ROOT": true,
-        "Feederhouse_ROOT": true,
-        "Unloader_Swing_Pivot": true,
-        "Unloader_ROOT": true
+        "Machine_Root": {
+          "present": true,
+          "role": "identity_root",
+          "visible_mesh_descendants": [
+            "AFX_Rasp_Bar_01",
+            "AFX_Rasp_Bar_02",
+            "AFX_Rasp_Bar_03",
+            "AFX_Rasp_Bar_04",
+            "AFX_Rasp_Bar_05",
+            "AFX_Rasp_Bar_06",
+            "AFX_Rasp_Bar_07",
+            "AFX_Rasp_Bar_08",
+            "AFX_Rasp_Bar_09",
+            "AFX_Rasp_Bar_10",
+            "AFX_Rasp_Bar_11",
+            "AFX_Rasp_Bar_12",
+            "AFX_Rotor_Drum",
+            "Cleaning_Grain_Pan",
+            "Cleaning_Level_Cross_Shaft",
+            "Cleaning_Level_L_Link",
+            "Cleaning_Level_R_Link",
+            "Cleaning_Lower_Sieve",
+            "Cleaning_Upper_Sieve",
+            "Crossflow_Fan",
+            "Crossflow_Fan_Vane_01",
+            "Crossflow_Fan_Vane_02",
+            "Crossflow_Fan_Vane_03",
+            "Crossflow_Fan_Vane_04",
+            "Crossflow_Fan_Vane_05",
+            "Crossflow_Fan_Vane_06",
+            "Crossflow_Fan_Vane_07",
+            "Crossflow_Fan_Vane_08",
+            "Combine_Main_Frame",
+            "Concave_Crossbar_01",
+            "Concave_Crossbar_02",
+            "Concave_Crossbar_03",
+            "Concave_Crossbar_04",
+            "Concave_Crossbar_05",
+            "Concave_Crossbar_06",
+            "Concave_Crossbar_07",
+            "Concave_L_Rail",
+            "Concave_R_Rail",
+            "Grain_Tank_Cover_L_Fixed",
+            "Grain_Tank_Cover_R_Fixed",
+            "Grain_Tank_Lower",
+            "Grain_Tank_Top_Rail",
+            "Feeder_Casing",
+            "Feeder_Chain_Flight_1",
+            "Feeder_Chain_Flight_2",
+            "Feeder_Chain_Flight_3",
+            "Feeder_Coupler_Face",
+            "Feeder_Coupler_L_Hook",
+            "Feeder_Coupler_R_Hook",
+            "Feeder_Lift_L_Cylinder",
+            "Feeder_Lift_R_Cylinder",
+            "Operator_Access_Platform",
+            "Operator_Rail_Post_1",
+            "Operator_Rail_Post_2",
+            "Operator_Rail_Post_3",
+            "Operator_Rail_Top",
+            "Cab_Floor",
+            "Cab_Front_Glass",
+            "Cab_L_Glass",
+            "Cab_L_Post_F",
+            "Cab_L_Post_R",
+            "Cab_R_Glass",
+            "Cab_R_Post_F",
+            "Cab_R_Post_R",
+            "Cab_Rear_Glass",
+            "Cab_Roof",
+            "Operator_Seat",
+            "Rear_Engine_House",
+            "Rear_Engine_Vent_01",
+            "Rear_Engine_Vent_02",
+            "Rear_Engine_Vent_03",
+            "Rear_Engine_Vent_04",
+            "Rear_Engine_Vent_05",
+            "Rear_Engine_Vent_06",
+            "Rear_Engine_Vent_07",
+            "Rear_Engine_Vent_08",
+            "Rear_Service_Bumper",
+            "Residue_Discharge_Interface",
+            "Rotor_Containment_Guard",
+            "Separator_Left_Upper_Panel",
+            "Separator_Right_Panel",
+            "Separator_Top",
+            "Unloader_Base_Collar",
+            "Unloader_Fold_Hinge",
+            "Unloader_Outer_Tube",
+            "Unloader_Pivoting_Spout",
+            "Unloader_Inner_Tube",
+            "Feeder_Hydraulic_Supply_L",
+            "Feeder_Hydraulic_Supply_R",
+            "Hydraulic_Valve_Manifold",
+            "Front_Drive_Axle_Beam",
+            "Front_L_Inner_Hub",
+            "Front_L_Inner_Lug_01",
+            "Front_L_Inner_Lug_02",
+            "Front_L_Inner_Lug_03",
+            "Front_L_Inner_Lug_04",
+            "Front_L_Inner_Lug_05",
+            "Front_L_Inner_Lug_06",
+            "Front_L_Inner_Lug_07",
+            "Front_L_Inner_Lug_08",
+            "Front_L_Inner_Rim",
+            "Front_L_Inner_Tire",
+            "Front_L_Inner_Tread_01",
+            "Front_L_Inner_Tread_02",
+            "Front_L_Inner_Tread_03",
+            "Front_L_Inner_Tread_04",
+            "Front_L_Inner_Tread_05",
+            "Front_L_Inner_Tread_06",
+            "Front_L_Inner_Tread_07",
+            "Front_L_Inner_Tread_08",
+            "Front_L_Inner_Tread_09",
+            "Front_L_Inner_Tread_10",
+            "Front_L_Inner_Tread_11",
+            "Front_L_Inner_Tread_12",
+            "Front_L_Inner_Tread_13",
+            "Front_L_Inner_Tread_14",
+            "Front_L_Inner_Tread_15",
+            "Front_L_Inner_Tread_16",
+            "Front_L_Outer_Hub",
+            "Front_L_Outer_Lug_01",
+            "Front_L_Outer_Lug_02",
+            "Front_L_Outer_Lug_03",
+            "Front_L_Outer_Lug_04",
+            "Front_L_Outer_Lug_05",
+            "Front_L_Outer_Lug_06",
+            "Front_L_Outer_Lug_07",
+            "Front_L_Outer_Lug_08",
+            "Front_L_Outer_Rim",
+            "Front_L_Outer_Tire",
+            "Front_L_Outer_Tread_01",
+            "Front_L_Outer_Tread_02",
+            "Front_L_Outer_Tread_03",
+            "Front_L_Outer_Tread_04",
+            "Front_L_Outer_Tread_05",
+            "Front_L_Outer_Tread_06",
+            "Front_L_Outer_Tread_07",
+            "Front_L_Outer_Tread_08",
+            "Front_L_Outer_Tread_09",
+            "Front_L_Outer_Tread_10",
+            "Front_L_Outer_Tread_11",
+            "Front_L_Outer_Tread_12",
+            "Front_L_Outer_Tread_13",
+            "Front_L_Outer_Tread_14",
+            "Front_L_Outer_Tread_15",
+            "Front_L_Outer_Tread_16",
+            "Front_R_Inner_Hub",
+            "Front_R_Inner_Lug_01",
+            "Front_R_Inner_Lug_02",
+            "Front_R_Inner_Lug_03",
+            "Front_R_Inner_Lug_04",
+            "Front_R_Inner_Lug_05",
+            "Front_R_Inner_Lug_06",
+            "Front_R_Inner_Lug_07",
+            "Front_R_Inner_Lug_08",
+            "Front_R_Inner_Rim",
+            "Front_R_Inner_Tire",
+            "Front_R_Inner_Tread_01",
+            "Front_R_Inner_Tread_02",
+            "Front_R_Inner_Tread_03",
+            "Front_R_Inner_Tread_04",
+            "Front_R_Inner_Tread_05",
+            "Front_R_Inner_Tread_06",
+            "Front_R_Inner_Tread_07",
+            "Front_R_Inner_Tread_08",
+            "Front_R_Inner_Tread_09",
+            "Front_R_Inner_Tread_10",
+            "Front_R_Inner_Tread_11",
+            "Front_R_Inner_Tread_12",
+            "Front_R_Inner_Tread_13",
+            "Front_R_Inner_Tread_14",
+            "Front_R_Inner_Tread_15",
+            "Front_R_Inner_Tread_16",
+            "Front_R_Outer_Hub",
+            "Front_R_Outer_Lug_01",
+            "Front_R_Outer_Lug_02",
+            "Front_R_Outer_Lug_03",
+            "Front_R_Outer_Lug_04",
+            "Front_R_Outer_Lug_05",
+            "Front_R_Outer_Lug_06",
+            "Front_R_Outer_Lug_07",
+            "Front_R_Outer_Lug_08",
+            "Front_R_Outer_Rim",
+            "Front_R_Outer_Tire",
+            "Front_R_Outer_Tread_01",
+            "Front_R_Outer_Tread_02",
+            "Front_R_Outer_Tread_03",
+            "Front_R_Outer_Tread_04",
+            "Front_R_Outer_Tread_05",
+            "Front_R_Outer_Tread_06",
+            "Front_R_Outer_Tread_07",
+            "Front_R_Outer_Tread_08",
+            "Front_R_Outer_Tread_09",
+            "Front_R_Outer_Tread_10",
+            "Front_R_Outer_Tread_11",
+            "Front_R_Outer_Tread_12",
+            "Front_R_Outer_Tread_13",
+            "Front_R_Outer_Tread_14",
+            "Front_R_Outer_Tread_15",
+            "Front_R_Outer_Tread_16",
+            "Rear_Steering_Axle_Beam",
+            "Rear_Steering_Cylinder_Barrel",
+            "Rear_Steering_Cylinder_Rod",
+            "Rear_Steering_L_Arm",
+            "Rear_L_Hub",
+            "Rear_L_Lug_01",
+            "Rear_L_Lug_02",
+            "Rear_L_Lug_03",
+            "Rear_L_Lug_04",
+            "Rear_L_Lug_05",
+            "Rear_L_Lug_06",
+            "Rear_L_Lug_07",
+            "Rear_L_Lug_08",
+            "Rear_L_Rim",
+            "Rear_L_Tire",
+            "Rear_L_Tread_01",
+            "Rear_L_Tread_02",
+            "Rear_L_Tread_03",
+            "Rear_L_Tread_04",
+            "Rear_L_Tread_05",
+            "Rear_L_Tread_06",
+            "Rear_L_Tread_07",
+            "Rear_L_Tread_08",
+            "Rear_L_Tread_09",
+            "Rear_L_Tread_10",
+            "Rear_L_Tread_11",
+            "Rear_L_Tread_12",
+            "Rear_L_Tread_13",
+            "Rear_L_Tread_14",
+            "Rear_Steering_R_Arm",
+            "Rear_R_Hub",
+            "Rear_R_Lug_01",
+            "Rear_R_Lug_02",
+            "Rear_R_Lug_03",
+            "Rear_R_Lug_04",
+            "Rear_R_Lug_05",
+            "Rear_R_Lug_06",
+            "Rear_R_Lug_07",
+            "Rear_R_Lug_08",
+            "Rear_R_Rim",
+            "Rear_R_Tire",
+            "Rear_R_Tread_01",
+            "Rear_R_Tread_02",
+            "Rear_R_Tread_03",
+            "Rear_R_Tread_04",
+            "Rear_R_Tread_05",
+            "Rear_R_Tread_06",
+            "Rear_R_Tread_07",
+            "Rear_R_Tread_08",
+            "Rear_R_Tread_09",
+            "Rear_R_Tread_10",
+            "Rear_R_Tread_11",
+            "Rear_R_Tread_12",
+            "Rear_R_Tread_13",
+            "Rear_R_Tread_14",
+            "Rear_Steering_Tie_Rod"
+          ]
+        },
+        "Fixed_Structure_ROOT": {
+          "present": true,
+          "role": "fixed_structure_root",
+          "visible_mesh_descendants": [
+            "AFX_Rasp_Bar_01",
+            "AFX_Rasp_Bar_02",
+            "AFX_Rasp_Bar_03",
+            "AFX_Rasp_Bar_04",
+            "AFX_Rasp_Bar_05",
+            "AFX_Rasp_Bar_06",
+            "AFX_Rasp_Bar_07",
+            "AFX_Rasp_Bar_08",
+            "AFX_Rasp_Bar_09",
+            "AFX_Rasp_Bar_10",
+            "AFX_Rasp_Bar_11",
+            "AFX_Rasp_Bar_12",
+            "AFX_Rotor_Drum",
+            "Cleaning_Grain_Pan",
+            "Cleaning_Level_Cross_Shaft",
+            "Cleaning_Level_L_Link",
+            "Cleaning_Level_R_Link",
+            "Cleaning_Lower_Sieve",
+            "Cleaning_Upper_Sieve",
+            "Crossflow_Fan",
+            "Crossflow_Fan_Vane_01",
+            "Crossflow_Fan_Vane_02",
+            "Crossflow_Fan_Vane_03",
+            "Crossflow_Fan_Vane_04",
+            "Crossflow_Fan_Vane_05",
+            "Crossflow_Fan_Vane_06",
+            "Crossflow_Fan_Vane_07",
+            "Crossflow_Fan_Vane_08",
+            "Combine_Main_Frame",
+            "Concave_Crossbar_01",
+            "Concave_Crossbar_02",
+            "Concave_Crossbar_03",
+            "Concave_Crossbar_04",
+            "Concave_Crossbar_05",
+            "Concave_Crossbar_06",
+            "Concave_Crossbar_07",
+            "Concave_L_Rail",
+            "Concave_R_Rail",
+            "Grain_Tank_Cover_L_Fixed",
+            "Grain_Tank_Cover_R_Fixed",
+            "Grain_Tank_Lower",
+            "Grain_Tank_Top_Rail",
+            "Feeder_Casing",
+            "Feeder_Chain_Flight_1",
+            "Feeder_Chain_Flight_2",
+            "Feeder_Chain_Flight_3",
+            "Feeder_Coupler_Face",
+            "Feeder_Coupler_L_Hook",
+            "Feeder_Coupler_R_Hook",
+            "Feeder_Lift_L_Cylinder",
+            "Feeder_Lift_R_Cylinder",
+            "Operator_Access_Platform",
+            "Operator_Rail_Post_1",
+            "Operator_Rail_Post_2",
+            "Operator_Rail_Post_3",
+            "Operator_Rail_Top",
+            "Cab_Floor",
+            "Cab_Front_Glass",
+            "Cab_L_Glass",
+            "Cab_L_Post_F",
+            "Cab_L_Post_R",
+            "Cab_R_Glass",
+            "Cab_R_Post_F",
+            "Cab_R_Post_R",
+            "Cab_Rear_Glass",
+            "Cab_Roof",
+            "Operator_Seat",
+            "Rear_Engine_House",
+            "Rear_Engine_Vent_01",
+            "Rear_Engine_Vent_02",
+            "Rear_Engine_Vent_03",
+            "Rear_Engine_Vent_04",
+            "Rear_Engine_Vent_05",
+            "Rear_Engine_Vent_06",
+            "Rear_Engine_Vent_07",
+            "Rear_Engine_Vent_08",
+            "Rear_Service_Bumper",
+            "Residue_Discharge_Interface",
+            "Rotor_Containment_Guard",
+            "Separator_Left_Upper_Panel",
+            "Separator_Right_Panel",
+            "Separator_Top",
+            "Unloader_Base_Collar",
+            "Unloader_Fold_Hinge",
+            "Unloader_Outer_Tube",
+            "Unloader_Pivoting_Spout",
+            "Unloader_Inner_Tube"
+          ]
+        },
+        "Running_Gear_ROOT": {
+          "present": true,
+          "role": "running_gear_root",
+          "visible_mesh_descendants": [
+            "Front_Drive_Axle_Beam",
+            "Front_L_Inner_Hub",
+            "Front_L_Inner_Lug_01",
+            "Front_L_Inner_Lug_02",
+            "Front_L_Inner_Lug_03",
+            "Front_L_Inner_Lug_04",
+            "Front_L_Inner_Lug_05",
+            "Front_L_Inner_Lug_06",
+            "Front_L_Inner_Lug_07",
+            "Front_L_Inner_Lug_08",
+            "Front_L_Inner_Rim",
+            "Front_L_Inner_Tire",
+            "Front_L_Inner_Tread_01",
+            "Front_L_Inner_Tread_02",
+            "Front_L_Inner_Tread_03",
+            "Front_L_Inner_Tread_04",
+            "Front_L_Inner_Tread_05",
+            "Front_L_Inner_Tread_06",
+            "Front_L_Inner_Tread_07",
+            "Front_L_Inner_Tread_08",
+            "Front_L_Inner_Tread_09",
+            "Front_L_Inner_Tread_10",
+            "Front_L_Inner_Tread_11",
+            "Front_L_Inner_Tread_12",
+            "Front_L_Inner_Tread_13",
+            "Front_L_Inner_Tread_14",
+            "Front_L_Inner_Tread_15",
+            "Front_L_Inner_Tread_16",
+            "Front_L_Outer_Hub",
+            "Front_L_Outer_Lug_01",
+            "Front_L_Outer_Lug_02",
+            "Front_L_Outer_Lug_03",
+            "Front_L_Outer_Lug_04",
+            "Front_L_Outer_Lug_05",
+            "Front_L_Outer_Lug_06",
+            "Front_L_Outer_Lug_07",
+            "Front_L_Outer_Lug_08",
+            "Front_L_Outer_Rim",
+            "Front_L_Outer_Tire",
+            "Front_L_Outer_Tread_01",
+            "Front_L_Outer_Tread_02",
+            "Front_L_Outer_Tread_03",
+            "Front_L_Outer_Tread_04",
+            "Front_L_Outer_Tread_05",
+            "Front_L_Outer_Tread_06",
+            "Front_L_Outer_Tread_07",
+            "Front_L_Outer_Tread_08",
+            "Front_L_Outer_Tread_09",
+            "Front_L_Outer_Tread_10",
+            "Front_L_Outer_Tread_11",
+            "Front_L_Outer_Tread_12",
+            "Front_L_Outer_Tread_13",
+            "Front_L_Outer_Tread_14",
+            "Front_L_Outer_Tread_15",
+            "Front_L_Outer_Tread_16",
+            "Front_R_Inner_Hub",
+            "Front_R_Inner_Lug_01",
+            "Front_R_Inner_Lug_02",
+            "Front_R_Inner_Lug_03",
+            "Front_R_Inner_Lug_04",
+            "Front_R_Inner_Lug_05",
+            "Front_R_Inner_Lug_06",
+            "Front_R_Inner_Lug_07",
+            "Front_R_Inner_Lug_08",
+            "Front_R_Inner_Rim",
+            "Front_R_Inner_Tire",
+            "Front_R_Inner_Tread_01",
+            "Front_R_Inner_Tread_02",
+            "Front_R_Inner_Tread_03",
+            "Front_R_Inner_Tread_04",
+            "Front_R_Inner_Tread_05",
+            "Front_R_Inner_Tread_06",
+            "Front_R_Inner_Tread_07",
+            "Front_R_Inner_Tread_08",
+            "Front_R_Inner_Tread_09",
+            "Front_R_Inner_Tread_10",
+            "Front_R_Inner_Tread_11",
+            "Front_R_Inner_Tread_12",
+            "Front_R_Inner_Tread_13",
+            "Front_R_Inner_Tread_14",
+            "Front_R_Inner_Tread_15",
+            "Front_R_Inner_Tread_16",
+            "Front_R_Outer_Hub",
+            "Front_R_Outer_Lug_01",
+            "Front_R_Outer_Lug_02",
+            "Front_R_Outer_Lug_03",
+            "Front_R_Outer_Lug_04",
+            "Front_R_Outer_Lug_05",
+            "Front_R_Outer_Lug_06",
+            "Front_R_Outer_Lug_07",
+            "Front_R_Outer_Lug_08",
+            "Front_R_Outer_Rim",
+            "Front_R_Outer_Tire",
+            "Front_R_Outer_Tread_01",
+            "Front_R_Outer_Tread_02",
+            "Front_R_Outer_Tread_03",
+            "Front_R_Outer_Tread_04",
+            "Front_R_Outer_Tread_05",
+            "Front_R_Outer_Tread_06",
+            "Front_R_Outer_Tread_07",
+            "Front_R_Outer_Tread_08",
+            "Front_R_Outer_Tread_09",
+            "Front_R_Outer_Tread_10",
+            "Front_R_Outer_Tread_11",
+            "Front_R_Outer_Tread_12",
+            "Front_R_Outer_Tread_13",
+            "Front_R_Outer_Tread_14",
+            "Front_R_Outer_Tread_15",
+            "Front_R_Outer_Tread_16",
+            "Rear_Steering_Axle_Beam",
+            "Rear_Steering_Cylinder_Barrel",
+            "Rear_Steering_Cylinder_Rod",
+            "Rear_Steering_L_Arm",
+            "Rear_L_Hub",
+            "Rear_L_Lug_01",
+            "Rear_L_Lug_02",
+            "Rear_L_Lug_03",
+            "Rear_L_Lug_04",
+            "Rear_L_Lug_05",
+            "Rear_L_Lug_06",
+            "Rear_L_Lug_07",
+            "Rear_L_Lug_08",
+            "Rear_L_Rim",
+            "Rear_L_Tire",
+            "Rear_L_Tread_01",
+            "Rear_L_Tread_02",
+            "Rear_L_Tread_03",
+            "Rear_L_Tread_04",
+            "Rear_L_Tread_05",
+            "Rear_L_Tread_06",
+            "Rear_L_Tread_07",
+            "Rear_L_Tread_08",
+            "Rear_L_Tread_09",
+            "Rear_L_Tread_10",
+            "Rear_L_Tread_11",
+            "Rear_L_Tread_12",
+            "Rear_L_Tread_13",
+            "Rear_L_Tread_14",
+            "Rear_Steering_R_Arm",
+            "Rear_R_Hub",
+            "Rear_R_Lug_01",
+            "Rear_R_Lug_02",
+            "Rear_R_Lug_03",
+            "Rear_R_Lug_04",
+            "Rear_R_Lug_05",
+            "Rear_R_Lug_06",
+            "Rear_R_Lug_07",
+            "Rear_R_Lug_08",
+            "Rear_R_Rim",
+            "Rear_R_Tire",
+            "Rear_R_Tread_01",
+            "Rear_R_Tread_02",
+            "Rear_R_Tread_03",
+            "Rear_R_Tread_04",
+            "Rear_R_Tread_05",
+            "Rear_R_Tread_06",
+            "Rear_R_Tread_07",
+            "Rear_R_Tread_08",
+            "Rear_R_Tread_09",
+            "Rear_R_Tread_10",
+            "Rear_R_Tread_11",
+            "Rear_R_Tread_12",
+            "Rear_R_Tread_13",
+            "Rear_R_Tread_14",
+            "Rear_Steering_Tie_Rod"
+          ]
+        },
+        "Hydraulics_ROOT": {
+          "present": true,
+          "role": "hydraulics_root",
+          "visible_mesh_descendants": [
+            "Feeder_Hydraulic_Supply_L",
+            "Feeder_Hydraulic_Supply_R",
+            "Hydraulic_Valve_Manifold"
+          ]
+        },
+        "Header_Lift_Pivot": {
+          "present": true,
+          "role": "feeder_lift_pivot",
+          "visible_mesh_descendants": [
+            "Feeder_Casing",
+            "Feeder_Chain_Flight_1",
+            "Feeder_Chain_Flight_2",
+            "Feeder_Chain_Flight_3",
+            "Feeder_Coupler_Face",
+            "Feeder_Coupler_L_Hook",
+            "Feeder_Coupler_R_Hook",
+            "Feeder_Lift_L_Cylinder",
+            "Feeder_Lift_R_Cylinder"
+          ]
+        },
+        "Feederhouse_ROOT": {
+          "present": true,
+          "role": "motion_root",
+          "visible_mesh_descendants": [
+            "Feeder_Casing",
+            "Feeder_Chain_Flight_1",
+            "Feeder_Chain_Flight_2",
+            "Feeder_Chain_Flight_3",
+            "Feeder_Coupler_Face",
+            "Feeder_Coupler_L_Hook",
+            "Feeder_Coupler_R_Hook",
+            "Feeder_Lift_L_Cylinder",
+            "Feeder_Lift_R_Cylinder"
+          ]
+        },
+        "Feeder_Lateral_Tilt_Pivot": {
+          "present": true,
+          "role": "pivot",
+          "visible_mesh_descendants": [
+            "Feeder_Coupler_Face",
+            "Feeder_Coupler_L_Hook",
+            "Feeder_Coupler_R_Hook"
+          ]
+        },
+        "Feeder_Faceplate_ForeAft_Pivot": {
+          "present": true,
+          "role": "pivot",
+          "visible_mesh_descendants": [
+            "Feeder_Coupler_Face",
+            "Feeder_Coupler_L_Hook",
+            "Feeder_Coupler_R_Hook"
+          ]
+        },
+        "Feeder_Faceplate_ROOT": {
+          "present": true,
+          "role": "motion_root",
+          "visible_mesh_descendants": [
+            "Feeder_Coupler_Face",
+            "Feeder_Coupler_L_Hook",
+            "Feeder_Coupler_R_Hook"
+          ]
+        },
+        "AFX_Rotor_ROOT": {
+          "present": true,
+          "role": "rotary_root",
+          "visible_mesh_descendants": [
+            "AFX_Rasp_Bar_01",
+            "AFX_Rasp_Bar_02",
+            "AFX_Rasp_Bar_03",
+            "AFX_Rasp_Bar_04",
+            "AFX_Rasp_Bar_05",
+            "AFX_Rasp_Bar_06",
+            "AFX_Rasp_Bar_07",
+            "AFX_Rasp_Bar_08",
+            "AFX_Rasp_Bar_09",
+            "AFX_Rasp_Bar_10",
+            "AFX_Rasp_Bar_11",
+            "AFX_Rasp_Bar_12",
+            "AFX_Rotor_Drum"
+          ]
+        },
+        "Cleaning_System_Level_ROOT": {
+          "present": true,
+          "role": "leveling_motion_root",
+          "visible_mesh_descendants": [
+            "Cleaning_Grain_Pan",
+            "Cleaning_Level_Cross_Shaft",
+            "Cleaning_Level_L_Link",
+            "Cleaning_Level_R_Link",
+            "Cleaning_Lower_Sieve",
+            "Cleaning_Upper_Sieve",
+            "Crossflow_Fan",
+            "Crossflow_Fan_Vane_01",
+            "Crossflow_Fan_Vane_02",
+            "Crossflow_Fan_Vane_03",
+            "Crossflow_Fan_Vane_04",
+            "Crossflow_Fan_Vane_05",
+            "Crossflow_Fan_Vane_06",
+            "Crossflow_Fan_Vane_07",
+            "Crossflow_Fan_Vane_08"
+          ]
+        },
+        "Unloader_Swing_Pivot": {
+          "present": true,
+          "role": "pivot",
+          "visible_mesh_descendants": [
+            "Unloader_Base_Collar",
+            "Unloader_Fold_Hinge",
+            "Unloader_Outer_Tube",
+            "Unloader_Pivoting_Spout",
+            "Unloader_Inner_Tube"
+          ]
+        },
+        "Unloader_ROOT": {
+          "present": true,
+          "role": "motion_root",
+          "visible_mesh_descendants": [
+            "Unloader_Base_Collar",
+            "Unloader_Fold_Hinge",
+            "Unloader_Outer_Tube",
+            "Unloader_Pivoting_Spout",
+            "Unloader_Inner_Tube"
+          ]
+        },
+        "Unloader_Fold_Pivot": {
+          "present": true,
+          "role": "pivot",
+          "visible_mesh_descendants": [
+            "Unloader_Fold_Hinge",
+            "Unloader_Outer_Tube",
+            "Unloader_Pivoting_Spout"
+          ]
+        },
+        "Unloader_Fold_ROOT": {
+          "present": true,
+          "role": "motion_root",
+          "visible_mesh_descendants": [
+            "Unloader_Fold_Hinge",
+            "Unloader_Outer_Tube",
+            "Unloader_Pivoting_Spout"
+          ]
+        },
+        "Unloader_Spout_Pivot": {
+          "present": true,
+          "role": "pivot",
+          "visible_mesh_descendants": [
+            "Unloader_Pivoting_Spout"
+          ]
+        },
+        "Unloader_Spout_ROOT": {
+          "present": true,
+          "role": "motion_root",
+          "visible_mesh_descendants": [
+            "Unloader_Pivoting_Spout"
+          ]
+        },
+        "Front_Drive_Axle_ROOT": {
+          "present": true,
+          "role": "drive_axle_root",
+          "visible_mesh_descendants": [
+            "Front_Drive_Axle_Beam",
+            "Front_L_Inner_Hub",
+            "Front_L_Inner_Lug_01",
+            "Front_L_Inner_Lug_02",
+            "Front_L_Inner_Lug_03",
+            "Front_L_Inner_Lug_04",
+            "Front_L_Inner_Lug_05",
+            "Front_L_Inner_Lug_06",
+            "Front_L_Inner_Lug_07",
+            "Front_L_Inner_Lug_08",
+            "Front_L_Inner_Rim",
+            "Front_L_Inner_Tire",
+            "Front_L_Inner_Tread_01",
+            "Front_L_Inner_Tread_02",
+            "Front_L_Inner_Tread_03",
+            "Front_L_Inner_Tread_04",
+            "Front_L_Inner_Tread_05",
+            "Front_L_Inner_Tread_06",
+            "Front_L_Inner_Tread_07",
+            "Front_L_Inner_Tread_08",
+            "Front_L_Inner_Tread_09",
+            "Front_L_Inner_Tread_10",
+            "Front_L_Inner_Tread_11",
+            "Front_L_Inner_Tread_12",
+            "Front_L_Inner_Tread_13",
+            "Front_L_Inner_Tread_14",
+            "Front_L_Inner_Tread_15",
+            "Front_L_Inner_Tread_16",
+            "Front_L_Outer_Hub",
+            "Front_L_Outer_Lug_01",
+            "Front_L_Outer_Lug_02",
+            "Front_L_Outer_Lug_03",
+            "Front_L_Outer_Lug_04",
+            "Front_L_Outer_Lug_05",
+            "Front_L_Outer_Lug_06",
+            "Front_L_Outer_Lug_07",
+            "Front_L_Outer_Lug_08",
+            "Front_L_Outer_Rim",
+            "Front_L_Outer_Tire",
+            "Front_L_Outer_Tread_01",
+            "Front_L_Outer_Tread_02",
+            "Front_L_Outer_Tread_03",
+            "Front_L_Outer_Tread_04",
+            "Front_L_Outer_Tread_05",
+            "Front_L_Outer_Tread_06",
+            "Front_L_Outer_Tread_07",
+            "Front_L_Outer_Tread_08",
+            "Front_L_Outer_Tread_09",
+            "Front_L_Outer_Tread_10",
+            "Front_L_Outer_Tread_11",
+            "Front_L_Outer_Tread_12",
+            "Front_L_Outer_Tread_13",
+            "Front_L_Outer_Tread_14",
+            "Front_L_Outer_Tread_15",
+            "Front_L_Outer_Tread_16",
+            "Front_R_Inner_Hub",
+            "Front_R_Inner_Lug_01",
+            "Front_R_Inner_Lug_02",
+            "Front_R_Inner_Lug_03",
+            "Front_R_Inner_Lug_04",
+            "Front_R_Inner_Lug_05",
+            "Front_R_Inner_Lug_06",
+            "Front_R_Inner_Lug_07",
+            "Front_R_Inner_Lug_08",
+            "Front_R_Inner_Rim",
+            "Front_R_Inner_Tire",
+            "Front_R_Inner_Tread_01",
+            "Front_R_Inner_Tread_02",
+            "Front_R_Inner_Tread_03",
+            "Front_R_Inner_Tread_04",
+            "Front_R_Inner_Tread_05",
+            "Front_R_Inner_Tread_06",
+            "Front_R_Inner_Tread_07",
+            "Front_R_Inner_Tread_08",
+            "Front_R_Inner_Tread_09",
+            "Front_R_Inner_Tread_10",
+            "Front_R_Inner_Tread_11",
+            "Front_R_Inner_Tread_12",
+            "Front_R_Inner_Tread_13",
+            "Front_R_Inner_Tread_14",
+            "Front_R_Inner_Tread_15",
+            "Front_R_Inner_Tread_16",
+            "Front_R_Outer_Hub",
+            "Front_R_Outer_Lug_01",
+            "Front_R_Outer_Lug_02",
+            "Front_R_Outer_Lug_03",
+            "Front_R_Outer_Lug_04",
+            "Front_R_Outer_Lug_05",
+            "Front_R_Outer_Lug_06",
+            "Front_R_Outer_Lug_07",
+            "Front_R_Outer_Lug_08",
+            "Front_R_Outer_Rim",
+            "Front_R_Outer_Tire",
+            "Front_R_Outer_Tread_01",
+            "Front_R_Outer_Tread_02",
+            "Front_R_Outer_Tread_03",
+            "Front_R_Outer_Tread_04",
+            "Front_R_Outer_Tread_05",
+            "Front_R_Outer_Tread_06",
+            "Front_R_Outer_Tread_07",
+            "Front_R_Outer_Tread_08",
+            "Front_R_Outer_Tread_09",
+            "Front_R_Outer_Tread_10",
+            "Front_R_Outer_Tread_11",
+            "Front_R_Outer_Tread_12",
+            "Front_R_Outer_Tread_13",
+            "Front_R_Outer_Tread_14",
+            "Front_R_Outer_Tread_15",
+            "Front_R_Outer_Tread_16"
+          ]
+        },
+        "Rear_Axle_ROOT": {
+          "present": true,
+          "role": "steering_axle_root",
+          "visible_mesh_descendants": [
+            "Rear_Steering_Axle_Beam",
+            "Rear_Steering_Cylinder_Barrel",
+            "Rear_Steering_Cylinder_Rod",
+            "Rear_Steering_L_Arm",
+            "Rear_L_Hub",
+            "Rear_L_Lug_01",
+            "Rear_L_Lug_02",
+            "Rear_L_Lug_03",
+            "Rear_L_Lug_04",
+            "Rear_L_Lug_05",
+            "Rear_L_Lug_06",
+            "Rear_L_Lug_07",
+            "Rear_L_Lug_08",
+            "Rear_L_Rim",
+            "Rear_L_Tire",
+            "Rear_L_Tread_01",
+            "Rear_L_Tread_02",
+            "Rear_L_Tread_03",
+            "Rear_L_Tread_04",
+            "Rear_L_Tread_05",
+            "Rear_L_Tread_06",
+            "Rear_L_Tread_07",
+            "Rear_L_Tread_08",
+            "Rear_L_Tread_09",
+            "Rear_L_Tread_10",
+            "Rear_L_Tread_11",
+            "Rear_L_Tread_12",
+            "Rear_L_Tread_13",
+            "Rear_L_Tread_14",
+            "Rear_Steering_R_Arm",
+            "Rear_R_Hub",
+            "Rear_R_Lug_01",
+            "Rear_R_Lug_02",
+            "Rear_R_Lug_03",
+            "Rear_R_Lug_04",
+            "Rear_R_Lug_05",
+            "Rear_R_Lug_06",
+            "Rear_R_Lug_07",
+            "Rear_R_Lug_08",
+            "Rear_R_Rim",
+            "Rear_R_Tire",
+            "Rear_R_Tread_01",
+            "Rear_R_Tread_02",
+            "Rear_R_Tread_03",
+            "Rear_R_Tread_04",
+            "Rear_R_Tread_05",
+            "Rear_R_Tread_06",
+            "Rear_R_Tread_07",
+            "Rear_R_Tread_08",
+            "Rear_R_Tread_09",
+            "Rear_R_Tread_10",
+            "Rear_R_Tread_11",
+            "Rear_R_Tread_12",
+            "Rear_R_Tread_13",
+            "Rear_R_Tread_14",
+            "Rear_Steering_Tie_Rod"
+          ]
+        },
+        "Rear_Steering_L_Pivot": {
+          "present": true,
+          "role": "steering_pivot",
+          "visible_mesh_descendants": [
+            "Rear_L_Hub",
+            "Rear_L_Lug_01",
+            "Rear_L_Lug_02",
+            "Rear_L_Lug_03",
+            "Rear_L_Lug_04",
+            "Rear_L_Lug_05",
+            "Rear_L_Lug_06",
+            "Rear_L_Lug_07",
+            "Rear_L_Lug_08",
+            "Rear_L_Rim",
+            "Rear_L_Tire",
+            "Rear_L_Tread_01",
+            "Rear_L_Tread_02",
+            "Rear_L_Tread_03",
+            "Rear_L_Tread_04",
+            "Rear_L_Tread_05",
+            "Rear_L_Tread_06",
+            "Rear_L_Tread_07",
+            "Rear_L_Tread_08",
+            "Rear_L_Tread_09",
+            "Rear_L_Tread_10",
+            "Rear_L_Tread_11",
+            "Rear_L_Tread_12",
+            "Rear_L_Tread_13",
+            "Rear_L_Tread_14"
+          ]
+        },
+        "Rear_Steering_R_Pivot": {
+          "present": true,
+          "role": "steering_pivot",
+          "visible_mesh_descendants": [
+            "Rear_R_Hub",
+            "Rear_R_Lug_01",
+            "Rear_R_Lug_02",
+            "Rear_R_Lug_03",
+            "Rear_R_Lug_04",
+            "Rear_R_Lug_05",
+            "Rear_R_Lug_06",
+            "Rear_R_Lug_07",
+            "Rear_R_Lug_08",
+            "Rear_R_Rim",
+            "Rear_R_Tire",
+            "Rear_R_Tread_01",
+            "Rear_R_Tread_02",
+            "Rear_R_Tread_03",
+            "Rear_R_Tread_04",
+            "Rear_R_Tread_05",
+            "Rear_R_Tread_06",
+            "Rear_R_Tread_07",
+            "Rear_R_Tread_08",
+            "Rear_R_Tread_09",
+            "Rear_R_Tread_10",
+            "Rear_R_Tread_11",
+            "Rear_R_Tread_12",
+            "Rear_R_Tread_13",
+            "Rear_R_Tread_14"
+          ]
+        }
       }
     },
     {
       "id": "semantic-motion-hierarchy",
       "status": "PASS",
       "detail": {
-        "semantic_motion_nodes": 21
+        "semantic_motion_nodes": 37
       }
     },
     {
@@ -212,24 +1142,24 @@
       "id": "node-density",
       "status": "PASS",
       "detail": {
-        "actual": 212,
-        "minimum": 200
+        "actual": 292,
+        "minimum": 80
       }
     },
     {
       "id": "mesh-density",
       "status": "PASS",
       "detail": {
-        "actual": 190,
-        "minimum": 180
+        "actual": 255,
+        "minimum": 60
       }
     },
     {
       "id": "triangle-density",
       "status": "PASS",
       "detail": {
-        "actual": 28968,
-        "minimum": 10000
+        "actual": 37356,
+        "minimum": 5000
       }
     },
     {
@@ -277,27 +1207,27 @@
       "detail": [
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/case-ih-axial-flow-8250/review/renders/case-ih-axial-flow-8250-operator-side.png",
-          "bytes": 262096
+          "bytes": 291973
         },
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/case-ih-axial-flow-8250/review/renders/case-ih-axial-flow-8250-front-three-quarter.png",
-          "bytes": 322263
+          "bytes": 328524
         },
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/case-ih-axial-flow-8250/review/renders/case-ih-axial-flow-8250-rear-three-quarter.png",
-          "bytes": 296056
+          "bytes": 280799
         },
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/case-ih-axial-flow-8250/review/renders/case-ih-axial-flow-8250-elevated-technical.png",
-          "bytes": 370829
+          "bytes": 373186
         },
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/case-ih-axial-flow-8250/review/renders/case-ih-axial-flow-8250-articulation-detail.png",
-          "bytes": 350218
+          "bytes": 302021
         },
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/case-ih-axial-flow-8250/review/renders/case-ih-axial-flow-8250-right-side.png",
-          "bytes": 260501
+          "bytes": 265570
         }
       ]
     },
@@ -305,6 +1235,456 @@
       "id": "neutral-unbranded-materials",
       "status": "PASS",
       "detail": "Neutral palette and procedural materials only; no manufacturer marks or textures."
+    },
+    {
+      "id": "model_year_boundary_visible",
+      "status": "PASS",
+      "detail": {
+        "method": "configuration and viewer boundary disclosure comparison",
+        "evidence": {
+          "configuration_model_year": "unresolved; admitted specification brochure copyright 2022",
+          "viewer_boundary": "Copyright-2022 250 Series research candidate with exact model year unresolved. This six-contact dual-front, 2WD, feeder-only study does not claim the brochure's single-tire width as its selected transport width. Overall length, tire sizes and offsets, hidden crop-flow geometry, pivots, steering and motion limits are reconstructed.",
+          "authority": "configuration_and_viewer_disclosure_check"
+        },
+        "semantic_nodes": [],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "frozen_visible_configuration",
+      "status": "PASS",
+      "detail": {
+        "method": "selected-option record compared with authored tire and attachment topology",
+        "evidence": {
+          "selected_front_running_gear": "dual_drive_tires_visual_study",
+          "selected_header": "not_fitted_feederhouse_only",
+          "selected_grain_tank": "410_bu_14448_L",
+          "tire_meshes": [
+            "Front_L_Inner_Tire",
+            "Front_L_Outer_Tire",
+            "Front_R_Inner_Tire",
+            "Front_R_Outer_Tire",
+            "Rear_L_Tire",
+            "Rear_R_Tire"
+          ],
+          "fitted_header_meshes": [],
+          "fitted_residue_option_meshes": [],
+          "visible_grain_tank_mesh": "Grain_Tank_Lower"
+        },
+        "semantic_nodes": [
+          "Front_Drive_Axle_ROOT",
+          "Rear_Axle_ROOT",
+          "Feederhouse_ROOT",
+          "Grain_Tank_Lower"
+        ],
+        "fact_ids": [
+          "grain-tank-capacity"
+        ]
+      }
+    },
+    {
+      "id": "single_identity_root",
+      "status": "PASS",
+      "detail": {
+        "method": "GLB scene-root identity inspection",
+        "evidence": {
+          "scene_root_count": 1,
+          "root_name": "Machine_Root",
+          "identity_root": true
+        },
+        "semantic_nodes": [
+          "Machine_Root"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "wheeled_contact",
+      "status": "PASS",
+      "detail": {
+        "method": "world-space tire AABB contact and axle-center wheelbase measurement",
+        "evidence": {
+          "contact_count": 6,
+          "tire_minimum_y_m": {
+            "Front_L_Inner_Tire": 0.0,
+            "Front_L_Outer_Tire": 0.0,
+            "Front_R_Inner_Tire": 0.0,
+            "Front_R_Outer_Tire": 0.0,
+            "Rear_L_Tire": 0.0,
+            "Rear_R_Tire": 0.0
+          },
+          "measured_wheelbase_m": 3.752,
+          "published_2wd_wheelbase_m": 3.752,
+          "wheelbase_fact": {
+            "id": "wheelbase-2wd",
+            "subject": "2WD axle wheelbase",
+            "value": 3.752,
+            "unit": "m",
+            "authority": "manufacturer_published",
+            "source_id": "CASEIH-AF250-US-BROCHURE-2022",
+            "location": "PDF physical page 19, 147.7 in 2WD axle row"
+          },
+          "absolute_tolerance_m": 0.003
+        },
+        "semantic_nodes": [
+          "Front_Drive_Axle_ROOT",
+          "Rear_Axle_ROOT",
+          "Rear_Steering_L_Pivot",
+          "Rear_Steering_R_Pivot"
+        ],
+        "fact_ids": [
+          "wheelbase-2wd"
+        ]
+      }
+    },
+    {
+      "id": "feeder_and_faceplate_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "world-space feeder dimensions plus parent-chain continuity inspection",
+        "evidence": {
+          "measured_feeder_length_m": 2.388,
+          "published_feeder_length_m": 2.388,
+          "measured_feeder_width_m": 1.372,
+          "published_feeder_width_m": 1.372,
+          "coupler_descends_from_lift_pivot": true,
+          "viewer_lateral_tilt_range_deg": [
+            -4.999973,
+            4.999973
+          ],
+          "published_lateral_tilt_each_side_deg": 5.0,
+          "viewer_faceplate_total_range_deg": 12.000028,
+          "published_faceplate_total_range_deg": 12.0,
+          "feeder_bounds_m": {
+            "min": [
+              2.032,
+              0.860753,
+              -0.686
+            ],
+            "max": [
+              4.42,
+              1.48,
+              0.686
+            ]
+          }
+        },
+        "semantic_nodes": [
+          "Header_Lift_Pivot",
+          "Feederhouse_ROOT",
+          "Feeder_Lateral_Tilt_Pivot",
+          "Feeder_Faceplate_ForeAft_Pivot",
+          "Feeder_Faceplate_ROOT"
+        ],
+        "fact_ids": [
+          "feeder-width",
+          "feeder-length",
+          "feeder-lateral-tilt",
+          "feeder-faceplate-tilt"
+        ]
+      }
+    },
+    {
+      "id": "rotor_containment",
+      "status": "PASS",
+      "detail": {
+        "method": "world-space rotor diameter and containment-guard margin measurement",
+        "evidence": {
+          "measured_rotor_size_xyz_m": [
+            3.1,
+            0.762,
+            0.762
+          ],
+          "published_rotor_diameter_m": 0.762,
+          "minimum_guard_margin_m": 0.129,
+          "rotor_bounds_m": {
+            "min": [
+              -1.9,
+              1.869,
+              -0.381
+            ],
+            "max": [
+              1.2,
+              2.631,
+              0.381
+            ]
+          },
+          "guard_bounds_m": {
+            "min": [
+              -2.06,
+              1.74,
+              -0.625
+            ],
+            "max": [
+              1.36,
+              2.76,
+              0.625
+            ]
+          }
+        },
+        "semantic_nodes": [
+          "AFX_Rotor_ROOT"
+        ],
+        "fact_ids": [
+          "rotor-diameter"
+        ]
+      }
+    },
+    {
+      "id": "cleaning_system_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "world-space cleaning-component AABBs inside reconstructed containment",
+        "evidence": {
+          "component_names": [
+            "Cleaning_Grain_Pan",
+            "Cleaning_Upper_Sieve",
+            "Cleaning_Lower_Sieve",
+            "Crossflow_Fan"
+          ],
+          "reconstructed_separator_bounds_m": {
+            "min": [
+              -2.775,
+              0.65,
+              -1.26
+            ],
+            "max": [
+              1.675,
+              3.41,
+              1.26
+            ]
+          },
+          "samples": [
+            {
+              "level_angle_deg": -7.0,
+              "bounds_m": {
+                "min": [
+                  -2.155367,
+                  0.72306,
+                  -0.806752
+                ],
+                "max": [
+                  0.900674,
+                  1.514669,
+                  0.855499
+                ]
+              },
+              "minimum_containment_margin_m": 0.07306
+            },
+            {
+              "level_angle_deg": 0.0,
+              "bounds_m": {
+                "min": [
+                  -2.155367,
+                  0.8045,
+                  -0.83
+                ],
+                "max": [
+                  0.900674,
+                  1.426472,
+                  0.83
+                ]
+              },
+              "minimum_containment_margin_m": 0.1545
+            },
+            {
+              "level_angle_deg": 7.0,
+              "bounds_m": {
+                "min": [
+                  -2.155367,
+                  0.72306,
+                  -0.855499
+                ],
+                "max": [
+                  0.900674,
+                  1.514669,
+                  0.806752
+                ]
+              },
+              "minimum_containment_margin_m": 0.07306
+            }
+          ],
+          "minimum_sampled_margin_m": 0.07306,
+          "viewer_level_range_deg": [
+            -6.999997,
+            6.999997
+          ],
+          "published_level_range_deg": [
+            -7.0,
+            7.0
+          ],
+          "authority": "reconstructed_containment_not_cleaning_performance"
+        },
+        "semantic_nodes": [
+          "Cleaning_System_Level_ROOT",
+          "Crossflow_Fan_ROOT"
+        ],
+        "fact_ids": [
+          "self-leveling-slope"
+        ]
+      }
+    },
+    {
+      "id": "unloader_fold_swing_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "centerline-length sum and nested fold/swing parent-chain inspection",
+        "evidence": {
+          "mechanism_joint_ids": {
+            "swing": "unloading_auger_swing",
+            "fold": "unloading_auger_fold"
+          },
+          "base_xyz_m": [
+            -0.82,
+            2.93,
+            -1.43
+          ],
+          "inner_centerline_m": 3.6,
+          "outer_centerline_m": 5.200000000000001,
+          "total_centerline_m": 8.8,
+          "fold_unfold_range_deg": [
+            0.0,
+            -180.0
+          ],
+          "swing_range_deg": [
+            0.0,
+            62.0
+          ],
+          "published_total_centerline_m": 8.8,
+          "outer_tube_descends_from_fold_pivot": true,
+          "fold_pivot_descends_from_swing_pivot": true
+        },
+        "semantic_nodes": [
+          "Unloader_Swing_Pivot",
+          "Unloader_ROOT",
+          "Unloader_Fold_Pivot",
+          "Unloader_Fold_ROOT",
+          "Unloader_Spout_Pivot",
+          "Unloader_Spout_ROOT"
+        ],
+        "fact_ids": [
+          "unloading-auger-length"
+        ]
+      }
+    },
+    {
+      "id": "ground_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "neutral whole-machine bounds plus sampled moving-unloader minimum height",
+        "evidence": {
+          "neutral_public_minimum_y_m": 0.0,
+          "measured_public_height_m": 3.904,
+          "published_cab_height_m": 3.904,
+          "sampled_unloader_minimum_y_m": 2.81,
+          "absolute_tolerance_m": 0.003
+        },
+        "semantic_nodes": [
+          "Machine_Root",
+          "Unloader_Swing_Pivot",
+          "Unloader_Fold_Pivot"
+        ],
+        "fact_ids": [
+          "public-envelope-y"
+        ]
+      }
+    },
+    {
+      "id": "self_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "bounded moving-component versus protected-body AABB separation sampling",
+        "evidence": {
+          "sampled_unloader_minimum_body_aabb_separation_m": 0.05,
+          "samples": [
+            {
+              "swing_deg": 0.0,
+              "fold_deg": 0.0,
+              "minimum_y_m": 2.81,
+              "minimum_body_aabb_separation_m": 0.05
+            },
+            {
+              "swing_deg": 0.0,
+              "fold_deg": -45.0,
+              "minimum_y_m": 2.81,
+              "minimum_body_aabb_separation_m": 0.08
+            },
+            {
+              "swing_deg": 0.0,
+              "fold_deg": -90.0,
+              "minimum_y_m": 2.81,
+              "minimum_body_aabb_separation_m": 0.08
+            },
+            {
+              "swing_deg": 0.0,
+              "fold_deg": -135.0,
+              "minimum_y_m": 2.81,
+              "minimum_body_aabb_separation_m": 0.08
+            },
+            {
+              "swing_deg": 0.0,
+              "fold_deg": -180.0,
+              "minimum_y_m": 2.81,
+              "minimum_body_aabb_separation_m": 0.08
+            },
+            {
+              "swing_deg": 15.0,
+              "fold_deg": -180.0,
+              "minimum_y_m": 2.81,
+              "minimum_body_aabb_separation_m": 0.083067
+            },
+            {
+              "swing_deg": 30.0,
+              "fold_deg": -180.0,
+              "minimum_y_m": 2.81,
+              "minimum_body_aabb_separation_m": 0.092058
+            },
+            {
+              "swing_deg": 45.0,
+              "fold_deg": -180.0,
+              "minimum_y_m": 2.81,
+              "minimum_body_aabb_separation_m": 0.10636
+            },
+            {
+              "swing_deg": 62.0,
+              "fold_deg": -180.0,
+              "minimum_y_m": 2.81,
+              "minimum_body_aabb_separation_m": 0.127748
+            }
+          ],
+          "method": "conservative moving-component versus protected-body AABB separation"
+        },
+        "semantic_nodes": [
+          "Unloader_Swing_Pivot",
+          "Unloader_Fold_Pivot"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "swept_volume_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "nine-position fold and swing presentation-sweep sampling",
+        "evidence": {
+          "sample_count": 9,
+          "sampled_fold_range_deg": [
+            0,
+            -180
+          ],
+          "sampled_swing_range_deg": [
+            0,
+            62
+          ],
+          "minimum_ground_y_m": 2.81,
+          "minimum_body_aabb_separation_m": 0.05,
+          "authority": "bounded_presentation_sampling_not_operational_clearance_authority"
+        },
+        "semantic_nodes": [
+          "Unloader_Swing_Pivot",
+          "Unloader_Fold_Pivot"
+        ],
+        "fact_ids": []
+      }
     },
     {
       "id": "configuration-freeze",

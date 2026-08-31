@@ -30,12 +30,13 @@
   "accent": "#657a89",
   "motion": {
     "autoplay": true,
-    "durationSeconds": 20,
+    "durationSeconds": 18,
     "mode": "sine",
-    "damping": 5.8,
+    "damping": 8,
     "channels": [
       {
         "id": "attachment-lift",
+        "mechanismJointId": "front_attachment_lift",
         "label": "ORBIS lift - reconstructed linkage",
         "nodes": ["Header_Lift_Pivot"],
         "property": "rotation.z",
@@ -47,7 +48,148 @@
         "autoplay": "sine"
       },
       {
+        "id": "orbis-left-fold",
+        "mechanismJointId": "orbis_left_wing_fold",
+        "label": "ORBIS left wing fold - reconstructed",
+        "nodes": [
+          "ORBIS_L_Wing_ROOT"
+        ],
+        "property": "rotation.x",
+        "from": 0,
+        "to": 1.5708,
+        "phase": 0.12,
+        "direction": 1,
+        "mode": "offset",
+        "autoplay": "sine"
+      },
+    {
+      "id": "orbis-right-fold",
+        "mechanismJointId": "orbis_right_wing_fold",
+        "label": "ORBIS right wing fold - reconstructed",
+        "nodes": [
+          "ORBIS_R_Wing_ROOT"
+        ],
+        "property": "rotation.x",
+        "from": 0,
+        "to": -1.5708,
+        "phase": 0.12,
+        "direction": 1,
+        "mode": "offset",
+      "autoplay": "sine"
+    },
+    {
+      "id": "orbis-left-nest",
+      "mechanismJointId": "orbis_left_wing_nest",
+      "label": "ORBIS left transport nesting - reconstructed",
+      "nodes": [
+        "ORBIS_L_Wing_Nest_ROOT"
+      ],
+      "property": "position.z",
+      "from": 0,
+      "to": 0.23,
+      "phase": 0.12,
+      "direction": 1,
+      "mode": "offset",
+      "autoplay": "sine"
+    },
+    {
+      "id": "orbis-right-nest",
+      "mechanismJointId": "orbis_right_wing_nest",
+      "label": "ORBIS right transport nesting - reconstructed",
+      "nodes": [
+        "ORBIS_R_Wing_Nest_ROOT"
+      ],
+      "property": "position.z",
+      "from": 0,
+      "to": -0.23,
+      "phase": 0.12,
+      "direction": 1,
+      "mode": "offset",
+      "autoplay": "sine"
+    },
+    {
+      "id": "orbis-row-units",
+        "mechanismJointId": "orbis_row_units",
+        "label": "ORBIS gathering row-unit study",
+        "nodes": [
+          "ORBIS_Center_RowUnit_01_ROOT",
+          "ORBIS_Center_RowUnit_02_ROOT",
+          "ORBIS_Center_RowUnit_03_ROOT",
+          "ORBIS_Center_RowUnit_04_ROOT",
+          "ORBIS_L_RowUnit_01_ROOT",
+          "ORBIS_L_RowUnit_02_ROOT",
+          "ORBIS_L_RowUnit_03_ROOT",
+          "ORBIS_R_RowUnit_01_ROOT",
+          "ORBIS_R_RowUnit_02_ROOT",
+          "ORBIS_R_RowUnit_03_ROOT"
+        ],
+        "property": "rotation.y",
+        "from": -0.9,
+        "to": 0.9,
+        "phase": 0.26,
+        "direction": 1,
+        "mode": "offset",
+        "autoplay": "sine"
+      },
+      {
+        "id": "crop-process",
+        "mechanismJointId": "vmax42_chopping_cylinder",
+        "label": "Four feedrollers, V-MAX 42, MCC MAX and accelerator",
+        "nodes": [
+          "Feedroll_Upper_Front_ROOT",
+          "Feedroll_Upper_Rear_ROOT",
+          "Feedroll_Lower_Front_ROOT",
+          "Feedroll_Lower_Rear_ROOT",
+          "VMAX42_Cylinder_ROOT",
+          "MCC_MAX_Upper_ROOT",
+          "MCC_MAX_Lower_ROOT",
+          "Crop_Accelerator_ROOT"
+        ],
+        "property": "rotation.z",
+        "from": -0.8,
+        "to": 0.8,
+        "phase": 0.48,
+        "direction": 1,
+        "mode": "offset",
+        "autoplay": "sine"
+      },
+      {
+        "id": "wheel-drive",
+        "mechanismJointId": "front_wheel_drive",
+        "label": "Wheel phase study",
+        "nodes": [
+          "Front_L_Wheel_ROOT",
+          "Front_R_Wheel_ROOT",
+          "Rear_L_Wheel_ROOT",
+          "Rear_R_Wheel_ROOT"
+        ],
+        "property": "rotation.z",
+        "from": -0.45,
+        "to": 0.45,
+        "phase": 0.6,
+        "direction": 1,
+        "mode": "offset",
+        "autoplay": "sine"
+      },
+      {
+        "id": "rear-steering",
+        "mechanismJointId": "rear_steering",
+        "label": "Rear steering - reconstructed",
+        "nodes": [
+          "Rear_Steering_L_Pivot",
+          "Rear_Steering_R_Pivot"
+        ],
+        "property": "rotation.y",
+        "from": -0.35,
+        "to": 0.35,
+        "phase": 0.72,
+        "direction": 1,
+        "mode": "offset",
+        "autoplay": "sine"
+      },
+      {
         "id": "chute-swing",
+        "mechanismJointId": "discharge_chute_swing",
         "label": "Chute swing - 210 deg published envelope",
         "nodes": ["Spout_Yaw_Pivot"],
         "property": "rotation.y",
@@ -60,6 +202,7 @@
       },
       {
         "id": "chute-tip",
+        "mechanismJointId": "discharge_flap",
         "label": "Outlet flap - reconstructed trim",
         "nodes": ["Spout_Tip_Pivot"],
         "property": "rotation.z",

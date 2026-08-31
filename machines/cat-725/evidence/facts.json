@@ -19,8 +19,8 @@
     {"id": "front-to-middle-axle-spacing", "subject": "middle axle to front axle center spacing", "value": 3.979, "unit": "m", "authority": "manufacturer_published", "source_id": "CAT-725-AEXQ3698", "location": "PDF page 4, dimension 9"},
     {"id": "front-axle-to-machine-front", "subject": "front axle center to machine front", "value": 3.21, "unit": "m", "authority": "manufacturer_published", "source_id": "CAT-725-AEXQ3698", "location": "PDF page 4, dimension 10"},
     {"id": "steering-angle", "subject": "steer angle from center left or right", "value": 45, "unit": "deg", "authority": "manufacturer_published", "source_id": "CAT-725-AEXQ3698", "location": "PDF page 5"},
-    {"id": "front-suspension-oscillation", "subject": "front suspension oscillation in either direction", "value": 6, "unit": "deg", "authority": "manufacturer_published", "source_id": "CAT-725-PRODUCT-PAGE", "location": "Long Term Value and Durability feature"},
-    {"id": "standard-tire-count", "subject": "standard 23.5R25 radial tires", "value": 6, "unit": "count", "authority": "manufacturer_published", "source_id": "CAT-725-AEXQ3699", "location": "Other standard and optional equipment"},
+    {"id": "front-suspension-oscillation", "subject": "front suspension oscillation in either direction", "value": 6, "unit": "deg", "authority": "evidence_derived", "source_id": "CAT-725-PRODUCT-PAGE", "location": "Long Term Value and Durability feature", "verification_boundary": "Official dynamic page reviewed, but exact response bytes were not frozen; value is review-pose context only."},
+    {"id": "standard-tire-count", "subject": "standard 23.5R25 radial tires", "value": 6, "unit": "count", "authority": "manufacturer_published", "source_id": "CAT-725-AEXQ3698", "location": "PDF page 9, standard equipment: Tires, six 23.5R25"},
     {"id": "rated-payload", "subject": "rated payload", "value": 24, "unit": "t", "authority": "manufacturer_published", "source_id": "CAT-725-AEXQ3698", "location": "PDF page 2"},
     {"id": "heaped-body-capacity", "subject": "standard body heaped SAE 2:1 capacity", "value": 15, "unit": "m3", "authority": "manufacturer_published", "source_id": "CAT-725-AEXQ3698", "location": "PDF page 2"},
     {"id": "body-front-plate-thickness", "subject": "body front plate thickness", "value": 7, "unit": "mm", "authority": "manufacturer_published", "source_id": "CAT-725-AEXQ3698", "location": "PDF page 3"},
@@ -44,6 +44,16 @@
       "id": "press-release-binary-verification",
       "status": "pending",
       "detail": "The official 188PR25_EU PDF was read through Caterpillar's public endpoint but the direct binary could not be hash-bound during this lane; no exact dimensional fact depends on it."
+    },
+    {
+      "id": "front-suspension-range-freeze",
+      "status": "pending",
+      "detail": "The plus/minus six-degree statement is retained as evidence-derived context from the current official product page. Exact page bytes are not frozen, so it is not promoted to manufacturer-published range authority in this package."
+    },
+    {
+      "id": "ground-clearance-datum",
+      "status": "unresolved",
+      "detail": "AEXQ3698 publishes 0.533 m ground clearance but does not establish the builder's rear-frame-rail underside as that datum. The 0.575 m rail cue is therefore not treated as a passed published-dimension constraint."
     }
   ]
 }

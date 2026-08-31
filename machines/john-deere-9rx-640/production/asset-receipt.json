@@ -16,8 +16,8 @@
   },
   "builder": {
     "path": "source/blender/build_john_deere_9rx_640.py",
-    "sha256": "41063d85c94802bc6a4874a88382265eb54c719880bd7c336651609f1e443926",
-    "bytes": 664,
+    "sha256": "5db3786bd5c386e20cade06262116a204a428f8fe7ea2013c8b40ee027d88bfd",
+    "bytes": 25608,
     "deterministic": true,
     "network_used": false,
     "downloaded_geometry_used": false,
@@ -27,30 +27,30 @@
   },
   "shared_generator": {
     "path": "../../scripts/fleet/build_machine.py",
-    "sha256": "02b99250651741b462b3dae8b2471db723beb689dfe89e1c7e251d7402fe0f55",
-    "bytes": 78579
+    "sha256": "9e36599f0c9bbac097422a8766e3ef1c81e6fc9432f024d99a24b79da18264df",
+    "bytes": 81778
   },
   "design": {
     "path": "source/design.json",
-    "sha256": "671777556a52dd4731841227e436c6de922aa34ff3698ee96bc49020a382b317",
-    "bytes": 1537,
+    "sha256": "c5019f16867b88108b8dac7bbc8aa1ead5361f26cd4465e30869b77db5003f6e",
+    "bytes": 1829,
     "schema_version": "1.0.0"
   },
   "artifacts": {
     "blend": {
       "path": "source/blender/john-deere-9rx-640-structural-study.blend",
-      "sha256": "b1316ffc453b1b97a0d2c77a76346b82363a0fb26af261c2570c4c36b3768a56",
-      "bytes": 218215
+      "sha256": "44fbef9e47a104a4bda64e0c4fd2c46493ba74f3b85e716bb5d7ba5212bc2dc6",
+      "bytes": 260587
     },
     "glb": {
       "path": "assets/john-deere-9rx-640-structural-study.glb",
-      "sha256": "1055b829bbec21452d6a9785c46a07ed2f730d38b454d51293d4018280086c8c",
-      "bytes": 1425860
+      "sha256": "1526bb064d392b346ab768edc3fd597ee2ece5a430b4bee0ac548ac0a24db237",
+      "bytes": 1805644
     },
     "validation": {
       "path": "production/validation.json",
-      "sha256": "ef1e7acd67d2514850fddba0a82a9ea857a70307c24034c353c8ee8e529c9927",
-      "bytes": 7931
+      "sha256": "db548a91dc031c945239f360747db5eabbf44560bdf63a822c0fa435c3c8edcd",
+      "bytes": 62258
     }
   },
   "scene": {
@@ -63,12 +63,12 @@
     "bounds": {
       "min_m": [
         -4.1545,
-        -0.0,
+        0.035,
         -1.49
       ],
       "max_m": [
         4.1545,
-        3.71,
+        3.745,
         1.49
       ],
       "size_m": [
@@ -82,10 +82,10 @@
       3.71,
       2.98
     ],
-    "objects": 205,
-    "meshes": 190,
-    "triangles": 27544,
-    "materials": 5
+    "objects": 264,
+    "meshes": 248,
+    "triangles": 34496,
+    "materials": 6
   },
   "glb_contract": {
     "glb_version": "2.0",
@@ -94,27 +94,27 @@
     "root_name": "Machine_Root",
     "root_record": {},
     "identity_root": true,
-    "nodes": 205,
-    "mesh_nodes": 190,
-    "mesh_definitions": 190,
-    "materials": 5,
-    "triangles": 27544,
+    "nodes": 264,
+    "mesh_nodes": 248,
+    "mesh_definitions": 248,
+    "materials": 6,
+    "triangles": 34496,
     "cameras": 0,
     "punctual_lights": false,
     "images": 0,
     "textures": 0,
     "nonidentity_mesh_scales": {},
     "helper_like_mesh_nodes": [],
-    "semantic_motion_nodes": 14,
+    "semantic_motion_nodes": 15,
     "bounds": {
       "min_m": [
         -4.1545,
-        -0.0,
+        0.035,
         -1.49
       ],
       "max_m": [
         4.1545,
-        3.71,
+        3.745,
         1.49
       ],
       "size_m": [
@@ -129,7 +129,6 @@
     "Fixed_Structure_ROOT": true,
     "Running_Gear_ROOT": true,
     "Hydraulics_ROOT": true,
-    "Service_Detail_ROOT": true,
     "Chassis_Yaw_Pivot": true,
     "Front_Frame_ROOT": true,
     "Rear_Frame_ROOT": true,
@@ -139,39 +138,344 @@
     "Track_RR_ROOT": true,
     "Drawbar_Pivot": true
   },
-  "manufacturer_published_constraints_used": [
+  "semantic_node_roles": {},
+  "published_constraint_ids_declared": [
     "public-envelope-x",
     "selected-track-width",
     "selected-track-spacing",
-    "articulation-range",
-    "chassis-oscillation",
-    "undercarriage-oscillation"
+    "less-pto-base",
+    "less-hitch-base",
+    "category-five-drawbar-interface"
+  ],
+  "machine_specific_gate_evidence": [
+    {
+      "id": "published_length_envelope",
+      "status": "PASS",
+      "detail": {
+        "method": "GLB accessor AABB compared with the official Canadian 9RX 640 length with front weights and without three-point hitch/coupler; selected Category 5 drawbar remains present",
+        "evidence": {
+          "measured_m": 8.309,
+          "published_m": 8.309,
+          "tolerance_m": 0.003,
+          "source_id": "JD-9RX640-CA-PAGE",
+          "source_market": "Canada",
+          "declared_market": "North America",
+          "dimension_scope": "overall length with front weights, excluding three-point hitch and coupler",
+          "selected_rear_interface": "code 4000 less hitch/coupler with Category 5 drawbar"
+        },
+        "semantic_nodes": [
+          "Front_Nose_End_Plate",
+          "Category_5_Drawbar_Two_Position"
+        ],
+        "fact_ids": [
+          "public-envelope-x"
+        ]
+      }
+    },
+    {
+      "id": "overall_width_unresolved",
+      "status": "PASS",
+      "detail": {
+        "method": "configuration unresolved-choice inspection plus published belt arithmetic",
+        "evidence": {
+          "manufacturer_overall_width_claim": null,
+          "derived_belt_outer_width_m": 2.98,
+          "configuration_records_unresolved": true
+        },
+        "semantic_nodes": [],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "overall_height_unresolved",
+      "status": "PASS",
+      "detail": {
+        "method": "configuration unresolved-choice inspection",
+        "evidence": {
+          "manufacturer_overall_height_claim": null,
+          "presentation_height_m": 3.71,
+          "configuration_records_unresolved": true
+        },
+        "semantic_nodes": [],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "four_track_identity",
+      "status": "PASS",
+      "detail": {
+        "method": "exact semantic-root census and descendant traversal",
+        "evidence": {
+          "track_roots": [
+            "Track_FL_ROOT",
+            "Track_FR_ROOT",
+            "Track_RL_ROOT",
+            "Track_RR_ROOT"
+          ],
+          "descendant_counts": {
+            "Track_FL_ROOT": 47,
+            "Track_FR_ROOT": 47,
+            "Track_RL_ROOT": 47,
+            "Track_RR_ROOT": 47
+          }
+        },
+        "semantic_nodes": [
+          "Track_FL_ROOT",
+          "Track_FR_ROOT",
+          "Track_RL_ROOT",
+          "Track_RR_ROOT"
+        ],
+        "fact_ids": [
+          "selected-track-width",
+          "selected-track-spacing"
+        ]
+      }
+    },
+    {
+      "id": "track_spacing_and_belt_width",
+      "status": "PASS",
+      "detail": {
+        "method": "world-transform center spacing, belt-pad vertex AABB, and outer GLB AABB",
+        "evidence": {
+          "front_center_spacing_m": 2.2179999351501465,
+          "rear_center_spacing_m": 2.2179999351501465,
+          "published_center_spacing_m": 2.218,
+          "measured_belt_width_m": 0.7620000839233398,
+          "published_belt_width_m": 0.762,
+          "measured_outer_width_m": 2.98,
+          "derived_outer_width_m": 2.98
+        },
+        "semantic_nodes": [
+          "Track_FL_ROOT",
+          "Track_FR_ROOT",
+          "Track_RL_ROOT",
+          "Track_RR_ROOT",
+          "Track_FL_Belt_Bottom_01"
+        ],
+        "fact_ids": [
+          "selected-track-width",
+          "selected-track-spacing"
+        ]
+      }
+    },
+    {
+      "id": "articulation_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "direct roll-yaw-front parent chain and interface-pivot transform, compared only to a cross-market reference",
+        "evidence": {
+          "hierarchy": [
+            "Chassis_Roll_Pivot",
+            "Chassis_Yaw_Pivot",
+            "Front_Frame_ROOT"
+          ],
+          "pivot_world_m": [
+            0.0,
+            1.3200000524520874,
+            0.0
+          ],
+          "review_limit_rad": 0.2,
+          "cross_market_reference_deg": 36,
+          "reference_market": "Australia and New Zealand",
+          "applicable_to_selected_na_configuration": false,
+          "steering_cylinder_cues": 2
+        },
+        "semantic_nodes": [
+          "Chassis_Roll_Pivot",
+          "Chassis_Yaw_Pivot",
+          "Front_Frame_ROOT",
+          "Rear_Frame_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "frame_oscillation_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "direct coaxial roll/yaw hierarchy and world pivot transform, compared only to a cross-market reference",
+        "evidence": {
+          "roll_pivot_world_m": [
+            0.0,
+            1.3200000524520874,
+            0.0
+          ],
+          "axis": "+X",
+          "review_limit_rad": 0.006,
+          "cross_market_reference_deg": 15,
+          "reference_market": "Australia and New Zealand",
+          "applicable_to_selected_na_configuration": false,
+          "cross_market_angle_convention": "unresolved"
+        },
+        "semantic_nodes": [
+          "Chassis_Roll_Pivot",
+          "Chassis_Yaw_Pivot",
+          "Front_Frame_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "independent_track_pod_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "distinct pod-root role and descendant checks, compared only to a cross-market reference",
+        "evidence": {
+          "independent_roots": [
+            "Track_FL_ROOT",
+            "Track_FR_ROOT",
+            "Track_RL_ROOT",
+            "Track_RR_ROOT"
+          ],
+          "pivot_height_m": 0.5950000000000001,
+          "cross_market_reference_deg": [
+            -10,
+            10
+          ],
+          "reference_market": "Australia and New Zealand",
+          "applicable_to_selected_na_configuration": false,
+          "flat-ground_review_pitch_rad": 0.006
+        },
+        "semantic_nodes": [
+          "Track_FL_ROOT",
+          "Track_FR_ROOT",
+          "Track_RL_ROOT",
+          "Track_RR_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "less_pto_less_hitch_configuration",
+      "status": "PASS",
+      "detail": {
+        "method": "case-insensitive exported-node forbidden-interface census",
+        "evidence": {
+          "selected_rear_pto": "less PTO",
+          "selected_rear_hitch": "less hitch",
+          "forbidden_export_nodes": []
+        },
+        "semantic_nodes": [
+          "Drawbar_Pivot",
+          "Category_5_Drawbar_Two_Position"
+        ],
+        "fact_ids": [
+          "less-pto-base",
+          "less-hitch-base",
+          "category-five-drawbar-interface"
+        ]
+      }
+    },
+    {
+      "id": "ground_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "combined roll and per-pod pitch world-vertex minimum-Y sampling",
+        "evidence": {
+          "minimum_sampled_y_m": 0.01915741339325905,
+          "sample_count": 16,
+          "sampled_roll_rad": 0.006,
+          "sampled_pod_pitch_rad": 0.006,
+          "terrain_solver": false,
+          "tolerance_m": 0.002
+        },
+        "semantic_nodes": [
+          "Chassis_Roll_Pivot",
+          "Track_FL_ROOT",
+          "Track_FR_ROOT",
+          "Track_RL_ROOT",
+          "Track_RR_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "self_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "track-center XZ separation sampling over declared articulation extrema",
+        "evidence": {
+          "articulation_samples": [
+            {
+              "yaw_rad": -0.2,
+              "minimum_track_center_separation_xz_m": 3.9575868759015878
+            },
+            {
+              "yaw_rad": 0.0,
+              "minimum_track_center_separation_xz_m": 4.199999809265137
+            },
+            {
+              "yaw_rad": 0.2,
+              "minimum_track_center_separation_xz_m": 3.9575868759015878
+            }
+          ],
+          "minimum_track_center_separation_xz_m": 3.9575868759015878,
+          "reconstructed_track_length_m": 2.36,
+          "scope": "track-to-track clearance over the declared viewer articulation range"
+        },
+        "semantic_nodes": [
+          "Chassis_Yaw_Pivot",
+          "Track_FL_ROOT",
+          "Track_FR_ROOT",
+          "Track_RL_ROOT",
+          "Track_RR_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "neutral_unbranded_material_review",
+      "status": "PASS",
+      "detail": {
+        "method": "material-name allowlist plus exported GLB image/texture census",
+        "evidence": {
+          "materials": [
+            "Neutral_Body",
+            "Neutral_Body_Shadow",
+            "Neutral_Glass",
+            "Neutral_Graphite",
+            "Neutral_Rod",
+            "Neutral_Rubber",
+            "Neutral_Steel",
+            "Neutral_Visibility_Cue"
+          ],
+          "embedded_images": 0,
+          "textures": 0,
+          "logos_or_decals": 0
+        },
+        "semantic_nodes": [],
+        "fact_ids": []
+      }
+    }
   ],
   "reconstructed_values": {
     "presentation_height_m": 3.71,
     "visible_width_derivation_m": "2.218 m center spacing + 0.762 m belt width = 2.980 m",
-    "track_pod_visual_length_m": 2.0,
-    "articulation_visual_limit_rad": 0.18,
-    "track_pod_visual_pitch_rad": 0.04,
+    "track_pod_visual_length_m": 2.36,
+    "track_pod_visual_height_m": 1.12,
+    "track_pod_static_ground_clearance_m": 0.035,
+    "articulation_visual_limit_rad": 0.2,
+    "frame_roll_visual_limit_rad": 0.006,
+    "track_pod_visual_pitch_rad": 0.006,
     "neutral_material_policy": "matte slate and graphite with dark rubber belts; no logos, decals or manufacturer trade dress",
     "hidden_geometry": "All hidden structure, pivot centers, anchors, linkage proportions, underbody volumes, and internal geometry are reconstructed visualization choices unless a design record explicitly identifies a manufacturer-published envelope constraint.",
     "generic_archetype_geometry": "tracked_tractor proportions and visible detail are independently reconstructed for this technical study.",
     "visible_envelope_calibration": {
-      "classification": "reconstructed_visible_envelope_calibration",
+      "classification": "authored_visible_envelope_measurement",
       "source_bounds_m": {
         "min_m": [
-          -4.07141,
-          -0.00376,
+          -4.1545,
+          0.035,
           -1.49
         ],
         "max_m": [
-          3.15742,
-          3.71,
+          4.1545,
+          3.745,
           1.49
         ],
         "size_m": [
-          7.22883,
-          3.71376,
+          8.309,
+          3.71,
           2.98
         ]
       },
@@ -193,19 +497,19 @@
         ]
       },
       "axis_scale_factors": [
-        1.149425272,
-        0.998987683,
-        0.999999994
+        1.0,
+        1.0,
+        1.0
       ],
       "calibrated_bounds_m": {
         "min_m": [
           -4.1545,
-          -0.0,
+          0.035,
           -1.49
         ],
         "max_m": [
           4.1545,
-          3.71,
+          3.745,
           1.49
         ],
         "size_m": [
@@ -214,11 +518,13 @@
           2.98
         ]
       },
-      "authority": "reconstructed_not_machine_specific_engineering"
+      "authority": "independently_measured_from_authored_geometry"
     }
   },
   "unresolved_choices": [
     "Manufacturer-published overall height and overall width for code 6829/6848",
+    "Selected North American articulation, chassis-oscillation and undercarriage-oscillation limits",
+    "Longitudinal spacing between front and rear track-pod centers",
     "All belt, sprocket, idler, midroller and pod geometry",
     "Hidden articulation and oscillation pivots, cylinders, anchors and stops",
     "Exact exterior surfacing and service details"
@@ -231,33 +537,33 @@
   "renders": [
     {
       "path": "review/renders/john-deere-9rx-640-operator-side.png",
-      "sha256": "e40943142728ca630a09b97c216601c58364d6d101c6139f59b566feef05a58c",
-      "bytes": 247789
+      "sha256": "63e1e779fa3c31dfc1036d7b77efc999b75e95c8fcac963eaa2a490486ea463a",
+      "bytes": 255665
     },
     {
       "path": "review/renders/john-deere-9rx-640-front-three-quarter.png",
-      "sha256": "08a38369ce596c86902d866fa83df2fedd2cdbd66a4db2a0060036a9ec081d17",
-      "bytes": 307192
+      "sha256": "218669c69b941bde23bf9adb43cdf12b1080e9089d9c4c56564ef62a738f4cf6",
+      "bytes": 307283
     },
     {
       "path": "review/renders/john-deere-9rx-640-rear-three-quarter.png",
-      "sha256": "a4124c93641fc0432ac239f38a3f26f1b30bbb600b406d9f75ec6f186d1d3dde",
-      "bytes": 285148
+      "sha256": "91e607228d611088fefd1d2b8ed9830f01029691413fc962f50b15097afe3974",
+      "bytes": 294351
     },
     {
       "path": "review/renders/john-deere-9rx-640-elevated-technical.png",
-      "sha256": "297301b4d6acd2fcb666377fa97d93c0889179f760469ac1071a63e98f23aba1",
-      "bytes": 349656
+      "sha256": "2ecefa67418b5305310c980487ad8736bd6a02b3930783149b2c1c6ce44010bd",
+      "bytes": 364336
     },
     {
       "path": "review/renders/john-deere-9rx-640-articulation-detail.png",
-      "sha256": "876db4799c2284c7115c78b80f9d810f351a7229d4d6906e2f1215c484f91718",
-      "bytes": 328662
+      "sha256": "2c4dead9698a63ca863f012891694125190e144ad367010c0db1fd9ec1314b76",
+      "bytes": 326748
     },
     {
       "path": "review/renders/john-deere-9rx-640-right-side.png",
-      "sha256": "6974c3af00dfd82732d0f7a3db21fd825d85ae591c0184aff38cd8c5fc324da6",
-      "bytes": 247706
+      "sha256": "b7520697e2da3614b2301a5f12f8dbb35d1d0f77aa155bc8486d6dd00f020250",
+      "bytes": 254246
     }
   ],
   "build_verdict": "PASS",

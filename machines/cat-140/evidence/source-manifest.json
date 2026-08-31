@@ -7,7 +7,7 @@
     "source_binaries_committed": false,
     "manufacturer_geometry_committed": false,
     "manual_illustrations_are_scale_drawings": false,
-    "verification": "The two official PDF binaries were downloaded to temporary storage and hash-bound during research. Their intended private paths are not tracked; normal repository validation must not claim the binaries are present."
+    "verification": "The official PDF binaries are private and untracked. When present at their declared paths, machine-local validation verifies exact byte count, SHA-256, and page references; tracked validation must not claim universal binary presence."
   },
   "sources": [
     {
@@ -42,7 +42,7 @@
       "sha256": "96eb389fe9bec37a0752b68dba2bccccebdad8e1653c9b28cba5f17eb7b1fbba",
       "bytes": 983744,
       "admission": "primary",
-      "applicability": "Current 16A detailed geometry and motion facts; non-AWD and lever-specific rows are used where available."
+      "applicability": "Current 16A detailed geometry and motion facts; non-AWD and lever-specific rows are used where available. On conflicting operating-weight and 12 ft moldboard rows, the later North-American-family AEXQ4628-01 publication controls this frozen candidate."
     },
     {
       "id": "CAT-140-PRODUCT-PAGE-127580",
@@ -53,8 +53,8 @@
       "retrieved": "2026-08-29",
       "official_url": "https://www.cat.com/en_US/products/new/equipment/motor-graders/motor-graders/127580.html",
       "admission": "primary",
-      "applicability": "Current product identity, approximate overall dimensions, standard/optional equipment, gallery and 360-view visual observations.",
-      "note": "Product-page blade metric conflicts with the current North American PDF and is not used as the moldboard metric authority."
+      "applicability": "Current product identity, standard/optional equipment, gallery and 360-view visual observations only. It is volatile and unhashed, so no manufacturer_published geometry fact in this candidate relies on it.",
+      "note": "Product-page blade and weight metrics conflict with the current North American PDF. Hash-bound admitted PDF binaries control all published geometry and configuration facts."
     }
   ]
 }

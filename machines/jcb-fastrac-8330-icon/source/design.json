@@ -6,8 +6,8 @@
   "archetype": "wheeled_tractor",
   "dimensions_m": {"length":5.65,"width":2.55,"height":3.45},
   "palette": "slate",
-  "published_constraints_used": ["public-envelope-x","public-envelope-y","public-envelope-z","wheelbase","ground-clearance"],
-  "reconstructed_values": {"hidden_geometry":"All pivots, hydraulic anchors, suspension travel, steering geometry, tire surfaces, hitch kinematics, PTO geometry, motion curves and internal construction are reconstructed visualization choices.","front_linkage_presentation":"The visible front three-point layout is a selected reconstructed presentation constrained only by the published optional 3500 kg front-lift capacity; no Category 3N class or geometry is claimed."},
-  "unresolved_choices": ["exact dealer order and serial number","US availability of selected tire basis","cab, lighting, ballast and rear-deck packages"],
-  "mechanical_gaps": ["Suspension and hitch solvers are not manufacturer-authoritative","No collision or swept-volume proof"]
+  "published_constraints_used": ["rear-linkage-capacity","front-linkage-capacity"],
+  "reconstructed_values": {"hidden_geometry":"All envelopes, wheelbase, ground clearance, track centers, selected tire geometry, pivots, hydraulic anchors, suspension travel, steering geometry, hitch kinematics, PTO geometry, motion curves and internal construction are reconstructed visualization choices.","front_linkage_presentation":"The visible front three-point layout is a selected reconstructed presentation constrained only by the admitted optional 3500 kg front-lift capacity; no Category 3N class, order code, dimensions, or geometry is claimed.","authored_static_envelope_m":[5.65,2.55,3.45],"authored_wheelbase_m":3.13,"authored_ground_clearance_m":0.60,"front_track_reference_m":2.0,"rear_track_reference_m":1.835,"front_tire_width_reference_m":0.540,"rear_tire_width_reference_m":0.710,"reference_only_non_us_option_authority":true,"pto_guard_motion_ownership":"fixed guard under PTO_ROOT; only PTO_Shaft_ROTATION_ROOT is animated"},
+  "unresolved_choices": ["exact dealer order and serial number","configuration-applicable US overall dimensions, wheelbase, ground clearance, tire order code and track centers","cab, lighting, ballast and rear-deck packages"],
+  "mechanical_gaps": ["Suspension and hitch solvers are not manufacturer-authoritative","Motion gates are computed visualization evidence only, not manufacturer collision or swept-volume authority"]
 }

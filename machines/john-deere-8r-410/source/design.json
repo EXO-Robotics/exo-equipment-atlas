@@ -2,28 +2,33 @@
   "schema_version": "1.0.0",
   "machine_id": "john-deere-8r-410",
   "display_name": "John Deere 8R 410",
-  "configuration_id": "JD-8R410-MY2024-NA-JD9-E23-ILS-CAT4N3-CANDIDATE",
+  "configuration_id": "JD-8R410-MY2024-NA-POWERTECH9L-E23-ILS-CAT4N3-CANDIDATE",
   "archetype": "wheeled_tractor",
   "dimensions_m": {"length": 6.636, "width": 3.0, "height": 3.57},
   "palette": "slate",
-  "published_constraints_used": ["public-envelope-x", "ils-wheelbase", "ils-axle-clearance", "ils-tread-range", "rear-hitch-capacity"],
+  "published_constraints_used": ["ils-wheelbase", "ils-axle-clearance", "ils-tread-range", "rear-hitch-capacity", "rear-pto-interface"],
   "reconstructed_values": {
+    "presentation_length_cross_market_reference_m": 6.636,
     "presentation_width_m": 3.0,
     "presentation_height_m": 3.57,
     "front_tyre_visual_diameter_m": 1.55,
     "rear_tyre_visual_diameter_m": 2.15,
-    "ils_visual_roll_limit_rad": 0.08,
-    "rear_hitch_visual_range_rad": [-0.12, 0.34],
+    "selected_front_tread_reconstructed_m": 2.36,
+    "selected_rear_tread_reconstructed_m": 2.24,
+    "front_tyre_static_ground_clearance_reconstructed_m": 0.045,
+    "ils_independent_side_review_limit_rad": 0.025,
+    "rear_hitch_visual_range_rad": [-0.1, 0.24],
     "neutral_material_policy": "matte slate, graphite, dark rubber and neutral glazing; no logos, decals or manufacturer trade dress"
   },
   "unresolved_choices": [
-    "Manufacturer-published overall width and overall height for the selected ILS/tyre configuration",
-    "Exact tyre, wheel, offset, tread and ballast order codes",
+    "Manufacturer-published overall length, overall width and overall height for the selected North American ILS/tyre configuration",
+    "Exact tyre, wheel, offset, rear tread and ballast order codes",
+    "Single-pump versus dual-pump hydraulic option",
     "All hidden ILS, steering and rear-hitch pivots, anchors, link lengths and limits",
     "Exact exterior surfacing and service-detail placement"
   ],
   "mechanical_gaps": [
-    "ILS movement is a bounded visual articulation without suspension, steering, tyre or terrain physics.",
+    "Left and right ILS roots, arms and cylinders are independent bounded visual articulations without suspension, steering, tyre or terrain physics.",
     "Rear hitch motion is reconstructed and excludes draft sensing, hydraulic pressure, implement mass, PTO driveline and validated swept-volume closure.",
     "Powertrain, cooling, aftertreatment and hydraulic internals are not modeled."
   ]

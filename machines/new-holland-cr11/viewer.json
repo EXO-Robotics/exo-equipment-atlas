@@ -13,21 +13,29 @@
     "poster": "machines/new-holland-cr11/review/renders/new-holland-cr11-operator-side.png"
   },
   "evidence": {
-    "boundary": "Neutral North American wheeled CR11 study with 567-bushel tank and 6.0-bushel-per-second unload option. Hidden feeder, rotor, TwinClean, auger and residue geometry is reconstructed.",
-    "lede": "Published dual-wheel transport dimensions, twin-rotor geometry, grain capacity and unloading performance constrain a static structural study with no named header claim.",
-    "factIds": ["public-envelope-x", "public-envelope-y", "public-envelope-z", "rotor-count", "grain-tank-capacity", "unloading-rate"]
+    "boundary": "Neutral North American six-contact dual-front, 2WD CR11 study with 567-bushel tank and 6.0-bushel-per-second unload option. No header, cutterbar or reel is fitted. Hidden feeder pivots, rotor centers, TwinClean links, auger hinges and residue drives remain reconstructed.",
+    "lede": "Published dual-wheel transport dimensions, 4.039 m wheelbase, 1.885 m feeder, 0.45 m Dynamic Feed Roll, twin 0.61 by 3.6 m rotors, TwinClean topology and 105-degree unload swivel constrain this technical structural study.",
+    "factIds": ["public-envelope-x", "public-envelope-y", "public-envelope-z", "dual-wheelbase", "feeder-cradle-width", "dynamic-feed-roll-diameter", "rotor-count", "rotor-diameter", "rotor-length", "grain-tank-capacity", "unloading-rate", "unloading-auger-swivel"]
   },
   "camera": {"azimuth": 0.59, "elevation": 0.33, "distance": 1.55},
   "accent": "#728b5f",
   "motion": {
     "autoplay": true,
-    "durationSeconds": 16,
+    "durationSeconds": 18,
     "mode": "sine",
-    "damping": 6.0,
+    "damping": 8,
     "channels": [
-      {"id":"feeder-lift","label":"Feeder/header interface lift - reconstructed","nodes":["Header_Lift_Pivot"],"property":"rotation.z","from":-0.06,"to":0.17,"phase":0.0,"mode":"offset"},
-      {"id":"reel-study","label":"Generic interface reel study","nodes":["Reel_ROOT"],"property":"rotation.z","from":-0.72,"to":0.72,"phase":0.42,"mode":"offset"},
-      {"id":"unloader-swivel","label":"Unloader swivel study","nodes":["Unloader_Swing_Pivot"],"property":"rotation.y","from":0.0,"to":1.22,"phase":0.68,"mode":"offset","autoplay":"ping-pong"}
+      {"id":"feeder-lift","mechanismJointId":"feederhouse_raise_lower","label":"Feeder/header interface lift - reconstructed","nodes":["Header_Lift_Pivot"],"property":"rotation.z","from":-0.06,"to":0.17,"phase":0.0,"mode":"offset"},
+      {"id":"dynamic-feed-roll","mechanismJointId":"dynamic_feed_roll","label":"Dynamic Feed Roll cutaway study","nodes":["Dynamic_Feed_Roll_ROOT"],"property":"rotation.z","from":-0.62,"to":0.62,"phase":0.18,"mode":"offset"},
+      {"id":"twin-rotors","mechanismJointId":"twin_rotors","label":"Twin Rotor counter-rotation study - reconstructed phase","nodes":["Twin_Rotor_L_ROOT"],"property":"rotation.x","from":-0.72,"to":0.72,"phase":0.30,"mode":"offset"},
+      {"id":"twin-rotors-counter","mechanismJointId":"twin_rotors","label":"Twin Rotor counter-rotation study - reconstructed phase","nodes":["Twin_Rotor_R_ROOT"],"property":"rotation.x","from":0.72,"to":-0.72,"phase":0.30,"mode":"offset"},
+      {"id":"twinclean-front","mechanismJointId":"twinclean_front_side_shake","label":"TwinClean front side-shake cue - reconstructed amplitude","nodes":["TwinClean_Front_ROOT"],"property":"position.z","from":-0.055,"to":0.055,"phase":0.40,"mode":"offset"},
+      {"id":"twinclean-rear","mechanismJointId":"twinclean_rear_side_shake","label":"TwinClean rear side-shake cue - reconstructed amplitude","nodes":["TwinClean_Rear_ROOT"],"property":"position.z","from":0.055,"to":-0.055,"phase":0.40,"mode":"offset"},
+      {"id":"grain-cover-left","mechanismJointId":"grain_tank_covers","label":"Left grain-tank cover study - reconstructed hinge","nodes":["Grain_Tank_Cover_L_Pivot"],"property":"rotation.x","from":0.0,"to":1.047198,"phase":0.48,"mode":"offset"},
+      {"id":"grain-cover-right","mechanismJointId":"grain_tank_covers","label":"Right grain-tank cover study - reconstructed hinge","nodes":["Grain_Tank_Cover_R_Pivot"],"property":"rotation.x","from":0.0,"to":-1.047198,"phase":0.48,"mode":"offset"},
+      {"id":"unloader-fold","mechanismJointId":"unloading_auger_fold","label":"Unloader fold study - reconstructed hinge","nodes":["Unloader_Fold_Pivot"],"property":"rotation.y","from":0.0,"to":-3.141593,"phase":0.56,"mode":"offset","autoplay":"ping-pong"},
+      {"id":"unloader-swivel","mechanismJointId":"unloading_auger_swing","label":"Published 105-degree unloader swivel study","nodes":["Unloader_Swing_Pivot"],"property":"rotation.y","from":0.0,"to":1.832596,"phase":0.68,"mode":"offset","autoplay":"ping-pong"},
+      {"id":"rear-spreaders","mechanismJointId":"rear_disc_spreader","label":"Selected paired three-paddle disc spreader study","nodes":["Rear_Spreader_L_ROOT","Rear_Spreader_R_ROOT"],"property":"rotation.y","from":-0.72,"to":0.72,"phase":0.80,"mode":"offset"}
     ]
   }
 }

@@ -13,21 +13,25 @@
     "poster": "machines/case-ih-axial-flow-8250/review/renders/case-ih-axial-flow-8250-operator-side.png"
   },
   "evidence": {
-    "boundary": "Copyright-2022 250 Series research candidate with exact model year unresolved. Overall length, hidden crop-flow geometry, pivots, steering and motion limits are reconstructed.",
-    "lede": "The official brochure publishes the 8250 power, rotor, 410-bushel tank, 4.5-bushel-per-second unload selection, width and cab height; no named header is claimed.",
-    "factIds": ["public-envelope-y", "public-envelope-z", "rated-engine-power", "rotor-diameter", "grain-tank-capacity", "unloading-rate"]
+    "boundary": "Copyright-2022 250 Series research candidate with exact model year unresolved. This six-contact dual-front, 2WD, feeder-only study does not claim the brochure's single-tire width as its selected transport width. Overall length, tire sizes and offsets, hidden crop-flow geometry, pivots, steering and motion limits are reconstructed.",
+    "lede": "The official brochure publishes the 8250 power, 3.752 m 2WD wheelbase, 1.372 by 2.388 m feeder, 0.762 m rotor, 410-bushel tank and 8.8 m auger; no header, cutterbar or reel is fitted.",
+    "factIds": ["public-envelope-y", "wheelbase-2wd", "rated-engine-power", "feeder-width", "feeder-length", "rotor-diameter", "grain-tank-capacity", "unloading-auger-length"]
   },
   "camera": {"azimuth": 0.61, "elevation": 0.32, "distance": 1.54},
   "accent": "#c18a42",
   "motion": {
     "autoplay": true,
-    "durationSeconds": 12,
+    "durationSeconds": 18,
     "mode": "sine",
-    "damping": 6.2,
+    "damping": 8,
     "channels": [
-      {"id":"feeder-lift","label":"Feeder/header interface lift - reconstructed","nodes":["Header_Lift_Pivot"],"property":"rotation.z","from":-0.08,"to":0.14,"phase":0.0,"mode":"offset"},
-      {"id":"reel-study","label":"Generic interface reel study","nodes":["Reel_ROOT"],"property":"rotation.z","from":-0.55,"to":0.55,"phase":0.28,"mode":"offset"},
-      {"id":"unloader-swing","label":"Unloader sweep - reconstructed hinge","nodes":["Unloader_Swing_Pivot"],"property":"rotation.y","from":0.0,"to":1.08,"phase":0.55,"mode":"offset","autoplay":"ping-pong"}
+      {"id":"feeder-lift","mechanismJointId":"feederhouse_raise_lower","label":"Feeder/header interface lift - reconstructed","nodes":["Header_Lift_Pivot"],"property":"rotation.z","from":-0.08,"to":0.14,"phase":0.0,"mode":"offset"},
+      {"id":"feeder-lateral-tilt","mechanismJointId":"feederhouse_lateral_tilt","label":"Feeder face lateral tilt - published plus or minus 5 degrees, reconstructed pivot","nodes":["Feeder_Lateral_Tilt_Pivot"],"property":"rotation.x","from":-0.087266,"to":0.087266,"phase":0.10,"mode":"offset"},
+      {"id":"feeder-faceplate-fore-aft","mechanismJointId":"feeder_faceplate_fore_aft","label":"Feeder faceplate fore/aft tilt - published 12-degree total range, reconstructed zero","nodes":["Feeder_Faceplate_ForeAft_Pivot"],"property":"rotation.z","from":-0.10472,"to":0.10472,"phase":0.18,"mode":"offset"},
+      {"id":"afx-rotor-study","mechanismJointId":"afx_rotor","label":"AFX rotor cutaway study - reconstructed centerline","nodes":["AFX_Rotor_ROOT"],"property":"rotation.x","from":-0.55,"to":0.55,"phase":0.28,"mode":"offset"},
+      {"id":"cleaning-level-study","mechanismJointId":"self_leveling_cleaning_system","label":"Self-leveling cleaning study - published plus or minus 7 degrees, reconstructed linkage","nodes":["Cleaning_System_Level_ROOT"],"property":"rotation.x","from":-0.122173,"to":0.122173,"phase":0.38,"mode":"offset"},
+      {"id":"unloader-fold","mechanismJointId":"unloading_auger_fold","label":"8.8 m unloader fold study - reconstructed hinge","nodes":["Unloader_Fold_Pivot"],"property":"rotation.y","from":0.0,"to":-3.141593,"phase":0.46,"mode":"offset","autoplay":"ping-pong"},
+      {"id":"unloader-swing","mechanismJointId":"unloading_auger_swing","label":"Unloader sweep - reconstructed range and hinge","nodes":["Unloader_Swing_Pivot"],"property":"rotation.y","from":0.0,"to":1.082104,"phase":0.55,"mode":"offset","autoplay":"ping-pong"}
     ]
   }
 }

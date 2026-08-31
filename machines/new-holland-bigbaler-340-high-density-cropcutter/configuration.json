@@ -20,7 +20,7 @@
     "axle": "hydraulic_adjustable_Auto_Steer_tandem",
     "tires": "600_55_R26_5_dimension_basis",
     "accumulator": "not_fitted",
-    "public_finish": "neutral_unbranded_sage_graphite"
+    "public_finish": "neutral_unbranded_slate_graphite"
   },
   "excluded_options": [
     "packer_feeding_model",

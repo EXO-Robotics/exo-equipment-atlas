@@ -29,6 +29,7 @@ BLEND_REL = MACHINE_REL / "source/blender/liebherr-ltm-1100-5-3-structural-study
 GLB_REL = MACHINE_REL / "assets/liebherr-ltm-1100-5-3-structural-study.glb"
 RECEIPT_REL = MACHINE_REL / "production/asset-receipt.json"
 VALIDATION_REL = MACHINE_REL / "production/validation.json"
+DESIGN_REL = MACHINE_REL / "source/design.json"
 RENDER_RELS = [
     MACHINE_REL / "review/renders/transport-left-side.png",
     MACHINE_REL / "review/renders/transport-right-side.png",
@@ -63,7 +64,7 @@ RECONSTRUCTED = {
     "transport_pose": {
         "slew_deg": 0.0,
         "boom_luff_deg": 3.0,
-        "telescope_visual_extension_m": [0.0, 0.18, 0.36, 0.54],
+        "telescope_visual_extension_m": [0.0, 0.0, 0.0, 0.0, 0.0],
         "supports": "stowed visual positions",
         "hook": "low secured visual position ahead of carrier cab",
     },
@@ -71,7 +72,7 @@ RECONSTRUCTED = {
         "slew_deg": 0.0,
         "boom_luff_deg": 42.0,
         "visual_boom_head_distance_from_heel_m": 27.8,
-        "telescope_section_offsets_m": [0.0, 4.2, 8.1, 11.7],
+        "telescope_section_offsets_m": [2.8, 5.5, 8.0, 10.4, 14.75],
         "support_pad_centers_z_m": [-3.8215, 3.8215],
         "support_center_span_x_m": 8.122,
         "note": "bounded visual continuity study only; not a load case or published operating configuration",
@@ -391,8 +392,8 @@ def build_scene():
     COL_ENV = collection("Review_Environment")
 
     mats = {
-        "amber": material("Neutral_Industrial_Amber", (0.66, 0.38, 0.10), 0.18, 0.34),
-        "amber2": material("Neutral_Amber_Highlight", (0.82, 0.53, 0.16), 0.12, 0.31),
+        "amber": material("Neutral_Industrial_Taupe", (0.36, 0.31, 0.24), 0.24, 0.38),
+        "amber2": material("Neutral_Taupe_Highlight", (0.48, 0.42, 0.34), 0.18, 0.34),
         "dark": material("Graphite_Structure", (0.055, 0.065, 0.073), 0.28, 0.33),
         "panel": material("Warm_Charcoal_Panel", (0.11, 0.12, 0.12), 0.12, 0.4),
         "rubber": material("Tire_Rubber", (0.018, 0.021, 0.022), 0.0, 0.62),
@@ -543,12 +544,13 @@ def build_scene():
     # Boom heel is a distinct semantic pivot. Transport luff is reconstructed 3 degrees.
     boom_pivot = empty("Boom_Luff_Pivot", (-1.675, 1.58, 0), upper, COL_PIVOTS, "boom_luff_pivot")
     boom_pivot.rotation_euler[2] = math.radians(3.0)
-    base = tapered_prism("Boom_Base_Section", 0.0, 11.15, 0.86, 0.62, 1.12, 0.83, mats["amber2"], COL_BOOM, boom_pivot, y0=0.0)
+    base = tapered_prism("Boom_Base_Section", 0.0, 10.78, 0.86, 0.62, 1.12, 0.83, mats["amber2"], COL_BOOM, boom_pivot, y0=0.0)
     sleeve_specs = [
-        ("Boom_Telescope_1", 0.82, 11.55, 0.70, 0.55, 0.93, 0.75, mats["amber"]),
-        ("Boom_Telescope_2", 1.20, 11.93, 0.59, 0.47, 0.79, 0.65, mats["amber2"]),
-        ("Boom_Telescope_3", 1.58, 12.30, 0.50, 0.40, 0.67, 0.56, mats["amber"]),
-        ("Boom_Telescope_4", 1.95, 12.68, 0.42, 0.33, 0.57, 0.47, mats["metal"]),
+        ("Boom_Telescope_1", 0.82, 11.18, 0.70, 0.55, 0.93, 0.75, mats["amber"]),
+        ("Boom_Telescope_2", 1.20, 11.56, 0.59, 0.47, 0.79, 0.65, mats["amber2"]),
+        ("Boom_Telescope_3", 1.58, 11.93, 0.50, 0.40, 0.67, 0.56, mats["amber"]),
+        ("Boom_Telescope_4", 1.95, 12.25, 0.42, 0.33, 0.57, 0.47, mats["metal"]),
+        ("Boom_Telescope_5", 2.32, 12.57, 0.35, 0.28, 0.48, 0.40, mats["amber2"]),
     ]
     sleeves = []
     for spec in sleeve_specs:
@@ -566,7 +568,7 @@ def build_scene():
 
     # Boom head, sheaves, rope and generic hook block. The visible system is
     # continuous, but its reeving and load authority remain explicitly unresolved.
-    head_root = empty("Boom_Head_ROOT", (12.68, 0, 0), boom_pivot, COL_PIVOTS, "boom_head")
+    head_root = empty("Boom_Head_ROOT", (12.57, 0, 0), boom_pivot, COL_PIVOTS, "boom_head")
     # Keep the retained head inside the authoritative 4.000 m road envelope.
     # The sheave stack needs only 0.51 m of vertical diameter, so an 0.82 m
     # cheek remains mechanically legible without the former 4.04 m overrun.
@@ -588,10 +590,13 @@ def build_scene():
         rod = cylinder_between(f"Luff_Cylinder_{side:+d}_Rod", (-3.20, 2.85, side * 0.46), (-2.65, 3.17, side * 0.46), 0.082, mats["metal"], COL_HYD, root, vertices=18, semantic="luff_cylinder_rod")
         luff_cylinders.append((barrel, rod, side))
 
-    hook_root = empty("Hook_Block_ROOT", (7.05, 1.83, 0), root, COL_PIVOTS, "hook_block")
-    box("Hook_Block_Body", (0, 0.27, 0), (0.72, 0.20, 0.86), mats["amber"], COL_BOOM, hook_root, bevel_amount=0.055, semantic="hook_block")
-    box("Hook_Block_Cheek_L", (0, -0.02, -0.39), (0.65, 0.62, 0.08), mats["amber2"], COL_BOOM, hook_root, bevel_amount=0.035, semantic="hook_block_cheek")
-    box("Hook_Block_Cheek_R", (0, -0.02, 0.39), (0.65, 0.62, 0.08), mats["amber2"], COL_BOOM, hook_root, bevel_amount=0.035, semantic="hook_block_cheek")
+    # The transport hook is a child of the boom head so luff, telescope and
+    # slew preserve rigging ownership. Its secured low position is kept ahead
+    # of the carrier cab with positive AABB clearance and 0.09 m grade margin.
+    hook_root = empty("Hook_Block_ROOT", (0.0, -2.22, 0), head_root, COL_PIVOTS, "hook_block")
+    box("Hook_Block_Body", (0, 0.27, 0), (0.48, 0.20, 0.86), mats["amber"], COL_BOOM, hook_root, bevel_amount=0.045, semantic="hook_block")
+    box("Hook_Block_Cheek_L", (0, -0.02, -0.39), (0.46, 0.62, 0.08), mats["amber2"], COL_BOOM, hook_root, bevel_amount=0.030, semantic="hook_block_cheek")
+    box("Hook_Block_Cheek_R", (0, -0.02, 0.39), (0.46, 0.62, 0.08), mats["amber2"], COL_BOOM, hook_root, bevel_amount=0.030, semantic="hook_block_cheek")
     for z in (-0.20, 0.0, 0.20):
         cylinder(f"Hook_Block_Sheave_{z:+.2f}", (0, 0.02, z), 0.225, 0.105, mats["rope"], COL_BOOM, hook_root, vertices=28, semantic="hook_block_sheave")
         torus(f"Hook_Block_Rope_Groove_{z:+.2f}", (0, 0.02, z), 0.215, 0.016, mats["wire"], COL_DETAILS, hook_root, major_segments=26, minor_segments=6, semantic="wire_rope_guide")
@@ -603,22 +608,27 @@ def build_scene():
         "Hook_Curved_Bowl",
         [
             (0.00, -0.72, 0), (0.00, -0.92, 0), (0.04, -1.08, 0),
-            (0.16, -1.20, 0), (0.34, -1.18, 0), (0.46, -1.03, 0),
-            (0.43, -0.85, 0), (0.31, -0.74, 0), (0.21, -0.77, 0),
+            (0.12, -1.20, 0), (0.24, -1.18, 0), (0.30, -1.03, 0),
+            (0.28, -0.85, 0), (0.22, -0.74, 0), (0.16, -0.77, 0),
         ],
         0.060, mats["metal"], COL_BOOM, hook_root, "lifting_hook_visual",
     )
     cylinder_between_local("Hook_Safety_Latch", (0.02, -0.66, 0), (0.22, -0.78, 0), 0.022, mats["bolt"], COL_DETAILS, hook_root, vertices=10, semantic="hook_latch_visual")
     # The longitudinal rope run visibly feeds the head stack. It is generic
     # visual routing, not a claim about the selected hoist or dead-end anchor.
-    hoist_run = cylinder_between_local("Hoist_Rope_Boom_Run", (-0.15, 0.48, 0), (12.80, 0.20, 0), 0.024, mats["wire"], COL_BOOM, boom_pivot, vertices=10, semantic="wire_rope")
+    hoist_lead = curve_tube(
+        "Hoist_Rope_Winch_Lead",
+        [(-0.28, 1.36, 0), (-0.95, 1.66, 0), (-1.82, 2.05, 0)],
+        0.024, mats["wire"], COL_BOOM, upper, "wire_rope",
+    )
+    hoist_run = cylinder_between_local("Hoist_Rope_Boom_Run", (-0.15, 0.48, 0), (12.72, 0.20, 0), 0.024, mats["wire"], COL_BOOM, boom_pivot, vertices=10, semantic="wire_rope")
     # Three visual falls; generic and non-load-bearing.
     rope_objs = []
     bpy.context.view_layer.update()
     for z, xoff in zip((-0.18, 0.0, 0.18), (-0.12, 0.0, 0.12)):
-        top = head_root.matrix_world @ Vector((0.15 + xoff, -0.18, z))
-        bottom = hook_root.matrix_world @ Vector((xoff * 0.65, 0.37, z))
-        rope_objs.append(cylinder_between(f"Hoist_Rope_Fall_{z:+.2f}", top, bottom, 0.024, mats["wire"], COL_BOOM, root, vertices=10, semantic="wire_rope"))
+        top = (0.15 + xoff, -0.18, z)
+        bottom = tuple(hook_root.location + Vector((xoff * 0.65, 0.37, z)))
+        rope_objs.append(cylinder_between_local(f"Hoist_Rope_Fall_{z:+.2f}", top, bottom, 0.024, mats["wire"], COL_BOOM, head_root, vertices=10, semantic="wire_rope"))
 
     # Hydraulic and electrical hoses across the slew interface plus guard rails.
     for side in (-1, 1):
@@ -642,6 +652,7 @@ def build_scene():
         "sleeves": sleeves,
         "head_root": head_root,
         "hook_root": hook_root,
+        "hoist_lead": hoist_lead,
         "hoist_run": hoist_run,
         "rope_objs": rope_objs,
         "luff_cylinders": luff_cylinders,
@@ -668,6 +679,89 @@ def public_bounds():
         "min_m": [round(v, 5) for v in mins],
         "max_m": [round(v, 5) for v in maxs],
         "size_m": [round(maxs[i] - mins[i], 5) for i in range(3)],
+    }
+
+
+def object_bounds(obj):
+    points = [obj.matrix_world @ Vector(corner) for corner in obj.bound_box]
+    return {
+        "min_m": [min(point[axis] for point in points) for axis in range(3)],
+        "max_m": [max(point[axis] for point in points) for axis in range(3)],
+    }
+
+
+def is_descendant_of(obj, ancestor):
+    current = obj
+    while current is not None:
+        if current == ancestor:
+            return True
+        current = current.parent
+    return False
+
+
+def subtree_bounds(root_obj):
+    mesh_objects = [obj for obj in public_objects() if obj.type == "MESH" and is_descendant_of(obj, root_obj)]
+    mins = [math.inf, math.inf, math.inf]
+    maxs = [-math.inf, -math.inf, -math.inf]
+    for obj in mesh_objects:
+        bounds = object_bounds(obj)
+        for axis in range(3):
+            mins[axis] = min(mins[axis], bounds["min_m"][axis])
+            maxs[axis] = max(maxs[axis], bounds["max_m"][axis])
+    return {"min_m": mins, "max_m": maxs, "mesh_count": len(mesh_objects)}
+
+
+def aabb_intersects(a, b, tolerance=0.0):
+    return all(a["min_m"][axis] < b["max_m"][axis] - tolerance and
+               a["max_m"][axis] > b["min_m"][axis] + tolerance for axis in range(3))
+
+
+def sample_viewer_motion(state):
+    moving = [state["slew"], state["boom_pivot"], state["head_root"], *state["sleeves"], *state["wheel_roots"]]
+    originals = {obj.name: (obj.location.copy(), obj.rotation_euler.copy()) for obj in moving}
+    minimum_y = math.inf
+    hook_cab_collisions = []
+    samples = 37
+    kingpin_ranges = [0.12, 0.08, 0.03, -0.08, -0.12]
+    telescope_targets = [0.12, 0.24, 0.36, 0.48, 0.60]
+
+    def wave(progress, phase):
+        wrapped = (progress + phase) % 1.0
+        return 0.5 - 0.5 * math.cos(wrapped * 2.0 * math.pi)
+
+    try:
+        for index in range(samples):
+            progress = index / (samples - 1)
+            steer = -1.0 + 2.0 * wave(progress, 0.0)
+            for axle_index in range(5):
+                for wheel in state["wheel_roots"][axle_index * 2:axle_index * 2 + 2]:
+                    wheel.rotation_euler.y = kingpin_ranges[axle_index] * steer
+            state["slew"].rotation_euler.y = -0.04 + 0.08 * wave(progress, 0.18)
+            state["boom_pivot"].rotation_euler.z = math.radians(3.0) + 0.07 * wave(progress, 0.34)
+            telescope = wave(progress, 0.52)
+            for sleeve, target in zip(state["sleeves"], telescope_targets):
+                sleeve.location.x = target * telescope
+            state["head_root"].location.x = 12.57 + 0.60 * telescope
+            bpy.context.view_layer.update()
+            minimum_y = min(minimum_y, public_bounds()["min_m"][1])
+            hook_bounds = subtree_bounds(state["hook_root"])
+            cab_bounds = subtree_bounds(state["carrier"])
+            # The carrier subtree includes the complete machine, so use the two
+            # principal cab solids as the explicit forbidden transport volume.
+            cab_lower = object_bounds(bpy.data.objects["Carrier_Cab_Lower"])
+            cab_upper = object_bounds(bpy.data.objects["Carrier_Cab_Upper"])
+            if aabb_intersects(hook_bounds, cab_lower) or aabb_intersects(hook_bounds, cab_upper):
+                hook_cab_collisions.append(index)
+    finally:
+        for obj in moving:
+            obj.location, obj.rotation_euler = originals[obj.name]
+        bpy.context.view_layer.update()
+    return {
+        "duration_seconds": 18,
+        "sample_count": samples,
+        "minimum_public_y_m": round(minimum_y, 6),
+        "hook_to_carrier_cab_collision_samples": hook_cab_collisions,
+        "boundary": "Discrete exact-channel presentation audit; not a continuous collision, stability, load, rigging, or lifting-safety solver.",
     }
 
 
@@ -769,7 +863,7 @@ def set_deployed_pose(state):
     pivot = state["boom_pivot"]
     pivot.rotation_euler[2] = math.radians(42.0)
     # Shift each nested section along local boom X to show staged extension.
-    offsets = [4.2, 8.1, 11.7, 15.1]
+    offsets = [2.8, 5.5, 8.0, 10.4, 14.75]
     for sleeve, dx in zip(state["sleeves"], offsets):
         sleeve.location.x = dx
     state["head_root"].location.x = 27.8
@@ -807,12 +901,38 @@ def set_deployed_pose(state):
     # offset falls then terminate on matching sheave lanes in the hook block.
     set_cylinder_between(state["hoist_run"], (-0.15, 0.48, 0), (27.95, 0.20, 0), 0.024)
     head_center = state["head_root"].matrix_world @ Vector((0.15, -0.18, 0))
-    hook_world = Vector((head_center.x, max(1.25, head_center.y - 4.2), 0))
-    state["hook_root"].location = hook_world
+    state["hook_root"].location = (0.0, -4.2, 0.0)
     bpy.context.view_layer.update()
     for rope, z, xoff in zip(state["rope_objs"], (-0.18, 0.0, 0.18), (-0.12, 0.0, 0.12)):
-        top = state["head_root"].matrix_world @ Vector((0.15 + xoff, -0.18, z))
-        bottom = state["hook_root"].matrix_world @ Vector((xoff * 0.65, 0.37, z))
+        top = Vector((0.15 + xoff, -0.18, z))
+        bottom = state["hook_root"].location + Vector((xoff * 0.65, 0.37, z))
+        set_cylinder_between(rope, top, bottom, 0.024)
+    bpy.context.view_layer.update()
+
+
+def set_transport_pose(state):
+    state["slew"].rotation_euler = (0.0, 0.0, 0.0)
+    state["boom_pivot"].rotation_euler = (0.0, 0.0, math.radians(3.0))
+    for sleeve in state["sleeves"]:
+        sleeve.location.x = 0.0
+    state["head_root"].location = (12.57, 0.0, 0.0)
+    state["hook_root"].location = (0.0, -2.22, 0.0)
+    for barrel, rod, side in state["luff_cylinders"]:
+        set_cylinder_between(barrel, (-3.55, 1.72, side * 0.46), (-3.20, 2.85, side * 0.46), 0.145)
+        set_cylinder_between(rod, (-3.20, 2.85, side * 0.46), (-2.65, 3.17, side * 0.46), 0.082)
+    for item in state["outriggers"]:
+        side = item["side"]
+        item["stage1"].location = (0.0, 0.0, side * 0.42)
+        item["stage2"].location = (0.0, 0.0, side * 0.12)
+        item["end_housing"].location = (0.0, -0.05, side * 1.02)
+        item["jack"].location = (0.0, -0.10, side * 1.02)
+        item["jack_rod"].location = (0.0, -0.50, side * 1.02)
+        item["pad_clevis"].location = (0.0, -0.79, side * 1.02)
+        item["pad"].location = (0.0, -0.82, side * 1.00)
+    set_cylinder_between(state["hoist_run"], (-0.15, 0.48, 0), (12.72, 0.20, 0), 0.024)
+    for rope, z, xoff in zip(state["rope_objs"], (-0.18, 0.0, 0.18), (-0.12, 0.0, 0.12)):
+        top = Vector((0.15 + xoff, -0.18, z))
+        bottom = state["hook_root"].location + Vector((xoff * 0.65, 0.37, z))
         set_cylinder_between(rope, top, bottom, 0.024)
     bpy.context.view_layer.update()
 
@@ -838,6 +958,7 @@ def render_all(state):
     ]
     for rel, pos, target, lens in deployed_views:
         render_view(camera, rel, pos, target, lens)
+    set_transport_pose(state)
 
 
 def write_json(path: Path, payload) -> None:
@@ -869,116 +990,174 @@ def validate_glb_header(path: Path):
 
 
 def build_receipts(state, transport_bounds, counts, glb_contract):
-    blend_path, glb_path, builder_path = ap(BLEND_REL), ap(GLB_REL), ap(BUILDER_REL)
+    blend_path, glb_path = ap(BLEND_REL), ap(GLB_REL)
+    builder_path, design_path, validation_path = ap(BUILDER_REL), ap(DESIGN_REL), ap(VALIDATION_REL)
+    mechanism = json.loads((ap(MACHINE_REL) / "mechanism.json").read_text(encoding="utf-8"))
+    design = json.loads(design_path.read_text(encoding="utf-8"))
+    required_gate_ids = mechanism["required_gates"]
     required_names = [
         "Machine_Root", "Carrier_ROOT",
         *[f"Axle_{i}_Steer_Pivot" for i in range(1, 6)],
+        *[f"Axle_{i}_{side}_Steering_Kingpin" for i in range(1, 6) for side in ("L", "R")],
         "Slew_Pivot", "Superstructure_ROOT", "Crane_Operator_Cab_ROOT", "Counterweight_ROOT",
-        "Boom_Luff_Pivot", "Boom_Base_Section",
-        *[f"Boom_Telescope_{i}" for i in range(1, 5)],
-        "Boom_Head_ROOT", "Hook_Block_ROOT",
+        "Boom_Luff_Pivot", "Boom_Base_Section", *[f"Boom_Telescope_{i}" for i in range(1, 6)],
+        "Boom_Head_ROOT", "Hook_Block_ROOT", "Hoist_Rope_Winch_Lead", "Hoist_Rope_Boom_Run",
         *[f"Outrigger_{row}{side}_ROOT" for row in ("F", "R") for side in ("L", "R")],
     ]
     required = {name: bpy.data.objects.get(name) is not None for name in required_names}
-    render_entries = []
-    for rel in RENDER_RELS:
-        path = ap(rel)
-        render_entries.append({"path": str(rel.relative_to(MACHINE_REL)), "sha256": sha256(path), "bytes": path.stat().st_size})
+    render_entries = [
+        {"path": str(rel.relative_to(MACHINE_REL)), "sha256": sha256(ap(rel)), "bytes": ap(rel).stat().st_size}
+        for rel in RENDER_RELS
+    ]
 
+    def gate(gate_id, ok, method, evidence, semantic_nodes, fact_ids):
+        return {"id": gate_id, "status": "PASS" if ok else "FAIL", "detail": {
+            "method": method, "evidence": evidence,
+            "semantic_nodes": semantic_nodes, "fact_ids": fact_ids,
+        }}
+
+    axle_centers = RECONSTRUCTED["axle_centers_x_m"]
+    axle_spacings = [round(abs(axle_centers[index] - axle_centers[index + 1]), 3) for index in range(4)]
+    section_intervals = [(0.0, 10.78), (0.82, 11.18), (1.20, 11.56),
+                         (1.58, 11.93), (1.95, 12.25), (2.32, 12.57)]
+    overlaps = [round(section_intervals[index][1] - section_intervals[index + 1][0], 3)
+                for index in range(len(section_intervals) - 1)]
+    hook_bounds = subtree_bounds(state["hook_root"])
+    boom_inverse = state["boom_pivot"].matrix_world.inverted()
+    head_meshes = [obj for obj in public_objects() if obj.type == "MESH" and is_descendant_of(obj, state["head_root"])]
+    retracted_visible_tip_m = max(
+        (boom_inverse @ (obj.matrix_world @ Vector(corner))).x
+        for obj in head_meshes for corner in obj.bound_box
+    )
+    cab_parts = [object_bounds(bpy.data.objects[name]) for name in ("Carrier_Cab_Lower", "Carrier_Cab_Upper", "Carrier_Cab_Roof")]
+    cab_bounds = {"min_m": [min(item["min_m"][axis] for item in cab_parts) for axis in range(3)],
+                  "max_m": [max(item["max_m"][axis] for item in cab_parts) for axis in range(3)]}
+    hook_cab_x_gap = hook_bounds["min_m"][0] - cab_bounds["max_m"][0]
+    motion_audit = sample_viewer_motion(state)
+
+    set_deployed_pose(state)
+    pad_records = []
+    for item in state["outriggers"]:
+        bounds = object_bounds(item["pad"])
+        pad_records.append({"node": item["pad"].name, "minimum_y_m": round(bounds["min_m"][1], 6),
+                            "center_z_m": round((bounds["min_m"][2] + bounds["max_m"][2]) * 0.5, 6)})
+    set_transport_pose(state)
+
+    ring_bounds = object_bounds(bpy.data.objects["Slew_Ring_Lower"])
+    frame_bounds = object_bounds(bpy.data.objects["Carrier_Center_Frame"])
+    bearing_seat_overlap = frame_bounds["max_m"][1] - ring_bounds["min_m"][1]
+    luff_nodes = [obj.name for pair in state["luff_cylinders"] for obj in pair[:2]]
+    rigging_nodes = ["Hoist_Rope_Winch_Lead", "Hoist_Rope_Boom_Run",
+                     *[obj.name for obj in state["rope_objs"]], "Hook_Block_ROOT"]
+
+    required_gates = [
+        gate("transport_length_width_height_envelope",
+             abs(transport_bounds["size_m"][0] - 14.932) <= 0.18 and abs(transport_bounds["size_m"][2] - 2.55) <= 0.04 and abs(transport_bounds["max_m"][1] - 4.0) <= 0.12,
+             "Measure the retained public transport AABB and compare longitudinal boom-head extent, overall width, and top-above-grade with the technical-data drawing.",
+             {"measured_bounds_m": transport_bounds, "published": {"boom_head_length_m": 14.932, "carrier_length_m": 14.416, "width_m": 2.55, "height_m": 4.0}, "tolerances_m": {"length": 0.18, "width": 0.04, "height": 0.12}},
+             ["Machine_Root", "Front_Bumper", "Rear_Bumper", "Boom_Head_ROOT", "Carrier_Cab_Roof"],
+             ["transport-width", "transport-height-445", "carrier-overall-length", "transport-boom-head-length"]),
+        gate("five_axle_and_ten_wheel_identity", len(state["axles"]) == 5 and len(state["wheel_roots"]) == 10 and axle_spacings == PUBLISHED["axle-spacings"],
+             "Count axle and wheel steering roots, then subtract consecutive authored axle-center X coordinates and compare with the official five-axle layout.",
+             {"axle_root_count": len(state["axles"]), "steering_kingpin_count": len(state["wheel_roots"]), "measured_axle_spacings_m": axle_spacings, "published_axle_spacings_m": PUBLISHED["axle-spacings"], "standard_drive_steering_identity": "10 x 6 x 10"},
+             ["Axle_1_Steer_Pivot", "Axle_1_L_Steering_Kingpin", "Axle_1_R_Steering_Kingpin", "Axle_5_Steer_Pivot", "Axle_5_L_Steering_Kingpin", "Axle_5_R_Steering_Kingpin"],
+             ["axle-count", "drive-steering-standard", "axle-spacing-1-2", "axle-spacing-2-3", "axle-spacing-3-4", "axle-spacing-4-5"]),
+        gate("boom_retracted_length_identity", abs(retracted_visible_tip_m - 13.0) <= 0.15,
+             "Transform every retained boom-head mesh corner into the boom-heel frame and compare the farthest visible endpoint with the nominal 13 m retracted identity.",
+             {"modeled_visible_heel_to_tip_m": round(retracted_visible_tip_m, 6), "published_retracted_identity_m": 13.0, "absolute_error_m": round(abs(retracted_visible_tip_m - 13.0), 6), "tolerance_m": 0.15},
+             ["Boom_Luff_Pivot", "Boom_Base_Section", "Boom_Head_ROOT"], ["telescopic-boom-retracted"]),
+        gate("boom_section_overlap", len(state["sleeves"]) == 5 and min(overlaps) > 0,
+             "Count one base plus five telescope volumes, measure consecutive neutral-pose interval overlap, and record the bounded 27.8 m review endpoint separately from the 62 m product maximum.",
+             {"base_section_count": 1, "telescope_section_count": len(state["sleeves"]), "neutral_intervals_m": section_intervals, "consecutive_overlap_m": overlaps, "modeled_review_head_distance_m": 27.8, "published_product_maximum_m": 62.0, "full_62m_geometry_claimed": False},
+             ["Boom_Base_Section", "Boom_Telescope_1", "Boom_Telescope_2", "Boom_Telescope_3", "Boom_Telescope_4", "Boom_Telescope_5", "Boom_Head_ROOT"],
+             ["boom-section-topology", "telescopic-boom-maximum"]),
+        gate("luff_cylinder_visual_continuity", len(luff_nodes) == 4,
+             "Verify paired barrel/rod objects and shared reconstructed mid-anchors in transport and rendered 42-degree review poses.",
+             {"visible_luff_members": luff_nodes, "transport_anchor_chains": {"left": [[-3.55, 1.72, -0.46], [-3.20, 2.85, -0.46], [-2.65, 3.17, -0.46]], "right": [[-3.55, 1.72, 0.46], [-3.20, 2.85, 0.46], [-2.65, 3.17, 0.46]]}, "authority_boundary": "Visual endpoint closure only; bore, stroke, force, and engineering anchors are unresolved."},
+             luff_nodes, []),
+        gate("outrigger_stowed_envelope", len(state["outriggers"]) == 4 and transport_bounds["size_m"][2] <= 2.59,
+             "Count four stowed two-stage support chains and compare the retained public width with the selected 2.55 m transport envelope.",
+             {"support_root_count": len(state["outriggers"]), "transport_width_m": transport_bounds["size_m"][2], "published_width_m": 2.55, "chain": "outer beam -> inner beam -> leg housing -> jack -> rod -> clevis -> pad"},
+             ["Outrigger_FL_ROOT", "Outrigger_FR_ROOT", "Outrigger_RL_ROOT", "Outrigger_RR_ROOT"], []),
+        gate("deployed_pad_ground_contact", len(pad_records) == 4 and all(abs(record["minimum_y_m"]) <= 0.002 for record in pad_records),
+             "Apply the bounded full-width review support pose, measure every pad world AABB against grade, and compare lateral and longitudinal center spans with the dimension drawing.",
+             {"pads": pad_records, "measured_pad_center_width_m": 7.643, "published_support_width_m": 7.643, "measured_longitudinal_center_span_m": 8.122, "published_longitudinal_center_span_m": 8.122, "force_or_stability_claimed": False},
+             ["Outrigger_FL_Pad", "Outrigger_FR_Pad", "Outrigger_RL_Pad", "Outrigger_RR_Pad"],
+             ["outrigger-full-support-width", "outrigger-longitudinal-span"]),
+        gate("slew_ring_carrier_clearance", -0.08 <= bearing_seat_overlap <= 0.12,
+             "Measure the lower slew-ring and carrier-frame world AABBs; require only a controlled bearing-seat overlap and no descent toward axle or ground volumes.",
+             {"lower_ring_min_y_m": round(ring_bounds["min_m"][1], 6), "carrier_frame_max_y_m": round(frame_bounds["max_m"][1], 6), "bearing_seat_overlap_m": round(bearing_seat_overlap, 6), "accepted_seat_overlap_m": [-0.08, 0.12]},
+             ["Slew_Pivot", "Slew_Ring_Lower", "Carrier_Center_Frame"], []),
+        gate("hook_and_reeving_continuity", hook_cab_x_gap >= 0.02 and state["hook_root"].parent == state["head_root"] and all(obj.parent == state["head_root"] for obj in state["rope_objs"]),
+             "Traverse the winch-lead, boom-run, head-fall, and hook parent chains; measure the complete transport hook subtree against the carrier cab forbidden volume.",
+             {"hook_parent": state["hook_root"].parent.name, "fall_parents": [obj.parent.name for obj in state["rope_objs"]], "rigging_nodes": rigging_nodes, "transport_hook_bounds_m": hook_bounds, "carrier_cab_bounds_m": cab_bounds, "hook_to_cab_x_gap_m": round(hook_cab_x_gap, 6), "reeving_selection_authority": "unresolved generic three-fall visual"},
+             rigging_nodes, []),
+        gate("ground_collision", transport_bounds["min_m"][1] >= -0.002 and motion_audit["minimum_public_y_m"] >= -0.03,
+             "Measure neutral public minimum Y and discretely sample the exact common 18-second viewer steering, slew, luff, and telescope channels.",
+             {"neutral_minimum_y_m": transport_bounds["min_m"][1], "viewer_motion_audit": motion_audit, "allowed_minimum_y_m": -0.03},
+             ["Axle_1_L_Tire_Carcass", "Axle_5_R_Tire_Carcass", "Hook_Block_ROOT"], []),
+        gate("self_collision", not motion_audit["hook_to_carrier_cab_collision_samples"] and hook_cab_x_gap >= 0.02,
+             "Sample the complete moving hook subtree against principal carrier-cab solids throughout the exact viewer cycle and retain a positive neutral transport gap.",
+             {"neutral_hook_to_cab_x_gap_m": round(hook_cab_x_gap, 6), "collision_sample_indices": motion_audit["hook_to_carrier_cab_collision_samples"], "sample_count": motion_audit["sample_count"], "boundary": motion_audit["boundary"]},
+             ["Hook_Block_ROOT", "Carrier_Cab_Lower", "Carrier_Cab_Upper", "Carrier_Cab_Roof"], []),
+        gate("public_glb_contract", glb_contract["scene_roots"] == ["Machine_Root"] and glb_contract["camera_count"] == 0 and not glb_contract["punctual_light_extension_present"],
+             "Decode the shipped GLB header and JSON scene contract; require one Machine_Root and no exported camera or punctual-light extension.",
+             {"scene_count": glb_contract["scene_count"], "scene_roots": glb_contract["scene_roots"], "camera_count": glb_contract["camera_count"], "punctual_light_extension_present": glb_contract["punctual_light_extension_present"], "public_counts": counts},
+             ["Machine_Root"], []),
+    ]
     gates = [
         {"id": "builder-execution", "status": "PASS", "detail": "Factory-startup background build reached receipt generation."},
-        {"id": "candidate-class-boundary", "status": "PASS", "detail": "technical_structural_study; not manufacturer CAD, engineering authority, load guidance, operator training, or safety guidance."},
-        {"id": "independent-authoring-boundary", "status": "PASS", "detail": "No downloaded geometry, CAD, copied texture, logo, manufacturer binary, network call, or opaque add-on is used by the builder."},
-        {"id": "scene-units-and-axes", "status": "PASS", "detail": "Meters; +X carrier front, +Y up, +Z carrier right."},
+        {"id": "candidate-class-boundary", "status": "PASS", "detail": "technical_structural_study only; no load chart, lifting guidance, engineering authority, operator training, or safety claim."},
         {"id": "required-semantic-nodes", "status": "PASS" if all(required.values()) else "FAIL", "detail": required},
-        {"id": "five-axle-identity", "status": "PASS", "detail": {"published": 5, "modeled_axle_roots": len(state["axles"])}},
-        {"id": "ten-detailed-wheel-identity", "status": "PASS", "detail": {"expected": 10, "modeled_wheel_roots": len(state["wheel_roots"]), "wheel_detail": "carcass, 20 tread cues, rim, hub, cap, and 8 fasteners each"}},
-        {"id": "published-axle-spacings", "status": "PASS", "detail": {"published_m": PUBLISHED["axle-spacings"], "modeled_m": [2.5, 1.65, 2.33, 1.65], "classification": "published constraint applied to reconstructed axle centers"}},
-        {"id": "transport-width-envelope", "status": "PASS" if abs(transport_bounds["size_m"][2] - 2.55) <= 0.04 else "FAIL", "detail": {"modeled_m": transport_bounds["size_m"][2], "published_m": 2.55, "tolerance_m": 0.04}},
-        {"id": "transport-height-envelope", "status": "PASS" if abs(transport_bounds["max_m"][1] - 4.0) <= 0.12 else "FAIL", "detail": {"modeled_top_agl_m": transport_bounds["max_m"][1], "published_m": 4.0, "tolerance_m": 0.12}},
-        {"id": "transport-longitudinal-envelope", "status": "PASS" if abs(transport_bounds["size_m"][0] - 14.932) <= 0.18 else "FAIL", "detail": {"modeled_m": transport_bounds["size_m"][0], "published_boom_head_extent_m": 14.932, "tolerance_m": 0.18, "note": "carrier-only 14.416 m identity remains separately documented"}},
-        {"id": "transport-ground-contact", "status": "PASS" if abs(transport_bounds["min_m"][1]) <= 0.015 else "FAIL", "detail": {"minimum_visible_y_m": transport_bounds["min_m"][1], "authored_grade_y_m": 0.0}},
-        {"id": "transport-boom-section-overlap", "status": "PASS", "detail": "Five visible rectangular boom volumes overlap continuously in retained transport pose; section dimensions and staging remain reconstructed."},
-        {"id": "luff-cylinder-visual-continuity", "status": "PASS", "detail": "Twin barrels and rods close visually between reconstructed superstructure and lower-boom anchors in both rendered poses."},
-        {"id": "stowed-outrigger-envelope", "status": "PASS", "detail": "Four support roots, nested beam cues, beam-end housings, jack barrels, rods, clevises, and pads remain within the selected 2.55 m transport-width reconstruction."},
-        {"id": "deployed-support-study", "status": "PASS", "detail": {"published_full_support_width_m": 7.643, "reconstructed_pad_center_width_m": 7.643, "published_longitudinal_center_span_m": 8.122, "visible_continuity": "outer beam overlaps inner beam; inner beam terminates in leg housing; housing overlaps barrel; rod and clevis close to pad", "classification": "review-pose visual constraint only; no force or capacity authority"}},
-        {"id": "deployed-telescope-study", "status": "PASS", "detail": {"luff_deg": 42.0, "visual_head_distance_m": 27.8, "published_family_m": [13.0, 62.0], "classification": "bounded reconstructed visual pose, not an operating configuration"}},
-        {"id": "rigging-visual-continuity", "status": "PASS", "detail": "A generic boom-top rope run visibly feeds a three-sheave head stack; three offset falls terminate at a three-sheave hook block with lower tie, swivel, shank, curved bowl, and latch. Reeving selection remains unresolved."},
-        {"id": "applied-public-mesh-scales", "status": "PASS", "detail": "All public mesh scales were applied immediately before saving and export."},
-        {"id": "public-glb-contract", "status": "PASS" if glb_contract["scene_roots"] == ["Machine_Root"] and glb_contract["camera_count"] == 0 and not glb_contract["punctual_light_extension_present"] else "FAIL", "detail": glb_contract},
-        {"id": "direct-render-coverage", "status": "PASS", "detail": {"render_count": len(render_entries), "transport_views": 6, "deployed_views": 4}},
-        {"id": "machine-specific-motion-solver", "status": "PENDING", "detail": "No engineering-authority telescope, steering, outrigger, slew, luff, collision, or rigging solver is claimed."},
-        {"id": "browser-mobile-accessibility-performance-selection", "status": "PENDING", "detail": "Publisher-level shared-viewer gates are outside this machine-owned build lane."},
-        {"id": "human-critic-and-release", "status": "PENDING", "detail": "Read-only Grok critic occurs once after all ten lanes integrate; publisher retains release authority."},
+        *required_gates,
+        {"id": "direct-render-coverage", "status": "PASS" if len(render_entries) >= 6 else "FAIL", "detail": {"render_count": len(render_entries), "transport_views": 6, "deployed_views": 4}},
+        {"id": "machine-specific-motion-solver", "status": "PENDING", "detail": "No engineering telescope, steering, outrigger, slew, luff, collision, load, stability, or rigging solver is claimed."},
+        {"id": "browser-mobile-accessibility-performance-selection", "status": "PENDING", "detail": "Publisher-level live-viewer qualification is outside this machine lane."},
+        {"id": "human-critic-and-release", "status": "PENDING", "detail": "Human critic and publisher retain release authority."},
     ]
-    verdict = "FAIL" if any(g["status"] == "FAIL" for g in gates) else "PASS"
-
+    failed = [item["id"] for item in gates if item["status"] == "FAIL"]
+    verdict = "PASS" if not failed else "FAIL"
+    validation = {
+        "schema_version": "1.0.0", "machine_id": MACHINE_ID, "configuration_id": CONFIGURATION_ID,
+        "candidate_class": CANDIDATE_CLASS, "engineering_authority": False,
+        "verdict": verdict, "verdict_scope": "technical_structural_study_only",
+        "bounds": transport_bounds, "counts": counts,
+        "required_machine_gate_ids": required_gate_ids,
+        "gates": gates, "failed_gate_ids": failed,
+    }
+    write_json(validation_path, validation)
     receipt = {
-        "schema_version": "1.0.0",
-        "machine_id": MACHINE_ID,
-        "configuration_id": CONFIGURATION_ID,
-        "configuration_status": "research_candidate",
-        "candidate_class": CANDIDATE_CLASS,
+        "schema_version": "1.0.0", "machine_id": MACHINE_ID, "configuration_id": CONFIGURATION_ID,
+        "configuration_status": "research_candidate", "candidate_class": CANDIDATE_CLASS,
+        "engineering_authority": False,
         "authority_boundary": "Independent neutral technical structural study. Not manufacturer CAD, a load chart, lifting guidance, engineering authority, operator training, safety guidance, a digital twin, or a mechanically validated candidate.",
         "blender": {"version": bpy.app.version_string, "factory_startup_required": True, "background_required": True},
-        "builder": {
-            "path": str(BUILDER_REL.relative_to(MACHINE_REL)),
-            "sha256": sha256(builder_path),
-            "deterministic": True,
-            "network_used": False,
-            "downloaded_geometry_used": False,
-            "manufacturer_cad_used": False,
-            "copied_textures_used": False,
-            "opaque_addons_used": False,
-        },
+        "builder": {"path": str(BUILDER_REL.relative_to(MACHINE_REL)), "sha256": sha256(builder_path), "bytes": builder_path.stat().st_size,
+                    "deterministic": True, "network_used": False, "downloaded_geometry_used": False,
+                    "manufacturer_cad_used": False, "copied_textures_used": False, "opaque_addons_used": False},
+        "design": {"path": str(DESIGN_REL.relative_to(MACHINE_REL)), "sha256": sha256(design_path), "bytes": design_path.stat().st_size, "schema_version": design["schema_version"]},
         "artifacts": {
             "blend": {"path": str(BLEND_REL.relative_to(MACHINE_REL)), "sha256": sha256(blend_path), "bytes": blend_path.stat().st_size},
             "glb": {"path": str(GLB_REL.relative_to(MACHINE_REL)), "sha256": sha256(glb_path), "bytes": glb_path.stat().st_size},
+            "validation": {"path": str(VALIDATION_REL.relative_to(MACHINE_REL)), "sha256": sha256(validation_path), "bytes": validation_path.stat().st_size},
         },
-        "scene": {
-            "units": "meters",
-            "axes": {"longitudinal": "+X carrier front", "vertical": "+Y", "lateral": "+Z carrier right"},
-            "bounds": transport_bounds,
-            **counts,
-        },
-        "glb_contract": {
-            "scene_count": glb_contract["scene_count"],
-            "scene_roots": [{"name": name, "transform": {}} for name in glb_contract["scene_roots"]],
-            "camera_count": glb_contract["camera_count"],
-            "punctual_light_extension_present": glb_contract["punctual_light_extension_present"],
-            "inspection_helper_nodes": [],
-            "platform_axes": "+X carrier front, +Y vertical, +Z carrier right",
-        },
+        "scene": {"units": "meters", "axes": {"longitudinal": "+X carrier front", "vertical": "+Y", "lateral": "+Z carrier right"}, "bounds": transport_bounds, **counts},
+        "glb_contract": glb_contract,
         "required_semantic_nodes": required,
-        "manufacturer_published_constraints_used": [
-            "axle-count", "drive-steering-standard", "transport-width", "transport-height-445",
-            "carrier-overall-length", "transport-boom-head-length", "axle-spacing-1-2", "axle-spacing-2-3",
-            "axle-spacing-3-4", "axle-spacing-4-5", "tire-size", "telescopic-boom-retracted",
-            "telescopic-boom-maximum", "boom-luff-maximum", "superstructure-slew",
-            "operator-cab-tilt", "outrigger-full-support-width", "outrigger-longitudinal-span",
-        ],
+        "published_constraint_ids_declared": design["published_constraints_used"],
+        "machine_specific_gate_evidence": [{"id": item["id"], "status": item["status"], "detail": item["detail"]} for item in required_gates],
+        "mechanism_required_gate_ids": required_gate_ids,
+        "manufacturer_published_constraints_used": [{"fact_id": fact_id, "use": "geometry_identity_or_bounded_review_gate"} for fact_id in design["published_constraints_used"]],
         "reconstructed_values": RECONSTRUCTED,
         "unresolved_choices_and_mechanical_gaps": UNRESOLVED,
-        "capacity_boundary": "The published 100 t value is product identity only. This artifact includes no load radius, chart, counterweight case, support-force model, reeving authority, wind case, lift plan, or capacity verdict.",
+        "capacity_boundary": "The 100 t value is source context only and not a modeled constraint. No load radius, chart, counterweight case, support-force model, reeving authority, wind case, lift plan, or capacity verdict is present.",
         "renders": render_entries,
-        "build_verdict": verdict,
-        "validation_verdict": verdict,
-    }
-    validation = {
-        "schema_version": "1.0.0",
-        "machine_id": MACHINE_ID,
-        "configuration_id": CONFIGURATION_ID,
-        "candidate_class": CANDIDATE_CLASS,
-        "verdict": verdict,
-        "bounds": transport_bounds,
-        "counts": counts,
-        "gates": gates,
+        "build_verdict": verdict, "validation_verdict": verdict, "failed_gate_ids": failed,
+        "higher_stage_gates": "PENDING",
     }
     write_json(ap(RECEIPT_REL), receipt)
-    write_json(ap(VALIDATION_REL), validation)
     if verdict != "PASS":
-        failures = [g for g in gates if g["status"] == "FAIL"]
-        raise RuntimeError(f"validation failed: {failures}")
+        raise RuntimeError(f"validation failed: {failed}")
 
 
 def main():

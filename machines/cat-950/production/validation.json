@@ -22,10 +22,10 @@
     ]
   },
   "counts": {
-    "objects": 460,
-    "meshes": 424,
+    "objects": 461,
+    "meshes": 425,
     "empties": 36,
-    "triangles": 123224,
+    "triangles": 123556,
     "materials": 18
   },
   "metrics": {
@@ -96,24 +96,104 @@
     "tread_blocks": 96,
     "hose_segments": 20,
     "export_mesh_scale_offenders": {},
-    "zbar_static_dogbone_endpoint_error_m": 2.67542115936242e-07
+    "zbar_static_dogbone_endpoint_error_m": 3.006183689219547e-07,
+    "semantic_visible_mesh_descendants": {
+      "Articulation_Pivot": 182,
+      "Rear_Axle_Oscillation_Pivot": 92,
+      "Lift_Arm_Pivot": 56,
+      "Bucket_Pivot": 40,
+      "ZBar_Linkage_ROOT": 9,
+      "Steering_Hydraulics_ROOT": 4,
+      "Lift_Hydraulics_ROOT": 4,
+      "Tilt_Hydraulics_ROOT": 2
+    },
+    "semantic_pivot_world_m": {
+      "Articulation_Pivot": [
+        0.0,
+        0.92,
+        0.0
+      ],
+      "Rear_Axle_Oscillation_Pivot": [
+        -1.675,
+        0.734,
+        0.0
+      ],
+      "Lift_Arm_Pivot": [
+        0.45,
+        1.45,
+        0.0
+      ],
+      "Bucket_Pivot": [
+        3.0,
+        0.623,
+        0.0
+      ],
+      "ZBar_Bellcrank_Pivot": [
+        1.03,
+        2.18,
+        0.0
+      ]
+    },
+    "cylinder_anchor_endpoint_errors_m": {
+      "Steering_Cylinder_L_base": 6.664001874625056e-08,
+      "Steering_Cylinder_L_rod": 1.0323827311807139e-07,
+      "Steering_Cylinder_R_base": 4.2146848510894035e-08,
+      "Steering_Cylinder_R_rod": 5.960464477539063e-08,
+      "Lift_Cylinder_L_base": 5.960464477539063e-08,
+      "Lift_Cylinder_L_rod": 1.6858739404357614e-07,
+      "Lift_Cylinder_R_base": 5.960464477539063e-08,
+      "Lift_Cylinder_R_rod": 1.6858739404357614e-07,
+      "Tilt_Cylinder_base": 1.761405725830333e-08,
+      "Tilt_Cylinder_rod": 2.3842778968687937e-07
+    },
+    "review_max_lift_hinge_world_m": [
+      1.245785,
+      4.009913,
+      0.0
+    ]
   },
   "glb_contract": {
     "scene_count": 1,
     "scene_roots": [
       {
-        "index": 459,
+        "index": 460,
         "name": "Machine_Root",
         "transform": {}
       }
     ],
-    "node_count": 460,
-    "mesh_count": 424,
+    "node_count": 461,
+    "mesh_count": 425,
     "camera_count": 0,
     "punctual_light_extension_present": false,
     "helper_nodes": [],
     "platform_axes": "+X longitudinal, +Y vertical, +Z machine right"
   },
+  "required_machine_gate_ids": [
+    "published_transport_envelope",
+    "tire_contact_and_loaded_width",
+    "frame_articulation_clearance",
+    "rear_axle_oscillation_clearance",
+    "lift_hinge_endpoint_height",
+    "z_bar_linkage_closure",
+    "cylinder_length_continuity",
+    "bucket_dump_and_rack_angles",
+    "ground_collision",
+    "self_collision",
+    "swept_volume_collision"
+  ],
+  "mechanism_required_gate_ids": [
+    "published_transport_envelope",
+    "tire_contact_and_loaded_width",
+    "frame_articulation_clearance",
+    "rear_axle_oscillation_clearance",
+    "lift_hinge_endpoint_height",
+    "z_bar_linkage_closure",
+    "cylinder_length_continuity",
+    "bucket_dump_and_rack_angles",
+    "ground_collision",
+    "self_collision",
+    "swept_volume_collision"
+  ],
   "gates": [
     {
       "id": "builder-execution",
@@ -156,6 +236,8 @@
         "Bucket_ROOT": true,
         "ZBar_Linkage_ROOT": true,
         "ZBar_Bellcrank_Pivot": true,
+        "ZBar_Bellcrank_ROOT": true,
+        "ZBar_Dogbone_Crosshead": true,
         "Hydraulics_ROOT": true,
         "Steering_Hydraulics_ROOT": true,
         "Lift_Hydraulics_ROOT": true,
@@ -176,13 +258,13 @@
         "scene_count": 1,
         "scene_roots": [
           {
-            "index": 459,
+            "index": 460,
             "name": "Machine_Root",
             "transform": {}
           }
         ],
-        "node_count": 460,
-        "mesh_count": 424,
+        "node_count": 461,
+        "mesh_count": 425,
         "camera_count": 0,
         "punctual_light_extension_present": false,
         "helper_nodes": [],
@@ -326,7 +408,7 @@
       "id": "zbar-static-visual-closure",
       "status": "PASS",
       "detail": {
-        "endpoint_error_m": 2.67542115936242e-07,
+        "endpoint_error_m": 3.006183689219547e-07,
         "classification": "static reconstructed visual closure only"
       }
     },
@@ -341,13 +423,13 @@
     {
       "id": "object-count",
       "status": "PASS",
-      "detail": 460
+      "detail": 461
     },
     {
       "id": "triangle-budget",
       "status": "PASS",
       "detail": {
-        "triangles": 123224,
+        "triangles": 123556,
         "budget": [
           35000,
           280000
@@ -377,6 +459,363 @@
           "stowed Z-bar detail",
           "raised Z-bar detail"
         ]
+      }
+    },
+    {
+      "id": "published_transport_envelope",
+      "status": "PASS",
+      "detail": {
+        "method": "Evaluated retained-pose public mesh bounds and named roof/hood meshes against the selected hash-bound specification rows.",
+        "evidence": {
+          "modeled_length_m": 8.479,
+          "published_length_m": 8.487,
+          "modeled_width_m": 2.994,
+          "published_bucket_width_m": 2.994,
+          "modeled_rops_top_m": 3.4560000896453857,
+          "published_rops_height_m": 3.456,
+          "modeled_hood_top_m": 2.6937170028686523,
+          "published_hood_height_m": 2.695
+        },
+        "semantic_nodes": [
+          "Machine_Root",
+          "Rear_Frame_ROOT",
+          "Front_Frame_ROOT",
+          "Bucket_ROOT",
+          "Cab_ROOT",
+          "Engine_Hood_ROOT"
+        ],
+        "fact_ids": [
+          "shipping-length",
+          "bucket-width",
+          "rops-height",
+          "hood-height"
+        ]
+      }
+    },
+    {
+      "id": "tire_contact_and_loaded_width",
+      "status": "PASS",
+      "detail": {
+        "method": "Evaluated all tire/tread mesh vertices and semantic wheel-root centers in the retained pose.",
+        "evidence": {
+          "tire_min_y_m": -0.0008031547768041492,
+          "loaded_width_modeled_m": 2.8239822387695312,
+          "loaded_width_published_m": 2.824,
+          "wheelbase_modeled_m": 3.3499999046325684,
+          "wheelbase_published_m": 3.35,
+          "rear_axle_to_hitch_modeled_m": 1.6749999523162842,
+          "rear_axle_to_hitch_published_m": 1.675,
+          "axle_centers_m": {
+            "RL": [
+              -1.675,
+              0.734,
+              -1.07
+            ],
+            "RR": [
+              -1.675,
+              0.734,
+              1.07
+            ],
+            "FL": [
+              1.675,
+              0.734,
+              -1.07
+            ],
+            "FR": [
+              1.675,
+              0.734,
+              1.07
+            ]
+          },
+          "published_axle_center_height_m": 0.734,
+          "published_tread_width_m": 2.14,
+          "ground_clearance_cue_m": 0.3540000021457672
+        },
+        "semantic_nodes": [
+          "Wheel_RL_ROOT",
+          "Wheel_RR_ROOT",
+          "Wheel_FL_ROOT",
+          "Wheel_FR_ROOT",
+          "Rear_Axle_ROOT",
+          "Front_Axle_ROOT"
+        ],
+        "fact_ids": [
+          "tire-width-loaded",
+          "tread-width",
+          "axle-center-height",
+          "wheelbase",
+          "rear-axle-to-hitch",
+          "ground-clearance"
+        ]
+      }
+    },
+    {
+      "id": "frame_articulation_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "Traversed the articulation pivot subtree and sampled a 28-degree reconstructed review pose with an exact hash-bound render.",
+        "evidence": {
+          "pivot_world_m": [
+            0.0,
+            0.92,
+            0.0
+          ],
+          "visible_mesh_descendants": 182,
+          "sampled_pose_deg": 28.0,
+          "render": {
+            "sha256": "af72645520440cf0436311c5e819b3589d1969879c6f27f26fc37296157b3307",
+            "bytes": 413559
+          },
+          "scope": "sampled visual clearance; 40-degree static tipping-load condition is not treated as a steering stop"
+        },
+        "semantic_nodes": [
+          "Articulation_Pivot",
+          "Front_Frame_ROOT",
+          "Steering_Hydraulics_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "rear_axle_oscillation_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "Traversed the rear-axle pivot subtree and sampled an in-range oscillation review pose with an exact render.",
+        "evidence": {
+          "pivot_world_m": [
+            -1.675,
+            0.734,
+            0.0
+          ],
+          "visible_mesh_descendants": 92,
+          "sampled_deg": 8.0,
+          "published_each_direction_deg": 13.0,
+          "render": {
+            "sha256": "10506a5d542509762c9f67cbb452b91cb15fb3cc4ad2110b029ff8ed89cff793",
+            "bytes": 442287
+          },
+          "scope": "sampled structural-study pose; full clearance solver remains PENDING"
+        },
+        "semantic_nodes": [
+          "Rear_Axle_Oscillation_Pivot",
+          "Rear_Axle_ROOT",
+          "Wheel_RL_ROOT",
+          "Wheel_RR_ROOT"
+        ],
+        "fact_ids": [
+          "rear-axle-oscillation"
+        ]
+      }
+    },
+    {
+      "id": "lift_hinge_endpoint_height",
+      "status": "PASS",
+      "detail": {
+        "method": "Measured Bucket_Pivot world translation at the reconstructed maximum-lift review pose before restoring the retained pose.",
+        "evidence": {
+          "review_pose_hinge_world_m": [
+            1.245785,
+            4.009913,
+            0.0
+          ],
+          "published_hinge_height_m": 4.009,
+          "tolerance_m": 0.015,
+          "scope": "endpoint visual constraint; pivot geometry and motion solver remain reconstructed"
+        },
+        "semantic_nodes": [
+          "Lift_Arm_Pivot",
+          "Lift_Arms_ROOT",
+          "Bucket_Pivot",
+          "Bucket_ROOT"
+        ],
+        "fact_ids": [
+          "max-lift-hinge-height"
+        ]
+      }
+    },
+    {
+      "id": "z_bar_linkage_closure",
+      "status": "PASS",
+      "detail": {
+        "method": "Measured dogbone endpoints against semantic anchors, traversed the unified ZBar_Linkage_ROOT subtree, and hash-bound two technical-cutaway detail renders.",
+        "evidence": {
+          "dogbone_endpoint_error_m": 3.006183689219547e-07,
+          "visible_mesh_descendants": 9,
+          "detail_renders": {
+            "stowed": {
+              "sha256": "259c4bea0d482aa94923a4b582bc5b7cad770a8845eede7b59931a6e443bb9dd",
+              "bytes": 542515
+            },
+            "raised": {
+              "sha256": "393101fd95e841fcbd16e5e95d13cb901629e2f3dcff844d3a47dad77fdd8fdb",
+              "bytes": 425587
+            }
+          },
+          "scope": "reconstructed planar visual closure; no manufacturer kinematic solver"
+        },
+        "semantic_nodes": [
+          "ZBar_Linkage_ROOT",
+          "ZBar_Bellcrank_Pivot",
+          "ZBar_Bellcrank_ROOT",
+          "ZBar_Dogbone_Crosshead",
+          "Bucket_Pivot"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "cylinder_length_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "Measured retained-pose barrel base and rod-tip mesh endpoints against every steering, lift, and tilt semantic anchor.",
+        "evidence": {
+          "anchor_endpoint_errors_m": {
+            "Steering_Cylinder_L_base": 6.664001874625056e-08,
+            "Steering_Cylinder_L_rod": 1.0323827311807139e-07,
+            "Steering_Cylinder_R_base": 4.2146848510894035e-08,
+            "Steering_Cylinder_R_rod": 5.960464477539063e-08,
+            "Lift_Cylinder_L_base": 5.960464477539063e-08,
+            "Lift_Cylinder_L_rod": 1.6858739404357614e-07,
+            "Lift_Cylinder_R_base": 5.960464477539063e-08,
+            "Lift_Cylinder_R_rod": 1.6858739404357614e-07,
+            "Tilt_Cylinder_base": 1.761405725830333e-08,
+            "Tilt_Cylinder_rod": 2.3842778968687937e-07
+          },
+          "maximum_error_m": 2.3842778968687937e-07,
+          "tolerance_m": 1e-05,
+          "scope": "visual endpoint continuity; bore, stroke, timing, pressure, and load response remain PENDING"
+        },
+        "semantic_nodes": [
+          "Steering_Hydraulics_ROOT",
+          "Lift_Hydraulics_ROOT",
+          "Tilt_Hydraulics_ROOT",
+          "ZBar_Bellcrank_ROOT",
+          "Lift_Arms_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "bucket_dump_and_rack_angles",
+      "status": "PASS",
+      "detail": {
+        "method": "Checked source-column applicability and excluded BOCE-baseline angle values from selected teeth-and-segments endpoint claims.",
+        "evidence": {
+          "boce_baseline_deg": {
+            "dump_max_lift": 51.0,
+            "rack_max_lift": 59.0,
+            "rack_carry": 49.0,
+            "rack_ground": 39.0
+          },
+          "selected_edge": "teeth_and_segments",
+          "applicability": "PENDING_not_applied",
+          "review_pose_authority": "reconstructed"
+        },
+        "semantic_nodes": [
+          "Bucket_Pivot",
+          "Bucket_ROOT",
+          "ZBar_Linkage_ROOT"
+        ],
+        "fact_ids": [
+          "max-lift-dump-angle",
+          "rack-back-max-lift",
+          "rack-back-carry",
+          "rack-back-ground"
+        ]
+      }
+    },
+    {
+      "id": "ground_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "Evaluated retained public mesh and tire minima against the authored floor datum.",
+        "evidence": {
+          "public_min_y_m": -0.0008,
+          "tire_min_y_m": -0.0008031547768041492,
+          "floor_y_m": 0.0,
+          "scope": "retained static-pose screen; continuous collision solver remains PENDING"
+        },
+        "semantic_nodes": [
+          "Machine_Root",
+          "Wheel_RL_ROOT",
+          "Wheel_RR_ROOT",
+          "Wheel_FL_ROOT",
+          "Wheel_FR_ROOT",
+          "Bucket_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "self_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "Screened retained, articulated, oscillated, linkage, maximum-lift, and dump review poses with refreshed reconstructed hydraulics and exact renders.",
+        "evidence": {
+          "sampled_pose_count": 6,
+          "dogbone_endpoint_error_m": 3.006183689219547e-07,
+          "representative_renders": {
+            "cat-950-articulated-review": {
+              "sha256": "af72645520440cf0436311c5e819b3589d1969879c6f27f26fc37296157b3307",
+              "bytes": 413559
+            },
+            "cat-950-axle-oscillation-review": {
+              "sha256": "10506a5d542509762c9f67cbb452b91cb15fb3cc4ad2110b029ff8ed89cff793",
+              "bytes": 442287
+            },
+            "cat-950-full-lift-review": {
+              "sha256": "1bb0672b17b80b51eb67ec3f8e28ac75a785dae06fa87c81c42ec75366cac16f",
+              "bytes": 395261
+            }
+          },
+          "scope": "sampled visual risk screen; complete self-collision solver remains PENDING"
+        },
+        "semantic_nodes": [
+          "Articulation_Pivot",
+          "Rear_Axle_Oscillation_Pivot",
+          "Lift_Arm_Pivot",
+          "Bucket_Pivot",
+          "ZBar_Linkage_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "swept_volume_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "Sampled independent articulation, axle oscillation, maximum lift, and combined articulated-dump endpoint poses and retained exact render hashes.",
+        "evidence": {
+          "sampled_pose_renders": {
+            "cat-950-articulated-review": {
+              "sha256": "af72645520440cf0436311c5e819b3589d1969879c6f27f26fc37296157b3307",
+              "bytes": 413559
+            },
+            "cat-950-axle-oscillation-review": {
+              "sha256": "10506a5d542509762c9f67cbb452b91cb15fb3cc4ad2110b029ff8ed89cff793",
+              "bytes": 442287
+            },
+            "cat-950-full-lift-review": {
+              "sha256": "1bb0672b17b80b51eb67ec3f8e28ac75a785dae06fa87c81c42ec75366cac16f",
+              "bytes": 395261
+            },
+            "cat-950-articulated-lift-dump-review": {
+              "sha256": "81f494d20b5df9fe82327afc960b20209f862e89d2d4190244fe4d469eb1d820",
+              "bytes": 382042
+            }
+          },
+          "scope": "sampled visual swept-volume screen only; continuous solver remains PENDING"
+        },
+        "semantic_nodes": [
+          "Articulation_Pivot",
+          "Rear_Axle_Oscillation_Pivot",
+          "Lift_Arm_Pivot",
+          "Bucket_Pivot",
+          "Steering_Hydraulics_ROOT",
+          "Lift_Hydraulics_ROOT",
+          "Tilt_Hydraulics_ROOT"
+        ],
+        "fact_ids": []
       }
     },
     {

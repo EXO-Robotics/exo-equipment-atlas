@@ -16,8 +16,8 @@
   },
   "builder": {
     "path": "source/blender/build_jcb_fastrac_8330_icon.py",
-    "sha256": "5ea7ab4b52779178a89f7d2daf5dbca867519966f26722a7ddf7e908225a7697",
-    "bytes": 11609,
+    "sha256": "db0c5c7073d1cfc411d892d0f6ba606133d50de85aaee106040196e706cf06df",
+    "bytes": 27769,
     "deterministic": true,
     "network_used": false,
     "downloaded_geometry_used": false,
@@ -27,30 +27,30 @@
   },
   "shared_generator": {
     "path": "../../scripts/fleet/build_machine.py",
-    "sha256": "02b99250651741b462b3dae8b2471db723beb689dfe89e1c7e251d7402fe0f55",
-    "bytes": 78579
+    "sha256": "9e36599f0c9bbac097422a8766e3ef1c81e6fc9432f024d99a24b79da18264df",
+    "bytes": 81778
   },
   "design": {
     "path": "source/design.json",
-    "sha256": "dec4e0ca24f5a06ba860318fa557529c95a174d77fa033ef2a560b0a62cc051b",
-    "bytes": 1200,
+    "sha256": "cd7ae205b66cd44e0ab61d34e617c9e6d968d41c20684fc95e1c23237d757166",
+    "bytes": 1780,
     "schema_version": "1.0.0"
   },
   "artifacts": {
     "blend": {
       "path": "source/blender/jcb-fastrac-8330-icon-structural-study.blend",
-      "sha256": "9b10fa875411ffadf569208eb3fbc8909d73e37ca83a8c1d1556ef14facf53f4",
-      "bytes": 269253
+      "sha256": "0a0ab67fa3d892734969d40f2ddc876dee7be28b02d1dbd3238b086add6c4582",
+      "bytes": 237420
     },
     "glb": {
       "path": "assets/jcb-fastrac-8330-icon-structural-study.glb",
-      "sha256": "8740b6e65454a7ba01044852febbb90d772ec76d5ec2d3942c19f28ee1ea656e",
-      "bytes": 1426348
+      "sha256": "c6873e580bad0667dce0e2e104e80ad65e543ec1721b1212e6800e97360f8044",
+      "bytes": 1208004
     },
     "validation": {
       "path": "production/validation.json",
-      "sha256": "0f7dd3fcd88e04ab4d372eb018570813051e6ae502ef780f7182a6ce5b18f804",
-      "bytes": 8517
+      "sha256": "390ea22a0b7d61d8a253c0458435859b2ddd09e84c95a360795bbf7014f2bf76",
+      "bytes": 43809
     }
   },
   "scene": {
@@ -63,7 +63,7 @@
     "bounds": {
       "min_m": [
         -2.825,
-        -0.0,
+        0.0,
         -1.275
       ],
       "max_m": [
@@ -82,9 +82,9 @@
       3.45,
       2.55
     ],
-    "objects": 216,
-    "meshes": 190,
-    "triangles": 26920,
+    "objects": 198,
+    "meshes": 171,
+    "triangles": 22820,
     "materials": 8
   },
   "glb_contract": {
@@ -94,22 +94,22 @@
     "root_name": "Machine_Root",
     "root_record": {},
     "identity_root": true,
-    "nodes": 216,
-    "mesh_nodes": 190,
-    "mesh_definitions": 190,
+    "nodes": 198,
+    "mesh_nodes": 171,
+    "mesh_definitions": 171,
     "materials": 8,
-    "triangles": 26920,
+    "triangles": 22820,
     "cameras": 0,
     "punctual_lights": false,
     "images": 0,
     "textures": 0,
     "nonidentity_mesh_scales": {},
     "helper_like_mesh_nodes": [],
-    "semantic_motion_nodes": 25,
+    "semantic_motion_nodes": 26,
     "bounds": {
       "min_m": [
         -2.825,
-        -0.0,
+        0.0,
         -1.275
       ],
       "max_m": [
@@ -129,7 +129,6 @@
     "Fixed_Structure_ROOT": true,
     "Running_Gear_ROOT": true,
     "Hydraulics_ROOT": true,
-    "Service_Detail_ROOT": true,
     "Front_Axle_Oscillation_Pivot": true,
     "Front_Axle_ROOT": true,
     "Steering_L_Pivot": true,
@@ -141,45 +140,433 @@
     "Rear_Axle_ROOT": true,
     "Front_Hitch_Pivot": true,
     "Front_Hitch_ROOT": true,
-    "Front_Hitch_Crossmember": true,
+    "Front_Hitch_Coupler": true,
+    "Rear_Hitch_Coupler": true,
     "Front_Hitch_L_Lower_Link": true,
     "Front_Hitch_R_Lower_Link": true,
     "Front_Hitch_Top_Link": true,
-    "Front_Hitch_Coupler": true,
-    "Front_Linkage_End_Structure": true,
     "Rear_Hitch_L_Lower_Link": true,
     "Rear_Hitch_R_Lower_Link": true,
     "Rear_Hitch_Top_Link": true,
-    "Rear_Hitch_Coupler": true,
-    "Rear_540E_1000_PTO_Shaft": true
+    "PTO_Shaft_ROTATION_ROOT": true,
+    "Front_L_Suspension_Strut": true,
+    "Front_R_Suspension_Strut": true,
+    "Rear_L_Suspension_Strut": true,
+    "Rear_R_Suspension_Strut": true
   },
-  "manufacturer_published_constraints_used": [
-    "public-envelope-x",
-    "public-envelope-y",
-    "public-envelope-z",
-    "wheelbase",
-    "ground-clearance"
+  "semantic_node_roles": {},
+  "published_constraint_ids_declared": [
+    "rear-linkage-capacity",
+    "front-linkage-capacity"
+  ],
+  "machine_specific_gate_evidence": [
+    {
+      "id": "authored_static_envelope_and_source_boundary",
+      "status": "PASS",
+      "detail": {
+        "method": "decoded GLB AABB plus explicit unresolved-envelope source boundary",
+        "evidence": {
+          "aabb_xyz_m": [
+            5.65,
+            3.45,
+            2.55
+          ],
+          "authored_target_xyz_m": [
+            5.65,
+            3.45,
+            2.55
+          ],
+          "authored_wheelbase_m": 3.13,
+          "authored_ground_clearance_m": 0.6,
+          "tolerance_m": 0.003,
+          "public_envelope_authority": "unresolved; retired French locator is reference-only"
+        },
+        "semantic_nodes": [
+          "Front_Linkage_End_Structure",
+          "Rear_Linkage_End_Structure",
+          "Published_Height_Roof",
+          "Tractor_Main_Frame"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "four_tire_contact",
+      "status": "PASS",
+      "detail": {
+        "method": "evaluated wheel-subtree ground contact, tire section width, track-center measurement, and identity-transform audit",
+        "evidence": {
+          "minimum_y_m": {
+            "Front_L_Wheel_ROOT": 0.0,
+            "Front_R_Wheel_ROOT": 0.0,
+            "Rear_L_Wheel_ROOT": 0.0,
+            "Rear_R_Wheel_ROOT": 0.0
+          },
+          "tire_width_m": {
+            "Front_L": 0.54,
+            "Front_R": 0.54,
+            "Rear_L": 0.71,
+            "Rear_R": 0.71
+          },
+          "target_width_m": {
+            "Front": 0.54,
+            "Rear": 0.71
+          },
+          "track_centers_m": {
+            "Front": 2.0,
+            "Rear": 1.835
+          },
+          "target_track_centers_m": {
+            "Front": 2.0,
+            "Rear": 1.835
+          },
+          "wheel_root_scale_xyz": {
+            "Front_L_Wheel_ROOT": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Front_R_Wheel_ROOT": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Rear_L_Wheel_ROOT": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Rear_R_Wheel_ROOT": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          }
+        },
+        "semantic_nodes": [
+          "Front_L_Wheel_ROOT",
+          "Front_R_Wheel_ROOT",
+          "Rear_L_Wheel_ROOT",
+          "Rear_R_Wheel_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "rigid_full_length_chassis",
+      "status": "PASS",
+      "detail": {
+        "method": "frame AABB and linkage-mount overlap",
+        "evidence": {
+          "frame_x_span_m": 4.55,
+          "frame_minimum_y_m": 0.6,
+          "front_mount_overlap_xyz_m": [
+            0.225,
+            0.2,
+            0.98
+          ],
+          "rear_mount_overlap_xyz_m": [
+            0.225,
+            0.2,
+            0.98
+          ]
+        },
+        "semantic_nodes": [
+          "Tractor_Main_Frame",
+          "Front_Hitch_Chassis_Mount",
+          "Rear_Hitch_Chassis_Mount"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "front_rear_suspension_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "wheel-owned axle hierarchy, strut-to-frame AABB attachment, and three-position ground-safe sweep",
+        "evidence": {
+          "front_wheel_owner": "Front_Axle_ROOT",
+          "rear_wheel_owner": "Rear_Axle_ROOT",
+          "strut_to_frame_bracket_overlap_xyz_m": {
+            "Front_L": [
+              0.189821,
+              0.221363,
+              0.147995
+            ],
+            "Front_R": [
+              0.200892,
+              0.219459,
+              0.147995
+            ],
+            "Rear_L": [
+              0.189821,
+              0.185563,
+              0.147995
+            ],
+            "Rear_R": [
+              0.200892,
+              0.183658,
+              0.147995
+            ]
+          },
+          "minimum_y_samples_m": {
+            "Front_Axle_ROOT": [
+              0.0,
+              0.02,
+              0.04
+            ],
+            "Rear_Axle_ROOT": [
+              0.0,
+              0.0175,
+              0.035
+            ]
+          }
+        },
+        "semantic_nodes": [
+          "Front_Axle_ROOT",
+          "Rear_Axle_ROOT",
+          "Front_L_Suspension_Strut",
+          "Rear_L_Suspension_Strut"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "steering_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "tire/fender AABB clearance with exact selected tire and track geometry",
+        "evidence": {
+          "front_fender_vertical_clearance_m": {
+            "L": 0.061704,
+            "R": 0.061704
+          },
+          "steering_range_rad": [
+            -0.24,
+            0.24
+          ],
+          "front_track_m": 2.0,
+          "front_tire_width_m": 0.54
+        },
+        "semantic_nodes": [
+          "Steering_L_Pivot",
+          "Steering_R_Pivot",
+          "Front_L_Fender",
+          "Front_R_Fender"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "front_rear_linkage_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "three-axis mount-link-coupler overlap plus endpoint ground sweep",
+        "evidence": {
+          "overlaps_xyz_m": {
+            "Front": {
+              "mount_frame": [
+                0.225,
+                0.2,
+                0.98
+              ],
+              "left_coupler": [
+                0.096432,
+                0.20945,
+                0.187897
+              ],
+              "right_coupler": [
+                0.097384,
+                0.204442,
+                0.187897
+              ],
+              "top_coupler": [
+                0.096025,
+                0.119144,
+                0.103382
+              ]
+            },
+            "Rear": {
+              "mount_frame": [
+                0.225,
+                0.2,
+                0.98
+              ],
+              "left_coupler": [
+                0.095304,
+                0.208348,
+                0.186948
+              ],
+              "right_coupler": [
+                0.0961,
+                0.20396,
+                0.186948
+              ],
+              "top_coupler": [
+                0.09467,
+                0.118899,
+                0.102104
+              ]
+            }
+          },
+          "minimum_y_samples_m": {
+            "Front_Hitch_ROOT": [
+              0.6,
+              0.624399,
+              0.649539
+            ],
+            "Rear_Hitch_ROOT": [
+              0.6,
+              0.636882,
+              0.675328
+            ]
+          },
+          "rear_coupler_to_inner_tire_clearance_m": 0.1425,
+          "capacity_facts_bind_selection_not_geometry": true
+        },
+        "semantic_nodes": [
+          "Front_Hitch_ROOT",
+          "Rear_Hitch_ROOT",
+          "Front_Hitch_Coupler",
+          "Rear_Hitch_Coupler"
+        ],
+        "fact_ids": [
+          "front-linkage-capacity",
+          "rear-linkage-capacity"
+        ],
+        "authority": "Computed reconstructed-study evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "ground_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "rest AABB plus suspension/linkage endpoint minima",
+        "evidence": {
+          "rest_minimum_y_m": 0.0,
+          "suspension_minimum_y_m": 0.0,
+          "linkage_minimum_y_m": 0.6
+        },
+        "semantic_nodes": [
+          "Front_Axle_ROOT",
+          "Rear_Axle_ROOT",
+          "Front_Hitch_ROOT",
+          "Rear_Hitch_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "self_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "fixed PTO guard ownership, PTO connection, and central hitch/tire separation",
+        "evidence": {
+          "pto_housing_frame_overlap_xyz_m": [
+            0.205,
+            0.16,
+            0.34
+          ],
+          "pto_guard_shaft_overlap_xyz_m": [
+            0.138825,
+            0.1725,
+            0.1725
+          ],
+          "pto_guard_rotates": false,
+          "rear_hitch_tire_clearance_m": 0.1425
+        },
+        "semantic_nodes": [
+          "PTO_ROOT",
+          "PTO_Shaft_ROTATION_ROOT",
+          "Rear_Hitch_ROOT",
+          "Rear_Axle_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "swept_volume_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "combined suspension and linkage endpoint sampling",
+        "evidence": {
+          "suspension_samples_m": {
+            "Front_Axle_ROOT": [
+              0.0,
+              0.02,
+              0.04
+            ],
+            "Rear_Axle_ROOT": [
+              0.0,
+              0.0175,
+              0.035
+            ]
+          },
+          "linkage_samples_m": {
+            "Front_Hitch_ROOT": [
+              0.6,
+              0.624399,
+              0.649539
+            ],
+            "Rear_Hitch_ROOT": [
+              0.6,
+              0.636882,
+              0.675328
+            ]
+          },
+          "minimum_sample_m": 0.0
+        },
+        "semantic_nodes": [
+          "Front_Axle_ROOT",
+          "Rear_Axle_ROOT",
+          "Front_Hitch_ROOT",
+          "Rear_Hitch_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not engineering or operating authority."
+      }
+    }
   ],
   "reconstructed_values": {
-    "hidden_geometry": "All pivots, hydraulic anchors, suspension travel, steering geometry, tire surfaces, hitch kinematics, PTO geometry, motion curves and internal construction are reconstructed visualization choices.",
-    "front_linkage_presentation": "The visible front three-point layout is a selected reconstructed presentation constrained only by the published optional 3500 kg front-lift capacity; no Category 3N class or geometry is claimed.",
+    "hidden_geometry": "All envelopes, wheelbase, ground clearance, track centers, selected tire geometry, pivots, hydraulic anchors, suspension travel, steering geometry, hitch kinematics, PTO geometry, motion curves and internal construction are reconstructed visualization choices.",
+    "front_linkage_presentation": "The visible front three-point layout is a selected reconstructed presentation constrained only by the admitted optional 3500 kg front-lift capacity; no Category 3N class, order code, dimensions, or geometry is claimed.",
+    "authored_static_envelope_m": [
+      5.65,
+      2.55,
+      3.45
+    ],
+    "authored_wheelbase_m": 3.13,
+    "authored_ground_clearance_m": 0.6,
+    "front_track_reference_m": 2.0,
+    "rear_track_reference_m": 1.835,
+    "front_tire_width_reference_m": 0.54,
+    "rear_tire_width_reference_m": 0.71,
+    "reference_only_non_us_option_authority": true,
+    "pto_guard_motion_ownership": "fixed guard under PTO_ROOT; only PTO_Shaft_ROTATION_ROOT is animated",
     "generic_archetype_geometry": "wheeled_tractor proportions and visible detail are independently reconstructed for this technical study.",
     "visible_envelope_calibration": {
-      "classification": "reconstructed_visible_envelope_calibration",
+      "classification": "authored_visible_envelope_measurement",
       "source_bounds_m": {
         "min_m": [
           -2.825,
-          -0.0,
+          0.0,
           -1.275
         ],
         "max_m": [
           2.825,
-          3.46014,
+          3.45,
           1.275
         ],
         "size_m": [
           5.65,
-          3.46014,
+          3.45,
           2.55
         ]
       },
@@ -201,9 +588,9 @@
         ]
       },
       "axis_scale_factors": [
-        0.999999983,
-        0.997069537,
-        0.999999925
+        1.0,
+        1.0,
+        1.0
       ],
       "calibrated_bounds_m": {
         "min_m": [
@@ -222,48 +609,48 @@
           2.55
         ]
       },
-      "authority": "reconstructed_not_machine_specific_engineering"
+      "authority": "independently_measured_from_authored_geometry"
     }
   },
   "unresolved_choices": [
     "exact dealer order and serial number",
-    "US availability of selected tire basis",
+    "configuration-applicable US overall dimensions, wheelbase, ground clearance, tire order code and track centers",
     "cab, lighting, ballast and rear-deck packages"
   ],
   "mechanical_gaps": [
     "Suspension and hitch solvers are not manufacturer-authoritative",
-    "No collision or swept-volume proof"
+    "Motion gates are computed visualization evidence only, not manufacturer collision or swept-volume authority"
   ],
   "renders": [
     {
       "path": "review/renders/jcb-fastrac-8330-icon-operator-side.png",
-      "sha256": "5d0cb959329323f72b32bb678874af220f1c51805bb5dc8ede082de0a7cc94e3",
-      "bytes": 310398
+      "sha256": "fd22533cb141629de82c265081602b22dfb716f2f3456a2eb3e9085065f85277",
+      "bytes": 321747
     },
     {
       "path": "review/renders/jcb-fastrac-8330-icon-front-three-quarter.png",
-      "sha256": "58294041beeb86c93a805a35992839f14babe4af8a1b0377b67de26b5d46d653",
-      "bytes": 348661
+      "sha256": "86d9317ab95ee0ec953e2f7cc745ba44c7fb5e71f2a21afc089a88cd44495f6d",
+      "bytes": 351846
     },
     {
       "path": "review/renders/jcb-fastrac-8330-icon-rear-three-quarter.png",
-      "sha256": "51445bbff4e972a909113f702509149d0c53ee01e2f1989611418e7735480a11",
-      "bytes": 338868
+      "sha256": "510eb03ba19cce7726d8a532dc8ec05f441dbd7a7d5a316edb52ffff03e7206c",
+      "bytes": 345256
     },
     {
       "path": "review/renders/jcb-fastrac-8330-icon-elevated-technical.png",
-      "sha256": "5b9c12e421aedd010e4f42b9c3e7ae29e414711a470663e012ce55a2b627fb71",
-      "bytes": 405849
+      "sha256": "269056ab9cf96b54841cd0867b6e53ab8a120b6d364dac03545854305c0f1747",
+      "bytes": 397556
     },
     {
       "path": "review/renders/jcb-fastrac-8330-icon-articulation-detail.png",
-      "sha256": "26add73192675cd08ba60208a24785a56334af677f963a8ae6a7feeff0d1da25",
-      "bytes": 357423
+      "sha256": "38f5f1a700862b6633016368f3548049f153a4004f72c38e0bde6cbaf15c2c55",
+      "bytes": 382198
     },
     {
       "path": "review/renders/jcb-fastrac-8330-icon-right-side.png",
-      "sha256": "297af6af67440c95c1a1f0543585e79bd3c1e85ee5f613be7b2fb901cf315d31",
-      "bytes": 302698
+      "sha256": "ef3040659ac98a456984d983a5b022448d1b2ae1db6a662266152412529d91c4",
+      "bytes": 313485
     }
   ],
   "build_verdict": "PASS",

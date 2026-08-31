@@ -81,8 +81,8 @@
       "value": 1700,
       "unit": "mm",
       "authority": "manufacturer_published",
-      "source_id": "CLAAS-L8900-NA-BROCHURE",
-      "location": "technical data, APS SYNFLOW HYBRID table"
+      "source_id": "CLAAS-L8900-WORLDWIDE-BROCHURE",
+      "location": "PDF physical page 38, APS SYNFLOW HYBRID technical-data table"
     },
     {
       "id": "threshing-drum-diameter",
@@ -90,8 +90,8 @@
       "value": 755,
       "unit": "mm",
       "authority": "manufacturer_published",
-      "source_id": "CLAAS-L8900-NA-BROCHURE",
-      "location": "technical data, APS SYNFLOW HYBRID table"
+      "source_id": "CLAAS-L8900-WORLDWIDE-BROCHURE",
+      "location": "PDF physical page 38, APS SYNFLOW HYBRID technical-data table"
     },
     {
       "id": "threshing-drum-speed-range",
@@ -99,8 +99,8 @@
       "value": [330, 930],
       "unit": "rpm",
       "authority": "manufacturer_published",
-      "source_id": "CLAAS-L8900-NA-BROCHURE",
-      "location": "technical data, APS SYNFLOW HYBRID table"
+      "source_id": "CLAAS-L8900-WORLDWIDE-BROCHURE",
+      "location": "PDF physical page 38, APS SYNFLOW HYBRID technical-data table"
     },
     {
       "id": "rotor-count",
@@ -135,8 +135,8 @@
       "value": 6.2,
       "unit": "m2",
       "authority": "manufacturer_published",
-      "source_id": "CLAAS-L8900-NA-BROCHURE",
-      "location": "technical data, cleaning system table"
+      "source_id": "CLAAS-L8900-WORLDWIDE-BROCHURE",
+      "location": "PDF physical page 38, Crop cleaning technical-data table"
     },
     {
       "id": "unloading-auger-swing",
@@ -144,8 +144,8 @@
       "value": 105,
       "unit": "deg",
       "authority": "manufacturer_published",
-      "source_id": "CLAAS-L8900-NA-BROCHURE",
-      "location": "technical data, grain tank unloading system"
+      "source_id": "CLAAS-L8900-WORLDWIDE-BROCHURE",
+      "location": "PDF physical page 38, Grain tank unloading technical-data table"
     },
     {
       "id": "maximum-road-speed",

@@ -3,7 +3,7 @@
   "machine_id": "john-deere-1270g",
   "configuration_id": "JD-1270G-8W-CH7-R86-H480C-600-CANDIDATE",
   "facts": [
-    {"id": "drive-configuration", "subject": "drive configuration", "value": "8x8", "unit": "configuration", "authority": "manufacturer_published", "source_id": "JD-1270G-8W-LA-PAGE", "location": "official product page Specs & Compare"},
+    {"id": "drive-configuration", "subject": "drive configuration", "value": "8x8", "unit": "configuration", "authority": "manufacturer_published", "source_id": "JD-1270G-MWH1270GF", "location": "PDF page 7, 8W dimensional table"},
     {"id": "base-carrier-length", "subject": "1270G 8W A length/base carrier length", "value": 7.927, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-1270G-MWH1270GF", "location": "PDF page 7, dimension A"},
     {"id": "front-axle-middle-joint", "subject": "front axle to middle joint", "value": 2.150, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-1270G-MWH1270GF", "location": "PDF page 7, dimension B"},
     {"id": "rear-axle-middle-joint", "subject": "rear axle to middle joint", "value": 2.280, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-1270G-MWH1270GF", "location": "PDF page 7, dimension C"},
@@ -15,15 +15,15 @@
     {"id": "transport-length", "subject": "transport length", "value": 12.560, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-1270G-MWH1270GF", "location": "PDF page 7"},
     {"id": "ground-clearance", "subject": "ground clearance", "value": 0.717, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-1270G-MWH1270GF", "location": "PDF page 7, dimension E"},
     {"id": "minimum-weight-with-head", "subject": "minimum machine weight with harvester head", "value": 24450, "unit": "kg", "authority": "manufacturer_published", "source_id": "JD-1270G-MWH1270GF", "location": "PDF page 7"},
-    {"id": "turning-angle", "subject": "proportional frame steering turning angle", "value": 44, "unit": "deg each direction", "authority": "manufacturer_published", "source_id": "JD-1270G-MWH1270GF", "location": "PDF page 6"},
-    {"id": "front-bogie", "subject": "front balanced bogie axle", "value": true, "unit": "boolean", "authority": "manufacturer_published", "source_id": "JD-1270G-MWH1270GF", "location": "PDF page 6"},
+    {"id": "turning-angle", "subject": "proportional frame steering turning angle", "value": 44, "unit": "deg each direction", "authority": "manufacturer_published", "source_id": "JD-GSERIES-DKHVRFT4", "location": "PDF page 18, Steering/Brakes table for 1270G 6W / 1270G 8W / 1470G"},
+    {"id": "front-bogie", "subject": "front balanced bogie axle", "value": true, "unit": "boolean", "authority": "manufacturer_published", "source_id": "JD-GSERIES-DKHVRFT4", "location": "PDF page 18, Axles/Bogies table, Front: Balanced bogie axles"},
     {"id": "boom-type", "subject": "boom type", "value": "CH7", "unit": "identity", "authority": "manufacturer_published", "source_id": "JD-1270G-MWH1270GF", "location": "PDF page 6"},
-    {"id": "selected-maximum-reach", "subject": "selected maximum reach length including head", "value": 8.6, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-1270G-MWH1270GF", "location": "PDF page 6; shortest of three published CH7 reach choices and product-page horizontal reach"},
+    {"id": "selected-maximum-reach", "subject": "selected maximum reach length including head", "value": 8.6, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-1270G-MWH1270GF", "location": "PDF page 6, shortest of three published CH7 maximum reach lengths (head included)"},
     {"id": "boom-slewing-angle", "subject": "CH7 slewing angle", "value": 220, "unit": "deg", "authority": "manufacturer_published", "source_id": "JD-1270G-MWH1270GF", "location": "PDF page 6"},
     {"id": "cab-rotation", "subject": "rotating cabin angle", "value": 160, "unit": "deg", "authority": "manufacturer_published", "source_id": "JD-1270G-MWH1270GF", "location": "PDF page 6"},
     {"id": "cab-sideways-tilt", "subject": "cabin sideways tilt", "value": 17, "unit": "deg", "authority": "manufacturer_published", "source_id": "JD-1270G-MWH1270GF", "location": "PDF page 6"},
     {"id": "cab-fore-aft-tilt", "subject": "cabin forward and backward tilt", "value": 9, "unit": "deg", "authority": "manufacturer_published", "source_id": "JD-1270G-MWH1270GF", "location": "PDF page 6"},
-    {"id": "reference-head", "subject": "official product-page reference harvesting head", "value": "H480C", "unit": "identity", "authority": "manufacturer_published", "source_id": "JD-1270G-8W-LA-PAGE", "location": "official product page Specs & Compare"}
+    {"id": "reference-head", "subject": "published compatible harvesting head", "value": "H480C", "unit": "identity", "authority": "manufacturer_published", "source_id": "JD-1270G-MWH1270GF", "location": "PDF page 6, harvester-head list"}
   ],
   "issues": [
     {"id": "head-geometry", "status": "unresolved", "detail": "H480C is frozen only as a reference-head identity; no admitted dimensioned head drawing or CAD defines this independently authored head study."},

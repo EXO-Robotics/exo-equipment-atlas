@@ -26,5 +26,19 @@
     "elevation": 0.3,
     "distance": 1.5
   },
-  "accent": "#b98a52"
+  "accent": "#8d7a63",
+  "motion": {
+    "autoplay": true,
+    "durationSeconds": 18,
+    "mode": "sine",
+    "damping": 8,
+    "channels": [
+      {"id":"articulation-steer","mechanismJointId":"articulation_steer","label":"Center articulation inspection - reconstructed","nodes":["ArticulationSteer_Root_Reconstructed"],"property":"rotation.y","from":-0.18,"to":0.18,"phase":0.0,"mode":"offset","autoplay":"sine"},
+      {"id":"front-frame-oscillation","mechanismJointId":"front_frame_oscillation","label":"Ground-safe front-frame oscillation cue - reconstructed","nodes":["FrontOscillation_Root_Reconstructed"],"property":"rotation.x","from":-0.018,"to":0.018,"phase":0.21,"mode":"offset","autoplay":"sine"},
+      {"id":"front-drum-rotation","mechanismJointId":"front_drum_rotation","label":"Front drum rolling cue","nodes":["FrontDrum_Rotation_ROOT"],"property":"rotation.z","from":-0.35,"to":0.35,"phase":0.36,"mode":"offset","autoplay":"sine"},
+      {"id":"rear-drum-rotation","mechanismJointId":"rear_drum_rotation","label":"Rear drum rolling cue","nodes":["RearDrum_Rotation_ROOT"],"property":"rotation.z","from":-0.35,"to":0.35,"phase":0.86,"mode":"offset","autoplay":"sine"},
+      {"id":"front-eccentric-counter-rotation","mechanismJointId":"front_eccentric","label":"Front auto-reversing eccentric process cue - reconstructed","nodes":["FrontEccentric_Rotation_ROOT"],"property":"rotation.z","from":-0.8,"to":0.8,"phase":0.56,"mode":"offset","autoplay":"sine"},
+      {"id":"rear-eccentric-counter-rotation","mechanismJointId":"rear_eccentric","label":"Rear auto-reversing eccentric process cue - reconstructed","nodes":["RearEccentric_Rotation_ROOT"],"property":"rotation.z","from":0.8,"to":-0.8,"phase":0.56,"mode":"offset","autoplay":"sine"}
+    ]
+  }
 }

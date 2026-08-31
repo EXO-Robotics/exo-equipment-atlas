@@ -11,24 +11,24 @@
     "version": "5.1.1",
     "factory_startup_background_required": true,
     "builder_path": "source/blender/build_bobcat_s76_2.py",
-    "builder_sha256": "ade829334d2c40f5d4f29e0e3457f08a5f57b1e7f128285d1b5909abf81c0071",
-    "builder_bytes": 53084
+    "builder_sha256": "c39268b95cd47dd7d564cc18db7a73f258a90d254202ca772202ef258f4450c0",
+    "builder_bytes": 69694
   },
   "artifacts": {
     "blend": {
       "path": "source/blender/bobcat-s76-2-structural-study.blend",
-      "sha256": "203d5289fd125a9685b3fc3a8ef5d338ee66e5b44d4a2cee494591754a800b2c",
-      "bytes": 249286
+      "sha256": "6d276ad7c3ac79467d28bd8329fc4f36aeaceee6fe255da3e8f2ab79be6ae5b4",
+      "bytes": 251938
     },
     "glb": {
       "path": "assets/bobcat-s76-2-structural-study.glb",
-      "sha256": "443352385c94cb4e0b6358da9f4bb7cb793c79aa359a5770bdd0e00685ad74c6",
-      "bytes": 1063804
+      "sha256": "051adc2031187d7b3105ac33c88c9622523cb0390d4383091c1b4b500ebc97be",
+      "bytes": 1075652
     },
     "validation": {
       "path": "production/validation.json",
-      "sha256": "cb3912e33b0489351b225af1911f6836237e98690e38f751b6923c0c53b28f28",
-      "bytes": 10128
+      "sha256": "84f32992c3c196fa8e1934189d25fb37af5ad6d4d1ab263665a5f863d07a024c",
+      "bytes": 19342
     }
   },
   "scene": {
@@ -49,16 +49,16 @@
           -0.9398
         ],
         "max_m": [
-          2.14181,
+          2.132377,
           2.08,
           0.9398
         ],
         "size_m": [
-          3.61181,
+          3.602377,
           2.08,
           1.8796
         ],
-        "measured_object_count": 247,
+        "measured_object_count": 251,
         "method": "evaluated retained-stowed public production mesh vertices; Studio excluded"
       },
       "machine_axes_m": {
@@ -74,16 +74,16 @@
             -0.9398
           ],
           "max_m": [
-            2.14181,
+            2.132377,
             2.08,
             0.9398
           ],
           "size_m": [
-            3.61181,
+            3.602377,
             2.08,
             1.8796
           ],
-          "measured_object_count": 247,
+          "measured_object_count": 251,
           "method": "evaluated retained-stowed public production mesh vertices; Studio excluded"
         }
       },
@@ -91,19 +91,19 @@
     },
     "counts": {
       "classification": "public_glb_decoded_geometry",
-      "nodes": 250,
-      "mesh_nodes": 247,
-      "mesh_resources": 247,
-      "primitives": 247,
-      "position_vertices": 26414,
-      "triangles": 14360,
+      "nodes": 257,
+      "mesh_nodes": 251,
+      "mesh_resources": 251,
+      "primitives": 251,
+      "position_vertices": 26654,
+      "triangles": 14504,
       "triangle_method": "decoded glTF primitive index-accessor counts divided by three"
     },
     "blend_source_counts": {
-      "objects": 250,
-      "meshes": 247,
-      "triangles": 40448,
-      "vertices": 20734,
+      "objects": 257,
+      "meshes": 251,
+      "triangles": 41104,
+      "vertices": 21070,
       "materials": 12
     },
     "public_glb_contract": {
@@ -114,12 +114,12 @@
         "BobcatS76_2_Root"
       ],
       "root_identity_trs": true,
-      "node_count": 250,
-      "mesh_node_count": 247,
-      "mesh_resource_count": 247,
-      "primitive_count": 247,
-      "position_vertices": 26414,
-      "triangles": 14360,
+      "node_count": 257,
+      "mesh_node_count": 251,
+      "mesh_resource_count": 251,
+      "primitive_count": 251,
+      "position_vertices": 26654,
+      "triangles": 14504,
       "public_mesh_nodes_non_identity_scale": [],
       "helper_nodes_present": [],
       "camera_count": 0,
@@ -129,7 +129,7 @@
     },
     "public_scale_application": {
       "status": "PASS",
-      "baked_node_count": 24,
+      "baked_node_count": 25,
       "before_non_identity": {
         "AttachmentCarriageSide_L": [
           0.16497651,
@@ -141,20 +141,25 @@
           0.07,
           0.0825
         ],
+        "BucketTiltBaseCrossmember": [
+          0.56999993,
+          0.05,
+          0.06
+        ],
         "BucketTiltBellcrank_Reconstructed": [
-          0.07500001,
+          0.10124227,
           0.045,
           0.05
         ],
         "BucketTiltCylinderBarrel": [
           0.07199999,
           0.07199999,
-          0.11118648
+          0.13588612
         ],
         "BucketTiltCylinderRod": [
           0.041,
           0.041,
-          0.08387759
+          0.10251054
         ],
         "CabFrontPillar_L": [
           0.57866234,
@@ -273,64 +278,329 @@
     "BucketTiltCylinderBarrel": true,
     "BobTach_Interface_Reconstructed": true,
     "BucketPivotRoot": true,
+    "LiftMotion_ROOT": true,
+    "LiftHydraulics_ROOT": true,
     "Standard74BucketShell_Reconstructed": true,
     "BucketCuttingEdge": true
   },
-  "manufacturer_published_constraints": [
+  "published_constraint_ids_declared": [],
+  "machine_specific_gate_evidence": [
+    {
+      "id": "stowed_visible_envelope",
+      "status": "PASS",
+      "detail": {
+        "method": "Evaluated retained-pose public mesh vertices against the frozen standard-bucket envelope and verified selected visible configuration nodes.",
+        "evidence": {
+          "scope": "evaluated retained-pose production meshes",
+          "modeled_xyz_m": [
+            3.602377,
+            2.08,
+            1.8796
+          ],
+          "published_xyz_m": [
+            3.6068,
+            2.08026,
+            1.8796
+          ],
+          "length_without_attachment_m": 2.8956,
+          "overall_width_m": 1.8288,
+          "cab_visible_mesh_descendants": 45,
+          "standard_tire_designation": "12 x 16.5, 12 PR"
+        },
+        "semantic_nodes": [
+          "BobcatS76_2_Root",
+          "CabEnclosure_Root"
+        ],
+        "fact_ids": [
+          "length-standard-bucket",
+          "length-without-attachment",
+          "overall-width",
+          "bucket-width",
+          "overall-height",
+          "cab-enclosure-standard",
+          "led-work-lights-standard"
+        ]
+      }
+    },
+    {
+      "id": "full_lift_hinge_height",
+      "status": "PASS",
+      "detail": {
+        "method": "Solved the reconstructed full-lift review pose to the frozen hinge-pin height and measured the resulting hinge center.",
+        "evidence": {
+          "modeled_m": 3.25882,
+          "published_m": 3.25882,
+          "scope": "review-pose reconstructed pivot constrained to published height"
+        },
+        "semantic_nodes": [
+          "LiftMotion_ROOT",
+          "BucketPivotRoot"
+        ],
+        "fact_ids": [
+          "hinge-pin-height"
+        ]
+      }
+    },
+    {
+      "id": "maximum_height_reach_context",
+      "status": "PASS",
+      "detail": {
+        "method": "Measured the reconstructed hinge-to-lip horizontal offset at the full-lift review pose while preserving the unresolved manufacturer datum boundary.",
+        "evidence": {
+          "modeled_reconstructed_lip_horizontal_offset_m": 0.8509000257391321,
+          "published_reach_m": 0.8509,
+          "datum_boundary": "manufacturer reach datum is not identified; this is a visible reconstructed context cue, not engineering endpoint authority"
+        },
+        "semantic_nodes": [
+          "BucketPivotRoot"
+        ],
+        "fact_ids": [
+          "reach-maximum-height"
+        ]
+      }
+    },
+    {
+      "id": "lift_four_bar_visual_closure",
+      "status": "PASS",
+      "detail": {
+        "method": "Traversed the reconstructed lift motion owner and counted its exported visible mesh descendants.",
+        "evidence": {
+          "hierarchy": {
+            "pivot_world_machine_xyz_m": [
+              -0.98,
+              1.29,
+              0.0
+            ],
+            "expected_pivot_world_machine_xyz_m": [
+              -0.98,
+              1.29,
+              0.0
+            ],
+            "visible_mesh_descendants": 25
+          },
+          "visible_members": [
+            "VerticalLift_MainArm_L/R",
+            "VerticalLift_UpperLink_L/R",
+            "AttachmentCarriageSide_L/R",
+            "LiftCrossmember"
+          ],
+          "scope": "explicit reconstructed visual hierarchy"
+        },
+        "semantic_nodes": [
+          "LiftMotion_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "bucket_linkage_visual_closure",
+      "status": "PASS",
+      "detail": {
+        "method": "Traversed the bucket pivot subtree and verified a visible shell, cutting edge, interface, and reconstructed bellcrank closure.",
+        "evidence": {
+          "hierarchy": {
+            "pivot_world_machine_xyz_m": [
+              1.368,
+              0.505,
+              0.0
+            ],
+            "expected_stowed_pivot_world_machine_xyz_m": [
+              1.368,
+              0.505,
+              0.0
+            ],
+            "visible_mesh_descendants": 13
+          },
+          "bellcrank": "BucketTiltBellcrank_Reconstructed",
+          "interface": "BobTach_Interface_Reconstructed",
+          "nominal_bucket_width_in": 74,
+          "scope": "reconstructed visual closure only"
+        },
+        "semantic_nodes": [
+          "BucketPivotRoot"
+        ],
+        "fact_ids": [
+          "standard-bucket-nominal-width"
+        ]
+      }
+    },
+    {
+      "id": "hydraulic_cylinder_endpoint_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "Measured each visible reconstructed barrel-to-rod joint after the retained-pose dependency-graph update.",
+        "evidence": {
+          "barrel_to_rod_joint_errors_m": {
+            "lift_left": 1.1920928955078125e-07,
+            "lift_right": 1.1920928955078125e-07,
+            "bucket_tilt": 1.3025276499688794e-07
+          },
+          "hydraulic_root": {
+            "visible_mesh_descendants": 10
+          },
+          "scope": "visible split-cylinder continuity; anchor and stroke authority remain PENDING"
+        },
+        "semantic_nodes": [
+          "LiftHydraulics_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "wheelbase_and_four_wheel_presence",
+      "status": "PASS",
+      "detail": {
+        "method": "Measured reconstructed axle-center spacing and counted the four exported standard-tire casing meshes.",
+        "evidence": {
+          "wheelbase_modeled_m": 1.22682,
+          "wheelbase_published_m": 1.22682,
+          "wheel_count": 4,
+          "standard_tire_designation": "12 x 16.5, 12 PR"
+        },
+        "semantic_nodes": [
+          "BobcatS76_2_Root"
+        ],
+        "fact_ids": [
+          "wheelbase",
+          "standard-tire-designation"
+        ]
+      }
+    },
+    {
+      "id": "tire_ground_contact",
+      "status": "PASS",
+      "detail": {
+        "method": "Evaluated tire and tread mesh vertices against the authored floor datum.",
+        "evidence": {
+          "tire_minimum_y_m": -0.0,
+          "floor_y_m": 0.0,
+          "tolerance_m": 0.025
+        },
+        "semantic_nodes": [
+          "BobcatS76_2_Root"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "bucket_ground_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "Evaluated all retained-pose bucket-subtree mesh vertices against the authored floor datum.",
+        "evidence": {
+          "retained_pose_bucket_minimum_y_m": 0.054883,
+          "floor_y_m": 0.0,
+          "scope": "static retained-pose screen"
+        },
+        "semantic_nodes": [
+          "BucketPivotRoot"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "self_collision_risk",
+      "status": "PASS",
+      "detail": {
+        "method": "Compared retained-pose bucket and cab evaluated AABBs as a fail-closed static separation screen.",
+        "evidence": {
+          "retained_pose_bucket_to_cab_longitudinal_gap_m": 0.7747989999999999,
+          "scope": "static AABB risk screen; continuous self/swept-volume solver remains PENDING"
+        },
+        "semantic_nodes": [
+          "BucketPivotRoot",
+          "CabEnclosure_Root"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "rights_boundary",
+      "status": "PASS",
+      "detail": {
+        "method": "Inspected authored material and asset provenance records for the exported root.",
+        "evidence": {
+          "materials": "neutral unbranded",
+          "logos": 0,
+          "copied_geometry": false,
+          "copied_textures": false
+        },
+        "semantic_nodes": [],
+        "fact_ids": []
+      }
+    }
+  ],
+  "manufacturer_published_constraints_used": [
     {
       "fact_id": "length-standard-bucket",
-      "value": 3.6068,
-      "source_id": "BOBCAT-S76-2-NA-PRODUCT"
+      "use": "geometry_and_gate_constraint",
+      "consumer": "retained stowed visible X envelope"
     },
     {
       "fact_id": "length-without-attachment",
-      "value": 2.8956,
-      "source_id": "BOBCAT-S76-2-NA-PRODUCT"
+      "use": "geometry_constraint",
+      "consumer": "rear and front fixed-structure extents"
     },
     {
       "fact_id": "overall-width",
-      "value": 1.8288,
-      "source_id": "BOBCAT-S76-2-NA-PRODUCT"
+      "use": "geometry_constraint",
+      "consumer": "standard-tire loaded lateral envelope"
     },
     {
       "fact_id": "bucket-width",
-      "value": 1.8796,
-      "source_id": "BOBCAT-S76-2-NA-PRODUCT"
+      "use": "geometry_constraint",
+      "consumer": "BucketCuttingEdge and stowed Z envelope"
     },
     {
       "fact_id": "overall-height",
-      "value": 2.08026,
-      "source_id": "BOBCAT-S76-2-NA-PRODUCT"
+      "use": "geometry_and_gate_constraint",
+      "consumer": "cab roof retained height"
     },
     {
       "fact_id": "hinge-pin-height",
-      "value": 3.25882,
-      "source_id": "BOBCAT-S76-2-NA-PRODUCT"
+      "use": "review_pose_constraint",
+      "consumer": "full_lift hinge center"
     },
     {
       "fact_id": "reach-maximum-height",
-      "value": 0.8509,
-      "source_id": "BOBCAT-S76-2-NA-PRODUCT"
-    },
-    {
-      "fact_id": "turning-radius",
-      "value": 2.12598,
-      "source_id": "BOBCAT-S76-2-NA-PRODUCT"
+      "use": "review_pose_context_constraint",
+      "consumer": "reconstructed full-lift hinge-to-lip horizontal offset",
+      "boundary": "manufacturer datum unresolved"
     },
     {
       "fact_id": "wheelbase",
-      "value": 1.22682,
-      "source_id": "BOBCAT-S76-2-NA-PRODUCT"
+      "use": "geometry_constraint",
+      "consumer": "front and rear axle centers"
     },
     {
-      "fact_id": "standard-bucket-nominal-width-in",
-      "value": 74.0,
-      "source_id": "BOBCAT-S76-2-NA-PRODUCT"
+      "fact_id": "standard-bucket-nominal-width",
+      "use": "configuration_identity",
+      "consumer": "Standard74BucketShell_Reconstructed selection"
     },
     {
-      "fact_id": "operating-weight-kg",
-      "value": 3635.09,
-      "source_id": "BOBCAT-S76-2-NA-PRODUCT"
+      "fact_id": "standard-tire-designation",
+      "use": "configuration_identity",
+      "consumer": "four reconstructed standard tire assemblies"
+    },
+    {
+      "fact_id": "cab-enclosure-standard",
+      "use": "configuration_identity",
+      "consumer": "CabEnclosure_Root"
+    },
+    {
+      "fact_id": "led-work-lights-standard",
+      "use": "visible_component_identity",
+      "consumer": "FrontWorkLightHousing_L/R"
+    }
+  ],
+  "manufacturer_published_facts_not_applied": [
+    {
+      "fact_ids": [
+        "turning-radius",
+        "operating-weight",
+        "two-speed-standard"
+      ],
+      "reason": "display or configuration context only; no geometry, mass, drivetrain, or motion consumer in this study"
     }
   ],
   "reconstructed_inputs": {
@@ -356,7 +626,7 @@
     "stowed_bucket_rotation_deg": 28.0,
     "full_lift_carry_rotation_deg": 10.0,
     "full_lift_dump_rotation_deg": 57.0,
-    "bucket_local_lip_x_m": 0.88,
+    "bucket_local_lip_x_m": 0.8693163134748344,
     "bucket_shell_visual_width_m": 1.825,
     "bucket_cutting_edge_width_m": 1.8796,
     "rear_main_pivot_xyz_m": [
@@ -414,7 +684,7 @@
         0.2
       ],
       [
-        0.88,
+        0.8693163134748344,
         -0.03
       ],
       [
@@ -444,8 +714,8 @@
         0.0
       ],
       "lip": [
-        2.1309097309368625,
-        0.06537659979332566,
+        2.1214766228193285,
+        0.0703922723493009,
         0.0
       ],
       "lower": [
@@ -467,8 +737,8 @@
         0.0
       ],
       "lip": [
-        1.9414213727412462,
-        3.0764653725511195,
+        1.9309000257391322,
+        3.0783205699009883,
         0.0
       ],
       "lower": [
@@ -490,8 +760,8 @@
         0.0
       ],
       "lip": [
-        1.5341222317401924,
-        2.5044507335218777,
+        1.528303495788163,
+        2.5134108011480962,
         0.0
       ],
       "lower": [
@@ -510,10 +780,10 @@
   "renders": [
     {
       "path": "review/renders/bobcat-s76-2-front-three-quarter-stowed.png",
-      "sha256": "edad4188792c8784c02b815ca1d50754e68369abd3af6e5cdd87d53238840499",
-      "bytes": 777559,
+      "sha256": "7651b3d5f852e61554f49026b4f7335d8815eedce7f19cc976c84c047895e16d",
+      "bytes": 777883,
       "quality": {
-        "bytes": 777559,
+        "bytes": 777883,
         "sampled_luminance_min": 0.0,
         "sampled_luminance_max": 0.999434,
         "sampled_luminance_range": 0.999434
@@ -521,10 +791,10 @@
     },
     {
       "path": "review/renders/bobcat-s76-2-rear-three-quarter-stowed.png",
-      "sha256": "8bddfc4a1fcb8e1d56c3a778e1603a318c3c04362503ca91a4e1d014a38273e7",
-      "bytes": 804800,
+      "sha256": "d76004b8b1d091f6f4d1d4e25a5f487e8aa6f6c822424211a9aa5e93ff6cb4ea",
+      "bytes": 804974,
       "quality": {
-        "bytes": 804800,
+        "bytes": 804974,
         "sampled_luminance_min": 0.0,
         "sampled_luminance_max": 1.0,
         "sampled_luminance_range": 1.0
@@ -532,10 +802,10 @@
     },
     {
       "path": "review/renders/bobcat-s76-2-technical-side-stowed.png",
-      "sha256": "72548044cec1df4663017b3c8660620e8d5f921f0e30f3df53510a755a28eec9",
-      "bytes": 723595,
+      "sha256": "99096edfe7c810e7f5e80fed9d86b8ee6bd872d104d7a82b5f70837f9332b602",
+      "bytes": 722586,
       "quality": {
-        "bytes": 723595,
+        "bytes": 722586,
         "sampled_luminance_min": 0.0,
         "sampled_luminance_max": 0.994694,
         "sampled_luminance_range": 0.994694
@@ -543,10 +813,10 @@
     },
     {
       "path": "review/renders/bobcat-s76-2-tire-service-detail.png",
-      "sha256": "6976996bf8334a86382438f612d313a1bae83fea44b5871c6446ac897d986943",
-      "bytes": 1117311,
+      "sha256": "c94668668c1fa9240be5b8cfe886c1730624a99e5b6c23c71d99a80e794c65fc",
+      "bytes": 1117523,
       "quality": {
-        "bytes": 1117311,
+        "bytes": 1117523,
         "sampled_luminance_min": 0.0,
         "sampled_luminance_max": 1.0,
         "sampled_luminance_range": 1.0
@@ -554,10 +824,10 @@
     },
     {
       "path": "review/renders/bobcat-s76-2-lift-linkage-detail-stowed.png",
-      "sha256": "70dfd817cf10cd392e7b5f73d70dedca1390f5fc7d28122b5a8842bc8c4b0553",
-      "bytes": 1069852,
+      "sha256": "4ae334dd1f13ff670e7bf3f9c4c5640427cf9de4878f9c2131c6d58f67f7685b",
+      "bytes": 1069394,
       "quality": {
-        "bytes": 1069852,
+        "bytes": 1069394,
         "sampled_luminance_min": 0.0,
         "sampled_luminance_max": 0.999717,
         "sampled_luminance_range": 0.999717
@@ -565,10 +835,10 @@
     },
     {
       "path": "review/renders/bobcat-s76-2-front-three-quarter-full-lift.png",
-      "sha256": "343b53f22196c641b56ac393aecab3fbc38a251d237bdd6181c15906389bf805",
-      "bytes": 624282,
+      "sha256": "f4cd8c06235238d5250d6b97076410f53397c72aab7f42f58a1bf006aa0acc8f",
+      "bytes": 624010,
       "quality": {
-        "bytes": 624282,
+        "bytes": 624010,
         "sampled_luminance_min": 0.0,
         "sampled_luminance_max": 0.97839,
         "sampled_luminance_range": 0.97839
@@ -576,31 +846,45 @@
     },
     {
       "path": "review/renders/bobcat-s76-2-technical-side-full-lift-dump.png",
-      "sha256": "0114faf4d62326e2d52a70b864d2c6cce1bb1283b774a5db565fcf3e9e76a690",
-      "bytes": 581659,
+      "sha256": "a71e28a6ea42a6a92a388adf4b4473c2556480310f48b1f5d70ab22374bf2b81",
+      "bytes": 575953,
       "quality": {
-        "bytes": 581659,
+        "bytes": 575953,
         "sampled_luminance_min": 0.0,
-        "sampled_luminance_max": 0.999166,
-        "sampled_luminance_range": 0.999166
+        "sampled_luminance_max": 1.0,
+        "sampled_luminance_range": 1.0
       }
     },
     {
       "path": "review/renders/bobcat-s76-2-bucket-linkage-full-dump.png",
-      "sha256": "5768b1ad5a83f9b3b0c8134d44aa86e7f2769f051934acc25fd33ec612ce0bfd",
-      "bytes": 572770,
+      "sha256": "de00070af85d2844132905aea914b75f3ccf908f81228231f104f111db5830c7",
+      "bytes": 289997,
       "quality": {
-        "bytes": 572770,
+        "bytes": 289997,
         "sampled_luminance_min": 0.011497,
-        "sampled_luminance_max": 0.970347,
-        "sampled_luminance_range": 0.958849
+        "sampled_luminance_max": 0.923571,
+        "sampled_luminance_range": 0.912074
       }
     }
   ],
   "build_verdict": "PASS",
+  "validation_verdict": "PASS",
   "validation_summary": {
-    "pass": 15,
+    "pass": 26,
     "pending": 6,
     "fail": 0
-  }
+  },
+  "mechanism_required_gate_ids": [
+    "stowed_visible_envelope",
+    "full_lift_hinge_height",
+    "maximum_height_reach_context",
+    "lift_four_bar_visual_closure",
+    "bucket_linkage_visual_closure",
+    "hydraulic_cylinder_endpoint_continuity",
+    "wheelbase_and_four_wheel_presence",
+    "tire_ground_contact",
+    "bucket_ground_clearance",
+    "self_collision_risk",
+    "rights_boundary"
+  ]
 }

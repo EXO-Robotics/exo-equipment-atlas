@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "machine_id": "john-deere-8r-410",
-  "configuration_id": "JD-8R410-MY2024-NA-JD9-E23-ILS-CAT4N3-CANDIDATE",
+  "configuration_id": "JD-8R410-MY2024-NA-POWERTECH9L-E23-ILS-CAT4N3-CANDIDATE",
   "facts": [
     {"id": "model-identity", "subject": "model identity", "value": "8R 410", "unit": "identity", "authority": "manufacturer_published", "source_id": "JD-8-SERIES-TRACTOR-2024", "location": "PDF page 26, 8R specifications, 410 column"},
     {"id": "rated-engine-power", "subject": "rated engine power", "value": 302, "unit": "kW", "authority": "manufacturer_published", "source_id": "JD-8-SERIES-TRACTOR-2024", "location": "PDF page 26, 8R 410 specifications"},
@@ -12,12 +12,14 @@
     {"id": "ils-tread-range", "subject": "ILS front tread adjustment range", "value": [1.524, 3.657], "unit": "m range", "authority": "manufacturer_published", "source_id": "JD-8-SERIES-TRACTOR-2024", "location": "PDF page 26, front axle and tread spacing"},
     {"id": "ils-wheelbase", "subject": "wheelbase with ILS", "value": 3.05, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-8-SERIES-TRACTOR-2024", "location": "PDF page 26, dimensions"},
     {"id": "ils-axle-clearance", "subject": "front axle clearance with ILS", "value": 0.59, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-8-SERIES-TRACTOR-2024", "location": "PDF page 26, dimensions"},
-    {"id": "maximum-hydraulic-flow", "subject": "maximum hydraulic pump flow", "value": 227, "unit": "L/min", "authority": "manufacturer_published", "source_id": "JD-8-SERIES-TRACTOR-2024", "location": "PDF page 26, hydraulic system"},
+    {"id": "rated-flow-85cc-pump", "subject": "rated flow of 85 cc hydraulic pump", "value": 227, "unit": "L/min", "authority": "manufacturer_published", "source_id": "JD-8-SERIES-TRACTOR-2024", "location": "Physical PDF page 26, Hydraulic System"},
+    {"id": "rated-flow-dual-pump", "subject": "rated flow of 85 cc plus 35 cc dual hydraulic pump option", "value": 318, "unit": "L/min", "authority": "manufacturer_published", "source_id": "JD-8-SERIES-TRACTOR-2024", "location": "Physical PDF page 26, Hydraulic System"},
     {"id": "rear-hitch-capacity", "subject": "Category 4N/3 rear hitch lift capacity", "value": 9072, "unit": "kg", "authority": "manufacturer_published", "source_id": "JD-8-SERIES-TRACTOR-2024", "location": "PDF page 26, three-point hitch"},
-    {"id": "public-envelope-x", "subject": "overall tractor length", "value": 6.636, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-8R410-LATAM-PAGE", "location": "Official product page, Dimensions, Overall length"}
+    {"id": "rear-pto-interface", "subject": "standard rear PTO interface", "value": "1-3/4 in (44.45 mm), 20-spline, 1,000-rpm", "unit": "interface specification", "authority": "manufacturer_published", "source_id": "JD-8-SERIES-TRACTOR-2024", "location": "Physical PDF page 26, Rear Power Take Off"},
+    {"id": "cross-market-length-reference", "subject": "Latin America overall-length reference used to reconstruct the presentation envelope", "value": 6.636, "unit": "m", "authority": "observed", "source_id": "JD-8R410-LATAM-PAGE", "location": "Official Latin America product page, Dimensions, Overall length; reference-only for the North American candidate"}
   ],
   "issues": [
-    {"id": "partial-public-envelope", "status": "unresolved", "detail": "Only longitudinal X is admitted as a manufacturer-published overall envelope. Configuration-specific overall height Y and overall width Z are not published in the admitted sources."},
+    {"id": "public-envelope-unresolved", "status": "unresolved", "detail": "No configuration-applicable primary source in the freeze publishes an overall length, height or width for the selected MY2024 North American candidate. The 6.636 m presentation length is reconstructed from a reference-only Latin America page."},
     {"id": "tyre-and-tread-freeze", "status": "unresolved", "detail": "Tyre order codes, offsets and final front/rear tread settings remain unresolved and can change visible width."}
   ]
 }

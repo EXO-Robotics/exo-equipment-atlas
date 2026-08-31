@@ -13,22 +13,29 @@
     "poster": "machines/john-deere-r4045/review/renders/john-deere-r4045-front-three-quarter.png"
   },
   "evidence": {
-    "boundary": "Legacy MY2020 R4045 source freeze: 06W5N carrier, 1,200-gallon stainless tank, 120-foot steel boom and 20-inch stainless plumbing. The 36.576 m deployed boom span is published; carrier length/height/width and every hidden mechanism remain reconstructed.",
-    "lede": "The official order guide publishes 258 kW, 1.47 m crop clearance, a 3.05-4.06 m tread range and the selected 120-foot/20-inch application package. Motion is a neutral structural explanation, not spray or operating guidance.",
-    "factIds": ["rated-engine-power", "solution-tank-capacity", "crop-clearance", "hydraulic-tread-range", "public-envelope-z", "selected-nozzle-spacing"]
+    "boundary": "Legacy MY2020 R4045 source freeze: 06W5N carrier, 1,200-gallon stainless tank, nominal 36 m (120 ft) steel-boom option, 20-inch stainless plumbing, 72 five-position nozzle bodies, 11 section valves and five-sensor leveling. The source does not publish an exact deployed tip-to-tip or complete carrier envelope; the 36.20 m visible presentation and all hidden pivots remain reconstructed.",
+    "lede": "The study exposes independent twin-strut running gear, pivot-following steering linkage cues, adjustable tread sleeves, a three-stage boom per side, six neutral fold flex connectors, tank-to-pump feed, 72 nozzle branch drops and the selected nozzle/valve/sensor counts. Motion is a bounded explanation, not spray or operating guidance.",
+    "factIds": ["solution-tank-capacity", "crop-clearance", "hydraulic-tread-range", "selected-boom", "selected-nozzle-spacing", "selected-boom-plumbing", "selected-auto-boom-leveling"]
   },
   "camera": {"azimuth": 0.56, "elevation": 0.28, "distance": 1.66},
   "accent": "#718591",
   "motion": {
     "autoplay": true,
-    "durationSeconds": 19,
+    "durationSeconds": 18,
     "mode": "sine",
-    "damping": 6.4,
+    "damping": 8,
     "channels": [
-      {"id":"front-axle-oscillation","label":"Front axle articulation - reconstructed","nodes":["Front_Axle_Oscillation_Pivot"],"property":"rotation.x","from":-0.04,"to":0.04,"phase":0.0,"mode":"offset"},
-      {"id":"left-boom-fold","label":"Left 120-foot boom wing - reconstructed fold","nodes":["Boom_L_Fold_Pivot"],"property":"rotation.x","from":0.0,"to":1.15,"phase":0.22,"mode":"offset","autoplay":"ping-pong"},
-      {"id":"right-boom-fold","label":"Right 120-foot boom wing - reconstructed fold","nodes":["Boom_R_Fold_Pivot"],"property":"rotation.x","from":0.0,"to":-1.15,"phase":0.22,"mode":"offset","autoplay":"ping-pong"},
-      {"id":"boom-center-settle","label":"Boom-center leveling cue - reconstructed","nodes":["Boom_Center_ROOT"],"property":"rotation.x","from":-0.025,"to":0.025,"phase":0.62,"mode":"offset","autoplay":"sine"}
+      {"id":"front-steering","mechanismJointId":"front-wheel-steering","label":"Paired front steering - reconstructed","nodes":["Steering_L_Pivot","Steering_R_Pivot"],"property":"rotation.y","from":-0.18,"to":0.18,"phase":0.0,"mode":"offset","autoplay":"sine"},
+      {"id":"left-tread-adjust","mechanismJointId":"hydraulic-tread-setting","label":"Left independent tread sleeve - reconstructed","nodes":["Front_L_Suspension_ROOT","Rear_L_Suspension_ROOT"],"property":"position.z","from":0.0,"to":-0.18,"phase":0.16,"mode":"offset","autoplay":"sine"},
+      {"id":"right-tread-adjust","mechanismJointId":"hydraulic-tread-setting","label":"Right independent tread sleeve - reconstructed","nodes":["Front_R_Suspension_ROOT","Rear_R_Suspension_ROOT"],"property":"position.z","from":0.0,"to":0.18,"phase":0.16,"mode":"offset","autoplay":"sine"},
+      {"id":"boom-center-lift","mechanismJointId":"boom-center-raise-lower","label":"Boom center lift - reconstructed","nodes":["Boom_Center_Lift_ROOT"],"property":"position.y","from":0.0,"to":0.18,"phase":0.30,"mode":"offset","autoplay":"sine"},
+      {"id":"boom-center-roll","mechanismJointId":"five-sensor-boom-leveling","label":"Five-sensor leveling roll cue - reconstructed","nodes":["Boom_Center_Roll_Pivot"],"property":"rotation.x","from":-0.025,"to":0.025,"phase":0.42,"mode":"offset","autoplay":"sine"},
+      {"id":"inner-boom-fold","mechanismJointId":"boom-left-fold","label":"Mirrored inner boom transport fold - reconstructed","nodes":["Boom_L_Fold_Pivot"],"property":"rotation.y","from":0.0,"to":-1.42,"phase":0.56,"mode":"offset","autoplay":"ping-pong"},
+      {"id":"inner-boom-fold-right","mechanismJointId":"boom-right-fold","label":"Right inner boom transport fold - reconstructed","nodes":["Boom_R_Fold_Pivot"],"property":"rotation.y","from":0.0,"to":1.42,"phase":0.56,"mode":"offset","autoplay":"ping-pong"},
+      {"id":"mid-boom-fold","mechanismJointId":"boom-left-fold","label":"Mirrored mid boom accordion fold - reconstructed","nodes":["Boom_L_Mid_Fold_Pivot"],"property":"rotation.y","from":0.0,"to":2.84,"phase":0.62,"mode":"offset","autoplay":"ping-pong"},
+      {"id":"mid-boom-fold-right","mechanismJointId":"boom-right-fold","label":"Right mid boom accordion fold - reconstructed","nodes":["Boom_R_Mid_Fold_Pivot"],"property":"rotation.y","from":0.0,"to":-2.84,"phase":0.62,"mode":"offset","autoplay":"ping-pong"},
+      {"id":"tip-boom-fold","mechanismJointId":"boom-left-fold","label":"Left tip boom reverse-accordion fold - reconstructed","nodes":["Boom_L_Tip_Fold_Pivot"],"property":"rotation.y","from":0.0,"to":-2.84,"phase":0.68,"mode":"offset","autoplay":"ping-pong"},
+      {"id":"tip-boom-fold-right","mechanismJointId":"boom-right-fold","label":"Right tip boom reverse-accordion fold - reconstructed","nodes":["Boom_R_Tip_Fold_Pivot"],"property":"rotation.y","from":0.0,"to":2.84,"phase":0.68,"mode":"offset","autoplay":"ping-pong"}
     ]
   }
 }

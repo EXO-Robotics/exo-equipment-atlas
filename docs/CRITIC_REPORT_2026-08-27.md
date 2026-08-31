@@ -7,9 +7,9 @@
 
 | Current machine candidate | Current decoded geometry | Current GLB SHA-256 | Human critic state |
 | --- | ---: | --- | --- |
-| Cat 320 | 57,892 triangles | `bda1fab910f0d8692eea416910c2f00625061963d5744a20110f05350c51b060` | PENDING |
-| John Deere 333 P-Tier | 42,688 triangles | `547cf9c6027629bfb64342b2ca71e35caab1bead30fe6f9753bb45687c05a9ac` | PENDING |
-| John Deere 310 P-Tier | 74,208 triangles | `25575aae094384da4e2bc3c64e301dcca22506f067175c3b39c241797e890106` | PENDING |
+| Cat 320 | 64,736 triangles | `152f6f5448182d4278d112720473bae6e4d685020ea3947af434937c144dc20e` | PENDING |
+| John Deere 333 P-Tier | 42,688 triangles | `b7ecbdfc24520cc2e678cda7f125e4de0dd561a0a57ee1c13e3d70b8ef1f3bc8` | PENDING |
+| John Deere 310 P-Tier | 74,208 triangles | `5e518d6926960c393c038976abafb8323650bf76740de34126be39c4e5c5e93b` | PENDING |
 
 ## Historical decision (superseded)
 

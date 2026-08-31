@@ -20,10 +20,10 @@
     {"id":"carry-hinge-height","subject":"bucket hinge-pin height at carry height","value":0.623,"unit":"m","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 4, dimension 13"},
     {"id":"max-lift-hinge-height","subject":"bucket hinge-pin height at maximum lift","value":4.009,"unit":"m","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 4, dimension 14"},
     {"id":"max-lift-arm-clearance","subject":"lift-arm clearance at maximum lift","value":3.255,"unit":"m","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 4, dimension 15"},
-    {"id":"max-lift-dump-angle","subject":"dump angle at maximum lift and dump on stops","value":51,"unit":"deg","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 4, dimension 18"},
-    {"id":"rack-back-max-lift","subject":"rack back at maximum lift","value":59,"unit":"deg","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 4, dimension 19"},
-    {"id":"rack-back-carry","subject":"rack back at carry height","value":49,"unit":"deg","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 4, dimension 20"},
-    {"id":"rack-back-ground","subject":"rack back at ground","value":39,"unit":"deg","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 4, dimension 21"},
+    {"id":"max-lift-dump-angle","subject":"dump angle at maximum lift and dump on stops for the page 4 BOCE baseline","value":51,"unit":"deg","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 4, dimension 18","configuration_applicability":"BOCE baseline only; not applied as selected teeth-and-segments endpoint authority"},
+    {"id":"rack-back-max-lift","subject":"rack back at maximum lift for the page 4 BOCE baseline","value":59,"unit":"deg","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 4, dimension 19","configuration_applicability":"BOCE baseline only; not applied as selected teeth-and-segments endpoint authority"},
+    {"id":"rack-back-carry","subject":"rack back at carry height for the page 4 BOCE baseline","value":49,"unit":"deg","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 4, dimension 20","configuration_applicability":"BOCE baseline only; not applied as selected teeth-and-segments endpoint authority"},
+    {"id":"rack-back-ground","subject":"rack back at ground for the page 4 BOCE baseline","value":39,"unit":"deg","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 4, dimension 21","configuration_applicability":"BOCE baseline only; not applied as selected teeth-and-segments endpoint authority"},
     {"id":"tire-width-loaded","subject":"width over selected tires loaded","value":2.824,"unit":"m","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 4, dimension 25"},
     {"id":"tread-width","subject":"tread width with selected tires","value":2.14,"unit":"m","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 4, dimension 26"},
     {"id":"rear-axle-oscillation","subject":"rear axle oscillation with selected tire","value":13,"unit":"deg_each_direction","authority":"manufacturer_published","source_id":"CAT-950-AEXQ4425-00-NAM","location":"PDF page 5 tire-options table"},
@@ -41,8 +41,8 @@
   "issues": [
     {
       "id": "bucket-baseline-column",
-      "status": "documented",
-      "detail": "The general dimension illustration is based on a 3.1 m3 GP pin-on bucket with BOCE, while this candidate selects the adjacent teeth-and-segments column. Chassis dimensions are admitted from page 4; bucket-specific width, length, reach, clearance, weight, and breakout force are admitted from page 11."
+      "status": "pending_applicability",
+      "detail": "The general dimension illustration and its 51/59/49/39 degree angles are based on a 3.1 m3 GP pin-on bucket with BOCE, while this candidate selects the adjacent teeth-and-segments column. Chassis dimensions are admitted from page 4 and selected bucket width, length, reach, clearance, weight, and breakout force from page 11, but angle invariance across cutting-edge options is not established and those four angles are not applied as selected-configuration endpoint authority."
     },
     {
       "id": "hidden-mechanism-geometry",

@@ -50,7 +50,7 @@
       "axis": "+Z",
       "authority": "reconstructed",
       "source_ids": ["CAT-950-AEXQ4425-00-NAM", "CAT-950-PRODUCT-PAGE"],
-      "published_constraints": ["parallel-lift Z-bar identity", "rack-back and dump angles", "bucket-specific maximum-lift reach and clearance"],
+      "published_constraints": ["parallel-lift Z-bar identity", "bucket-specific maximum-lift reach and clearance", "BOCE baseline rack-back and dump angles retained only as unresolved applicability context"],
       "unresolved": ["bellcrank, dogbone, tilt-cylinder, bucket-lug, and all pin coordinates; no kinematic closure solver exists"]
     },
     {
@@ -75,5 +75,5 @@
     "self_collision",
     "swept_volume_collision"
   ],
-  "release_state": "no_geometry_no_solver_no_claim"
+  "release_state": "technical_structural_study_built_solver_unverified"
 }

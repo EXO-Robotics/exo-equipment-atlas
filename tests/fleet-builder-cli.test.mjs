@@ -36,6 +36,11 @@ test("shared builder preserves explicit evidence and export boundaries", async (
   assert.match(source, /"release_status":"PENDING"/u);
   assert.match(source, /HIDDEN_GEOMETRY_BOUNDARY/u);
   assert.match(source, /normalize_visible_envelope/u);
+  assert.match(source, /verification-only/u);
+  assert.match(source, /type\(self\) is not FleetBuilder/u);
+  assert.match(source, /mechanism_required_gates/u);
+  assert.match(source, /no independently measured machine-local proof was supplied/u);
+  assert.doesNotMatch(source, /Service_Fastener_\{index \+ 1:03d\}/u);
   assert.doesNotMatch(source, /add_envelope_structure/u);
   assert.match(source, /"Articulation_Knuckle"/u);
   assert.match(source, /"Boom_Cylinder"[\s\S]+self\.materials\["steel"\],upper,role="hydraulic"/u);

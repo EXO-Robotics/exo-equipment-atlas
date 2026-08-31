@@ -32,7 +32,9 @@
     {"id":"bucket-cylinder-count","subject":"bucket cylinder count","value":1,"unit":"count","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 18, loader control hydraulic cylinders"},
     {"id":"bucket-cylinder-bore","subject":"bucket cylinder bore","value":0.18,"unit":"m","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 18, loader control hydraulic cylinders"},
     {"id":"bucket-cylinder-stroke","subject":"bucket cylinder stroke","value":0.54,"unit":"m","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 18, loader control hydraulic cylinders"},
-    {"id":"steering-cylinder-count","subject":"steering cylinders","value":2,"unit":"count","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 18, steering hydraulic cylinders"}
+    {"id":"steering-cylinder-count","subject":"steering cylinders","value":2,"unit":"count","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 18, steering hydraulic cylinders"},
+    {"id":"steering-cylinder-bore","subject":"steering cylinder bore","value":0.095,"unit":"m","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 18, steering hydraulic cylinders, 95 x 441 mm"},
+    {"id":"steering-cylinder-stroke","subject":"steering cylinder stroke","value":0.441,"unit":"m","authority":"manufacturer_published","source_id":"KOM-WA47510-AESS942-0225","location":"PDF page 18, steering hydraulic cylinders, 95 x 441 mm"}
   ],
   "issues": [
     {"id":"linkage-geometry","status":"unresolved","detail":"The admitted brochure identifies standard loader linkage, Z-bar behavior cues, cylinder counts and strokes, but not pivot coordinates, link lengths, anchor coordinates, or kinematic closure."},

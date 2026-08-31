@@ -22,12 +22,12 @@
     ]
   },
   "counts": {
-    "objects": 752,
-    "meshes": 725,
+    "objects": 757,
+    "meshes": 730,
     "curves": 6,
     "empties": 21,
-    "blender_mesh_triangles_before_curve_conversion": 107292,
-    "triangles": 107532,
+    "blender_mesh_triangles_before_curve_conversion": 108536,
+    "triangles": 108776,
     "materials": 11
   },
   "metrics": {
@@ -95,13 +95,59 @@
     },
     "export_mesh_scale_offenders": {},
     "lift_cylinder_static_anchor_error_m": 0.0,
-    "tilt_cylinder_static_anchor_error_m": 0.0
+    "tilt_cylinder_static_anchor_error_m": 0.0,
+    "semantic_pivot_world_m": {
+      "Blade_Lift_Pivot": [
+        -0.78,
+        0.7,
+        0.0
+      ],
+      "Blade_Tilt_Pivot": [
+        2.69,
+        0.8,
+        0.0
+      ],
+      "PIVOT_Blade_Pitch": [
+        2.75,
+        0.69,
+        0.0
+      ],
+      "PIVOT_Blade_Tilt": [
+        2.69,
+        0.8,
+        0.0
+      ],
+      "PIVOT_Blade_Trunnion_L": [
+        -0.78,
+        0.7,
+        -1.346
+      ],
+      "PIVOT_Blade_Trunnion_R": [
+        -0.78,
+        0.7,
+        1.346
+      ]
+    },
+    "semantic_pivot_errors_m": {
+      "Blade_Lift_Pivot": 0.0,
+      "Blade_Tilt_Pivot": 0.0,
+      "PIVOT_Blade_Pitch": 0.0,
+      "PIVOT_Blade_Tilt": 0.0,
+      "PIVOT_Blade_Trunnion_L": 0.0,
+      "PIVOT_Blade_Trunnion_R": 0.0
+    },
+    "semantic_visible_mesh_descendants": {
+      "Blade_Lift_Pivot": 48,
+      "Blade_Tilt_Pivot": 34,
+      "Linkage_ROOT": 5
+    },
+    "blade_to_track_longitudinal_clearance_m": 0.6755999999999998
   },
   "glb_contract": {
     "scene_count": 1,
     "scene_roots": [
       {
-        "index": 751,
+        "index": 756,
         "name": "Machine_Root",
         "transform": {}
       }
@@ -110,11 +156,33 @@
     "punctual_light_extension_present": false,
     "inspection_helper_nodes": [],
     "mesh_scale_offenders": {},
-    "node_count": 752,
-    "mesh_definition_count": 731,
-    "triangle_count": 107532,
+    "node_count": 757,
+    "mesh_definition_count": 736,
+    "triangle_count": 108776,
     "platform_axes": "+X longitudinal/front, +Y vertical, +Z machine right"
   },
+  "required_machine_gate_ids": [
+    "published_static_envelope",
+    "blade_width_and_height",
+    "track_count_pitch_and_ground_contact",
+    "blade_cylinder_static_closure",
+    "blade_lift_endpoint",
+    "blade_tilt_endpoint",
+    "ground_collision",
+    "self_collision",
+    "track_phase_continuity"
+  ],
+  "mechanism_required_gate_ids": [
+    "published_static_envelope",
+    "blade_width_and_height",
+    "track_count_pitch_and_ground_contact",
+    "blade_cylinder_static_closure",
+    "blade_lift_endpoint",
+    "blade_tilt_endpoint",
+    "ground_collision",
+    "self_collision",
+    "track_phase_continuity"
+  ],
   "gates": [
     {
       "id": "builder-execution",
@@ -168,7 +236,7 @@
       "status": "PASS",
       "detail": [
         {
-          "index": 751,
+          "index": 756,
           "name": "Machine_Root",
           "transform": {}
         }
@@ -181,7 +249,7 @@
         "scene_count": 1,
         "scene_roots": [
           {
-            "index": 751,
+            "index": 756,
             "name": "Machine_Root",
             "transform": {}
           }
@@ -190,9 +258,9 @@
         "punctual_light_extension_present": false,
         "inspection_helper_nodes": [],
         "mesh_scale_offenders": {},
-        "node_count": 752,
-        "mesh_definition_count": 731,
-        "triangle_count": 107532,
+        "node_count": 757,
+        "mesh_definition_count": 736,
+        "triangle_count": 108776,
         "platform_axes": "+X longitudinal/front, +Y vertical, +Z machine right"
       }
     },
@@ -294,6 +362,242 @@
       "id": "neutral-rights-boundary",
       "status": "PASS",
       "detail": "Neutral materials and no manufacturer logos or copied imagery."
+    },
+    {
+      "id": "published_static_envelope",
+      "status": "PASS",
+      "detail": {
+        "method": "Evaluated retained public mesh vertices in declared machine axes against the hash-bound specification.",
+        "evidence": {
+          "modeled_xyz_m": [
+            5.436,
+            3.188,
+            3.312
+          ],
+          "published_length_m": 5.436,
+          "published_height_m": 3.188,
+          "tolerances_m": {
+            "length": 0.045,
+            "height": 0.025
+          }
+        },
+        "semantic_nodes": [
+          "Machine_Root",
+          "Undercarriage_ROOT",
+          "Mainframe_ROOT",
+          "Blade_ROOT"
+        ],
+        "fact_ids": [
+          "machine-length-blade-straight",
+          "machine-height"
+        ]
+      }
+    },
+    {
+      "id": "blade_width_and_height",
+      "status": "PASS",
+      "detail": {
+        "method": "Evaluated all blade-role mesh vertices and compared the visible dimensions with the selected 6SU rows.",
+        "evidence": {
+          "modeled_width_m": 3.312,
+          "modeled_height_m": 1.4077,
+          "published_width_end_bits_m": 3.312,
+          "published_width_without_end_bits_m": 3.246,
+          "published_height_m": 1.408
+        },
+        "semantic_nodes": [
+          "Blade_Tilt_Pivot",
+          "Blade_ROOT"
+        ],
+        "fact_ids": [
+          "blade-width-end-bits",
+          "blade-width-without-end-bits",
+          "blade-height"
+        ]
+      }
+    },
+    {
+      "id": "track_count_pitch_and_ground_contact",
+      "status": "PASS",
+      "detail": {
+        "method": "Counted exported undercarriage populations, evaluated grouser minima, and inspected authored track metadata.",
+        "evidence": {
+          "sections_each_side": {
+            "left": 42,
+            "right": 42
+          },
+          "bottom_rollers_each_side": {
+            "left": 8,
+            "right": 8
+          },
+          "published_pitch_m": 0.2028,
+          "published_track_on_ground_m": 2.964,
+          "published_gauge_m": 1.93,
+          "published_shoe_width_m": 0.61,
+          "published_grouser_height_m": 0.065,
+          "mainframe_underside_m": 0.361,
+          "published_ground_clearance_m": 0.361,
+          "minimum_contact_y_m": 0.0
+        },
+        "semantic_nodes": [
+          "Undercarriage_ROOT",
+          "Track_L_ROOT",
+          "Track_R_ROOT",
+          "Mainframe_ROOT"
+        ],
+        "fact_ids": [
+          "track-sections-each-side",
+          "bottom-rollers-each-side",
+          "track-gauge",
+          "maximum-track-shoe-width",
+          "track-on-ground-length",
+          "track-pitch",
+          "grouser-height",
+          "ground-clearance"
+        ]
+      }
+    },
+    {
+      "id": "blade_cylinder_static_closure",
+      "status": "PASS",
+      "detail": {
+        "method": "Measured reconstructed lift and tilt cylinder visual endpoint closure after the retained-pose refresh.",
+        "evidence": {
+          "lift_anchor_error_m": 0.0,
+          "tilt_anchor_error_m": 0.0,
+          "scope": "static visual endpoints only; bore, stroke, load, and solver authority remain PENDING"
+        },
+        "semantic_nodes": [
+          "Blade_Lift_Hydraulics_ROOT",
+          "Blade_Tilt_Hydraulics_ROOT",
+          "Blade_Lift_Pivot",
+          "Blade_Tilt_Pivot"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "blade_lift_endpoint",
+      "status": "PASS",
+      "detail": {
+        "method": "Measured the semantic lift pivot world transform, traversed its visible subtree, and sampled the raised review pose.",
+        "evidence": {
+          "pivot_world_m": [
+            -0.78,
+            0.7,
+            0.0
+          ],
+          "pivot_error_m": 0.0,
+          "visible_mesh_descendants": 48,
+          "review_pose_deg": 8.0,
+          "scope": "semantic motion proof; published blade-lift-height reproduction remains PENDING"
+        },
+        "semantic_nodes": [
+          "Blade_Lift_Pivot",
+          "Push_Arms_ROOT",
+          "Blade_Tilt_Pivot",
+          "Blade_ROOT"
+        ],
+        "fact_ids": [
+          "width-over-trunnions"
+        ]
+      }
+    },
+    {
+      "id": "blade_tilt_endpoint",
+      "status": "PASS",
+      "detail": {
+        "method": "Measured the semantic tilt pivot world transform, traversed its visible subtree, and sampled the tilted review pose.",
+        "evidence": {
+          "pivot_world_m": [
+            2.69,
+            0.8,
+            0.0
+          ],
+          "pivot_error_m": 0.0,
+          "visible_mesh_descendants": 34,
+          "review_pose_deg": 7.0,
+          "scope": "semantic motion proof; published tilt endpoint reproduction remains PENDING"
+        },
+        "semantic_nodes": [
+          "Blade_Tilt_Pivot",
+          "Blade_ROOT",
+          "Linkage_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "ground_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "Evaluated retained track/grouser and blade mesh minima against the authored floor datum.",
+        "evidence": {
+          "track_min_y_m": 0.0,
+          "blade_min_y_m": 0.0503,
+          "floor_y_m": 0.0,
+          "scope": "retained static-pose screen; continuous collision solver remains PENDING"
+        },
+        "semantic_nodes": [
+          "Track_L_ROOT",
+          "Track_R_ROOT",
+          "Blade_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "self_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "Measured retained blade-to-undercarriage longitudinal separation and traversed all three critical motion-owner subtrees.",
+        "evidence": {
+          "blade_to_track_x_clearance_m": 0.6755999999999998,
+          "visible_mesh_descendants": {
+            "Blade_Lift_Pivot": 48,
+            "Blade_Tilt_Pivot": 34,
+            "Linkage_ROOT": 5
+          },
+          "scope": "retained static-pose risk screen; full self-collision solver remains PENDING"
+        },
+        "semantic_nodes": [
+          "Blade_Lift_Pivot",
+          "Blade_Tilt_Pivot",
+          "Linkage_ROOT",
+          "Track_L_ROOT",
+          "Track_R_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "track_phase_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "Counted one closed visual population of shoes, outer links, and pin bushings on each track and verified the visible service-segment topology.",
+        "evidence": {
+          "shoe_counts": {
+            "left": 42,
+            "right": 42
+          },
+          "link_counts": {
+            "left": 42,
+            "right": 42
+          },
+          "pin_bushing_counts": {
+            "left": 42,
+            "right": 42
+          },
+          "scope": "visual population continuity; tooth engagement phase remains PENDING"
+        },
+        "semantic_nodes": [
+          "Track_L_ROOT",
+          "Track_R_ROOT"
+        ],
+        "fact_ids": [
+          "sprocket-service-segments"
+        ]
+      }
     },
     {
       "id": "mechanical-solver",

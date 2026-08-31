@@ -34,52 +34,85 @@
   "accent": "#9aa8b4",
   "motion": {
     "autoplay": true,
-    "durationSeconds": 16,
+    "durationSeconds": 18,
     "mode": "sine",
-    "damping": 7.5,
+    "damping": 8,
     "channels": [
       {
-        "id": "left-track-compliance",
-        "label": "Left track compliance",
-        "nodes": ["Track_L_ROOT"],
+        "id": "left-track-drive",
+        "mechanismJointId": "left_track_propulsion",
+        "label": "Left track drive study",
+        "nodes": ["Track_L_Front_Wheel", "Track_L_Rear_Wheel"],
         "property": "rotation.z",
-        "from": -0.035,
-        "to": 0.035,
+        "from": 0,
+        "to": 6.283185307179586,
         "phase": 0.0,
-        "mode": "offset"
+        "mode": "offset",
+        "autoplay": "sine"
       },
       {
-        "id": "right-track-compliance",
-        "label": "Right track compliance",
-        "nodes": ["Track_R_ROOT"],
+        "id": "right-track-drive",
+        "mechanismJointId": "right_track_propulsion",
+        "label": "Right track drive study",
+        "nodes": ["Track_R_Front_Wheel", "Track_R_Rear_Wheel"],
         "property": "rotation.z",
-        "from": -0.035,
-        "to": 0.035,
+        "from": 0,
+        "to": 6.283185307179586,
         "phase": 0.5,
-        "mode": "offset"
+        "mode": "offset",
+        "autoplay": "sine"
+      },
+      {
+        "id": "left-hardbar",
+        "mechanismJointId": "left_hardbar_compliance",
+        "label": "Left hardbar compliance",
+        "nodes": ["Track_L_Hardbar_ROOT"],
+        "property": "rotation.z",
+        "from": -0.08,
+        "to": 0.08,
+        "phase": 0.12,
+        "mode": "offset",
+        "autoplay": "sine"
+      },
+      {
+        "id": "right-hardbar",
+        "mechanismJointId": "right_hardbar_compliance",
+        "label": "Right hardbar compliance",
+        "nodes": ["Track_R_Hardbar_ROOT"],
+        "property": "rotation.z",
+        "from": -0.08,
+        "to": 0.08,
+        "phase": 0.62,
+        "mode": "offset",
+        "autoplay": "sine"
       },
       {
         "id": "smartride-leveling",
+        "mechanismJointId": "smartride_plus_leveling",
         "label": "SmartRide leveling study",
-        "nodes": ["SmartRide_Level_ROOT"],
-        "property": "rotation.z",
-        "from": -0.018,
-        "to": 0.018,
-        "phase": 0.18,
-        "mode": "offset"
+        "nodes": ["SmartRide_Visual_ROOT"],
+        "property": "position.y",
+        "from": 0,
+        "to": 0.12,
+        "phase": 0.24,
+        "mode": "offset",
+        "autoplay": "sine"
       },
       {
         "id": "cab-suspension",
+        "mechanismJointId": "cab_rear_suspension",
         "label": "Cab suspension response",
         "nodes": ["Cab_Suspension_ROOT"],
         "property": "position.y",
         "from": 0.0,
-        "to": 0.04,
+        "to": 0.08,
         "phase": 0.36,
-        "mode": "offset"
+        "mode": "offset",
+        "autoplay": "sine"
       },
       {
         "id": "rear-lift",
+        "mechanismJointId": "rear_three_point_lift",
         "label": "Rear three-point lift",
         "nodes": ["Rear_Hitch_Pivot"],
         "property": "rotation.z",
@@ -87,7 +120,19 @@
         "to": 0.22,
         "phase": 0.68,
         "mode": "offset",
-        "autoplay": "ping-pong"
+        "autoplay": "sine"
+      },
+      {
+        "id": "rear-pto",
+        "mechanismJointId": "rear_pto_visual_rotation",
+        "label": "Rear PTO visual rotation",
+        "nodes": ["Rear_PTO_Shaft_ROOT"],
+        "property": "rotation.x",
+        "from": 0,
+        "to": 6.283185307179586,
+        "phase": 0.82,
+        "mode": "offset",
+        "autoplay": "sine"
       }
     ]
   }

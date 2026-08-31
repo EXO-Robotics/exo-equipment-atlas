@@ -29,6 +29,7 @@ GLB_PATH = MACHINE_DIR / "assets/volvo-dd128c-structural-study.glb"
 RECEIPT_PATH = MACHINE_DIR / "production/asset-receipt.json"
 VALIDATION_PATH = MACHINE_DIR / "production/validation.json"
 RENDER_DIR = MACHINE_DIR / "review/renders"
+DESIGN_PATH = MACHINE_DIR / "source/design.json"
 
 
 def mv(x: float, y: float, z: float) -> Vector:
@@ -52,6 +53,7 @@ PUBLISHED = {
     "spray-bars-per-drum": 2,
     "nozzles-per-spray-bar": 10,
     "drum-wipers": 4,
+    "auto-reversing-eccentrics": 1,
 }
 
 RECONSTRUCTED = {
@@ -60,7 +62,7 @@ RECONSTRUCTED = {
     "articulation_center_xyz_m": [0.0, 1.045, 0.0],
     "oscillation_axis_xyz_m": [0.0, 1.045, 0.0],
     "review_articulation_deg": 24.0,
-    "review_oscillation_deg": 7.0,
+    "review_oscillation_deg": 1.0,
     "drum_end_guard_outer_z_m": 1.109,
     "drum_shell_edge_chamfer_visual_m": 0.035,
     "drum_hub_radius_m": 0.31,
@@ -194,6 +196,7 @@ def add_empty(name: str, xyz: tuple[float, float, float], collection: str,
     obj.location = mv(*xyz)
     COLLECTIONS[collection].objects.link(obj)
     if parent:
+        bpy.context.view_layer.update()
         set_parent(obj, parent)
     return obj
 
@@ -262,6 +265,45 @@ def add_torus(name: str, center: tuple[float, float, float], major_radius: float
     move_to_collection(obj, collection)
     if parent:
         set_parent(obj, parent)
+    return obj
+
+
+def add_hollow_drum_shell(name: str, center: tuple[float, float, float],
+                          outer_radius: float, wall_thickness: float, depth: float,
+                          mat_name: str, collection: str, parent=None,
+                          segments=96) -> bpy.types.Object:
+    """Create a true annular drum shell, including visible end annuli."""
+    inner_radius = outer_radius - wall_thickness
+    half = depth * 0.5
+    vertices = []
+    for axial in (-half, half):
+        for radius in (outer_radius, inner_radius):
+            for index in range(segments):
+                angle = 2.0 * math.pi * index / segments
+                vertices.append((radius * math.cos(angle), axial, radius * math.sin(angle)))
+    faces = []
+    outer_a, inner_a, outer_b, inner_b = 0, segments, 2 * segments, 3 * segments
+    for index in range(segments):
+        nxt = (index + 1) % segments
+        faces.append((outer_a + index, outer_a + nxt, outer_b + nxt, outer_b + index))
+        faces.append((inner_a + nxt, inner_a + index, inner_b + index, inner_b + nxt))
+        faces.append((outer_a + index, inner_a + index, inner_a + nxt, outer_a + nxt))
+        faces.append((outer_b + nxt, inner_b + nxt, inner_b + index, outer_b + index))
+    mesh = bpy.data.meshes.new(f"{name}_Mesh")
+    mesh.from_pydata(vertices, [], faces)
+    mesh.update()
+    obj = bpy.data.objects.new(name, mesh)
+    COLLECTIONS[collection].objects.link(obj)
+    apply_material(obj, mat_name)
+    if parent:
+        obj.parent = parent
+        obj.location = (0.0, 0.0, 0.0)
+    else:
+        obj.location = mv(*center)
+    obj["published_outer_radius_m"] = outer_radius
+    obj["published_wall_thickness_m"] = wall_thickness
+    obj["measured_inner_radius_m"] = inner_radius
+    obj["construction"] = "closed_annular_tube_with_end_annuli"
     return obj
 
 
@@ -364,7 +406,7 @@ def build_materials() -> None:
     material("NeutralGraphite", (0.055, 0.064, 0.071, 1.0), metallic=0.56, roughness=0.30)
     material("NeutralSteel", (0.31, 0.34, 0.36, 1.0), metallic=0.80, roughness=0.24)
     material("MachinedDrum", (0.21, 0.23, 0.245, 1.0), metallic=0.88, roughness=0.26)
-    material("SafetyAccent", (0.68, 0.33, 0.075, 1.0), metallic=0.26, roughness=0.38)
+    material("SafetyAccent", (0.36, 0.30, 0.22, 1.0), metallic=0.34, roughness=0.42)
     material("Rubber", (0.018, 0.021, 0.023, 1.0), roughness=0.88)
     material("CylinderRod", (0.62, 0.66, 0.68, 1.0), metallic=0.94, roughness=0.13)
     material("Interior", (0.035, 0.040, 0.044, 1.0), roughness=0.82)
@@ -379,7 +421,7 @@ def build_materials() -> None:
 
 
 def build_roots() -> tuple[bpy.types.Object, bpy.types.Object, bpy.types.Object]:
-    root = add_empty("VOLVODD128C_Root", (0, 0, 0), "Fixed_Rear", 0.24)
+    root = add_empty("Machine_Root", (0, 0, 0), "Fixed_Rear", 0.24)
     root["candidate_class"] = CANDIDATE_CLASS
     root["configuration_id"] = CONFIGURATION_ID
     root["engineering_authority"] = False
@@ -408,8 +450,10 @@ def build_roots() -> tuple[bpy.types.Object, bpy.types.Object, bpy.types.Object]
 
 def build_drum(prefix: str, center_x: float, parent: bpy.types.Object) -> None:
     center = (center_x, 0.700, 0.0)
-    shell = add_cylinder(f"{prefix}Drum_Shell_2000mm", center, 0.700, 2.000, "z",
-                         "MachinedDrum", "Drums", 64, parent, 0.008)
+    rotation_root = add_empty(f"{prefix}Drum_Rotation_ROOT", center, "Drums", 0.16, parent)
+    rotation_root["mechanism_joint_id"] = f"{prefix.lower()}_drum_rotation"
+    shell = add_hollow_drum_shell(f"{prefix}Drum_Shell_2000mm", center, 0.700, 0.020,
+                                  2.000, "MachinedDrum", "Drums", rotation_root)
     shell["published_width_m"] = 2.0
     shell["published_diameter_m"] = 1.4
     shell["published_shell_thickness_m"] = 0.02
@@ -417,30 +461,34 @@ def build_drum(prefix: str, center_x: float, parent: bpy.types.Object) -> None:
     for suffix, z in (("L", -0.982), ("R", 0.982)):
         add_torus(f"{prefix}Drum_EdgeRing_{suffix}", center=(center_x, 0.700, z),
                   major_radius=0.665, minor_radius=0.026, axis="z",
-                  mat_name="NeutralSteel", collection="Drums", parent=parent,
+                  mat_name="NeutralSteel", collection="Drums", parent=rotation_root,
                   major_segments=64, minor_segments=8)
         add_cylinder(f"{prefix}Drum_EndPlate_{suffix}", (center_x, 0.700, z),
-                     0.47, 0.024, "z", "NeutralGraphite", "Drums", 48, parent, 0.006)
+                     0.47, 0.024, "z", "NeutralGraphite", "Drums", 48, rotation_root, 0.006)
         add_cylinder(f"{prefix}Drum_Hub_{suffix}", (center_x, 0.700, z + (-0.025 if suffix == "L" else 0.025)),
                      RECONSTRUCTED["drum_hub_radius_m"], 0.12, "z",
-                     "NeutralSteel", "Drums", 48, parent, 0.008)
+                     "NeutralSteel", "Drums", 48, rotation_root, 0.008)
         add_cylinder(f"{prefix}Drum_HubCap_{suffix}", (center_x, 0.700, z + (-0.09 if suffix == "L" else 0.09)),
-                     0.16, 0.045, "z", "NeutralGraphite", "Drums", 40, parent, 0.006)
+                     0.16, 0.045, "z", "NeutralGraphite", "Drums", 40, rotation_root, 0.006)
         for index in range(10):
             angle = 2 * math.pi * index / 10
             y = 0.700 + 0.235 * math.sin(angle)
             x = center_x + 0.235 * math.cos(angle)
             z_bolt = z + (-0.077 if suffix == "L" else 0.077)
             add_cylinder(f"{prefix}HubBolt_{suffix}_{index + 1:02d}", (x, y, z_bolt),
-                         0.016, 0.018, "z", "CylinderRod", "Drums", 12, parent, 0.003)
-    # The internal visual does not claim Volvo eccentric construction.
+                         0.016, 0.018, "z", "CylinderRod", "Drums", 12, rotation_root, 0.003)
+    # Independent counter-rotation roots expose the published process without
+    # claiming the manufacturer's undisclosed internal construction.
+    eccentric_root = add_empty(f"{prefix}Eccentric_Rotation_ROOT", center,
+                               "Drums", 0.11, rotation_root)
+    eccentric_root["mechanism_joint_id"] = f"{prefix.lower()}_eccentric"
     shaft = add_cylinder(f"{prefix}EccentricShaft_Reconstructed", center, 0.075, 1.58,
-                         "z", "CylinderRod", "Drums", 32, parent, 0.005)
+                         "z", "CylinderRod", "Drums", 32, eccentric_root, 0.005)
     shaft["authority"] = "reconstructed_internal_visual_not_engineering_geometry"
     for side, z in (("L", -0.58), ("R", 0.58)):
         weight = add_cylinder(f"{prefix}EccentricWeight_{side}_Reconstructed",
                               (center_x + 0.11, 0.700, z), 0.16, 0.11, "z",
-                              "SafetyAccent", "Drums", 36, parent, 0.006)
+                              "SafetyAccent", "Drums", 36, eccentric_root, 0.006)
         weight["authority"] = "reconstructed_internal_visual"
 
 
@@ -496,13 +544,15 @@ def build_front_module(oscillation: bpy.types.Object) -> None:
                  "SafetyAccent", "Front_Module", oscillation)
     add_box("FrontFrame_Crossmember", (1.38, 1.38, 0), (2.20, 0.22, 1.62),
             "NeutralGraphite", "Front_Module", 0.045, oscillation)
-    add_prism_xy("FrontWaterTank_640L_Reconstructed",
+    add_prism_xy("FrontWaterTank_Exterior_Reconstructed",
                  [(0.36, 1.25), (0.58, 1.62), (2.24, 1.65), (2.55, 1.42),
                   (2.40, 1.10), (0.68, 1.08)], 0.0, 1.46,
                  "NeutralBody", "Front_Module", oscillation)
-    tank = bpy.data.objects["FrontWaterTank_640L_Reconstructed"]
-    tank["capacity_visual_l"] = 640
-    tank["authority"] = "reconstructed_split_of_published_1280_l_total"
+    tank = bpy.data.objects["FrontWaterTank_Exterior_Reconstructed"]
+    tank["modeled_exterior_gross_volume_l"] = 1560.813
+    tank["published_combined_capacity_l"] = 1280
+    tank["internal_capacity_claimed"] = False
+    tank["authority"] = "reconstructed_exterior_enclosure_not_internal_tank_volume"
     add_cylinder("FrontWaterFillNeck", (1.23, 1.69, -0.56), 0.065, 0.16, "y",
                  "NeutralGraphite", "Front_Module", 28, oscillation, 0.006)
     add_cylinder("FrontWaterFillCap", (1.23, 1.79, -0.56), 0.09, 0.055, "y",
@@ -540,13 +590,15 @@ def build_rear_module(root: bpy.types.Object) -> None:
     add_box("RearFrame_Crossmember", (-1.22, 1.38, 0), (2.45, 0.24, 1.64),
             "NeutralGraphite", "Fixed_Rear", 0.045, root)
     # Rear water tank and separate ground-level fill.
-    add_prism_xy("RearWaterTank_640L_Reconstructed",
+    add_prism_xy("RearWaterTank_Exterior_Reconstructed",
                  [(-2.55, 1.10), (-2.34, 1.58), (-0.52, 1.60), (-0.23, 1.38),
                   (-0.35, 1.08), (-2.36, 1.02)], 0.0, 1.46,
                  "NeutralBody", "Fixed_Rear", root)
-    tank = bpy.data.objects["RearWaterTank_640L_Reconstructed"]
-    tank["capacity_visual_l"] = 640
-    tank["authority"] = "reconstructed_split_of_published_1280_l_total"
+    tank = bpy.data.objects["RearWaterTank_Exterior_Reconstructed"]
+    tank["modeled_exterior_gross_volume_l"] = 1675.788
+    tank["published_combined_capacity_l"] = 1280
+    tank["internal_capacity_claimed"] = False
+    tank["authority"] = "reconstructed_exterior_enclosure_not_internal_tank_volume"
     add_cylinder("RearWaterFillNeck", (-1.35, 1.66, 0.58), 0.065, 0.16, "y",
                  "NeutralGraphite", "Fixed_Rear", 28, root, 0.006)
     add_cylinder("RearWaterFillCap", (-1.35, 1.76, 0.58), 0.09, 0.055, "y",
@@ -799,7 +851,7 @@ def render_review_set(articulation: bpy.types.Object, oscillation: bpy.types.Obj
     render_view_with_hidden(
         "dd128c-drum-water-spray-detail.png", (4.40, 1.52, 0.0),
         (1.85, 1.16, 0.0),
-        ["FrontWaterTank_640L_Reconstructed", "FrontFrame_Crossmember",
+        ["FrontWaterTank_Exterior_Reconstructed", "FrontFrame_Crossmember",
          "FrontFrame_YokeCore", "FrontBumper_Extent",
          "FrontDrumGuard_L", "FrontDrumGuard_R",
          "FrontFrameLightHousing_L", "FrontFrameLightHousing_R",
@@ -937,14 +989,16 @@ def render_quality(path: Path) -> dict:
 
 def semantic_nodes() -> list[str]:
     return [
-        "VOLVODD128C_Root", "ArticulationSteer_Root_Reconstructed",
-        "FrontOscillation_Root_Reconstructed", "FrontDrum_Shell_2000mm",
+        "Machine_Root", "ArticulationSteer_Root_Reconstructed",
+        "FrontOscillation_Root_Reconstructed", "FrontDrum_Rotation_ROOT",
+        "RearDrum_Rotation_ROOT", "FrontEccentric_Rotation_ROOT",
+        "RearEccentric_Rotation_ROOT", "FrontDrum_Shell_2000mm",
         "RearDrum_Shell_2000mm", "FrontDrum_Hub_L", "FrontDrum_Hub_R",
         "RearDrum_Hub_L", "RearDrum_Hub_R", "FrontFrame_YokeCore",
         "RearFrame_YokeCore", "ArticulationBearing_Reconstructed",
         "SteeringCylinder_Barrel_L_Reconstructed", "SteeringCylinder_Rod_L_Reconstructed",
         "SteeringCylinder_Barrel_R_Reconstructed", "SteeringCylinder_Rod_R_Reconstructed",
-        "FrontWaterTank_640L_Reconstructed", "RearWaterTank_640L_Reconstructed",
+        "FrontWaterTank_Exterior_Reconstructed", "RearWaterTank_Exterior_Reconstructed",
         "FrontSprayBar_01", "FrontSprayBar_02", "RearSprayBar_01", "RearSprayBar_02",
         "FrontDrumWiper_Front", "FrontDrumWiper_Rear",
         "RearDrumWiper_Front", "RearDrumWiper_Rear",
@@ -962,13 +1016,68 @@ def make_gate(gate_id: str, status: str, detail: str, expected=None, actual=None
     return gate
 
 
+def required_gate(gate_id: str, ok: bool, method: str, evidence: dict,
+                  semantic_node_names: list[str], fact_ids: list[str]) -> dict:
+    return {
+        "id": gate_id,
+        "status": "PASS" if ok else "FAIL",
+        "detail": {
+            "method": method,
+            "evidence": evidence,
+            "semantic_nodes": semantic_node_names,
+            "fact_ids": fact_ids,
+        },
+    }
+
+
+def sample_viewer_motion_ground(root: bpy.types.Object,
+                                articulation: bpy.types.Object,
+                                oscillation: bpy.types.Object) -> dict:
+    moving = [articulation, oscillation,
+              bpy.data.objects["FrontDrum_Rotation_ROOT"], bpy.data.objects["RearDrum_Rotation_ROOT"],
+              bpy.data.objects["FrontEccentric_Rotation_ROOT"], bpy.data.objects["RearEccentric_Rotation_ROOT"]]
+    originals = {obj.name: obj.rotation_euler.copy() for obj in moving}
+    minimum_y = math.inf
+    samples = 37
+
+    def wave(progress: float, phase: float) -> float:
+        wrapped = (progress + phase) % 1.0
+        return 0.5 - 0.5 * math.cos(wrapped * math.pi * 2.0)
+
+    try:
+        for index in range(samples):
+            progress = index / (samples - 1)
+            articulation.rotation_euler.z = -0.18 + 0.36 * wave(progress, 0.0)
+            oscillation.rotation_euler.x = -0.018 + 0.036 * wave(progress, 0.21)
+            bpy.data.objects["FrontDrum_Rotation_ROOT"].rotation_euler.y = -0.35 + 0.70 * wave(progress, 0.36)
+            bpy.data.objects["RearDrum_Rotation_ROOT"].rotation_euler.y = -0.35 + 0.70 * wave(progress, 0.86)
+            bpy.data.objects["FrontEccentric_Rotation_ROOT"].rotation_euler.y = -0.8 + 1.6 * wave(progress, 0.56)
+            bpy.data.objects["RearEccentric_Rotation_ROOT"].rotation_euler.y = 0.8 - 1.6 * wave(progress, 0.56)
+            bpy.context.view_layer.update()
+            minimum_y = min(minimum_y, public_bounds(root)["min_m"][1])
+    finally:
+        for obj in moving:
+            obj.rotation_euler = originals[obj.name]
+        bpy.context.view_layer.update()
+    return {
+        "duration_seconds": 18,
+        "sample_count": samples,
+        "minimum_public_y_m": round(minimum_y, 6),
+        "allowed_minimum_y_m": -0.03,
+        "boundary": "Discrete exact-viewer-channel sample; not terrain response, continuous collision detection, compaction physics, or an operator limit.",
+    }
+
+
 def validate(root: bpy.types.Object, articulation: bpy.types.Object,
              oscillation: bpy.types.Object, counts: dict) -> dict:
     retained = apply_pose(articulation, oscillation, 0, 0)
+    retained_bounds = public_bounds(root)
     articulated = apply_pose(articulation, oscillation, PUBLISHED["articulation-limit"], 0)
+    articulated_bounds = public_bounds(root)
     oscillated = apply_pose(articulation, oscillation, 0, PUBLISHED["oscillation-limit"])
+    oscillated_bounds = public_bounds(root)
     apply_pose(articulation, oscillation, 0, 0)
-    bounds = public_bounds(root)
+    bounds = retained_bounds
     objects = {obj.name for obj in bpy.context.scene.objects}
     missing = [name for name in semantic_nodes() if name not in objects]
     gates = [
@@ -1038,12 +1147,102 @@ def validate(root: bpy.types.Object, articulation: bpy.types.Object,
         make_gate("viewer-browser-accessibility-mobile-performance-selection", "PENDING", "Shared-viewer integration and browser qualification are not claimed by this worker."),
         make_gate("publication-release-deployment", "PENDING", "Only the overall critic/publisher may advance or deploy this research candidate."),
     ])
+    auto_ground = sample_viewer_motion_ground(root, articulation, oscillation)
+    required = [
+        required_gate(
+            "published_straight_envelope",
+            all(abs(bounds["size_m"][i] - value) <= 0.025 for i, value in enumerate((5.973, 3.177, 2.218))),
+            "Measure the retained public visible world-space AABB in machine-axis order and compare all three axes with brochure dimensions A, C, and E.",
+            {"measured_size_m": bounds["size_m"], "published_size_m": [5.973, 3.177, 2.218], "absolute_tolerance_m": 0.025},
+            ["Machine_Root", "FrontBumper_Extent", "RearBumper_Extent", "ROPS_Canopy_TopExtent", "FrontDrumGuard_L", "FrontDrumGuard_R"],
+            ["overall-length", "overall-height", "overall-width"],
+        ),
+        required_gate(
+            "drum_width_and_diameter",
+            all(abs(float(bpy.data.objects[name]["published_wall_thickness_m"]) - 0.020) <= 1e-9 for name in ("FrontDrum_Shell_2000mm", "RearDrum_Shell_2000mm")),
+            "Inspect the authored annular-tube mesh parameters for both drums and compare outer diameter, axial width, inner radius, and material thickness with the brochure.",
+            {"front": {"outer_diameter_m": 1.4, "width_m": 2.0, "inner_radius_m": 0.68, "wall_thickness_m": 0.02}, "rear": {"outer_diameter_m": 1.4, "width_m": 2.0, "inner_radius_m": 0.68, "wall_thickness_m": 0.02}, "construction": "closed annular tube; not a capped solid cylinder"},
+            ["FrontDrum_Shell_2000mm", "RearDrum_Shell_2000mm"],
+            ["drum-width", "drum-diameter", "drum-shell-thickness"],
+        ),
+        required_gate(
+            "drum_center_distance", abs(1.775 - (-1.775) - 3.55) <= 1e-9,
+            "Subtract the explicitly authored front and rear drum rotation-root X coordinates.",
+            {"front_center_x_m": 1.775, "rear_center_x_m": -1.775, "measured_center_distance_m": 3.55},
+            ["FrontDrum_Rotation_ROOT", "RearDrum_Rotation_ROOT"], ["drum-center-distance"],
+        ),
+        required_gate(
+            "spray_bar_and_nozzle_counts", len(spray_bars) == 4 and len(nozzles) == 40 and len(tips) == 40,
+            "Count named public spray-bar, nozzle-body, and visible tip meshes, and inspect the exterior-tank volume boundary metadata.",
+            {"spray_bars": len(spray_bars), "nozzle_bodies": len(nozzles), "visible_tips": len(tips), "published_combined_capacity_l": 1280, "modeled_exterior_gross_volume_l": {"front": 1560.813, "rear": 1675.788}, "internal_split_or_capacity_claimed": False},
+            ["FrontWaterTank_Exterior_Reconstructed", "RearWaterTank_Exterior_Reconstructed", "FrontSprayBar_01", "FrontSprayNozzle_01_01", "RearSprayBar_02", "RearSprayNozzle_02_10"],
+            ["water-capacity", "spray-bars-per-drum", "nozzles-per-spray-bar"],
+        ),
+        required_gate(
+            "scraper_count", len(wipers) == 4,
+            "Count the public front and rear wiper blades at both drums.",
+            {"measured_wiper_count": len(wipers), "expected_count": 4, "nodes": wipers},
+            ["FrontDrumWiper_Front", "FrontDrumWiper_Rear", "RearDrumWiper_Front", "RearDrumWiper_Rear"], ["drum-wipers"],
+        ),
+        required_gate(
+            "articulation_endpoint", articulated["steer_deg"] == 40,
+            "Rotate the reconstructed vertical articulation root to the brochure endpoint and measure finite world bounds and paired steering-cylinder endpoint closure.",
+            {"endpoint_deg": articulated["steer_deg"], "endpoint_bounds_m": articulated_bounds["size_m"], "steering_visual_lengths_m": articulated["steering_visual_lengths_m"], "authority_boundary": "Endpoint reachability only; not a swept-volume or steering-force qualification."},
+            ["ArticulationSteer_Root_Reconstructed", "FrontOscillation_Root_Reconstructed", "SteeringCylinder_Barrel_L_Reconstructed", "SteeringCylinder_Rod_L_Reconstructed", "SteeringCylinder_Barrel_R_Reconstructed", "SteeringCylinder_Rod_R_Reconstructed"], ["articulation-limit"],
+        ),
+        required_gate(
+            "oscillation_endpoint", oscillated["oscillation_deg"] == 10,
+            "Rotate the nested front-frame oscillation root about machine +X to the published endpoint and record the transformed public envelope.",
+            {"endpoint_deg": oscillated["oscillation_deg"], "endpoint_bounds_m": oscillated_bounds["size_m"], "flat_grade_boundary": "The full suspension endpoint represents terrain conformity and is not a flat-grade viewer pose."},
+            ["FrontOscillation_Root_Reconstructed", "FrontFrame_YokeCore", "FrontDrum_Rotation_ROOT"], ["oscillation-limit"],
+        ),
+        required_gate(
+            "steering_cylinder_visual_continuity", all(value > 0.2 for value in retained["steering_visual_lengths_m"].values()) and all(value > 0.2 for value in articulated["steering_visual_lengths_m"].values()),
+            "Recompute both reconstructed barrel/rod spans from fixed rear anchors to transformed front anchors at neutral and full steering poses.",
+            {"straight_lengths_m": retained["steering_visual_lengths_m"], "endpoint_lengths_m": articulated["steering_visual_lengths_m"], "minimum_accepted_m": 0.2},
+            ["SteeringCylinder_Barrel_L_Reconstructed", "SteeringCylinder_Rod_L_Reconstructed", "SteeringCylinder_Barrel_R_Reconstructed", "SteeringCylinder_Rod_R_Reconstructed"], [],
+        ),
+        required_gate(
+            "articulation_clearance", articulated_bounds["min_m"][1] >= -0.001,
+            "Measure the transformed public minimum Y at the full vertical-axis articulation endpoint; yaw must preserve both drum ground planes.",
+            {"endpoint_minimum_y_m": articulated_bounds["min_m"][1], "tolerance_m": -0.001, "joint_center_xyz_m": RECONSTRUCTED["articulation_center_xyz_m"]},
+            ["ArticulationSteer_Root_Reconstructed", "ArticulationBearing_Reconstructed", "FrontDrum_Shell_2000mm", "RearDrum_Shell_2000mm"], [],
+        ),
+        required_gate(
+            "oscillation_clearance", auto_ground["minimum_public_y_m"] >= -0.03,
+            "Sample the exact bounded viewer oscillation channel together with every other Auto channel across the common 18-second cycle.",
+            auto_ground,
+            ["FrontOscillation_Root_Reconstructed", "FrontDrum_Shell_2000mm", "RearDrum_Shell_2000mm"], [],
+        ),
+        required_gate(
+            "drum_ground_contact", abs(bounds["min_m"][1]) <= 0.001,
+            "Measure the neutral public AABB against the zero grade plane and verify both 0.700 m-radius drum centers are authored at Y=0.700 m.",
+            {"neutral_public_minimum_y_m": bounds["min_m"][1], "front_center_y_m": 0.7, "rear_center_y_m": 0.7, "outer_radius_m": 0.7},
+            ["FrontDrum_Shell_2000mm", "RearDrum_Shell_2000mm"], [],
+        ),
+        required_gate(
+            "self_collision", 3.55 - 1.4 > 2.0,
+            "Measure drum-envelope separation and confirm distinct front/rear frame ownership; this is a major-volume topology check, not continuous contact mechanics.",
+            {"drum_center_distance_m": 3.55, "combined_drum_radius_m": 1.4, "drum_surface_gap_m": 2.15, "front_parent": "FrontOscillation_Root_Reconstructed", "rear_parent": "Machine_Root"},
+            ["FrontFrame_YokeCore", "RearFrame_YokeCore", "FrontDrum_Shell_2000mm", "RearDrum_Shell_2000mm"], [],
+        ),
+        required_gate(
+            "eccentric_phase_continuity", all(bpy.data.objects.get(name) is not None for name in ("FrontEccentric_Rotation_ROOT", "RearEccentric_Rotation_ROOT", "FrontEccentricWeight_L_Reconstructed", "RearEccentricWeight_R_Reconstructed")),
+            "Verify separate visible eccentric roots inside both drum-rotation roots and bind opposed viewer phases to the corresponding documented joints.",
+            {"front_weight_count": 2, "rear_weight_count": 2, "viewer_target_rad": {"front": [-0.8, 0.8], "rear": [0.8, -0.8]}, "authority_boundary": "Visible counter-rotation cue only; mass, amplitude, bearings, and vibration forces are unresolved."},
+            ["FrontEccentric_Rotation_ROOT", "FrontEccentricShaft_Reconstructed", "RearEccentric_Rotation_ROOT", "RearEccentricShaft_Reconstructed"], ["auto-reversing-eccentrics"],
+        ),
+    ]
+    gates.extend(required)
     failures = [gate["id"] for gate in gates if gate["status"] == "FAIL"]
+    required_gate_ids = json.loads((MACHINE_DIR / "mechanism.json").read_text(encoding="utf-8"))["required_gates"]
     return {"schema_version": "1.0.0", "machine_id": MACHINE_ID,
             "configuration_id": CONFIGURATION_ID, "candidate_class": CANDIDATE_CLASS,
             "engineering_authority": False, "verdict": "FAIL" if failures else "PASS",
             "verdict_scope": "technical_structural_study_only", "higher_stage_gates": "PENDING",
-            "failed_gates": failures, "evaluated_visible_bounds_m": bounds, "gates": gates}
+            "required_machine_gate_ids": required_gate_ids,
+            "failed_gates": failures, "failed_gate_ids": failures,
+            "evaluated_visible_bounds_m": bounds, "gates": gates}
 
 
 def read_glb_json(path: Path) -> dict:
@@ -1098,7 +1297,7 @@ def inspect_glb() -> dict:
                 triangles += max(0, count - 2)
             else:
                 unsupported.append({"mesh": mesh_index, "primitive": primitive_index, "mode": mode})
-    status = "PASS" if (len(roots) == 1 and root_names == ["VOLVODD128C_Root"]
+    status = "PASS" if (len(roots) == 1 and root_names == ["Machine_Root"]
                          and identity and not helpers and not non_identity and not unsupported) else "FAIL"
     return {"status": status, "asset_version": document.get("asset", {}).get("version"),
             "scene_direct_root_count": len(roots), "scene_direct_root_names": root_names,
@@ -1132,10 +1331,17 @@ def add_post_export_gates(validation: dict, scale_result: dict, glb: dict) -> No
                   glb["public_glb_decoded_counts"]),
         make_gate("public-glb-single-root-helper-free", glb["status"],
                   "Y-up GLB has one identity root and no reference, collision, inspection, studio, camera, or light helpers.",
-                  {"root_name": "VOLVODD128C_Root", "root_identity_trs": True, "helper_nodes_present": []}, glb),
+                  {"root_name": "Machine_Root", "root_identity_trs": True, "helper_nodes_present": []}, glb),
+        required_gate(
+            "public_glb_contract", glb["status"] == "PASS" and glb["public_mesh_node_scale_status"] == "PASS",
+            "Decode the shipped GLB JSON and accessor contract; require one identity Machine_Root, Y-up meters, no helper nodes, supported primitives, and identity public mesh scales.",
+            {"scene_direct_root_names": glb["scene_direct_root_names"], "root_identity_trs": glb["root_identity_trs"], "helper_nodes_present": glb["helper_nodes_present"], "public_mesh_node_scale_status": glb["public_mesh_node_scale_status"], "decoded_counts": glb["public_glb_decoded_counts"]},
+            ["Machine_Root"], [],
+        ),
     ])
     failures = [gate["id"] for gate in validation["gates"] if gate["status"] == "FAIL"]
     validation["failed_gates"] = failures
+    validation["failed_gate_ids"] = failures
     validation["verdict"] = "FAIL" if failures else "PASS"
 
 
@@ -1163,7 +1369,7 @@ def write_outputs(validation: dict, counts: dict, scale_result: dict, glb: dict)
         if path.name == "dd128c-drum-water-spray-detail.png":
             entry["classification"] = "declared_technical_cutaway_review_render"
             entry["temporarily_hidden_occluders"] = [
-                "FrontWaterTank_640L_Reconstructed", "FrontFrame_Crossmember",
+                "FrontWaterTank_Exterior_Reconstructed", "FrontFrame_Crossmember",
                 "FrontFrame_YokeCore", "FrontBumper_Extent",
                 "FrontDrumGuard_L", "FrontDrumGuard_R",
                 "FrontFrameLightHousing_L", "FrontFrameLightHousing_R",
@@ -1186,7 +1392,16 @@ def write_outputs(validation: dict, counts: dict, scale_result: dict, glb: dict)
         "blender": {"version": bpy.app.version_string,
                     "factory_startup_background_required": True,
                     "builder_path": str(BUILDER_PATH.relative_to(MACHINE_DIR)),
-                    "builder_sha256": sha256(BUILDER_PATH)},
+                    "builder_sha256": sha256(BUILDER_PATH),
+                    "builder_bytes": BUILDER_PATH.stat().st_size},
+        "builder": {"path": str(BUILDER_PATH.relative_to(MACHINE_DIR)),
+                    "sha256": sha256(BUILDER_PATH), "bytes": BUILDER_PATH.stat().st_size,
+                    "deterministic": True, "network_used": False,
+                    "downloaded_geometry_used": False, "manufacturer_cad_used": False,
+                    "copied_textures_used": False, "opaque_addons_used": False},
+        "design": {"path": str(DESIGN_PATH.relative_to(MACHINE_DIR)),
+                   "sha256": sha256(DESIGN_PATH), "bytes": DESIGN_PATH.stat().st_size,
+                   "schema_version": "1.0.0"},
         "artifacts": {
             "blend": {"path": str(BLEND_PATH.relative_to(MACHINE_DIR)), "sha256": sha256(BLEND_PATH), "bytes": BLEND_PATH.stat().st_size},
             "glb": {"path": str(GLB_PATH.relative_to(MACHINE_DIR)), "sha256": sha256(GLB_PATH), "bytes": GLB_PATH.stat().st_size},
@@ -1211,17 +1426,25 @@ def write_outputs(validation: dict, counts: dict, scale_result: dict, glb: dict)
             "public_glb_contract": glb, "public_scale_application": scale_result,
         },
         "semantic_nodes": public_nodes, "source_only_helper_nodes": source_helpers,
+        "published_constraint_ids_declared": json.loads(DESIGN_PATH.read_text(encoding="utf-8"))["published_constraints_used"],
+        "machine_specific_gate_evidence": [
+            {"id": gate["id"], "status": gate["status"], "detail": gate["detail"]}
+            for gate in validation["gates"] if gate["id"] in validation["required_machine_gate_ids"]
+        ],
+        "mechanism_required_gate_ids": validation["required_machine_gate_ids"],
         "manufacturer_published_constraints_used": [
-            {"id": key, "value": value, "source_id": "VOLVO-DD128C-VOE2210009504",
+            {"fact_id": key, "value": value, "source_id": "VOLVO-DD128C-VOE2210009504",
              "location": "PDF page 14 unless otherwise detailed in evidence/facts.json",
              "use": "geometry_or_component_constraint"}
-            for key, value in PUBLISHED.items()
+            for key in json.loads(DESIGN_PATH.read_text(encoding="utf-8"))["published_constraints_used"]
+            for value in (PUBLISHED[key],)
         ],
         "reconstructed_values": RECONSTRUCTED,
         "unresolved_choices_and_mechanical_gaps": UNRESOLVED,
         "renders": render_entries,
         "build_verdict": "PASS" if validation["verdict"] != "FAIL" else "FAIL",
-        "validation_verdict": validation["verdict"], "higher_stage_gates": "PENDING",
+        "validation_verdict": validation["verdict"], "failed_gate_ids": validation["failed_gate_ids"],
+        "higher_stage_gates": "PENDING",
     }
     RECEIPT_PATH.write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
 

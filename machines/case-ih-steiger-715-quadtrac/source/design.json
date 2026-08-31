@@ -2,19 +2,20 @@
   "schema_version": "1.0.0",
   "machine_id": "case-ih-steiger-715-quadtrac",
   "display_name": "Case IH Steiger 715 Quadtrac",
-  "configuration_id": "CASEIH-STEIGER715-NAM-AG-QUADTRAC-PWRDRIVE-HDS-CAT4N-CANDIDATE",
+  "configuration_id": "CASEIH-STEIGER715-XMARKET-30IN-HDS-CAT4N-STUDY-CANDIDATE",
   "archetype": "tracked_tractor",
   "dimensions_m": {
     "length": 8.29,
     "width": 2.997,
     "height": 3.918
   },
-  "palette": "oxide",
+  "palette": "slate",
   "published_constraints_used": [
     "public-envelope-x",
     "public-envelope-y",
     "public-envelope-z",
     "wheelbase",
+    "selected-track-width",
     "quadtrac-topology",
     "hds-total-travel",
     "hds-up-travel",
@@ -22,16 +23,16 @@
     "hitch-category"
   ],
   "reconstructed_values": {
-    "track_modules": "Four generic independently rooted positive-drive track studies; belt paths, roller centers, lugs and HDS linkage are reconstructed.",
-    "materials": "Neutral unbranded oxide, graphite, steel, rubber and glass with no logos, decals or copied trade dress.",
+    "track_modules": "Four independently rooted positive-drive track studies use the published 0.762 m belt width; belt paths, roller centers, lugs and HDS linkage are reconstructed.",
+    "materials": "Neutral unbranded slate, graphite, steel, rubber and glass with no logos, decals or copied trade dress.",
     "hidden_geometry": "Articulation center, track pivots, HDS anchors, hitch links and all internal structure are reconstructed visualization choices.",
     "animation_ranges": "Conservative presentation ranges only; not operating limits or suspension proof."
   },
   "unresolved_choices": [
     "exact serial number and dealer order code",
-    "serial-bound confirmation that the worldwide 30-inch-track dimensional basis matches the selected North American HDS order",
+    "dealer-order compatibility between the worldwide 30-inch-track dimensional basis and the selected North American HDS / Category 4N subsystem references",
     "HDS production build date and regional availability",
-    "track width, carcass, tread and supplier",
+    "track carcass, tread and supplier beyond the published 30-inch nominal width",
     "hitch ball ends and implement connection",
     "cab trim and lighting package",
     "public material and branding authorization"

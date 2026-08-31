@@ -41,7 +41,7 @@
       "axis": "+X boom local",
       "authority": "reconstructed",
       "source_ids": ["LIEBHERR-LTM1100-5.3-TECH-DATA"],
-      "published_constraints": ["12.9/13 m retracted identity", "62 m maximum boom identity"],
+      "published_constraints": ["13 m retracted identity", "62 m maximum boom identity", "one base plus five telescopic sections"],
       "unresolved": ["section count authority, section lengths, overlap, synchronization, pinning, and Telematik staging"]
     },
     {
@@ -94,5 +94,5 @@
     "self_collision",
     "public_glb_contract"
   ],
-  "release_state": "no_geometry_no_solver_no_claim"
+  "release_state": "technical_structural_study_built_solver_unverified"
 }

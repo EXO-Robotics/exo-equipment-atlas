@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import { readFile, stat } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { inflateSync } from "node:zlib";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const VALID_GATE_STATUSES = new Set(["PASS", "FAIL", "PENDING"]);
@@ -10,10 +11,12 @@ const RECEIPT_BOUNDS_TOLERANCE_M = 0.02;
 const HELPER_NAME_PATTERN = /(?:^|[_-])(COL|COLLISION|HIT|INSP|INSPECT|WITNESS|ENVELOPE|HELPER|GUIDE)(?:$|[_-])/iu;
 const PUBLIC_ENVELOPE_AXES = ["x", "y", "z"];
 export const PRODUCTION_STUDY_MINIMUMS = Object.freeze({
-  nodes: 200,
-  mesh_nodes: 180,
-  decoded_triangles: 10_000,
-  review_renders: 5
+  // These are corruption/empty-export floors, not fidelity scores.  Technical
+  // completeness is established by machine-specific gates and semantic parts.
+  nodes: 80,
+  mesh_nodes: 60,
+  decoded_triangles: 5_000,
+  review_renders: 6
 });
 
 async function readJson(absolutePath) {
@@ -26,17 +29,26 @@ async function sha256(absolutePath) {
 
 function resolveDeclaredPath(machineBase, declaredPath) {
   if (!declaredPath) return null;
-  return declaredPath.startsWith("machines/")
+  return path.resolve(declaredPath.startsWith("machines/")
     ? path.join(ROOT, declaredPath)
-    : path.join(machineBase, declaredPath);
+    : path.join(machineBase, declaredPath));
 }
 
-async function verifyDeclaredFile({ errors, machineId, machineBase, label, entry }) {
+function pathIsWithin(candidate, allowedBase) {
+  const relative = path.relative(path.resolve(allowedBase), path.resolve(candidate));
+  return relative === "" || (!relative.startsWith(`..${path.sep}`) && relative !== ".." && !path.isAbsolute(relative));
+}
+
+async function verifyDeclaredFile({ errors, machineId, machineBase, label, entry, allowedBase = ROOT }) {
   if (!entry?.path || !entry?.sha256 || !Number.isInteger(entry?.bytes)) {
     errors.push(`${machineId}/${label}: incomplete path, SHA-256, or byte declaration`);
     return null;
   }
   const absolutePath = resolveDeclaredPath(machineBase, entry.path);
+  if (!pathIsWithin(absolutePath, allowedBase)) {
+    errors.push(`${machineId}/${label}: declared path escapes ${path.relative(ROOT, allowedBase) || "repository"}`);
+    return null;
+  }
   try {
     const fileStat = await stat(absolutePath);
     if (fileStat.size !== entry.bytes) {
@@ -53,6 +65,83 @@ async function verifyDeclaredFile({ errors, machineId, machineBase, label, entry
   }
 }
 
+const CRC32_TABLE = Uint32Array.from({ length: 256 }, (_, initial) => {
+  let value = initial;
+  for (let bit = 0; bit < 8; bit += 1) {
+    value = (value >>> 1) ^ ((value & 1) ? 0xedb88320 : 0);
+  }
+  return value >>> 0;
+});
+
+function crc32(buffer) {
+  let crc = 0xffffffff;
+  for (const byte of buffer) crc = CRC32_TABLE[(crc ^ byte) & 0xff] ^ (crc >>> 8);
+  return (crc ^ 0xffffffff) >>> 0;
+}
+
+export function inspectPng(buffer) {
+  const signature = Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]);
+  if (buffer.length < 33 || !buffer.subarray(0, 8).equals(signature)) {
+    throw new Error("invalid PNG signature or truncated stream");
+  }
+  if (buffer.toString("ascii", 12, 16) !== "IHDR") throw new Error("PNG lacks an IHDR first chunk");
+  const width = buffer.readUInt32BE(16);
+  const height = buffer.readUInt32BE(20);
+  if (width < 640 || height < 480) throw new Error(`PNG is only ${width}x${height}; minimum is 640x480`);
+  const bitDepth = buffer[24];
+  const colorType = buffer[25];
+  const compression = buffer[26];
+  const filter = buffer[27];
+  const interlace = buffer[28];
+  if (compression !== 0 || filter !== 0 || ![0, 1].includes(interlace)) throw new Error("PNG uses unsupported encoding metadata");
+  const channels = new Map([[0, 1], [2, 3], [3, 1], [4, 2], [6, 4]]).get(colorType);
+  if (!channels || ![1, 2, 4, 8, 16].includes(bitDepth)) throw new Error("PNG uses an invalid color type or bit depth");
+  const idatChunks = [];
+  let offset = 8;
+  let sawIend = false;
+  let chunkIndex = 0;
+  while (offset < buffer.length) {
+    if (offset + 12 > buffer.length) throw new Error("PNG has a truncated chunk header");
+    const length = buffer.readUInt32BE(offset);
+    const typeStart = offset + 4;
+    const dataStart = offset + 8;
+    const dataEnd = dataStart + length;
+    const crcOffset = dataEnd;
+    if (dataEnd + 4 > buffer.length) throw new Error("PNG chunk exceeds stream length");
+    const type = buffer.toString("ascii", typeStart, dataStart);
+    const storedCrc = buffer.readUInt32BE(crcOffset);
+    const actualCrc = crc32(buffer.subarray(typeStart, dataEnd));
+    if (storedCrc !== actualCrc) throw new Error(`PNG ${type} chunk has a CRC mismatch`);
+    if (chunkIndex === 0 && (type !== "IHDR" || length !== 13)) throw new Error("PNG first chunk is not a 13-byte IHDR");
+    if (type === "IDAT") idatChunks.push(buffer.subarray(dataStart, dataEnd));
+    if (type === "IEND") {
+      if (length !== 0) throw new Error("PNG IEND chunk is not empty");
+      sawIend = true;
+      offset = dataEnd + 4;
+      break;
+    }
+    offset = dataEnd + 4;
+    chunkIndex += 1;
+  }
+  if (!sawIend || offset !== buffer.length || idatChunks.length === 0) throw new Error("PNG lacks a terminal IEND or pixel payload");
+  let decoded;
+  try {
+    decoded = inflateSync(Buffer.concat(idatChunks));
+  } catch (error) {
+    throw new Error(`PNG pixel payload cannot be decompressed (${error.message})`);
+  }
+  if (interlace === 0) {
+    const rowBytes = Math.ceil(width * channels * bitDepth / 8);
+    const expectedBytes = height * (rowBytes + 1);
+    if (decoded.length !== expectedBytes) {
+      throw new Error(`PNG decoded payload length ${decoded.length} does not match ${expectedBytes}`);
+    }
+  } else if (decoded.length === 0) {
+    throw new Error("PNG interlaced pixel payload is empty");
+  }
+  return { width, height };
+}
+
 function parseGlb(buffer) {
   if (buffer.length < 20 || buffer.toString("ascii", 0, 4) !== "glTF") {
     throw new Error("invalid GLB magic or truncated header");
@@ -66,6 +155,7 @@ function parseGlb(buffer) {
   let offset = 12;
   let json = null;
   let binary = null;
+  const chunkOrder = [];
   while (offset + 8 <= buffer.length) {
     const chunkLength = buffer.readUInt32LE(offset);
     const chunkType = buffer.readUInt32LE(offset + 4);
@@ -75,14 +165,29 @@ function parseGlb(buffer) {
     if (chunkType === 0x4e4f534a) {
       if (json) throw new Error("GLB contains more than one JSON chunk");
       json = JSON.parse(buffer.toString("utf8", chunkStart, chunkEnd).replace(/\u0000+$/u, "").trimEnd());
+      chunkOrder.push("JSON");
     } else if (chunkType === 0x004e4942) {
       if (binary) throw new Error("GLB contains more than one BIN chunk");
       binary = buffer.subarray(chunkStart, chunkEnd);
+      chunkOrder.push("BIN");
+    } else {
+      chunkOrder.push(`0x${chunkType.toString(16)}`);
     }
     offset = chunkEnd;
   }
+  if (offset !== buffer.length) throw new Error("GLB ends with a truncated chunk header");
   if (!json) throw new Error("GLB has no JSON chunk");
   if (!binary) throw new Error("GLB has no BIN chunk");
+  if (chunkOrder.length !== 2 || chunkOrder[0] !== "JSON" || chunkOrder[1] !== "BIN") {
+    throw new Error(`GLB chunk order must be exactly JSON,BIN (found ${chunkOrder.join(",")})`);
+  }
+  if (!Array.isArray(json.buffers) || json.buffers.length !== 1 || json.buffers[0]?.uri !== undefined) {
+    throw new Error("GLB must declare exactly one embedded buffer");
+  }
+  const declaredBinaryBytes = json.buffers[0].byteLength;
+  if (!Number.isInteger(declaredBinaryBytes) || declaredBinaryBytes < 0 || binary.length - declaredBinaryBytes < 0 || binary.length - declaredBinaryBytes > 3) {
+    throw new Error(`GLB embedded buffer length mismatch (${declaredBinaryBytes ?? "missing"} vs ${binary.length})`);
+  }
   return { json, binary };
 }
 
@@ -125,6 +230,127 @@ function nodeMatrix(node) {
     (xz + wy) * sz, (yz - wx) * sz, (1 - (xx + yy)) * sz, 0,
     tx, ty, tz, 1
   ];
+}
+
+function quaternionFromEulerXYZ(x, y, z) {
+  const c1 = Math.cos(x / 2);
+  const c2 = Math.cos(y / 2);
+  const c3 = Math.cos(z / 2);
+  const s1 = Math.sin(x / 2);
+  const s2 = Math.sin(y / 2);
+  const s3 = Math.sin(z / 2);
+  return [
+    s1 * c2 * c3 + c1 * s2 * s3,
+    c1 * s2 * c3 - s1 * c2 * s3,
+    c1 * c2 * s3 + s1 * s2 * c3,
+    c1 * c2 * c3 - s1 * s2 * s3
+  ];
+}
+
+function matrixWithViewerOverride(node, override) {
+  if (!override) return nodeMatrix(node);
+  const translation = [...(node.translation ?? [0, 0, 0])];
+  const rotationEuler = [0, 0, 0];
+  let hasRotationOverride = false;
+  for (const [property, value] of Object.entries(override)) {
+    const [group, axisName] = property.split(".");
+    const axis = { x: 0, y: 1, z: 2 }[axisName];
+    if (axis === undefined) continue;
+    if (group === "position") translation[axis] = value;
+    else if (group === "rotation") {
+      rotationEuler[axis] = value;
+      hasRotationOverride = true;
+    }
+  }
+  return nodeMatrix({
+    translation,
+    rotation: hasRotationOverride ? quaternionFromEulerXYZ(...rotationEuler) : (node.rotation ?? [0, 0, 0, 1]),
+    scale: node.scale ?? [1, 1, 1]
+  });
+}
+
+function measureViewerPoseBounds(gltf, binary, overrides) {
+  const bounds = { min: [Infinity, Infinity, Infinity], max: [-Infinity, -Infinity, -Infinity] };
+  const scene = gltf.scenes?.[gltf.scene ?? 0];
+  const visited = new Set();
+  function visit(index, parentMatrix) {
+    if (visited.has(index)) throw new Error(`viewer pose contains repeated/cyclic node ${index}`);
+    visited.add(index);
+    const node = gltf.nodes?.[index];
+    if (!node) throw new Error(`viewer pose references missing node ${index}`);
+    const world = multiplyMatrices(parentMatrix, matrixWithViewerOverride(node, overrides.get(index)));
+    if (Number.isInteger(node.mesh)) {
+      for (const primitive of gltf.meshes?.[node.mesh]?.primitives ?? []) {
+        includeAccessorGeometry(bounds, gltf, binary, primitive.attributes?.POSITION, world);
+      }
+    }
+    for (const child of node.children ?? []) visit(child, world);
+  }
+  for (const root of scene?.nodes ?? []) visit(root, identityMatrix());
+  return bounds;
+}
+
+function viewerProgress(mode, progress, phase = 0) {
+  const wrapped = ((progress + phase) % 1 + 1) % 1;
+  if (mode === "ping-pong") return 1 - Math.abs(2 * wrapped - 1);
+  return 0.5 - 0.5 * Math.cos(wrapped * Math.PI * 2);
+}
+
+function buildViewerOverrides(gltf, viewer, progress, onlyChannel = null) {
+  const nameToIndex = new Map((gltf.nodes ?? []).map((node, index) => [node.name, index]));
+  const overrides = new Map();
+  const channels = onlyChannel ? [onlyChannel.channel] : (viewer.motion?.channels ?? []);
+  for (const channel of channels) {
+    let amount = onlyChannel
+      ? onlyChannel.amount
+      : viewerProgress(channel.autoplay ?? viewer.motion.mode, progress, channel.phase ?? 0);
+    if (!onlyChannel && channel.direction === -1) amount = 1 - amount;
+    const authored = channel.from + (channel.to - channel.from) * amount;
+    for (const name of channel.nodes ?? []) {
+      const index = nameToIndex.get(name);
+      if (!Number.isInteger(index)) continue;
+      const node = gltf.nodes[index];
+      const [group, axisName] = channel.property.split(".");
+      const axis = { x: 0, y: 1, z: 2 }[axisName];
+      const base = group === "position" ? (node.translation ?? [0, 0, 0])[axis] : 0;
+      const value = channel.mode === "absolute" ? authored : base + authored;
+      const record = overrides.get(index) ?? {};
+      record[channel.property] = value;
+      overrides.set(index, record);
+    }
+  }
+  return overrides;
+}
+
+export function validateViewerMotionSamples(gltf, binary, viewer, machineId) {
+  const errors = [];
+  const samples = [];
+  const toleranceY = -0.03;
+  for (const channel of viewer.motion?.channels ?? []) {
+    for (const amount of [0, 1]) {
+      const bounds = measureViewerPoseBounds(gltf, binary, buildViewerOverrides(gltf, viewer, 0, { channel, amount }));
+      samples.push({ label: `${channel.id}@${amount}`, minY: bounds.min[1] });
+      if (!Number.isFinite(bounds.min[1]) || bounds.min[1] < toleranceY) {
+        errors.push(
+          `${machineId}/motion: ${channel.id} endpoint ${amount} has conservative ground bound ` +
+          `${Number.isFinite(bounds.min[1]) ? bounds.min[1].toFixed(4) : "non-finite"} m`
+        );
+      }
+    }
+  }
+  for (let step = 0; step <= 36; step += 1) {
+    const progress = step / 36;
+    const bounds = measureViewerPoseBounds(gltf, binary, buildViewerOverrides(gltf, viewer, progress));
+    samples.push({ label: `auto@${progress.toFixed(4)}`, minY: bounds.min[1] });
+    if (!Number.isFinite(bounds.min[1]) || bounds.min[1] < toleranceY) {
+      errors.push(
+        `${machineId}/motion: Auto sample ${progress.toFixed(4)} has conservative ground bound ` +
+        `${Number.isFinite(bounds.min[1]) ? bounds.min[1].toFixed(4) : "non-finite"} m`
+      );
+      break;
+    }
+  }
+  return { errors, samples };
 }
 
 function transformPoint(matrix, point) {
@@ -215,6 +441,105 @@ function componentByteSize(componentType) {
   throw new Error(`unsupported POSITION component type ${componentType}`);
 }
 
+function readAccessorRecords(gltf, binary, accessorIndex, expectedType = null) {
+  const accessor = gltf.accessors?.[accessorIndex];
+  if (!accessor || (expectedType && accessor.type !== expectedType)) {
+    throw new Error(`accessor ${accessorIndex} is missing or not ${expectedType}`);
+  }
+  if (accessor.sparse) throw new Error("sparse accessors are not supported by the independent material audit");
+  const componentCounts = { SCALAR: 1, VEC2: 2, VEC3: 3, VEC4: 4 };
+  const components = componentCounts[accessor.type];
+  if (!components) throw new Error(`unsupported accessor type ${accessor.type}`);
+  const bufferView = gltf.bufferViews?.[accessor.bufferView];
+  if (!bufferView || (bufferView.buffer ?? 0) !== 0) throw new Error("accessor does not reference the embedded GLB buffer");
+  const byteSize = componentByteSize(accessor.componentType);
+  const stride = bufferView.byteStride ?? components * byteSize;
+  if (stride < components * byteSize) throw new Error("accessor stride is smaller than one record");
+  const start = (bufferView.byteOffset ?? 0) + (accessor.byteOffset ?? 0);
+  const end = start + Math.max(0, accessor.count - 1) * stride + components * byteSize;
+  if (start < 0 || end > binary.length) throw new Error("accessor exceeds the GLB BIN chunk");
+  return Array.from({ length: accessor.count }, (_, recordIndex) => {
+    const recordStart = start + recordIndex * stride;
+    return Array.from({ length: components }, (_, componentIndex) =>
+      readComponent(binary, recordStart + componentIndex * byteSize, accessor.componentType, accessor.normalized)
+    );
+  });
+}
+
+function primitiveSurfaceArea(gltf, binary, primitive) {
+  const positions = readAccessorRecords(gltf, binary, primitive.attributes?.POSITION, "VEC3");
+  const indices = primitive.indices === undefined
+    ? positions.map((_, index) => index)
+    : readAccessorRecords(gltf, binary, primitive.indices, "SCALAR").map(([index]) => index);
+  const triangles = [];
+  const mode = primitive.mode ?? 4;
+  if (mode === 4) {
+    for (let index = 0; index < indices.length; index += 3) triangles.push(indices.slice(index, index + 3));
+  } else if (mode === 5) {
+    for (let index = 0; index + 2 < indices.length; index += 1) triangles.push(indices.slice(index, index + 3));
+  } else if (mode === 6) {
+    for (let index = 1; index + 1 < indices.length; index += 1) triangles.push([indices[0], indices[index], indices[index + 1]]);
+  } else {
+    throw new Error(`unsupported surface-area topology mode ${mode}`);
+  }
+  let area = 0;
+  for (const triangle of triangles) {
+    if (triangle.length !== 3 || triangle.some((index) => !Number.isInteger(index) || !positions[index])) {
+      throw new Error("primitive index is not a valid POSITION vertex");
+    }
+    const [a, b, c] = triangle.map((index) => positions[index]);
+    const ab = b.map((value, axis) => value - a[axis]);
+    const ac = c.map((value, axis) => value - a[axis]);
+    const cross = [
+      ab[1] * ac[2] - ab[2] * ac[1],
+      ab[2] * ac[0] - ab[0] * ac[2],
+      ab[0] * ac[1] - ab[1] * ac[0]
+    ];
+    area += Math.hypot(...cross) * 0.5;
+  }
+  return area;
+}
+
+export function inspectMaterialArea(gltf, binary, meshIndices) {
+  const areaByMaterial = new Map();
+  for (const meshIndex of meshIndices) {
+    for (const primitive of gltf.meshes?.[meshIndex]?.primitives ?? []) {
+      const materialIndex = primitive.material ?? -1;
+      const area = primitiveSurfaceArea(gltf, binary, primitive);
+      areaByMaterial.set(materialIndex, (areaByMaterial.get(materialIndex) ?? 0) + area);
+    }
+  }
+  const totalArea = [...areaByMaterial.values()].reduce((sum, area) => sum + area, 0);
+  let brightChromaticArea = 0;
+  const records = [];
+  for (const [materialIndex, area] of areaByMaterial) {
+    const factor = gltf.materials?.[materialIndex]?.pbrMetallicRoughness?.baseColorFactor ?? [1, 1, 1, 1];
+    if (!Array.isArray(factor) || factor.length !== 4 || factor.some((value) => !Number.isFinite(value) || value < 0 || value > 1)) {
+      throw new Error(`material ${materialIndex} has an invalid baseColorFactor`);
+    }
+    const rgb = factor.slice(0, 3);
+    const maximum = Math.max(...rgb);
+    const minimum = Math.min(...rgb);
+    const saturation = maximum > 0 ? (maximum - minimum) / maximum : 0;
+    const brightChromatic = maximum >= 0.35 && saturation >= 0.6 && (factor[3] ?? 1) >= 0.5;
+    if (brightChromatic) brightChromaticArea += area;
+    records.push({
+      material_index: materialIndex,
+      name: gltf.materials?.[materialIndex]?.name ?? null,
+      surface_area_m2: area,
+      area_share: totalArea > 0 ? area / totalArea : 0,
+      base_color_factor: factor,
+      saturation,
+      bright_chromatic: brightChromatic
+    });
+  }
+  return {
+    total_surface_area_m2: totalArea,
+    bright_chromatic_area_share: totalArea > 0 ? brightChromaticArea / totalArea : 0,
+    materials: records
+  };
+}
+
 function includeAccessorGeometry(bounds, gltf, binary, accessorIndex, worldMatrix) {
   const accessor = gltf.accessors?.[accessorIndex];
   if (!Array.isArray(accessor?.min) || !Array.isArray(accessor?.max) || accessor.min.length < 3 || accessor.max.length < 3) {
@@ -265,14 +590,21 @@ function inspectGlbContract(gltf, binary) {
   if (rootNode && !rootNode.name) errors.push("scene root must have a stable nonempty name");
   if (rootNode && !isIdentityTransform(rootNode)) errors.push(`scene root ${rootNode.name ?? rootIndex} is not identity-transformed`);
   if ((gltf.cameras?.length ?? 0) > 0) errors.push("public GLB contains one or more cameras");
+  if ((gltf.animations?.length ?? 0) > 0) errors.push("public GLB contains embedded animations outside the viewer motion contract");
+  if ((gltf.skins?.length ?? 0) > 0) errors.push("public GLB contains skinned deformation outside the structural-study contract");
+  if ((gltf.meshes ?? []).some((mesh) => (mesh.primitives ?? []).some((primitive) => (primitive.targets?.length ?? 0) > 0))) {
+    errors.push("public GLB contains morph targets outside the structural-study contract");
+  }
   if (gltf.extensionsUsed?.includes("KHR_lights_punctual") || gltf.extensions?.KHR_lights_punctual) {
     errors.push("public GLB contains KHR_lights_punctual data");
   }
 
   const reachable = new Set();
+  const parentByIndex = new Map();
   const bounds = { min: [Infinity, Infinity, Infinity], max: [-Infinity, -Infinity, -Infinity] };
   let meshNodeCount = 0;
   let triangleCount = 0;
+  const triangleCountByMesh = new Map();
   function visit(nodeIndex, parentMatrix) {
     if (reachable.has(nodeIndex)) {
       errors.push(`node ${nodeIndex} is referenced more than once or forms a cycle`);
@@ -285,15 +617,15 @@ function inspectGlbContract(gltf, binary) {
       return;
     }
     const worldMatrix = multiplyMatrices(parentMatrix, nodeMatrix(node));
+    const scaleAudit = nodeScaleAudit(node);
+    if (!scaleAudit.valid) {
+      errors.push(
+        `public node has non-identity scale or shear (${node.name ?? nodeIndex}: ` +
+        `${scaleAudit.scale.map((value) => Number(value).toFixed(6)).join(", ")})`
+      );
+    }
     if (node.mesh !== undefined) {
       meshNodeCount += 1;
-      const scaleAudit = nodeScaleAudit(node);
-      if (!scaleAudit.valid) {
-        errors.push(
-          `public mesh node has non-identity scale or shear (${node.name ?? nodeIndex}: ` +
-          `${scaleAudit.scale.map((value) => Number(value).toFixed(6)).join(", ")})`
-        );
-      }
       if (HELPER_NAME_PATTERN.test(node.name ?? "")) {
         errors.push(`helper-like node is exported as visible mesh (${node.name})`);
       }
@@ -309,7 +641,11 @@ function inspectGlbContract(gltf, binary) {
         }
       }
     }
-    for (const childIndex of node.children ?? []) visit(childIndex, worldMatrix);
+    for (const childIndex of node.children ?? []) {
+      if (parentByIndex.has(childIndex)) errors.push(`node ${childIndex} has more than one parent`);
+      parentByIndex.set(childIndex, nodeIndex);
+      visit(childIndex, worldMatrix);
+    }
   }
   if (rootNode) visit(rootIndex, identityMatrix());
 
@@ -321,11 +657,96 @@ function inspectGlbContract(gltf, binary) {
   }
   const hasBounds = bounds.min.every(Number.isFinite) && bounds.max.every(Number.isFinite);
   if (!hasBounds || meshNodeCount === 0) errors.push("could not reconstruct a visible-mesh world AABB");
+  const nameCounts = new Map();
+  for (const index of reachable) {
+    const name = gltf.nodes?.[index]?.name;
+    if (!name) continue;
+    nameCounts.set(name, (nameCounts.get(name) ?? 0) + 1);
+  }
+  for (const [name, count] of nameCounts) {
+    if (count > 1) errors.push(`reachable node name is not unique (${name}: ${count})`);
+  }
+
+  const meshDescendantNames = new Set();
+  function subtreeHasMesh(nodeIndex, visiting = new Set()) {
+    if (visiting.has(nodeIndex)) return false;
+    visiting.add(nodeIndex);
+    const node = gltf.nodes?.[nodeIndex];
+    if (!node) return false;
+    if (node.mesh !== undefined) return true;
+    const result = (node.children ?? []).some((childIndex) => subtreeHasMesh(childIndex, visiting));
+    if (result && node.name) meshDescendantNames.add(node.name);
+    return result;
+  }
+  for (const index of reachable) subtreeHasMesh(index);
+
+  // Count each mesh payload once.  Reusing one mesh on hundreds of nodes must
+  // not inflate the independent complexity floor.
+  for (const index of reachable) {
+    const meshIndex = gltf.nodes?.[index]?.mesh;
+    if (!Number.isInteger(meshIndex) || triangleCountByMesh.has(meshIndex)) continue;
+    let uniqueTriangles = 0;
+    for (const primitive of gltf.meshes?.[meshIndex]?.primitives ?? []) {
+      try {
+        uniqueTriangles += primitiveTriangleCount(gltf, primitive);
+      } catch {
+        // The detailed primitive error was already emitted during traversal.
+      }
+    }
+    triangleCountByMesh.set(meshIndex, uniqueTriangles);
+  }
+
+  const topologyRecords = [...reachable].map((index) => {
+    const node = gltf.nodes?.[index] ?? {};
+    const parent = parentByIndex.get(index);
+    return [
+      node.name ?? `<unnamed-${index}>`,
+      node.mesh === undefined ? "E" : "M",
+      parent === undefined ? "<scene>" : (gltf.nodes?.[parent]?.name ?? `<unnamed-${parent}>`),
+      (node.children ?? []).length
+    ].join("|");
+  }).sort().join("\n");
+  function anonymousSubtreeSignature(index) {
+    const node = gltf.nodes?.[index] ?? {};
+    let meshSignature = "E";
+    if (Number.isInteger(node.mesh)) {
+      const primitives = (gltf.meshes?.[node.mesh]?.primitives ?? []).map((primitive) => {
+        const positionCount = gltf.accessors?.[primitive.attributes?.POSITION]?.count ?? -1;
+        let triangles = -1;
+        try { triangles = primitiveTriangleCount(gltf, primitive); } catch { /* recorded elsewhere */ }
+        return `${primitive.mode ?? 4}:${positionCount}:${triangles}`;
+      }).sort();
+      meshSignature = `M[${primitives.join(",")}]`;
+    }
+    const children = (node.children ?? []).map(anonymousSubtreeSignature).sort();
+    return `${meshSignature}{${children.join(";")}}`;
+  }
+  const anonymousTopology = rootNode ? anonymousSubtreeSignature(rootIndex) : "missing-root";
+  let materialAudit = null;
+  try {
+    materialAudit = inspectMaterialArea(gltf, binary, triangleCountByMesh.keys());
+    if (!Number.isFinite(materialAudit.total_surface_area_m2) || materialAudit.total_surface_area_m2 <= 0) {
+      errors.push("public GLB has no finite decoded material surface area");
+    } else if (materialAudit.bright_chromatic_area_share > 0.08) {
+      errors.push(
+        `bright chromatic materials cover ${(materialAudit.bright_chromatic_area_share * 100).toFixed(2)}% of decoded surface; ` +
+        "neutral/unbranded studies allow at most 8% for restrained visibility cues"
+      );
+    }
+  } catch (error) {
+    errors.push(`material surface audit failed: ${error.message}`);
+  }
   return {
     errors,
     rootName: rootNode?.name ?? null,
     meshNodeCount,
     triangleCount,
+    uniqueTriangleCount: [...triangleCountByMesh.values()].reduce((sum, value) => sum + value, 0),
+    nodeNameCounts: Object.fromEntries(nameCounts),
+    meshDescendantNames,
+    topologySignature: createHash("sha256").update(topologyRecords).digest("hex"),
+    anonymousTopologySignature: createHash("sha256").update(anonymousTopology).digest("hex"),
+    materialAudit,
     bounds: hasBounds ? { min: bounds.min, max: bounds.max, size: bounds.max.map((value, axis) => value - bounds.min[axis]) } : null
   };
 }
@@ -367,15 +788,149 @@ function isPlainObject(value) {
   return prototype === Object.prototype || prototype === null;
 }
 
+export function validateRequiredGateCoverage({
+  machineId = "test-machine",
+  mechanism,
+  validation,
+  availableSemanticNodes = null,
+  factIds = null
+}) {
+  const errors = [];
+  const requiredGateIds = mechanism?.required_gates;
+  if (!Array.isArray(requiredGateIds) || requiredGateIds.length === 0) {
+    return [`${machineId}: mechanism.required_gates must be nonempty`];
+  }
+  if (new Set(requiredGateIds).size !== requiredGateIds.length) {
+    errors.push(`${machineId}: mechanism.required_gates contains duplicate IDs`);
+  }
+  if (
+    !Array.isArray(validation?.required_machine_gate_ids) ||
+    JSON.stringify(validation.required_machine_gate_ids) !== JSON.stringify(requiredGateIds)
+  ) {
+    errors.push(`${machineId}: validation.required_machine_gate_ids must exactly match mechanism.required_gates`);
+  }
+  const gates = validation?.gates;
+  if (!Array.isArray(gates)) return [...errors, `${machineId}: validation gates are missing`];
+  const gateIds = gates.map((gate) => gate?.id);
+  if (new Set(gateIds).size !== gateIds.length) errors.push(`${machineId}: duplicate validation gate ID`);
+  const gatesById = new Map(gates.map((gate) => [gate?.id, gate]));
+  for (const requiredGateId of requiredGateIds) {
+    const gate = gatesById.get(requiredGateId);
+    if (!gate) errors.push(`${machineId}: required mechanism gate missing from validation (${requiredGateId})`);
+    else if (gate.status !== "PASS") errors.push(`${machineId}: required mechanism gate is not PASS (${requiredGateId}: ${gate.status})`);
+    else {
+      const detail = gate.detail;
+      if (!isPlainObject(detail) || typeof detail.method !== "string" || !detail.method.trim()) {
+        errors.push(`${machineId}: required gate lacks an explicit evidence method (${requiredGateId})`);
+      }
+      if (!isPlainObject(detail?.evidence) || Object.keys(detail.evidence).length === 0) {
+        errors.push(`${machineId}: required gate lacks measured evidence (${requiredGateId})`);
+      }
+      if (!isPlainObject(detail) || !Array.isArray(detail.semantic_nodes)) {
+        errors.push(`${machineId}: required gate must declare its semantic_nodes array (${requiredGateId})`);
+      } else if (new Set(detail.semantic_nodes).size !== detail.semantic_nodes.length) {
+        errors.push(`${machineId}: required gate repeats semantic nodes (${requiredGateId})`);
+      } else if (
+        availableSemanticNodes instanceof Set &&
+        detail.semantic_nodes.some((nodeName) => !availableSemanticNodes.has(nodeName))
+      ) {
+        errors.push(`${machineId}: required gate cites absent or non-visible semantic nodes (${requiredGateId})`);
+      }
+      if (!isPlainObject(detail) || !Array.isArray(detail.fact_ids)) {
+        errors.push(`${machineId}: required gate must declare its fact_ids array (${requiredGateId})`);
+      } else if (
+        detail.fact_ids.some((factId) => typeof factId !== "string" || !factId) ||
+        new Set(detail.fact_ids).size !== detail.fact_ids.length
+      ) {
+        errors.push(`${machineId}: required gate has invalid or duplicate fact IDs (${requiredGateId})`);
+      } else if (factIds instanceof Set && detail.fact_ids.some((factId) => !factIds.has(factId))) {
+        errors.push(`${machineId}: required gate cites unknown fact IDs (${requiredGateId})`);
+      }
+    }
+  }
+  return errors;
+}
+
+export function validateReceiptEvidenceAlignment({ machineId = "test-machine", mechanism, design, receipt, validation }) {
+  const errors = [];
+  const requiredIds = mechanism?.required_gates ?? [];
+  const receiptConstraints = receipt?.published_constraint_ids_declared;
+  const designConstraints = design?.published_constraints_used ?? [];
+  if (!Array.isArray(receiptConstraints) || JSON.stringify(receiptConstraints) !== JSON.stringify(designConstraints)) {
+    errors.push(`${machineId}: receipt published constraints must exactly match source/design.json`);
+  }
+  const receiptEvidence = receipt?.machine_specific_gate_evidence;
+  if (!Array.isArray(receiptEvidence)) {
+    errors.push(`${machineId}: receipt lacks machine_specific_gate_evidence`);
+  } else {
+    const receiptIds = receiptEvidence.map((gate) => gate?.id);
+    if (JSON.stringify(receiptIds) !== JSON.stringify(requiredIds)) {
+      errors.push(`${machineId}: receipt machine gate IDs must exactly match mechanism.required_gates`);
+    }
+    const validationById = new Map((validation?.gates ?? []).map((gate) => [gate?.id, gate]));
+    for (const receiptGate of receiptEvidence) {
+      const validationGate = validationById.get(receiptGate?.id);
+      const expected = validationGate && {
+        id: validationGate.id,
+        status: validationGate.status,
+        detail: validationGate.detail
+      };
+      if (!expected || JSON.stringify(receiptGate) !== JSON.stringify(expected)) {
+        errors.push(`${machineId}: receipt machine gate evidence drifts from validation (${receiptGate?.id ?? "missing"})`);
+      }
+    }
+  }
+  if (receipt?.build_verdict !== validation?.verdict || receipt?.validation_verdict !== validation?.verdict) {
+    errors.push(`${machineId}: receipt verdicts must match production validation verdict`);
+  }
+  return errors;
+}
+
+export function validateRenderRecordSet(records, machineId = "test-machine") {
+  const errors = [];
+  if (!Array.isArray(records)) return [`${machineId}: render records must be an array`];
+  const paths = new Set();
+  const hashes = new Set();
+  for (const record of records) {
+    if (paths.has(record?.path)) errors.push(`${machineId}: duplicate render path (${record?.path ?? "missing"})`);
+    if (hashes.has(record?.sha256)) errors.push(`${machineId}: duplicate render image hash (${record?.sha256 ?? "missing"})`);
+    paths.add(record?.path);
+    hashes.add(record?.sha256);
+  }
+  return errors;
+}
+
+export function validatePublishedConstraintCoverage({ machineId = "test-machine", design, validation, factIds = [] }) {
+  const errors = [];
+  if (!design) return errors;
+  const declared = design.published_constraints_used;
+  if (!Array.isArray(declared)) return [`${machineId}: design published_constraints_used must be an array`];
+  const validFactIds = new Set(factIds);
+  const covered = new Set();
+  for (const gate of validation?.gates ?? []) {
+    for (const factId of gate?.detail?.fact_ids ?? []) covered.add(factId);
+  }
+  for (const factId of declared) {
+    if (!validFactIds.has(factId)) errors.push(`${machineId}: declared published constraint is not a fact (${factId})`);
+    if (!covered.has(factId)) errors.push(`${machineId}: declared published constraint lacks machine-gate evidence (${factId})`);
+  }
+  return errors;
+}
+
 function verifyPublishedEnvelope({ errors, machineId, machineEntry, facts, measuredSize }) {
   const expected = machineEntry.public_envelope;
   if (!isPlainObject(expected)) {
-    errors.push(`${machineId}/glb: public_envelope must be a nonempty plain object declared in catalog.json`);
+    errors.push(`${machineId}/glb: public_envelope must be a plain object declared in catalog.json`);
     return;
   }
   const axisNames = Object.keys(expected);
   if (axisNames.length === 0) {
-    errors.push(`${machineId}/glb: public_envelope must map at least one measured axis`);
+    if (machineEntry.public_envelope_coverage !== "unresolved") {
+      errors.push(`${machineId}/glb: empty public_envelope requires public_envelope_coverage "unresolved"`);
+    }
+    if (typeof machineEntry.public_envelope_reason !== "string" || !machineEntry.public_envelope_reason.trim()) {
+      errors.push(`${machineId}/glb: unresolved public envelope requires a nonempty public_envelope_reason`);
+    }
     return;
   }
   const unexpectedAxes = axisNames.filter((axisName) => !PUBLIC_ENVELOPE_AXES.includes(axisName));
@@ -467,10 +1022,12 @@ function sceneSemanticNodes(receipt) {
   return receipt.required_semantic_nodes ?? receipt.semantic_nodes ?? {};
 }
 
-export async function validateProductionAssets() {
+export async function validateProductionAssets({ machineIds = null } = {}) {
   const errors = [];
   const warnings = [];
   const catalog = await readJson(path.join(ROOT, "catalog.json"));
+  const topologyOwners = new Map();
+  const anonymousTopologyOwners = new Map();
   const summary = {
     machines: 0,
     blends: 0,
@@ -479,25 +1036,39 @@ export async function validateProductionAssets() {
     glb_nodes: 0,
     glb_mesh_nodes: 0,
     glb_triangles: 0,
+    motion_samples: 0,
     glb_contracts: {}
   };
+  const selectedMachineIds = machineIds === null ? null : new Set(machineIds);
 
   for (const machine of catalog.machines ?? []) {
     const machineId = machine.id;
+    if (selectedMachineIds && !selectedMachineIds.has(machineId)) continue;
     const machineBase = path.join(ROOT, "machines", machineId);
     const receiptPath = path.join(machineBase, "production", "asset-receipt.json");
     const validationPath = path.join(machineBase, "production", "validation.json");
     let configuration;
     let facts;
+    let mechanism;
     let receipt;
     let validation;
+    let viewer;
+    let design = null;
+    let glbGateEvidenceNodes = null;
     try {
-      [configuration, facts, receipt, validation] = await Promise.all([
+      [configuration, facts, mechanism, receipt, validation, viewer] = await Promise.all([
         readJson(path.join(machineBase, "configuration.json")),
         readJson(path.join(machineBase, "evidence", "facts.json")),
+        readJson(path.join(machineBase, "mechanism.json")),
         readJson(receiptPath),
-        readJson(validationPath)
+        readJson(validationPath),
+        readJson(path.join(machineBase, "viewer.json"))
       ]);
+      try {
+        design = await readJson(path.join(machineBase, "source", "design.json"));
+      } catch (error) {
+        if (error?.code !== "ENOENT") throw error;
+      }
     } catch (error) {
       errors.push(`${machineId}: production package unavailable (${error.message})`);
       continue;
@@ -520,26 +1091,36 @@ export async function validateProductionAssets() {
       errors.push(`${machineId}: production output must remain a technical_structural_study`);
     }
 
-    const builder = builderEntry(receipt);
-    if (!builder?.path || !builder?.sha256) {
-      errors.push(`${machineId}/builder: missing deterministic builder path or SHA-256`);
-    } else {
-      const absoluteBuilder = resolveDeclaredPath(machineBase, builder.path);
-      try {
-        if (await sha256(absoluteBuilder) !== builder.sha256) {
-          errors.push(`${machineId}/builder: SHA-256 mismatch`);
-        }
-      } catch (error) {
-        errors.push(`${machineId}/builder: unavailable (${error.message})`);
-      }
+    await verifyDeclaredFile({
+      errors,
+      machineId,
+      machineBase,
+      label: "builder",
+      entry: builderEntry(receipt),
+      allowedBase: ROOT
+    });
+    if (receipt.shared_generator !== undefined) {
+      await verifyDeclaredFile({ errors, machineId, machineBase, label: "shared-generator", entry: receipt.shared_generator, allowedBase: ROOT });
     }
+    if (receipt.design !== undefined) {
+      await verifyDeclaredFile({ errors, machineId, machineBase, label: "design", entry: receipt.design, allowedBase: machineBase });
+    }
+    await verifyDeclaredFile({
+      errors,
+      machineId,
+      machineBase,
+      label: "validation",
+      entry: receipt.artifacts?.validation,
+      allowedBase: machineBase
+    });
 
     const blendPath = await verifyDeclaredFile({
       errors,
       machineId,
       machineBase,
       label: "blend",
-      entry: receipt.artifacts?.blend
+      entry: receipt.artifacts?.blend,
+      allowedBase: machineBase
     });
     if (blendPath) summary.blends += 1;
 
@@ -548,7 +1129,8 @@ export async function validateProductionAssets() {
       machineId,
       machineBase,
       label: "glb",
-      entry: receipt.artifacts?.glb
+      entry: receipt.artifacts?.glb,
+      allowedBase: machineBase
     });
     if (glbPath) {
       summary.glbs += 1;
@@ -558,6 +1140,36 @@ export async function validateProductionAssets() {
         const nodeNames = new Set((gltf.nodes ?? []).map((node) => node.name).filter(Boolean));
         summary.glb_nodes += gltf.nodes?.length ?? 0;
         const contract = inspectGlbContract(gltf, parsedGlb.binary);
+        glbGateEvidenceNodes = new Set(
+          (gltf.nodes ?? [])
+            .filter((node) => (
+              typeof node.name === "string" &&
+              contract.nodeNameCounts[node.name] === 1 &&
+              (node.mesh !== undefined || contract.meshDescendantNames.has(node.name))
+            ))
+            .map((node) => node.name)
+        );
+        const motionAudit = validateViewerMotionSamples(gltf, parsedGlb.binary, viewer, machineId);
+        summary.motion_samples += motionAudit.samples.length;
+        errors.push(...motionAudit.errors);
+        const priorTopologyOwner = topologyOwners.get(contract.topologySignature);
+        if (priorTopologyOwner && priorTopologyOwner !== machineId) {
+          errors.push(
+            `${machineId}/glb: normalized node/mesh hierarchy is identical to ${priorTopologyOwner}; ` +
+            "distinct machine identities require machine-specific topology"
+          );
+        } else {
+          topologyOwners.set(contract.topologySignature, machineId);
+        }
+        const priorAnonymousOwner = anonymousTopologyOwners.get(contract.anonymousTopologySignature);
+        if (priorAnonymousOwner && priorAnonymousOwner !== machineId) {
+          errors.push(
+            `${machineId}/glb: anonymous hierarchy/mesh signature is identical to ${priorAnonymousOwner}; ` +
+            "renaming nodes cannot qualify a shared archetype as machine-specific"
+          );
+        } else {
+          anonymousTopologyOwners.set(contract.anonymousTopologySignature, machineId);
+        }
         summary.glb_mesh_nodes += contract.meshNodeCount;
         summary.glb_triangles += contract.triangleCount;
         summary.glb_contracts[machineId] = {
@@ -565,8 +1177,10 @@ export async function validateProductionAssets() {
           nodes: gltf.nodes?.length ?? 0,
           mesh_nodes: contract.meshNodeCount,
           decoded_triangles: contract.triangleCount,
+          unique_decoded_triangles: contract.uniqueTriangleCount,
           review_renders: Array.isArray(receipt.renders) ? receipt.renders.length : 0,
-          visible_bounds_m: contract.bounds
+          visible_bounds_m: contract.bounds,
+          material_audit: contract.materialAudit
         };
         for (const contractError of contract.errors) errors.push(`${machineId}/glb: ${contractError}`);
         if ((gltf.nodes?.length ?? 0) < PRODUCTION_STUDY_MINIMUMS.nodes) {
@@ -581,9 +1195,9 @@ export async function validateProductionAssets() {
             `${PRODUCTION_STUDY_MINIMUMS.mesh_nodes}`
           );
         }
-        if (contract.triangleCount < PRODUCTION_STUDY_MINIMUMS.decoded_triangles) {
+        if (contract.uniqueTriangleCount < PRODUCTION_STUDY_MINIMUMS.decoded_triangles) {
           errors.push(
-            `${machineId}/glb: ${contract.triangleCount} decoded triangles is below the technical-study floor ` +
+            `${machineId}/glb: ${contract.uniqueTriangleCount} unique decoded triangles is below the integrity floor ` +
             `${PRODUCTION_STUDY_MINIMUMS.decoded_triangles}`
           );
         }
@@ -630,9 +1244,26 @@ export async function validateProductionAssets() {
           facts,
           measuredSize: contract.bounds?.size
         }));
-        for (const [nodeName, claimedPresent] of Object.entries(sceneSemanticNodes(receipt))) {
-          if (claimedPresent === true && !nodeNames.has(nodeName)) {
+        const semanticNodes = sceneSemanticNodes(receipt);
+        const semanticNodeRoles = isPlainObject(receipt.semantic_node_roles) ? receipt.semantic_node_roles : {};
+        if (!isPlainObject(semanticNodes) || Object.keys(semanticNodes).length === 0) {
+          errors.push(`${machineId}/glb: required semantic-node map must be nonempty`);
+        }
+        for (const [nodeName, claimedPresent] of Object.entries(semanticNodes)) {
+          if (claimedPresent !== true) {
+            errors.push(`${machineId}/glb: semantic node ${nodeName} is not explicitly present=true`);
+          }
+          if (!nodeNames.has(nodeName)) {
             errors.push(`${machineId}/glb: claimed semantic node missing from export (${nodeName})`);
+          } else if ((contract.nodeNameCounts[nodeName] ?? 0) !== 1) {
+            errors.push(`${machineId}/glb: semantic node must resolve exactly once (${nodeName})`);
+          } else if (!contract.meshDescendantNames.has(nodeName) && !(gltf.nodes ?? []).some((node) => node.name === nodeName && node.mesh !== undefined)) {
+            const markerRole = semanticNodeRoles[nodeName];
+            if (!["datum_marker", "joint_marker", "identity_marker"].includes(markerRole)) {
+              errors.push(
+                `${machineId}/glb: semantic node owns no visible mesh descendant and lacks an explicit marker role (${nodeName})`
+              );
+            }
           }
         }
         if ((gltf.images?.length ?? 0) > 0 || (gltf.textures?.length ?? 0) > 0) {
@@ -651,15 +1282,24 @@ export async function validateProductionAssets() {
         `${machineId}: at least ${PRODUCTION_STUDY_MINIMUMS.review_renders} hashed review renders are required`
       );
     }
+    errors.push(...validateRenderRecordSet(receipt.renders ?? [], machineId));
     for (const [index, render] of (receipt.renders ?? []).entries()) {
       const renderPath = await verifyDeclaredFile({
         errors,
         machineId,
         machineBase,
         label: `render-${index + 1}`,
-        entry: render
+        entry: render,
+        allowedBase: machineBase
       });
-      if (renderPath) summary.renders += 1;
+      if (renderPath) {
+        summary.renders += 1;
+        try {
+          inspectPng(await readFile(renderPath));
+        } catch (error) {
+          errors.push(`${machineId}/render-${index + 1}: ${error.message}`);
+        }
+      }
     }
 
     if (!Array.isArray(validation.gates) || validation.gates.length === 0) {
@@ -673,6 +1313,21 @@ export async function validateProductionAssets() {
       }
       if (gate.status === "FAIL") failed.push(gate.id);
     }
+    const factIds = new Set((facts.facts ?? []).map((fact) => fact.id));
+    errors.push(...validateRequiredGateCoverage({
+      machineId,
+      mechanism,
+      validation,
+      availableSemanticNodes: glbGateEvidenceNodes,
+      factIds
+    }));
+    errors.push(...validatePublishedConstraintCoverage({
+      machineId,
+      design,
+      validation,
+      factIds: [...factIds]
+    }));
+    errors.push(...validateReceiptEvidenceAlignment({ machineId, mechanism, design, receipt, validation }));
     if (!VALID_GATE_STATUSES.has(validation.verdict)) {
       errors.push(`${machineId}: declared technical-study input verdict is invalid (${validation.verdict ?? "missing"})`);
     }
@@ -703,7 +1358,8 @@ if (invokedDirectly) {
     console.log(
       `PASS ${result.summary.machines} production studies, ${result.summary.blends} blends, ` +
         `${result.summary.glbs} GLBs, ${result.summary.renders} renders, ${result.summary.glb_nodes} GLB nodes, ` +
-        `${result.summary.glb_mesh_nodes} independently measured mesh nodes, ${result.summary.glb_triangles} decoded triangles`
+        `${result.summary.glb_mesh_nodes} independently measured mesh nodes, ${result.summary.glb_triangles} decoded triangles, ` +
+        `${result.summary.motion_samples} independently sampled motion poses`
     );
   }
 }

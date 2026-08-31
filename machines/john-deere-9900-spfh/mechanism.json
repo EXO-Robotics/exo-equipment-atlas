@@ -15,10 +15,11 @@
     {"id":"dura-drum-cutterhead","type":"continuous_revolute_cutaway","axis":"+Z nominal","authority":"reconstructed","source_ids":["JD-HAY-FORAGE-ORDER-GUIDE-2024-02"],"published_constraints":["cutterhead-width","cutterhead-diameter","selected-knife-count","selected-cutterhead-speed"],"unresolved":["hidden shaft center","knife and holder construction","shearbar gap and sharpening mechanism","crop interaction"]},
     {"id":"crop-accelerator","type":"continuous_revolute_cutaway","axis":"+Z nominal","authority":"reconstructed","source_ids":["JD-HAY-FORAGE-ORDER-GUIDE-2024-02"],"published_constraints":["accelerator-width","accelerator-diameter","accelerator-speed"],"unresolved":["hidden center","paddle construction","crop-flow and load behavior"]},
     {"id":"high-arch-spout-yaw","type":"revolute","axis":"+Y nominal","authority":"reconstructed","source_ids":["JD-HAY-FORAGE-ORDER-GUIDE-2024-02"],"published_constraints":["spout-swing"],"unresolved":["turntable center","stowed orientation","actuator and bearing geometry","swept-volume clearance"]},
-    {"id":"spout-outlet-flap","type":"revolute","axis":"+Z nominal","authority":"reconstructed","source_ids":["JD-HAY-FORAGE-ORDER-GUIDE-2024-02"],"unresolved":["hinge coordinate","range and actuator","crop trajectory"]}
+    {"id":"spout-outlet-flap","type":"revolute","axis":"+Z nominal","authority":"reconstructed","source_ids":["JD-HAY-FORAGE-ORDER-GUIDE-2024-02"],"unresolved":["hinge coordinate","range and actuator","crop trajectory"]},
+    {"id":"rear-steering","type":"paired_revolute_steering_cue","axis":"+Y nominal","authority":"reconstructed","source_ids":["JD-HAY-FORAGE-ORDER-GUIDE-2024-02"],"unresolved":["steering knuckle centers and Ackermann geometry","tie-rod travel and stops","tire scrub and axle-oscillation coupling"]}
   ],
   "presentation_motion": {
-    "sequence": ["header lift cue","feedroll rotation cue","high-arch spout sweep","outlet flap trim"],
+    "sequence": ["header lift and outer-wing fold cues","paired upper/lower feedroll cue","cutterhead and accelerator crop-flow cue","high-arch spout sweep","outlet flap trim","rear-steering cue"],
     "boundary": "Autoplay is a slow visual explanation. It does not model crop flow, cutterhead load, spout trajectory, hydraulic timing, stability, road transport or safe operating limits."
   },
   "required_gates": [
@@ -33,5 +34,5 @@
     "self_collision",
     "neutral_unbranded_material_review"
   ],
-  "release_state": "no_geometry_no_solver_no_claim"
+  "release_state": "technical_structural_study_built_solver_unverified"
 }

@@ -21,13 +21,22 @@
   "accent": "#a88952",
   "motion": {
     "autoplay": true,
-    "durationSeconds": 10,
+    "durationSeconds": 18,
     "mode": "sine",
-    "damping": 6.8,
+    "damping": 8,
     "channels": [
-      {"id":"pickup-lift","label":"Pickup lift - reconstructed","nodes":["Pickup_Lift_Pivot"],"property":"rotation.z","from":-0.10,"to":0.16,"phase":0.0,"mode":"offset"},
-      {"id":"bale-chute","label":"Bale chute trim - reconstructed","nodes":["Bale_Chute_Pivot"],"property":"rotation.z","from":-0.12,"to":0.08,"phase":0.42,"mode":"offset"},
-      {"id":"drawbar-yaw","label":"Tractor drawbar articulation - reconstructed","nodes":["Drawbar_Yaw_Pivot"],"property":"rotation.y","from":-0.09,"to":0.09,"phase":0.72,"mode":"offset"}
+      {"id":"drawbar-yaw","label":"Tractor drawbar articulation - reconstructed","mechanismJointId":"drawbar_yaw","nodes":["Drawbar_Yaw_Pivot"],"property":"rotation.y","from":-0.08,"to":0.08,"phase":0.0,"mode":"offset"},
+      {"id":"pickup-lift","label":"MaxiSweep pickup lift - reconstructed","mechanismJointId":"pickup_raise_lower","nodes":["Pickup_Lift_Pivot"],"property":"rotation.z","from":-0.06,"to":0.10,"phase":0.08,"mode":"offset"},
+      {"id":"pickup-reel","label":"Five-bar pickup reel - reconstructed","mechanismJointId":"pickup_reel","nodes":["Pickup_Reel_ROOT"],"property":"rotation.z","from":-0.48,"to":0.48,"phase":0.16,"mode":"offset"},
+      {"id":"cropcutter-rotor","label":"CropCutter rotor phase cue - reconstructed","mechanismJointId":"cropcutter_rotor","nodes":["CropCutter_Rotor_ROOT"],"property":"rotation.z","from":-0.42,"to":0.42,"phase":0.24,"mode":"offset"},
+      {"id":"knife-drawer","label":"29-knife drawer reveal - reconstructed","mechanismJointId":"cropcutter_knife_drawer","nodes":["CropCutter_Knife_Drawer_ROOT"],"property":"position.z","from":0.0,"to":0.16,"phase":0.32,"mode":"offset"},
+      {"id":"stuffer-fork","label":"Six-tine stuffer phase cue - reconstructed","mechanismJointId":"stuffer_fork","nodes":["Stuffer_Fork_ROOT"],"property":"rotation.z","from":-0.18,"to":0.18,"phase":0.40,"mode":"offset"},
+      {"id":"plunger-stroke","label":"Published 0.748 m plunger span - reconstructed phase","mechanismJointId":"plunger_reciprocation","nodes":["Plunger_ROOT"],"property":"position.x","from":-0.748,"to":0.0,"phase":0.48,"mode":"offset"},
+      {"id":"density-doors","label":"Seven-cylinder density-ring cue - reconstructed","mechanismJointId":"density_ring_doors","nodes":["Density_Door_ROOT"],"property":"rotation.z","from":-0.035,"to":0.035,"phase":0.56,"mode":"offset"},
+      {"id":"loop-master-knotters","label":"Six synchronized knotter cues - reconstructed","mechanismJointId":"loop_master_knotters","nodes":["Knotter_01_ROOT","Knotter_02_ROOT","Knotter_03_ROOT","Knotter_04_ROOT","Knotter_05_ROOT","Knotter_06_ROOT"],"property":"rotation.z","from":-0.26,"to":0.26,"phase":0.64,"mode":"offset"},
+      {"id":"tandem-steering","label":"Four-wheel Auto-Steer cue - reconstructed","mechanismJointId":"tandem_axle_steering","nodes":["Tandem_FL_Steering_Pivot","Tandem_FR_Steering_Pivot","Tandem_RL_Steering_Pivot","Tandem_RR_Steering_Pivot"],"property":"rotation.y","from":-0.2443460953,"to":0.2443460953,"phase":0.72,"mode":"offset"},
+      {"id":"tandem-suspension","label":"Hydraulic tandem compensation cue - reconstructed","mechanismJointId":"hydraulic_tandem_suspension","nodes":["Tandem_FL_Suspension_ROOT","Tandem_FR_Suspension_ROOT","Tandem_RL_Suspension_ROOT","Tandem_RR_Suspension_ROOT"],"property":"position.y","from":0.0,"to":0.025,"phase":0.80,"mode":"offset"},
+      {"id":"bale-chute","label":"Bale chute trim - reconstructed","mechanismJointId":"bale_chute","nodes":["Bale_Chute_Pivot"],"property":"rotation.z","from":-0.08,"to":0.06,"phase":0.88,"mode":"offset"}
     ]
   }
 }

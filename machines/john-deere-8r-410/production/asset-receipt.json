@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "machine_id": "john-deere-8r-410",
-  "configuration_id": "JD-8R410-MY2024-NA-JD9-E23-ILS-CAT4N3-CANDIDATE",
+  "configuration_id": "JD-8R410-MY2024-NA-POWERTECH9L-E23-ILS-CAT4N3-CANDIDATE",
   "configuration_status": "research_candidate",
   "archetype": "wheeled_tractor",
   "candidate_class": "technical_structural_study",
@@ -16,8 +16,8 @@
   },
   "builder": {
     "path": "source/blender/build_john_deere_8r_410.py",
-    "sha256": "b899cad6edfa23d85be044cd0b701d2f5b3d19d2fe761627860a3d0694e27eff",
-    "bytes": 663,
+    "sha256": "663ddd83a2bc95b8c2811dcacd56ab7f7f26fa36b5b8953924d7cc8862b17a57",
+    "bytes": 22974,
     "deterministic": true,
     "network_used": false,
     "downloaded_geometry_used": false,
@@ -27,30 +27,30 @@
   },
   "shared_generator": {
     "path": "../../scripts/fleet/build_machine.py",
-    "sha256": "02b99250651741b462b3dae8b2471db723beb689dfe89e1c7e251d7402fe0f55",
-    "bytes": 78579
+    "sha256": "9e36599f0c9bbac097422a8766e3ef1c81e6fc9432f024d99a24b79da18264df",
+    "bytes": 81778
   },
   "design": {
     "path": "source/design.json",
-    "sha256": "4592ad3f783987b493864726189df8f400a9bebfaf6594c2d9b7aab8f47c121d",
-    "bytes": 1568,
+    "sha256": "64b50ecb3da873898e18d28d438b05ca1c797122e2eca75ad2113188bb091a2b",
+    "bytes": 1945,
     "schema_version": "1.0.0"
   },
   "artifacts": {
     "blend": {
       "path": "source/blender/john-deere-8r-410-structural-study.blend",
-      "sha256": "2feb28718959e5c1c4fefa9854eb00ede0da7cc0b5af8a265f458d5115abe895",
-      "bytes": 237451
+      "sha256": "69bd68ba15efc23d0ad476878dc9bdddffc4c1546c4271c71155c60f73312732",
+      "bytes": 265418
     },
     "glb": {
       "path": "assets/john-deere-8r-410-structural-study.glb",
-      "sha256": "d834446b0c0596bcfc9b1ca5b3dd5a885855ebee166f221131394ada88d55f44",
-      "bytes": 1500048
+      "sha256": "c51ceb7d05f562c5342ec473ea7e2f367b93cd98f3d689d9d427a3fd05f7ac7a",
+      "bytes": 1677032
     },
     "validation": {
       "path": "production/validation.json",
-      "sha256": "0402e5493c4583c7d841d128ec609630f67a41cf99b634e97a84dec0cb5c34ce",
-      "bytes": 7821
+      "sha256": "9547b112c8a5ff96b1c6a43a0e90c0872170ac1c0eecb0d8420272f18cd419ab",
+      "bytes": 40371
     }
   },
   "scene": {
@@ -82,10 +82,10 @@
       3.57,
       3.0
     ],
-    "objects": 212,
-    "meshes": 190,
-    "triangles": 28872,
-    "materials": 6
+    "objects": 248,
+    "meshes": 224,
+    "triangles": 31832,
+    "materials": 8
   },
   "glb_contract": {
     "glb_version": "2.0",
@@ -94,18 +94,18 @@
     "root_name": "Machine_Root",
     "root_record": {},
     "identity_root": true,
-    "nodes": 212,
-    "mesh_nodes": 190,
-    "mesh_definitions": 190,
-    "materials": 6,
-    "triangles": 28872,
+    "nodes": 248,
+    "mesh_nodes": 224,
+    "mesh_definitions": 224,
+    "materials": 8,
+    "triangles": 31832,
     "cameras": 0,
     "punctual_lights": false,
     "images": 0,
     "textures": 0,
     "nonidentity_mesh_scales": {},
     "helper_like_mesh_nodes": [],
-    "semantic_motion_nodes": 21,
+    "semantic_motion_nodes": 24,
     "bounds": {
       "min_m": [
         -3.318,
@@ -129,7 +129,6 @@
     "Fixed_Structure_ROOT": true,
     "Running_Gear_ROOT": true,
     "Hydraulics_ROOT": true,
-    "Service_Detail_ROOT": true,
     "Front_Axle_Oscillation_Pivot": true,
     "Front_Axle_ROOT": true,
     "Steering_L_Pivot": true,
@@ -138,28 +137,304 @@
     "Rear_Hitch_ROOT": true,
     "PTO_ROOT": true
   },
-  "manufacturer_published_constraints_used": [
-    "public-envelope-x",
+  "semantic_node_roles": {},
+  "published_constraint_ids_declared": [
     "ils-wheelbase",
     "ils-axle-clearance",
     "ils-tread-range",
-    "rear-hitch-capacity"
+    "rear-hitch-capacity",
+    "rear-pto-interface"
+  ],
+  "machine_specific_gate_evidence": [
+    {
+      "id": "reconstructed_cross_market_length_reference",
+      "status": "PASS",
+      "detail": {
+        "method": "GLB accessor AABB compared with a reference-only cross-market page; no North American manufacturer envelope is claimed",
+        "evidence": {
+          "presentation_length_m": 6.636,
+          "cross_market_reference_m": 6.636,
+          "tolerance_m": 0.003,
+          "source_id": "JD-8R410-LATAM-PAGE",
+          "source_market": "Latin America",
+          "source_admission": "reference_only",
+          "applicable_to_selected_na_configuration": false
+        },
+        "semantic_nodes": [
+          "Front_Ballast_Carrier",
+          "Rear_Coupler_Base_Plate"
+        ],
+        "fact_ids": [
+          "cross-market-length-reference"
+        ]
+      }
+    },
+    {
+      "id": "configuration_specific_width_unresolved",
+      "status": "PASS",
+      "detail": {
+        "method": "configuration unresolved-choice inspection",
+        "evidence": {
+          "presentation_width_m": 3.0,
+          "manufacturer_width_claim": null,
+          "configuration_records_unresolved": true
+        },
+        "semantic_nodes": [],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "configuration_specific_height_unresolved",
+      "status": "PASS",
+      "detail": {
+        "method": "configuration unresolved-choice inspection",
+        "evidence": {
+          "presentation_height_m": 3.57,
+          "manufacturer_height_claim": null,
+          "configuration_records_unresolved": true
+        },
+        "semantic_nodes": [],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "wheelbase_and_ground_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "world-transform pivot spacing and ILS housing vertex AABB",
+        "evidence": {
+          "measured_wheelbase_m": 3.049999952316284,
+          "published_wheelbase_m": 3.05,
+          "measured_ils_housing_min_y_m": 0.5899999737739563,
+          "published_ils_axle_clearance_m": 0.59,
+          "tolerance_m": 0.002
+        },
+        "semantic_nodes": [
+          "Front_Axle_Oscillation_Pivot",
+          "Rear_L_Wheel_Pivot",
+          "ILS_Center_Housing"
+        ],
+        "fact_ids": [
+          "ils-wheelbase",
+          "ils-axle-clearance"
+        ]
+      }
+    },
+    {
+      "id": "ils_left_right_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "distinct descendant traversal from independently located inner-interface suspension roots",
+        "evidence": {
+          "left_descendants": 39,
+          "right_descendants": 39,
+          "left_root_parent": "Front_Axle_ROOT",
+          "right_root_parent": "Front_Axle_ROOT",
+          "left_inner_interface_local_z_m": -0.23999999463558197,
+          "right_inner_interface_local_z_m": 0.23999999463558197,
+          "review_limit_rad": 0.025
+        },
+        "semantic_nodes": [
+          "Front_Axle_ROOT",
+          "ILS_L_Suspension_ROOT",
+          "ILS_R_Suspension_ROOT"
+        ],
+        "fact_ids": [
+          "ils-tread-range"
+        ]
+      }
+    },
+    {
+      "id": "steering_node_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "direct parent-chain identity checks",
+        "evidence": {
+          "left_chain": [
+            "ILS_L_Suspension_ROOT",
+            "Steering_L_Pivot",
+            "Front_L_Wheel_Pivot"
+          ],
+          "right_chain": [
+            "ILS_R_Suspension_ROOT",
+            "Steering_R_Pivot",
+            "Front_R_Wheel_Pivot"
+          ]
+        },
+        "semantic_nodes": [
+          "ILS_L_Suspension_ROOT",
+          "Steering_L_Pivot",
+          "Front_L_Wheel_Pivot",
+          "ILS_R_Suspension_ROOT",
+          "Steering_R_Pivot",
+          "Front_R_Wheel_Pivot"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "three_point_linkage_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "motion-root descendant role census",
+        "evidence": {
+          "motion_root": "Rear_Hitch_ROOT",
+          "pivot_parent": "Rear_Hitch_Pivot",
+          "configuration": "Category 4N/3 quick coupler",
+          "published_capacity_kg": 9072
+        },
+        "semantic_nodes": [
+          "Rear_Hitch_Pivot",
+          "Rear_Hitch_ROOT",
+          "Rear_Hitch_L_Lower_Link",
+          "Rear_Hitch_R_Lower_Link",
+          "Cat4N3_Quick_Coupler_Upper_Beam"
+        ],
+        "fact_ids": [
+          "rear-hitch-capacity"
+        ]
+      }
+    },
+    {
+      "id": "pto_guard_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "published shaft diameter and reconstructed concentric guard/link clearances",
+        "evidence": {
+          "published_shaft_diameter_m": 0.04445,
+          "reconstructed_guard_inner_radius_m": 0.06,
+          "radial_clearance_m": 0.037774999999999996,
+          "lower_link_lateral_clearance_m": 0.23700000000000004
+        },
+        "semantic_nodes": [
+          "PTO_ROOT",
+          "PTO_Shaft_44_45mm",
+          "PTO_Guard_Ring_Rear",
+          "PTO_Guard_Ring_Front"
+        ],
+        "fact_ids": [
+          "rear-pto-interface"
+        ]
+      }
+    },
+    {
+      "id": "ground_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "world-vertex minimum-Y sampling at each declared motion extremum",
+        "evidence": {
+          "sampled_motion_extrema": [
+            {
+              "node": "ILS_L_Suspension_ROOT",
+              "value_rad": -0.025,
+              "minimum_y_m": 0.0
+            },
+            {
+              "node": "ILS_L_Suspension_ROOT",
+              "value_rad": 0.025,
+              "minimum_y_m": 0.0
+            },
+            {
+              "node": "ILS_R_Suspension_ROOT",
+              "value_rad": -0.025,
+              "minimum_y_m": 0.0
+            },
+            {
+              "node": "ILS_R_Suspension_ROOT",
+              "value_rad": 0.025,
+              "minimum_y_m": 0.0
+            },
+            {
+              "node": "Rear_Hitch_ROOT",
+              "value_rad": -0.1,
+              "minimum_y_m": 0.0
+            },
+            {
+              "node": "Rear_Hitch_ROOT",
+              "value_rad": 0.24,
+              "minimum_y_m": 0.0
+            }
+          ],
+          "minimum_sampled_y_m": 0.0,
+          "tolerance_m": 0.002,
+          "terrain_solver": false
+        },
+        "semantic_nodes": [
+          "ILS_L_Suspension_ROOT",
+          "ILS_R_Suspension_ROOT",
+          "Rear_Hitch_ROOT",
+          "Rear_L_Tire",
+          "Rear_R_Tire"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "self_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "declared hitch sweep range and independent PTO/lower-link lateral clearance",
+        "evidence": {
+          "sampled_hitch_range_rad": [
+            -0.1,
+            0.24
+          ],
+          "pto_to_nearest_lower_link_lateral_clearance_m": 0.23700000000000004,
+          "scope": "visible hitch/PTO review path only; no implement attached"
+        },
+        "semantic_nodes": [
+          "Rear_Hitch_ROOT",
+          "Rear_Hitch_L_Lower_Link",
+          "Rear_Hitch_R_Lower_Link",
+          "PTO_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "neutral_unbranded_material_review",
+      "status": "PASS",
+      "detail": {
+        "method": "material-name allowlist plus exported GLB image/texture census",
+        "evidence": {
+          "materials": [
+            "Neutral_Body",
+            "Neutral_Body_Shadow",
+            "Neutral_Glass",
+            "Neutral_Graphite",
+            "Neutral_Rod",
+            "Neutral_Rubber",
+            "Neutral_Steel",
+            "Neutral_Visibility_Cue"
+          ],
+          "embedded_images": 0,
+          "textures": 0,
+          "logos_or_decals": 0
+        },
+        "semantic_nodes": [],
+        "fact_ids": []
+      }
+    }
   ],
   "reconstructed_values": {
+    "presentation_length_cross_market_reference_m": 6.636,
     "presentation_width_m": 3.0,
     "presentation_height_m": 3.57,
     "front_tyre_visual_diameter_m": 1.55,
     "rear_tyre_visual_diameter_m": 2.15,
-    "ils_visual_roll_limit_rad": 0.08,
+    "selected_front_tread_reconstructed_m": 2.36,
+    "selected_rear_tread_reconstructed_m": 2.24,
+    "front_tyre_static_ground_clearance_reconstructed_m": 0.045,
+    "ils_independent_side_review_limit_rad": 0.025,
     "rear_hitch_visual_range_rad": [
-      -0.12,
-      0.34
+      -0.1,
+      0.24
     ],
     "neutral_material_policy": "matte slate, graphite, dark rubber and neutral glazing; no logos, decals or manufacturer trade dress",
     "hidden_geometry": "All hidden structure, pivot centers, anchors, linkage proportions, underbody volumes, and internal geometry are reconstructed visualization choices unless a design record explicitly identifies a manufacturer-published envelope constraint.",
     "generic_archetype_geometry": "wheeled_tractor proportions and visible detail are independently reconstructed for this technical study.",
     "visible_envelope_calibration": {
-      "classification": "reconstructed_visible_envelope_calibration",
+      "classification": "authored_visible_envelope_measurement",
       "source_bounds_m": {
         "min_m": [
           -3.318,
@@ -195,8 +470,8 @@
         ]
       },
       "axis_scale_factors": [
-        1.000000012,
-        1.000000019,
+        1.0,
+        1.0,
         1.0
       ],
       "calibrated_bounds_m": {
@@ -216,50 +491,51 @@
           3.0
         ]
       },
-      "authority": "reconstructed_not_machine_specific_engineering"
+      "authority": "independently_measured_from_authored_geometry"
     }
   },
   "unresolved_choices": [
-    "Manufacturer-published overall width and overall height for the selected ILS/tyre configuration",
-    "Exact tyre, wheel, offset, tread and ballast order codes",
+    "Manufacturer-published overall length, overall width and overall height for the selected North American ILS/tyre configuration",
+    "Exact tyre, wheel, offset, rear tread and ballast order codes",
+    "Single-pump versus dual-pump hydraulic option",
     "All hidden ILS, steering and rear-hitch pivots, anchors, link lengths and limits",
     "Exact exterior surfacing and service-detail placement"
   ],
   "mechanical_gaps": [
-    "ILS movement is a bounded visual articulation without suspension, steering, tyre or terrain physics.",
+    "Left and right ILS roots, arms and cylinders are independent bounded visual articulations without suspension, steering, tyre or terrain physics.",
     "Rear hitch motion is reconstructed and excludes draft sensing, hydraulic pressure, implement mass, PTO driveline and validated swept-volume closure.",
     "Powertrain, cooling, aftertreatment and hydraulic internals are not modeled."
   ],
   "renders": [
     {
       "path": "review/renders/john-deere-8r-410-operator-side.png",
-      "sha256": "9cdddd14bdcbc00115b3d59c245f8c96dbd3fd4485c081c736a00250d34e028e",
-      "bytes": 292238
+      "sha256": "d87c01d9366f3c33a62955165635ab7aa6c37b5605e94f040d2e3cf47d8a777b",
+      "bytes": 293698
     },
     {
       "path": "review/renders/john-deere-8r-410-front-three-quarter.png",
-      "sha256": "36cdf8ae894b686fb6921db1ca09a4ffd42e12a8c62876d27615df4807b0d330",
-      "bytes": 336618
+      "sha256": "2793e2b156c1b245d24b4305b7030e028ef0c9f2216fefcfb5a85575faec13e3",
+      "bytes": 332055
     },
     {
       "path": "review/renders/john-deere-8r-410-rear-three-quarter.png",
-      "sha256": "b015917253d691062d3a0364fff314d5eff9a2d510f3694fe1718c168ba43145",
-      "bytes": 328563
+      "sha256": "deeb4cdd78ae35aaa2d73be5ef8f8bf38929743b5b6ef5a25d0c0d8af5720361",
+      "bytes": 329210
     },
     {
       "path": "review/renders/john-deere-8r-410-elevated-technical.png",
-      "sha256": "f9ecbf7f67240e474fa1ca55346aed9b733d89bc516449097d31b2be9cda23d7",
-      "bytes": 390040
+      "sha256": "0beeca383813883f305fcaceb8f09835960b0663e149ec97642ff09c271c11b1",
+      "bytes": 382362
     },
     {
       "path": "review/renders/john-deere-8r-410-articulation-detail.png",
-      "sha256": "c028422f81a7824a69fd7f4cadf464d34d28a7cd28ac742e04730aa1b7ec4ec2",
-      "bytes": 366539
+      "sha256": "bb1bf012f8ff5f8f02e155c83229958ef670a3409ab8820b6091ad203a31b27d",
+      "bytes": 367530
     },
     {
       "path": "review/renders/john-deere-8r-410-right-side.png",
-      "sha256": "ad3fbc33a241378c230c0cd3d6b4d40be4e719804621b1d47e02ea8ef9f14f0d",
-      "bytes": 284845
+      "sha256": "d3de7b1916014f926b4a661ce72b119ec4e23d131e9c46005205a2a03bee3e39",
+      "bytes": 292640
     }
   ],
   "build_verdict": "PASS",

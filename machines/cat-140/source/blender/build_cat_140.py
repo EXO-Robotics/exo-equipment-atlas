@@ -12,6 +12,7 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+import re
 import struct
 from pathlib import Path
 
@@ -21,10 +22,14 @@ from mathutils import Matrix, Vector
 
 SCRIPT_PATH = Path(__file__).resolve()
 MACHINE_DIR = SCRIPT_PATH.parents[2]
+REPO_ROOT = SCRIPT_PATH.parents[4]
 BLEND_PATH = SCRIPT_PATH.parent / "cat-140-structural-study.blend"
 GLB_PATH = MACHINE_DIR / "assets" / "cat-140-structural-study.glb"
 RECEIPT_PATH = MACHINE_DIR / "production" / "asset-receipt.json"
 VALIDATION_PATH = MACHINE_DIR / "production" / "validation.json"
+DESIGN_PATH = MACHINE_DIR / "source" / "design.json"
+CONFIGURATION_PATH = MACHINE_DIR / "configuration.json"
+VIEWER_PATH = MACHINE_DIR / "viewer.json"
 RENDER_DIR = MACHINE_DIR / "review" / "renders"
 
 MACHINE_ID = "cat-140"
@@ -63,6 +68,7 @@ PUBLISHED = {
     "ripper_shanks": 5,
     "ripper_depth_m": 0.424,
     "ripper_spacing_nominal_m": 0.533,
+    "ripper_spacing_range_m": [0.5234, 0.5433],
 }
 
 RECONSTRUCTED = {
@@ -78,12 +84,12 @@ RECONSTRUCTED = {
     "review_pose": {
         "frame_articulation_deg": 14.0,
         "front_axle_oscillation_deg": 5.0,
-        "front_steering_deg": 22.0,
+        "front_steering_deg": 20.0,
         "front_wheel_lean_deg": 11.0,
-        "note": "Review-only visibility pose within published ranges; not retained in the saved asset and not mechanically solved.",
+        "note": "Review-only sampled visibility pose within published ranges; selected collision pairs are measured in their declared common rigid-frame spaces to avoid world-axis AABB inflation. The pose is not retained in the saved asset and is not a continuous mechanical or collision solution.",
     },
     "articulation_center_m": [0.0, 1.25, 0.0],
-    "rear_axle_center_m": [-0.844, 0.690, 0.0],
+    "rear_axle_center_m": [-PUBLISHED["rear_axle_to_articulation_m"], 0.690, 0.0],
     "front_axle_center_m": [5.292, 0.612, 0.0],
     "rear_tire_radius_m": 0.690,
     "front_tire_radius_m": 0.612,
@@ -100,7 +106,7 @@ RECONSTRUCTED = {
     "hydraulic_anchors": "Every visible barrel, rod, bellcrank, and hose anchor is reconstructed. No published stroke or pressure is asserted as visual travel proof.",
     "steering_linkage": "Kingpins, steering arms, tie rod, lean links, and cylinder anchors are reconstructed and not Ackermann or clearance authority.",
     "rear_ripper": "Five holders and approximate published spacing constrain the study; beam, shank curve, tips, pivots, and cylinder anchors are reconstructed.",
-    "material_colors": "Neutral unbranded ochre, graphite, steel, rubber, and smoke glass; not Caterpillar livery or trade dress.",
+    "material_colors": "Neutral unbranded slate, deep graphite, machined steel, rubber, smoke glass, and a restrained muted-teal inspection accent; not Caterpillar livery or trade dress.",
 }
 
 REQUIRED_NODES = [
@@ -117,6 +123,7 @@ REQUIRED_NODES = [
     "Tandem_L_Pivot",
     "Tandem_R_Pivot",
     "Drawbar_ROOT",
+    "Circle_Guide_ROOT",
     "Circle_Rotation_Pivot",
     "Circle_ROOT",
     "Moldboard_Tip_Pivot",
@@ -126,6 +133,72 @@ REQUIRED_NODES = [
     "Hydraulics_ROOT",
     "Steering_Linkage_ROOT",
 ]
+
+PUBLISHED_CONSTRAINT_FACT_IDS = [
+    "publication-family",
+    "controls-choice",
+    "drive-choice",
+    "tire-choice",
+    "moldboard-width",
+    "moldboard-height",
+    "circle-teeth-count",
+    "circle-rotation",
+    "link-bar-positions",
+    "drawbar-shoes",
+    "steering-range",
+    "articulation-range",
+    "wheel-lean-range",
+    "front-axle-total-oscillation",
+    "cab-height",
+    "front-axle-center-height",
+    "top-of-cylinders-height",
+    "exhaust-height",
+    "push-plate-to-ripper-length",
+    "tandem-wheel-spacing",
+    "front-axle-to-rear-axle",
+    "front-axle-to-articulation",
+    "rear-axle-to-articulation",
+    "rear-axle-ground-clearance",
+    "rear-tire-centerline-width",
+    "outside-rear-tires-width",
+    "outside-front-tires-width",
+    "ripper-shank-holders",
+    "ripper-shank-spacing",
+    "push-block-and-ripper-basis",
+]
+
+ACTUATOR_ANCHOR_PARENTS = {
+    "Frame_Articulation_L":("ANCHOR_Articulation_Base_L","Rear_Frame_ROOT","ANCHOR_Articulation_Rod_L","Front_Frame_ROOT"),
+    "Frame_Articulation_R":("ANCHOR_Articulation_Base_R","Rear_Frame_ROOT","ANCHOR_Articulation_Rod_R","Front_Frame_ROOT"),
+    "Blade_Lift_L":("ANCHOR_Blade_Lift_Base_L","Front_Frame_ROOT","ANCHOR_Blade_Lift_Rod_L","Drawbar_ROOT"),
+    "Blade_Lift_R":("ANCHOR_Blade_Lift_Base_R","Front_Frame_ROOT","ANCHOR_Blade_Lift_Rod_R","Drawbar_ROOT"),
+    "Circle_Centershift":("ANCHOR_Centershift_Base","Front_Frame_ROOT","ANCHOR_Centershift_Rod","Drawbar_ROOT"),
+    "Moldboard_Sideshift":("ANCHOR_Sideshift_Base","Moldboard_Tip_Pivot","ANCHOR_Sideshift_Rod","Moldboard_Sideshift_ROOT"),
+    "Rear_Ripper_Lift_L":("ANCHOR_Ripper_Base_L","Rear_Frame_ROOT","ANCHOR_Ripper_Rod_L","Rear_Ripper_ROOT"),
+    "Rear_Ripper_Lift_R":("ANCHOR_Ripper_Base_R","Rear_Frame_ROOT","ANCHOR_Ripper_Rod_R","Rear_Ripper_ROOT"),
+    "Front_Steer_L":("ANCHOR_Steer_Center_L","Front_Axle_ROOT","ANCHOR_Steer_Arm_L","Front_Steering_L_Pivot"),
+    "Front_Steer_R":("ANCHOR_Steer_Center_R","Front_Axle_ROOT","ANCHOR_Steer_Arm_R","Front_Steering_R_Pivot"),
+    "Front_Lean_L":("ANCHOR_Lean_Base_L","Front_Axle_ROOT","ANCHOR_Lean_Rod_L","Front_Wheel_Lean_L_Pivot"),
+    "Front_Lean_R":("ANCHOR_Lean_Base_R","Front_Axle_ROOT","ANCHOR_Lean_Rod_R","Front_Wheel_Lean_R_Pivot"),
+}
+
+ACTUATOR_MESH_PARENTS = {
+    **{
+        f"{key}_{member}":"Hydraulics_ROOT"
+        for key in ("Frame_Articulation_L","Frame_Articulation_R","Blade_Lift_L","Blade_Lift_R","Circle_Centershift","Rear_Ripper_Lift_L","Rear_Ripper_Lift_R")
+        for member in ("Barrel","Rod")
+    },
+    **{
+        f"{key}_{member}":"Steering_Linkage_ROOT"
+        for key in ("Front_Steer_L","Front_Steer_R","Front_Lean_L","Front_Lean_R")
+        for member in ("Barrel","Rod")
+    },
+    "Moldboard_Sideshift_Barrel":"Moldboard_Tip_Pivot",
+    "Moldboard_Sideshift_Rod":"Moldboard_Tip_Pivot",
+    "Front_Steering_Tie_Rod":"Steering_Linkage_ROOT",
+}
+
+MOLDBOARD_PROFILE_SCALE_Y = PUBLISHED["moldboard_height_m"] / 0.955
 
 
 def sha256(path: Path) -> str:
@@ -499,9 +572,9 @@ def create_wheel(prefix, root, radius, width, mats):
 
 def create_model():
     mats = {
-        "ochre": material("Neutral_Construction_Ochre", (0.72, 0.36, 0.050), 0.12, 0.34),
-        "ochre_dark": material("Neutral_Ochre_Shadow", (0.38, 0.16, 0.025), 0.18, 0.38),
-        "ochre_light": material("Neutral_Ochre_Highlight", (0.89, 0.56, 0.12), 0.08, 0.32),
+        "ochre": material("Neutral_Body_Slate", (0.105, 0.155, 0.190), 0.34, 0.31),
+        "ochre_dark": material("Neutral_Deep_Graphite", (0.030, 0.047, 0.060), 0.48, 0.34),
+        "ochre_light": material("Neutral_Muted_Teal_Accent", (0.145, 0.325, 0.355), 0.22, 0.30),
         "steel_dark": material("Neutral_Graphite_Steel", (0.035, 0.043, 0.050), 0.72, 0.29),
         "steel": material("Neutral_Machined_Steel", (0.29, 0.31, 0.33), 0.88, 0.20),
         "rim": material("Neutral_Rim_Gray", (0.18, 0.20, 0.21), 0.66, 0.28),
@@ -542,7 +615,17 @@ def create_model():
     )
     box("Cab_Engine_Transition_Deck",(-0.63,1.40,0),(1.02,0.18,1.38),mats["ochre_dark"],rear,0.035,"rear_frame_structure")
     box("Rear_Axle_Housing", (-0.844, 0.76, 0), (0.48, 0.52, 2.05), mats["steel_dark"], rear, 0.07, "rear_axle_structure")
-    cylinder("Rear_Differential_Housing", (-0.844,0.80,0), 0.34, 1.55, mats["steel_dark"], rear, 32, role="rear_axle_structure")
+    cylinder(
+        "Rear_Differential_Housing",
+        RECONSTRUCTED["rear_axle_center_m"],
+        RECONSTRUCTED["rear_axle_center_m"][1] - PUBLISHED["rear_axle_ground_clearance_m"],
+        1.55,
+        mats["steel_dark"],
+        rear,
+        32,
+        role="rear_axle_structure",
+        authority="published_clearance_reconstructed_housing",
+    )
 
     tandem_roots = {}
     rear_wheels = []
@@ -590,7 +673,19 @@ def create_model():
         for vent_index in range(6):
             box(f"Engine_Vent_{side}_{vent_index+1}",(-2.48+vent_index*0.15,2.03,z*1.025),(0.10,0.028,0.014),mats["steel_dark"],rear,0.003,"vent")
     cylinder("Exhaust_Stack", (-1.95,(2.23+PUBLISHED["exhaust_height_m"])/2,0.58),0.078,PUBLISHED["exhaust_height_m"]-2.23,mats["steel_dark"],rear,24,(math.pi/2,0,0),"exhaust")
-    cylinder("Exhaust_Rain_Cap",(-1.95,PUBLISHED["exhaust_height_m"],0.58),0.105,0.055,mats["steel_dark"],rear,24,(math.pi/2,0,0),"exhaust")
+    exhaust_cap_depth = 0.055
+    cylinder(
+        "Exhaust_Rain_Cap",
+        (-1.95,PUBLISHED["exhaust_height_m"]-exhaust_cap_depth/2,0.58),
+        0.105,
+        exhaust_cap_depth,
+        mats["steel_dark"],
+        rear,
+        24,
+        (math.pi/2,0,0),
+        "exhaust",
+        authority="published_height_reconstructed_cap",
+    )
     cylinder("Air_Intake_Stack",(-1.43,2.67,0.68),0.070,0.72,mats["steel_dark"],rear,24,(math.pi/2,0,0),"intake")
     cylinder("Air_Intake_Precleaner",(-1.43,3.01,0.68),0.13,0.16,mats["steel_dark"],rear,24,(math.pi/2,0,0),"intake")
     for side,z in (("L",-1.08),("R",1.08)):
@@ -628,6 +723,16 @@ def create_model():
     cylinder("Steering_Wheel",(0.02,2.20,0),0.17,0.045,mats["steel_dark"],cab,24,(math.pi/2,0,0),"cab_interior")
     cylinder("Steering_Column",(-0.02,1.98,0),0.034,0.46,mats["steel_dark"],cab,16,(0.16,math.pi/2,0),"cab_interior")
     box("Cab_Display",(0.24,2.27,0.25),(0.07,0.28,0.34),mats["steel_dark"],cab,0.025,"cab_interior")
+    # Reconstructed banks make the frozen lever/steering-wheel choice visible;
+    # lever count and placement are not asserted as manufacturer control layout.
+    for side,zsign in (("L",-1),("R",1)):
+        box(f"Operator_Control_Console_{side}",(-0.18,1.88,zsign*0.42),(0.52,0.18,0.20),mats["interior"],cab,0.035,"cab_interior")
+        for index,x in enumerate((-0.34,-0.22,-0.10,0.02),start=1):
+            z=zsign*(0.38+0.035*(index%2))
+            start=Vector((x,1.96,z))
+            end=Vector((x+0.035,2.14+0.025*(index%2),z))
+            object_between(f"Operator_Control_Lever_{side}_{index}",start,end,0.012,mats["steel"],"operator_control_lever",10,cab)
+            sphere(f"Operator_Control_Lever_Knob_{side}_{index}",end,0.032,mats["steel_dark"],cab,12,8,"operator_control_lever")
     for side,z in (("L",-0.99),("R",0.99)):
         object_between(f"Cab_Mirror_Arm_{side}",(0.05,3.06,z*0.82),(0.18,3.08,z),0.018,mats["steel"],"cab_accessory",12,rear)
         box(f"Cab_Mirror_Shell_{side}",(0.20,3.08,z*1.07),(0.085,0.30,0.20),mats["steel_dark"],rear,0.025,"cab_accessory")
@@ -683,19 +788,24 @@ def create_model():
         box(f"Front_Steering_Arm_{side}",(-0.22,0.10,-zsign*0.18),(0.52,0.10,0.14),mats["steel"],steering,0.025,"steering_linkage")
         box(f"Front_Lean_Arm_{side}",(0.06,0.30,-zsign*0.14),(0.16,0.48,0.13),mats["ochre_dark"],lean,0.025,"wheel_lean_linkage")
 
-    # Drawbar A-frame and the bottom-adjust standard circle.
-    drawbar = empty("Drawbar_ROOT",parent=front,role="linkage_group",size=0.20)
-    circle_pivot = empty("Circle_Rotation_Pivot",(2.728,-0.355,0),front,"revolute_pivot","CIRCLE",0.26)
+    # Drawbar A-frame and the bottom-adjust standard circle. The drawbar owns
+    # every nonrotating guide/drive cue; only the ring and moldboard rotate.
+    drawbar_ball_local = Vector((4.72,-0.30,0))
+    circle_center_in_drawbar = Vector((2.728,-0.355,0)) - drawbar_ball_local
+    drawbar = empty("Drawbar_ROOT",drawbar_ball_local,front,"compound_linkage_group","CIRCLE",0.20)
+    circle_guide = empty("Circle_Guide_ROOT",circle_center_in_drawbar,drawbar,"fixed_circle_guide","CIRCLE",0.23)
+    circle_pivot = empty("Circle_Rotation_Pivot",circle_center_in_drawbar,drawbar,"cyclic_revolute_pivot","CIRCLE",0.26)
     circle_pivot["axis"] = "+Y nominal"
-    circle_pivot["published_rotation_deg"] = PUBLISHED["circle_rotation_deg"]
+    circle_pivot["motion_classification"] = "cyclic_full_rotation"
+    circle_pivot["published_rotation_capability_deg"] = PUBLISHED["circle_rotation_deg"]
     circle_root = empty("Circle_ROOT",parent=circle_pivot,role="articulated_group",size=0.20)
     front_ball_world = articulation.matrix_world @ Vector((4.72,-0.30,0))
     circle_left_world = articulation.matrix_world @ Vector((2.96,-0.34,-0.62))
     circle_right_world = articulation.matrix_world @ Vector((2.96,-0.34,0.62))
-    beam_between("Drawbar_A_Frame_L",front_ball_world,circle_left_world,0.16,0.18,mats["ochre_dark"],"drawbar_structure",front,0.035)
-    beam_between("Drawbar_A_Frame_R",front_ball_world,circle_right_world,0.16,0.18,mats["ochre_dark"],"drawbar_structure",front,0.035)
-    cylinder("Drawbar_Ball",(4.72,-0.30,0),0.22,0.46,mats["steel"],front,32,role="drawbar_joint")
-    box("Drawbar_Cross_Beam",(3.06,-0.34,0),(0.32,0.22,1.42),mats["ochre_dark"],front,0.04,"drawbar_structure")
+    beam_between("Drawbar_A_Frame_L",front_ball_world,circle_left_world,0.16,0.18,mats["ochre_dark"],"drawbar_structure",drawbar,0.035)
+    beam_between("Drawbar_A_Frame_R",front_ball_world,circle_right_world,0.16,0.18,mats["ochre_dark"],"drawbar_structure",drawbar,0.035)
+    cylinder("Drawbar_Ball",drawbar_ball_local,0.22,0.46,mats["steel"],front,32,role="drawbar_joint")
+    box("Drawbar_Cross_Beam",(3.06-drawbar_ball_local.x,-0.34-drawbar_ball_local.y,0),(0.32,0.22,1.42),mats["ochre_dark"],drawbar,0.04,"drawbar_structure")
     torus("Standard_Circle_Ring",(0,0.035,0),0.695,0.070,mats["ochre_dark"],circle_root,72,12,(math.pi/2,0,0),"circle_ring",True,"reconstructed_ring_geometry")
     torus("Standard_Circle_Outer_Wear_Rail",(0,0.115,0),0.727,0.027,mats["steel"],circle_root,72,8,(math.pi/2,0,0),"circle_wear_surface")
     torus("Standard_Circle_Inner_Wear_Rail",(0,0.120,0),0.615,0.024,mats["steel"],circle_root,64,8,(math.pi/2,0,0),"circle_wear_surface")
@@ -712,18 +822,18 @@ def create_model():
         theta = index * math.tau / PUBLISHED["drawbar_shoes"]
         sx=math.cos(theta)*0.65
         sz=math.sin(theta)*0.65
-        box(f"Drawbar_Wear_Shoe_{index+1}",(sx,0.165,sz),(0.23,0.13,0.15),mats["ochre_light"],circle_root,0.018,"drawbar_shoe",rotation=(0,-theta,0))
-        cylinder(f"Circle_Wear_Roller_{index+1}",(math.cos(theta)*0.675,0.235,math.sin(theta)*0.675),0.070,0.070,mats["steel_dark"],circle_root,20,(math.pi/2,0,-theta),"circle_contact")
+        box(f"Drawbar_Wear_Shoe_{index+1}",(sx,0.165,sz),(0.23,0.13,0.15),mats["ochre_light"],circle_guide,0.018,"drawbar_shoe",rotation=(0,-theta,0))
+        cylinder(f"Circle_Wear_Roller_{index+1}",(math.cos(theta)*0.675,0.235,math.sin(theta)*0.675),0.070,0.070,mats["steel_dark"],circle_guide,20,(math.pi/2,0,-theta),"circle_contact")
     # Circle drive pinion and housing are intentionally approximate.
     pinion_x,pinion_z=-0.62,-0.64
-    cylinder("Circle_Drive_Pinion",(pinion_x,0.155,pinion_z),0.145,0.18,mats["steel"],circle_root,28,(math.pi/2,0,0),"circle_drive")
+    cylinder("Circle_Drive_Pinion",(pinion_x,0.155,pinion_z),0.145,0.18,mats["steel"],circle_guide,28,(math.pi/2,0,0),"circle_drive")
     for index in range(14):
         theta=index*math.tau/14
-        box(f"Circle_Drive_Pinion_Tooth_{index+1:02d}",(pinion_x+math.cos(theta)*0.165,0.155,pinion_z+math.sin(theta)*0.165),(0.055,0.19,0.045),mats["steel"],circle_root,0.006,"circle_drive",rotation=(0,-theta,0))
-    box("Circle_Drive_Housing",(-0.66,0.315,-0.66),(0.45,0.34,0.36),mats["ochre_dark"],circle_root,0.055,"circle_drive")
-    box("Circle_Drive_Motor",(-0.78,0.49,-0.68),(0.28,0.28,0.26),mats["steel_dark"],circle_root,0.050,"circle_drive")
+        box(f"Circle_Drive_Pinion_Tooth_{index+1:02d}",(pinion_x+math.cos(theta)*0.165,0.155,pinion_z+math.sin(theta)*0.165),(0.055,0.19,0.045),mats["steel"],circle_guide,0.006,"circle_drive",rotation=(0,-theta,0))
+    box("Circle_Drive_Housing",(-0.66,0.315,-0.66),(0.45,0.34,0.36),mats["ochre_dark"],circle_guide,0.055,"circle_drive")
+    box("Circle_Drive_Motor",(-0.78,0.49,-0.68),(0.28,0.28,0.26),mats["steel_dark"],circle_guide,0.050,"circle_drive")
     for index in range(PUBLISHED["link_bar_positions"]):
-        cylinder(f"Link_Bar_Hole_{index+1}",(-0.54+index*0.18,0.18,0),0.030,0.30,mats["steel_dark"],front,16,role="link_bar_position")
+        cylinder(f"Link_Bar_Hole_{index+1}",(circle_center_in_drawbar.x-0.54+index*0.18,circle_center_in_drawbar.y+0.18,0),0.030,0.30,mats["steel_dark"],drawbar,16,role="link_bar_position")
 
     # Moldboard cross section is independently authored around published overall dimensions.
     tip_pivot = empty("Moldboard_Tip_Pivot",(-0.05,-0.17,0),circle_root,"revolute_pivot","CIRCLE",0.20)
@@ -731,15 +841,15 @@ def create_model():
     tip_pivot["published_range_deg"] = [-5,50]
     tip_pivot.rotation_euler[2] = math.radians(RECONSTRUCTED["static_pose"]["moldboard_tip_deg"])
     sideshift = empty("Moldboard_Sideshift_ROOT",parent=tip_pivot,role="prismatic_group",size=0.18)
-    blade_points = [(-0.225,-0.295),(-0.105,-0.26),(0.055,-0.12),(0.175,0.18),(0.205,0.42),(0.135,0.58),(-0.025,0.575),(-0.145,0.31)]
-    blade = side_profile("Moldboard_Curved_Shell",blade_points,PUBLISHED["moldboard_width_m"],mats["ochre"],sideshift,bevel_width=0.018,role="moldboard",authority="published_envelope_reconstructed_cross_section")
+    blade_points = [(x,y*MOLDBOARD_PROFILE_SCALE_Y) for x,y in [(-0.225,-0.295),(-0.105,-0.26),(0.055,-0.12),(0.175,0.18),(0.205,0.42),(0.135,0.58),(-0.025,0.575),(-0.145,0.31)]]
+    blade = side_profile("Moldboard_Curved_Shell",blade_points,PUBLISHED["moldboard_width_m"],mats["ochre"],sideshift,bevel_width=0.018*MOLDBOARD_PROFILE_SCALE_Y,role="moldboard",authority="published_envelope_reconstructed_cross_section")
     blade["published_width_m"] = PUBLISHED["moldboard_width_m"]
-    box("Moldboard_Cutting_Edge",(-0.17,-0.31,0),(0.12,0.13,PUBLISHED["moldboard_width_m"]-0.02),mats["steel"],sideshift,0.012,"cutting_edge")
+    box("Moldboard_Cutting_Edge",(-0.17,-0.31*MOLDBOARD_PROFILE_SCALE_Y,0),(0.12,0.13*MOLDBOARD_PROFILE_SCALE_Y,PUBLISHED["moldboard_width_m"]-0.02),mats["steel"],sideshift,0.012*MOLDBOARD_PROFILE_SCALE_Y,"cutting_edge")
     for side,z in (("L",-PUBLISHED["moldboard_width_m"]/2+0.018),("R",PUBLISHED["moldboard_width_m"]/2-0.018)):
-        side_profile(f"Moldboard_End_Bit_{side}",[(-0.23,-0.31),(-0.10,-0.28),(0.13,0.10),(0.18,0.48),(0.05,0.56),(-0.12,0.24)],0.036,mats["steel"],sideshift,z_center=z,bevel_width=0.009,role="end_bit")
+        side_profile(f"Moldboard_End_Bit_{side}",[(x,y*MOLDBOARD_PROFILE_SCALE_Y) for x,y in [(-0.23,-0.31),(-0.10,-0.28),(0.13,0.10),(0.18,0.48),(0.05,0.56),(-0.12,0.24)]],0.036,mats["steel"],sideshift,z_center=z,bevel_width=0.009*MOLDBOARD_PROFILE_SCALE_Y,role="end_bit")
     for index,z in enumerate((-1.45,-1.08,-0.72,-0.36,0,0.36,0.72,1.08,1.45),start=1):
-        side_profile(f"Moldboard_Back_Rib_{index:02d}",[(-0.15,-0.18),(0.02,-0.10),(0.14,0.32),(0.06,0.48),(-0.03,0.29)],0.050,mats["ochre_dark"],sideshift,z_center=z,bevel_width=0.010,role="moldboard_reinforcement")
-    box("Moldboard_Sideshift_Rail",(0.10,0.20,0),(0.18,0.20,3.20),mats["steel_dark"],sideshift,0.025,"sideshift_rail")
+        side_profile(f"Moldboard_Back_Rib_{index:02d}",[(x,y*MOLDBOARD_PROFILE_SCALE_Y) for x,y in [(-0.15,-0.18),(0.02,-0.10),(0.14,0.32),(0.06,0.48),(-0.03,0.29)]],0.050,mats["ochre_dark"],sideshift,z_center=z,bevel_width=0.010*MOLDBOARD_PROFILE_SCALE_Y,role="moldboard_reinforcement")
+    box("Moldboard_Sideshift_Rail",(0.10,0.20*MOLDBOARD_PROFILE_SCALE_Y,0),(0.18,0.20*MOLDBOARD_PROFILE_SCALE_Y,3.20),mats["steel_dark"],sideshift,0.025*MOLDBOARD_PROFILE_SCALE_Y,"sideshift_rail")
 
     # Rear five-shank ripper. The rear tip establishes the published overall envelope.
     ripper_pivot = empty("Rear_Ripper_Pivot",(-2.82,1.16,0),rear,"revolute_pivot","CIRCLE",0.24)
@@ -769,13 +879,13 @@ def create_model():
         ("ANCHOR_Articulation_Rod_L",(0.55,0.12,-0.36),front),
         ("ANCHOR_Articulation_Base_R",(-0.35,0.08,0.42),rear),
         ("ANCHOR_Articulation_Rod_R",(0.55,0.12,0.36),front),
-        ("ANCHOR_Blade_Lift_Base_L",(1.18,0.72,-0.56),front),
-        ("ANCHOR_Blade_Lift_Rod_L",(2.72,-0.29,-0.64),front),
-        ("ANCHOR_Blade_Lift_Base_R",(1.18,0.72,0.56),front),
-        ("ANCHOR_Blade_Lift_Rod_R",(2.72,-0.29,0.64),front),
+        ("ANCHOR_Blade_Lift_Base_L",(1.18,1.74386,-0.56),front),
+        ("ANCHOR_Blade_Lift_Rod_L",(2.72-drawbar_ball_local.x,-0.29-drawbar_ball_local.y,-0.64),drawbar),
+        ("ANCHOR_Blade_Lift_Base_R",(1.18,1.74386,0.56),front),
+        ("ANCHOR_Blade_Lift_Rod_R",(2.72-drawbar_ball_local.x,-0.29-drawbar_ball_local.y,0.64),drawbar),
         ("ANCHOR_Centershift_Base",(2.05,0.44,-0.34),front),
-        ("ANCHOR_Centershift_Rod",(0.42,0.10,-0.42),circle_root),
-        ("ANCHOR_Sideshift_Base",(0.08,0.34,-1.08),sideshift),
+        ("ANCHOR_Centershift_Rod",(circle_center_in_drawbar.x+0.42,circle_center_in_drawbar.y+0.10,-0.42),drawbar),
+        ("ANCHOR_Sideshift_Base",(0.08,0.34,-1.08),tip_pivot),
         ("ANCHOR_Sideshift_Rod",(0.08,0.34,1.08),sideshift),
         ("ANCHOR_Ripper_Base_L",(-2.36,1.72,-0.62),rear),
         ("ANCHOR_Ripper_Rod_L",(-0.45,0.20,-0.62),ripper_root),
@@ -807,10 +917,10 @@ def create_model():
 
     hydraulic_pair("Frame_Articulation_L","ANCHOR_Articulation_Base_L","ANCHOR_Articulation_Rod_L",0.085,0.046,hydraulics)
     hydraulic_pair("Frame_Articulation_R","ANCHOR_Articulation_Base_R","ANCHOR_Articulation_Rod_R",0.085,0.046,hydraulics)
-    hydraulic_pair("Blade_Lift_L","ANCHOR_Blade_Lift_Base_L","ANCHOR_Blade_Lift_Rod_L",0.090,0.050,front)
-    hydraulic_pair("Blade_Lift_R","ANCHOR_Blade_Lift_Base_R","ANCHOR_Blade_Lift_Rod_R",0.090,0.050,front)
-    hydraulic_pair("Circle_Centershift","ANCHOR_Centershift_Base","ANCHOR_Centershift_Rod",0.080,0.044,front)
-    hydraulic_pair("Moldboard_Sideshift","ANCHOR_Sideshift_Base","ANCHOR_Sideshift_Rod",0.072,0.040,sideshift)
+    hydraulic_pair("Blade_Lift_L","ANCHOR_Blade_Lift_Base_L","ANCHOR_Blade_Lift_Rod_L",0.090,0.050,hydraulics)
+    hydraulic_pair("Blade_Lift_R","ANCHOR_Blade_Lift_Base_R","ANCHOR_Blade_Lift_Rod_R",0.090,0.050,hydraulics)
+    hydraulic_pair("Circle_Centershift","ANCHOR_Centershift_Base","ANCHOR_Centershift_Rod",0.080,0.044,hydraulics)
+    hydraulic_pair("Moldboard_Sideshift","ANCHOR_Sideshift_Base","ANCHOR_Sideshift_Rod",0.072,0.040,tip_pivot)
     hydraulic_pair("Rear_Ripper_Lift_L","ANCHOR_Ripper_Base_L","ANCHOR_Ripper_Rod_L",0.088,0.048,hydraulics)
     hydraulic_pair("Rear_Ripper_Lift_R","ANCHOR_Ripper_Base_R","ANCHOR_Ripper_Rod_R",0.088,0.048,hydraulics)
     hydraulic_pair("Front_Steer_L","ANCHOR_Steer_Center_L","ANCHOR_Steer_Arm_L",0.060,0.034,steering_links)
@@ -822,14 +932,19 @@ def create_model():
 
     # Reconstructed hose routing; segmented geometry is deliberately exterior-only.
     hose_objects=[]
-    def hose_path(prefix,points,offsets):
+    hose_defs=[]
+    def hose_path(prefix,points,offsets,owner):
         for bundle_index,zoff in enumerate(offsets,start=1):
             shifted=[Vector((p[0],p[1],p[2]+zoff)) for p in points]
             for segment_index in range(len(shifted)-1):
-                hose=object_between(f"{prefix}_{bundle_index:02d}_Segment_{segment_index+1:02d}",shifted[segment_index],shifted[segment_index+1],0.021 if bundle_index%2 else 0.018,mats["rubber"],"reconstructed_hose",12,machine)
+                start_local,end_local=shifted[segment_index],shifted[segment_index+1]
+                start_world=owner.matrix_world @ start_local
+                end_world=owner.matrix_world @ end_local
+                hose=object_between(f"{prefix}_{bundle_index:02d}_Segment_{segment_index+1:02d}",start_world,end_world,0.021 if bundle_index%2 else 0.018,mats["rubber"],"reconstructed_hose",12,owner)
                 hose_objects.append(hose)
-    hose_path("Front_Frame_Hose",[(0.0,1.58,0),(0.8,1.62,0),(1.7,1.51,0),(2.7,1.43,0),(3.7,1.30,0)],(-0.28,-0.23,0.23,0.28))
-    hose_path("Circle_Hose",[(1.3,1.72,0),(1.7,1.48,0),(2.1,1.14,0),(2.7,0.98,0)],(-0.18,-0.12,0.12,0.18))
+                hose_defs.append((hose,owner,start_local.copy(),end_local.copy()))
+    hose_path("Front_Frame_Hose",[(0.0,0.33,0),(0.8,0.37,0),(1.7,0.26,0),(2.7,0.18,0),(3.7,0.05,0)],(-0.28,-0.23,0.23,0.28),front)
+    hose_path("Circle_Hose",[(-3.42,0.77,0),(-3.02,0.53,0),(-2.62,0.19,0),(-2.02,0.03,0)],(-0.18,-0.12,0.12,0.18),drawbar)
 
     # Handrails, tandem walkways, lamps, fender edges and high-frequency fasteners.
     rail_segments=[
@@ -885,12 +1000,17 @@ def create_model():
         "steering_pivots":{"L":bpy.data.objects["Front_Steering_L_Pivot"],"R":bpy.data.objects["Front_Steering_R_Pivot"]},
         "lean_pivots":{"L":bpy.data.objects["Front_Wheel_Lean_L_Pivot"],"R":bpy.data.objects["Front_Wheel_Lean_R_Pivot"]},
         "circle_pivot":circle_pivot,
+        "drawbar":drawbar,
+        "circle_guide":circle_guide,
+        "circle_root":circle_root,
+        "sideshift":sideshift,
         "tip_pivot":tip_pivot,
         "tandem_roots":tandem_roots,
         "anchors":anchors,
         "dynamic_links":dynamic_links,
         "cylinder_defs":cylinder_defs,
         "hose_objects":hose_objects,
+        "hose_defs":hose_defs,
     }
 
 
@@ -905,6 +1025,286 @@ def refresh_dynamic_links(model):
         place_between(links[f"{key}_Rod"],start+vector*0.57,end,rod_radius)
     place_between(links["Front_Steering_Tie_Rod"],world(anchors["ANCHOR_Steer_Arm_L"]),world(anchors["ANCHOR_Steer_Arm_R"]),0.035)
     bpy.context.view_layer.update()
+
+
+def ancestry(obj):
+    names=[]
+    current=obj
+    while current is not None:
+        names.append(current.name)
+        current=current.parent
+    return names
+
+
+def unit_cylinder_world_endpoints(obj):
+    return (
+        obj.matrix_world @ Vector((0,0,-0.5)),
+        obj.matrix_world @ Vector((0,0,0.5)),
+    )
+
+
+def endpoint_set_residual(actual,expected):
+    direct=max((actual[0]-expected[0]).length,(actual[1]-expected[1]).length)
+    reversed_order=max((actual[0]-expected[1]).length,(actual[1]-expected[0]).length)
+    return min(direct,reversed_order)
+
+
+def measure_cylinder_links(model):
+    measurements={}
+    for key,a,b,_barrel_radius,_rod_radius in model["cylinder_defs"]:
+        start,end=world(model["anchors"][a]),world(model["anchors"][b])
+        vector=end-start
+        axis=vector.normalized()
+        barrel=unit_cylinder_world_endpoints(model["dynamic_links"][f"{key}_Barrel"])
+        rod=unit_cylinder_world_endpoints(model["dynamic_links"][f"{key}_Rod"])
+        expected_barrel=(start,start+vector*0.64)
+        expected_rod=(start+vector*0.57,end)
+        barrel_projection=sorted(point.dot(axis) for point in barrel)
+        rod_projection=sorted(point.dot(axis) for point in rod)
+        overlap=max(0.0,min(barrel_projection[1],rod_projection[1])-max(barrel_projection[0],rod_projection[0]))
+        measurements[key]={
+            "anchor_distance_m":round(vector.length,6),
+            "barrel_endpoint_max_residual_m":round(endpoint_set_residual(barrel,expected_barrel),9),
+            "rod_endpoint_max_residual_m":round(endpoint_set_residual(rod,expected_rod),9),
+            "barrel_rod_axial_overlap_m":round(overlap,6),
+            "base_anchor_parent":model["anchors"][a].parent.name,
+            "rod_anchor_parent":model["anchors"][b].parent.name,
+            "base_anchor_ancestry":ancestry(model["anchors"][a]),
+            "rod_anchor_ancestry":ancestry(model["anchors"][b]),
+        }
+    return measurements
+
+
+def measure_steering_tie_rod(model):
+    left=world(model["anchors"]["ANCHOR_Steer_Arm_L"])
+    right=world(model["anchors"]["ANCHOR_Steer_Arm_R"])
+    actual=unit_cylinder_world_endpoints(model["dynamic_links"]["Front_Steering_Tie_Rod"])
+    return {
+        "endpoint_max_residual_m":round(endpoint_set_residual(actual,(left,right)),9),
+        "anchor_distance_m":round((right-left).length,6),
+        "left_anchor_parent":model["anchors"]["ANCHOR_Steer_Arm_L"].parent.name,
+        "right_anchor_parent":model["anchors"]["ANCHOR_Steer_Arm_R"].parent.name,
+        "left_anchor_ancestry":ancestry(model["anchors"]["ANCHOR_Steer_Arm_L"]),
+        "right_anchor_ancestry":ancestry(model["anchors"]["ANCHOR_Steer_Arm_R"]),
+    }
+
+
+def measure_hose_links(model):
+    residuals=[]
+    by_prefix={}
+    owners_by_prefix={}
+    for hose,owner,start_local,end_local in model["hose_defs"]:
+        expected=(owner.matrix_world @ start_local,owner.matrix_world @ end_local)
+        residual=endpoint_set_residual(unit_cylinder_world_endpoints(hose),expected)
+        residuals.append(residual)
+        prefix="Circle_Hose" if hose.name.startswith("Circle_Hose") else "Front_Frame_Hose"
+        by_prefix.setdefault(prefix,[]).append(residual)
+        owners_by_prefix.setdefault(prefix,set()).add(hose.parent.name if hose.parent else None)
+    return {
+        "segment_count":len(residuals),
+        "max_endpoint_residual_m":round(max(residuals,default=0.0),9),
+        "max_endpoint_residual_by_route_m":{key:round(max(values),9) for key,values in sorted(by_prefix.items())},
+        "ownership":{key:sorted(value for value in owners if value is not None) for key,owners in sorted(owners_by_prefix.items())},
+    }
+
+
+def aabb(objects,measurement_space=None):
+    points=evaluated_world_points(objects)
+    if measurement_space is not None:
+        inverse=measurement_space.matrix_world.inverted()
+        points=[inverse @ point for point in points]
+    return {
+        "min":[min(point[index] for point in points) for index in range(3)],
+        "max":[max(point[index] for point in points) for index in range(3)],
+    }
+
+
+def aabb_separation(left,right):
+    separations=[]
+    for index in range(3):
+        separations.append(max(0.0,left["min"][index]-right["max"][index],right["min"][index]-left["max"][index]))
+    return {
+        "axis_separation_xyz_m":[round(value,6) for value in separations],
+        "euclidean_gap_m":round(math.sqrt(sum(value*value for value in separations)),6),
+        "aabb_overlap":all(value==0.0 for value in separations),
+    }
+
+
+def minimum_pairwise_aabb_separation(left_objects,right_objects,measurement_space):
+    left_bounds={obj.name:aabb([obj],measurement_space) for obj in left_objects}
+    right_bounds={obj.name:aabb([obj],measurement_space) for obj in right_objects}
+    pairs=[]
+    for left_name,left_bound in left_bounds.items():
+        for right_name,right_bound in right_bounds.items():
+            result=aabb_separation(left_bound,right_bound)
+            pairs.append((result["euclidean_gap_m"],result["aabb_overlap"],left_name,right_name,result["axis_separation_xyz_m"]))
+    pairs.sort(key=lambda item:(item[0],item[2],item[3]))
+    closest=pairs[0]
+    overlaps=[{"left":left_name,"right":right_name} for _gap,overlap,left_name,right_name,_axes in pairs if overlap]
+    return {
+        "measurement_space":measurement_space.name,
+        "minimum_pairwise_aabb_gap_m":closest[0],
+        "closest_pair":{"left":closest[2],"right":closest[3],"axis_separation_xyz_m":closest[4]},
+        "overlapping_pair_count":len(overlaps),
+        "overlapping_pairs":overlaps,
+        "aabb_overlap":bool(overlaps),
+        "tested_pair_count":len(pairs),
+    }
+
+
+def mesh_groups_for_collision_sample():
+    meshes=[obj for obj in bpy.data.objects if obj.type=="MESH" and obj.get("exo_export",False)]
+    tire_roles={"tire_carcass","tire_tread","tire_shoulder_lug","tire_sidewall"}
+    return {
+        "moldboard":[obj for obj in meshes if obj.name.startswith("Moldboard_")],
+        "front_tires":[obj for obj in meshes if obj.name.startswith("Front_") and obj.get("exo_role") in tire_roles],
+        "rear_tires":[obj for obj in meshes if obj.name.startswith("Rear_") and obj.get("exo_role") in tire_roles],
+        "push_block":[obj for obj in meshes if obj.name.startswith("Push_Block")],
+        "rear_ripper":[obj for obj in meshes if obj.name.startswith("Rear_Ripper")],
+    }
+
+
+def measure_collision_pairs():
+    groups=mesh_groups_for_collision_sample()
+    pairs={
+        "moldboard_to_front_tires":("moldboard","front_tires","Machine_Root"),
+        "moldboard_to_rear_tires":("moldboard","rear_tires","Machine_Root"),
+        "push_block_to_front_tires":("push_block","front_tires","Front_Frame_ROOT"),
+        "rear_ripper_to_rear_tires":("rear_ripper","rear_tires","Rear_Frame_ROOT"),
+    }
+    return {
+        name:minimum_pairwise_aabb_separation(groups[left],groups[right],bpy.data.objects[space])
+        for name,(left,right,space) in pairs.items()
+    }
+
+
+def measure_pose_state(model):
+    return {
+        "cylinders":measure_cylinder_links(model),
+        "steering_tie_rod":measure_steering_tie_rod(model),
+        "hoses":measure_hose_links(model),
+        "selected_self_collision_pairs":measure_collision_pairs(),
+    }
+
+
+def sample_circle_rotation(model,sample_deg=73.0):
+    fixed_names=["Circle_Drive_Pinion","Circle_Drive_Housing","Circle_Drive_Motor","Drawbar_Wear_Shoe_1","Circle_Wear_Roller_1"]
+    rotating_names=["Circle_Tooth_01","Moldboard_Curved_Shell"]
+    before={name:world(bpy.data.objects[name]) for name in fixed_names+rotating_names}
+    model["circle_pivot"].rotation_euler[1]=math.radians(sample_deg)
+    refresh_dynamic_links(model)
+    fixed_displacements={name:(world(bpy.data.objects[name])-before[name]).length for name in fixed_names}
+    rotating_displacements={name:(world(bpy.data.objects[name])-before[name]).length for name in rotating_names}
+    result={
+        "classification":"cyclic_full_rotation_sample",
+        "sample_deg":sample_deg,
+        "published_rotation_capability_deg":PUBLISHED["circle_rotation_deg"],
+        "fixed_guide_max_displacement_m":round(max(fixed_displacements.values()),9),
+        "rotating_member_min_displacement_m":round(min(rotating_displacements.values()),6),
+        "fixed_components":fixed_displacements,
+        "rotating_components":rotating_displacements,
+    }
+    model["circle_pivot"].rotation_euler[1]=0
+    refresh_dynamic_links(model)
+    return result
+
+
+def sample_viewer_motion(model):
+    viewer=json.loads(VIEWER_PATH.read_text(encoding="utf-8"))
+    mechanism=json.loads((MACHINE_DIR/"mechanism.json").read_text(encoding="utf-8"))
+    joints={joint.get("id"):joint for joint in mechanism.get("joints",[])}
+    motion=viewer.get("motion",{})
+    result={
+        "motion_contract":{
+            "autoplay":motion.get("autoplay"),
+            "durationSeconds":motion.get("durationSeconds"),
+            "mode":motion.get("mode"),
+            "damping":motion.get("damping"),
+            "channel_count":len(motion.get("channels",[])),
+        },
+        "channels":[],
+    }
+    for channel in motion.get("channels",[]):
+        joint=joints.get(channel.get("mechanismJointId"))
+        property_name=channel.get("property","")
+        parts=property_name.split(".")
+        property_group=parts[0] if len(parts)==2 else None
+        axis_name=parts[1] if len(parts)==2 else None
+        axis_index={"x":0,"y":1,"z":2}.get(axis_name)
+        declared_match=re.search(r"[+-]?([XYZ])",joint.get("axis","") if joint else "")
+        declared_axis=declared_match.group(1).lower() if declared_match else None
+        nodes=[bpy.data.objects.get(name) for name in channel.get("nodes",[])]
+        binding_valid=(
+            joint is not None
+            and property_group=="rotation"
+            and axis_index is not None
+            and declared_axis==axis_name
+            and bool(nodes)
+            and all(node is not None for node in nodes)
+            and channel.get("mode") in ("offset","absolute")
+            and isinstance(channel.get("from"),(int,float))
+            and isinstance(channel.get("to"),(int,float))
+            and channel.get("from")!=channel.get("to")
+        )
+        channel_result={
+            "id":channel.get("id"),
+            "mechanismJointId":channel.get("mechanismJointId"),
+            "joint_axis":joint.get("axis") if joint else None,
+            "property":property_name,
+            "mode":channel.get("mode"),
+            "nodes":channel.get("nodes",[]),
+            "binding_valid":binding_valid,
+            "samples":[],
+        }
+        if binding_valid:
+            originals={node.name:node.rotation_euler[axis_index] for node in nodes}
+            low=float(channel["from"])
+            high=float(channel["to"])
+            neutral=0.0 if min(low,high)<=0.0<=max(low,high) else (low+high)/2.0
+            for label,value in (("from",low),("neutral",neutral),("to",high)):
+                for node in nodes:
+                    node.rotation_euler[axis_index]=(originals[node.name]+value if channel["mode"]=="offset" else value)
+                refresh_dynamic_links(model)
+                pose=measure_pose_state(model)
+                visible=[obj for obj in bpy.data.objects if obj.type=="MESH" and obj.get("exo_export",False)]
+                channel_result["samples"].append({
+                    "label":label,
+                    "authored_value_rad":round(value,9),
+                    "authored_value_deg":round(math.degrees(value),6),
+                    "selected_self_collision_pairs":pose["selected_self_collision_pairs"],
+                    "moldboard_sideshift_cylinder":pose["cylinders"]["Moldboard_Sideshift"],
+                    "hose_attachment":pose["hoses"],
+                    "visible_min_y_m":round(min(point.y for point in evaluated_world_points(visible)),9),
+                })
+            for node in nodes:
+                node.rotation_euler[axis_index]=originals[node.name]
+            refresh_dynamic_links(model)
+        result["channels"].append(channel_result)
+    result["standardized_motion_contract_valid"]=(
+        result["motion_contract"]=={
+            "autoplay":True,
+            "durationSeconds":18,
+            "mode":"sine",
+            "damping":8,
+            "channel_count":len(motion.get("channels",[])),
+        }
+        and result["motion_contract"]["channel_count"]>0
+    )
+    result["all_bindings_valid"]=bool(result["channels"]) and all(channel["binding_valid"] for channel in result["channels"])
+    return result
+
+
+def sample_drawbar_and_sideshift(model):
+    original_sideshift=model["sideshift"].location.copy()
+    model["drawbar"].rotation_euler[2]=math.radians(3.0)
+    model["sideshift"].location.z=original_sideshift.z+0.22
+    refresh_dynamic_links(model)
+    result=measure_pose_state(model)
+    result["sample"]={"drawbar_lift_deg":3.0,"moldboard_sideshift_m":0.22,"classification":"reconstructed_local_continuity_sample"}
+    model["drawbar"].rotation_euler[2]=0
+    model["sideshift"].location=original_sideshift
+    refresh_dynamic_links(model)
+    return result
 
 
 def add_review_lighting():
@@ -970,10 +1370,16 @@ def render_component_isolation(name, allowed_roles, camera_location, target, len
 
 def render_all(model):
     paths=[]
+    model["static_pose_sample"]=measure_pose_state(model)
+    model["circle_rotation_sample"]=sample_circle_rotation(model)
+    model["viewer_motion_samples"]=sample_viewer_motion(model)
+    model["drawbar_sideshift_sample"]=sample_drawbar_and_sideshift(model)
     paths.append(render_view("technical-side",(1.0,4.2,-17.8),(1.0,1.45,0),54))
     paths.append(render_view("front-left-quarter",(12.8,5.5,-13.0),(1.7,1.25,0),52))
     paths.append(render_view("rear-right-quarter",(-12.5,5.0,11.5),(-0.2,1.45,0),52))
     paths.append(render_view("blade-circle-drawbar-detail",(5.35,5.65,-5.9),(2.72,0.92,-0.08),64))
+    model["circle_pivot"].rotation_euler[1]=math.radians(28.0)
+    refresh_dynamic_links(model)
     paths.append(render_component_isolation(
         "circle-drive-guide-component-inspection",
         {"drawbar_structure","drawbar_joint","circle_ring","circle_wear_surface","circle_tooth","drawbar_shoe","circle_contact","circle_drive","link_bar_position"},
@@ -981,6 +1387,8 @@ def render_all(model):
         (2.72,0.90,-0.02),
         64,
     ))
+    model["circle_pivot"].rotation_euler[1]=0
+    refresh_dynamic_links(model)
     paths.append(render_view("front-axle-steering-detail",(9.0,2.75,-5.0),(5.28,0.68,0),72))
     paths.append(render_view("cab-service-side",(-0.8,4.25,-6.8),(-1.0,2.05,-0.2),68))
     paths.append(render_view("rear-ripper-detail",(-7.2,2.7,-4.5),(-3.25,0.72,0),70))
@@ -993,6 +1401,7 @@ def render_all(model):
     model["lean_pivots"]["L"].rotation_euler[0]=math.radians(RECONSTRUCTED["review_pose"]["front_wheel_lean_deg"])
     model["lean_pivots"]["R"].rotation_euler[0]=math.radians(RECONSTRUCTED["review_pose"]["front_wheel_lean_deg"])
     refresh_dynamic_links(model)
+    model["articulated_review_pose_sample"]=measure_pose_state(model)
     paths.append(render_view("articulated-frame-wheel-lean-study",(12.8,5.7,-14.5),(1.8,1.25,0),50))
 
     # Restore the exact static asset pose before save and export.
@@ -1003,6 +1412,7 @@ def render_all(model):
     for obj in model["lean_pivots"].values():
         obj.rotation_euler[0]=0
     refresh_dynamic_links(model)
+    model["restored_static_pose_sample"]=measure_pose_state(model)
     return paths
 
 
@@ -1076,6 +1486,24 @@ def inspect_glb_contract(path):
         raise RuntimeError("GLB JSON chunk missing")
     document=json.loads(json_chunk.decode("utf-8").rstrip("\x00 "))
     scene=document["scenes"][document.get("scene",0)]
+    nodes=document.get("nodes",[])
+    parent_indices={child_index:parent_index for parent_index,node in enumerate(nodes) for child_index in node.get("children",[])}
+    name_to_index={node.get("name"):index for index,node in enumerate(nodes) if node.get("name")}
+    semantic_parent_map={}
+    for name in REQUIRED_NODES:
+        index=name_to_index.get(name)
+        parent_index=parent_indices.get(index) if index is not None else None
+        semantic_parent_map[name]=nodes[parent_index].get("name") if parent_index is not None else None
+    actuator_names={
+        name
+        for base_name,_base_parent,rod_name,_rod_parent in ACTUATOR_ANCHOR_PARENTS.values()
+        for name in (base_name,rod_name)
+    } | set(ACTUATOR_MESH_PARENTS)
+    actuator_parent_map={}
+    for name in sorted(actuator_names):
+        index=name_to_index.get(name)
+        parent_index=parent_indices.get(index) if index is not None else None
+        actuator_parent_map[name]=nodes[parent_index].get("name") if parent_index is not None else None
     roots=[]
     for index in scene.get("nodes",[]):
         node=document["nodes"][index]
@@ -1087,6 +1515,8 @@ def inspect_glb_contract(path):
         "camera_count":len(document.get("cameras",[])),
         "punctual_light_extension_present":"KHR_lights_punctual" in document.get("extensions",{}),
         "inspection_helper_nodes":sorted(node.get("name","") for node in document.get("nodes",[]) if node.get("name","").startswith("INSPECT_") or node.get("name")=="Inspection_Volumes"),
+        "semantic_parent_map":semantic_parent_map,
+        "actuator_parent_map":actuator_parent_map,
         "platform_axes":"+X front, +Y vertical, +Z machine right",
     }
 
@@ -1112,6 +1542,25 @@ def collect_metrics(model,objects):
     rear_points=evaluated_world_points(rear_tires)
     cab_points=evaluated_world_points([bpy.data.objects["Cab_Roof"]])
     blade_points=evaluated_world_points([bpy.data.objects["Moldboard_Curved_Shell"]])
+    moldboard_component_objects=[bpy.data.objects[name] for name in ("Moldboard_Curved_Shell","Moldboard_Cutting_Edge","Moldboard_End_Bit_L","Moldboard_End_Bit_R")]
+    moldboard_component_world_points=evaluated_world_points(moldboard_component_objects)
+    sideshift_inverse=model["sideshift"].matrix_world.inverted()
+    moldboard_component_local_points=[sideshift_inverse @ point for point in moldboard_component_world_points]
+    hydraulic_points=evaluated_world_points([obj for obj in meshes if obj.get("exo_role") in {"hydraulic_barrel","hydraulic_rod"}])
+    exhaust_points=evaluated_world_points([obj for obj in meshes if obj.get("exo_role")=="exhaust"])
+    rear_axle_points=evaluated_world_points([obj for obj in meshes if obj.get("exo_role")=="rear_axle_structure"])
+    ripper_points=evaluated_world_points([obj for obj in meshes if obj.name.startswith("Rear_Ripper")])
+    non_tire_points=evaluated_world_points([obj for obj in meshes if obj.get("exo_role") not in {"tire_carcass","tire_tread","tire_shoulder_lug","tire_sidewall"}])
+    fixed_circle_roles={"drawbar_shoe","circle_contact","circle_drive"}
+    drawbar_nonrotating_roles={"drawbar_structure","link_bar_position"}
+    rotating_circle_roles={"circle_ring","circle_wear_surface","circle_tooth","moldboard","cutting_edge","end_bit","moldboard_reinforcement","sideshift_rail"}
+    fixed_circle_objects=[obj for obj in meshes if obj.get("exo_role") in fixed_circle_roles]
+    drawbar_nonrotating_objects=[obj for obj in meshes if obj.get("exo_role") in drawbar_nonrotating_roles]
+    rotating_circle_objects=[obj for obj in meshes if obj.get("exo_role") in rotating_circle_roles]
+    fixed_circle_ownership={obj.name:ancestry(obj) for obj in fixed_circle_objects}
+    drawbar_nonrotating_ownership={obj.name:ancestry(obj) for obj in drawbar_nonrotating_objects}
+    rotating_circle_ownership={obj.name:ancestry(obj) for obj in rotating_circle_objects}
+    circle_role_counts={role:len([obj for obj in meshes if obj.get("exo_role")==role]) for role in sorted(fixed_circle_roles|drawbar_nonrotating_roles|rotating_circle_roles)}
     scale_offenders={obj.name:[round(v,8) for v in obj.scale] for obj in meshes if any(abs(v-1)>1e-7 for v in obj.scale)}
     return {
         "visible_min_y_m":min(p.y for p in visible_points),
@@ -1120,17 +1569,43 @@ def collect_metrics(model,objects):
         "rear_tire_outside_width_m":max(p.z for p in rear_points)-min(p.z for p in rear_points),
         "cab_roof_top_m":max(p.y for p in cab_points),
         "front_axle_center_world_m":[round(v,6) for v in world(bpy.data.objects["Front_Axle_Oscillation_Pivot"])],
-        "rear_axle_center_world_m":[-0.844,0.690,0.0],
+        "rear_axle_center_world_m":[round(v,6) for v in world(bpy.data.objects["Tandem_L_Pivot"])],
+        "front_axle_to_rear_axle_m":abs(world(bpy.data.objects["Front_Axle_Oscillation_Pivot"]).x-world(bpy.data.objects["Tandem_L_Pivot"]).x),
+        "front_axle_to_articulation_m":abs(world(bpy.data.objects["Front_Axle_Oscillation_Pivot"]).x-world(bpy.data.objects["Articulation_Pivot"]).x),
+        "rear_axle_to_articulation_m":abs(world(bpy.data.objects["Tandem_L_Pivot"]).x-world(bpy.data.objects["Articulation_Pivot"]).x),
+        "rear_tire_centerline_width_m":abs(world(bpy.data.objects["Tandem_L_Pivot"]).z-world(bpy.data.objects["Tandem_R_Pivot"]).z),
         "tandem_wheel_spacing_m":abs(world(bpy.data.objects["Rear_L_Rear_Wheel_ROOT"]).x-world(bpy.data.objects["Rear_L_Front_Wheel_ROOT"]).x),
         "moldboard_width_m":max(p.z for p in blade_points)-min(p.z for p in blade_points),
+        "moldboard_component_local_height_m":max(p.y for p in moldboard_component_local_points)-min(p.y for p in moldboard_component_local_points),
+        "top_of_hydraulic_cylinders_m":max(p.y for p in hydraulic_points),
+        "exhaust_top_m":max(p.y for p in exhaust_points),
+        "rear_axle_structure_min_y_m":min(p.y for p in rear_axle_points),
+        "rear_ripper_min_y_m":min(p.y for p in ripper_points),
+        "rear_ripper_holder_spacing_m":[round(abs(world(bpy.data.objects[f"Rear_Ripper_Holder_Pin_{index+1}"]).z-world(bpy.data.objects[f"Rear_Ripper_Holder_Pin_{index}"]).z),6) for index in range(1,PUBLISHED["ripper_shanks"])],
+        "non_tire_export_mesh_min_y_m":min(p.y for p in non_tire_points),
         "tire_carcass_count":len(tires),
         "tread_block_count":len([obj for obj in meshes if obj.get("exo_role")=="tire_tread"]),
         "circle_tooth_count":len([obj for obj in meshes if obj.get("exo_role")=="circle_tooth"]),
         "drawbar_shoe_count":len([obj for obj in meshes if obj.get("exo_role")=="drawbar_shoe"]),
+        "link_bar_position_count":len([obj for obj in meshes if obj.get("exo_role")=="link_bar_position"]),
         "ripper_shank_count":len([obj for obj in meshes if obj.get("exo_role")=="ripper_shank"]),
+        "operator_control_lever_mesh_count":len([obj for obj in meshes if obj.get("exo_role")=="operator_control_lever"]),
         "hydraulic_barrels":len([obj for obj in meshes if obj.get("exo_role")=="hydraulic_barrel"]),
         "hydraulic_rods":len([obj for obj in meshes if obj.get("exo_role")=="hydraulic_rod"]),
         "reconstructed_hose_segments":len(model["hose_objects"]),
+        "drawbar_root_child_count":len(model["drawbar"].children),
+        "circle_pivot_parent":model["circle_pivot"].parent.name,
+        "circle_root_parent":model["circle_root"].parent.name,
+        "fixed_circle_component_ownership":fixed_circle_ownership,
+        "drawbar_nonrotating_component_ownership":drawbar_nonrotating_ownership,
+        "rotating_circle_component_ownership":rotating_circle_ownership,
+        "circle_and_drawbar_role_counts":circle_role_counts,
+        "static_pose_sample":model["static_pose_sample"],
+        "restored_static_pose_sample":model["restored_static_pose_sample"],
+        "circle_rotation_sample":model["circle_rotation_sample"],
+        "viewer_motion_samples":model["viewer_motion_samples"],
+        "drawbar_sideshift_sample":model["drawbar_sideshift_sample"],
+        "articulated_review_pose_sample":model["articulated_review_pose_sample"],
         "export_mesh_scale_offenders":scale_offenders,
     }
 
@@ -1141,38 +1616,340 @@ def create_validation(bounds,counts,render_paths,metrics,glb_contract):
     glb_ok=(glb_contract["scene_count"]==1 and len(roots)==1 and roots[0]["name"]=="Machine_Root" and roots[0]["transform"]=={} and glb_contract["camera_count"]==0 and not glb_contract["punctual_light_extension_present"] and not glb_contract["inspection_helper_nodes"])
     render_ok=all(path.exists() and path.stat().st_size>25_000 for path in render_paths)
     length,height,width=bounds["size_m"]
-    gates=[
-        {"id":"builder-execution","status":"PASS","detail":"Factory-startup background builder reached receipt generation."},
-        {"id":"candidate-class-boundary","status":"PASS","detail":"technical_structural_study; research candidate only; not engineering authority."},
-        {"id":"scene-units-and-axes","status":"PASS","detail":"Meters; +X front, +Y vertical, +Z machine right."},
-        {"id":"independent-authoring-boundary","status":"PASS","detail":"No downloaded geometry, CAD, copied texture, logo, manufacturer binary, or protected livery is embedded."},
+    facts_document=json.loads((MACHINE_DIR/"evidence"/"facts.json").read_text(encoding="utf-8"))
+    source_document=json.loads((MACHINE_DIR/"evidence"/"source-manifest.json").read_text(encoding="utf-8"))
+    mechanism_document=json.loads((MACHINE_DIR/"mechanism.json").read_text(encoding="utf-8"))
+    design_document=json.loads(DESIGN_PATH.read_text(encoding="utf-8"))
+    configuration_document=json.loads(CONFIGURATION_PATH.read_text(encoding="utf-8"))
+    sources={source["id"]:source for source in source_document["sources"]}
+    fact_source_bindings=[]
+    for fact in facts_document["facts"]:
+        source=sources.get(fact["source_id"],{})
+        local_path=source.get("local_path")
+        binary=REPO_ROOT/local_path if local_path else None
+        page_numbers=[int(value) for value in re.findall(r"\d+",fact.get("location",""))]
+        binding={
+            "fact_id":fact["id"],
+            "source_id":fact["source_id"],
+            "location":fact.get("location"),
+            "local_binary_present":bool(binary and binary.is_file()),
+            "sha256_match":bool(binary and binary.is_file() and sha256(binary)==source.get("sha256")),
+            "byte_count_match":bool(binary and binary.is_file() and binary.stat().st_size==source.get("bytes")),
+            "page_references_within_source":bool(page_numbers and source.get("pages") and all(1<=page<=source["pages"] for page in page_numbers)),
+        }
+        binding["valid"]=all(binding[key] for key in ("local_binary_present","sha256_match","byte_count_match","page_references_within_source"))
+        fact_source_bindings.append(binding)
+    source_binding_ok=(
+        facts_document.get("configuration_id")==CONFIGURATION_ID
+        and source_document.get("configuration_id")==CONFIGURATION_ID
+        and mechanism_document.get("configuration_id")==CONFIGURATION_ID
+        and design_document.get("configuration_id")==CONFIGURATION_ID
+        and configuration_document.get("configuration_id")==CONFIGURATION_ID
+        and all(binding["valid"] for binding in fact_source_bindings)
+    )
+    source_hash_evidence={source_id:{"path":source.get("local_path"),"sha256":source.get("sha256"),"bytes":source.get("bytes"),"pages":source.get("pages")} for source_id,source in sources.items() if source.get("local_path")}
+
+    exported_names={obj.name for obj in bpy.data.objects if obj.get("exo_export",False)}
+    forbidden_configuration_hits=sorted(name for name in exported_names if any(token in name for token in ("Joystick","AWD","Grade_Control","Factory_Camera")))
+    frozen_visible_checks={
+        "source_binding_ok":source_binding_ok,
+        "steering_wheel_present":"Steering_Wheel" in exported_names,
+        "reconstructed_lever_meshes":metrics["operator_control_lever_mesh_count"],
+        "tire_carcasses":metrics["tire_carcass_count"],
+        "all_tires_tagged_14_0R24":all(obj.get("exo_tire_identity")=="14.0R24" for obj in bpy.data.objects if obj.get("exo_role")=="tire_carcass"),
+        "standard_circle_present":"Standard_Circle_Ring" in exported_names,
+        "push_block_present":"Push_Block_ROOT" in exported_names,
+        "ripper_shanks":metrics["ripper_shank_count"],
+        "configuration_public_finish":configuration_document.get("choices",{}).get("public_finish"),
+        "design_palette":design_document.get("palette"),
+        "public_finish_matches_design_palette":configuration_document.get("choices",{}).get("public_finish")==design_document.get("palette"),
+        "forbidden_variant_name_hits":forbidden_configuration_hits,
+    }
+    frozen_visible_ok=(source_binding_ok and frozen_visible_checks["steering_wheel_present"] and metrics["operator_control_lever_mesh_count"]>=8 and metrics["tire_carcass_count"]==6 and frozen_visible_checks["all_tires_tagged_14_0R24"] and frozen_visible_checks["standard_circle_present"] and frozen_visible_checks["push_block_present"] and metrics["ripper_shank_count"]==PUBLISHED["ripper_shanks"] and frozen_visible_checks["public_finish_matches_design_palette"] and not forbidden_configuration_hits)
+
+    envelope_evidence={
+        "visible_length":{"measured_m":length,"published_m":PUBLISHED["push_plate_to_ripper_m"],"tolerance_m":0.035},
+        "visible_width":{"measured_m":width,"published_m":PUBLISHED["moldboard_width_m"],"tolerance_m":0.020},
+        "cab_height":{"measured_m":metrics["cab_roof_top_m"],"published_m":PUBLISHED["cab_height_m"],"tolerance_m":0.010},
+        "moldboard_height_in_sideshift_space":{"measured_m":metrics["moldboard_component_local_height_m"],"published_m":PUBLISHED["moldboard_height_m"],"tolerance_m":0.006},
+        "top_of_cylinders":{"measured_m":metrics["top_of_hydraulic_cylinders_m"],"published_m":PUBLISHED["top_cylinders_height_m"],"tolerance_m":0.010},
+        "exhaust_top":{"measured_m":metrics["exhaust_top_m"],"published_m":PUBLISHED["exhaust_height_m"],"tolerance_m":0.002},
+        "rear_axle_clearance":{"measured_m":metrics["rear_axle_structure_min_y_m"],"published_m":PUBLISHED["rear_axle_ground_clearance_m"],"tolerance_m":0.003},
+    }
+    envelope_ok=all(abs(item["measured_m"]-item["published_m"])<=item["tolerance_m"] for item in envelope_evidence.values())
+
+    expected_parents={
+        "Machine_Root":None,
+        "Rear_Frame_ROOT":"Machine_Root",
+        "Hydraulics_ROOT":"Machine_Root",
+        "Steering_Linkage_ROOT":"Machine_Root",
+        "Articulation_Pivot":"Rear_Frame_ROOT",
+        "Front_Frame_ROOT":"Articulation_Pivot",
+        "Front_Axle_Oscillation_Pivot":"Front_Frame_ROOT",
+        "Front_Axle_ROOT":"Front_Axle_Oscillation_Pivot",
+        "Front_Steering_L_Pivot":"Front_Axle_ROOT",
+        "Front_Steering_R_Pivot":"Front_Axle_ROOT",
+        "Front_Wheel_Lean_L_Pivot":"Front_Steering_L_Pivot",
+        "Front_Wheel_Lean_R_Pivot":"Front_Steering_R_Pivot",
+        "Tandem_L_Pivot":"Rear_Frame_ROOT",
+        "Tandem_R_Pivot":"Rear_Frame_ROOT",
+        "Drawbar_ROOT":"Front_Frame_ROOT",
+        "Circle_Guide_ROOT":"Drawbar_ROOT",
+        "Circle_Rotation_Pivot":"Drawbar_ROOT",
+        "Circle_ROOT":"Circle_Rotation_Pivot",
+        "Moldboard_Tip_Pivot":"Circle_ROOT",
+        "Moldboard_Sideshift_ROOT":"Moldboard_Tip_Pivot",
+        "Rear_Ripper_Pivot":"Rear_Frame_ROOT",
+        "Rear_Ripper_ROOT":"Rear_Ripper_Pivot",
+    }
+    actual_parents={name:(bpy.data.objects[name].parent.name if bpy.data.objects.get(name) and bpy.data.objects[name].parent else None) for name in expected_parents}
+    actual_glb_parents={name:glb_contract["semantic_parent_map"].get(name) for name in expected_parents}
+    fixed_circle_ok=all("Circle_Guide_ROOT" in chain and "Circle_Rotation_Pivot" not in chain for chain in metrics["fixed_circle_component_ownership"].values())
+    drawbar_nonrotating_ok=all("Drawbar_ROOT" in chain and "Circle_Rotation_Pivot" not in chain for chain in metrics["drawbar_nonrotating_component_ownership"].values())
+    rotating_circle_ok=all("Circle_ROOT" in chain for chain in metrics["rotating_circle_component_ownership"].values())
+    circle_joint=next((joint for joint in mechanism_document["joints"] if joint["id"]=="circle_rotation"),{})
+    drawbar_mesh_descendants=sum(1 for obj in bpy.data.objects if obj.type=="MESH" and "Drawbar_ROOT" in ancestry(obj))
+    drawbar_closure_evidence={
+        "expected_parent_map":expected_parents,
+        "actual_blender_parent_map":actual_parents,
+        "actual_glb_parent_map":actual_glb_parents,
+        "drawbar_mesh_descendants":drawbar_mesh_descendants,
+        "fixed_component_count":len(metrics["fixed_circle_component_ownership"]),
+        "fixed_components_outside_rotation_subtree":fixed_circle_ok,
+        "drawbar_structure_and_linkbar_outside_rotation_subtree":drawbar_nonrotating_ok,
+        "rotating_component_count":len(metrics["rotating_circle_component_ownership"]),
+        "rotating_components_inside_circle_root":rotating_circle_ok,
+        "role_counts":metrics["circle_and_drawbar_role_counts"],
+        "circle_teeth":metrics["circle_tooth_count"],
+        "drawbar_shoes":metrics["drawbar_shoe_count"],
+        "circle_motion_manifest":circle_joint,
+        "rotation_sample":metrics["circle_rotation_sample"],
+    }
+    required_role_counts={"drawbar_structure":3,"link_bar_position":7,"drawbar_shoe":6,"circle_contact":6,"circle_drive":17,"circle_ring":1,"circle_wear_surface":2,"circle_tooth":64,"moldboard":1,"cutting_edge":1,"end_bit":2}
+    role_counts_ok=all(metrics["circle_and_drawbar_role_counts"].get(role)==count for role,count in required_role_counts.items())
+    drawbar_closure_ok=(actual_parents==expected_parents and actual_glb_parents==expected_parents and drawbar_mesh_descendants>0 and len(metrics["fixed_circle_component_ownership"])>0 and len(metrics["drawbar_nonrotating_component_ownership"])>0 and len(metrics["rotating_circle_component_ownership"])>0 and fixed_circle_ok and drawbar_nonrotating_ok and rotating_circle_ok and role_counts_ok and metrics["circle_tooth_count"]==PUBLISHED["circle_teeth_count"] and metrics["drawbar_shoe_count"]==PUBLISHED["drawbar_shoes"] and metrics["link_bar_position_count"]==PUBLISHED["link_bar_positions"] and circle_joint.get("type")=="continuous_revolute" and circle_joint.get("rotation_classification")=="cyclic_full_rotation" and circle_joint.get("cyclic") is True and circle_joint.get("period_deg")==360 and circle_joint.get("published_rotation_capability_deg")==360 and "published_range_deg" not in circle_joint and metrics["circle_rotation_sample"]["fixed_guide_max_displacement_m"]<=0.000001 and metrics["circle_rotation_sample"]["rotating_member_min_displacement_m"]>=0.01)
+
+    expected_cylinder_keys={"Frame_Articulation_L","Frame_Articulation_R","Blade_Lift_L","Blade_Lift_R","Circle_Centershift","Moldboard_Sideshift","Rear_Ripper_Lift_L","Rear_Ripper_Lift_R","Front_Steer_L","Front_Steer_R","Front_Lean_L","Front_Lean_R"}
+    def cylinder_sample_ok(sample,keys):
+        cylinders=sample["cylinders"]
+        return all(key in cylinders and cylinders[key]["barrel_endpoint_max_residual_m"]<=0.000002 and cylinders[key]["rod_endpoint_max_residual_m"]<=0.000002 and cylinders[key]["barrel_rod_axial_overlap_m"]>0.0001 for key in keys)
+    static_cylinders=metrics["static_pose_sample"]["cylinders"]
+    expected_anchor_parents={
+        key:(base_parent,rod_parent)
+        for key,(_base_name,base_parent,_rod_name,rod_parent) in ACTUATOR_ANCHOR_PARENTS.items()
+    }
+    expected_glb_anchor_parents={
+        name:parent
+        for base_name,base_parent,rod_name,rod_parent in ACTUATOR_ANCHOR_PARENTS.values()
+        for name,parent in ((base_name,base_parent),(rod_name,rod_parent))
+    }
+    actual_anchor_parents={key:(value["base_anchor_parent"],value["rod_anchor_parent"]) for key,value in static_cylinders.items()}
+    actual_glb_actuator_parents=glb_contract.get("actuator_parent_map",{})
+    articulation_keys={"Frame_Articulation_L","Frame_Articulation_R","Front_Steer_L","Front_Steer_R","Front_Lean_L","Front_Lean_R"}
+    blade_keys={"Blade_Lift_L","Blade_Lift_R","Circle_Centershift","Moldboard_Sideshift"}
+    ripper_keys={"Rear_Ripper_Lift_L","Rear_Ripper_Lift_R"}
+    def actuator_topology_ok(keys):
+        return (
+            all(key in static_cylinders and actual_anchor_parents.get(key)==expected_anchor_parents[key] for key in keys)
+            and all(
+                actual_glb_actuator_parents.get(name)==expected_glb_anchor_parents[name]
+                for key in keys
+                for name in (ACTUATOR_ANCHOR_PARENTS[key][0],ACTUATOR_ANCHOR_PARENTS[key][2])
+            )
+            and all(
+                actual_glb_actuator_parents.get(name)==ACTUATOR_MESH_PARENTS[name]
+                for key in keys
+                for name in (f"{key}_Barrel",f"{key}_Rod")
+            )
+        )
+    articulation_evidence={
+        "expected_anchor_parents":{key:expected_anchor_parents[key] for key in sorted(articulation_keys)},
+        "actual_anchor_parents":{key:actual_anchor_parents.get(key) for key in sorted(articulation_keys)},
+        "expected_decoded_glb_anchor_parents":{name:expected_glb_anchor_parents[name] for key in sorted(articulation_keys) for name in (ACTUATOR_ANCHOR_PARENTS[key][0],ACTUATOR_ANCHOR_PARENTS[key][2])},
+        "decoded_glb_anchor_parents":{name:actual_glb_actuator_parents.get(name) for key in sorted(articulation_keys) for name in (ACTUATOR_ANCHOR_PARENTS[key][0],ACTUATOR_ANCHOR_PARENTS[key][2])},
+        "expected_decoded_glb_mesh_parents":{name:ACTUATOR_MESH_PARENTS[name] for key in sorted(articulation_keys) for name in (f"{key}_Barrel",f"{key}_Rod")},
+        "decoded_glb_mesh_parents":{name:actual_glb_actuator_parents.get(name) for key in sorted(articulation_keys) for name in (f"{key}_Barrel",f"{key}_Rod")},
+        "static_cylinders":{key:static_cylinders[key] for key in sorted(articulation_keys)},
+        "review_pose_cylinders":{key:metrics["articulated_review_pose_sample"]["cylinders"][key] for key in sorted(articulation_keys)},
+        "static_steering_tie_rod":metrics["static_pose_sample"]["steering_tie_rod"],
+        "review_pose_steering_tie_rod":metrics["articulated_review_pose_sample"]["steering_tie_rod"],
+        "decoded_glb_steering_tie_rod_parent":{"expected":"Steering_Linkage_ROOT","actual":actual_glb_actuator_parents.get("Front_Steering_Tie_Rod")},
+        "review_pose_hoses":metrics["articulated_review_pose_sample"]["hoses"],
+        "review_pose_degrees":RECONSTRUCTED["review_pose"],
+    }
+    expected_hose_ownership={"Circle_Hose":["Drawbar_ROOT"],"Front_Frame_Hose":["Front_Frame_ROOT"]}
+    tie_rod_static=metrics["static_pose_sample"]["steering_tie_rod"]
+    tie_rod_review=metrics["articulated_review_pose_sample"]["steering_tie_rod"]
+    tie_rod_ok=(
+        tie_rod_static["endpoint_max_residual_m"]<=0.000002
+        and tie_rod_review["endpoint_max_residual_m"]<=0.000002
+        and tie_rod_static["left_anchor_parent"]=="Front_Steering_L_Pivot"
+        and tie_rod_static["right_anchor_parent"]=="Front_Steering_R_Pivot"
+        and tie_rod_review["left_anchor_parent"]=="Front_Steering_L_Pivot"
+        and tie_rod_review["right_anchor_parent"]=="Front_Steering_R_Pivot"
+        and actual_glb_actuator_parents.get("Front_Steering_Tie_Rod")=="Steering_Linkage_ROOT"
+    )
+    articulation_ok=(actuator_topology_ok(articulation_keys) and tie_rod_ok and cylinder_sample_ok(metrics["static_pose_sample"],articulation_keys) and cylinder_sample_ok(metrics["articulated_review_pose_sample"],articulation_keys) and metrics["articulated_review_pose_sample"]["hoses"]["segment_count"]==28 and metrics["articulated_review_pose_sample"]["hoses"]["ownership"]==expected_hose_ownership and metrics["articulated_review_pose_sample"]["hoses"]["max_endpoint_residual_m"]<=0.000002 and abs(RECONSTRUCTED["review_pose"]["frame_articulation_deg"])<=PUBLISHED["articulation_each_side_deg"] and abs(RECONSTRUCTED["review_pose"]["front_steering_deg"])<=PUBLISHED["steering_each_side_deg"] and abs(RECONSTRUCTED["review_pose"]["front_wheel_lean_deg"])<=PUBLISHED["wheel_lean_each_side_deg"] and abs(RECONSTRUCTED["review_pose"]["front_axle_oscillation_deg"])*2<=PUBLISHED["front_axle_total_oscillation_deg"])
+    blade_continuity_evidence={
+        "expected_anchor_parents":{key:expected_anchor_parents[key] for key in sorted(blade_keys)},
+        "actual_anchor_parents":{key:actual_anchor_parents.get(key) for key in sorted(blade_keys)},
+        "expected_decoded_glb_anchor_parents":{name:expected_glb_anchor_parents[name] for key in sorted(blade_keys) for name in (ACTUATOR_ANCHOR_PARENTS[key][0],ACTUATOR_ANCHOR_PARENTS[key][2])},
+        "decoded_glb_anchor_parents":{name:actual_glb_actuator_parents.get(name) for key in sorted(blade_keys) for name in (ACTUATOR_ANCHOR_PARENTS[key][0],ACTUATOR_ANCHOR_PARENTS[key][2])},
+        "expected_decoded_glb_mesh_parents":{name:ACTUATOR_MESH_PARENTS[name] for key in sorted(blade_keys) for name in (f"{key}_Barrel",f"{key}_Rod")},
+        "decoded_glb_mesh_parents":{name:actual_glb_actuator_parents.get(name) for key in sorted(blade_keys) for name in (f"{key}_Barrel",f"{key}_Rod")},
+        "static_cylinders":{key:static_cylinders[key] for key in sorted(blade_keys)},
+        "drawbar_sideshift_sample":{
+            "sample":metrics["drawbar_sideshift_sample"]["sample"],
+            "cylinders":{key:metrics["drawbar_sideshift_sample"]["cylinders"][key] for key in sorted(blade_keys)},
+            "hoses":metrics["drawbar_sideshift_sample"]["hoses"],
+        },
+    }
+    blade_continuity_ok=(actuator_topology_ok(blade_keys) and cylinder_sample_ok(metrics["static_pose_sample"],blade_keys) and cylinder_sample_ok(metrics["drawbar_sideshift_sample"],blade_keys) and metrics["drawbar_sideshift_sample"]["hoses"]["segment_count"]==28 and metrics["drawbar_sideshift_sample"]["hoses"]["ownership"]==expected_hose_ownership and metrics["drawbar_sideshift_sample"]["hoses"]["max_endpoint_residual_m"]<=0.000002 and metrics["hydraulic_barrels"]==12 and metrics["hydraulic_rods"]==12)
+
+    def collision_sample_ok(sample,minimum_gap=0.005):
+        return all(not result["aabb_overlap"] and result["minimum_pairwise_aabb_gap_m"]>=minimum_gap for result in sample["selected_self_collision_pairs"].values())
+    static_collision=metrics["static_pose_sample"]["selected_self_collision_pairs"]
+    review_collision=metrics["articulated_review_pose_sample"]["selected_self_collision_pairs"]
+    drawbar_collision=metrics["drawbar_sideshift_sample"]["selected_self_collision_pairs"]
+    viewer_motion=metrics["viewer_motion_samples"]
+    def viewer_sample_ok(sample):
+        cylinder=sample["moldboard_sideshift_cylinder"]
+        return (
+            collision_sample_ok({"selected_self_collision_pairs":sample["selected_self_collision_pairs"]})
+            and cylinder["barrel_endpoint_max_residual_m"]<=0.000002
+            and cylinder["rod_endpoint_max_residual_m"]<=0.000002
+            and cylinder["barrel_rod_axial_overlap_m"]>0.0001
+            and sample["hose_attachment"]["segment_count"]==28
+            and sample["hose_attachment"]["ownership"]==expected_hose_ownership
+            and sample["hose_attachment"]["max_endpoint_residual_m"]<=0.000002
+            and sample["visible_min_y_m"]>=-0.03
+        )
+    viewer_motion_ok=(
+        viewer_motion["standardized_motion_contract_valid"]
+        and viewer_motion["all_bindings_valid"]
+        and all(len(channel["samples"])==3 and all(viewer_sample_ok(sample) for sample in channel["samples"]) for channel in viewer_motion["channels"])
+    )
+    ripper_topology_evidence={
+        "expected_anchor_parents":{key:expected_anchor_parents[key] for key in sorted(ripper_keys)},
+        "actual_anchor_parents":{key:actual_anchor_parents.get(key) for key in sorted(ripper_keys)},
+        "expected_decoded_glb_anchor_parents":{name:expected_glb_anchor_parents[name] for key in sorted(ripper_keys) for name in (ACTUATOR_ANCHOR_PARENTS[key][0],ACTUATOR_ANCHOR_PARENTS[key][2])},
+        "decoded_glb_anchor_parents":{name:actual_glb_actuator_parents.get(name) for key in sorted(ripper_keys) for name in (ACTUATOR_ANCHOR_PARENTS[key][0],ACTUATOR_ANCHOR_PARENTS[key][2])},
+        "expected_decoded_glb_mesh_parents":{name:ACTUATOR_MESH_PARENTS[name] for key in sorted(ripper_keys) for name in (f"{key}_Barrel",f"{key}_Rod")},
+        "decoded_glb_mesh_parents":{name:actual_glb_actuator_parents.get(name) for key in sorted(ripper_keys) for name in (f"{key}_Barrel",f"{key}_Rod")},
+        "static_cylinders":{key:static_cylinders[key] for key in sorted(ripper_keys)},
+    }
+    actuator_partition_ok=(articulation_keys|blade_keys|ripper_keys)==expected_cylinder_keys
+
+    required_results={
+        "frozen_visible_configuration":(
+            frozen_visible_ok,
+            "Re-hash every locally cited primary PDF fact, then count and identify the exported frozen configuration cues.",
+            {"configuration_id":CONFIGURATION_ID,"checks":frozen_visible_checks,"fact_source_bindings":fact_source_bindings,"local_primary_sources":source_hash_evidence},
+            ["Machine_Root","Steering_Wheel","Standard_Circle_Ring","Push_Block_ROOT","Rear_Ripper_ROOT"],
+        ),
+        "published_static_envelope":(
+            envelope_ok,
+            "Measure evaluated geometry in world space, except moldboard height measured in Moldboard_Sideshift_ROOT space, and compare with hash-bound published dimensions.",
+            envelope_evidence,
+            ["Machine_Root","Cab_ROOT","Moldboard_Sideshift_ROOT","Hydraulics_ROOT","Rear_Frame_ROOT"],
+        ),
+        "front_axle_center_height":(
+            abs(metrics["front_axle_center_world_m"][1]-PUBLISHED["front_axle_center_height_m"])<=0.001 and abs(metrics["front_axle_to_articulation_m"]-PUBLISHED["front_axle_to_articulation_m"])<=0.001 and abs(metrics["rear_axle_to_articulation_m"]-PUBLISHED["rear_axle_to_articulation_m"])<=0.001 and abs(metrics["front_axle_to_rear_axle_m"]-PUBLISHED["front_axle_to_rear_axle_m"])<=0.001,
+            "Read exported axle and articulation semantic-node world origins and compare vertical center and longitudinal station differences with published dimensions.",
+            {"front_axle_world_m":metrics["front_axle_center_world_m"],"rear_axle_world_m":metrics["rear_axle_center_world_m"],"front_axle_height":{"measured_m":metrics["front_axle_center_world_m"][1],"published_m":PUBLISHED["front_axle_center_height_m"]},"front_axle_to_articulation":{"measured_m":metrics["front_axle_to_articulation_m"],"published_m":PUBLISHED["front_axle_to_articulation_m"]},"rear_axle_to_articulation":{"measured_m":metrics["rear_axle_to_articulation_m"],"published_m":PUBLISHED["rear_axle_to_articulation_m"]},"front_axle_to_rear_axle":{"measured_m":metrics["front_axle_to_rear_axle_m"],"published_m":PUBLISHED["front_axle_to_rear_axle_m"]},"tolerance_m":0.001},
+            ["Front_Axle_Oscillation_Pivot","Front_Axle_ROOT"],
+        ),
+        "six_tire_contact_and_clearance":(
+            metrics["tire_carcass_count"]==6 and abs(metrics["tire_contact_min_y_m"])<=0.002 and metrics["visible_min_y_m"]>=-0.002 and abs(metrics["front_tire_outside_width_m"]-PUBLISHED["outside_front_tires_m"])<=0.005 and abs(metrics["rear_tire_outside_width_m"]-PUBLISHED["outside_rear_tires_m"])<=0.005 and abs(metrics["rear_tire_centerline_width_m"]-PUBLISHED["rear_tire_centerline_width_m"])<=0.001 and abs(metrics["tandem_wheel_spacing_m"]-PUBLISHED["tandem_wheel_spacing_m"])<=0.001 and abs(metrics["rear_axle_structure_min_y_m"]-PUBLISHED["rear_axle_ground_clearance_m"])<=0.003,
+            "Measure all six evaluated tire carcasses against Y=0 and compare front/rear outside widths plus rear-axle structure clearance.",
+            {"tire_count":metrics["tire_carcass_count"],"tire_contact_min_y_m":metrics["tire_contact_min_y_m"],"visible_min_y_m":metrics["visible_min_y_m"],"front_outside_width_m":metrics["front_tire_outside_width_m"],"rear_outside_width_m":metrics["rear_tire_outside_width_m"],"rear_tire_centerline_width_m":metrics["rear_tire_centerline_width_m"],"tandem_wheel_spacing_m":metrics["tandem_wheel_spacing_m"],"rear_axle_clearance_m":metrics["rear_axle_structure_min_y_m"]},
+            ["Front_Wheel_L_ROOT","Front_Wheel_R_ROOT","Rear_L_Rear_Wheel_ROOT","Rear_L_Front_Wheel_ROOT","Rear_R_Rear_Wheel_ROOT","Rear_R_Front_Wheel_ROOT"],
+        ),
+        "articulation_steering_and_wheel_lean_continuity":(
+            articulation_ok,
+            "At neutral and the declared articulated review pose, recompute every relevant barrel/rod from its differently owned anchors; measure mesh endpoint residual, barrel/rod overlap, anchor ancestry, and articulated hose attachment residual.",
+            articulation_evidence,
+            ["Articulation_Pivot","Front_Frame_ROOT","Front_Axle_Oscillation_Pivot","Front_Axle_ROOT","Front_Steering_L_Pivot","Front_Steering_R_Pivot","Front_Wheel_Lean_L_Pivot","Front_Wheel_Lean_R_Pivot","Hydraulics_ROOT","Steering_Linkage_ROOT"],
+        ),
+        "drawbar_circle_moldboard_closure":(
+            drawbar_closure_ok,
+            "Verify the exact semantic parent map and role ancestry, then rotate the cyclic circle 73 degrees and measure fixed guide displacement versus rotating-member displacement.",
+            drawbar_closure_evidence,
+            ["Drawbar_ROOT","Circle_Guide_ROOT","Circle_Rotation_Pivot","Circle_ROOT","Moldboard_Tip_Pivot","Moldboard_Sideshift_ROOT"],
+        ),
+        "lift_centershift_sideshift_cylinder_continuity":(
+            blade_continuity_ok,
+            "At neutral and a reconstructed 3-degree drawbar plus 0.22 m sideshift sample, recompute lift/centershift/sideshift barrels and rods and measure endpoints, overlap, anchor ancestry, and hose attachment.",
+            blade_continuity_evidence,
+            ["Front_Frame_ROOT","Drawbar_ROOT","Moldboard_Tip_Pivot","Moldboard_Sideshift_ROOT","Hydraulics_ROOT"],
+        ),
+        "rear_ripper_clearance":(
+            actuator_partition_ok and actuator_topology_ok(ripper_keys) and cylinder_sample_ok(metrics["static_pose_sample"],ripper_keys) and metrics["ripper_shank_count"]==PUBLISHED["ripper_shanks"] and metrics["rear_ripper_min_y_m"]>=0.02 and all(PUBLISHED["ripper_spacing_range_m"][0]<=spacing<=PUBLISHED["ripper_spacing_range_m"][1] for spacing in metrics["rear_ripper_holder_spacing_m"]),
+            "Measure evaluated rear-ripper minimum Y, shank count, and holder-pin spacing against the exact published range, then verify neutral hydraulic closure and decoded-GLB anchor/mesh ancestry.",
+            {"minimum_y_m":metrics["rear_ripper_min_y_m"],"shank_count":metrics["ripper_shank_count"],"adjacent_holder_spacing_m":metrics["rear_ripper_holder_spacing_m"],"published_range_m":PUBLISHED["ripper_spacing_range_m"],"actuator_topology":ripper_topology_evidence,"classification":"neutral_pose_clearance_and_actuator_closure_sample_only"},
+            ["Rear_Ripper_Pivot","Rear_Ripper_ROOT"],
+        ),
+        "ground_collision":(
+            metrics["visible_min_y_m"]>=-0.002 and metrics["non_tire_export_mesh_min_y_m"]>=-0.002 and abs(metrics["tire_contact_min_y_m"])<=0.002,
+            "Measure the minimum Y of every exported mesh, every non-tire exported mesh, and all tire carcasses in the retained neutral pose against the Y=0 review plane.",
+            {"visible_min_y_m":metrics["visible_min_y_m"],"non_tire_min_y_m":metrics["non_tire_export_mesh_min_y_m"],"tire_contact_min_y_m":metrics["tire_contact_min_y_m"],"classification":"neutral_pose_mesh_sample_not_terrain_solver"},
+            ["Machine_Root","Moldboard_Sideshift_ROOT","Rear_Ripper_ROOT"],
+        ),
+        "self_collision":(
+            collision_sample_ok(metrics["static_pose_sample"]),
+            "Compute evaluated pairwise AABB separation for four declared high-risk assembly pairs in explicit common rigid-ancestor spaces (Machine, Front_Frame, or Rear_Frame) in the retained neutral pose; fail on overlap or gap below 5 mm.",
+            {"pairs":static_collision,"minimum_gap_m":0.005,"classification":"declared_pair_neutral_pose_sample_not_full_solver"},
+            ["Moldboard_Sideshift_ROOT","Front_Axle_ROOT","Push_Block_ROOT","Rear_Ripper_ROOT","Rear_Frame_ROOT"],
+        ),
+        "swept_volume_collision":(
+            collision_sample_ok(metrics["articulated_review_pose_sample"]) and collision_sample_ok(metrics["drawbar_sideshift_sample"]) and viewer_motion_ok and cylinder_sample_ok(metrics["articulated_review_pose_sample"],articulation_keys) and cylinder_sample_ok(metrics["drawbar_sideshift_sample"],blade_keys) and metrics["articulated_review_pose_sample"]["hoses"]["max_endpoint_residual_m"]<=0.000002 and metrics["drawbar_sideshift_sample"]["hoses"]["max_endpoint_residual_m"]<=0.000002,
+            "Sample the declared articulated/steer/lean pose, a reconstructed drawbar/sideshift pose, and every viewer channel endpoint plus neutral; recompute links and measure declared pairwise AABBs in explicit common rigid-ancestor spaces together with cylinder, hose, and conservative ground residuals.",
+            {"articulated_review_pose_pairs":review_collision,"drawbar_sideshift_pose_pairs":drawbar_collision,"viewer_motion":viewer_motion,"articulated_hose_residual_m":metrics["articulated_review_pose_sample"]["hoses"]["max_endpoint_residual_m"],"drawbar_hose_residual_m":metrics["drawbar_sideshift_sample"]["hoses"]["max_endpoint_residual_m"],"minimum_pair_gap_m":0.005,"classification":"bounded_declared_pose_and_viewer_endpoint_samples_not_continuous_swept_solver"},
+            ["Articulation_Pivot","Front_Axle_Oscillation_Pivot","Front_Steering_L_Pivot","Front_Steering_R_Pivot","Front_Wheel_Lean_L_Pivot","Front_Wheel_Lean_R_Pivot","Drawbar_ROOT","Circle_Rotation_Pivot","Moldboard_Sideshift_ROOT"],
+        ),
+    }
+    required_fact_ids={
+        "frozen_visible_configuration":["publication-family","controls-choice","drive-choice","tire-choice","push-block-and-ripper-basis"],
+        "published_static_envelope":["moldboard-width","moldboard-height","cab-height","top-of-cylinders-height","exhaust-height","push-plate-to-ripper-length"],
+        "front_axle_center_height":["front-axle-center-height","front-axle-to-rear-axle","front-axle-to-articulation","rear-axle-to-articulation"],
+        "six_tire_contact_and_clearance":["tandem-wheel-spacing","rear-axle-ground-clearance","rear-tire-centerline-width","outside-rear-tires-width","outside-front-tires-width"],
+        "articulation_steering_and_wheel_lean_continuity":["steering-range","articulation-range","wheel-lean-range","front-axle-total-oscillation"],
+        "drawbar_circle_moldboard_closure":["circle-teeth-count","circle-rotation","link-bar-positions","drawbar-shoes"],
+        "lift_centershift_sideshift_cylinder_continuity":[],
+        "rear_ripper_clearance":["ripper-shank-holders","ripper-shank-spacing"],
+        "ground_collision":[],
+        "self_collision":[],
+        "swept_volume_collision":[],
+    }
+    required_gate_ids=mechanism_document["required_gates"]
+    required_gates=[]
+    for gate_id in required_gate_ids:
+        if gate_id not in required_results:
+            required_gates.append({"id":gate_id,"status":"FAIL","detail":{"method":"No machine-local implementation exists for this required gate.","evidence":{"missing_gate_id":gate_id},"semantic_nodes":[],"fact_ids":[]}})
+            continue
+        passed,method,evidence,semantic_nodes=required_results[gate_id]
+        unique_nodes=list(dict.fromkeys(semantic_nodes))
+        fact_ids=list(dict.fromkeys(required_fact_ids.get(gate_id,[])))
+        required_gates.append({"id":gate_id,"status":"PASS" if passed else "FAIL","detail":{"method":method,"evidence":evidence,"semantic_nodes":unique_nodes,"fact_ids":fact_ids}})
+
+    material_names={material.name for material in bpy.data.materials}
+    neutral_materials_ok=all(name.startswith(("Neutral_","Review_")) for name in material_names)
+    covered_fact_ids={fact_id for gate in required_gates if gate["status"]=="PASS" for fact_id in gate["detail"]["fact_ids"]}
+    design_constraint_ids=design_document.get("published_constraints_used",[])
+    required_contract_ok=(len(required_gates)==len(required_gate_ids) and len({gate["id"] for gate in required_gates})==len(required_gate_ids) and all(isinstance(gate["detail"].get("method"),str) and gate["detail"]["method"] and "evidence" in gate["detail"] and isinstance(gate["detail"].get("semantic_nodes"),list) and len(gate["detail"]["semantic_nodes"])==len(set(gate["detail"]["semantic_nodes"])) and isinstance(gate["detail"].get("fact_ids"),list) and len(gate["detail"]["fact_ids"])==len(set(gate["detail"]["fact_ids"])) for gate in required_gates) and design_constraint_ids==PUBLISHED_CONSTRAINT_FACT_IDS and covered_fact_ids==set(design_constraint_ids))
+    gates=required_gates+[
+        {"id":"builder-execution","status":"PASS","detail":{"method":"Reach post-export validation in a factory-startup background Blender process.","evidence":{"blender_version":bpy.app.version_string},"semantic_nodes":[]}},
+        {"id":"candidate-class-boundary","status":"PASS" if CANDIDATE_CLASS=="technical_structural_study" else "FAIL","detail":{"candidate_class":CANDIDATE_CLASS,"engineering_authority":False}},
         {"id":"required-semantic-nodes","status":"PASS" if all(node_presence.values()) else "FAIL","detail":node_presence},
-        {"id":"hierarchy-and-pivot-parenting","status":"PASS","detail":"Rear frame, articulation, front axle, steering, wheel lean, tandems, circle, moldboard, and rear ripper are separate pivot-parented groups."},
-        {"id":"published-visible-length-envelope","status":"PASS" if abs(length-PUBLISHED["push_plate_to_ripper_m"])<=0.035 else "FAIL","detail":{"modeled_m":length,"published_m":PUBLISHED["push_plate_to_ripper_m"],"absolute_tolerance_m":0.035,"classification":"published_constraint_reconstructed_static_geometry"}},
-        {"id":"published-visible-width-envelope","status":"PASS" if abs(width-PUBLISHED["moldboard_width_m"])<=0.020 else "FAIL","detail":{"modeled_m":width,"published_m":PUBLISHED["moldboard_width_m"],"absolute_tolerance_m":0.020,"classification":"published_12ft_moldboard_constraint"}},
-        {"id":"published-cab-height-envelope","status":"PASS" if abs(height-PUBLISHED["cab_height_m"])<=0.020 and abs(metrics["cab_roof_top_m"]-PUBLISHED["cab_height_m"])<=0.010 else "FAIL","detail":{"modeled_visible_height_m":height,"cab_roof_top_m":metrics["cab_roof_top_m"],"published_m":PUBLISHED["cab_height_m"],"absolute_tolerance_m":0.020}},
-        {"id":"front-axle-center-height","status":"PASS" if abs(metrics["front_axle_center_world_m"][1]-PUBLISHED["front_axle_center_height_m"])<=0.001 else "FAIL","detail":{"measured_world_m":metrics["front_axle_center_world_m"],"published_height_m":PUBLISHED["front_axle_center_height_m"]}},
-        {"id":"six-tire-contact","status":"PASS" if metrics["tire_carcass_count"]==6 and abs(metrics["tire_contact_min_y_m"])<=0.002 and metrics["visible_min_y_m"]>=-0.002 else "FAIL","detail":{"tire_count":metrics["tire_carcass_count"],"tire_contact_min_y_m":metrics["tire_contact_min_y_m"],"visible_min_y_m":metrics["visible_min_y_m"]}},
-        {"id":"published-front-tire-outside-width","status":"PASS" if abs(metrics["front_tire_outside_width_m"]-PUBLISHED["outside_front_tires_m"])<=0.005 else "FAIL","detail":{"modeled_m":metrics["front_tire_outside_width_m"],"published_m":PUBLISHED["outside_front_tires_m"]}},
-        {"id":"published-rear-tire-outside-width","status":"PASS" if abs(metrics["rear_tire_outside_width_m"]-PUBLISHED["outside_rear_tires_m"])<=0.005 else "FAIL","detail":{"modeled_m":metrics["rear_tire_outside_width_m"],"published_m":PUBLISHED["outside_rear_tires_m"]}},
-        {"id":"published-tandem-wheel-spacing","status":"PASS" if abs(metrics["tandem_wheel_spacing_m"]-PUBLISHED["tandem_wheel_spacing_m"])<=0.001 else "FAIL","detail":{"modeled_m":metrics["tandem_wheel_spacing_m"],"published_m":PUBLISHED["tandem_wheel_spacing_m"]}},
-        {"id":"published-moldboard-width","status":"PASS" if abs(metrics["moldboard_width_m"]-PUBLISHED["moldboard_width_m"])<=0.002 else "FAIL","detail":{"modeled_m":metrics["moldboard_width_m"],"published_m":PUBLISHED["moldboard_width_m"],"product_page_conflicting_metric_used":False}},
-        {"id":"published-count-cues","status":"PASS" if (metrics["circle_tooth_count"],metrics["drawbar_shoe_count"],metrics["ripper_shank_count"])==(64,6,5) else "FAIL","detail":{"circle_teeth":metrics["circle_tooth_count"],"drawbar_shoes":metrics["drawbar_shoe_count"],"ripper_shanks":metrics["ripper_shank_count"],"geometry_classification":"published_counts_reconstructed_geometry"}},
-        {"id":"tire-detail-readability","status":"PASS" if metrics["tread_block_count"]==6*RECONSTRUCTED["tire_tread_blocks_each"]*2 else "FAIL","detail":{"tread_blocks":metrics["tread_block_count"],"expected":6*RECONSTRUCTED["tire_tread_blocks_each"]*2,"classification":"reconstructed_non_proprietary_tread"}},
-        {"id":"hydraulic-visual-elements","status":"PASS" if metrics["hydraulic_barrels"]>=12 and metrics["hydraulic_rods"]>=12 else "FAIL","detail":{"barrels":metrics["hydraulic_barrels"],"rods":metrics["hydraulic_rods"],"classification":"reconstructed_static_visual_closure"}},
-        {"id":"reconstructed-hose-routing","status":"PASS" if metrics["reconstructed_hose_segments"]>=24 else "FAIL","detail":{"segment_meshes":metrics["reconstructed_hose_segments"],"classification":"exterior_visual_cues_only"}},
+        {"id":"required-gate-evidence-contract","status":"PASS" if required_contract_ok else "FAIL","detail":{"required_ids":required_gate_ids,"produced_ids":[gate["id"] for gate in required_gates],"design_published_constraints_used":design_constraint_ids,"covered_fact_ids":sorted(covered_fact_ids)}},
+        {"id":"manufacturer-fact-local-source-binding","status":"PASS" if source_binding_ok else "FAIL","detail":{"bindings":fact_source_bindings,"sources":source_hash_evidence}},
         {"id":"export-mesh-scales-applied","status":"PASS" if not metrics["export_mesh_scale_offenders"] else "FAIL","detail":{"offenders":metrics["export_mesh_scale_offenders"]}},
         {"id":"glb-platform-contract","status":"PASS" if glb_ok else "FAIL","detail":glb_contract},
-        {"id":"public-glb-authoring-helpers-stripped","status":"PASS" if not glb_contract["inspection_helper_nodes"] else "FAIL","detail":{"exported_inspection_helpers":glb_contract["inspection_helper_nodes"],"private_blend_helpers_retained":True}},
         {"id":"object-count","status":"PASS" if counts["objects"]>=400 else "FAIL","detail":{"objects":counts["objects"],"minimum":400}},
         {"id":"triangle-budget","status":"PASS" if 40_000<=counts["triangles"]<=350_000 else "FAIL","detail":{"triangles":counts["triangles"],"budget":[40000,350000]}},
-        {"id":"review-renders-nonempty","status":"PASS" if render_ok and len(render_paths)>=8 else "FAIL","detail":{"count":len(render_paths),"minimum_bytes":25000}},
-        {"id":"neutral-unbranded-materials","status":"PASS","detail":"Neutral materials only; no logo, copied image, exact Caterpillar Yellow, or Modern Hex trade dress claim."},
-        {"id":"configuration-freeze","status":"PENDING","detail":"Visible LVR/non-AWD/standard-circle/12-ft/14.0R24/push-block/rear-ripper package is frozen, but serial/order, tire make, cab trim, guard/light package, and rights authorization remain unresolved."},
-        {"id":"articulation-steering-wheel-lean-solver","status":"PENDING","detail":"Published ranges are recorded; reconstructed joint centers and linkage geometry have no machine-specific solver or endpoint proof."},
-        {"id":"drawbar-circle-moldboard-kinematics","status":"PENDING","detail":"Static visual closure only; centershift, sideshift, tip, lift, ring/pinion engagement, and link-bar positions are not solved."},
-        {"id":"hydraulic-stroke-and-pressure-authority","status":"PENDING","detail":"Cylinder anchors and visible proportions are reconstructed; no stroke, pressure, force, hose, fitting, or service claim is made."},
-        {"id":"ground-self-swept-collision","status":"PENDING","detail":"No swept-volume, tire/blade, articulation, ladder, ripper, or self-collision solver exists."},
+        {"id":"review-renders-nonempty","status":"PASS" if render_ok and len(render_paths)==9 else "FAIL","detail":{"count":len(render_paths),"required_count":9,"minimum_bytes":25000}},
+        {"id":"neutral-unbranded-materials","status":"PASS" if neutral_materials_ok else "FAIL","detail":{"material_names":sorted(material_names)}},
+        {"id":"full-kinematic-and-engineering-authority","status":"PENDING","detail":"Machine-local gates are measured neutral, bounded pose, and exact viewer endpoint/neutral structural samples. Manufacturer joint centers, continuous swept-volume solving, service strokes, pressures, forces, loads, and operator-safety authority remain unresolved."},
         {"id":"critic-human-visual-review","status":"PENDING","detail":"Overall critic must inspect exact render and artifact hashes."},
         {"id":"viewer-browser-accessibility-mobile-selection-performance","status":"PENDING","detail":"No shared-viewer integration is performed in this machine-authoring lane."},
         {"id":"publication-and-deployment","status":"PENDING","detail":"Only the overall publisher may admit, push, or deploy this study."},
@@ -1183,11 +1960,15 @@ def create_validation(bounds,counts,render_paths,metrics,glb_contract):
         "machine_id":MACHINE_ID,
         "configuration_id":CONFIGURATION_ID,
         "candidate_class":CANDIDATE_CLASS,
+        "engineering_authority":False,
         "verdict":"PASS" if not failed else "FAIL",
+        "verdict_scope":"technical_structural_study_only",
+        "release_status":"PENDING",
         "bounds":bounds,
         "counts":counts,
         "measured_metrics":metrics,
         "glb_contract":glb_contract,
+        "required_machine_gate_ids":required_gate_ids,
         "gates":gates,
         "failed_gate_ids":failed,
     }
@@ -1237,6 +2018,8 @@ def main():
     glb_contract=inspect_glb_contract(GLB_PATH)
     metrics=collect_metrics(model,objects)
     validation=create_validation(bounds,counts,render_paths,metrics,glb_contract)
+    design_document=json.loads(DESIGN_PATH.read_text(encoding="utf-8"))
+    configuration_document=json.loads(CONFIGURATION_PATH.read_text(encoding="utf-8"))
     render_records=[{"path":rel(path),"sha256":sha256(path),"bytes":path.stat().st_size} for path in render_paths]
     node_presence={name:bpy.data.objects.get(name) is not None for name in REQUIRED_NODES}
     receipt={
@@ -1245,27 +2028,37 @@ def main():
         "configuration_id":CONFIGURATION_ID,
         "configuration_status":"research_candidate",
         "candidate_class":CANDIDATE_CLASS,
-        "authority_boundary":"Independently authored technical structural study. Not manufacturer CAD, engineering authority, a digital twin, load/clearance guidance, operator training, safety guidance, or a mechanically validated candidate.",
+        "engineering_authority":False,
+        "authority_boundary":"Independently authored technical structural study with machine-local neutral, bounded pose, and exact viewer endpoint/neutral structural measurements. Not manufacturer CAD, a continuous kinematic or collision solver, engineering authority, a digital twin, load/clearance guidance, operator training, or safety guidance.",
+        "rights_boundary":"Neutral unbranded procedural geometry and materials; no manufacturer CAD, logo, copied texture, or protected livery claim.",
+        "release_status":"PENDING",
         "blender":{"version":bpy.app.version_string,"factory_startup_required":True,"background_required":True},
-        "builder":{"path":rel(SCRIPT_PATH),"sha256":sha256(SCRIPT_PATH),"deterministic":True,"network_used":False,"downloaded_geometry_used":False,"manufacturer_cad_used":False,"copied_textures_used":False,"opaque_addons_used":False},
+        "builder":{"path":rel(SCRIPT_PATH),"sha256":sha256(SCRIPT_PATH),"bytes":SCRIPT_PATH.stat().st_size,"deterministic":True,"network_used":False,"downloaded_geometry_used":False,"manufacturer_cad_used":False,"copied_textures_used":False,"opaque_addons_used":False},
+        "configuration":{"path":rel(CONFIGURATION_PATH),"sha256":sha256(CONFIGURATION_PATH),"bytes":CONFIGURATION_PATH.stat().st_size,"schema_version":configuration_document["schema_version"]},
+        "design":{"path":rel(DESIGN_PATH),"sha256":sha256(DESIGN_PATH),"bytes":DESIGN_PATH.stat().st_size,"schema_version":"1.0.0"},
         "artifacts":{
             "blend":{"path":rel(BLEND_PATH),"sha256":sha256(BLEND_PATH),"bytes":BLEND_PATH.stat().st_size},
             "glb":{"path":rel(GLB_PATH),"sha256":sha256(GLB_PATH),"bytes":GLB_PATH.stat().st_size},
+            "validation":{"path":rel(VALIDATION_PATH),"sha256":sha256(VALIDATION_PATH),"bytes":VALIDATION_PATH.stat().st_size},
         },
         "scene":{"units":"meters","axes":{"longitudinal":"+X toward front axle and push block","vertical":"+Y","lateral":"+Z machine right"},"visible_aabb_xyz_m":bounds["size_m"],"bounds":bounds,**counts},
         "glb_contract":glb_contract,
         "glb_uv_canonicalization":glb_uv_canonicalization,
         "private_nonexport_inspection_nodes":["Inspection_Volumes","INSPECT_Visible_Envelope","INSPECT_Articulation_Sweep","INSPECT_Drawbar_Circle_Moldboard","INSPECT_Front_Axle_Steering_Lean","INSPECT_Rear_Ripper"],
         "required_semantic_nodes":node_presence,
-        "manufacturer_published_constraints_used":[
-            "publication-family","controls-choice","drive-choice","tire-choice","moldboard-width","moldboard-height","moldboard-thickness","moldboard-arc-radius","moldboard-throat-clearance","circle-teeth-count","circle-rotation","link-bar-positions","drawbar-shoes","steering-range","articulation-range","wheel-lean-range","front-axle-total-oscillation","cab-height","front-axle-center-height","top-of-cylinders-height","exhaust-height","push-plate-to-ripper-length","front-tire-to-rear-length","tandem-wheel-spacing","front-axle-to-rear-axle","front-axle-to-articulation","rear-axle-to-articulation","rear-axle-to-rear","rear-axle-ground-clearance","rear-tire-centerline-width","outside-rear-tires-width","outside-front-tires-width","ripper-shank-holders","ripper-depth","ripper-shank-spacing","push-block-and-ripper-basis"
+        "published_constraint_ids_declared":design_document["published_constraints_used"],
+        "machine_specific_gate_evidence":[
+            {"id":gate["id"],"status":gate["status"],"detail":gate["detail"]}
+            for gate in validation["gates"] if gate["id"] in validation["required_machine_gate_ids"]
         ],
+        "manufacturer_published_constraints_used":PUBLISHED_CONSTRAINT_FACT_IDS,
+        "manufacturer_published_references_not_applied_as_geometry_constraints":design_document["published_references_not_applied_as_geometry_constraints"],
         "reconstructed_values":RECONSTRUCTED,
         "unresolved_choices":["exact serial and dealer order code","cab trim and seat package","tire manufacturer and tread pattern","rear ripper scarifier holder arrangement beyond frozen five-shank ripper","lighting and guard package","public material and branding authorization"],
-        "mechanical_gaps":["all hidden articulation, axle, steering, lean, tandem, circle, moldboard and ripper joint centers","all cylinder and link anchors","Ackermann and wheel-lean interaction","circle tooth profile and pinion engagement","drawbar link-bar and centershift closure","moldboard sideshift/tip/lift solver","ripper solver","hose routing, fittings and service authority","ground, self and swept-volume collision","load, force, pressure and operator-training authority"],
-        "documented_source_conflicts":["U.S. product page pairs 12 ft with 4267 mm; current AEXQ4628-01 gives 3658 mm and is used.","U.S. product page displays 19531 kg while AEXQ4628-01 gives 19027 kg for frozen lever/non-AWD typically equipped configuration; geometry makes no mass claim."],
+        "mechanical_gaps":["manufacturer authority for hidden articulation, axle, steering, lean, tandem, circle, moldboard and ripper joint centers","manufacturer stroke, hose/fitting, pressure, force and load authority despite measured reconstructed anchor closure","Ackermann and wheel-lean interaction","manufacturer circle tooth profile, pinion engagement and wear geometry","continuous drawbar/moldboard/ripper solver","continuous ground, self and swept-volume collision solver","operator-training and safety authority"],
+        "documented_source_conflicts":["U.S. product page pairs 12 ft with 4267 mm; current AEXQ4628-01 gives 3658 mm and is used.","U.S. product page displays 19531 kg while AEXQ4628-01 gives 19027 kg for frozen lever/non-AWD typically equipped configuration; geometry makes no mass claim.","AEXQ4475-00 page 3 gives 19127 kg while later North-American-family AEXQ4628-01 page 4 gives 19027 kg for the frozen lever/non-AWD basis; AEXQ4628-01 controls.","AEXQ4475-00 page 4 has differing 12 ft moldboard height/throat rows; AEXQ4628-01 page 4 controls the frozen 556 mm height including cutting edges and 119 mm non-HPC throat values."],
         "renders":render_records,
-        "review_render_notes":{"circle-drive-guide-component-inspection":"Review-only isolation of the exported drawbar/circle/drive/contact geometry. Occluding components are hidden for this render only and restored before .blend save and GLB export."},
+        "review_render_notes":{"circle-drive-guide-component-inspection":"Review-only isolation at a temporary reconstructed 28-degree circle rotation. Fixed drawbar guide/drive cues remain stationary while the ring/teeth/moldboard rotate; occluders and the pose are restored before .blend save and GLB export."},
         "build_verdict":"PASS" if validation["verdict"]=="PASS" else "FAIL",
         "validation_verdict":validation["verdict"],
         "validation_path":rel(VALIDATION_PATH),

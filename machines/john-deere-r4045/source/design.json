@@ -4,13 +4,13 @@
   "display_name": "John Deere R4045",
   "configuration_id": "JD-R4045-MY2020-NA-06W5N-4920-5165-4995-CANDIDATE",
   "archetype": "high_clearance_sprayer",
-  "dimensions_m": {"length": 9.4, "width": 36.576, "height": 4.0},
-  "carrier_dimensions_m": {"length": 9.4, "width": 4.5, "height": 4.0},
-  "attachment_span_m": 36.576,
+  "dimensions_m": {"length": 8.09, "width": 36.2, "height": 3.88},
+  "carrier_dimensions_m": {"length": 8.09, "width": 4.078, "height": 3.88},
+  "attachment_span_m": 36.2,
   "palette": "slate",
   "published_constraints_used": [
-    "public-envelope-z",
-    "boom-working-span",
+    "model-identity",
+    "selected-boom",
     "crop-clearance",
     "hydraulic-tread-range",
     "solution-tank-capacity",
@@ -19,16 +19,26 @@
     "selected-auto-boom-leveling"
   ],
   "reconstructed_values": {
-    "presentation_length_m": 9.4,
-    "presentation_height_m": 4.0,
-    "carrier_display_envelope_m": [9.4, 4.5, 4.0],
-    "carrier_envelope_note": "Carrier length, overall width and height are conservative presentation values. The published 3.05-4.06 m figure is wheel tread, not overall width.",
-    "selected_boom_span_m": 36.576,
-    "selected_boom_span_note": "Manufacturer-published 120 ft selected working width retained as the deployed lateral display envelope; truss segments, pivots, fold geometry and breakaways remain reconstructed.",
-    "tank_visualization": "Neutral exterior tank cue for the published 1,200 U.S. gallon capacity; no internal volume, liquid or plumbing simulation.",
+    "presentation_length_m": 8.09,
+    "presentation_height_m": 3.88,
+    "carrier_display_envelope_m": [8.09, 4.078, 3.88],
+    "carrier_envelope_note": "The 8.09 x 4.078 x 3.88 m carrier values are measured limits of this independently authored partial presentation, not manufacturer dimensions. The published 3.05-4.06 m figure is wheel tread, not overall width.",
+    "authored_boom_presentation_span_m": 36.2,
+    "selected_boom_span_note": "The order guide identifies the option only as nominal 36 m (120 ft). The visible 36.20 m deployed presentation is reconstructed to contain 72 bodies at 0.508 m pitch and is not asserted as Deere tip-to-tip dimensional authority.",
+    "tank_visualization": "Neutral cylindrical stainless enclosure with 4.849 m3 gross exterior volume for the published 1,200 U.S. gallon (4.542 m3) capacity; no internal volume, liquid or pressure simulation.",
+    "neutral_tread_center_m": 3.658,
+    "neutral_tread_note": "Reconstructed neutral wheel-center tread lies inside the published 3.05-4.06 m hydraulic range; viewer travel is bounded to 4.018 m.",
+    "reconstructed_tire_envelope_m": {"diameter": 2.0, "width": 0.42},
+    "reconstructed_tire_note": "Circular generic row-crop tire envelope only. No tire order code, section width, loaded radius or approved fitment is claimed.",
+    "frame_underside_m": 1.47,
+    "frame_underside_note": "The visible main-frame underside is authored at the published 1.47 m standard-tire crop-clearance plane; hubs, tires and suspension remain below it.",
+    "boom_section_spans_m_per_side": {"center_half": 1.83, "inner": 6.096, "mid": 6.096, "tip": 4.078},
+    "boom_section_note": "Three articulated wing stages per side sum to the reconstructed 36.20 m presentation span. Section lengths, yaw pivots and transport choreography are not published.",
+    "selected_application_topology": {"nozzle_bodies": 72, "turret_positions_per_body": 5, "section_control_valves": 11, "level_sensors": 5, "nozzle_pitch_m": 0.508},
+    "selected_application_topology_note": "Counts and 20-inch pitch are manufacturer-published for codes 5165, 4995 and 5465; mounting coordinates and visible pipe routing are reconstructed.",
     "materials": "Neutral unbranded slate, graphite, steel, rubber and glass; no logos, decals or copied trade dress.",
     "all_hidden_pivots": "Reconstructed visual hierarchy only.",
-    "all_animation_ranges": "Conservative presentation ranges, not operator limits."
+    "all_animation_ranges": "Bounded steering, tread, boom lift/roll and three-stage accordion-fold presentation ranges; visible steering linkage cues follow their pivots, but no Ackermann, cylinder-closure or hydraulic solution is claimed."
   },
   "unresolved_choices": [
     "complete carrier longitudinal, vertical and folded lateral envelopes",
@@ -38,8 +48,8 @@
     "exact exterior surfacing and service-detail placement"
   ],
   "mechanical_gaps": [
-    "Boom fold and axle oscillation are bounded visual articulations without terrain, suspension, steering, hydraulic or collision physics.",
-    "Boom plumbing and nozzle marks do not simulate pressure, rate, droplets, wind, section control or application coverage.",
-    "Powertrain, wheel motors, suspension internals, tank internals and hydraulic systems are not modeled as engineering assemblies."
+    "Steering, independent suspension, hydraulic tread and three-stage boom roots are visible reconstructed hierarchies without terrain, Ackermann, cylinder-closure, hydraulic or swept-collision physics.",
+    "The neutral-pose tank-pump-center route, six fold flex connectors, 72 nozzle branch drops and nozzle bodies form visible static topology; hose sweep, pressure, rate, droplets, wind, section control and application coverage are not simulated.",
+    "Powertrain, wheel motors, air-spring internals, tank internals and hydraulic systems are not modeled as engineering assemblies."
   ]
 }

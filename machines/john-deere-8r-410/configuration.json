@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "machine_id": "john-deere-8r-410",
-  "configuration_id": "JD-8R410-MY2024-NA-JD9-E23-ILS-CAT4N3-CANDIDATE",
+  "configuration_id": "JD-8R410-MY2024-NA-POWERTECH9L-E23-ILS-CAT4N3-CANDIDATE",
   "status": "research_candidate",
   "identity": {
     "manufacturer": "Deere & Company",
@@ -12,22 +12,24 @@
     "source_model_year_basis": "MY2024 literature"
   },
   "choices": {
-    "engine": "JD9 / PowerTech 9.0 L diesel",
+    "engine": "John Deere PowerTech PSS 9.0 L diesel",
     "transmission": "e23 PowerShift 40 km/h",
+    "hydraulics": "pump option unresolved; brochure rates the 85 cc pump at 227 L/min and the 85 cc plus 35 cc dual-pump option at 318 L/min",
     "front_axle": "Independent-Link Suspension (ILS)",
     "rear_hitch": "Category 4N/3 quick coupler, 9,072 kg published capacity",
-    "rear_pto": "visible guarded PTO study; no implement attached",
+    "rear_pto": "standard 1-3/4 in (44.45 mm), 20-spline, 1,000-rpm interface with a reconstructed visible guard; no implement attached",
     "running_gear": "single front and rear agricultural tyres; exact order code unresolved",
     "public_geometry": "independently authored neutral structural study",
     "public_materials": "matte slate body and graphite running gear; no trade dress, logos, decals, copied textures, or manufacturer geometry"
   },
   "unresolved_choices": [
-    "The admitted brochure does not publish a configuration-specific overall width or overall height for this selected ILS tractor; those two public-envelope axes remain unresolved.",
+    "The admitted North American brochure does not publish a configuration-specific overall length, overall width or overall height for this selected ILS tractor; all three public-envelope axes remain unresolved. The 6.636 m presentation length follows a reference-only Latin America page and is not a North American manufacturer constraint.",
     "Exact front and rear tyre order codes, wheel offsets, ballast, fenders and tread settings are not frozen.",
+    "The 85 cc single-pump versus 85 cc plus 35 cc dual-pump hydraulic option is not frozen.",
     "ILS arm profiles, hidden pivot coordinates, steering knuckles, cylinder anchors, stroke, damping law and stops are not published.",
     "Rear hitch link lengths, pivots, actuator anchors, lift path, draft-control response and collision envelope are not published.",
     "Exact exterior panels, cab/glazing profiles, cooling openings, lighting, aftertreatment, hoses, wiring and service hardware are not scale-authoritative in the brochure.",
     "Manufacturer colors, graphics, badges and decals are outside the neutral public study."
   ],
-  "boundary": "MY2024 North American 8R 410 research candidate with JD9, e23, ILS and Cat. 4N/3 rear hitch selected. Manufacturer facts constrain identity, powertrain, wheelbase, clearance, tread and the admitted 6.636 m overall length. Width, height, tyres, hidden ILS/steering geometry and hitch kinematics remain reconstructed or unresolved. The public model is neutral and unbranded, not manufacturer CAD, an engineering model, load guidance, operator training or proof of one delivered serial-number machine."
+  "boundary": "MY2024 North American 8R 410 research candidate with PowerTech 9.0 L, e23, ILS and Cat. 4N/3 rear hitch selected. Manufacturer facts constrain identity, powertrain, wheelbase, clearance, tread and PTO interface. The 6.636 m presentation length is reconstructed from a reference-only Latin America page and is not claimed for the selected North American configuration; North American overall length, width and height remain unresolved. Hydraulic pump option, tyres, hidden ILS/steering geometry and hitch kinematics remain reconstructed or unresolved. The public model is neutral and unbranded, not manufacturer CAD, an engineering model, load guidance, operator training or proof of one delivered serial-number machine."
 }

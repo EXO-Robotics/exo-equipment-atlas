@@ -16,8 +16,8 @@
   },
   "builder": {
     "path": "source/blender/build_case_ih_trident_5550.py",
-    "sha256": "14f36826319a04e9e6e8a4ecf57295a9577acfb7a36631bba0fb9e8aaf6b1048",
-    "bytes": 666,
+    "sha256": "5f5827df4bdcb5855d1141a1644186cea9dca54c861cfd9d3f4bf20911f4e266",
+    "bytes": 35813,
     "deterministic": true,
     "network_used": false,
     "downloaded_geometry_used": false,
@@ -27,30 +27,30 @@
   },
   "shared_generator": {
     "path": "../../scripts/fleet/build_machine.py",
-    "sha256": "02b99250651741b462b3dae8b2471db723beb689dfe89e1c7e251d7402fe0f55",
-    "bytes": 78579
+    "sha256": "9e36599f0c9bbac097422a8766e3ef1c81e6fc9432f024d99a24b79da18264df",
+    "bytes": 81778
   },
   "design": {
     "path": "source/design.json",
-    "sha256": "c25280b3294ca3fcbf6c583b2a6086b0a4e33b2940fb82b6811eb5af895e57e1",
-    "bytes": 2292,
+    "sha256": "83cc3b7d4752f8b5766f0e9e0ef23c40acb3e61a4c21dd67fefbfb7e02adbf8b",
+    "bytes": 2393,
     "schema_version": "1.0.0"
   },
   "artifacts": {
     "blend": {
       "path": "source/blender/case-ih-trident-5550-structural-study.blend",
-      "sha256": "af0f60e92661e0803bf186338667570618ab9fcf043b3243e09756caf5080932",
-      "bytes": 245088
+      "sha256": "6c33cd1545b8fd30621cb9b46f8acc68423428b9a7ac14fad45beeb26f29f035",
+      "bytes": 343233
     },
     "glb": {
       "path": "assets/case-ih-trident-5550-structural-study.glb",
-      "sha256": "5ccaa04d262528e1345883074dff26f728505fe81ea3777f19c0fd77f1361a0b",
-      "bytes": 1596540
+      "sha256": "7a6aae2929c9a0d7780b56abe0fdd2389634864c167f872a90f742c6209d653a",
+      "bytes": 3161740
     },
     "validation": {
       "path": "production/validation.json",
-      "sha256": "3198a80dfd8eec267299bcca99469b20e0d98bb3ed10446811782b3d0f7692a3",
-      "bytes": 7908
+      "sha256": "dd7eeb5de77ec9bda06dd403374490e045140cd20e6861a3b338b28899ef540c",
+      "bytes": 107564
     }
   },
   "scene": {
@@ -82,10 +82,10 @@
       4.01,
       4.21
     ],
-    "objects": 212,
-    "meshes": 190,
-    "triangles": 31032,
-    "materials": 6
+    "objects": 411,
+    "meshes": 368,
+    "triangles": 62064,
+    "materials": 8
   },
   "glb_contract": {
     "glb_version": "2.0",
@@ -94,18 +94,18 @@
     "root_name": "Machine_Root",
     "root_record": {},
     "identity_root": true,
-    "nodes": 212,
-    "mesh_nodes": 190,
-    "mesh_definitions": 190,
-    "materials": 6,
-    "triangles": 31032,
+    "nodes": 411,
+    "mesh_nodes": 368,
+    "mesh_definitions": 368,
+    "materials": 8,
+    "triangles": 62064,
     "cameras": 0,
     "punctual_lights": false,
     "images": 0,
     "textures": 0,
     "nonidentity_mesh_scales": {},
     "helper_like_mesh_nodes": [],
-    "semantic_motion_nodes": 21,
+    "semantic_motion_nodes": 42,
     "bounds": {
       "min_m": [
         -4.86,
@@ -129,16 +129,37 @@
     "Fixed_Structure_ROOT": true,
     "Running_Gear_ROOT": true,
     "Hydraulics_ROOT": true,
-    "Service_Detail_ROOT": true,
     "Front_Axle_Oscillation_Pivot": true,
     "Front_Axle_ROOT": true,
     "Boom_Center_ROOT": true,
     "Boom_L_Fold_Pivot": true,
     "Boom_L_ROOT": true,
     "Boom_R_Fold_Pivot": true,
-    "Boom_R_ROOT": true
+    "Boom_R_ROOT": true,
+    "Rear_Axle_ROOT": true,
+    "Front_L_Suspension_ROOT": true,
+    "Front_R_Suspension_ROOT": true,
+    "Rear_L_Suspension_ROOT": true,
+    "Rear_R_Suspension_ROOT": true,
+    "Front_L_Steering_Pivot": true,
+    "Front_R_Steering_Pivot": true,
+    "Rear_L_Steering_Pivot": true,
+    "Rear_R_Steering_Pivot": true,
+    "Boom_Center_Lift_ROOT": true,
+    "Boom_Center_Roll_Pivot": true,
+    "Boom_L_Mid_Fold_Pivot": true,
+    "Boom_L_Mid_ROOT": true,
+    "Boom_L_Tip_Fold_Pivot": true,
+    "Boom_L_Tip_ROOT": true,
+    "Boom_R_Mid_Fold_Pivot": true,
+    "Boom_R_Mid_ROOT": true,
+    "Boom_R_Tip_Fold_Pivot": true,
+    "Boom_R_Tip_ROOT": true,
+    "Solution_Pump_ROOT": true,
+    "Nozzle_Valve_Pulse_ROOT": true
   },
-  "manufacturer_published_constraints_used": [
+  "semantic_node_roles": {},
+  "published_constraint_ids_declared": [
     "public-envelope-x",
     "public-envelope-y",
     "public-envelope-z",
@@ -148,8 +169,379 @@
     "wheelbase",
     "drive-system"
   ],
+  "machine_specific_gate_evidence": [
+    {
+      "id": "frozen_liquid_configuration",
+      "status": "PASS",
+      "detail": {
+        "method": "Compare configuration identity, selected tank and boom topology nodes, section-span arithmetic and hydrostatic four-wheel-drive running gear.",
+        "evidence": {
+          "configuration_id": "CASEIH-TRIDENT5550-NAM-LIQ1600-ALBOOM120-AIMCF2-4WD-CANDIDATE",
+          "tank_selection_US_gal": 1600,
+          "published_working_span_m": 36.5,
+          "reconstructed_section_arithmetic_m": {
+            "center": 3.5,
+            "per_side": [
+              6.0,
+              5.6,
+              4.9
+            ],
+            "total": 36.5
+          },
+          "boundary": "Section allocation and all folds are reconstructed; arithmetic equality is not manufacturer geometry."
+        },
+        "semantic_nodes": [
+          "Solution_Tank_1600gal_Exterior",
+          "Boom_Center_ROOT",
+          "Boom_L_ROOT",
+          "Boom_R_ROOT",
+          "Solution_Pump_ROOT"
+        ],
+        "fact_ids": [
+          "boom-working-span",
+          "selected-boom-width",
+          "liquid-tank-capacity",
+          "drive-system"
+        ]
+      }
+    },
+    {
+      "id": "single_identity_root",
+      "status": "PASS",
+      "detail": {
+        "method": "Inspect the exported GLB root contract and traverse carrier, four-corner running gear, liquid system and boom from Machine_Root.",
+        "evidence": {
+          "scene_root_count": 1,
+          "root_name": "Machine_Root",
+          "major_branches": [
+            "Fixed_Structure_ROOT",
+            "Running_Gear_ROOT",
+            "Hydraulics_ROOT"
+          ]
+        },
+        "semantic_nodes": [
+          "Machine_Root",
+          "Fixed_Structure_ROOT",
+          "Running_Gear_ROOT",
+          "Hydraulics_ROOT"
+        ],
+        "fact_ids": [
+          "drive-system"
+        ]
+      }
+    },
+    {
+      "id": "four_tire_contact",
+      "status": "PASS",
+      "detail": {
+        "method": "Measure the four neutral tire AABBs, radial equality and two 4.32 m wheelbase lines.",
+        "evidence": {
+          "tire_count": 4,
+          "tires": [
+            {
+              "node": "Front_L_Tire",
+              "minimum_y_m": 0.0,
+              "diameter_x_m": 2.0,
+              "diameter_y_m": 2.0
+            },
+            {
+              "node": "Front_R_Tire",
+              "minimum_y_m": 0.0,
+              "diameter_x_m": 2.0,
+              "diameter_y_m": 2.0
+            },
+            {
+              "node": "Rear_L_Tire",
+              "minimum_y_m": 0.0,
+              "diameter_x_m": 2.0,
+              "diameter_y_m": 2.0
+            },
+            {
+              "node": "Rear_R_Tire",
+              "minimum_y_m": 0.0,
+              "diameter_x_m": 2.0,
+              "diameter_y_m": 2.0
+            }
+          ],
+          "measured_left_right_wheelbase_m": [
+            4.32,
+            4.32
+          ],
+          "visible_study_wheelbase_m": 4.32
+        },
+        "semantic_nodes": [
+          "Front_L_Tire",
+          "Front_R_Tire",
+          "Rear_L_Tire",
+          "Rear_R_Tire"
+        ],
+        "fact_ids": [
+          "wheelbase",
+          "drive-system"
+        ]
+      }
+    },
+    {
+      "id": "suspension_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "Traverse four independent suspension roots through steering pivots to wheel pivots and count visible twin-strut descendants.",
+        "evidence": {
+          "independent_suspension_roots": 4,
+          "visible_strut_barrels": 8,
+          "steering_pivots": [
+            "Front_L_Steering_Pivot",
+            "Front_R_Steering_Pivot",
+            "Rear_L_Steering_Pivot",
+            "Rear_R_Steering_Pivot"
+          ],
+          "boundary": "Travel and load response are reconstructed visualization cues."
+        },
+        "semantic_nodes": [
+          "Front_L_Suspension_ROOT",
+          "Front_R_Suspension_ROOT",
+          "Rear_L_Suspension_ROOT",
+          "Rear_R_Suspension_ROOT"
+        ],
+        "fact_ids": [
+          "suspension-function",
+          "drive-system"
+        ]
+      }
+    },
+    {
+      "id": "boom_fold_symmetry",
+      "status": "PASS",
+      "detail": {
+        "method": "Compare mirrored inner/middle/tip stage descendant mesh counts and sum the reconstructed stage lengths to the published 36.5 m span.",
+        "evidence": {
+          "mirrored_stage_records": [
+            {
+              "stage_suffix": "_ROOT",
+              "mesh_counts_L_R": [
+                80,
+                80
+              ]
+            },
+            {
+              "stage_suffix": "_Mid_ROOT",
+              "mesh_counts_L_R": [
+                51,
+                51
+              ]
+            },
+            {
+              "stage_suffix": "_Tip_ROOT",
+              "mesh_counts_L_R": [
+                26,
+                26
+              ]
+            }
+          ],
+          "reconstructed_total_span_m": 36.5,
+          "published_working_span_m": 36.5
+        },
+        "semantic_nodes": [
+          "Boom_L_ROOT",
+          "Boom_L_Mid_ROOT",
+          "Boom_L_Tip_ROOT",
+          "Boom_R_ROOT",
+          "Boom_R_Mid_ROOT",
+          "Boom_R_Tip_ROOT"
+        ],
+        "fact_ids": [
+          "boom-working-span",
+          "selected-boom-width"
+        ]
+      }
+    },
+    {
+      "id": "boom_center_and_roll_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "Inspect the lift -> roll -> center -> paired three-stage fold hierarchy and visible mast/cylinder support.",
+        "evidence": {
+          "hierarchy": [
+            "Boom_Center_Lift_ROOT",
+            "Boom_Center_Roll_Pivot",
+            "Boom_Center_ROOT",
+            "Boom_L_Fold_Pivot/Boom_R_Fold_Pivot"
+          ],
+          "lift_mast_count": 2,
+          "lift_cylinder_count": 2,
+          "pwm_valve_cue_count": 4
+        },
+        "semantic_nodes": [
+          "Boom_Center_Lift_ROOT",
+          "Boom_Center_Roll_Pivot",
+          "Boom_Center_ROOT",
+          "Boom_L_Fold_Pivot",
+          "Boom_R_Fold_Pivot"
+        ],
+        "fact_ids": [
+          "boom-working-span",
+          "pwm-frequency"
+        ]
+      }
+    },
+    {
+      "id": "tank_boom_cab_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "Measure neutral tank, cab and boom-center AABBs plus the tank exterior cylindrical cue volume.",
+        "evidence": {
+          "tank_exterior_cylinder_volume_m3": 6.06131,
+          "published_capacity_m3": 6.056659,
+          "neutral_boom_to_tank_x_gap_m": 2.265,
+          "neutral_tank_to_cab_x_gap_m": 2.0255,
+          "internal_volume_claimed": false
+        },
+        "semantic_nodes": [
+          "Solution_Tank_1600gal_Exterior",
+          "Cab_Rear_Glass",
+          "Boom_Center_ROOT",
+          "Solution_Pump_ROOT"
+        ],
+        "fact_ids": [
+          "liquid-tank-capacity",
+          "cab-volume"
+        ]
+      }
+    },
+    {
+      "id": "transport_envelope",
+      "status": "PASS",
+      "detail": {
+        "method": "Compare the exported neutral GLB AABB and measured wheelbases with the published folded carrier envelope and visible-study target.",
+        "evidence": {
+          "measured_glb_xyz_m": [
+            9.72,
+            4.01,
+            4.21
+          ],
+          "published_folded_carrier_xyz_m": [
+            9.72,
+            4.01,
+            4.21
+          ],
+          "measured_wheelbase_m": [
+            4.32,
+            4.32
+          ],
+          "transport_pose": "nested folded three-stage wings"
+        },
+        "semantic_nodes": [
+          "Front_End_Structure",
+          "Rear_End_Structure",
+          "Cab_Roof",
+          "Front_L_Tire",
+          "Front_R_Tire"
+        ],
+        "fact_ids": [
+          "public-envelope-x",
+          "public-envelope-y",
+          "public-envelope-z",
+          "wheelbase"
+        ]
+      }
+    },
+    {
+      "id": "ground_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "Sample every public mesh AABB at 0.25-second intervals over the exact 18-second Auto target path.",
+        "evidence": {
+          "neutral_minimum_y_m": 0.0,
+          "sampled_auto_path": {
+            "duration_seconds": 18,
+            "sample_count": 73,
+            "sample_interval_seconds": 0.25,
+            "minimum_public_y_m": 0.0,
+            "major_carrier_collision_count": 0,
+            "first_collisions": [],
+            "boundary": "Discrete AABB sampling of the exact viewer target ranges; not continuous collision detection, a boom-control solver, hydraulic response, wind or an operating limit."
+          },
+          "tolerance_m": -0.002
+        },
+        "semantic_nodes": [
+          "Front_L_Tire",
+          "Front_R_Tire",
+          "Rear_L_Tire",
+          "Rear_R_Tire"
+        ],
+        "fact_ids": [
+          "public-envelope-y",
+          "drive-system"
+        ]
+      }
+    },
+    {
+      "id": "self_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "Sample every articulated boom mesh against major tank, engine and cab AABBs over the exact viewer target path.",
+        "evidence": {
+          "sampled_auto_path": {
+            "duration_seconds": 18,
+            "sample_count": 73,
+            "sample_interval_seconds": 0.25,
+            "minimum_public_y_m": 0.0,
+            "major_carrier_collision_count": 0,
+            "first_collisions": [],
+            "boundary": "Discrete AABB sampling of the exact viewer target ranges; not continuous collision detection, a boom-control solver, hydraulic response, wind or an operating limit."
+          },
+          "major_carrier_nodes": [
+            "Solution_Tank_1600gal_Exterior",
+            "Engine_House",
+            "Cab_Floor",
+            "Cab_Roof"
+          ]
+        },
+        "semantic_nodes": [
+          "Boom_L_Fold_Pivot",
+          "Boom_R_Fold_Pivot",
+          "Solution_Tank_1600gal_Exterior",
+          "Cab_Rear_Glass"
+        ],
+        "fact_ids": [
+          "public-envelope-z",
+          "boom-working-span"
+        ]
+      }
+    },
+    {
+      "id": "swept_volume_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "Combine phased path ground and major carrier AABB results while retaining the continuous-solver boundary.",
+        "evidence": {
+          "sampled_auto_path": {
+            "duration_seconds": 18,
+            "sample_count": 73,
+            "sample_interval_seconds": 0.25,
+            "minimum_public_y_m": 0.0,
+            "major_carrier_collision_count": 0,
+            "first_collisions": [],
+            "boundary": "Discrete AABB sampling of the exact viewer target ranges; not continuous collision detection, a boom-control solver, hydraulic response, wind or an operating limit."
+          },
+          "continuous_solver": false,
+          "scope": "Exact viewer target path versus ground and major carrier AABBs only."
+        },
+        "semantic_nodes": [
+          "Boom_Center_Lift_ROOT",
+          "Boom_Center_Roll_Pivot",
+          "Boom_L_Mid_Fold_Pivot",
+          "Boom_R_Mid_Fold_Pivot"
+        ],
+        "fact_ids": [
+          "boom-working-span",
+          "wheelbase"
+        ]
+      }
+    }
+  ],
   "reconstructed_values": {
-    "presentation_pose": "Folded carrier study retained for fleet-scale inspectability; the selected 120-foot / 36.5 m working span remains a published evidence fact but is not reconstructed as full-length public geometry.",
+    "presentation_pose": "Folded carrier study retained for fleet-scale inspectability. Three nested truss stages per side encode a reconstructed 3.5 + 2 x (6.0 + 5.6 + 4.9) m section-length study whose arithmetic equals the published 36.5 m working span; segment allocation, folds and pivots are not manufacturer geometry.",
     "carrier_transport_width_m": 4.21,
     "carrier_transport_width_note": "Manufacturer-published with 710/60R46 tires; axle track setting within that basis remains unresolved.",
     "solution_system": "Visible tank is a neutral volume cue for the selected 1,600 US gallon liquid system; plumbing and liquid behavior are not simulated.",
@@ -158,20 +550,20 @@
     "animation_ranges": "Conservative presentation fold and axle ranges only; not operating limits.",
     "generic_archetype_geometry": "high_clearance_sprayer proportions and visible detail are independently reconstructed for this technical study.",
     "visible_envelope_calibration": {
-      "classification": "reconstructed_visible_envelope_calibration",
+      "classification": "authored_visible_envelope_measurement",
       "source_bounds_m": {
         "min_m": [
-          -3.6208,
+          -4.86,
           0.0,
           -2.105
         ],
         "max_m": [
-          3.6208,
+          4.86,
           4.01,
           2.105
         ],
         "size_m": [
-          7.2416,
+          9.72,
           4.01,
           4.21
         ]
@@ -194,9 +586,9 @@
         ]
       },
       "axis_scale_factors": [
-        1.342244801,
-        0.999999943,
-        0.999999991
+        1.0,
+        1.0,
+        1.0
       ],
       "calibrated_bounds_m": {
         "min_m": [
@@ -215,7 +607,7 @@
           4.21
         ]
       },
-      "authority": "reconstructed_not_machine_specific_engineering"
+      "authority": "independently_measured_from_authored_geometry"
     }
   },
   "unresolved_choices": [
@@ -236,33 +628,33 @@
   "renders": [
     {
       "path": "review/renders/case-ih-trident-5550-operator-side.png",
-      "sha256": "d6f9fd69619eab4c55e6517fcd61e4b8c2b0049f2875c812466d992bd2b4aa21",
-      "bytes": 239581
+      "sha256": "f5db887e8c1f6954deb37c9ac6ea5c9a64b522d5753c4598e7200a2e4f4c847e",
+      "bytes": 289972
     },
     {
       "path": "review/renders/case-ih-trident-5550-front-three-quarter.png",
-      "sha256": "6da7518c38524465c9185e1ea13baf4908bf7a9cc82c1f6f9dafd1da1cae48b4",
-      "bytes": 296554
+      "sha256": "fd7bfff030c26e8d647d8307c61391fe8833caf2e758ad979d1b451a5a8c4eda",
+      "bytes": 376092
     },
     {
       "path": "review/renders/case-ih-trident-5550-rear-three-quarter.png",
-      "sha256": "a2d64c76b9f394c9300c6217ef9f887f7c0d7fe00307b231963e0a96b0a9c28b",
-      "bytes": 282943
+      "sha256": "c29760670b6b2c49080d66da484086d92512ad5f5d5dec37a20b8ec072f5cd40",
+      "bytes": 373417
     },
     {
       "path": "review/renders/case-ih-trident-5550-elevated-technical.png",
-      "sha256": "a1c901210a1100916dd773d7a3c5f95d3de9f275c0ab87aa71f9c93fde6b1705",
-      "bytes": 349892
+      "sha256": "505f25baa8914ca584fa743d24c44fef51bccdce70499c2ab3fdd9a5ae4f36f7",
+      "bytes": 309911
     },
     {
       "path": "review/renders/case-ih-trident-5550-articulation-detail.png",
-      "sha256": "7d8d2823b0b74fa3ded5fc641d7ae39d1ba028ff7aabf4bbd5360a927ef5ab59",
-      "bytes": 314332
+      "sha256": "821092b717addd9e50a28088bb951f19d2f47af4572ff017a3f527d4de79896d",
+      "bytes": 367318
     },
     {
       "path": "review/renders/case-ih-trident-5550-right-side.png",
-      "sha256": "91f66aa9335fd2de6e70aaa789fafb01e9cafc81508deb8a01e5c561032c2375",
-      "bytes": 238478
+      "sha256": "8c8f8642a52b42938df03b7460a612d8febda5fac8a5e7de3656f45c6ecd9085",
+      "bytes": 289205
     }
   ],
   "build_verdict": "PASS",

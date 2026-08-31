@@ -62,9 +62,12 @@
     },
     {
       "id": "circle_rotation",
-      "type": "revolute",
+      "type": "continuous_revolute",
       "axis": "+Y nominal",
-      "published_range_deg": [0, 360],
+      "rotation_classification": "cyclic_full_rotation",
+      "cyclic": true,
+      "period_deg": 360,
+      "published_rotation_capability_deg": 360,
       "authority": "reconstructed",
       "source_ids": ["CAT-140-AEXQ4475-00-GLOBAL"],
       "unresolved": ["circle center, tooth profile, pinion engagement, wear shoes, and drive housing geometry"]
@@ -121,5 +124,5 @@
     "self_collision",
     "swept_volume_collision"
   ],
-  "release_state": "no_geometry_no_solver_no_claim"
+  "release_state": "technical_structural_study_built_solver_unverified"
 }

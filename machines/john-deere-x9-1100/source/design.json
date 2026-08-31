@@ -9,7 +9,7 @@
   "attachment_span_m": 15.2,
   "tracked_front": false,
   "palette": "slate",
-  "published_constraints_used": ["public-envelope-z", "feederhouse-width", "rotor-count", "rotor-length", "rotor-diameter", "selected-auger-length"],
+  "published_constraints_used": ["public-envelope-z", "feederhouse-width", "feeder-chain-count", "rotor-count", "rotor-length", "rotor-diameter", "grain-tank-capacity", "selected-auger-length", "hd50r-compatibility"],
   "reconstructed_values": {
     "presentation_carrier_length_m": 10.1,
     "presentation_carrier_width_m": 4.3,
@@ -21,5 +21,5 @@
     "neutral_material_policy": "matte slate and graphite with dark rubber and neutral glazing; no logos, decals or manufacturer trade dress"
   },
   "unresolved_choices": ["Manufacturer-published carrier overall length and overall height", "Exact order tyre pair, wheel offsets, ballast and carrier width", "Header attachment, feederhouse, reel and auger hidden pivots, anchors and limits", "Exact exterior and internal processing geometry"],
-  "mechanical_gaps": ["Header and feeder motions are reconstructed visual transforms without ground following, header mass or crop interaction.", "The reel and feeder are visual cues without a crop-flow or speed-control solver.", "Unloading auger motion omits internal screw, grain flow, hydraulic loads and validated stowed collision closure.", "Dual rotors and cleaning systems are documented but not modeled as validated internal machinery."]
+  "mechanical_gaps": ["Header and feeder motions are reconstructed visual transforms without ground following, header mass or crop interaction.", "The four-chain conveyor, reel, and exposed dual-rotor cutaway are schematic technical cues without crop-flow, concave-clearance, load, phasing, or speed-control solvers.", "Unloading auger motion omits internal screw, grain flow, hydraulic loads and validated swept-volume or stowed collision closure.", "Cleaning, residue, grain-transfer and powertrain internals remain outside the public structural study."]
 }

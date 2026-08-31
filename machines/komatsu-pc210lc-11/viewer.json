@@ -21,16 +21,17 @@
   "accent": "#c6a050",
   "motion": {
     "autoplay": true,
-    "durationSeconds": 17,
+    "durationSeconds": 18,
     "mode": "sine",
-    "damping": 7.0,
+    "damping": 8,
     "channels": [
-      {"id":"boom","label":"Boom raise / lower","nodes":["Boom_ROOT"],"property":"rotation.z","from":-0.16,"to":0.50,"phase":0.0},
-      {"id":"arm","label":"Arm crowd / extend","nodes":["Stick_ROOT"],"property":"rotation.z","from":-0.82,"to":0.12,"phase":0.18},
-      {"id":"bucket","label":"Bucket curl / dump","nodes":["Bucket_ROOT"],"property":"rotation.z","from":-0.68,"to":0.46,"phase":0.34},
-      {"id":"upper-swing","label":"Upper structure swing","nodes":["Upper_ROOT"],"property":"rotation.y","from":-0.32,"to":0.32,"phase":0.62},
-      {"id":"left-track","label":"Left track travel study","nodes":["Track_L_ROOT"],"property":"position.x","from":-0.045,"to":0.045,"phase":0.78},
-      {"id":"right-track","label":"Right track travel study","nodes":["Track_R_ROOT"],"property":"position.x","from":0.045,"to":-0.045,"phase":0.78}
+      {"id":"boom","label":"Boom reconstructed sweep","mechanismJointId":"boom_raise_lower","nodes":["Boom_ROOT"],"property":"rotation.z","from":0.0,"to":0.18,"phase":0.0},
+      {"id":"arm","label":"Arm reconstructed sweep","mechanismJointId":"arm_crowd","nodes":["Stick_ROOT"],"property":"rotation.z","from":-0.18,"to":0.0,"phase":0.18},
+      {"id":"bucket","label":"Bucket reconstructed curl","mechanismJointId":"bucket_curl","nodes":["Bucket_ROOT"],"property":"rotation.z","from":0.0,"to":0.25,"phase":0.34},
+      {"id":"bucket-linkage","label":"Bucket H-link follow","mechanismJointId":"bucket_curl","nodes":["Bucket_H_Link_ROOT"],"property":"rotation.z","from":0.0,"to":-0.164,"phase":0.34},
+      {"id":"upper-swing","label":"Upper structure swing","mechanismJointId":"upper_structure_swing","nodes":["Upper_ROOT"],"property":"rotation.y","from":-0.32,"to":0.32,"phase":0.62},
+      {"id":"left-track","label":"Left track travel study","mechanismJointId":"left_track_scroll","nodes":["Track_L_ROOT"],"property":"position.x","from":-0.045,"to":0.045,"phase":0.78},
+      {"id":"right-track","label":"Right track travel study","mechanismJointId":"right_track_scroll","nodes":["Track_R_ROOT"],"property":"position.x","from":0.045,"to":-0.045,"phase":0.78}
     ]
   }
 }

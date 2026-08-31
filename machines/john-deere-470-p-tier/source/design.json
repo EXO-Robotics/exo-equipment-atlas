@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-470-p-tier",
+  "display_name": "John Deere 470 P-Tier",
+  "configuration_id": "JD-470P-NAM-B70-A39-B234-W1370-TSG900-CW8400-CANDIDATE",
+  "archetype": "tracked_excavator",
+  "published_constraints_used": [
+    "boom-length", "arm-length", "bucket-capacity-operating-weight",
+    "bucket-width-operating-weight", "counterweight-mass", "overall-length",
+    "overall-height", "tail-swing-radius", "idler-sprocket-centers",
+    "undercarriage-length", "counterweight-clearance", "upperstructure-width",
+    "cab-height", "track-shoe-width", "track-gauge-operating",
+    "overall-width-operating", "ground-clearance", "track-shoes-per-side",
+    "track-rollers-per-side", "carrier-rollers-per-side", "boom-cylinder-count",
+    "boom-cylinder-bore", "boom-cylinder-rod", "boom-cylinder-stroke",
+    "arm-cylinder-bore", "arm-cylinder-rod", "arm-cylinder-stroke",
+    "bucket-cylinder-bore", "bucket-cylinder-rod", "bucket-cylinder-stroke",
+    "maximum-reach", "maximum-ground-reach", "maximum-digging-depth",
+    "work-light-count"
+  ],
+  "reconstructed_values": {
+    "export_pivot_contract": "source/build-input.json",
+    "bucket_visual_basis": "2.34 cubic metre and 1370 millimetre operating-weight branch; exact bucket family unresolved",
+    "motion_scope": "upper-structure swing only"
+  },
+  "unresolved_choices": [
+    "Exact PIN/order family, bucket family conflict, coupler, hydraulics, cab/trim, grade-management, removal-device, and public material choices"
+  ],
+  "mechanical_gaps": [
+    "Boom, arm, bucket, hydraulic endpoint, variable gauge, track phase, and swept collision remain static or unresolved."
+  ]
+}

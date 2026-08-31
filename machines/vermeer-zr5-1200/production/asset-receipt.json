@@ -16,8 +16,8 @@
   },
   "builder": {
     "path": "source/blender/build_vermeer_zr5_1200.py",
-    "sha256": "d4510a0b4e03eedd3f706ade27833c0a56d194937f33d1e29748273cbd608df3",
-    "bytes": 6181,
+    "sha256": "491aa88e3fc76f2f68c914e7716d817e7c853f768992254816e2875e5d94f7d2",
+    "bytes": 26359,
     "deterministic": true,
     "network_used": false,
     "downloaded_geometry_used": false,
@@ -27,8 +27,8 @@
   },
   "shared_generator": {
     "path": "../../scripts/fleet/build_machine.py",
-    "sha256": "02b99250651741b462b3dae8b2471db723beb689dfe89e1c7e251d7402fe0f55",
-    "bytes": 78579
+    "sha256": "9e36599f0c9bbac097422a8766e3ef1c81e6fc9432f024d99a24b79da18264df",
+    "bytes": 81778
   },
   "design": {
     "path": "source/design.json",
@@ -39,18 +39,18 @@
   "artifacts": {
     "blend": {
       "path": "source/blender/vermeer-zr5-1200-structural-study.blend",
-      "sha256": "7985131aa8f77c2e7d0f49090851113b711a752544ca789c0b17c321a9f324d5",
-      "bytes": 251460
+      "sha256": "99cbd680198334821f9b025cdfebf8b2916d267f7bd22cdfdce623847a16703c",
+      "bytes": 278266
     },
     "glb": {
       "path": "assets/vermeer-zr5-1200-structural-study.glb",
-      "sha256": "167ff15c93635cd0250d42ef769880540ec20da0aa914880107df65cc3c0c6cf",
-      "bytes": 1433132
+      "sha256": "09f3dba819b844f9acfd2e4cde36b6801b27084637ebba18ffde05072dd1de40",
+      "bytes": 1783996
     },
     "validation": {
       "path": "production/validation.json",
-      "sha256": "cd99fcbeedefab31151fe9941cb4bc220ff76a8b9a52241d66c13d06550cacab",
-      "bytes": 7908
+      "sha256": "3a79c36ee62e3bf284751a4296136b297f6345104d7c95a7f73e43660daf8ccb",
+      "bytes": 59724
     }
   },
   "scene": {
@@ -82,10 +82,10 @@
       3.15,
       3.607
     ],
-    "objects": 213,
-    "meshes": 190,
-    "triangles": 27212,
-    "materials": 6
+    "objects": 359,
+    "meshes": 239,
+    "triangles": 33828,
+    "materials": 8
   },
   "glb_contract": {
     "glb_version": "2.0",
@@ -94,18 +94,18 @@
     "root_name": "Machine_Root",
     "root_record": {},
     "identity_root": true,
-    "nodes": 213,
-    "mesh_nodes": 190,
-    "mesh_definitions": 190,
-    "materials": 6,
-    "triangles": 27212,
+    "nodes": 359,
+    "mesh_nodes": 239,
+    "mesh_definitions": 239,
+    "materials": 8,
+    "triangles": 33828,
     "cameras": 0,
     "punctual_lights": false,
     "images": 0,
     "textures": 0,
     "nonidentity_mesh_scales": {},
     "helper_like_mesh_nodes": [],
-    "semantic_motion_nodes": 22,
+    "semantic_motion_nodes": 119,
     "bounds": {
       "min_m": [
         -3.1495,
@@ -129,16 +129,27 @@
     "Fixed_Structure_ROOT": true,
     "Running_Gear_ROOT": true,
     "Hydraulics_ROOT": true,
-    "Service_Detail_ROOT": true,
     "Front_Axle_Oscillation_Pivot": true,
     "Front_Axle_ROOT": true,
     "Pickup_Lift_Pivot": true,
     "Pickup_ROOT": true,
     "Bale_Chamber_ROOT": true,
     "Tailgate_Pivot": true,
-    "Tailgate_ROOT": true
+    "Tailgate_ROOT": true,
+    "Rear_Axle_ROOT": true,
+    "Front_L_Suspension_ROOT": true,
+    "Front_R_Suspension_ROOT": true,
+    "Rear_L_Suspension_ROOT": true,
+    "Rear_R_Suspension_ROOT": true,
+    "Pickup_Rotor_ROOT": true,
+    "Netwrap_ROOT": true,
+    "Quarter_Turn_Ramp_Pivot": true,
+    "Quarter_Turn_Ramp_ROOT": true,
+    "Quarter_Turn_Cradle_ROOT": true,
+    "Quarter_Turn_Bale_Path_ROOT": true
   },
-  "manufacturer_published_constraints_used": [
+  "semantic_node_roles": {},
+  "published_constraint_ids_declared": [
     "public-envelope-x",
     "public-envelope-y",
     "public-envelope-z",
@@ -147,25 +158,346 @@
     "pickup-teeth",
     "chamber-belts"
   ],
+  "machine_specific_gate_evidence": [
+    {
+      "id": "published_static_envelope",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local hierarchy assertion and sampled metric pose measurement",
+        "evidence": {
+          "measured_xyz_m": [
+            6.299,
+            3.15,
+            3.607
+          ],
+          "published_xyz_m": [
+            6.299,
+            3.15,
+            3.607
+          ]
+        },
+        "semantic_nodes": [
+          "Machine_Root"
+        ],
+        "fact_ids": [
+          "public-envelope-x",
+          "public-envelope-y",
+          "public-envelope-z"
+        ]
+      }
+    },
+    {
+      "id": "four_tire_contact",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local hierarchy assertion and sampled metric pose measurement",
+        "evidence": {
+          "tire_nodes": [
+            "Front_R_Tire",
+            "Rear_L_Tire",
+            "Rear_R_Tire",
+            "Front_L_Tire"
+          ],
+          "ground_y_m": 0.0
+        },
+        "semantic_nodes": [
+          "Front_Axle_ROOT",
+          "Rear_Axle_ROOT",
+          "Running_Gear_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "pickup_width_and_count_cues",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local hierarchy assertion and sampled metric pose measurement",
+        "evidence": {
+          "measured_outer_tooth_center_width_m": 1.956,
+          "tooth_bars": 5,
+          "double_tooth_roots": 65
+        },
+        "semantic_nodes": [
+          "Pickup_ROOT",
+          "Pickup_Rotor_ROOT"
+        ],
+        "fact_ids": [
+          "pickup-tooth-width",
+          "pickup-bars",
+          "pickup-teeth"
+        ]
+      }
+    },
+    {
+      "id": "pickup_ground_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local hierarchy assertion and sampled metric pose measurement",
+        "evidence": {
+          "pickup_pivot_world_y_m": 0.54,
+          "rotor_center_world_y_m": 0.64,
+          "gauge_structure_present": true
+        },
+        "semantic_nodes": [
+          "Pickup_Lift_Pivot",
+          "Pickup_ROOT",
+          "Pickup_Rotor_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "tailgate_chamber_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local hierarchy assertion and sampled metric pose measurement",
+        "evidence": {
+          "visible_chamber_belts": 8,
+          "tailgate_endpoint_deg": 50.42,
+          "sampled_endpoint": {
+            "fraction": 1.0,
+            "min_y_m": 0.0,
+            "height_m": 3.15
+          }
+        },
+        "semantic_nodes": [
+          "Bale_Chamber_ROOT",
+          "Tailgate_Pivot",
+          "Tailgate_ROOT"
+        ],
+        "fact_ids": [
+          "chamber-belts"
+        ]
+      }
+    },
+    {
+      "id": "quarter_turn_bale_path",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local hierarchy assertion and sampled metric pose measurement",
+        "evidence": {
+          "schematic_path_segments": 3,
+          "integrated_ramp": "standard selected",
+          "function": "places bale parallel to windrow"
+        },
+        "semantic_nodes": [
+          "Quarter_Turn_Ramp_Pivot",
+          "Quarter_Turn_Ramp_ROOT",
+          "Quarter_Turn_Cradle_ROOT",
+          "Quarter_Turn_Bale_Path_ROOT"
+        ],
+        "fact_ids": [
+          "quarter-turn-function"
+        ]
+      }
+    },
+    {
+      "id": "suspension_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local hierarchy assertion and sampled metric pose measurement",
+        "evidence": {
+          "independent_corner_roots": [
+            "Front_L_Suspension_ROOT",
+            "Front_R_Suspension_ROOT",
+            "Rear_L_Suspension_ROOT",
+            "Rear_R_Suspension_ROOT"
+          ],
+          "upper_and_lower_a_arms_per_corner": 2,
+          "split_hydraulic_cylinders_per_corner": 1
+        },
+        "semantic_nodes": [
+          "Front_L_Suspension_ROOT",
+          "Front_R_Suspension_ROOT",
+          "Rear_L_Suspension_ROOT",
+          "Rear_R_Suspension_ROOT"
+        ],
+        "fact_ids": [
+          "suspension-type"
+        ]
+      }
+    },
+    {
+      "id": "zero_turn_wheel_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local hierarchy assertion and sampled metric pose measurement",
+        "evidence": {
+          "steering_pivots": [
+            "Front_L_Steering_Pivot",
+            "Front_R_Steering_Pivot",
+            "Rear_L_Steering_Pivot",
+            "Rear_R_Steering_Pivot"
+          ],
+          "viewer_countersteer_rad": 0.62,
+          "authority": "reconstructed zero-turn presentation"
+        },
+        "semantic_nodes": [
+          "Front_L_Suspension_ROOT",
+          "Front_R_Suspension_ROOT",
+          "Rear_L_Suspension_ROOT",
+          "Rear_R_Suspension_ROOT"
+        ],
+        "fact_ids": [
+          "steering-modes"
+        ]
+      }
+    },
+    {
+      "id": "ground_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local hierarchy assertion and sampled metric pose measurement",
+        "evidence": {
+          "sampled_tailgate_ramp_min_y_m": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "ground_y_m": 0.0
+        },
+        "semantic_nodes": [
+          "Running_Gear_ROOT",
+          "Pickup_ROOT",
+          "Tailgate_ROOT",
+          "Quarter_Turn_Ramp_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "self_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local hierarchy assertion and sampled metric pose measurement",
+        "evidence": {
+          "sampled_pose_count": 7,
+          "samples": [
+            {
+              "fraction": 0.0,
+              "min_y_m": 0.0,
+              "height_m": 3.15
+            },
+            {
+              "fraction": 0.16666666666666666,
+              "min_y_m": 0.0,
+              "height_m": 3.15
+            },
+            {
+              "fraction": 0.3333333333333333,
+              "min_y_m": 0.0,
+              "height_m": 3.15
+            },
+            {
+              "fraction": 0.5,
+              "min_y_m": 0.0,
+              "height_m": 3.15
+            },
+            {
+              "fraction": 0.6666666666666666,
+              "min_y_m": 0.0,
+              "height_m": 3.15
+            },
+            {
+              "fraction": 0.8333333333333334,
+              "min_y_m": 0.0,
+              "height_m": 3.15
+            },
+            {
+              "fraction": 1.0,
+              "min_y_m": 0.0,
+              "height_m": 3.15
+            }
+          ],
+          "scope": "reconstructed tailgate/ramp endpoints; not operating safety authority"
+        },
+        "semantic_nodes": [
+          "Bale_Chamber_ROOT",
+          "Tailgate_ROOT",
+          "Quarter_Turn_Ramp_ROOT",
+          "Pickup_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "swept_volume_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local hierarchy assertion and sampled metric pose measurement",
+        "evidence": {
+          "samples": [
+            {
+              "fraction": 0.0,
+              "min_y_m": 0.0,
+              "height_m": 3.15
+            },
+            {
+              "fraction": 0.16666666666666666,
+              "min_y_m": 0.0,
+              "height_m": 3.15
+            },
+            {
+              "fraction": 0.3333333333333333,
+              "min_y_m": 0.0,
+              "height_m": 3.15
+            },
+            {
+              "fraction": 0.5,
+              "min_y_m": 0.0,
+              "height_m": 3.15
+            },
+            {
+              "fraction": 0.6666666666666666,
+              "min_y_m": 0.0,
+              "height_m": 3.15
+            },
+            {
+              "fraction": 0.8333333333333334,
+              "min_y_m": 0.0,
+              "height_m": 3.15
+            },
+            {
+              "fraction": 1.0,
+              "min_y_m": 0.0,
+              "height_m": 3.15
+            }
+          ],
+          "method_limit": "seven discrete AABB samples, not a continuous safety solver"
+        },
+        "semantic_nodes": [
+          "Tailgate_ROOT",
+          "Quarter_Turn_Ramp_ROOT",
+          "Bale_Chamber_ROOT"
+        ],
+        "fact_ids": []
+      }
+    }
+  ],
   "reconstructed_values": {
     "hidden_geometry": "All pivots, pickup cam path, tailgate and ramp axes, chamber internals, suspension and steering geometry, crop/bale representation and motion curves are reconstructed.",
     "pickup_feed_topology": "The pickup is placed below the leading edge of the bale chamber and connected by a reconstructed slat-and-transfer-rotor crop path based on topology visible in official literature; no dimensions, pivot centers, or kinematics are manufacturer-authoritative.",
     "generic_archetype_geometry": "self_propelled_round_baler proportions and visible detail are independently reconstructed for this technical study.",
     "visible_envelope_calibration": {
-      "classification": "reconstructed_visible_envelope_calibration",
+      "classification": "authored_visible_envelope_measurement",
       "source_bounds_m": {
         "min_m": [
-          -2.133291,
+          -3.1495,
           0.0,
           -1.8035
         ],
         "max_m": [
-          2.299135,
+          3.1495,
           3.15,
           1.8035
         ],
         "size_m": [
-          4.432426,
+          6.299,
           3.15,
           3.607
         ]
@@ -188,9 +520,9 @@
         ]
       },
       "axis_scale_factors": [
-        1.421117847,
-        0.99999997,
-        0.999999969
+        1.0,
+        1.0,
+        1.0
       ],
       "calibrated_bounds_m": {
         "min_m": [
@@ -209,7 +541,7 @@
           3.607
         ]
       },
-      "authority": "reconstructed_not_machine_specific_engineering"
+      "authority": "independently_measured_from_authored_geometry"
     }
   },
   "unresolved_choices": [
@@ -224,33 +556,33 @@
   "renders": [
     {
       "path": "review/renders/vermeer-zr5-1200-operator-side.png",
-      "sha256": "bfebc4d9dd31acb2621bbd31a5072931a9457bfe190d69867421393cd285210c",
-      "bytes": 299908
+      "sha256": "3f1985c6f3d0542f2fd65b10440ad683d1a1798a79f24f982c6eac6beaa0ab75",
+      "bytes": 277478
     },
     {
       "path": "review/renders/vermeer-zr5-1200-front-three-quarter.png",
-      "sha256": "6a4add6dce32a700f8dd8c11330719edca216bdf25dbbd1cba73d6c1605a8645",
-      "bytes": 353710
+      "sha256": "c09ce5ae1dfad9b8fc19bd334aaf7374b9a447ec31c20b1c39ca56d0c363ac68",
+      "bytes": 336303
     },
     {
       "path": "review/renders/vermeer-zr5-1200-rear-three-quarter.png",
-      "sha256": "ca860883ca57998df33e6e5fa08a2562062ddc6c34ed6b9de3618b31819999f9",
-      "bytes": 332080
+      "sha256": "ca0d42c5df817dc9cfe3bdf309a250ffaa47e8c4a6f23434cb0f0ffeca0ddd14",
+      "bytes": 329995
     },
     {
       "path": "review/renders/vermeer-zr5-1200-elevated-technical.png",
-      "sha256": "403d1734a0b88277ce71143d7cd53b7edab4a5c9875ae5212d7e30450a463628",
-      "bytes": 379242
+      "sha256": "94cf046caa6b869bbde54bfebb8259c2b501d1eb6b5382351caf054826a53767",
+      "bytes": 374309
     },
     {
       "path": "review/renders/vermeer-zr5-1200-articulation-detail.png",
-      "sha256": "17dc01b123e83bcc8f4d669c3117fdd9dcdd9cee35a041be4e97e5156066a996",
-      "bytes": 387346
+      "sha256": "b9b29ea3cd579dd34a1e2762df3f54598e8df640386164bae2df8627d04f4a7e",
+      "bytes": 371344
     },
     {
       "path": "review/renders/vermeer-zr5-1200-right-side.png",
-      "sha256": "996944164984a594019971b24ba4436263571ffe5bb02911e08cb9493ceea33a",
-      "bytes": 301242
+      "sha256": "16eab1c966601857f43a5532352c45a1ffb5a8de64cbb43c4256fea25eee3aab",
+      "bytes": 275753
     }
   ],
   "build_verdict": "PASS",

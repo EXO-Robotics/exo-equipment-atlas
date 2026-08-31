@@ -8,7 +8,7 @@
     "brand": "John Deere",
     "model": "1270G 8W",
     "product_class": "wheeled_harvester",
-    "market": "North America and Latin America source intersection"
+    "market": "North America (MWH1270GF authority)"
   },
   "choices": {
     "drive_configuration": "8x8",
@@ -28,5 +28,5 @@
     "transport-pose boom and head retention geometry",
     "public material and branding authorization"
   ],
-  "boundary": "Research candidate only. The 1270G 8W, CH7, 8.6 m head-included reach, H480C reference-head, 26.5-20 tire and 2.746 m minimum-width choices are source-bound. All independently authored mesh dimensions, articulation, head internals, pivots, anchors and interpolation remain reconstructed or unresolved."
+  "boundary": "Research candidate only. The North American MWH1270GF brochure binds the 1270G 8W, CH7, 8.6 m head-included reach, H480C reference-head, 26.5-20 tire and 2.746 m minimum-width choices. All independently authored mesh dimensions, articulation, head internals, pivots, anchors and interpolation remain reconstructed or unresolved."
 }

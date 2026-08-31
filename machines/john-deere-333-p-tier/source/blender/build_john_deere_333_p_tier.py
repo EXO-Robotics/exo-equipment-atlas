@@ -20,7 +20,7 @@ import struct
 from pathlib import Path
 
 import bpy
-from mathutils import Matrix, Vector
+from mathutils import Matrix, Quaternion, Vector
 
 
 MACHINE_ID = "john-deere-333-p-tier"
@@ -33,6 +33,10 @@ GLB_PATH = MACHINE_DIR / "assets/john-deere-333-p-tier-structural-study.glb"
 RECEIPT_PATH = MACHINE_DIR / "production/asset-receipt.json"
 VALIDATION_PATH = MACHINE_DIR / "production/validation.json"
 RENDER_DIR = MACHINE_DIR / "review/renders"
+BUILD_INPUT_PATH = MACHINE_DIR / "source/build-input.json"
+SOURCE_MANIFEST_PATH = MACHINE_DIR / "evidence/source-manifest.json"
+DESIGN_PATH = MACHINE_DIR / "source/design.json"
+MECHANISM_PATH = MACHINE_DIR / "mechanism.json"
 
 # Machine coordinates from mechanism.json: +X toward bucket, +Y vertical,
 # +Z machine right. Blender stores these as (X, Z, Y) so its conventional
@@ -112,6 +116,15 @@ ARTICULATED: dict[str, bpy.types.Object] = {}
 RENDER_PATHS: list[Path] = []
 
 
+def load_build_input() -> dict:
+    payload = json.loads(BUILD_INPUT_PATH.read_text(encoding="utf-8"))
+    if payload.get("machine_id") != MACHINE_ID or payload.get("configuration_id") != CONFIGURATION_ID:
+        raise RuntimeError("build-input identity does not match builder identity")
+    if not payload.get("export_pivots_world_xyz_m") or not payload.get("viewer_motion_nodes"):
+        raise RuntimeError("build-input must bind pivots and viewer motion nodes")
+    return payload
+
+
 def sha256(path: Path) -> str:
     h = hashlib.sha256()
     with path.open("rb") as stream:
@@ -187,6 +200,44 @@ def set_parent(obj: bpy.types.Object, parent: bpy.types.Object,
     obj.parent = parent
     if preserve_world:
         obj.matrix_world = world
+
+
+def rebase_export_pivot(obj: bpy.types.Object, machine_world_xyz) -> None:
+    """Write a real exported pivot TRS without changing its retained-pose children."""
+    child_world = {child: child.matrix_world.copy() for child in obj.children}
+    target_world = obj.matrix_world.copy()
+    target_world.translation = mv(*machine_world_xyz)
+    parent_world = obj.parent.matrix_world.copy() if obj.parent else Matrix.Identity(4)
+    obj.matrix_parent_inverse = Matrix.Identity(4)
+    obj.matrix_basis = parent_world.inverted() @ target_world
+    bpy.context.view_layer.update()
+    for child, world in child_world.items():
+        child.matrix_parent_inverse = Matrix.Identity(4)
+        child.matrix_basis = target_world.inverted() @ world
+    bpy.context.view_layer.update()
+
+
+def prepare_export_motion_hierarchy(root: bpy.types.Object, build_input: dict) -> None:
+    """Create isolated sprocket roots and rebase every exported motion pivot."""
+    for suffix in ("L", "R"):
+        sprocket_root = add_empty(
+            f"DriveSprocket_Root_{suffix}", (0.0, 0.0, 0.0),
+            "Undercarriage", size=0.12, parent=root,
+        )
+        for name in (
+            f"DriveSprocket_{suffix}", f"FinalDriveHub_{suffix}",
+            *(f"DriveSprocketTooth_{suffix}_{index:02d}"
+              for index in range(1, RECONSTRUCTED["sprocket_visual_teeth_per_side"] + 1)),
+        ):
+            obj = bpy.data.objects.get(name)
+            if obj is None:
+                raise RuntimeError(f"sprocket hierarchy child is absent: {name}")
+            set_parent(obj, sprocket_root)
+    for name, machine_xyz in build_input["export_pivots_world_xyz_m"].items():
+        obj = bpy.data.objects.get(name)
+        if obj is None:
+            raise RuntimeError(f"build-input pivot is absent: {name}")
+        rebase_export_pivot(obj, machine_xyz)
 
 
 def material(name: str, color: tuple[float, float, float, float], metallic=0.0,
@@ -1041,19 +1092,42 @@ def apply_public_export_scales(root: bpy.types.Object) -> dict:
     }
 
 
-def read_glb_json(path: Path) -> dict:
-    with path.open("rb") as stream:
-        magic, version, length = struct.unpack("<4sII", stream.read(12))
-        if magic != b"glTF" or version != 2 or length != path.stat().st_size:
-            raise RuntimeError("Invalid GLB 2.0 header")
-        chunk_length, chunk_type = struct.unpack("<II", stream.read(8))
-        if chunk_type != 0x4E4F534A:
-            raise RuntimeError("GLB first chunk is not JSON")
-        return json.loads(stream.read(chunk_length).decode("utf-8").rstrip(" \t\r\n\x00"))
+def read_glb_json(path: Path) -> tuple[dict, bytes]:
+    raw = path.read_bytes()
+    magic, version, length = struct.unpack_from("<4sII", raw, 0)
+    if magic != b"glTF" or version != 2 or length != len(raw):
+        raise RuntimeError("Invalid GLB 2.0 header")
+    offset = 12
+    document = None
+    binary = b""
+    while offset < len(raw):
+        chunk_length, chunk_type = struct.unpack_from("<II", raw, offset)
+        offset += 8
+        payload = raw[offset:offset + chunk_length]
+        offset += chunk_length
+        if chunk_type == 0x4E4F534A:
+            document = json.loads(payload.decode("utf-8").rstrip(" \t\r\n\x00"))
+        elif chunk_type == 0x004E4942:
+            binary = payload
+    if document is None:
+        raise RuntimeError("GLB JSON chunk missing")
+    return document, binary
+
+
+def gltf_component(binary: bytes, offset: int, component_type: int,
+                   normalized: bool) -> float:
+    formats = {5120: "b", 5121: "B", 5122: "h", 5123: "H", 5125: "I", 5126: "f"}
+    value = struct.unpack_from("<" + formats[component_type], binary, offset)[0]
+    if not normalized or component_type == 5126:
+        return float(value)
+    divisors = {5120: 127.0, 5121: 255.0, 5122: 32767.0,
+                5123: 65535.0, 5125: 4294967295.0}
+    result = float(value) / divisors[component_type]
+    return max(result, -1.0) if component_type in {5120, 5122} else result
 
 
 def inspect_public_glb_contract() -> dict:
-    document = read_glb_json(GLB_PATH)
+    document, binary = read_glb_json(GLB_PATH)
     scene_index = document.get("scene", 0)
     direct_roots = document["scenes"][scene_index].get("nodes", [])
     nodes = document.get("nodes", [])
@@ -1071,6 +1145,81 @@ def inspect_public_glb_contract() -> dict:
         and root_node.get("scale", [1.0, 1.0, 1.0]) == [1.0, 1.0, 1.0]
         and "matrix" not in root_node
     )
+
+    def local_matrix(node: dict) -> Matrix:
+        if "matrix" in node:
+            values = node["matrix"]
+            return Matrix((
+                (values[0], values[4], values[8], values[12]),
+                (values[1], values[5], values[9], values[13]),
+                (values[2], values[6], values[10], values[14]),
+                (values[3], values[7], values[11], values[15]),
+            ))
+        translation = node.get("translation", [0.0, 0.0, 0.0])
+        rotation = node.get("rotation", [0.0, 0.0, 0.0, 1.0])
+        scale = node.get("scale", [1.0, 1.0, 1.0])
+        return (
+            Matrix.Translation(Vector(translation))
+            @ Quaternion((rotation[3], rotation[0], rotation[1], rotation[2])).to_matrix().to_4x4()
+            @ Matrix.Diagonal(Vector((*scale, 1.0)))
+        )
+
+    bounds_min = Vector((math.inf, math.inf, math.inf))
+    bounds_max = Vector((-math.inf, -math.inf, -math.inf))
+    world_translation_by_name = {}
+    parent_by_name = {}
+    child_count_by_name = {}
+    decoded_position_vertices = 0
+    component_sizes = {5120: 1, 5121: 1, 5122: 2, 5123: 2, 5125: 4, 5126: 4}
+
+    def include_accessor(accessor_index: int, world: Matrix) -> None:
+        nonlocal decoded_position_vertices
+        accessor = document["accessors"][accessor_index]
+        if accessor.get("type") != "VEC3" or accessor.get("sparse"):
+            raise RuntimeError("Public POSITION accessor must be nonsparse VEC3")
+        view = document["bufferViews"][accessor["bufferView"]]
+        component_type = accessor["componentType"]
+        component_size = component_sizes[component_type]
+        stride = view.get("byteStride", component_size * 3)
+        start = view.get("byteOffset", 0) + accessor.get("byteOffset", 0)
+        for index in range(accessor["count"]):
+            vertex_start = start + index * stride
+            local = [gltf_component(binary, vertex_start + axis * component_size,
+                                    component_type, accessor.get("normalized", False))
+                     for axis in range(3)]
+            point = world @ Vector((local[0], local[1], local[2], 1.0))
+            for axis in range(3):
+                bounds_min[axis] = min(bounds_min[axis], point[axis])
+                bounds_max[axis] = max(bounds_max[axis], point[axis])
+            decoded_position_vertices += 1
+
+    def visit(node_index: int, parent_world: Matrix, parent_name=None) -> None:
+        node = nodes[node_index]
+        world = parent_world @ local_matrix(node)
+        name = node.get("name", f"node-{node_index}")
+        world_translation_by_name[name] = [
+            round(world[0][3], 6), round(world[1][3], 6), round(-world[2][3], 6)
+        ]
+        parent_by_name[name] = parent_name
+        child_count_by_name[name] = len(node.get("children", []))
+        if "mesh" in node:
+            mesh = document["meshes"][node["mesh"]]
+            for primitive in mesh.get("primitives", []):
+                position_index = primitive.get("attributes", {}).get("POSITION")
+                if position_index is None:
+                    continue
+                include_accessor(position_index, world)
+        for child_index in node.get("children", []):
+            visit(child_index, world, name)
+
+    for root_index in direct_roots:
+        visit(root_index, Matrix.Identity(4))
+    decoded_bounds = {
+        "min_xyz_m": [round(bounds_min[0], 6), round(bounds_min[1], 6), round(-bounds_max[2], 6)],
+        "max_xyz_m": [round(bounds_max[0], 6), round(bounds_max[1], 6), round(-bounds_min[2], 6)],
+        "dimensions_xyz_m": [round(bounds_max[index] - bounds_min[index], 6) for index in range(3)],
+        "decoded_position_vertices": decoded_position_vertices,
+    }
     mesh_nodes = [(index, node) for index, node in enumerate(nodes) if "mesh" in node]
     non_identity_mesh_scales = []
     for index, node in mesh_nodes:
@@ -1139,6 +1288,11 @@ def inspect_public_glb_contract() -> dict:
         "public_mesh_nodes_non_identity_scale": non_identity_mesh_scales,
         "public_glb_decoded_counts": decoded_counts,
         "unsupported_primitive_modes": unsupported_modes,
+        "decoded_visible_aabb_m": decoded_bounds,
+        "node_names": sorted(world_translation_by_name),
+        "node_world_translation_xyz_m": world_translation_by_name,
+        "node_parent": parent_by_name,
+        "node_child_count": child_count_by_name,
         "glb_y_up": True,
     }
 
@@ -1150,7 +1304,109 @@ def append_post_export_gates(validation: dict, cylinder_scales: dict,
     height = bounds["size_m"][1]
     width = bounds["size_m"][2]
     secondary_ok = abs(height - PUBLISHED["rops-height"]) <= 0.04 and abs(width - PUBLISHED["width-450-track"]) <= 0.08
+    build_input = load_build_input()
+    design = json.loads(DESIGN_PATH.read_text(encoding="utf-8"))
+    mechanism = json.loads(MECHANISM_PATH.read_text(encoding="utf-8"))
+    retained_fact_ids = build_input["retained_fact_ids"]
+    all_published_fact_ids = list(PUBLISHED) + list(PUBLISHED_ADDITIONAL)
+    if (len(retained_fact_ids) != len(set(retained_fact_ids))
+            or retained_fact_ids != design["published_constraints_used"]
+            or set(retained_fact_ids) != set(all_published_fact_ids)):
+        raise RuntimeError("build-input, design, and published constraints differ")
+    source_manifest = json.loads(SOURCE_MANIFEST_PATH.read_text(encoding="utf-8"))
+    source_binding_ok = any(
+        source.get("admission") == "primary"
+        and source.get("sha256") == build_input["primary_source_sha256"]
+        for source in source_manifest["sources"]
+    )
+    decoded_bounds = glb_contract["decoded_visible_aabb_m"]
+    decoded_dimensions = decoded_bounds["dimensions_xyz_m"]
+    decoded_envelope_deltas = {
+        "length_foundry_bucket_m": round(abs(decoded_dimensions[0] - PUBLISHED["length-foundry-bucket"]), 6),
+        "rops_height_m": round(abs(decoded_dimensions[1] - PUBLISHED["rops-height"]), 6),
+    }
+    decoded_envelope_ok = (
+        decoded_envelope_deltas["length_foundry_bucket_m"] <= 0.06
+        and decoded_envelope_deltas["rops_height_m"] <= 0.04
+    )
+    decoded_nodes = glb_contract["node_world_translation_xyz_m"]
+    pivot_actual = {name: decoded_nodes.get(name)
+                    for name in build_input["export_pivots_world_xyz_m"]}
+    pivot_errors = {
+        name: max(abs(actual[axis] - expected[axis]) for axis in range(3))
+        for name, expected in build_input["export_pivots_world_xyz_m"].items()
+        for actual in [pivot_actual.get(name)] if actual is not None
+    }
+    pivots_ok = (
+        len(pivot_errors) == len(build_input["export_pivots_world_xyz_m"])
+        and max(pivot_errors.values(), default=math.inf) <= 1e-5
+    )
+    motion_nodes = build_input["viewer_motion_nodes"]
+    motion_resolution = {name: name in decoded_nodes for name in motion_nodes}
+    node_names = glb_contract["node_names"]
+    rollers_l = sorted(name for name in node_names if name.startswith("TrackRoller_L_") and "Flange" not in name)
+    rollers_r = sorted(name for name in node_names if name.startswith("TrackRoller_R_") and "Flange" not in name)
+    idlers_l = sorted(name for name in node_names if name.startswith("TrackIdler_L_") and "Flange" not in name)
+    idlers_r = sorted(name for name in node_names if name.startswith("TrackIdler_R_") and "Flange" not in name)
+    counts_ok = len(rollers_l) == len(rollers_r) == 5 and len(idlers_l) == len(idlers_r) == 2
+    child_counts = {name: glb_contract["node_child_count"].get(name)
+                    for name in build_input["export_pivots_world_xyz_m"]}
+    hierarchy_ok = all((count or 0) > 0 for count in child_counts.values())
     validation["gates"].extend([
+        make_gate(
+            "decoded_public_stowed_envelope", "PASS" if decoded_envelope_ok else "FAIL",
+            {
+                "method": "Decode shipped-GLB accessor bounds with composed node transforms and compare the retained visible length and height; lateral bucket width remains unqualified because the exact bucket part is unresolved.",
+                "evidence": {"decoded_visible_aabb_m": decoded_bounds, "absolute_deltas_m": decoded_envelope_deltas, "tolerances_m": {"length": 0.06, "height": 0.04}, "lateral_dimension_qualified": False},
+                "semantic_nodes": ["JD333P_Root", "FoundryBucket_VisualBasis", "Cab_ROPS_Root_Reconstructed"],
+                "fact_ids": ["length-foundry-bucket", "rops-height"],
+            },
+        ),
+        make_gate(
+            "decoded_public_pivot_world_positions", "PASS" if pivots_ok else "FAIL",
+            {
+                "method": "Compose shipped-GLB node TRS from the active scene root and compare every deterministic build-input pivot world translation.",
+                "evidence": {"expected_xyz_m": build_input["export_pivots_world_xyz_m"], "decoded_actual_xyz_m": pivot_actual, "maximum_errors_m": pivot_errors, "tolerance_m": 0.00001},
+                "semantic_nodes": list(build_input["export_pivots_world_xyz_m"]),
+                "fact_ids": [],
+            },
+        ),
+        make_gate(
+            "viewer_motion_nodes_resolve", "PASS" if all(motion_resolution.values()) else "FAIL",
+            {
+                "method": "Resolve every viewer Auto/manual motion target by exact name in the decoded shipped-GLB node table.",
+                "evidence": {"resolved": motion_resolution, "static_only": build_input["static_only"]},
+                "semantic_nodes": motion_nodes,
+                "fact_ids": [],
+            },
+        ),
+        make_gate(
+            "published_roller_idler_counts", "PASS" if counts_ok else "FAIL",
+            {
+                "method": "Count exact roller and idler semantic node names directly in the decoded shipped-GLB node table, excluding flange detail nodes.",
+                "evidence": {"left_rollers": rollers_l, "right_rollers": rollers_r, "left_idlers": idlers_l, "right_idlers": idlers_r, "expected_per_side": {"rollers": 5, "idlers": 2}},
+                "semantic_nodes": rollers_l + rollers_r + idlers_l + idlers_r,
+                "fact_ids": ["track-rollers-per-side", "track-idlers-per-side"],
+            },
+        ),
+        make_gate(
+            "public_semantic_hierarchy", "PASS" if hierarchy_ok else "FAIL",
+            {
+                "method": "Count decoded shipped-GLB children below every exported motion pivot to reject empty or collapsed roots.",
+                "evidence": {"pivot_child_counts": child_counts},
+                "semantic_nodes": list(build_input["export_pivots_world_xyz_m"]),
+                "fact_ids": [],
+            },
+        ),
+        make_gate(
+            "source_design_contract_binding", "PASS" if source_binding_ok else "FAIL",
+            {
+                "method": "Hash-bind the deterministic build input to an admitted primary source and require its unique retained fact-ID set to equal source/design.json.",
+                "evidence": {"build_input_path": str(BUILD_INPUT_PATH.relative_to(MACHINE_DIR)), "build_input_sha256": sha256(BUILD_INPUT_PATH), "design_path": str(DESIGN_PATH.relative_to(MACHINE_DIR)), "design_sha256": sha256(DESIGN_PATH), "primary_source_sha256": build_input["primary_source_sha256"], "retained_fact_count": len(retained_fact_ids), "unique_fact_count": len(set(retained_fact_ids))},
+                "semantic_nodes": [],
+                "fact_ids": retained_fact_ids,
+            },
+        ),
         make_gate(
             "public-visible-secondary-envelope", "PASS" if secondary_ok else "FAIL",
             "Evaluated public visible geometry stays within explicit structural-study height and lateral tolerances.",
@@ -1193,6 +1449,11 @@ def append_post_export_gates(validation: dict, cylinder_scales: dict,
              "root_identity_trs": True, "helper_nodes_present": []}, glb_contract,
         ),
     ])
+    required_gate_ids = mechanism["required_gates"]
+    required_ids_emitted = [gate["id"] for gate in validation["gates"] if gate["id"] in required_gate_ids]
+    if required_ids_emitted != required_gate_ids:
+        raise RuntimeError("required validation gate order differs from mechanism.json")
+    validation["required_machine_gate_ids"] = required_gate_ids
     failures = [gate["id"] for gate in validation["gates"] if gate["status"] == "FAIL"]
     validation["failed_gates"] = failures
     validation["verdict"] = "FAIL" if failures else "PASS"
@@ -1207,7 +1468,8 @@ def semantic_nodes() -> list[str]:
         "LiftCylinder_Rod_L", "LiftCylinder_Barrel_R", "LiftCylinder_Rod_R",
         "BucketTiltCylinder_Barrel", "BucketTiltCylinder_Rod",
         "BucketTiltLink_Reconstructed", "QuickAttach_Interface_Reconstructed",
-        "BucketPivot_Root", "FoundryBucket_VisualBasis", "Chassis_Hit",
+        "BucketPivot_Root",
+        "FoundryBucket_VisualBasis", "Chassis_Hit",
         "Cab_Hit", "LeftTrack_Hit", "RightTrack_Hit", "LiftSystem_Inspect",
         "Bucket_Inspect", "OperatorStation_Inspect",
     ]
@@ -1223,7 +1485,9 @@ def public_semantic_nodes() -> list[str]:
         "LiftCylinder_Rod_L", "LiftCylinder_Barrel_R", "LiftCylinder_Rod_R",
         "BucketTiltCylinder_Barrel", "BucketTiltCylinder_Rod",
         "BucketTiltLink_Reconstructed", "QuickAttach_Interface_Reconstructed",
-        "BucketPivot_Root", "FoundryBucket_VisualBasis",
+        "BucketPivot_Root", "DriveSprocket_Root_L", "DriveSprocket_Root_R",
+        "Pivot_LiftLower_L", "Pivot_LiftLower_R",
+        "Pivot_LiftUpper_L", "Pivot_LiftUpper_R", "FoundryBucket_VisualBasis",
         "HydraulicHoseBundle_L_01", "HydraulicHoseBundle_L_02",
         "HydraulicHoseBundle_R_01", "HydraulicHoseBundle_R_02",
     ]
@@ -1339,6 +1603,9 @@ def validate(counts: dict, root: bpy.types.Object) -> dict:
             detail = "The published 0.74 m value is retained, but its manufacturer datum is not bound by the admitted source. The displayed X=1.00 m plane is reconstructed and cannot prove this fact."
             gate_actual["datum_authority"] = RECONSTRUCTED["dump_reach_datum_authority"]
             gate_actual["qualification"] = "representation_only_not_manufacturer_proof"
+        elif fact_id != "length-foundry-bucket":
+            gate_status = "PENDING"
+            detail = "Retained manufacturer constraint represented by reconstruction input or transient review pose; it is not independently qualified by decoded shipped geometry in this gate."
         gates.append(make_gate(
             f"published-{fact_id}", gate_status,
             detail,
@@ -1458,6 +1725,16 @@ def bounds_for_receipt(visible_bounds: dict) -> dict:
 def write_outputs(counts: dict, validation: dict, cylinder_scales: dict,
                   public_scale_application: dict,
                   glb_contract: dict) -> None:
+    build_input = load_build_input()
+    design = json.loads(DESIGN_PATH.read_text(encoding="utf-8"))
+    receipt_fact_ids = list(PUBLISHED) + [
+        "departure-angle", "front-turn-radius",
+        "track-rollers-per-side", "track-idlers-per-side",
+    ]
+    if (len(receipt_fact_ids) != len(set(receipt_fact_ids))
+            or receipt_fact_ids != design["published_constraints_used"]
+            or receipt_fact_ids != build_input["retained_fact_ids"]):
+        raise RuntimeError("receipt fact IDs do not exactly match deterministic build input")
     VALIDATION_PATH.write_text(json.dumps(validation, indent=2) + "\n", encoding="utf-8")
     render_entries = []
     for path in RENDER_PATHS:
@@ -1489,7 +1766,14 @@ def write_outputs(counts: dict, validation: dict, cylinder_scales: dict,
             "factory_startup_background_required": True,
             "builder_path": str(BUILDER_PATH.relative_to(MACHINE_DIR)),
             "builder_sha256": sha256(BUILDER_PATH),
+            "builder_bytes": BUILDER_PATH.stat().st_size,
+            "deterministic_build_input": {
+                "path": str(BUILD_INPUT_PATH.relative_to(MACHINE_DIR)),
+                "sha256": sha256(BUILD_INPUT_PATH),
+                "bytes": BUILD_INPUT_PATH.stat().st_size,
+            },
         },
+        "design": {"path": str(DESIGN_PATH.relative_to(MACHINE_DIR)), "sha256": sha256(DESIGN_PATH), "bytes": DESIGN_PATH.stat().st_size},
         "artifacts": {
             "blend": {"path": str(BLEND_PATH.relative_to(MACHINE_DIR)), "sha256": sha256(BLEND_PATH), "bytes": BLEND_PATH.stat().st_size},
             "glb": {"path": str(GLB_PATH.relative_to(MACHINE_DIR)), "sha256": sha256(GLB_PATH), "bytes": GLB_PATH.stat().st_size},
@@ -1559,6 +1843,12 @@ def write_outputs(counts: dict, validation: dict, cylinder_scales: dict,
                 "use": "component_count; centers and flange geometry reconstructed",
             },
         ],
+        "published_constraint_ids_declared": receipt_fact_ids,
+        "machine_specific_gate_evidence": [
+            {"id": by_id[gate_id]["id"], "status": by_id[gate_id]["status"], "detail": by_id[gate_id]["detail"]}
+            for by_id in [{item["id"]: item for item in validation["gates"]}]
+            for gate_id in validation["required_machine_gate_ids"]
+        ],
         "reconstructed_values": RECONSTRUCTED,
         "unresolved_choices_and_mechanical_gaps": UNRESOLVED,
         "renders": render_entries,
@@ -1587,6 +1877,8 @@ def main() -> None:
     render_review_set()
     counts = evaluated_counts()
     validation = validate(counts, root)
+    build_input = load_build_input()
+    prepare_export_motion_hierarchy(root, build_input)
     cylinder_scales = apply_articulated_cylinder_scales()
     public_scale_application = apply_public_export_scales(root)
     save_and_export(root)

@@ -21,13 +21,12 @@
   "accent": "#b66b43",
   "motion": {
     "autoplay": true,
-    "durationSeconds": 16,
+    "durationSeconds": 18,
     "mode": "sine",
-    "damping": 6.5,
+    "damping": 8,
     "channels": [
-      {"id":"frame-articulation","label":"Articulated steering","nodes":["Chassis_Yaw_Pivot"],"property":"rotation.y","from":-0.36,"to":0.36,"phase":0.0},
-      {"id":"frame-oscillation","label":"Rear frame oscillation study","nodes":["Rear_Frame_ROOT"],"property":"rotation.x","from":-0.07,"to":0.07,"phase":0.22},
-      {"id":"dump-body","label":"Body tip to 69 degrees","nodes":["Bed_ROOT"],"property":"rotation.z","from":0.0,"to":-1.204277,"phase":0.54,"autoplay":"ping-pong"}
+      {"id":"frame-articulation","mechanismJointId":"frame_articulation","label":"Articulated steering","nodes":["Chassis_Yaw_Pivot"],"property":"rotation.y","from":-0.36,"to":0.36,"phase":0.0,"mode":"absolute"},
+      {"id":"dump-body","mechanismJointId":"dump_body_raise","label":"Body tip to 69 degrees","nodes":["Bed_ROOT"],"property":"rotation.z","from":0.0,"to":-1.204277,"phase":0.54,"mode":"absolute","autoplay":"ping-pong"}
     ]
   }
 }

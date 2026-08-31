@@ -16,8 +16,8 @@
   },
   "builder": {
     "path": "source/blender/build_fendt_1167_vario_mt.py",
-    "sha256": "225f342e8e5a437bd8a47c03beaba9664f697a3cc954dd0ed3faa5e00ea18635",
-    "bytes": 6010,
+    "sha256": "dc32d74fe8942aae25d616665c1984d063769a9240e4450b9c896cd6ddd9f5a2",
+    "bytes": 30574,
     "deterministic": true,
     "network_used": false,
     "downloaded_geometry_used": false,
@@ -27,30 +27,30 @@
   },
   "shared_generator": {
     "path": "../../scripts/fleet/build_machine.py",
-    "sha256": "02b99250651741b462b3dae8b2471db723beb689dfe89e1c7e251d7402fe0f55",
-    "bytes": 78579
+    "sha256": "9e36599f0c9bbac097422a8766e3ef1c81e6fc9432f024d99a24b79da18264df",
+    "bytes": 81778
   },
   "design": {
     "path": "source/design.json",
-    "sha256": "db54d8f8b6a0101d35b9ffe68fa312f08430b03348058b619b70f5c9f26d1dbd",
-    "bytes": 2679,
+    "sha256": "49d3fdb39ed1b350d3ca3deffe0183abe02f63e8ed19aade1bb6a98ea38af90e",
+    "bytes": 3020,
     "schema_version": "1.0.0"
   },
   "artifacts": {
     "blend": {
       "path": "source/blender/fendt-1167-vario-mt-structural-study.blend",
-      "sha256": "d5032934010363b708e0166e28eef70831980e7d825568004148c951755ef6ff",
-      "bytes": 216350
+      "sha256": "1ee22367a4696bf06845d3b642d48d4ffb7e65d53a0e181d5dd110a6fc882c66",
+      "bytes": 241254
     },
     "glb": {
       "path": "assets/fendt-1167-vario-mt-structural-study.glb",
-      "sha256": "de758118a790b42c16c7cc8b9ba79fdc4cd52d1032c67eb4f8c353049957012e",
-      "bytes": 1459652
+      "sha256": "3db6dbdf7b37114fa1482aa34d3d017abb112fa818deb2058c4197e4536655a9",
+      "bytes": 1288648
     },
     "validation": {
       "path": "production/validation.json",
-      "sha256": "0aee6aace770105c9fdcb7c42a2b014826fa7042c2119d9962b5b3d27636489b",
-      "bytes": 10068
+      "sha256": "db3a5c35e4eaed22ccf7a23de77402c21e77c505674509dfa9f68046bc22b911",
+      "bytes": 40547
     }
   },
   "scene": {
@@ -63,7 +63,7 @@
     "bounds": {
       "min_m": [
         -3.379,
-        -0.0,
+        0.002061,
         -1.475
       ],
       "max_m": [
@@ -73,19 +73,19 @@
       ],
       "size_m": [
         6.758,
-        3.754,
+        3.75194,
         2.95
       ]
     },
     "visible_aabb_xyz_m": [
       6.758,
-      3.754,
+      3.75194,
       2.95
     ],
-    "objects": 204,
-    "meshes": 190,
-    "triangles": 28472,
-    "materials": 5
+    "objects": 196,
+    "meshes": 177,
+    "triangles": 24512,
+    "materials": 8
   },
   "glb_contract": {
     "glb_version": "2.0",
@@ -94,22 +94,22 @@
     "root_name": "Machine_Root",
     "root_record": {},
     "identity_root": true,
-    "nodes": 204,
-    "mesh_nodes": 190,
-    "mesh_definitions": 190,
-    "materials": 5,
-    "triangles": 28472,
+    "nodes": 196,
+    "mesh_nodes": 177,
+    "mesh_definitions": 177,
+    "materials": 8,
+    "triangles": 24512,
     "cameras": 0,
     "punctual_lights": false,
     "images": 0,
     "textures": 0,
     "nonidentity_mesh_scales": {},
     "helper_like_mesh_nodes": [],
-    "semantic_motion_nodes": 13,
+    "semantic_motion_nodes": 18,
     "bounds": {
       "min_m": [
         -3.379,
-        -0.0,
+        0.002061,
         -1.475
       ],
       "max_m": [
@@ -119,7 +119,7 @@
       ],
       "size_m": [
         6.758,
-        3.754,
+        3.75194,
         2.95
       ]
     }
@@ -129,16 +129,24 @@
     "Fixed_Structure_ROOT": true,
     "Running_Gear_ROOT": true,
     "Hydraulics_ROOT": true,
-    "Service_Detail_ROOT": true,
     "Track_L_ROOT": true,
     "Track_R_ROOT": true,
     "SmartRide_Level_ROOT": true,
     "Cab_Suspension_ROOT": true,
     "Rear_Hitch_Pivot": true,
     "Rear_Hitch_ROOT": true,
-    "Drawbar_Pivot": true
+    "Drawbar_Pivot": true,
+    "Track_L_Hardbar_ROOT": true,
+    "Track_R_Hardbar_ROOT": true,
+    "SmartRide_Visual_ROOT": true,
+    "Rear_PTO_Shaft_ROOT": true,
+    "Ground_Clearance_Crossmember": true,
+    "Rear_Hitch_L_Lower_Link": true,
+    "Rear_Hitch_R_Lower_Link": true,
+    "Rear_Hitch_Top_Link": true
   },
-  "manufacturer_published_constraints_used": [
+  "semantic_node_roles": {},
+  "published_constraint_ids_declared": [
     "public-envelope-x",
     "public-envelope-y",
     "public-envelope-z",
@@ -148,6 +156,336 @@
     "midwheel-sets-per-side",
     "smartride-hardbar-travel",
     "cab-rear-suspension-travel"
+  ],
+  "machine_specific_gate_evidence": [
+    {
+      "id": "published_length_envelope",
+      "status": "PASS",
+      "detail": {
+        "method": "decoded GLB visible AABB X span",
+        "evidence": {
+          "measured_m": 6.758,
+          "target_m": 6.758,
+          "tolerance_m": 0.003
+        },
+        "semantic_nodes": [
+          "Front_End_Structure",
+          "Rear_End_Structure"
+        ],
+        "fact_ids": [
+          "public-envelope-x"
+        ],
+        "authority": "Computed visualization evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "published_standard_width_envelope",
+      "status": "PASS",
+      "detail": {
+        "method": "decoded GLB visible AABB Z span",
+        "evidence": {
+          "measured_m": 2.95,
+          "target_m": 2.95,
+          "tolerance_m": 0.003
+        },
+        "semantic_nodes": [
+          "Track_L_ROOT",
+          "Track_R_ROOT"
+        ],
+        "fact_ids": [
+          "public-envelope-z"
+        ],
+        "authority": "Computed visualization evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "published_height_envelope",
+      "status": "PASS",
+      "detail": {
+        "method": "decoded GLB visible AABB Y span",
+        "evidence": {
+          "measured_m": 3.75194,
+          "target_m": 3.754,
+          "tolerance_m": 0.003
+        },
+        "semantic_nodes": [
+          "Published_Height_Roof"
+        ],
+        "fact_ids": [
+          "public-envelope-y"
+        ],
+        "authority": "Computed visualization evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "track_wheelbase",
+      "status": "PASS",
+      "detail": {
+        "method": "world-space front/rear wheel-center subtraction",
+        "evidence": {
+          "measured_m": {
+            "L": 3.0,
+            "R": 3.0
+          },
+          "target_m": 3.0,
+          "tolerance_m": 0.003
+        },
+        "semantic_nodes": [
+          "Track_L_Front_Wheel",
+          "Track_L_Rear_Wheel",
+          "Track_R_Front_Wheel",
+          "Track_R_Rear_Wheel"
+        ],
+        "fact_ids": [
+          "track-wheelbase"
+        ],
+        "authority": "Computed visualization evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "ground_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "named chassis-datum minimum Y",
+        "evidence": {
+          "measured_m": 0.359,
+          "target_m": 0.359,
+          "tolerance_m": 0.003
+        },
+        "semantic_nodes": [
+          "Ground_Clearance_Crossmember"
+        ],
+        "fact_ids": [
+          "ground-clearance"
+        ],
+        "authority": "Computed visualization evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "left_right_track_separation",
+      "status": "PASS",
+      "detail": {
+        "method": "belt-pad world AABB width and mirrored root centers",
+        "evidence": {
+          "belt_width_m": {
+            "L": 0.762,
+            "R": 0.762
+          },
+          "target_belt_width_m": 0.762,
+          "absolute_root_centers_z_m": {
+            "L": 1.094,
+            "R": 1.094
+          }
+        },
+        "semantic_nodes": [
+          "Track_L_ROOT",
+          "Track_R_ROOT"
+        ],
+        "fact_ids": [
+          "selected-track-belt-width"
+        ],
+        "authority": "Computed visualization evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "track_component_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "named loop component inventory plus ground-contact equality",
+        "evidence": {
+          "left_meshes": 54,
+          "right_meshes": 54,
+          "front_radius_m": 0.64,
+          "rear_radius_m": 0.76,
+          "rest_minimum_y_m": 0.00019
+        },
+        "semantic_nodes": [
+          "Track_L_ROOT",
+          "Track_R_ROOT"
+        ],
+        "fact_ids": [
+          "midwheel-sets-per-side"
+        ],
+        "authority": "Computed visualization evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "independent_hardbar_compliance",
+      "status": "PASS",
+      "detail": {
+        "method": "three-pose subtree ground-clearance sweep",
+        "evidence": {
+          "presentation_angles_rad": [
+            -0.08,
+            0.0,
+            0.08
+          ],
+          "minimum_y_samples_m": {
+            "Track_L_Hardbar_ROOT": [
+              1.011551,
+              0.970264,
+              0.929358
+            ],
+            "Track_R_Hardbar_ROOT": [
+              1.011551,
+              0.970264,
+              0.929358
+            ]
+          },
+          "distinct_roots": true,
+          "published_travel_not_converted_to_angle": true
+        },
+        "semantic_nodes": [
+          "Track_L_Hardbar_ROOT",
+          "Track_R_Hardbar_ROOT"
+        ],
+        "fact_ids": [
+          "smartride-hardbar-travel"
+        ],
+        "authority": "Computed visualization evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "smartride_plus_leveling_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "two-endpoint visible hydraulic subtree sweep",
+        "evidence": {
+          "presentation_offsets_m": [
+            0.0,
+            0.12
+          ],
+          "minimum_y_samples_m": [
+            0.99,
+            1.11
+          ],
+          "visible_meshes": 3,
+          "published_leveling_range_unresolved": true
+        },
+        "semantic_nodes": [
+          "SmartRide_Visual_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed visualization evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "cab_suspension_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "motion-root hierarchy and nonempty visible subtree",
+        "evidence": {
+          "parent": "Fixed_Structure_ROOT",
+          "visible_meshes": 9,
+          "viewer_range_m": [
+            0.0,
+            0.08
+          ],
+          "published_rear_travel_m": 0.1,
+          "mapping_to_viewer_axis_reconstructed": true
+        },
+        "semantic_nodes": [
+          "Cab_Suspension_ROOT"
+        ],
+        "fact_ids": [
+          "cab-rear-suspension-travel"
+        ],
+        "authority": "Computed visualization evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "three_point_linkage_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "rest-pose three-axis AABB overlap for chassis-hitch-drawbar chain",
+        "evidence": {
+          "chassis_to_hitch_overlap_xyz_m": [
+            0.06758,
+            0.07508,
+            0.472
+          ],
+          "hitch_to_drawbar_overlap_xyz_m": [
+            0.74338,
+            0.046925,
+            0.236
+          ]
+        },
+        "semantic_nodes": [
+          "Rear_Hitch_Pivot",
+          "Rear_Hitch_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed visualization evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "drawbar_range_not_claimed",
+      "status": "PASS",
+      "detail": {
+        "method": "viewer-channel ownership scan",
+        "evidence": {
+          "drawbar_nodes_animated": [],
+          "numeric_limit_withheld": true
+        },
+        "semantic_nodes": [],
+        "fact_ids": [],
+        "authority": "Computed visualization evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "ground_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "rest AABB plus all exposed suspension endpoint samples",
+        "evidence": {
+          "rest_minimum_y_m": 0.00019,
+          "hardbar_minimum_y_m": 0.929358,
+          "smartride_minimum_y_m": 0.99
+        },
+        "semantic_nodes": [
+          "Track_L_ROOT",
+          "Track_R_ROOT",
+          "Track_L_Hardbar_ROOT",
+          "Track_R_Hardbar_ROOT",
+          "SmartRide_Visual_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed visualization evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "self_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "separate motion-root ownership and bounded endpoint sweep",
+        "evidence": {
+          "belt_roots_static": true,
+          "rear_interface_minimum_overlap_m": 0.046925
+        },
+        "semantic_nodes": [
+          "Track_L_Hardbar_ROOT",
+          "Track_R_Hardbar_ROOT",
+          "SmartRide_Visual_ROOT",
+          "Rear_Hitch_Pivot"
+        ],
+        "fact_ids": [],
+        "authority": "Computed visualization evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "neutral_unbranded_material_review",
+      "status": "PASS",
+      "detail": {
+        "method": "procedural material rights-tag scan",
+        "evidence": {
+          "material_count": 8,
+          "all_neutral_unbranded": true
+        },
+        "semantic_nodes": [],
+        "fact_ids": [],
+        "authority": "Computed visualization evidence only; not engineering or operating authority."
+      }
+    }
   ],
   "reconstructed_values": {
     "front_idler_radius_m": 0.64,
@@ -163,26 +501,30 @@
     "rear_hitch_visual_reach_m": 0.76,
     "rear_hitch_pivot_height_ratio": 0.28,
     "drawbar_pivot_height_ratio": 0.24,
+    "track_wheelbase_authored_m": 3.0,
+    "track_belt_authored_width_m": 0.762,
+    "ground_clearance_datum_m": 0.359,
+    "motion_ground_safety": "Ground-contacting belt roots remain static during suspension demonstrations. Independent hardbar and SmartRide motion is carried by visible reconstructed linkage roots above the belt plane.",
     "rear_interface_attachment_note": "Machine-local reconstructed rest-pose continuity calibration. The hitch and drawbar meshes overlap the chassis and each other in the retained pose; these height ratios are visualization choices, not manufacturer-published pivot coordinates or operating limits.",
     "neutral_material_policy": "matte slate body, dark rubber, graphite running gear, clear neutral glazing, no logos or decals",
     "hidden_geometry": "All hidden structure, pivot centers, anchors, linkage proportions, underbody volumes, and internal geometry are reconstructed visualization choices unless a design record explicitly identifies a manufacturer-published envelope constraint.",
     "generic_archetype_geometry": "twin_track_tractor proportions and visible detail are independently reconstructed for this technical study.",
     "visible_envelope_calibration": {
-      "classification": "reconstructed_visible_envelope_calibration",
+      "classification": "authored_visible_envelope_measurement",
       "source_bounds_m": {
         "min_m": [
-          -3.31142,
-          -0.003939,
+          -3.379,
+          0.002061,
           -1.475
         ],
         "max_m": [
-          2.3653,
+          3.379,
           3.754,
           1.475
         ],
         "size_m": [
-          5.67672,
-          3.757939,
+          6.758,
+          3.75194,
           2.95
         ]
       },
@@ -204,14 +546,14 @@
         ]
       },
       "axis_scale_factors": [
-        1.190476211,
-        0.998951736,
-        0.999999984
+        1.0,
+        1.0,
+        1.0
       ],
       "calibrated_bounds_m": {
         "min_m": [
           -3.379,
-          -0.0,
+          0.002061,
           -1.475
         ],
         "max_m": [
@@ -221,11 +563,11 @@
         ],
         "size_m": [
           6.758,
-          3.754,
+          3.75194,
           2.95
         ]
       },
-      "authority": "reconstructed_not_machine_specific_engineering"
+      "authority": "independently_measured_from_authored_geometry"
     }
   },
   "unresolved_choices": [
@@ -245,33 +587,33 @@
   "renders": [
     {
       "path": "review/renders/fendt-1167-vario-mt-operator-side.png",
-      "sha256": "0fbca35f65a95ade12fc00cec50216da21bf130a361df1c2304a1998b84adf9b",
-      "bytes": 274889
+      "sha256": "ae341e720527fb0e69c951065946098a24f825112e75d85a0bd9948dd1f4a189",
+      "bytes": 294610
     },
     {
       "path": "review/renders/fendt-1167-vario-mt-front-three-quarter.png",
-      "sha256": "8341497a9dfe5690451530bd3cb23b45d2f581d631f8e142b7800cccbcf91d64",
-      "bytes": 325212
+      "sha256": "de107bed979d2d636af43ec349cf8895b02f74fb3655a1cd077a078fc92fa9e8",
+      "bytes": 328729
     },
     {
       "path": "review/renders/fendt-1167-vario-mt-rear-three-quarter.png",
-      "sha256": "5c256356f84ea4b7858830a88905d7b22c74068369130bb36b39fafa573f8d13",
-      "bytes": 321075
+      "sha256": "1468cf262296df49c446bc97509a9fbcb6c9055d0e5cc3086c2b64664c70d68f",
+      "bytes": 325397
     },
     {
       "path": "review/renders/fendt-1167-vario-mt-elevated-technical.png",
-      "sha256": "1bc620138027817afce677c55f2421efeff0afbdc5d9705e2764b2b066e6b52f",
-      "bytes": 366871
+      "sha256": "152d358707d2b77ea9072d3eccfe132234d2b750b46b31e23d2d5cdb4afded10",
+      "bytes": 385186
     },
     {
       "path": "review/renders/fendt-1167-vario-mt-articulation-detail.png",
-      "sha256": "c30d9980c2a58091d06334bfd6dac12f28d8f22b2adc0623a0757736a9ab9af2",
-      "bytes": 350984
+      "sha256": "40c32a50a00b10ecf4fb5c1f0195af8f7b862ff86e17eecbc64362c2b893ce07",
+      "bytes": 361020
     },
     {
       "path": "review/renders/fendt-1167-vario-mt-right-side.png",
-      "sha256": "c158beb8b8586631fa7e369cc2dabf584b5373a37ddacbe41f63c41b1e5d95be",
-      "bytes": 276230
+      "sha256": "38c31d5537a2fb08efb58695bd792b1238d1024dc34d470c3827f7e1dc1e6ea8",
+      "bytes": 293795
     }
   ],
   "build_verdict": "PASS",

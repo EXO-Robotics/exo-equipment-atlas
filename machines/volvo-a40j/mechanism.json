@@ -4,10 +4,10 @@
   "configuration_id": "VOLVO-A40J-NA-T4F-SV-29.5R25-24M3-NOTAIL-NOEXT-CANDIDATE",
   "coordinate_system": {"longitudinal":"+X toward cab and front axle","vertical":"+Y","lateral":"+Z machine right"},
   "joints": [
-    {"id":"frame_articulation","type":"revolute_hydromechanical_steering","axis":"+Y nominal","published_range_deg":[-45,45],"authority":"reconstructed","source_ids":["VOLVO-A40J-T4F-PG-20064352-D","VOLVO-A40-CANADA-PRODUCT-2026"],"unresolved":["bearing center, steering cylinders and anchors, hose sweep, interpolation and stops"]},
-    {"id":"frame_oscillation","type":"revolute","axis":"+X nominal","authority":"reconstructed","source_ids":["VOLVO-A40-CANADA-PRODUCT-2026"],"unresolved":["oscillation range, pivot center, bearings and steering interaction"]},
-    {"id":"left_bogie_oscillation","type":"revolute_tandem","axis":"+Z nominal","authority":"reconstructed","source_ids":["VOLVO-A40-CANADA-PRODUCT-2026"],"unresolved":["bogie pivot center, stops, axle-spacing relationship and driveline path"]},
-    {"id":"right_bogie_oscillation","type":"revolute_tandem","axis":"+Z nominal","authority":"reconstructed","source_ids":["VOLVO-A40-CANADA-PRODUCT-2026"],"unresolved":["bogie pivot center, stops, axle-spacing relationship and driveline path"]},
+    {"id":"frame_articulation","type":"revolute_hydromechanical_steering","axis":"+Y nominal","published_range_deg":[-45,45],"authority":"reconstructed","source_ids":["VOLVO-A40J-T4F-PG-20064352-D"],"unresolved":["bearing center, steering cylinders and anchors, hose sweep, interpolation and stops"]},
+    {"id":"frame_oscillation","type":"revolute","axis":"+X nominal","authority":"reconstructed","source_ids":["VOLVO-A40J-T4F-PG-20064352-D"],"unresolved":["oscillation range, pivot center, bearings and steering interaction; omitted from flat-ground Auto because a terrain/contact solver is not present"]},
+    {"id":"left_bogie_oscillation","type":"revolute_tandem","axis":"+Z nominal","authority":"reconstructed","source_ids":["VOLVO-A40J-T4F-PG-20064352-D"],"unresolved":["bogie pivot center, stops, axle-spacing relationship and driveline path; retained neutral in flat-ground Auto"]},
+    {"id":"right_bogie_oscillation","type":"revolute_tandem","axis":"+Z nominal","authority":"reconstructed","source_ids":["VOLVO-A40J-T4F-PG-20064352-D"],"unresolved":["bogie pivot center, stops, axle-spacing relationship and driveline path; retained neutral in flat-ground Auto"]},
     {"id":"dump_body_raise","type":"twin_underbed_hydraulic_revolute_linkage","axis":"+Z nominal","published_range_deg":[0,69],"authority":"reconstructed","source_ids":["VOLVO-A40J-T4F-PG-20064352-D"],"unresolved":["body hinge center, twin cylinder anchors, stroke, over-center geometry and dynamic load response"],"presentation_note":"Twin low-profile hoist cylinders and final knuckles are reconstructed below the floor and move with Bed_ROOT so their bounded presentation never breaches the bed floor."},
     {"id":"wheel_rotation","type":"six_revolute","axis":"+Z at each wheel","authority":"reconstructed","source_ids":["VOLVO-A40J-T4F-PG-20064352-D"],"unresolved":["loaded radius, tire profile, slip, differential phase and suspension contact"]}
   ],
@@ -18,5 +18,5 @@
     {"id":"travel","label":"Six-wheel travel","joints":["wheel_rotation"],"presentation_range":[0,1],"authority":"reconstructed"}
   ],
   "required_gates": ["published_static_envelope","six_tire_contact","articulation_endpoint_and_continuity","frame_oscillation_continuity","left_right_bogie_contact","dump_body_69_degree_endpoint","dump_cylinder_visual_closure","cab_body_clearance","ground_collision","self_collision","swept_volume_collision"],
-  "release_state": "no_geometry_no_solver_no_claim"
+  "release_state": "technical_structural_study_built_solver_unverified"
 }

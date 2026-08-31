@@ -1,15 +1,15 @@
 {
   "schema_version": "1.0.0",
   "machine_id": "case-ih-steiger-715-quadtrac",
-  "configuration_id": "CASEIH-STEIGER715-NAM-AG-QUADTRAC-PWRDRIVE-HDS-CAT4N-CANDIDATE",
+  "configuration_id": "CASEIH-STEIGER715-XMARKET-30IN-HDS-CAT4N-STUDY-CANDIDATE",
   "status": "research_candidate",
   "identity": {
     "manufacturer": "CNH Industrial America LLC",
     "brand": "Case IH",
     "model": "Steiger 715 Quadtrac",
     "product_class": "articulated_tracked_tractor",
-    "publication_family": "Steiger Series 2025",
-    "market": "North America"
+    "publication_family": "Steiger Series 2025 plus worldwide metric technical sheet",
+    "market": "Cross-market technical study: worldwide 715/30-inch envelope with North American HDS and Category 4N subsystem references"
   },
   "choices": {
     "configuration": "Quadtrac Ag",
@@ -17,7 +17,7 @@
     "undercarriage": "heavy_duty_suspended_HDS",
     "rear_hitch": "Category_4N_three_point_hitch",
     "drawbar": "Category_4_standard_6000_lb",
-    "track_width": "unresolved_within_supported_Quadtrac_track_family",
+    "track_width": "30_in_0.762_m_worldwide_visible_study_basis",
     "rear_remotes": 4,
     "public_finish": "neutral_unbranded_oxide_graphite"
   },
@@ -32,12 +32,12 @@
   ],
   "unresolved_choices": [
     "exact serial number and dealer order code",
-    "serial-bound confirmation that the worldwide 30-inch-track dimensional basis matches the selected North American HDS order",
+    "dealer-order compatibility between the worldwide 30-inch-track dimensional basis and the North American HDS / Category 4N references",
     "HDS production build date and regional availability",
     "track carcass and tread supplier",
     "hitch ball ends and implement connection",
     "cab trim and lighting package",
     "public material and branding authorization"
   ],
-  "boundary": "Research-candidate technical structural study of a North American Steiger 715 Ag Quadtrac. Published capacities and functional topology constrain the visible study; articulation, track phase, suspension pivots, hydraulic anchors, drawbar geometry, loads, clearances, and animation timing are independently reconstructed and are not operating or engineering authority."
+  "boundary": "Research-candidate cross-market technical structural study. The worldwide metric publication freezes a visible Steiger 715 envelope with 30-inch (0.762 m) tracks; the North American brochure separately constrains the HDS and Category 4N subsystem cues. This is not a dealer-order claim, and cross-market combination availability remains unresolved. Articulation, track phase, suspension pivots, hydraulic anchors, drawbar geometry, loads, clearances and animation timing are independently reconstructed and are not operating or engineering authority."
 }

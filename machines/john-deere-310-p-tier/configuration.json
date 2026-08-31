@@ -15,7 +15,8 @@
     "front_axle": "MFWD",
     "backhoe": "standard_dipperstick",
     "rear_bucket_dimension_basis": "610_mm_0.18_m3",
-    "operator_station": "cab_candidate"
+    "operator_station_configuration": "unresolved_cab_or_canopy",
+    "operator_station_visual_basis": "optional_fully_enclosed_cab_reconstructed_not_frozen"
   },
   "unresolved_choices": [
     "front loader bucket family and capacity",
@@ -24,6 +25,7 @@
     "tire selection",
     "loader auxiliary hydraulics",
     "backhoe pilot control options",
+    "operator station canopy versus optional fully enclosed cab",
     "public material and branding authorization"
   ],
   "boundary": "Research candidate only. Multiple machine and attachment options coexist in the admitted publication; no final geometry or performance configuration is claimed."

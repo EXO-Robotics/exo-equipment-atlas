@@ -26,5 +26,14 @@
     "elevation": 0.33,
     "distance": 1.5
   },
-  "accent": "#b9a161"
+  "accent": "#b9a161",
+  "motion": {
+    "autoplay": true,
+    "durationSeconds": 18,
+    "mode": "sine",
+    "damping": 8,
+    "channels": [
+      {"id":"upper-swing","mechanismJointId":"upper_swing","label":"Upper-structure inspection sweep - front linkage static","nodes":["Upper_Swing_Pivot"],"property":"rotation.y","from":-0.24,"to":0.24,"phase":0.0,"mode":"offset","autoplay":"sine"}
+    ]
+  }
 }

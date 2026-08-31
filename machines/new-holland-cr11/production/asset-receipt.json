@@ -16,8 +16,8 @@
   },
   "builder": {
     "path": "source/blender/build_new_holland_cr11.py",
-    "sha256": "3a297a107b64f1825793398c8c40595026a628e84fda89403a672869c0fb9410",
-    "bytes": 662,
+    "sha256": "f92f4a3097f9f56e87b3d329480f5ee6a21ce295cd43cc8beee00229d1f40ded",
+    "bytes": 59015,
     "deterministic": true,
     "network_used": false,
     "downloaded_geometry_used": false,
@@ -27,30 +27,30 @@
   },
   "shared_generator": {
     "path": "../../scripts/fleet/build_machine.py",
-    "sha256": "02b99250651741b462b3dae8b2471db723beb689dfe89e1c7e251d7402fe0f55",
-    "bytes": 78579
+    "sha256": "9e36599f0c9bbac097422a8766e3ef1c81e6fc9432f024d99a24b79da18264df",
+    "bytes": 81778
   },
   "design": {
     "path": "source/design.json",
-    "sha256": "49b5b5cb75435fba03b31c979b73ab676e640dbc3688b35b27cf9d69425c1bb4",
-    "bytes": 2168,
+    "sha256": "79a5861a2023f27b35bd742717ec7599ad17936bbad628a92b16283eb63a69cb",
+    "bytes": 2828,
     "schema_version": "1.0.0"
   },
   "artifacts": {
     "blend": {
       "path": "source/blender/new-holland-cr11-structural-study.blend",
-      "sha256": "da104a76211d2f5b80c21e2a8cf130741a132dc8055a1c2c1e09b30a2660ec10",
-      "bytes": 236568
+      "sha256": "e80a586a2ceb5b5fe8ee4da88db8c048b4dffc8d3161befa5b3eb25f9ffb4c23",
+      "bytes": 459441
     },
     "glb": {
       "path": "assets/new-holland-cr11-structural-study.glb",
-      "sha256": "8730ecf9503f864fce13ab097b1bb9dd2ec14c174882bd23344975414c853a76",
-      "bytes": 1497620
+      "sha256": "5f28a6c9c5190b77956b312f7af9cf778150a08cc9a557589977b00054db4654",
+      "bytes": 4501704
     },
     "validation": {
       "path": "production/validation.json",
-      "sha256": "4fb23d1342e91c47956bc1780113e1795ae950d6a8288bc46e9811e1585d3799",
-      "bytes": 7874
+      "sha256": "8de0591e3dbd6c069f52377e7c0c65b4672a88511bf43a1c4c976082eda55150",
+      "bytes": 101695
     }
   },
   "scene": {
@@ -72,20 +72,20 @@
         2.756
       ],
       "size_m": [
-        11.252,
+        11.252001,
         4.013,
         5.512
       ]
     },
     "visible_aabb_xyz_m": [
-      11.252,
+      11.252001,
       4.013,
       5.512
     ],
-    "objects": 212,
-    "meshes": 190,
-    "triangles": 28968,
-    "materials": 7
+    "objects": 603,
+    "meshes": 556,
+    "triangles": 86816,
+    "materials": 12
   },
   "glb_contract": {
     "glb_version": "2.0",
@@ -94,18 +94,18 @@
     "root_name": "Machine_Root",
     "root_record": {},
     "identity_root": true,
-    "nodes": 212,
-    "mesh_nodes": 190,
-    "mesh_definitions": 190,
-    "materials": 7,
-    "triangles": 28968,
+    "nodes": 603,
+    "mesh_nodes": 556,
+    "mesh_definitions": 556,
+    "materials": 12,
+    "triangles": 86816,
     "cameras": 0,
     "punctual_lights": false,
     "images": 0,
     "textures": 0,
     "nonidentity_mesh_scales": {},
     "helper_like_mesh_nodes": [],
-    "semantic_motion_nodes": 21,
+    "semantic_motion_nodes": 46,
     "bounds": {
       "min_m": [
         -5.626,
@@ -118,7 +118,7 @@
         2.756
       ],
       "size_m": [
-        11.252,
+        11.252001,
         4.013,
         5.512
       ]
@@ -129,49 +129,677 @@
     "Fixed_Structure_ROOT": true,
     "Running_Gear_ROOT": true,
     "Hydraulics_ROOT": true,
-    "Service_Detail_ROOT": true,
     "Header_Lift_Pivot": true,
-    "Header_ROOT": true,
-    "Reel_Pivot": true,
-    "Reel_ROOT": true,
     "Feederhouse_ROOT": true,
+    "Feeder_Faceplate_ROOT": true,
+    "Dynamic_Feed_Roll_ROOT": true,
+    "Twin_Rotor_L_ROOT": true,
+    "Twin_Rotor_R_ROOT": true,
+    "TwinClean_Grainpan_ROOT": true,
+    "TwinClean_Front_ROOT": true,
+    "TwinClean_Rear_ROOT": true,
+    "Grain_Tank_Cover_L_Pivot": true,
+    "Grain_Tank_Cover_L_ROOT": true,
+    "Grain_Tank_Cover_R_Pivot": true,
+    "Grain_Tank_Cover_R_ROOT": true,
+    "Bubble_Up_Auger_ROOT": true,
     "Unloader_Swing_Pivot": true,
-    "Unloader_ROOT": true
+    "Unloader_ROOT": true,
+    "Unloader_Fold_Pivot": true,
+    "Unloader_Fold_ROOT": true,
+    "Rear_Spreader_L_ROOT": true,
+    "Rear_Spreader_R_ROOT": true,
+    "Front_Drive_Axle_ROOT": true,
+    "Rear_Axle_ROOT": true,
+    "Rear_Steering_L_Pivot": true,
+    "Rear_Steering_R_Pivot": true
   },
-  "manufacturer_published_constraints_used": [
+  "semantic_node_roles": {},
+  "published_constraint_ids_declared": [
     "public-envelope-x",
     "public-envelope-y",
     "public-envelope-z",
+    "dual-wheelbase",
+    "feeder-cradle-width",
+    "dynamic-feed-roll-diameter",
+    "feeder-chain-count",
+    "feeder-slat-count",
     "rotor-count",
     "rotor-diameter",
     "rotor-length",
+    "standard-rasp-bars-per-rotor",
+    "hx-rasp-bars-per-rotor",
+    "spiked-rasp-bars-per-rotor",
+    "twinclean-two-stage-topology",
     "grain-tank-capacity",
+    "grain-tank-cover-control",
     "unloading-rate",
-    "unloading-auger-swivel"
+    "unloading-auger-swivel",
+    "selected-spreader-topology"
+  ],
+  "machine_specific_gate_evidence": [
+    {
+      "id": "frozen_wheeled_configuration",
+      "status": "PASS",
+      "detail": {
+        "method": "configuration selection plus exported tire/header topology comparison",
+        "evidence": {
+          "choices": {
+            "front_running_gear": "wheeled_dual_710_70_R42",
+            "rear_axle": "2WD_steering_axle",
+            "grain_tank": "567_bu_with_XL_bubble_up_auger",
+            "unloading_rate": "6.0_bu_per_s",
+            "unloading_reach": "folding_up_to_50_ft_header",
+            "feeder_drive": "variable_standard_135_kW",
+            "residue_management": "integrated_standard_chop_three_paddle_disc_up_to_45_ft",
+            "header": "not_fitted_feederhouse_only",
+            "public_finish": "neutral_unbranded_sage_graphite"
+          },
+          "tire_meshes": [
+            "Front_L_Inner_Tire",
+            "Front_L_Outer_Tire",
+            "Front_R_Inner_Tire",
+            "Front_R_Outer_Tire",
+            "Rear_L_Tire",
+            "Rear_R_Tire"
+          ],
+          "fitted_header_meshes": [],
+          "visible_selected_option_meshes": [
+            "Grain_Tank_Lower",
+            "Bubble_Up_Auger_Tube",
+            "Unloader_Inner_Tube",
+            "Integrated_Disc_Chopper_Rotor",
+            "Rear_Spreader_L_Disc",
+            "Rear_Spreader_R_Disc"
+          ]
+        },
+        "semantic_nodes": [
+          "Front_Drive_Axle_ROOT",
+          "Rear_Axle_ROOT",
+          "Feederhouse_ROOT",
+          "Grain_Tank_Lower",
+          "Unloader_ROOT"
+        ],
+        "fact_ids": [
+          "grain-tank-capacity",
+          "unloading-rate"
+        ]
+      }
+    },
+    {
+      "id": "single_identity_root",
+      "status": "PASS",
+      "detail": {
+        "method": "GLB scene-root identity inspection",
+        "evidence": {
+          "scene_root_count": 1,
+          "root_name": "Machine_Root",
+          "identity_root": true
+        },
+        "semantic_nodes": [
+          "Machine_Root"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "six_tire_contact",
+      "status": "PASS",
+      "detail": {
+        "method": "world-space tire AABB contact, axle-center wheelbase, and dual envelope measurement",
+        "evidence": {
+          "contact_count": 6,
+          "tire_minimum_y_m": {
+            "Front_L_Inner_Tire": 0.0,
+            "Front_L_Outer_Tire": 0.0,
+            "Front_R_Inner_Tire": 0.0,
+            "Front_R_Outer_Tire": 0.0,
+            "Rear_L_Tire": 0.0,
+            "Rear_R_Tire": 0.0
+          },
+          "measured_wheelbase_m": 4.039,
+          "published_wheelbase_m": 4.039,
+          "measured_dual_width_m": 5.512,
+          "published_dual_width_m": 5.512,
+          "absolute_tolerance_m": 0.003
+        },
+        "semantic_nodes": [
+          "Front_Drive_Axle_ROOT",
+          "Rear_Axle_ROOT",
+          "Rear_Steering_L_Pivot",
+          "Rear_Steering_R_Pivot"
+        ],
+        "fact_ids": [
+          "public-envelope-z",
+          "dual-wheelbase"
+        ]
+      }
+    },
+    {
+      "id": "feeder_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "world-space feeder/DFR measurement and parent-chain continuity inspection",
+        "evidence": {
+          "measured_cradle_width_m": 1.885,
+          "published_cradle_width_m": 1.885,
+          "measured_dfr_diameter_m": 0.45,
+          "published_dfr_diameter_m": 0.45,
+          "measured_chain_count": 4,
+          "published_chain_count": 4,
+          "measured_slat_count": 33,
+          "published_slat_count": 33,
+          "chain_meshes": [
+            "Feeder_Chain_1",
+            "Feeder_Chain_2",
+            "Feeder_Chain_3",
+            "Feeder_Chain_4"
+          ],
+          "slat_meshes": [
+            "Feeder_Deep_Drawn_Slat_01",
+            "Feeder_Deep_Drawn_Slat_02",
+            "Feeder_Deep_Drawn_Slat_03",
+            "Feeder_Deep_Drawn_Slat_04",
+            "Feeder_Deep_Drawn_Slat_05",
+            "Feeder_Deep_Drawn_Slat_06",
+            "Feeder_Deep_Drawn_Slat_07",
+            "Feeder_Deep_Drawn_Slat_08",
+            "Feeder_Deep_Drawn_Slat_09",
+            "Feeder_Deep_Drawn_Slat_10",
+            "Feeder_Deep_Drawn_Slat_11",
+            "Feeder_Deep_Drawn_Slat_12",
+            "Feeder_Deep_Drawn_Slat_13",
+            "Feeder_Deep_Drawn_Slat_14",
+            "Feeder_Deep_Drawn_Slat_15",
+            "Feeder_Deep_Drawn_Slat_16",
+            "Feeder_Deep_Drawn_Slat_17",
+            "Feeder_Deep_Drawn_Slat_18",
+            "Feeder_Deep_Drawn_Slat_19",
+            "Feeder_Deep_Drawn_Slat_20",
+            "Feeder_Deep_Drawn_Slat_21",
+            "Feeder_Deep_Drawn_Slat_22",
+            "Feeder_Deep_Drawn_Slat_23",
+            "Feeder_Deep_Drawn_Slat_24",
+            "Feeder_Deep_Drawn_Slat_25",
+            "Feeder_Deep_Drawn_Slat_26",
+            "Feeder_Deep_Drawn_Slat_27",
+            "Feeder_Deep_Drawn_Slat_28",
+            "Feeder_Deep_Drawn_Slat_29",
+            "Feeder_Deep_Drawn_Slat_30",
+            "Feeder_Deep_Drawn_Slat_31",
+            "Feeder_Deep_Drawn_Slat_32",
+            "Feeder_Deep_Drawn_Slat_33"
+          ],
+          "coupler_descends_from_lift": true,
+          "dfr_descends_from_lift": true
+        },
+        "semantic_nodes": [
+          "Header_Lift_Pivot",
+          "Feederhouse_ROOT",
+          "Feeder_Faceplate_ROOT",
+          "Dynamic_Feed_Roll_ROOT"
+        ],
+        "fact_ids": [
+          "feeder-cradle-width",
+          "dynamic-feed-roll-diameter",
+          "feeder-chain-count",
+          "feeder-slat-count"
+        ]
+      }
+    },
+    {
+      "id": "twin_rotor_containment",
+      "status": "PASS",
+      "detail": {
+        "method": "world-space twin-rotor dimensions and guard-containment margins",
+        "evidence": {
+          "published_count": 2,
+          "published_diameter_m": 0.61,
+          "published_length_m": 3.6,
+          "rotors": [
+            {
+              "side": "L",
+              "measured_size_xyz_m": [
+                3.6,
+                0.61,
+                0.61
+              ],
+              "minimum_guard_margin_m": 0.125,
+              "rasp_bar_counts": {
+                "standard": 40,
+                "hx": 8,
+                "spiked": 12
+              },
+              "bounds_m": {
+                "min": [
+                  -2.35,
+                  2.115,
+                  -0.795
+                ],
+                "max": [
+                  1.25,
+                  2.725,
+                  -0.185
+                ]
+              }
+            },
+            {
+              "side": "R",
+              "measured_size_xyz_m": [
+                3.6,
+                0.61,
+                0.61
+              ],
+              "minimum_guard_margin_m": 0.125,
+              "rasp_bar_counts": {
+                "standard": 40,
+                "hx": 8,
+                "spiked": 12
+              },
+              "bounds_m": {
+                "min": [
+                  -2.35,
+                  2.115,
+                  0.185
+                ],
+                "max": [
+                  1.25,
+                  2.725,
+                  0.795
+                ]
+              }
+            }
+          ]
+        },
+        "semantic_nodes": [
+          "Twin_Rotor_L_ROOT",
+          "Twin_Rotor_R_ROOT"
+        ],
+        "fact_ids": [
+          "rotor-count",
+          "rotor-diameter",
+          "rotor-length",
+          "standard-rasp-bars-per-rotor",
+          "hx-rasp-bars-per-rotor",
+          "spiked-rasp-bars-per-rotor"
+        ]
+      }
+    },
+    {
+      "id": "twinclean_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "world-space component AABBs inside the reconstructed cleaning-system containment",
+        "evidence": {
+          "components": [
+            "TwinClean_Grainpan",
+            "TwinClean_Front_Upper_Sieve",
+            "TwinClean_Front_Lower_Sieve",
+            "TwinClean_Front_Clean_Grain_Auger",
+            "TwinClean_Rear_Upper_Sieve",
+            "TwinClean_Rear_Lower_Sieve",
+            "TwinClean_Rear_Clean_Grain_Auger"
+          ],
+          "measured_topology": {
+            "upper_sieves": 2,
+            "lower_sieves": 2,
+            "clean_grain_augers": 2,
+            "sensor_cues": 6
+          },
+          "published_two_stage_topology": {
+            "sieve_systems": 2,
+            "upper_sieves_per_system": 1,
+            "lower_sieves_per_system": 1,
+            "clean_grain_augers": 2
+          },
+          "containment_min_m": [
+            -2.95,
+            0.8,
+            -1.25
+          ],
+          "containment_max_m": [
+            1.55,
+            1.75,
+            1.25
+          ],
+          "minimum_rest_margin_m": 0.07443,
+          "authority": "containment_only_not_cleaning_performance"
+        },
+        "semantic_nodes": [
+          "TwinClean_Grainpan_ROOT",
+          "TwinClean_Front_ROOT",
+          "TwinClean_Rear_ROOT"
+        ],
+        "fact_ids": [
+          "twinclean-two-stage-topology"
+        ]
+      }
+    },
+    {
+      "id": "tank_cover_and_bubble_up_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "four-position cover AABB separation from the bubble-up tube and published field-height cap",
+        "evidence": {
+          "samples": [
+            {
+              "open_deg": 0,
+              "left_bubble_aabb_separation_m": 0.103596,
+              "right_bubble_aabb_separation_m": 0.103596,
+              "maximum_y_m": 3.922793
+            },
+            {
+              "open_deg": 20,
+              "left_bubble_aabb_separation_m": 0.103596,
+              "right_bubble_aabb_separation_m": 0.103596,
+              "maximum_y_m": 4.295128
+            },
+            {
+              "open_deg": 40,
+              "left_bubble_aabb_separation_m": 0.103596,
+              "right_bubble_aabb_separation_m": 0.103596,
+              "maximum_y_m": 4.722093
+            },
+            {
+              "open_deg": 60,
+              "left_bubble_aabb_separation_m": 0.103596,
+              "right_bubble_aabb_separation_m": 0.103596,
+              "maximum_y_m": 5.029397
+            }
+          ],
+          "minimum_aabb_separation_m": 0.103596,
+          "maximum_sample_y_m": 5.029397,
+          "published_field_height_m": 5.08,
+          "published_cover_control": "in_cab_remote_control",
+          "authored_topology": "paired_revolute_panels_with_bubble_up_clearance"
+        },
+        "semantic_nodes": [
+          "Grain_Tank_Cover_L_Pivot",
+          "Grain_Tank_Cover_L_ROOT",
+          "Grain_Tank_Cover_R_Pivot",
+          "Grain_Tank_Cover_R_ROOT",
+          "Bubble_Up_Auger_ROOT"
+        ],
+        "fact_ids": [
+          "grain-tank-cover-control"
+        ]
+      }
+    },
+    {
+      "id": "unloader_fold_swing_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "viewer authority-angle comparison plus nested fold/swing parent-chain inspection",
+        "evidence": {
+          "mechanism_joint_ids": {
+            "swing": "unloading_auger_swing",
+            "fold": "unloading_auger_fold"
+          },
+          "base_xyz_m": [
+            -1.15,
+            3.02,
+            -2.08
+          ],
+          "reconstructed_inner_centerline_m": 4.0,
+          "reconstructed_outer_centerline_m": 4.6,
+          "published_swivel_deg": 105.0,
+          "fold_unfold_range_deg": [
+            0.0,
+            -180.0
+          ],
+          "viewer_swivel_total_deg": 105.000016,
+          "outer_tube_descends_from_fold": true,
+          "fold_descends_from_swing": true
+        },
+        "semantic_nodes": [
+          "Unloader_Swing_Pivot",
+          "Unloader_ROOT",
+          "Unloader_Fold_Pivot",
+          "Unloader_Fold_ROOT"
+        ],
+        "fact_ids": [
+          "unloading-auger-swivel"
+        ]
+      }
+    },
+    {
+      "id": "rear_spreader_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "world-space paired spreader-disc AABB and ground-clearance measurement",
+        "evidence": {
+          "spreader_count": 2,
+          "spreaders": [
+            {
+              "side": "L",
+              "bounds_m": {
+                "min": [
+                  -5.39,
+                  1.0225,
+                  -1.1
+                ],
+                "max": [
+                  -4.71,
+                  1.0975,
+                  -0.42
+                ]
+              },
+              "minimum_y_m": 1.0225,
+              "paddle_count": 3
+            },
+            {
+              "side": "R",
+              "bounds_m": {
+                "min": [
+                  -5.39,
+                  1.0225,
+                  0.42
+                ],
+                "max": [
+                  -4.71,
+                  1.0975,
+                  1.1
+                ]
+              },
+              "minimum_y_m": 1.0225,
+              "paddle_count": 3
+            }
+          ],
+          "minimum_ground_clearance_m": 1.0225
+        },
+        "semantic_nodes": [
+          "Rear_Spreader_L_ROOT",
+          "Rear_Spreader_R_ROOT"
+        ],
+        "fact_ids": [
+          "selected-spreader-topology"
+        ]
+      }
+    },
+    {
+      "id": "ground_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "neutral whole-machine bounds plus sampled moving-unloader minimum height",
+        "evidence": {
+          "neutral_public_minimum_y_m": 0.0,
+          "sampled_unloader_minimum_y_m": 2.88,
+          "measured_public_length_m": 11.252001,
+          "published_rigid_transport_length_m": 11.252,
+          "measured_public_height_m": 4.013,
+          "published_road_height_m": 4.013,
+          "absolute_tolerance_m": 0.003
+        },
+        "semantic_nodes": [
+          "Machine_Root",
+          "Unloader_Swing_Pivot",
+          "Unloader_Fold_Pivot"
+        ],
+        "fact_ids": [
+          "public-envelope-x",
+          "public-envelope-y"
+        ]
+      }
+    },
+    {
+      "id": "self_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "bounded moving-component versus protected-body AABB separation sampling",
+        "evidence": {
+          "minimum_unloader_body_separation_m": 0.245,
+          "minimum_cover_bubble_separation_m": 0.103596,
+          "unloader_samples": [
+            {
+              "swing_deg": 0.0,
+              "fold_deg": 0.0,
+              "minimum_y_m": 2.88,
+              "minimum_body_aabb_separation_m": 0.245
+            },
+            {
+              "swing_deg": 0.0,
+              "fold_deg": -45.0,
+              "minimum_y_m": 2.88,
+              "minimum_body_aabb_separation_m": 0.28
+            },
+            {
+              "swing_deg": 0.0,
+              "fold_deg": -90.0,
+              "minimum_y_m": 2.88,
+              "minimum_body_aabb_separation_m": 0.28
+            },
+            {
+              "swing_deg": 0.0,
+              "fold_deg": -135.0,
+              "minimum_y_m": 2.88,
+              "minimum_body_aabb_separation_m": 0.28
+            },
+            {
+              "swing_deg": 0.0,
+              "fold_deg": -180.0,
+              "minimum_y_m": 2.88,
+              "minimum_body_aabb_separation_m": 0.28
+            },
+            {
+              "swing_deg": 21.0,
+              "fold_deg": -180.0,
+              "minimum_y_m": 2.88,
+              "minimum_body_aabb_separation_m": 0.286974
+            },
+            {
+              "swing_deg": 42.0,
+              "fold_deg": -180.0,
+              "minimum_y_m": 2.88,
+              "minimum_body_aabb_separation_m": 0.30697
+            },
+            {
+              "swing_deg": 63.0,
+              "fold_deg": -180.0,
+              "minimum_y_m": 2.88,
+              "minimum_body_aabb_separation_m": 0.337331
+            },
+            {
+              "swing_deg": 84.0,
+              "fold_deg": -180.0,
+              "minimum_y_m": 2.88,
+              "minimum_body_aabb_separation_m": 0.374024
+            },
+            {
+              "swing_deg": 105.0,
+              "fold_deg": -180.0,
+              "minimum_y_m": 2.88,
+              "minimum_body_aabb_separation_m": 0.357824
+            }
+          ],
+          "cover_samples": [
+            {
+              "open_deg": 0,
+              "left_bubble_aabb_separation_m": 0.103596,
+              "right_bubble_aabb_separation_m": 0.103596,
+              "maximum_y_m": 3.922793
+            },
+            {
+              "open_deg": 20,
+              "left_bubble_aabb_separation_m": 0.103596,
+              "right_bubble_aabb_separation_m": 0.103596,
+              "maximum_y_m": 4.295128
+            },
+            {
+              "open_deg": 40,
+              "left_bubble_aabb_separation_m": 0.103596,
+              "right_bubble_aabb_separation_m": 0.103596,
+              "maximum_y_m": 4.722093
+            },
+            {
+              "open_deg": 60,
+              "left_bubble_aabb_separation_m": 0.103596,
+              "right_bubble_aabb_separation_m": 0.103596,
+              "maximum_y_m": 5.029397
+            }
+          ]
+        },
+        "semantic_nodes": [
+          "Unloader_Swing_Pivot",
+          "Unloader_Fold_Pivot",
+          "Grain_Tank_Cover_L_Pivot",
+          "Grain_Tank_Cover_R_Pivot"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "swept_volume_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "ten-position fold/swivel sampling plus four-position tank-cover sampling",
+        "evidence": {
+          "unloader_sample_count": 10,
+          "cover_sample_count": 4,
+          "sampled_swivel_range_deg": [
+            0,
+            105
+          ],
+          "sampled_fold_range_deg": [
+            0,
+            -180
+          ],
+          "minimum_ground_y_m": 2.88,
+          "minimum_body_separation_m": 0.245,
+          "authority": "presentation-sweep_sampling_not_operational_clearance_authority"
+        },
+        "semantic_nodes": [
+          "Unloader_Swing_Pivot",
+          "Unloader_Fold_Pivot",
+          "Grain_Tank_Cover_L_Pivot",
+          "Grain_Tank_Cover_R_Pivot"
+        ],
+        "fact_ids": []
+      }
+    }
   ],
   "reconstructed_values": {
     "transport_pose": "Rigid-unloader length, grain-tank-closed height and 710/70 R42 dual width define the retained published envelope.",
-    "header_interface": "Generic narrow feeder/header interface cue only; no named header or harvesting width claim.",
-    "running_gear": "Wheeled dual-front 2WD carrier cue; rim offset, loaded radius and rear tire selection are reconstructed.",
+    "header_interface": "Published 1.885 m feeder cradle, four chain paths, 33 slat cues and 0.45 m Dynamic Feed Roll terminate at a coupler interface; no named header, cutterbar or reel is fitted.",
+    "running_gear": "Selected 710/70 R42 dual-front 2WD carrier with six tire contacts, 5.512 m published transport width and 4.039 m published wheelbase; rim offset, loaded radius and rear tire selection remain reconstructed.",
     "materials": "Neutral unbranded sage, graphite, steel, rubber and glass with no logos, decals or copied trade dress.",
-    "hidden_geometry": "Twin rotors, Dynamic Feed Roll, TwinClean links, auger hinges and residue drives are reconstructed.",
-    "animation_ranges": "Conservative presentation ranges only; not machine-specific operating limits.",
+    "hidden_geometry": "Twin-rotor centerlines, Dynamic Feed Roll axis, TwinClean links, auger hinges and residue drives are reconstructed around published sizes and topology.",
+    "animation_ranges": "The unloader swivel is bounded to the published 105 degrees. All other presentation endpoints are conservative reconstructed ranges and not operating limits.",
     "generic_archetype_geometry": "combine proportions and visible detail are independently reconstructed for this technical study.",
     "visible_envelope_calibration": {
-      "classification": "reconstructed_visible_envelope_calibration",
+      "classification": "authored_visible_envelope_measurement",
       "source_bounds_m": {
         "min_m": [
-          -5.181203,
+          -5.626,
           0.0,
           -2.756
         ],
         "max_m": [
-          6.07608,
+          5.626,
           4.013,
           2.756
         ],
         "size_m": [
-          11.257284,
+          11.252001,
           4.013,
           5.512
         ]
@@ -194,9 +822,9 @@
         ]
       },
       "axis_scale_factors": [
-        0.999530643,
-        0.999999997,
-        0.999999985
+        1.0,
+        1.0,
+        1.0
       ],
       "calibrated_bounds_m": {
         "min_m": [
@@ -210,12 +838,12 @@
           2.756
         ],
         "size_m": [
-          11.252,
+          11.252001,
           4.013,
           5.512
         ]
       },
-      "authority": "reconstructed_not_machine_specific_engineering"
+      "authority": "independently_measured_from_authored_geometry"
     }
   },
   "unresolved_choices": [
@@ -228,7 +856,7 @@
     "public material and branding authorization"
   ],
   "mechanical_gaps": [
-    "feeder lift cylinder anchors and attachment coupler authority",
+    "feeder lift cylinder anchors and attachment coupler operating authority",
     "twin rotor axes, crop-flow geometry and component phase",
     "TwinClean side-shake linkage and slope-response solver",
     "unloading auger hinge, fold joint and swept clearance",
@@ -237,33 +865,33 @@
   "renders": [
     {
       "path": "review/renders/new-holland-cr11-operator-side.png",
-      "sha256": "8b5206d517ba0ad340a652571dc8f3bb55a7b1ec34be073f5070e610e59062a2",
-      "bytes": 237560
+      "sha256": "efdda4ad3815b9ab6bc620dcce3abd264ed198e16ac0258f2c8a80599f64d27b",
+      "bytes": 272709
     },
     {
       "path": "review/renders/new-holland-cr11-front-three-quarter.png",
-      "sha256": "b5ec6f79cf394fdf990afc450ece6084b3526f6d33a1bf44c39ddcbdef234651",
-      "bytes": 283728
+      "sha256": "8ddd42fbe374bb614127bf2b9306d50431bd20d920f634e0cc9af4a5bb38cd2c",
+      "bytes": 293759
     },
     {
       "path": "review/renders/new-holland-cr11-rear-three-quarter.png",
-      "sha256": "41ac893524f5e4035e7f12ef5575b9f4e27daf831c589d7fd4ace1bc88322fdb",
-      "bytes": 265346
+      "sha256": "cff1edf5c5f0cfb3e1edff3026ca70ae8ee2368bd58f45fdbede6854c562e812",
+      "bytes": 381570
     },
     {
       "path": "review/renders/new-holland-cr11-elevated-technical.png",
-      "sha256": "58428219dbae076225bbb064c7519d93cb2210ea2198c87153c8486f3490d08a",
-      "bytes": 356014
+      "sha256": "2dc198a3814c76c593b87452fea87e96e6cce2bcd02d6f91637b7c4b8bc3ecac",
+      "bytes": 373669
     },
     {
       "path": "review/renders/new-holland-cr11-articulation-detail.png",
-      "sha256": "3a52df8018da56cb41bd0a05f6793776a0027f0ccadac1c93906340ed74eb2a0",
-      "bytes": 303218
+      "sha256": "b375196d1bc12a6899bdd71b471e3d642756132093213d75e79b861ebb15aa0c",
+      "bytes": 314743
     },
     {
       "path": "review/renders/new-holland-cr11-right-side.png",
-      "sha256": "c7f1ce40f12192a6b5ff68fc76182cca34438f1b7d38c9be7b42cfa39bf66197",
-      "bytes": 236333
+      "sha256": "b9b13840aed27be73f8a8b21083410cf4572c61a5320b4a89f247cc94ea38ceb",
+      "bytes": 253169
     }
   ],
   "build_verdict": "PASS",

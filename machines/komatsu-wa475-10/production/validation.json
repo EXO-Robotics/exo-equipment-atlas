@@ -15,245 +15,2813 @@
       "machine_Z_right"
     ],
     "min_m": [
-      -4.05,
-      -0.005595,
+      -3.795,
+      0.01,
       -1.585
     ],
     "max_m": [
-      5.133311,
+      5.382203,
       3.54,
       1.585
     ],
     "size_m": [
-      9.183311,
-      3.545595,
+      9.177203,
+      3.53,
       3.17
     ],
-    "measured_object_count": 407,
+    "measured_object_count": 418,
     "method": "evaluated retained-pose public mesh and curve vertices; studio, markers, collision, inspection, cameras, and lights excluded"
+  },
+  "required_gate_ids": [
+    "retained_stowed_envelope",
+    "wheelbase_and_grade_contact",
+    "frame_articulation_continuity",
+    "steering_cylinder_continuity",
+    "rear_axle_oscillation_clearance",
+    "full_lift_hinge_height",
+    "dump_clearance_and_reach",
+    "loader_linkage_closure",
+    "z_bar_linkage_closure",
+    "lift_and_bucket_cylinder_stroke_continuity",
+    "bucket_ground_collision",
+    "machine_self_collision",
+    "tire_body_clearance",
+    "articulation_swept_volume"
+  ],
+  "required_machine_gate_ids": [
+    "retained_stowed_envelope",
+    "wheelbase_and_grade_contact",
+    "frame_articulation_continuity",
+    "steering_cylinder_continuity",
+    "rear_axle_oscillation_clearance",
+    "full_lift_hinge_height",
+    "dump_clearance_and_reach",
+    "loader_linkage_closure",
+    "z_bar_linkage_closure",
+    "lift_and_bucket_cylinder_stroke_continuity",
+    "bucket_ground_collision",
+    "machine_self_collision",
+    "tire_body_clearance",
+    "articulation_swept_volume"
+  ],
+  "required_gate_contract": {
+    "counts": {
+      "retained_stowed_envelope": 1,
+      "wheelbase_and_grade_contact": 1,
+      "frame_articulation_continuity": 1,
+      "steering_cylinder_continuity": 1,
+      "rear_axle_oscillation_clearance": 1,
+      "full_lift_hinge_height": 1,
+      "dump_clearance_and_reach": 1,
+      "loader_linkage_closure": 1,
+      "z_bar_linkage_closure": 1,
+      "lift_and_bucket_cylinder_stroke_continuity": 1,
+      "bucket_ground_collision": 1,
+      "machine_self_collision": 1,
+      "tire_body_clearance": 1,
+      "articulation_swept_volume": 1
+    },
+    "malformed_details": [],
+    "covered_fact_ids": [
+      "bucket-capacity-heaped",
+      "bucket-capacity-struck",
+      "bucket-cylinder-bore",
+      "bucket-cylinder-count",
+      "bucket-cylinder-stroke",
+      "bucket-weight",
+      "bucket-width-stock-pile",
+      "dump-clearance-stock-pile",
+      "dump-reach-stock-pile",
+      "ground-clearance",
+      "height-roof-rail",
+      "height-rops-cab",
+      "height-top-stack",
+      "hinge-pin-height-carry-standard",
+      "hinge-pin-height-max-standard",
+      "hitch-height-standard",
+      "lift-cylinder-bore",
+      "lift-cylinder-count",
+      "lift-cylinder-stroke",
+      "operating-height-stock-pile",
+      "overall-length-stock-pile",
+      "rear-axle-oscillation",
+      "steering-angle-max-stop",
+      "steering-angle-nominal",
+      "steering-cylinder-bore",
+      "steering-cylinder-count",
+      "steering-cylinder-stroke",
+      "wheelbase",
+      "width-standard-tires"
+    ],
+    "missing_used_fact_coverage": []
   },
   "gates": [
     {
-      "id": "published-overall-length-stock-pile",
+      "id": "retained_stowed_envelope",
       "status": "PASS",
-      "detail": "Measured from evaluated retained-pose public visible geometry; no helper witnesses participate.",
+      "detail": {
+        "method": "Evaluated retained-pose public vertices plus named physical roof, ROPS, stack, belly-pan, tire, bucket and hitch witnesses.",
+        "evidence": {
+          "overall_length_m": 9.177203,
+          "bucket_width_m": 3.17,
+          "standard_tire_width_m": 3.06,
+          "roof_rail_top_m": 3.54,
+          "rops_top_m": 3.5,
+          "stack_top_m": 3.45,
+          "ground_clearance_witness_bottom_m": 0.52,
+          "hitch_pivot_height_m": 1.2,
+          "lowest_public_geometry_m": 0.01,
+          "selected_bucket_source_values": {
+            "bucket-capacity-heaped": 4.2,
+            "bucket-capacity-struck": 3.6,
+            "bucket-weight": 2196
+          }
+        },
+        "semantic_nodes": [
+          "Machine_Root",
+          "StockPileBucket_Shell",
+          "BucketSideGuard_L",
+          "BucketSideGuard_R",
+          "FrontSidewallOuter_L",
+          "FrontSidewallOuter_R",
+          "CabRoofRail_L",
+          "ROPS_Roof",
+          "ExhaustRainCap",
+          "RearBellyGuard",
+          "FrontFrame_BellyPan",
+          "Articulation_FrontFrame_Root_Reconstructed"
+        ],
+        "fact_ids": [
+          "overall-length-stock-pile",
+          "bucket-width-stock-pile",
+          "width-standard-tires",
+          "ground-clearance",
+          "hitch-height-standard",
+          "height-top-stack",
+          "height-rops-cab",
+          "height-roof-rail",
+          "bucket-capacity-heaped",
+          "bucket-capacity-struck",
+          "bucket-weight"
+        ]
+      },
       "expected": {
-        "value_m": 9.185,
-        "tolerance_m": 0.08
+        "length_tolerance_m": 0.08,
+        "dimension_tolerance_m": 0.005,
+        "ground_penetration_max_m": 0.001
       },
       "actual": {
-        "value_m": 9.183311,
-        "absolute_delta_m": 0.001689,
-        "evaluated_visible_bounds_m": {
-          "axis_order": [
-            "machine_X_longitudinal",
-            "machine_Y_vertical",
-            "machine_Z_right"
-          ],
-          "min_m": [
-            -4.05,
-            -0.005595,
-            -1.585
-          ],
-          "max_m": [
-            5.133311,
-            3.54,
-            1.585
-          ],
-          "size_m": [
-            9.183311,
-            3.545595,
-            3.17
-          ],
-          "measured_object_count": 407,
-          "method": "evaluated retained-pose public mesh and curve vertices; studio, markers, collision, inspection, cameras, and lights excluded"
+        "overall_length_m": 9.177203,
+        "bucket_width_m": 3.17,
+        "standard_tire_width_m": 3.06,
+        "roof_rail_top_m": 3.54,
+        "rops_top_m": 3.5,
+        "stack_top_m": 3.45,
+        "ground_clearance_witness_bottom_m": 0.52,
+        "hitch_pivot_height_m": 1.2,
+        "lowest_public_geometry_m": 0.01,
+        "selected_bucket_source_values": {
+          "bucket-capacity-heaped": 4.2,
+          "bucket-capacity-struck": 3.6,
+          "bucket-weight": 2196
         }
       }
     },
     {
-      "id": "published-height-roof-rail",
+      "id": "wheelbase_and_grade_contact",
       "status": "PASS",
-      "detail": "Measured from evaluated retained-pose public visible geometry; no helper witnesses participate.",
+      "detail": {
+        "method": "World-space wheel-pivot separation, decoded hierarchy ownership, and evaluated tire tread contact elevations.",
+        "evidence": {
+          "wheelbase_m": [
+            3.45,
+            3.45
+          ],
+          "tire_contact_y_m": {
+            "RearTire_L": 0.01,
+            "RearTire_R": 0.01,
+            "FrontTire_L": 0.01,
+            "FrontTire_R": 0.01
+          },
+          "parents": {
+            "RearWheel_L_Pivot_ROOT": "RearAxle_Oscillation_Root_Reconstructed",
+            "RearWheel_R_Pivot_ROOT": "RearAxle_Oscillation_Root_Reconstructed",
+            "FrontWheel_L_Pivot_ROOT": "Articulation_FrontFrame_Root_Reconstructed",
+            "FrontWheel_R_Pivot_ROOT": "Articulation_FrontFrame_Root_Reconstructed"
+          },
+          "pivot_locations_m": {
+            "RearWheel_L_Pivot_ROOT": [
+              -1.85,
+              0.86,
+              -1.19
+            ],
+            "RearWheel_R_Pivot_ROOT": [
+              -1.85,
+              0.86,
+              1.19
+            ],
+            "FrontWheel_L_Pivot_ROOT": [
+              1.6,
+              0.86,
+              -1.19
+            ],
+            "FrontWheel_R_Pivot_ROOT": [
+              1.6,
+              0.86,
+              1.19
+            ]
+          }
+        },
+        "semantic_nodes": [
+          "RearWheel_L_Pivot_ROOT",
+          "RearWheel_R_Pivot_ROOT",
+          "FrontWheel_L_Pivot_ROOT",
+          "FrontWheel_R_Pivot_ROOT",
+          "RearTire_L",
+          "RearTire_R",
+          "FrontTire_L",
+          "FrontTire_R"
+        ],
+        "fact_ids": [
+          "wheelbase"
+        ]
+      },
       "expected": {
-        "value_m": 3.54,
-        "tolerance_m": 0.05
+        "wheelbase_m": 3.45,
+        "contact_y_range_m": [
+          -0.001,
+          0.02
+        ]
       },
       "actual": {
-        "value_m": 3.545595,
-        "absolute_delta_m": 0.005595,
-        "evaluated_visible_bounds_m": {
-          "axis_order": [
-            "machine_X_longitudinal",
-            "machine_Y_vertical",
-            "machine_Z_right"
+        "wheelbase_m": [
+          3.45,
+          3.45
+        ],
+        "tire_contact_y_m": {
+          "RearTire_L": 0.01,
+          "RearTire_R": 0.01,
+          "FrontTire_L": 0.01,
+          "FrontTire_R": 0.01
+        },
+        "parents": {
+          "RearWheel_L_Pivot_ROOT": "RearAxle_Oscillation_Root_Reconstructed",
+          "RearWheel_R_Pivot_ROOT": "RearAxle_Oscillation_Root_Reconstructed",
+          "FrontWheel_L_Pivot_ROOT": "Articulation_FrontFrame_Root_Reconstructed",
+          "FrontWheel_R_Pivot_ROOT": "Articulation_FrontFrame_Root_Reconstructed"
+        },
+        "pivot_locations_m": {
+          "RearWheel_L_Pivot_ROOT": [
+            -1.85,
+            0.86,
+            -1.19
           ],
-          "min_m": [
-            -4.05,
-            -0.005595,
-            -1.585
+          "RearWheel_R_Pivot_ROOT": [
+            -1.85,
+            0.86,
+            1.19
           ],
-          "max_m": [
-            5.133311,
-            3.54,
-            1.585
+          "FrontWheel_L_Pivot_ROOT": [
+            1.6,
+            0.86,
+            -1.19
           ],
-          "size_m": [
-            9.183311,
-            3.545595,
-            3.17
-          ],
-          "measured_object_count": 407,
-          "method": "evaluated retained-pose public mesh and curve vertices; studio, markers, collision, inspection, cameras, and lights excluded"
+          "FrontWheel_R_Pivot_ROOT": [
+            1.6,
+            0.86,
+            1.19
+          ]
         }
       }
     },
     {
-      "id": "published-bucket-width-stock-pile",
+      "id": "frame_articulation_continuity",
       "status": "PASS",
-      "detail": "Measured from evaluated retained-pose public visible geometry; no helper witnesses participate.",
+      "detail": {
+        "method": "Five-point -40/-35/0/+35/+40 degree transform sweep with invariant hitch-axis residual and fixed-pin ancestry.",
+        "evidence": {
+          "samples": [
+            {
+              "angle_deg": -40,
+              "pivot_m": [
+                0.0,
+                1.2,
+                0.0
+              ],
+              "pivot_residual_m": 0.0
+            },
+            {
+              "angle_deg": -35,
+              "pivot_m": [
+                0.0,
+                1.2,
+                0.0
+              ],
+              "pivot_residual_m": 0.0
+            },
+            {
+              "angle_deg": 0.0,
+              "pivot_m": [
+                0.0,
+                1.2,
+                0.0
+              ],
+              "pivot_residual_m": 0.0
+            },
+            {
+              "angle_deg": 35,
+              "pivot_m": [
+                0.0,
+                1.2,
+                0.0
+              ],
+              "pivot_residual_m": 0.0
+            },
+            {
+              "angle_deg": 40,
+              "pivot_m": [
+                0.0,
+                1.2,
+                0.0
+              ],
+              "pivot_residual_m": 0.0
+            }
+          ],
+          "topology": {
+            "front_root_parent": "Machine_Root",
+            "upper_pin_parent": "Machine_Root",
+            "lower_pin_parent": "Machine_Root"
+          }
+        },
+        "semantic_nodes": [
+          "Machine_Root",
+          "Articulation_FrontFrame_Root_Reconstructed",
+          "CenterArticulationUpperPin",
+          "CenterArticulationLowerPin"
+        ],
+        "fact_ids": [
+          "steering-angle-nominal",
+          "steering-angle-max-stop",
+          "hitch-height-standard"
+        ]
+      },
       "expected": {
-        "value_m": 3.17,
-        "tolerance_m": 0.04
+        "maximum_pivot_residual_m": 1e-06
       },
       "actual": {
-        "value_m": 3.17,
-        "absolute_delta_m": 0.0,
-        "evaluated_visible_bounds_m": {
-          "axis_order": [
-            "machine_X_longitudinal",
-            "machine_Y_vertical",
-            "machine_Z_right"
-          ],
-          "min_m": [
-            -4.05,
-            -0.005595,
-            -1.585
-          ],
-          "max_m": [
-            5.133311,
-            3.54,
-            1.585
-          ],
-          "size_m": [
-            9.183311,
-            3.545595,
-            3.17
-          ],
-          "measured_object_count": 407,
-          "method": "evaluated retained-pose public mesh and curve vertices; studio, markers, collision, inspection, cameras, and lights excluded"
+        "samples": [
+          {
+            "angle_deg": -40,
+            "pivot_m": [
+              0.0,
+              1.2,
+              0.0
+            ],
+            "pivot_residual_m": 0.0
+          },
+          {
+            "angle_deg": -35,
+            "pivot_m": [
+              0.0,
+              1.2,
+              0.0
+            ],
+            "pivot_residual_m": 0.0
+          },
+          {
+            "angle_deg": 0.0,
+            "pivot_m": [
+              0.0,
+              1.2,
+              0.0
+            ],
+            "pivot_residual_m": 0.0
+          },
+          {
+            "angle_deg": 35,
+            "pivot_m": [
+              0.0,
+              1.2,
+              0.0
+            ],
+            "pivot_residual_m": 0.0
+          },
+          {
+            "angle_deg": 40,
+            "pivot_m": [
+              0.0,
+              1.2,
+              0.0
+            ],
+            "pivot_residual_m": 0.0
+          }
+        ],
+        "topology": {
+          "front_root_parent": "Machine_Root",
+          "upper_pin_parent": "Machine_Root",
+          "lower_pin_parent": "Machine_Root"
         }
       }
     },
     {
-      "id": "published-wheelbase",
+      "id": "steering_cylinder_continuity",
       "status": "PASS",
-      "detail": "Axle-center references follow the published 3.45 m wheelbase; axle castings and tire geometry remain reconstructed.",
+      "detail": {
+        "method": "Five-point articulation sweep of fixed-rear and moving-front clevises; directly measures barrel/rod mesh endpoints, closure residuals, overlap, count, stroke use and ancestry.",
+        "evidence": {
+          "samples": [
+            {
+              "degrees": -40.0,
+              "pivot_world_machine": [
+                0.0,
+                1.2,
+                0.0
+              ],
+              "cylinders": {
+                "L": {
+                  "anchor_distance_m": 1.0104454581674682,
+                  "barrel_length_m": 0.6599999784565329,
+                  "rod_visible_length_m": 0.5304454872103889,
+                  "barrel_rod_overlap_m": 0.18000000749945366,
+                  "base_closure_residual_m": 1.4901161193847656e-08,
+                  "base_anchor": [
+                    0.0,
+                    0.85,
+                    0.0
+                  ],
+                  "front_closure_residual_m": 5.960464477539063e-08,
+                  "front_anchor": [
+                    0.200219,
+                    0.85,
+                    -0.99041
+                  ],
+                  "base_axis_residual_m": 0.0
+                },
+                "R": {
+                  "anchor_distance_m": 1.010445498290005,
+                  "barrel_length_m": 0.6600000035475629,
+                  "rod_visible_length_m": 0.5304455137796081,
+                  "barrel_rod_overlap_m": 0.180000019037166,
+                  "base_closure_residual_m": 5.686408848491962e-08,
+                  "base_anchor": [
+                    0.0,
+                    0.99,
+                    0.0
+                  ],
+                  "front_closure_residual_m": 2.60770320892334e-08,
+                  "front_anchor": [
+                    1.010131,
+                    0.99,
+                    -0.025194
+                  ],
+                  "base_axis_residual_m": 0.0
+                }
+              }
+            },
+            {
+              "degrees": -35.0,
+              "pivot_world_machine": [
+                0.0,
+                1.2,
+                0.0
+              ],
+              "cylinders": {
+                "L": {
+                  "anchor_distance_m": 1.0104454821315392,
+                  "barrel_length_m": 0.6600000010340503,
+                  "rod_visible_length_m": 0.5304456434709264,
+                  "barrel_rod_overlap_m": 0.18000016237343752,
+                  "base_closure_residual_m": 7.450580596923828e-09,
+                  "base_anchor": [
+                    0.0,
+                    0.85,
+                    0.0
+                  ],
+                  "front_closure_residual_m": 1.4600096599955427e-07,
+                  "front_anchor": [
+                    0.285777,
+                    0.85,
+                    -0.969191
+                  ],
+                  "base_axis_residual_m": 0.0
+                },
+                "R": {
+                  "anchor_distance_m": 1.0104454821315392,
+                  "barrel_length_m": 0.6600000048263676,
+                  "rod_visible_length_m": 0.5304454306975995,
+                  "barrel_rod_overlap_m": 0.1799999533924279,
+                  "base_closure_residual_m": 5.218731509939544e-08,
+                  "base_anchor": [
+                    0.0,
+                    0.99,
+                    0.0
+                  ],
+                  "front_closure_residual_m": 8.940696716308594e-08,
+                  "front_anchor": [
+                    1.008483,
+                    0.99,
+                    0.06294
+                  ],
+                  "base_axis_residual_m": 0.0
+                }
+              }
+            },
+            {
+              "degrees": 0.0,
+              "pivot_world_machine": [
+                0.0,
+                1.2,
+                0.0
+              ],
+              "cylinders": {
+                "L": {
+                  "anchor_distance_m": 1.0104454600108583,
+                  "barrel_length_m": 0.6600000207893773,
+                  "rod_visible_length_m": 0.530445583775895,
+                  "barrel_rod_overlap_m": 0.18000014455441393,
+                  "base_closure_residual_m": 1.4901161193847656e-08,
+                  "base_anchor": [
+                    0.0,
+                    0.85,
+                    0.0
+                  ],
+                  "front_closure_residual_m": 1.0323827311807139e-07,
+                  "front_anchor": [
+                    0.79,
+                    0.85,
+                    -0.63
+                  ],
+                  "base_axis_residual_m": 0.0
+                },
+                "R": {
+                  "anchor_distance_m": 1.0104454600108583,
+                  "barrel_length_m": 0.6599999643455843,
+                  "rod_visible_length_m": 0.5304454854546389,
+                  "barrel_rod_overlap_m": 0.17999998978936493,
+                  "base_closure_residual_m": 6.664001874625056e-08,
+                  "base_anchor": [
+                    0.0,
+                    0.99,
+                    0.0
+                  ],
+                  "front_closure_residual_m": 5.960464477539063e-08,
+                  "front_anchor": [
+                    0.79,
+                    0.99,
+                    0.63
+                  ],
+                  "base_axis_residual_m": 0.0
+                }
+              }
+            },
+            {
+              "degrees": 35.0,
+              "pivot_world_machine": [
+                0.0,
+                1.2,
+                0.0
+              ],
+              "cylinders": {
+                "L": {
+                  "anchor_distance_m": 1.0104454821315392,
+                  "barrel_length_m": 0.6599999974181198,
+                  "rod_visible_length_m": 0.5304456779272465,
+                  "barrel_rod_overlap_m": 0.1800001932138271,
+                  "base_closure_residual_m": 3.332000937312528e-08,
+                  "base_anchor": [
+                    0.0,
+                    0.85,
+                    0.0
+                  ],
+                  "front_closure_residual_m": 1.4057727354849284e-07,
+                  "front_anchor": [
+                    1.008483,
+                    0.85,
+                    -0.06294
+                  ],
+                  "base_axis_residual_m": 0.0
+                },
+                "R": {
+                  "anchor_distance_m": 1.0104454821315392,
+                  "barrel_length_m": 0.659999967167774,
+                  "rod_visible_length_m": 0.5304456083561895,
+                  "barrel_rod_overlap_m": 0.1800000933924244,
+                  "base_closure_residual_m": 5.21540641784668e-08,
+                  "base_anchor": [
+                    0.0,
+                    0.99,
+                    0.0
+                  ],
+                  "front_closure_residual_m": 1.1920928955078125e-07,
+                  "front_anchor": [
+                    0.285777,
+                    0.99,
+                    0.969191
+                  ],
+                  "base_axis_residual_m": 0.0
+                }
+              }
+            },
+            {
+              "degrees": 40.0,
+              "pivot_world_machine": [
+                0.0,
+                1.2,
+                0.0
+              ],
+              "cylinders": {
+                "L": {
+                  "anchor_distance_m": 1.010445498290005,
+                  "barrel_length_m": 0.6600000059508337,
+                  "rod_visible_length_m": 0.5304455157959752,
+                  "barrel_rod_overlap_m": 0.18000002345680377,
+                  "base_closure_residual_m": 2.9816870751943665e-08,
+                  "base_anchor": [
+                    0.0,
+                    0.85,
+                    0.0
+                  ],
+                  "front_closure_residual_m": 6.143906154658885e-08,
+                  "front_anchor": [
+                    1.010131,
+                    0.85,
+                    0.025194
+                  ],
+                  "base_axis_residual_m": 0.0
+                },
+                "R": {
+                  "anchor_distance_m": 1.0104454581674682,
+                  "barrel_length_m": 0.6599999502346352,
+                  "rod_visible_length_m": 0.5304454635079304,
+                  "barrel_rod_overlap_m": 0.1799999555750973,
+                  "base_closure_residual_m": 5.21540641784668e-08,
+                  "base_anchor": [
+                    0.0,
+                    0.99,
+                    0.0
+                  ],
+                  "front_closure_residual_m": 5.960464477539063e-08,
+                  "front_anchor": [
+                    0.200219,
+                    0.99,
+                    0.99041
+                  ],
+                  "base_axis_residual_m": 0.0
+                }
+              }
+            }
+          ],
+          "stroke_travel_m": {
+            "L": 4.012253684848588e-08,
+            "R": 4.012253684848588e-08
+          },
+          "parents": {
+            "SteeringCylinder_Barrel_L": "SteeringCylinder_L_YawPivot_ROOT_Reconstructed",
+            "SteeringCylinder_Rod_L": "SteeringCylinder_L_YawPivot_ROOT_Reconstructed",
+            "SteeringCylinder_Barrel_R": "SteeringCylinder_R_YawPivot_ROOT_Reconstructed",
+            "SteeringCylinder_Rod_R": "SteeringCylinder_R_YawPivot_ROOT_Reconstructed",
+            "SteeringCylinder_L_YawPivot_ROOT_Reconstructed": "Articulation_FrontFrame_Root_Reconstructed",
+            "SteeringCylinder_R_YawPivot_ROOT_Reconstructed": "Articulation_FrontFrame_Root_Reconstructed",
+            "SteeringCylinder_BaseClevis_L": "RearFrame_Root",
+            "SteeringCylinder_BaseClevis_R": "RearFrame_Root",
+            "SteeringCylinder_FrontClevis_L": "Articulation_FrontFrame_Root_Reconstructed",
+            "SteeringCylinder_FrontClevis_R": "Articulation_FrontFrame_Root_Reconstructed"
+          },
+          "measured_barrel_bore_m": {
+            "L": 0.0949999950826168,
+            "R": 0.09499998390674591
+          }
+        },
+        "semantic_nodes": [
+          "SteeringCylinder_L_YawPivot_ROOT_Reconstructed",
+          "SteeringCylinder_R_YawPivot_ROOT_Reconstructed",
+          "SteeringCylinder_Barrel_L",
+          "SteeringCylinder_Rod_L",
+          "SteeringCylinder_Barrel_R",
+          "SteeringCylinder_Rod_R",
+          "SteeringCylinder_BaseClevis_L",
+          "SteeringCylinder_BaseClevis_R",
+          "SteeringCylinder_FrontClevis_L",
+          "SteeringCylinder_FrontClevis_R"
+        ],
+        "fact_ids": [
+          "steering-cylinder-count",
+          "steering-cylinder-bore",
+          "steering-cylinder-stroke",
+          "steering-angle-max-stop"
+        ]
+      },
       "expected": {
-        "value_m": 3.45
+        "maximum_travel_m": 0.441,
+        "maximum_anchor_residual_m": 1e-06
       },
       "actual": {
-        "value_m": 3.45
+        "samples": [
+          {
+            "degrees": -40.0,
+            "pivot_world_machine": [
+              0.0,
+              1.2,
+              0.0
+            ],
+            "cylinders": {
+              "L": {
+                "anchor_distance_m": 1.0104454581674682,
+                "barrel_length_m": 0.6599999784565329,
+                "rod_visible_length_m": 0.5304454872103889,
+                "barrel_rod_overlap_m": 0.18000000749945366,
+                "base_closure_residual_m": 1.4901161193847656e-08,
+                "base_anchor": [
+                  0.0,
+                  0.85,
+                  0.0
+                ],
+                "front_closure_residual_m": 5.960464477539063e-08,
+                "front_anchor": [
+                  0.200219,
+                  0.85,
+                  -0.99041
+                ],
+                "base_axis_residual_m": 0.0
+              },
+              "R": {
+                "anchor_distance_m": 1.010445498290005,
+                "barrel_length_m": 0.6600000035475629,
+                "rod_visible_length_m": 0.5304455137796081,
+                "barrel_rod_overlap_m": 0.180000019037166,
+                "base_closure_residual_m": 5.686408848491962e-08,
+                "base_anchor": [
+                  0.0,
+                  0.99,
+                  0.0
+                ],
+                "front_closure_residual_m": 2.60770320892334e-08,
+                "front_anchor": [
+                  1.010131,
+                  0.99,
+                  -0.025194
+                ],
+                "base_axis_residual_m": 0.0
+              }
+            }
+          },
+          {
+            "degrees": -35.0,
+            "pivot_world_machine": [
+              0.0,
+              1.2,
+              0.0
+            ],
+            "cylinders": {
+              "L": {
+                "anchor_distance_m": 1.0104454821315392,
+                "barrel_length_m": 0.6600000010340503,
+                "rod_visible_length_m": 0.5304456434709264,
+                "barrel_rod_overlap_m": 0.18000016237343752,
+                "base_closure_residual_m": 7.450580596923828e-09,
+                "base_anchor": [
+                  0.0,
+                  0.85,
+                  0.0
+                ],
+                "front_closure_residual_m": 1.4600096599955427e-07,
+                "front_anchor": [
+                  0.285777,
+                  0.85,
+                  -0.969191
+                ],
+                "base_axis_residual_m": 0.0
+              },
+              "R": {
+                "anchor_distance_m": 1.0104454821315392,
+                "barrel_length_m": 0.6600000048263676,
+                "rod_visible_length_m": 0.5304454306975995,
+                "barrel_rod_overlap_m": 0.1799999533924279,
+                "base_closure_residual_m": 5.218731509939544e-08,
+                "base_anchor": [
+                  0.0,
+                  0.99,
+                  0.0
+                ],
+                "front_closure_residual_m": 8.940696716308594e-08,
+                "front_anchor": [
+                  1.008483,
+                  0.99,
+                  0.06294
+                ],
+                "base_axis_residual_m": 0.0
+              }
+            }
+          },
+          {
+            "degrees": 0.0,
+            "pivot_world_machine": [
+              0.0,
+              1.2,
+              0.0
+            ],
+            "cylinders": {
+              "L": {
+                "anchor_distance_m": 1.0104454600108583,
+                "barrel_length_m": 0.6600000207893773,
+                "rod_visible_length_m": 0.530445583775895,
+                "barrel_rod_overlap_m": 0.18000014455441393,
+                "base_closure_residual_m": 1.4901161193847656e-08,
+                "base_anchor": [
+                  0.0,
+                  0.85,
+                  0.0
+                ],
+                "front_closure_residual_m": 1.0323827311807139e-07,
+                "front_anchor": [
+                  0.79,
+                  0.85,
+                  -0.63
+                ],
+                "base_axis_residual_m": 0.0
+              },
+              "R": {
+                "anchor_distance_m": 1.0104454600108583,
+                "barrel_length_m": 0.6599999643455843,
+                "rod_visible_length_m": 0.5304454854546389,
+                "barrel_rod_overlap_m": 0.17999998978936493,
+                "base_closure_residual_m": 6.664001874625056e-08,
+                "base_anchor": [
+                  0.0,
+                  0.99,
+                  0.0
+                ],
+                "front_closure_residual_m": 5.960464477539063e-08,
+                "front_anchor": [
+                  0.79,
+                  0.99,
+                  0.63
+                ],
+                "base_axis_residual_m": 0.0
+              }
+            }
+          },
+          {
+            "degrees": 35.0,
+            "pivot_world_machine": [
+              0.0,
+              1.2,
+              0.0
+            ],
+            "cylinders": {
+              "L": {
+                "anchor_distance_m": 1.0104454821315392,
+                "barrel_length_m": 0.6599999974181198,
+                "rod_visible_length_m": 0.5304456779272465,
+                "barrel_rod_overlap_m": 0.1800001932138271,
+                "base_closure_residual_m": 3.332000937312528e-08,
+                "base_anchor": [
+                  0.0,
+                  0.85,
+                  0.0
+                ],
+                "front_closure_residual_m": 1.4057727354849284e-07,
+                "front_anchor": [
+                  1.008483,
+                  0.85,
+                  -0.06294
+                ],
+                "base_axis_residual_m": 0.0
+              },
+              "R": {
+                "anchor_distance_m": 1.0104454821315392,
+                "barrel_length_m": 0.659999967167774,
+                "rod_visible_length_m": 0.5304456083561895,
+                "barrel_rod_overlap_m": 0.1800000933924244,
+                "base_closure_residual_m": 5.21540641784668e-08,
+                "base_anchor": [
+                  0.0,
+                  0.99,
+                  0.0
+                ],
+                "front_closure_residual_m": 1.1920928955078125e-07,
+                "front_anchor": [
+                  0.285777,
+                  0.99,
+                  0.969191
+                ],
+                "base_axis_residual_m": 0.0
+              }
+            }
+          },
+          {
+            "degrees": 40.0,
+            "pivot_world_machine": [
+              0.0,
+              1.2,
+              0.0
+            ],
+            "cylinders": {
+              "L": {
+                "anchor_distance_m": 1.010445498290005,
+                "barrel_length_m": 0.6600000059508337,
+                "rod_visible_length_m": 0.5304455157959752,
+                "barrel_rod_overlap_m": 0.18000002345680377,
+                "base_closure_residual_m": 2.9816870751943665e-08,
+                "base_anchor": [
+                  0.0,
+                  0.85,
+                  0.0
+                ],
+                "front_closure_residual_m": 6.143906154658885e-08,
+                "front_anchor": [
+                  1.010131,
+                  0.85,
+                  0.025194
+                ],
+                "base_axis_residual_m": 0.0
+              },
+              "R": {
+                "anchor_distance_m": 1.0104454581674682,
+                "barrel_length_m": 0.6599999502346352,
+                "rod_visible_length_m": 0.5304454635079304,
+                "barrel_rod_overlap_m": 0.1799999555750973,
+                "base_closure_residual_m": 5.21540641784668e-08,
+                "base_anchor": [
+                  0.0,
+                  0.99,
+                  0.0
+                ],
+                "front_closure_residual_m": 5.960464477539063e-08,
+                "front_anchor": [
+                  0.200219,
+                  0.99,
+                  0.99041
+                ],
+                "base_axis_residual_m": 0.0
+              }
+            }
+          }
+        ],
+        "stroke_travel_m": {
+          "L": 4.012253684848588e-08,
+          "R": 4.012253684848588e-08
+        },
+        "parents": {
+          "SteeringCylinder_Barrel_L": "SteeringCylinder_L_YawPivot_ROOT_Reconstructed",
+          "SteeringCylinder_Rod_L": "SteeringCylinder_L_YawPivot_ROOT_Reconstructed",
+          "SteeringCylinder_Barrel_R": "SteeringCylinder_R_YawPivot_ROOT_Reconstructed",
+          "SteeringCylinder_Rod_R": "SteeringCylinder_R_YawPivot_ROOT_Reconstructed",
+          "SteeringCylinder_L_YawPivot_ROOT_Reconstructed": "Articulation_FrontFrame_Root_Reconstructed",
+          "SteeringCylinder_R_YawPivot_ROOT_Reconstructed": "Articulation_FrontFrame_Root_Reconstructed",
+          "SteeringCylinder_BaseClevis_L": "RearFrame_Root",
+          "SteeringCylinder_BaseClevis_R": "RearFrame_Root",
+          "SteeringCylinder_FrontClevis_L": "Articulation_FrontFrame_Root_Reconstructed",
+          "SteeringCylinder_FrontClevis_R": "Articulation_FrontFrame_Root_Reconstructed"
+        },
+        "measured_barrel_bore_m": {
+          "L": 0.0949999950826168,
+          "R": 0.09499998390674591
+        }
       }
     },
     {
-      "id": "published-standard-tire-width",
+      "id": "rear_axle_oscillation_clearance",
       "status": "PASS",
-      "detail": "Reconstructed tire tread outer faces are set to the published 3.060 m width; bucket side guards remain the wider complete-machine envelope.",
+      "detail": {
+        "method": "Endpoint sweep at the published +/-13 degree half-range; measures pivot invariance, wheel ancestry and rear-frame lateral clearance.",
+        "evidence": {
+          "samples": [
+            {
+              "degrees": -13.0,
+              "pivot_world_machine": [
+                -1.85,
+                0.86,
+                0.0
+              ],
+              "lateral_body_clearance_m": {
+                "left": 0.07542300000000002,
+                "right": 0.07542300000000002
+              },
+              "pivot_residual_m": 0.0
+            },
+            {
+              "degrees": 0.0,
+              "pivot_world_machine": [
+                -1.85,
+                0.86,
+                0.0
+              ],
+              "lateral_body_clearance_m": {
+                "left": 0.28500000000000003,
+                "right": 0.28500000000000003
+              },
+              "pivot_residual_m": 0.0
+            },
+            {
+              "degrees": 13.0,
+              "pivot_world_machine": [
+                -1.85,
+                0.86,
+                0.0
+              ],
+              "lateral_body_clearance_m": {
+                "left": 0.07542300000000002,
+                "right": 0.07542300000000002
+              },
+              "pivot_residual_m": 0.0
+            }
+          ],
+          "minimum_lateral_body_clearance_m": 0.07542300000000002
+        },
+        "semantic_nodes": [
+          "RearFrame_Root",
+          "RearAxle_Oscillation_Root_Reconstructed",
+          "RearWheel_L_Pivot_ROOT",
+          "RearWheel_R_Pivot_ROOT",
+          "RearTire_L",
+          "RearTire_R",
+          "RearFrame_Spine"
+        ],
+        "fact_ids": [
+          "rear-axle-oscillation"
+        ]
+      },
       "expected": {
-        "value_m": 3.06
+        "total_range_deg": 26,
+        "minimum_clearance_m": 0.05
       },
       "actual": {
-        "value_m": 3.06
+        "samples": [
+          {
+            "degrees": -13.0,
+            "pivot_world_machine": [
+              -1.85,
+              0.86,
+              0.0
+            ],
+            "lateral_body_clearance_m": {
+              "left": 0.07542300000000002,
+              "right": 0.07542300000000002
+            },
+            "pivot_residual_m": 0.0
+          },
+          {
+            "degrees": 0.0,
+            "pivot_world_machine": [
+              -1.85,
+              0.86,
+              0.0
+            ],
+            "lateral_body_clearance_m": {
+              "left": 0.28500000000000003,
+              "right": 0.28500000000000003
+            },
+            "pivot_residual_m": 0.0
+          },
+          {
+            "degrees": 13.0,
+            "pivot_world_machine": [
+              -1.85,
+              0.86,
+              0.0
+            ],
+            "lateral_body_clearance_m": {
+              "left": 0.07542300000000002,
+              "right": 0.07542300000000002
+            },
+            "pivot_residual_m": 0.0
+          }
+        ],
+        "minimum_lateral_body_clearance_m": 0.07542300000000002
       }
     },
     {
-      "id": "published-hinge-carry-height",
+      "id": "full_lift_hinge_height",
       "status": "PASS",
-      "detail": "Bucket-hinge reference is constrained at retained carry height; linkage geometry is reconstructed.",
+      "detail": {
+        "method": "World transform of the shipped bucket pivot at stowed and maximum-lift endpoints, plus invariant rigid-arm radius.",
+        "evidence": {
+          "carry_height_m": 0.58,
+          "maximum_height_m": 4.37,
+          "carry_pose": {
+            "pose": "stowed",
+            "alpha_rad": 0.0,
+            "alpha_deg": 0.0,
+            "pivot": [
+              0.28,
+              1.74,
+              0.0
+            ],
+            "hinge": [
+              3.2300000000000004,
+              0.5799999999999998,
+              0.0
+            ],
+            "elbow": [
+              1.55,
+              1.23,
+              0.0
+            ],
+            "bucket_rotation_blender_y_deg": 14.85,
+            "bellcrank_pivot": [
+              1.65,
+              1.25,
+              0.0
+            ],
+            "bellcrank_lower": [
+              1.2741229516856367,
+              1.1131919426697323,
+              0.0
+            ],
+            "bellcrank_upper": [
+              2.0728616793536587,
+              1.4039090644965513,
+              0.0
+            ],
+            "bucket_ear": [
+              3.1974123330815587,
+              0.8472789628175263,
+              0.0
+            ],
+            "bucket_link_length_m": 1.9415848571319743,
+            "bucket_cylinder_base": [
+              0.4,
+              1.8,
+              0.0
+            ],
+            "bellcrank_angle_deg": -159.99999999999997,
+            "lift_cylinders": {
+              "L": {
+                "anchor_distance_m": 1.4567428577031805,
+                "barrel_length_m": 1.050000042592485,
+                "rod_visible_length_m": 0.6767429546965609,
+                "barrel_rod_overlap_m": 0.27000013958586533,
+                "base_closure_residual_m": 4.470348358154297e-08,
+                "moving_closure_residual_m": 1.1920928955078125e-07,
+                "base_anchor": [
+                  0.2,
+                  1.2,
+                  -0.7
+                ],
+                "moving_anchor": [
+                  1.65,
+                  1.06,
+                  -0.7
+                ]
+              },
+              "R": {
+                "anchor_distance_m": 1.4567428577031805,
+                "barrel_length_m": 1.050000042592485,
+                "rod_visible_length_m": 0.6767429546965609,
+                "barrel_rod_overlap_m": 0.27000013958586533,
+                "base_closure_residual_m": 4.470348358154297e-08,
+                "moving_closure_residual_m": 1.1920928955078125e-07,
+                "base_anchor": [
+                  0.2,
+                  1.2,
+                  0.7
+                ],
+                "moving_anchor": [
+                  1.65,
+                  1.06,
+                  0.7
+                ]
+              }
+            },
+            "bucket_cylinder": {
+              "anchor_distance_m": 1.7191143603356576,
+              "barrel_length_m": 0.7400000322046407,
+              "rod_visible_length_m": 1.1891142514329809,
+              "barrel_rod_overlap_m": 0.20999992330196404,
+              "base_closure_residual_m": 6.147695943537675e-08,
+              "moving_closure_residual_m": 1.6382517727213817e-07,
+              "base_anchor": [
+                0.4,
+                1.8,
+                0.0
+              ],
+              "moving_anchor": [
+                2.072862,
+                1.403909,
+                0.0
+              ]
+            },
+            "loader_radius_m": 3.1698739076982023,
+            "arm_joint_residual_m": 1.6858739404357614e-07,
+            "measured_bucket_link_length_m": 1.941584801474432,
+            "zbar_lower_closure_residual_m": 1.7095910652933485e-07,
+            "zbar_ear_closure_residual_m": 2.457562461863554e-07,
+            "zbar_joint_residual_m": 2.457562461863554e-07
+          },
+          "raised_pose": {
+            "pose": "raised_dump",
+            "alpha_rad": 1.3531932125354207,
+            "alpha_deg": 77.53225994402901,
+            "pivot": [
+              0.28,
+              1.74,
+              0.0
+            ],
+            "hinge": [
+              2.0495197088475736,
+              4.37,
+              0.0
+            ],
+            "elbow": [
+              1.0521531880605943,
+              2.8699466598772974,
+              0.0
+            ],
+            "bucket_rotation_blender_y_deg": 45.0,
+            "bellcrank_pivot": [
+              1.0542138220973545,
+              2.97190622925343,
+              0.0
+            ],
+            "bellcrank_lower": [
+              1.4238608522542369,
+              2.8190629333710238,
+              0.0
+            ],
+            "bellcrank_upper": [
+              0.6383609131708616,
+              3.1438549371211377,
+              0.0
+            ],
+            "bucket_ear": [
+              2.1555857260255555,
+              4.617487373415291,
+              0.0
+            ],
+            "bucket_link_length_m": 1.9415848571319743,
+            "bucket_cylinder_base": [
+              0.2473217230318418,
+              1.8701235190670478,
+              0.0
+            ],
+            "bellcrank_angle_deg": -99.99659310173078,
+            "lift_cylinders": {
+              "L": {
+                "anchor_distance_m": 2.0191621424642276,
+                "barrel_length_m": 1.0499999108768607,
+                "rod_visible_length_m": 1.2391623963041078,
+                "barrel_rod_overlap_m": 0.27000016471674115,
+                "base_closure_residual_m": 1.4901161193847656e-08,
+                "moving_closure_residual_m": 2.6656007498500226e-07,
+                "base_anchor": [
+                  0.2,
+                  1.2,
+                  -0.7
+                ],
+                "moving_anchor": [
+                  1.239733,
+                  2.930887,
+                  -0.7
+                ]
+              },
+              "R": {
+                "anchor_distance_m": 2.0191621424642276,
+                "barrel_length_m": 1.0499999108768607,
+                "rod_visible_length_m": 1.2391623963041078,
+                "barrel_rod_overlap_m": 0.27000016471674115,
+                "base_closure_residual_m": 1.4901161193847656e-08,
+                "moving_closure_residual_m": 2.6656007498500226e-07,
+                "base_anchor": [
+                  0.2,
+                  1.2,
+                  0.7
+                ],
+                "moving_anchor": [
+                  1.239733,
+                  2.930887,
+                  0.7
+                ]
+              }
+            },
+            "bucket_cylinder": {
+              "anchor_distance_m": 1.3324048142136333,
+              "barrel_length_m": 0.7399998119594058,
+              "rod_visible_length_m": 0.8024049579559461,
+              "barrel_rod_overlap_m": 0.20999995570171848,
+              "base_closure_residual_m": 1.2582396851679978e-07,
+              "moving_closure_residual_m": 2.5871530421675096e-07,
+              "base_anchor": [
+                0.247322,
+                1.870124,
+                0.0
+              ],
+              "moving_anchor": [
+                0.638361,
+                3.143855,
+                0.0
+              ]
+            },
+            "loader_radius_m": 3.169873888894727,
+            "arm_joint_residual_m": 3.371747880871523e-07,
+            "measured_bucket_link_length_m": 1.9415848494415648,
+            "zbar_lower_closure_residual_m": 2.6656007498500226e-07,
+            "zbar_ear_closure_residual_m": 2.384185791015625e-07,
+            "zbar_joint_residual_m": 2.6656007498500226e-07
+          }
+        },
+        "semantic_nodes": [
+          "LoaderArm_LiftPivot_ROOT_Reconstructed",
+          "StockPileBucket_PivotRoot_Reconstructed",
+          "BucketHingeCrossmember"
+        ],
+        "fact_ids": [
+          "hinge-pin-height-carry-standard",
+          "hinge-pin-height-max-standard"
+        ]
+      },
       "expected": {
-        "value_m": 0.58,
-        "tolerance_m": 0.005
+        "carry_m": 0.58,
+        "maximum_m": 4.37,
+        "tolerance_m": 0.002
       },
       "actual": {
-        "value_m": 0.58
+        "carry_height_m": 0.58,
+        "maximum_height_m": 4.37,
+        "carry_pose": {
+          "pose": "stowed",
+          "alpha_rad": 0.0,
+          "alpha_deg": 0.0,
+          "pivot": [
+            0.28,
+            1.74,
+            0.0
+          ],
+          "hinge": [
+            3.2300000000000004,
+            0.5799999999999998,
+            0.0
+          ],
+          "elbow": [
+            1.55,
+            1.23,
+            0.0
+          ],
+          "bucket_rotation_blender_y_deg": 14.85,
+          "bellcrank_pivot": [
+            1.65,
+            1.25,
+            0.0
+          ],
+          "bellcrank_lower": [
+            1.2741229516856367,
+            1.1131919426697323,
+            0.0
+          ],
+          "bellcrank_upper": [
+            2.0728616793536587,
+            1.4039090644965513,
+            0.0
+          ],
+          "bucket_ear": [
+            3.1974123330815587,
+            0.8472789628175263,
+            0.0
+          ],
+          "bucket_link_length_m": 1.9415848571319743,
+          "bucket_cylinder_base": [
+            0.4,
+            1.8,
+            0.0
+          ],
+          "bellcrank_angle_deg": -159.99999999999997,
+          "lift_cylinders": {
+            "L": {
+              "anchor_distance_m": 1.4567428577031805,
+              "barrel_length_m": 1.050000042592485,
+              "rod_visible_length_m": 0.6767429546965609,
+              "barrel_rod_overlap_m": 0.27000013958586533,
+              "base_closure_residual_m": 4.470348358154297e-08,
+              "moving_closure_residual_m": 1.1920928955078125e-07,
+              "base_anchor": [
+                0.2,
+                1.2,
+                -0.7
+              ],
+              "moving_anchor": [
+                1.65,
+                1.06,
+                -0.7
+              ]
+            },
+            "R": {
+              "anchor_distance_m": 1.4567428577031805,
+              "barrel_length_m": 1.050000042592485,
+              "rod_visible_length_m": 0.6767429546965609,
+              "barrel_rod_overlap_m": 0.27000013958586533,
+              "base_closure_residual_m": 4.470348358154297e-08,
+              "moving_closure_residual_m": 1.1920928955078125e-07,
+              "base_anchor": [
+                0.2,
+                1.2,
+                0.7
+              ],
+              "moving_anchor": [
+                1.65,
+                1.06,
+                0.7
+              ]
+            }
+          },
+          "bucket_cylinder": {
+            "anchor_distance_m": 1.7191143603356576,
+            "barrel_length_m": 0.7400000322046407,
+            "rod_visible_length_m": 1.1891142514329809,
+            "barrel_rod_overlap_m": 0.20999992330196404,
+            "base_closure_residual_m": 6.147695943537675e-08,
+            "moving_closure_residual_m": 1.6382517727213817e-07,
+            "base_anchor": [
+              0.4,
+              1.8,
+              0.0
+            ],
+            "moving_anchor": [
+              2.072862,
+              1.403909,
+              0.0
+            ]
+          },
+          "loader_radius_m": 3.1698739076982023,
+          "arm_joint_residual_m": 1.6858739404357614e-07,
+          "measured_bucket_link_length_m": 1.941584801474432,
+          "zbar_lower_closure_residual_m": 1.7095910652933485e-07,
+          "zbar_ear_closure_residual_m": 2.457562461863554e-07,
+          "zbar_joint_residual_m": 2.457562461863554e-07
+        },
+        "raised_pose": {
+          "pose": "raised_dump",
+          "alpha_rad": 1.3531932125354207,
+          "alpha_deg": 77.53225994402901,
+          "pivot": [
+            0.28,
+            1.74,
+            0.0
+          ],
+          "hinge": [
+            2.0495197088475736,
+            4.37,
+            0.0
+          ],
+          "elbow": [
+            1.0521531880605943,
+            2.8699466598772974,
+            0.0
+          ],
+          "bucket_rotation_blender_y_deg": 45.0,
+          "bellcrank_pivot": [
+            1.0542138220973545,
+            2.97190622925343,
+            0.0
+          ],
+          "bellcrank_lower": [
+            1.4238608522542369,
+            2.8190629333710238,
+            0.0
+          ],
+          "bellcrank_upper": [
+            0.6383609131708616,
+            3.1438549371211377,
+            0.0
+          ],
+          "bucket_ear": [
+            2.1555857260255555,
+            4.617487373415291,
+            0.0
+          ],
+          "bucket_link_length_m": 1.9415848571319743,
+          "bucket_cylinder_base": [
+            0.2473217230318418,
+            1.8701235190670478,
+            0.0
+          ],
+          "bellcrank_angle_deg": -99.99659310173078,
+          "lift_cylinders": {
+            "L": {
+              "anchor_distance_m": 2.0191621424642276,
+              "barrel_length_m": 1.0499999108768607,
+              "rod_visible_length_m": 1.2391623963041078,
+              "barrel_rod_overlap_m": 0.27000016471674115,
+              "base_closure_residual_m": 1.4901161193847656e-08,
+              "moving_closure_residual_m": 2.6656007498500226e-07,
+              "base_anchor": [
+                0.2,
+                1.2,
+                -0.7
+              ],
+              "moving_anchor": [
+                1.239733,
+                2.930887,
+                -0.7
+              ]
+            },
+            "R": {
+              "anchor_distance_m": 2.0191621424642276,
+              "barrel_length_m": 1.0499999108768607,
+              "rod_visible_length_m": 1.2391623963041078,
+              "barrel_rod_overlap_m": 0.27000016471674115,
+              "base_closure_residual_m": 1.4901161193847656e-08,
+              "moving_closure_residual_m": 2.6656007498500226e-07,
+              "base_anchor": [
+                0.2,
+                1.2,
+                0.7
+              ],
+              "moving_anchor": [
+                1.239733,
+                2.930887,
+                0.7
+              ]
+            }
+          },
+          "bucket_cylinder": {
+            "anchor_distance_m": 1.3324048142136333,
+            "barrel_length_m": 0.7399998119594058,
+            "rod_visible_length_m": 0.8024049579559461,
+            "barrel_rod_overlap_m": 0.20999995570171848,
+            "base_closure_residual_m": 1.2582396851679978e-07,
+            "moving_closure_residual_m": 2.5871530421675096e-07,
+            "base_anchor": [
+              0.247322,
+              1.870124,
+              0.0
+            ],
+            "moving_anchor": [
+              0.638361,
+              3.143855,
+              0.0
+            ]
+          },
+          "loader_radius_m": 3.169873888894727,
+          "arm_joint_residual_m": 3.371747880871523e-07,
+          "measured_bucket_link_length_m": 1.9415848494415648,
+          "zbar_lower_closure_residual_m": 2.6656007498500226e-07,
+          "zbar_ear_closure_residual_m": 2.384185791015625e-07,
+          "zbar_joint_residual_m": 2.6656007498500226e-07
+        }
       }
     },
     {
-      "id": "published-hinge-maximum-height",
+      "id": "dump_clearance_and_reach",
       "status": "PASS",
-      "detail": "Raised-pose hinge endpoint is constrained; this does not qualify the interpolated lift path.",
+      "detail": {
+        "method": "Evaluated raised-pose cutting-edge and complete bucket vertices at the brochure's 45 degree dump condition; reach uses the front-tire forward tangent datum.",
+        "evidence": {
+          "cutting_edge_clearance_m": 3.074965,
+          "cutting_edge_reach_from_front_tire_m": 1.3442749999999997,
+          "bucket_operating_height_m": 6.090604,
+          "bucket_bounds_m": {
+            "min_m": [
+              1.843638,
+              3.015669,
+              -1.585
+            ],
+            "max_m": [
+              3.951674,
+              6.090604,
+              1.585
+            ],
+            "size_m": [
+              2.108037,
+              3.074936,
+              3.17
+            ],
+            "objects": [
+              "BucketBOC_Bolt_01_+0.09",
+              "BucketBOC_Bolt_01_-0.09",
+              "BucketBOC_Bolt_02_+0.09",
+              "BucketBOC_Bolt_02_-0.09",
+              "BucketBOC_Bolt_03_+0.09",
+              "BucketBOC_Bolt_03_-0.09",
+              "BucketBOC_Bolt_04_+0.09",
+              "BucketBOC_Bolt_04_-0.09",
+              "BucketBOC_Bolt_05_+0.09",
+              "BucketBOC_Bolt_05_-0.09",
+              "BucketBOC_Bolt_06_+0.09",
+              "BucketBOC_Bolt_06_-0.09",
+              "BucketBOC_Bolt_07_+0.09",
+              "BucketBOC_Bolt_07_-0.09",
+              "BucketBOC_Bolt_08_+0.09",
+              "BucketBOC_Bolt_08_-0.09",
+              "BucketBOC_Bolt_09_+0.09",
+              "BucketBOC_Bolt_09_-0.09",
+              "BucketBOC_WearSegment_01",
+              "BucketBOC_WearSegment_02",
+              "BucketBOC_WearSegment_03",
+              "BucketBOC_WearSegment_04",
+              "BucketBOC_WearSegment_05",
+              "BucketBOC_WearSegment_06",
+              "BucketBOC_WearSegment_07",
+              "BucketBOC_WearSegment_08",
+              "BucketBOC_WearSegment_09",
+              "BucketBackRib_01",
+              "BucketBackRib_02",
+              "BucketBackRib_03",
+              "BucketBackRib_04",
+              "BucketBackRib_05",
+              "BucketBackRib_06",
+              "BucketBackRib_07",
+              "BucketBoltOnCuttingEdge",
+              "BucketSideGuard_L",
+              "BucketSideGuard_R",
+              "BucketTopCornerGuard_L",
+              "BucketTopCornerGuard_R",
+              "Bucket_ZBar_LinkEar_Reconstructed",
+              "StockPileBucket_Shell"
+            ],
+            "method": "evaluated world-space mesh vertices in machine X/Y/Z axes"
+          },
+          "cutting_edge_bounds_m": {
+            "min_m": [
+              3.56877,
+              3.074965,
+              -1.585
+            ],
+            "max_m": [
+              3.794275,
+              3.30047,
+              1.585
+            ],
+            "size_m": [
+              0.225504,
+              0.225504,
+              3.17
+            ],
+            "objects": [
+              "BucketBoltOnCuttingEdge"
+            ],
+            "method": "evaluated world-space mesh vertices in machine X/Y/Z axes"
+          },
+          "front_tire_forward_x_m": 2.45,
+          "dump_rotation_deg": 45.0
+        },
+        "semantic_nodes": [
+          "StockPileBucket_PivotRoot_Reconstructed",
+          "StockPileBucket_Shell",
+          "BucketBoltOnCuttingEdge",
+          "FrontTire_L",
+          "FrontTire_R"
+        ],
+        "fact_ids": [
+          "dump-clearance-stock-pile",
+          "dump-reach-stock-pile",
+          "operating-height-stock-pile"
+        ]
+      },
       "expected": {
-        "value_m": 4.37,
-        "tolerance_m": 0.005
+        "clearance_m": 3.075,
+        "reach_m": 1.35,
+        "operating_height_m": 6.09,
+        "tolerance_m": {
+          "clearance": 0.06,
+          "reach": 0.08,
+          "height": 0.06
+        }
       },
       "actual": {
-        "value_m": 4.37
+        "cutting_edge_clearance_m": 3.074965,
+        "cutting_edge_reach_from_front_tire_m": 1.3442749999999997,
+        "bucket_operating_height_m": 6.090604,
+        "bucket_bounds_m": {
+          "min_m": [
+            1.843638,
+            3.015669,
+            -1.585
+          ],
+          "max_m": [
+            3.951674,
+            6.090604,
+            1.585
+          ],
+          "size_m": [
+            2.108037,
+            3.074936,
+            3.17
+          ],
+          "objects": [
+            "BucketBOC_Bolt_01_+0.09",
+            "BucketBOC_Bolt_01_-0.09",
+            "BucketBOC_Bolt_02_+0.09",
+            "BucketBOC_Bolt_02_-0.09",
+            "BucketBOC_Bolt_03_+0.09",
+            "BucketBOC_Bolt_03_-0.09",
+            "BucketBOC_Bolt_04_+0.09",
+            "BucketBOC_Bolt_04_-0.09",
+            "BucketBOC_Bolt_05_+0.09",
+            "BucketBOC_Bolt_05_-0.09",
+            "BucketBOC_Bolt_06_+0.09",
+            "BucketBOC_Bolt_06_-0.09",
+            "BucketBOC_Bolt_07_+0.09",
+            "BucketBOC_Bolt_07_-0.09",
+            "BucketBOC_Bolt_08_+0.09",
+            "BucketBOC_Bolt_08_-0.09",
+            "BucketBOC_Bolt_09_+0.09",
+            "BucketBOC_Bolt_09_-0.09",
+            "BucketBOC_WearSegment_01",
+            "BucketBOC_WearSegment_02",
+            "BucketBOC_WearSegment_03",
+            "BucketBOC_WearSegment_04",
+            "BucketBOC_WearSegment_05",
+            "BucketBOC_WearSegment_06",
+            "BucketBOC_WearSegment_07",
+            "BucketBOC_WearSegment_08",
+            "BucketBOC_WearSegment_09",
+            "BucketBackRib_01",
+            "BucketBackRib_02",
+            "BucketBackRib_03",
+            "BucketBackRib_04",
+            "BucketBackRib_05",
+            "BucketBackRib_06",
+            "BucketBackRib_07",
+            "BucketBoltOnCuttingEdge",
+            "BucketSideGuard_L",
+            "BucketSideGuard_R",
+            "BucketTopCornerGuard_L",
+            "BucketTopCornerGuard_R",
+            "Bucket_ZBar_LinkEar_Reconstructed",
+            "StockPileBucket_Shell"
+          ],
+          "method": "evaluated world-space mesh vertices in machine X/Y/Z axes"
+        },
+        "cutting_edge_bounds_m": {
+          "min_m": [
+            3.56877,
+            3.074965,
+            -1.585
+          ],
+          "max_m": [
+            3.794275,
+            3.30047,
+            1.585
+          ],
+          "size_m": [
+            0.225504,
+            0.225504,
+            3.17
+          ],
+          "objects": [
+            "BucketBoltOnCuttingEdge"
+          ],
+          "method": "evaluated world-space mesh vertices in machine X/Y/Z axes"
+        },
+        "front_tire_forward_x_m": 2.45,
+        "dump_rotation_deg": 45.0
+      }
+    },
+    {
+      "id": "loader_linkage_closure",
+      "status": "PASS",
+      "detail": {
+        "method": "Ancestry audit plus stowed/raised rigid-arm-radius and shared elbow/hinge endpoint residual measurements.",
+        "evidence": {
+          "parents": {
+            "LoaderArm_LiftPivot_ROOT_Reconstructed": "Articulation_FrontFrame_Root_Reconstructed",
+            "StandardLoaderArmRear_L": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+            "StandardLoaderArmFront_L": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+            "StandardLoaderArmRear_R": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+            "StandardLoaderArmFront_R": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+            "StockPileBucket_PivotRoot_Reconstructed": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+            "LiftCylinder_Barrel_L": "Articulation_FrontFrame_Root_Reconstructed",
+            "LiftCylinder_Rod_L": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+            "LiftCylinder_Barrel_R": "Articulation_FrontFrame_Root_Reconstructed",
+            "LiftCylinder_Rod_R": "LoaderArm_LiftPivot_ROOT_Reconstructed"
+          },
+          "stowed_radius_m": 3.1698739076982023,
+          "raised_radius_m": 3.169873888894727,
+          "arm_joint_residual_m": 3.371747880871523e-07
+        },
+        "semantic_nodes": [
+          "Articulation_FrontFrame_Root_Reconstructed",
+          "LoaderArm_LiftPivot_ROOT_Reconstructed",
+          "StandardLoaderArmRear_L",
+          "StandardLoaderArmFront_L",
+          "StandardLoaderArmRear_R",
+          "StandardLoaderArmFront_R",
+          "StockPileBucket_PivotRoot_Reconstructed",
+          "LiftCylinder_Barrel_L",
+          "LiftCylinder_Rod_L",
+          "LiftCylinder_Barrel_R",
+          "LiftCylinder_Rod_R"
+        ],
+        "fact_ids": [
+          "hinge-pin-height-carry-standard",
+          "hinge-pin-height-max-standard"
+        ]
+      },
+      "expected": {
+        "maximum_joint_residual_m": 1e-06,
+        "maximum_radius_delta_m": 1e-06
+      },
+      "actual": {
+        "parents": {
+          "LoaderArm_LiftPivot_ROOT_Reconstructed": "Articulation_FrontFrame_Root_Reconstructed",
+          "StandardLoaderArmRear_L": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+          "StandardLoaderArmFront_L": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+          "StandardLoaderArmRear_R": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+          "StandardLoaderArmFront_R": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+          "StockPileBucket_PivotRoot_Reconstructed": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+          "LiftCylinder_Barrel_L": "Articulation_FrontFrame_Root_Reconstructed",
+          "LiftCylinder_Rod_L": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+          "LiftCylinder_Barrel_R": "Articulation_FrontFrame_Root_Reconstructed",
+          "LiftCylinder_Rod_R": "LoaderArm_LiftPivot_ROOT_Reconstructed"
+        },
+        "stowed_radius_m": 3.1698739076982023,
+        "raised_radius_m": 3.169873888894727,
+        "arm_joint_residual_m": 3.371747880871523e-07
+      }
+    },
+    {
+      "id": "z_bar_linkage_closure",
+      "status": "PASS",
+      "detail": {
+        "method": "Two-pose circle-intersection solution with invariant rigid bucket-link length, measured endpoint residuals and exported ancestry.",
+        "evidence": {
+          "stowed_measured_link_length_m": 1.941584801474432,
+          "raised_measured_link_length_m": 1.9415848494415648,
+          "link_length_delta_m": 4.7967132932313916e-08,
+          "stowed_closure_residual_m": 2.457562461863554e-07,
+          "raised_closure_residual_m": 2.6656007498500226e-07,
+          "endpoint_residuals_m": {
+            "stowed_lower": 1.7095910652933485e-07,
+            "stowed_bucket_ear": 2.457562461863554e-07,
+            "raised_lower": 2.6656007498500226e-07,
+            "raised_bucket_ear": 2.384185791015625e-07
+          },
+          "parents": {
+            "zbar_root": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+            "upper": "ZBar_Bellcrank_Pivot_ROOT_Reconstructed",
+            "lower": "ZBar_Bellcrank_Pivot_ROOT_Reconstructed",
+            "bucket_link": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+            "bucket_ear": "StockPileBucket_PivotRoot_Reconstructed"
+          }
+        },
+        "semantic_nodes": [
+          "ZBar_Bellcrank_Pivot_ROOT_Reconstructed",
+          "ZBar_Bellcrank_Upper_Reconstructed",
+          "ZBar_Bellcrank_Lower_Reconstructed",
+          "ZBar_BucketLink_Reconstructed",
+          "Bucket_ZBar_LinkEar_Reconstructed",
+          "StockPileBucket_PivotRoot_Reconstructed"
+        ],
+        "fact_ids": []
+      },
+      "expected": {
+        "maximum_closure_residual_m": 1e-06
+      },
+      "actual": {
+        "stowed_measured_link_length_m": 1.941584801474432,
+        "raised_measured_link_length_m": 1.9415848494415648,
+        "link_length_delta_m": 4.7967132932313916e-08,
+        "stowed_closure_residual_m": 2.457562461863554e-07,
+        "raised_closure_residual_m": 2.6656007498500226e-07,
+        "endpoint_residuals_m": {
+          "stowed_lower": 1.7095910652933485e-07,
+          "stowed_bucket_ear": 2.457562461863554e-07,
+          "raised_lower": 2.6656007498500226e-07,
+          "raised_bucket_ear": 2.384185791015625e-07
+        },
+        "parents": {
+          "zbar_root": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+          "upper": "ZBar_Bellcrank_Pivot_ROOT_Reconstructed",
+          "lower": "ZBar_Bellcrank_Pivot_ROOT_Reconstructed",
+          "bucket_link": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+          "bucket_ear": "StockPileBucket_PivotRoot_Reconstructed"
+        }
+      }
+    },
+    {
+      "id": "lift_and_bucket_cylinder_stroke_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "Stowed/raised fixed-to-moving clevis and mesh-endpoint measurements, closure residuals, barrel/rod overlap, decoded ancestry, measured bore and counted barrel nodes.",
+        "evidence": {
+          "lift": {
+            "count": 2,
+            "barrel_nodes": [
+              "LiftCylinder_Barrel_L",
+              "LiftCylinder_Barrel_R"
+            ],
+            "measured_bore_m": {
+              "L": 0.15000000596046448,
+              "R": 0.15000000596046448
+            },
+            "travel_m": {
+              "L": 0.5624192847610472,
+              "R": 0.5624192847610472
+            },
+            "stowed": {
+              "L": {
+                "anchor_distance_m": 1.4567428577031805,
+                "barrel_length_m": 1.050000042592485,
+                "rod_visible_length_m": 0.6767429546965609,
+                "barrel_rod_overlap_m": 0.27000013958586533,
+                "base_closure_residual_m": 4.470348358154297e-08,
+                "moving_closure_residual_m": 1.1920928955078125e-07,
+                "base_anchor": [
+                  0.2,
+                  1.2,
+                  -0.7
+                ],
+                "moving_anchor": [
+                  1.65,
+                  1.06,
+                  -0.7
+                ]
+              },
+              "R": {
+                "anchor_distance_m": 1.4567428577031805,
+                "barrel_length_m": 1.050000042592485,
+                "rod_visible_length_m": 0.6767429546965609,
+                "barrel_rod_overlap_m": 0.27000013958586533,
+                "base_closure_residual_m": 4.470348358154297e-08,
+                "moving_closure_residual_m": 1.1920928955078125e-07,
+                "base_anchor": [
+                  0.2,
+                  1.2,
+                  0.7
+                ],
+                "moving_anchor": [
+                  1.65,
+                  1.06,
+                  0.7
+                ]
+              }
+            },
+            "raised": {
+              "L": {
+                "anchor_distance_m": 2.0191621424642276,
+                "barrel_length_m": 1.0499999108768607,
+                "rod_visible_length_m": 1.2391623963041078,
+                "barrel_rod_overlap_m": 0.27000016471674115,
+                "base_closure_residual_m": 1.4901161193847656e-08,
+                "moving_closure_residual_m": 2.6656007498500226e-07,
+                "base_anchor": [
+                  0.2,
+                  1.2,
+                  -0.7
+                ],
+                "moving_anchor": [
+                  1.239733,
+                  2.930887,
+                  -0.7
+                ]
+              },
+              "R": {
+                "anchor_distance_m": 2.0191621424642276,
+                "barrel_length_m": 1.0499999108768607,
+                "rod_visible_length_m": 1.2391623963041078,
+                "barrel_rod_overlap_m": 0.27000016471674115,
+                "base_closure_residual_m": 1.4901161193847656e-08,
+                "moving_closure_residual_m": 2.6656007498500226e-07,
+                "base_anchor": [
+                  0.2,
+                  1.2,
+                  0.7
+                ],
+                "moving_anchor": [
+                  1.239733,
+                  2.930887,
+                  0.7
+                ]
+              }
+            }
+          },
+          "bucket": {
+            "count": 1,
+            "barrel_nodes": [
+              "BucketCylinder_Barrel"
+            ],
+            "measured_bore_m": 0.17999999225139618,
+            "travel_m": 0.38670954612202424,
+            "stowed": {
+              "anchor_distance_m": 1.7191143603356576,
+              "barrel_length_m": 0.7400000322046407,
+              "rod_visible_length_m": 1.1891142514329809,
+              "barrel_rod_overlap_m": 0.20999992330196404,
+              "base_closure_residual_m": 6.147695943537675e-08,
+              "moving_closure_residual_m": 1.6382517727213817e-07,
+              "base_anchor": [
+                0.4,
+                1.8,
+                0.0
+              ],
+              "moving_anchor": [
+                2.072862,
+                1.403909,
+                0.0
+              ]
+            },
+            "raised": {
+              "anchor_distance_m": 1.3324048142136333,
+              "barrel_length_m": 0.7399998119594058,
+              "rod_visible_length_m": 0.8024049579559461,
+              "barrel_rod_overlap_m": 0.20999995570171848,
+              "base_closure_residual_m": 1.2582396851679978e-07,
+              "moving_closure_residual_m": 2.5871530421675096e-07,
+              "base_anchor": [
+                0.247322,
+                1.870124,
+                0.0
+              ],
+              "moving_anchor": [
+                0.638361,
+                3.143855,
+                0.0
+              ]
+            }
+          },
+          "parents": {
+            "LiftCylinder_Barrel_L": "Articulation_FrontFrame_Root_Reconstructed",
+            "LiftCylinder_Rod_L": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+            "LiftCylinder_Barrel_R": "Articulation_FrontFrame_Root_Reconstructed",
+            "LiftCylinder_Rod_R": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+            "BucketCylinder_Barrel": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+            "BucketCylinder_Rod": "ZBar_Bellcrank_Pivot_ROOT_Reconstructed",
+            "BucketCylinder_BaseClevis": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+            "BucketCylinder_BellcrankClevis": "ZBar_Bellcrank_Pivot_ROOT_Reconstructed"
+          }
+        },
+        "semantic_nodes": [
+          "LiftCylinder_Barrel_L",
+          "LiftCylinder_Rod_L",
+          "LiftCylinder_Barrel_R",
+          "LiftCylinder_Rod_R",
+          "LiftCylinder_BaseClevis_L",
+          "LiftCylinder_ArmClevis_L",
+          "LiftCylinder_BaseClevis_R",
+          "LiftCylinder_ArmClevis_R",
+          "BucketCylinder_Barrel",
+          "BucketCylinder_Rod",
+          "BucketCylinder_BaseClevis",
+          "BucketCylinder_BellcrankClevis",
+          "LoaderArm_LiftPivot_ROOT_Reconstructed",
+          "ZBar_Bellcrank_Pivot_ROOT_Reconstructed"
+        ],
+        "fact_ids": [
+          "lift-cylinder-count",
+          "lift-cylinder-bore",
+          "lift-cylinder-stroke",
+          "bucket-cylinder-count",
+          "bucket-cylinder-bore",
+          "bucket-cylinder-stroke"
+        ]
+      },
+      "expected": {
+        "lift_maximum_travel_m": 0.764,
+        "bucket_maximum_travel_m": 0.54,
+        "minimum_barrel_rod_overlap_m": 0.0
+      },
+      "actual": {
+        "lift": {
+          "count": 2,
+          "barrel_nodes": [
+            "LiftCylinder_Barrel_L",
+            "LiftCylinder_Barrel_R"
+          ],
+          "measured_bore_m": {
+            "L": 0.15000000596046448,
+            "R": 0.15000000596046448
+          },
+          "travel_m": {
+            "L": 0.5624192847610472,
+            "R": 0.5624192847610472
+          },
+          "stowed": {
+            "L": {
+              "anchor_distance_m": 1.4567428577031805,
+              "barrel_length_m": 1.050000042592485,
+              "rod_visible_length_m": 0.6767429546965609,
+              "barrel_rod_overlap_m": 0.27000013958586533,
+              "base_closure_residual_m": 4.470348358154297e-08,
+              "moving_closure_residual_m": 1.1920928955078125e-07,
+              "base_anchor": [
+                0.2,
+                1.2,
+                -0.7
+              ],
+              "moving_anchor": [
+                1.65,
+                1.06,
+                -0.7
+              ]
+            },
+            "R": {
+              "anchor_distance_m": 1.4567428577031805,
+              "barrel_length_m": 1.050000042592485,
+              "rod_visible_length_m": 0.6767429546965609,
+              "barrel_rod_overlap_m": 0.27000013958586533,
+              "base_closure_residual_m": 4.470348358154297e-08,
+              "moving_closure_residual_m": 1.1920928955078125e-07,
+              "base_anchor": [
+                0.2,
+                1.2,
+                0.7
+              ],
+              "moving_anchor": [
+                1.65,
+                1.06,
+                0.7
+              ]
+            }
+          },
+          "raised": {
+            "L": {
+              "anchor_distance_m": 2.0191621424642276,
+              "barrel_length_m": 1.0499999108768607,
+              "rod_visible_length_m": 1.2391623963041078,
+              "barrel_rod_overlap_m": 0.27000016471674115,
+              "base_closure_residual_m": 1.4901161193847656e-08,
+              "moving_closure_residual_m": 2.6656007498500226e-07,
+              "base_anchor": [
+                0.2,
+                1.2,
+                -0.7
+              ],
+              "moving_anchor": [
+                1.239733,
+                2.930887,
+                -0.7
+              ]
+            },
+            "R": {
+              "anchor_distance_m": 2.0191621424642276,
+              "barrel_length_m": 1.0499999108768607,
+              "rod_visible_length_m": 1.2391623963041078,
+              "barrel_rod_overlap_m": 0.27000016471674115,
+              "base_closure_residual_m": 1.4901161193847656e-08,
+              "moving_closure_residual_m": 2.6656007498500226e-07,
+              "base_anchor": [
+                0.2,
+                1.2,
+                0.7
+              ],
+              "moving_anchor": [
+                1.239733,
+                2.930887,
+                0.7
+              ]
+            }
+          }
+        },
+        "bucket": {
+          "count": 1,
+          "barrel_nodes": [
+            "BucketCylinder_Barrel"
+          ],
+          "measured_bore_m": 0.17999999225139618,
+          "travel_m": 0.38670954612202424,
+          "stowed": {
+            "anchor_distance_m": 1.7191143603356576,
+            "barrel_length_m": 0.7400000322046407,
+            "rod_visible_length_m": 1.1891142514329809,
+            "barrel_rod_overlap_m": 0.20999992330196404,
+            "base_closure_residual_m": 6.147695943537675e-08,
+            "moving_closure_residual_m": 1.6382517727213817e-07,
+            "base_anchor": [
+              0.4,
+              1.8,
+              0.0
+            ],
+            "moving_anchor": [
+              2.072862,
+              1.403909,
+              0.0
+            ]
+          },
+          "raised": {
+            "anchor_distance_m": 1.3324048142136333,
+            "barrel_length_m": 0.7399998119594058,
+            "rod_visible_length_m": 0.8024049579559461,
+            "barrel_rod_overlap_m": 0.20999995570171848,
+            "base_closure_residual_m": 1.2582396851679978e-07,
+            "moving_closure_residual_m": 2.5871530421675096e-07,
+            "base_anchor": [
+              0.247322,
+              1.870124,
+              0.0
+            ],
+            "moving_anchor": [
+              0.638361,
+              3.143855,
+              0.0
+            ]
+          }
+        },
+        "parents": {
+          "LiftCylinder_Barrel_L": "Articulation_FrontFrame_Root_Reconstructed",
+          "LiftCylinder_Rod_L": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+          "LiftCylinder_Barrel_R": "Articulation_FrontFrame_Root_Reconstructed",
+          "LiftCylinder_Rod_R": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+          "BucketCylinder_Barrel": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+          "BucketCylinder_Rod": "ZBar_Bellcrank_Pivot_ROOT_Reconstructed",
+          "BucketCylinder_BaseClevis": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+          "BucketCylinder_BellcrankClevis": "ZBar_Bellcrank_Pivot_ROOT_Reconstructed"
+        }
+      }
+    },
+    {
+      "id": "bucket_ground_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "Evaluated complete bucket-subtree vertices at carry/on-ground and raised-dump endpoints.",
+        "evidence": {
+          "stowed_min_y_m": 0.023393,
+          "raised_min_y_m": 3.015669,
+          "stowed_bounds": {
+            "min_m": [
+              2.927544,
+              0.023393,
+              -1.585
+            ],
+            "max_m": [
+              5.382203,
+              2.89538,
+              1.585
+            ],
+            "size_m": [
+              2.454659,
+              2.871987,
+              3.17
+            ],
+            "objects": [
+              "BucketBOC_Bolt_01_+0.09",
+              "BucketBOC_Bolt_01_-0.09",
+              "BucketBOC_Bolt_02_+0.09",
+              "BucketBOC_Bolt_02_-0.09",
+              "BucketBOC_Bolt_03_+0.09",
+              "BucketBOC_Bolt_03_-0.09",
+              "BucketBOC_Bolt_04_+0.09",
+              "BucketBOC_Bolt_04_-0.09",
+              "BucketBOC_Bolt_05_+0.09",
+              "BucketBOC_Bolt_05_-0.09",
+              "BucketBOC_Bolt_06_+0.09",
+              "BucketBOC_Bolt_06_-0.09",
+              "BucketBOC_Bolt_07_+0.09",
+              "BucketBOC_Bolt_07_-0.09",
+              "BucketBOC_Bolt_08_+0.09",
+              "BucketBOC_Bolt_08_-0.09",
+              "BucketBOC_Bolt_09_+0.09",
+              "BucketBOC_Bolt_09_-0.09",
+              "BucketBOC_WearSegment_01",
+              "BucketBOC_WearSegment_02",
+              "BucketBOC_WearSegment_03",
+              "BucketBOC_WearSegment_04",
+              "BucketBOC_WearSegment_05",
+              "BucketBOC_WearSegment_06",
+              "BucketBOC_WearSegment_07",
+              "BucketBOC_WearSegment_08",
+              "BucketBOC_WearSegment_09",
+              "BucketBackRib_01",
+              "BucketBackRib_02",
+              "BucketBackRib_03",
+              "BucketBackRib_04",
+              "BucketBackRib_05",
+              "BucketBackRib_06",
+              "BucketBackRib_07",
+              "BucketBoltOnCuttingEdge",
+              "BucketSideGuard_L",
+              "BucketSideGuard_R",
+              "BucketTopCornerGuard_L",
+              "BucketTopCornerGuard_R",
+              "Bucket_ZBar_LinkEar_Reconstructed",
+              "StockPileBucket_Shell"
+            ],
+            "method": "evaluated world-space mesh vertices in machine X/Y/Z axes"
+          },
+          "raised_bounds": {
+            "min_m": [
+              1.843638,
+              3.015669,
+              -1.585
+            ],
+            "max_m": [
+              3.951674,
+              6.090604,
+              1.585
+            ],
+            "size_m": [
+              2.108037,
+              3.074936,
+              3.17
+            ],
+            "objects": [
+              "BucketBOC_Bolt_01_+0.09",
+              "BucketBOC_Bolt_01_-0.09",
+              "BucketBOC_Bolt_02_+0.09",
+              "BucketBOC_Bolt_02_-0.09",
+              "BucketBOC_Bolt_03_+0.09",
+              "BucketBOC_Bolt_03_-0.09",
+              "BucketBOC_Bolt_04_+0.09",
+              "BucketBOC_Bolt_04_-0.09",
+              "BucketBOC_Bolt_05_+0.09",
+              "BucketBOC_Bolt_05_-0.09",
+              "BucketBOC_Bolt_06_+0.09",
+              "BucketBOC_Bolt_06_-0.09",
+              "BucketBOC_Bolt_07_+0.09",
+              "BucketBOC_Bolt_07_-0.09",
+              "BucketBOC_Bolt_08_+0.09",
+              "BucketBOC_Bolt_08_-0.09",
+              "BucketBOC_Bolt_09_+0.09",
+              "BucketBOC_Bolt_09_-0.09",
+              "BucketBOC_WearSegment_01",
+              "BucketBOC_WearSegment_02",
+              "BucketBOC_WearSegment_03",
+              "BucketBOC_WearSegment_04",
+              "BucketBOC_WearSegment_05",
+              "BucketBOC_WearSegment_06",
+              "BucketBOC_WearSegment_07",
+              "BucketBOC_WearSegment_08",
+              "BucketBOC_WearSegment_09",
+              "BucketBackRib_01",
+              "BucketBackRib_02",
+              "BucketBackRib_03",
+              "BucketBackRib_04",
+              "BucketBackRib_05",
+              "BucketBackRib_06",
+              "BucketBackRib_07",
+              "BucketBoltOnCuttingEdge",
+              "BucketSideGuard_L",
+              "BucketSideGuard_R",
+              "BucketTopCornerGuard_L",
+              "BucketTopCornerGuard_R",
+              "Bucket_ZBar_LinkEar_Reconstructed",
+              "StockPileBucket_Shell"
+            ],
+            "method": "evaluated world-space mesh vertices in machine X/Y/Z axes"
+          }
+        },
+        "semantic_nodes": [
+          "StockPileBucket_PivotRoot_Reconstructed",
+          "StockPileBucket_Shell",
+          "BucketSideGuard_L",
+          "BucketSideGuard_R",
+          "BucketBoltOnCuttingEdge"
+        ],
+        "fact_ids": [
+          "overall-length-stock-pile",
+          "hinge-pin-height-carry-standard"
+        ]
+      },
+      "expected": {
+        "stowed_y_range_m": [
+          -0.001,
+          0.03
+        ],
+        "raised_minimum_y_m": 0.2
+      },
+      "actual": {
+        "stowed_min_y_m": 0.023393,
+        "raised_min_y_m": 3.015669,
+        "stowed_bounds": {
+          "min_m": [
+            2.927544,
+            0.023393,
+            -1.585
+          ],
+          "max_m": [
+            5.382203,
+            2.89538,
+            1.585
+          ],
+          "size_m": [
+            2.454659,
+            2.871987,
+            3.17
+          ],
+          "objects": [
+            "BucketBOC_Bolt_01_+0.09",
+            "BucketBOC_Bolt_01_-0.09",
+            "BucketBOC_Bolt_02_+0.09",
+            "BucketBOC_Bolt_02_-0.09",
+            "BucketBOC_Bolt_03_+0.09",
+            "BucketBOC_Bolt_03_-0.09",
+            "BucketBOC_Bolt_04_+0.09",
+            "BucketBOC_Bolt_04_-0.09",
+            "BucketBOC_Bolt_05_+0.09",
+            "BucketBOC_Bolt_05_-0.09",
+            "BucketBOC_Bolt_06_+0.09",
+            "BucketBOC_Bolt_06_-0.09",
+            "BucketBOC_Bolt_07_+0.09",
+            "BucketBOC_Bolt_07_-0.09",
+            "BucketBOC_Bolt_08_+0.09",
+            "BucketBOC_Bolt_08_-0.09",
+            "BucketBOC_Bolt_09_+0.09",
+            "BucketBOC_Bolt_09_-0.09",
+            "BucketBOC_WearSegment_01",
+            "BucketBOC_WearSegment_02",
+            "BucketBOC_WearSegment_03",
+            "BucketBOC_WearSegment_04",
+            "BucketBOC_WearSegment_05",
+            "BucketBOC_WearSegment_06",
+            "BucketBOC_WearSegment_07",
+            "BucketBOC_WearSegment_08",
+            "BucketBOC_WearSegment_09",
+            "BucketBackRib_01",
+            "BucketBackRib_02",
+            "BucketBackRib_03",
+            "BucketBackRib_04",
+            "BucketBackRib_05",
+            "BucketBackRib_06",
+            "BucketBackRib_07",
+            "BucketBoltOnCuttingEdge",
+            "BucketSideGuard_L",
+            "BucketSideGuard_R",
+            "BucketTopCornerGuard_L",
+            "BucketTopCornerGuard_R",
+            "Bucket_ZBar_LinkEar_Reconstructed",
+            "StockPileBucket_Shell"
+          ],
+          "method": "evaluated world-space mesh vertices in machine X/Y/Z axes"
+        },
+        "raised_bounds": {
+          "min_m": [
+            1.843638,
+            3.015669,
+            -1.585
+          ],
+          "max_m": [
+            3.951674,
+            6.090604,
+            1.585
+          ],
+          "size_m": [
+            2.108037,
+            3.074936,
+            3.17
+          ],
+          "objects": [
+            "BucketBOC_Bolt_01_+0.09",
+            "BucketBOC_Bolt_01_-0.09",
+            "BucketBOC_Bolt_02_+0.09",
+            "BucketBOC_Bolt_02_-0.09",
+            "BucketBOC_Bolt_03_+0.09",
+            "BucketBOC_Bolt_03_-0.09",
+            "BucketBOC_Bolt_04_+0.09",
+            "BucketBOC_Bolt_04_-0.09",
+            "BucketBOC_Bolt_05_+0.09",
+            "BucketBOC_Bolt_05_-0.09",
+            "BucketBOC_Bolt_06_+0.09",
+            "BucketBOC_Bolt_06_-0.09",
+            "BucketBOC_Bolt_07_+0.09",
+            "BucketBOC_Bolt_07_-0.09",
+            "BucketBOC_Bolt_08_+0.09",
+            "BucketBOC_Bolt_08_-0.09",
+            "BucketBOC_Bolt_09_+0.09",
+            "BucketBOC_Bolt_09_-0.09",
+            "BucketBOC_WearSegment_01",
+            "BucketBOC_WearSegment_02",
+            "BucketBOC_WearSegment_03",
+            "BucketBOC_WearSegment_04",
+            "BucketBOC_WearSegment_05",
+            "BucketBOC_WearSegment_06",
+            "BucketBOC_WearSegment_07",
+            "BucketBOC_WearSegment_08",
+            "BucketBOC_WearSegment_09",
+            "BucketBackRib_01",
+            "BucketBackRib_02",
+            "BucketBackRib_03",
+            "BucketBackRib_04",
+            "BucketBackRib_05",
+            "BucketBackRib_06",
+            "BucketBackRib_07",
+            "BucketBoltOnCuttingEdge",
+            "BucketSideGuard_L",
+            "BucketSideGuard_R",
+            "BucketTopCornerGuard_L",
+            "BucketTopCornerGuard_R",
+            "Bucket_ZBar_LinkEar_Reconstructed",
+            "StockPileBucket_Shell"
+          ],
+          "method": "evaluated world-space mesh vertices in machine X/Y/Z axes"
+        }
+      }
+    },
+    {
+      "id": "machine_self_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "Evaluated AABB separation of the moving bucket against cab and front frame at stowed and raised endpoints.",
+        "evidence": {
+          "stowed_bucket_to_cab": {
+            "axis_gaps_m": [
+              2.707544,
+              0.0,
+              0.0
+            ],
+            "separation_m": 2.707544,
+            "overlap": false
+          },
+          "raised_bucket_to_cab": {
+            "axis_gaps_m": [
+              1.623638,
+              0.0,
+              0.0
+            ],
+            "separation_m": 1.623638,
+            "overlap": false
+          },
+          "raised_bucket_to_front_frame": {
+            "axis_gaps_m": [
+              0.0,
+              1.474381,
+              0.0
+            ],
+            "separation_m": 1.474381,
+            "overlap": false
+          }
+        },
+        "semantic_nodes": [
+          "StockPileBucket_PivotRoot_Reconstructed",
+          "StockPileBucket_Shell",
+          "Cab_ROPS_Root_Reconstructed",
+          "FrontFrame_Main"
+        ],
+        "fact_ids": []
+      },
+      "expected": {
+        "overlap": false
+      },
+      "actual": {
+        "stowed_bucket_to_cab": {
+          "axis_gaps_m": [
+            2.707544,
+            0.0,
+            0.0
+          ],
+          "separation_m": 2.707544,
+          "overlap": false
+        },
+        "raised_bucket_to_cab": {
+          "axis_gaps_m": [
+            1.623638,
+            0.0,
+            0.0
+          ],
+          "separation_m": 1.623638,
+          "overlap": false
+        },
+        "raised_bucket_to_front_frame": {
+          "axis_gaps_m": [
+            0.0,
+            1.474381,
+            0.0
+          ],
+          "separation_m": 1.474381,
+          "overlap": false
+        }
+      }
+    },
+    {
+      "id": "tire_body_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "Evaluated lateral tire-to-frame gaps at neutral front axle and -13/0/+13 degree rear-axle endpoints.",
+        "evidence": {
+          "rear_samples": [
+            {
+              "rear_axle_deg": -13.0,
+              "left_lateral_gap_m": 0.07542300000000002,
+              "right_lateral_gap_m": 0.07542300000000002
+            },
+            {
+              "rear_axle_deg": 0.0,
+              "left_lateral_gap_m": 0.28500000000000003,
+              "right_lateral_gap_m": 0.28500000000000003
+            },
+            {
+              "rear_axle_deg": 13.0,
+              "left_lateral_gap_m": 0.07542300000000002,
+              "right_lateral_gap_m": 0.07542300000000002
+            }
+          ],
+          "front_lateral_gap_m": {
+            "left": 0.20499999999999996,
+            "right": 0.20499999999999996
+          },
+          "minimum_gap_m": 0.07542300000000002
+        },
+        "semantic_nodes": [
+          "RearTire_L",
+          "RearTire_R",
+          "FrontTire_L",
+          "FrontTire_R",
+          "RearFrame_Spine",
+          "FrontFrame_Main",
+          "RearAxle_Oscillation_Root_Reconstructed"
+        ],
+        "fact_ids": [
+          "width-standard-tires"
+        ]
+      },
+      "expected": {
+        "minimum_gap_m": 0.05
+      },
+      "actual": {
+        "rear_samples": [
+          {
+            "rear_axle_deg": -13.0,
+            "left_lateral_gap_m": 0.07542300000000002,
+            "right_lateral_gap_m": 0.07542300000000002
+          },
+          {
+            "rear_axle_deg": 0.0,
+            "left_lateral_gap_m": 0.28500000000000003,
+            "right_lateral_gap_m": 0.28500000000000003
+          },
+          {
+            "rear_axle_deg": 13.0,
+            "left_lateral_gap_m": 0.07542300000000002,
+            "right_lateral_gap_m": 0.07542300000000002
+          }
+        ],
+        "front_lateral_gap_m": {
+          "left": 0.20499999999999996,
+          "right": 0.20499999999999996
+        },
+        "minimum_gap_m": 0.07542300000000002
+      }
+    },
+    {
+      "id": "articulation_swept_volume",
+      "status": "PASS",
+      "detail": {
+        "method": "Five-point maximum steering sweep measuring wheel-center separation and front-tire horizontal clearance from the rear cab center.",
+        "evidence": {
+          "samples": [
+            {
+              "angle_deg": -40.0,
+              "minimum_front_rear_wheel_center_separation_m": 2.429436879469191,
+              "minimum_front_tire_to_cab_center_clearance_m": 1.3283937043897733
+            },
+            {
+              "angle_deg": -35.0,
+              "minimum_front_rear_wheel_center_separation_m": 2.5757406109191194,
+              "minimum_front_tire_to_cab_center_clearance_m": 1.3687318347961748
+            },
+            {
+              "angle_deg": 0.0,
+              "minimum_front_rear_wheel_center_separation_m": 3.45,
+              "minimum_front_tire_to_cab_center_clearance_m": 1.5898770460824454
+            },
+            {
+              "angle_deg": 35.0,
+              "minimum_front_rear_wheel_center_separation_m": 2.5757406109191194,
+              "minimum_front_tire_to_cab_center_clearance_m": 1.3687318347961748
+            },
+            {
+              "angle_deg": 40.0,
+              "minimum_front_rear_wheel_center_separation_m": 2.429436879469191,
+              "minimum_front_tire_to_cab_center_clearance_m": 1.3283937043897733
+            }
+          ]
+        },
+        "semantic_nodes": [
+          "Articulation_FrontFrame_Root_Reconstructed",
+          "FrontWheel_L_Pivot_ROOT",
+          "FrontWheel_R_Pivot_ROOT",
+          "RearWheel_L_Pivot_ROOT",
+          "RearWheel_R_Pivot_ROOT",
+          "Cab_ROPS_Root_Reconstructed"
+        ],
+        "fact_ids": [
+          "steering-angle-nominal",
+          "steering-angle-max-stop"
+        ]
+      },
+      "expected": {
+        "minimum_wheel_center_separation_m": 2.0,
+        "minimum_front_tire_to_cab_center_clearance_m": 0.6
+      },
+      "actual": {
+        "samples": [
+          {
+            "angle_deg": -40.0,
+            "minimum_front_rear_wheel_center_separation_m": 2.429436879469191,
+            "minimum_front_tire_to_cab_center_clearance_m": 1.3283937043897733
+          },
+          {
+            "angle_deg": -35.0,
+            "minimum_front_rear_wheel_center_separation_m": 2.5757406109191194,
+            "minimum_front_tire_to_cab_center_clearance_m": 1.3687318347961748
+          },
+          {
+            "angle_deg": 0.0,
+            "minimum_front_rear_wheel_center_separation_m": 3.45,
+            "minimum_front_tire_to_cab_center_clearance_m": 1.5898770460824454
+          },
+          {
+            "angle_deg": 35.0,
+            "minimum_front_rear_wheel_center_separation_m": 2.5757406109191194,
+            "minimum_front_tire_to_cab_center_clearance_m": 1.3687318347961748
+          },
+          {
+            "angle_deg": 40.0,
+            "minimum_front_rear_wheel_center_separation_m": 2.429436879469191,
+            "minimum_front_tire_to_cab_center_clearance_m": 1.3283937043897733
+          }
+        ]
       }
     },
     {
       "id": "semantic-node-presence",
       "status": "PASS",
-      "detail": "Required wheel-loader technical-study hierarchy is present.",
-      "expected": [
-        "WA47510_Root",
-        "RearFrame_Root",
-        "Articulation_FrontFrame_Root_Reconstructed",
-        "RearAxle_Oscillation_Root_Reconstructed",
-        "RearFrame_Spine",
-        "RearCounterweight_Mass",
-        "EngineCompartment_Core",
-        "RearCoolingMask",
-        "Cab_ROPS_Root_Reconstructed",
-        "ROPS_Roof",
-        "Cab_FrontGlass",
-        "RearTire_L",
-        "RearTire_R",
-        "FrontTire_L",
-        "FrontTire_R",
-        "FrontFrame_Main",
-        "CenterArticulationUpperPin",
-        "SteeringCylinder_Barrel_L",
-        "SteeringCylinder_Rod_L",
-        "SteeringCylinder_Barrel_R",
-        "SteeringCylinder_Rod_R",
-        "StandardLoaderArmRear_L",
-        "StandardLoaderArmFront_L",
-        "StandardLoaderArmRear_R",
-        "StandardLoaderArmFront_R",
-        "LiftCylinder_Barrel_L",
-        "LiftCylinder_Rod_L",
-        "LiftCylinder_Barrel_R",
-        "LiftCylinder_Rod_R",
-        "BucketCylinder_Barrel",
-        "BucketCylinder_Rod",
-        "ZBar_Bellcrank_Upper_Reconstructed",
-        "ZBar_BucketLink_Reconstructed",
-        "StockPileBucket_PivotRoot_Reconstructed",
-        "StockPileBucket_Shell",
-        "BucketBoltOnCuttingEdge",
-        "LoaderHose_L_01",
-        "LoaderHose_R_01"
-      ],
-      "actual": {
-        "missing": []
-      }
-    },
-    {
-      "id": "reconstructed-four-tire-tread-detail",
-      "status": "PASS",
-      "detail": "Four independently authored heavy-tire studies include explicit reconstructed tread blocks; count and pitch are not manufacturer facts.",
+      "detail": {
+        "method": "Cross-check of required semantic names in the authored scene and decoded shipped GLB.",
+        "evidence": {
+          "scene_missing": [],
+          "glb_missing": []
+        },
+        "semantic_nodes": [
+          "Machine_Root",
+          "RearFrame_Root",
+          "Articulation_FrontFrame_Root_Reconstructed",
+          "RearAxle_Oscillation_Root_Reconstructed",
+          "RearWheel_L_Pivot_ROOT",
+          "RearWheel_R_Pivot_ROOT",
+          "FrontWheel_L_Pivot_ROOT",
+          "FrontWheel_R_Pivot_ROOT",
+          "RearFrame_Spine",
+          "RearCounterweight_Mass",
+          "RearBellyGuard",
+          "EngineCompartment_Core",
+          "RearCoolingMask",
+          "Cab_ROPS_Root_Reconstructed",
+          "ROPS_Roof",
+          "CabRoofRail_L",
+          "ExhaustRainCap",
+          "Cab_FrontGlass",
+          "RearTire_L",
+          "RearTire_R",
+          "FrontTire_L",
+          "FrontTire_R",
+          "FrontFrame_Main",
+          "CenterArticulationUpperPin",
+          "CenterArticulationLowerPin",
+          "SteeringCylinder_L_YawPivot_ROOT_Reconstructed",
+          "SteeringCylinder_R_YawPivot_ROOT_Reconstructed",
+          "SteeringCylinder_Barrel_L",
+          "SteeringCylinder_Rod_L",
+          "SteeringCylinder_Barrel_R",
+          "SteeringCylinder_Rod_R",
+          "SteeringCylinder_BaseClevis_L",
+          "SteeringCylinder_BaseClevis_R",
+          "SteeringCylinder_FrontClevis_L",
+          "SteeringCylinder_FrontClevis_R",
+          "LoaderArm_LiftPivot_ROOT_Reconstructed",
+          "StandardLoaderArmRear_L",
+          "StandardLoaderArmFront_L",
+          "StandardLoaderArmRear_R",
+          "StandardLoaderArmFront_R",
+          "LiftCylinder_Barrel_L",
+          "LiftCylinder_Rod_L",
+          "LiftCylinder_Barrel_R",
+          "LiftCylinder_Rod_R",
+          "LiftCylinder_BaseClevis_L",
+          "LiftCylinder_ArmClevis_L",
+          "LiftCylinder_BaseClevis_R",
+          "LiftCylinder_ArmClevis_R",
+          "BucketCylinder_Barrel",
+          "BucketCylinder_Rod",
+          "BucketCylinder_BaseClevis",
+          "BucketCylinder_BellcrankClevis",
+          "ZBar_Bellcrank_Pivot_ROOT_Reconstructed",
+          "ZBar_Bellcrank_Upper_Reconstructed",
+          "ZBar_Bellcrank_Lower_Reconstructed",
+          "ZBar_BucketLink_Reconstructed",
+          "StockPileBucket_PivotRoot_Reconstructed",
+          "StockPileBucket_Shell",
+          "Bucket_ZBar_LinkEar_Reconstructed",
+          "BucketHingeCrossmember",
+          "BucketSideGuard_L",
+          "BucketSideGuard_R",
+          "BucketBoltOnCuttingEdge",
+          "LoaderHose_L_01",
+          "LoaderHose_R_01"
+        ],
+        "fact_ids": []
+      },
       "expected": {
-        "count": 96,
-        "authority": "reconstructed"
+        "missing": []
       },
       "actual": {
-        "count": 96
+        "scene_missing": [],
+        "glb_missing": []
       }
     },
     {
       "id": "selected-bolt-on-cutting-edge-detail",
       "status": "PASS",
-      "detail": "The frozen bucket uses a bolt-on cutting edge. Wear-segment geometry and fastener pattern remain reconstructed; no incompatible tooth claim is made.",
+      "detail": {
+        "method": "Count of visible replaceable B.O.C. wear segments on the selected stock-pile bucket.",
+        "evidence": {
+          "segments": 9
+        },
+        "semantic_nodes": [
+          "BucketBoltOnCuttingEdge"
+        ],
+        "fact_ids": [
+          "bucket-capacity-heaped"
+        ]
+      },
       "expected": {
         "segments": 9
       },
@@ -264,56 +2832,107 @@
     {
       "id": "render-non-emptiness",
       "status": "PASS",
-      "detail": "Nine deterministic review views cover retained, articulated, lifted, linkage, operator, cooling, and rear-axle studies; final human/Grok review remains pending.",
+      "detail": {
+        "method": "Raster decode, exact view count, dimensions and byte-floor check for the nine deterministic review views.",
+        "evidence": {
+          "review/renders/wa475-10-technical-side.png": {
+            "bytes": 415268,
+            "width": 1100,
+            "height": 760
+          },
+          "review/renders/wa475-10-front-three-quarter.png": {
+            "bytes": 614049,
+            "width": 1100,
+            "height": 760
+          },
+          "review/renders/wa475-10-rear-three-quarter.png": {
+            "bytes": 495081,
+            "width": 1100,
+            "height": 760
+          },
+          "review/renders/wa475-10-articulation-steering.png": {
+            "bytes": 465205,
+            "width": 1100,
+            "height": 760
+          },
+          "review/renders/wa475-10-full-lift-dump.png": {
+            "bytes": 518389,
+            "width": 1100,
+            "height": 760
+          },
+          "review/renders/wa475-10-zbar-linkage-detail.png": {
+            "bytes": 798571,
+            "width": 1100,
+            "height": 760
+          },
+          "review/renders/wa475-10-operator-cab-detail.png": {
+            "bytes": 1054900,
+            "width": 1100,
+            "height": 760
+          },
+          "review/renders/wa475-10-rear-cooling-detail.png": {
+            "bytes": 707987,
+            "width": 1100,
+            "height": 760
+          },
+          "review/renders/wa475-10-rear-axle-oscillation.png": {
+            "bytes": 786361,
+            "width": 1100,
+            "height": 760
+          }
+        },
+        "semantic_nodes": [],
+        "fact_ids": []
+      },
       "expected": {
-        "minimum_views": 9,
+        "views": 9,
         "minimum_bytes": 30000,
         "minimum_width": 1000,
         "minimum_height": 700
       },
       "actual": {
         "review/renders/wa475-10-technical-side.png": {
-          "bytes": 416688,
+          "bytes": 415268,
           "width": 1100,
           "height": 760
         },
         "review/renders/wa475-10-front-three-quarter.png": {
-          "bytes": 597110,
+          "bytes": 614049,
           "width": 1100,
           "height": 760
         },
         "review/renders/wa475-10-rear-three-quarter.png": {
-          "bytes": 498068,
+          "bytes": 495081,
           "width": 1100,
           "height": 760
         },
         "review/renders/wa475-10-articulation-steering.png": {
-          "bytes": 466534,
+          "bytes": 465205,
           "width": 1100,
           "height": 760
         },
         "review/renders/wa475-10-full-lift-dump.png": {
-          "bytes": 514927,
+          "bytes": 518389,
           "width": 1100,
           "height": 760
         },
         "review/renders/wa475-10-zbar-linkage-detail.png": {
-          "bytes": 769844,
+          "bytes": 798571,
           "width": 1100,
           "height": 760
         },
         "review/renders/wa475-10-operator-cab-detail.png": {
-          "bytes": 1046628,
+          "bytes": 1054900,
           "width": 1100,
           "height": 760
         },
         "review/renders/wa475-10-rear-cooling-detail.png": {
-          "bytes": 739787,
+          "bytes": 707987,
           "width": 1100,
           "height": 760
         },
         "review/renders/wa475-10-rear-axle-oscillation.png": {
-          "bytes": 803325,
+          "bytes": 786361,
           "width": 1100,
           "height": 760
         }
@@ -322,130 +2941,273 @@
     {
       "id": "structural-triangle-budget",
       "status": "PASS",
-      "detail": "Blend source has reviewable technical detail within the reconstructed study budget.",
+      "detail": {
+        "method": "Evaluated source-scene triangle count against the study budget.",
+        "evidence": {
+          "objects": 452,
+          "meshes": 427,
+          "vertices": 30758,
+          "triangles": 59628,
+          "materials": 16
+        },
+        "semantic_nodes": [],
+        "fact_ids": []
+      },
       "expected": {
         "minimum": 12000,
         "maximum": 180000
       },
-      "actual": 53336
+      "actual": 59628
     },
     {
       "id": "public-source-scales-applied",
       "status": "PASS",
-      "detail": "Public geometry node scales are applied without changing the retained envelope.",
+      "detail": {
+        "method": "Before/after evaluated bounds and identity-scale audit after baking public mesh transforms.",
+        "evidence": {
+          "status": "PASS",
+          "public_export_geometry_nodes": 418,
+          "baked_node_count": 25,
+          "before_non_identity": {
+            "LiftCylinder_Barrel_L": [
+              0.075,
+              0.075,
+              0.525
+            ],
+            "LiftCylinder_Barrel_R": [
+              0.075,
+              0.075,
+              0.525
+            ],
+            "BucketCylinder_Barrel": [
+              0.09,
+              0.09,
+              0.37
+            ],
+            "BucketHingeCrossmember": [
+              0.91,
+              0.09,
+              0.09
+            ],
+            "LiftCylinder_Rod_L": [
+              0.045,
+              0.045,
+              0.338371
+            ],
+            "LiftCylinder_Rod_R": [
+              0.045,
+              0.045,
+              0.338371
+            ],
+            "LoaderArmCrossmember": [
+              0.89,
+              0.11,
+              0.11
+            ],
+            "ROPS_FrontPillar_L": [
+              0.976844,
+              0.05,
+              0.055
+            ],
+            "ROPS_FrontPillar_R": [
+              0.976844,
+              0.05,
+              0.055
+            ],
+            "ROPS_RearPillar_L": [
+              0.976281,
+              0.05,
+              0.055
+            ],
+            "ROPS_RearPillar_R": [
+              0.976281,
+              0.05,
+              0.055
+            ],
+            "StandardLoaderArmFront_L": [
+              0.90068,
+              0.12,
+              0.15
+            ],
+            "StandardLoaderArmFront_R": [
+              0.90068,
+              0.12,
+              0.15
+            ],
+            "StandardLoaderArmLowerWeb_L": [
+              1.364276,
+              0.075,
+              0.085
+            ],
+            "StandardLoaderArmLowerWeb_R": [
+              1.364276,
+              0.075,
+              0.085
+            ],
+            "StandardLoaderArmRear_L": [
+              0.684288,
+              0.115,
+              0.14
+            ],
+            "StandardLoaderArmRear_R": [
+              0.684288,
+              0.115,
+              0.14
+            ],
+            "SteeringCylinder_Barrel_L": [
+              0.0475,
+              0.0475,
+              0.33
+            ],
+            "SteeringCylinder_Barrel_R": [
+              0.0475,
+              0.0475,
+              0.33
+            ],
+            "SteeringCylinder_Rod_L": [
+              0.03,
+              0.03,
+              0.265223
+            ],
+            "SteeringCylinder_Rod_R": [
+              0.03,
+              0.03,
+              0.265223
+            ],
+            "ZBar_BucketLink_Reconstructed": [
+              0.970792,
+              0.08,
+              0.08
+            ],
+            "BucketCylinder_Rod": [
+              0.052,
+              0.052,
+              0.594557
+            ],
+            "ZBar_Bellcrank_Lower_Reconstructed": [
+              0.2,
+              0.1,
+              0.1
+            ],
+            "ZBar_Bellcrank_Upper_Reconstructed": [
+              0.225,
+              0.1,
+              0.1
+            ]
+          },
+          "after_non_identity": {},
+          "before_bounds_m": {
+            "axis_order": [
+              "machine_X_longitudinal",
+              "machine_Y_vertical",
+              "machine_Z_right"
+            ],
+            "min_m": [
+              -3.795,
+              0.01,
+              -1.585
+            ],
+            "max_m": [
+              5.382203,
+              3.54,
+              1.585
+            ],
+            "size_m": [
+              9.177203,
+              3.53,
+              3.17
+            ],
+            "measured_object_count": 418,
+            "method": "evaluated retained-pose public mesh and curve vertices; studio, markers, collision, inspection, cameras, and lights excluded"
+          },
+          "after_bounds_m": {
+            "axis_order": [
+              "machine_X_longitudinal",
+              "machine_Y_vertical",
+              "machine_Z_right"
+            ],
+            "min_m": [
+              -3.795,
+              0.01,
+              -1.585
+            ],
+            "max_m": [
+              5.382203,
+              3.54,
+              1.585
+            ],
+            "size_m": [
+              9.177203,
+              3.53,
+              3.17
+            ],
+            "measured_object_count": 418,
+            "method": "evaluated retained-pose public mesh and curve vertices; studio, markers, collision, inspection, cameras, and lights excluded"
+          },
+          "envelope_delta_m": {
+            "min_m": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_m": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "size_m": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "semantic_nodes": [],
+        "fact_ids": []
+      },
       "expected": {
         "after_non_identity": [],
         "envelope_delta_max_m": 1e-06
       },
       "actual": {
         "status": "PASS",
-        "public_export_geometry_nodes": 407,
+        "public_export_geometry_nodes": 418,
         "baked_node_count": 25,
         "before_non_identity": {
-          "BucketCylinder_Barrel": [
-            0.13,
-            0.13,
-            0.232913
-          ],
-          "BucketCylinder_Rod": [
-            0.078,
-            0.078,
-            0.142753
-          ],
           "LiftCylinder_Barrel_L": [
-            0.112,
-            0.112,
-            0.460187
+            0.075,
+            0.075,
+            0.525
           ],
           "LiftCylinder_Barrel_R": [
-            0.112,
-            0.112,
-            0.460187
-          ],
-          "LiftCylinder_Rod_L": [
-            0.068,
-            0.068,
-            0.333239
-          ],
-          "LiftCylinder_Rod_R": [
-            0.068,
-            0.068,
-            0.333239
-          ],
-          "SteeringCylinder_Barrel_L": [
             0.075,
             0.075,
-            0.4611
+            0.525
           ],
-          "SteeringCylinder_Barrel_R": [
-            0.075,
-            0.075,
-            0.4611
-          ],
-          "SteeringCylinder_Rod_L": [
-            0.044,
-            0.044,
-            0.3339
-          ],
-          "SteeringCylinder_Rod_R": [
-            0.044,
-            0.044,
-            0.3339
+          "BucketCylinder_Barrel": [
+            0.09,
+            0.09,
+            0.37
           ],
           "BucketHingeCrossmember": [
             0.91,
             0.09,
             0.09
           ],
+          "LiftCylinder_Rod_L": [
+            0.045,
+            0.045,
+            0.338371
+          ],
+          "LiftCylinder_Rod_R": [
+            0.045,
+            0.045,
+            0.338371
+          ],
           "LoaderArmCrossmember": [
             0.89,
             0.11,
             0.11
-          ],
-          "StandardLoaderArmFront_L": [
-            0.90068,
-            0.12,
-            0.15
-          ],
-          "StandardLoaderArmFront_R": [
-            0.90068,
-            0.12,
-            0.15
-          ],
-          "StandardLoaderArmLowerWeb_L": [
-            1.321836,
-            0.075,
-            0.085
-          ],
-          "StandardLoaderArmLowerWeb_R": [
-            1.321836,
-            0.075,
-            0.085
-          ],
-          "StandardLoaderArmRear_L": [
-            0.649192,
-            0.115,
-            0.14
-          ],
-          "StandardLoaderArmRear_R": [
-            0.649192,
-            0.115,
-            0.14
-          ],
-          "ZBar_Bellcrank_Lower_Reconstructed": [
-            0.215697,
-            0.1,
-            0.1
-          ],
-          "ZBar_Bellcrank_Upper_Reconstructed": [
-            0.233452,
-            0.1,
-            0.1
-          ],
-          "ZBar_BucketLink_Reconstructed": [
-            0.696796,
-            0.08,
-            0.08
           ],
           "ROPS_FrontPillar_L": [
             0.976844,
@@ -466,6 +3228,76 @@
             0.976281,
             0.05,
             0.055
+          ],
+          "StandardLoaderArmFront_L": [
+            0.90068,
+            0.12,
+            0.15
+          ],
+          "StandardLoaderArmFront_R": [
+            0.90068,
+            0.12,
+            0.15
+          ],
+          "StandardLoaderArmLowerWeb_L": [
+            1.364276,
+            0.075,
+            0.085
+          ],
+          "StandardLoaderArmLowerWeb_R": [
+            1.364276,
+            0.075,
+            0.085
+          ],
+          "StandardLoaderArmRear_L": [
+            0.684288,
+            0.115,
+            0.14
+          ],
+          "StandardLoaderArmRear_R": [
+            0.684288,
+            0.115,
+            0.14
+          ],
+          "SteeringCylinder_Barrel_L": [
+            0.0475,
+            0.0475,
+            0.33
+          ],
+          "SteeringCylinder_Barrel_R": [
+            0.0475,
+            0.0475,
+            0.33
+          ],
+          "SteeringCylinder_Rod_L": [
+            0.03,
+            0.03,
+            0.265223
+          ],
+          "SteeringCylinder_Rod_R": [
+            0.03,
+            0.03,
+            0.265223
+          ],
+          "ZBar_BucketLink_Reconstructed": [
+            0.970792,
+            0.08,
+            0.08
+          ],
+          "BucketCylinder_Rod": [
+            0.052,
+            0.052,
+            0.594557
+          ],
+          "ZBar_Bellcrank_Lower_Reconstructed": [
+            0.2,
+            0.1,
+            0.1
+          ],
+          "ZBar_Bellcrank_Upper_Reconstructed": [
+            0.225,
+            0.1,
+            0.1
           ]
         },
         "after_non_identity": {},
@@ -476,21 +3308,21 @@
             "machine_Z_right"
           ],
           "min_m": [
-            -4.05,
-            -0.005595,
+            -3.795,
+            0.01,
             -1.585
           ],
           "max_m": [
-            5.133311,
+            5.382203,
             3.54,
             1.585
           ],
           "size_m": [
-            9.183311,
-            3.545595,
+            9.177203,
+            3.53,
             3.17
           ],
-          "measured_object_count": 407,
+          "measured_object_count": 418,
           "method": "evaluated retained-pose public mesh and curve vertices; studio, markers, collision, inspection, cameras, and lights excluded"
         },
         "after_bounds_m": {
@@ -500,21 +3332,21 @@
             "machine_Z_right"
           ],
           "min_m": [
-            -4.05,
-            -0.005595,
+            -3.795,
+            0.01,
             -1.585
           ],
           "max_m": [
-            5.133311,
+            5.382203,
             3.54,
             1.585
           ],
           "size_m": [
-            9.183311,
-            3.545595,
+            9.177203,
+            3.53,
             3.17
           ],
-          "measured_object_count": 407,
+          "measured_object_count": 418,
           "method": "evaluated retained-pose public mesh and curve vertices; studio, markers, collision, inspection, cameras, and lights excluded"
         },
         "envelope_delta_m": {
@@ -539,9 +3371,1343 @@
     {
       "id": "public-glb-contract",
       "status": "PASS",
-      "detail": "Public GLB has one identity root, Y-up output, identity mesh scales, triangle primitives, and no studio/helper/camera/light leakage.",
+      "detail": {
+        "method": "Decoded GLB root, primitive, transform, helper-leak and semantic hierarchy inspection.",
+        "evidence": {
+          "status": "PASS",
+          "asset_version": "2.0",
+          "scene_direct_root_count": 1,
+          "scene_direct_root_names": [
+            "Machine_Root"
+          ],
+          "root_identity_trs": true,
+          "node_count": 434,
+          "helper_nodes_present": [],
+          "public_mesh_node_scale_status": "PASS",
+          "public_mesh_node_count": 418,
+          "public_mesh_nodes_non_identity_scale": [],
+          "public_glb_decoded_counts": {
+            "classification": "public_glb_decoded_geometry",
+            "nodes": 434,
+            "mesh_nodes": 418,
+            "mesh_resources": 418,
+            "primitives": 418,
+            "position_vertices": 114108,
+            "triangles": 59424,
+            "triangle_method": "decoded glTF accessor element counts; TRIANGLES count/3, strips/fans count-2"
+          },
+          "semantic_hierarchy": {
+            "FrontFrame_Main": {
+              "parent": "Articulation_FrontFrame_Root_Reconstructed",
+              "translation": [
+                0,
+                -1.2000000476837158,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "FrontTire_L": {
+              "parent": "FrontWheel_L_Pivot_ROOT",
+              "translation": [
+                0,
+                0,
+                0
+              ],
+              "rotation": [
+                0.7071068286895752,
+                0,
+                0,
+                0.7071068286895752
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "FrontWheel_L_Pivot_ROOT": {
+              "parent": "Articulation_FrontFrame_Root_Reconstructed",
+              "translation": [
+                1.600000023841858,
+                -0.3400000333786011,
+                1.190000057220459
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": false
+            },
+            "FrontTire_R": {
+              "parent": "FrontWheel_R_Pivot_ROOT",
+              "translation": [
+                0,
+                0,
+                0
+              ],
+              "rotation": [
+                0.7071068286895752,
+                0,
+                0,
+                0.7071068286895752
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "FrontWheel_R_Pivot_ROOT": {
+              "parent": "Articulation_FrontFrame_Root_Reconstructed",
+              "translation": [
+                1.600000023841858,
+                -0.3400000333786011,
+                -1.190000057220459
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": false
+            },
+            "LiftCylinder_Barrel_L": {
+              "parent": "Articulation_FrontFrame_Root_Reconstructed",
+              "translation": [
+                0.7225699424743652,
+                -0.05045509338378906,
+                0.699999988079071
+              ],
+              "rotation": [
+                0.523475170135498,
+                0.47536706924438477,
+                -0.5234751105308533,
+                0.4753670394420624
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "LiftCylinder_Barrel_R": {
+              "parent": "Articulation_FrontFrame_Root_Reconstructed",
+              "translation": [
+                0.7225699424743652,
+                -0.05045509338378906,
+                -0.699999988079071
+              ],
+              "rotation": [
+                0.523475170135498,
+                0.47536706924438477,
+                -0.5234751105308533,
+                0.4753670394420624
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "LiftCylinder_BaseClevis_L": {
+              "parent": "Articulation_FrontFrame_Root_Reconstructed",
+              "translation": [
+                0.20000000298023224,
+                0,
+                0.699999988079071
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "LiftCylinder_BaseClevis_R": {
+              "parent": "Articulation_FrontFrame_Root_Reconstructed",
+              "translation": [
+                0.20000000298023224,
+                0,
+                -0.699999988079071
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "BucketCylinder_Barrel": {
+              "parent": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+              "translation": [
+                0.4800451695919037,
+                -0.025249481201171875,
+                0
+              ],
+              "rotation": [
+                0.5546179413795471,
+                0.43863314390182495,
+                -0.5546178817749023,
+                0.43863311409950256
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "BucketCylinder_BaseClevis": {
+              "parent": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+              "translation": [
+                0.12000000476837158,
+                0.059999942779541016,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "BucketHingeCrossmember": {
+              "parent": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+              "translation": [
+                2.950000047683716,
+                -1.1600000858306885,
+                0
+              ],
+              "rotation": [
+                0,
+                0.7071066498756409,
+                0,
+                0.70710688829422
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "LiftCylinder_ArmClevis_L": {
+              "parent": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+              "translation": [
+                1.3700000047683716,
+                -0.6800000667572021,
+                0.699999988079071
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "LiftCylinder_ArmClevis_R": {
+              "parent": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+              "translation": [
+                1.3700000047683716,
+                -0.6800000667572021,
+                -0.699999988079071
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "LiftCylinder_Rod_L": {
+              "parent": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+              "translation": [
+                1.0331947803497314,
+                -0.6474809646606445,
+                0.699999988079071
+              ],
+              "rotation": [
+                0.523475170135498,
+                0.4753669500350952,
+                -0.523475170135498,
+                0.47536700963974
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "LiftCylinder_Rod_R": {
+              "parent": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+              "translation": [
+                1.0331947803497314,
+                -0.6474809646606445,
+                -0.699999988079071
+              ],
+              "rotation": [
+                0.523475170135498,
+                0.4753669500350952,
+                -0.523475170135498,
+                0.47536700963974
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "StandardLoaderArmFront_L": {
+              "parent": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+              "translation": [
+                2.109999895095825,
+                -0.8350000381469727,
+                0.7799999713897705
+              ],
+              "rotation": [
+                0,
+                0,
+                -0.18353699147701263,
+                0.9830129146575928
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "StandardLoaderArmFront_R": {
+              "parent": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+              "translation": [
+                2.109999895095825,
+                -0.8350000381469727,
+                -0.7799999713897705
+              ],
+              "rotation": [
+                0,
+                0,
+                -0.18353699147701263,
+                0.9830129146575928
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "StandardLoaderArmRear_L": {
+              "parent": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+              "translation": [
+                0.6349999904632568,
+                -0.2549999952316284,
+                0.7799999713897705
+              ],
+              "rotation": [
+                0,
+                0,
+                -0.18977363407611847,
+                0.981827974319458
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "StandardLoaderArmRear_R": {
+              "parent": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+              "translation": [
+                0.6349999904632568,
+                -0.2549999952316284,
+                -0.7799999713897705
+              ],
+              "rotation": [
+                0,
+                0,
+                -0.18977363407611847,
+                0.981827974319458
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "Bucket_ZBar_LinkEar_Reconstructed": {
+              "parent": "StockPileBucket_PivotRoot_Reconstructed",
+              "translation": [
+                -0.09999994933605194,
+                0.25000011920928955,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "BucketBoltOnCuttingEdge": {
+              "parent": "StockPileBucket_PivotRoot_Reconstructed",
+              "translation": [
+                1.9900001287460327,
+                0.31800001859664917,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "BucketSideGuard_L": {
+              "parent": "StockPileBucket_PivotRoot_Reconstructed",
+              "translation": [
+                0,
+                0,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "BucketSideGuard_R": {
+              "parent": "StockPileBucket_PivotRoot_Reconstructed",
+              "translation": [
+                0,
+                0,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "StockPileBucket_Shell": {
+              "parent": "StockPileBucket_PivotRoot_Reconstructed",
+              "translation": [
+                0,
+                0,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "StockPileBucket_PivotRoot_Reconstructed": {
+              "parent": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+              "translation": [
+                2.950000047683716,
+                -1.1600000858306885,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                -0.12922827899456024,
+                0.9916148781776428
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": false
+            },
+            "BucketCylinder_BellcrankClevis": {
+              "parent": "ZBar_Bellcrank_Pivot_ROOT_Reconstructed",
+              "translation": [
+                0.4228616952896118,
+                0.1539090871810913,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "BucketCylinder_Rod": {
+              "parent": "ZBar_Bellcrank_Pivot_ROOT_Reconstructed",
+              "translation": [
+                -0.15569889545440674,
+                0.2908973693847656,
+                0
+              ],
+              "rotation": [
+                0.5546178817749023,
+                0.4386332035064697,
+                -0.5546180009841919,
+                0.4386330544948578
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "ZBar_Bellcrank_Lower_Reconstructed": {
+              "parent": "ZBar_Bellcrank_Pivot_ROOT_Reconstructed",
+              "translation": [
+                -0.18793857097625732,
+                -0.06840395927429199,
+                0
+              ],
+              "rotation": [
+                -0.17364807426929474,
+                0.9848077893257141,
+                0,
+                8.746098245637768e-08
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "ZBar_Bellcrank_Upper_Reconstructed": {
+              "parent": "ZBar_Bellcrank_Pivot_ROOT_Reconstructed",
+              "translation": [
+                0.21143090724945068,
+                0.07695460319519043,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0.17364820837974548,
+                0.9848078489303589
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "ZBar_Bellcrank_Pivot_ROOT_Reconstructed": {
+              "parent": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+              "translation": [
+                1.3700000047683716,
+                -0.49000000953674316,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": false
+            },
+            "ZBar_BucketLink_Reconstructed": {
+              "parent": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+              "translation": [
+                1.9557676315307617,
+                -0.759764552116394,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                -0.06864021718502045,
+                0.9976415634155273
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "LoaderArm_LiftPivot_ROOT_Reconstructed": {
+              "parent": "Articulation_FrontFrame_Root_Reconstructed",
+              "translation": [
+                0.2800000011920929,
+                0.5399999618530273,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": false
+            },
+            "LoaderHose_L_01": {
+              "parent": "Articulation_FrontFrame_Root_Reconstructed",
+              "translation": [
+                0,
+                -1.2000000476837158,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "LoaderHose_R_01": {
+              "parent": "Articulation_FrontFrame_Root_Reconstructed",
+              "translation": [
+                0,
+                -1.2000000476837158,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "SteeringCylinder_FrontClevis_L": {
+              "parent": "Articulation_FrontFrame_Root_Reconstructed",
+              "translation": [
+                0.7900000214576721,
+                -0.3500000238418579,
+                0.6299999952316284
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "SteeringCylinder_FrontClevis_R": {
+              "parent": "Articulation_FrontFrame_Root_Reconstructed",
+              "translation": [
+                0.7900000214576721,
+                -0.21000003814697266,
+                -0.6299999952316284
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "SteeringCylinder_Barrel_L": {
+              "parent": "SteeringCylinder_L_YawPivot_ROOT_Reconstructed",
+              "translation": [
+                0.2580050230026245,
+                0,
+                0.20575085282325745
+              ],
+              "rotation": [
+                0.6370806694030762,
+                0.30680304765701294,
+                -0.3068031370639801,
+                0.6370807886123657
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "SteeringCylinder_Rod_L": {
+              "parent": "SteeringCylinder_L_YawPivot_ROOT_Reconstructed",
+              "translation": [
+                0.5826400518417358,
+                0,
+                0.46463698148727417
+              ],
+              "rotation": [
+                0.6370807886123657,
+                0.3068031370639801,
+                -0.3068031072616577,
+                0.6370806694030762
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "SteeringCylinder_L_YawPivot_ROOT_Reconstructed": {
+              "parent": "Articulation_FrontFrame_Root_Reconstructed",
+              "translation": [
+                0,
+                -0.3500000238418579,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": false
+            },
+            "SteeringCylinder_Barrel_R": {
+              "parent": "SteeringCylinder_R_YawPivot_ROOT_Reconstructed",
+              "translation": [
+                0.2580050230026245,
+                0,
+                -0.20575085282325745
+              ],
+              "rotation": [
+                0.30680304765701294,
+                0.637080729007721,
+                -0.6370808482170105,
+                0.3068031370639801
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "SteeringCylinder_Rod_R": {
+              "parent": "SteeringCylinder_R_YawPivot_ROOT_Reconstructed",
+              "translation": [
+                0.5826400518417358,
+                0,
+                -0.46463698148727417
+              ],
+              "rotation": [
+                0.30680304765701294,
+                0.6370808482170105,
+                -0.637080729007721,
+                0.3068031072616577
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "SteeringCylinder_R_YawPivot_ROOT_Reconstructed": {
+              "parent": "Articulation_FrontFrame_Root_Reconstructed",
+              "translation": [
+                0,
+                -0.21000003814697266,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": false
+            },
+            "Articulation_FrontFrame_Root_Reconstructed": {
+              "parent": "Machine_Root",
+              "translation": [
+                0,
+                1.2000000476837158,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": false
+            },
+            "CenterArticulationLowerPin": {
+              "parent": "Machine_Root",
+              "translation": [
+                0,
+                0.8199999928474426,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "CenterArticulationUpperPin": {
+              "parent": "Machine_Root",
+              "translation": [
+                0,
+                1.4199999570846558,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "Cab_FrontGlass": {
+              "parent": "Cab_ROPS_Root_Reconstructed",
+              "translation": [
+                0.60999995470047,
+                1.0500000715255737,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "CabRoofRail_L": {
+              "parent": "Cab_ROPS_Root_Reconstructed",
+              "translation": [
+                0.5299999713897705,
+                -1.3799999952316284,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "ROPS_Roof": {
+              "parent": "Cab_ROPS_Root_Reconstructed",
+              "translation": [
+                -0.09000003337860107,
+                2.059999942779541,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "Cab_ROPS_Root_Reconstructed": {
+              "parent": "RearFrame_Root",
+              "translation": [
+                -0.5299999713897705,
+                1.3799999952316284,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": false
+            },
+            "EngineCompartment_Core": {
+              "parent": "RearFrame_Root",
+              "translation": [
+                -2.619999885559082,
+                1.7699999809265137,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "ExhaustRainCap": {
+              "parent": "RearFrame_Root",
+              "translation": [
+                -2.619999885559082,
+                3.4200000762939453,
+                -0.7699999809265137
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "RearTire_L": {
+              "parent": "RearWheel_L_Pivot_ROOT",
+              "translation": [
+                0,
+                0,
+                0
+              ],
+              "rotation": [
+                0.7071068286895752,
+                0,
+                0,
+                0.7071068286895752
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "RearWheel_L_Pivot_ROOT": {
+              "parent": "RearAxle_Oscillation_Root_Reconstructed",
+              "translation": [
+                0,
+                0,
+                1.190000057220459
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": false
+            },
+            "RearTire_R": {
+              "parent": "RearWheel_R_Pivot_ROOT",
+              "translation": [
+                0,
+                0,
+                0
+              ],
+              "rotation": [
+                0.7071068286895752,
+                0,
+                0,
+                0.7071068286895752
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "RearWheel_R_Pivot_ROOT": {
+              "parent": "RearAxle_Oscillation_Root_Reconstructed",
+              "translation": [
+                0,
+                0,
+                -1.190000057220459
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": false
+            },
+            "RearAxle_Oscillation_Root_Reconstructed": {
+              "parent": "RearFrame_Root",
+              "translation": [
+                -1.850000023841858,
+                0.8600000143051147,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": false
+            },
+            "RearBellyGuard": {
+              "parent": "RearFrame_Root",
+              "translation": [
+                -1.8200000524520874,
+                0.5950000286102295,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "RearCoolingMask": {
+              "parent": "RearFrame_Root",
+              "translation": [
+                -3.742000102996826,
+                1.8799999952316284,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "RearCounterweight_Mass": {
+              "parent": "RearFrame_Root",
+              "translation": [
+                0,
+                0,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "RearFrame_Spine": {
+              "parent": "RearFrame_Root",
+              "translation": [
+                -1.7799999713897705,
+                0.9200000166893005,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "SteeringCylinder_BaseClevis_L": {
+              "parent": "RearFrame_Root",
+              "translation": [
+                0,
+                0.8500000238418579,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "SteeringCylinder_BaseClevis_R": {
+              "parent": "RearFrame_Root",
+              "translation": [
+                0,
+                0.9900000095367432,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": true
+            },
+            "RearFrame_Root": {
+              "parent": "Machine_Root",
+              "translation": [
+                0,
+                0,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": false
+            },
+            "Machine_Root": {
+              "parent": null,
+              "translation": [
+                0,
+                0,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "scale": [
+                1,
+                1,
+                1
+              ],
+              "mesh": false
+            }
+          },
+          "unsupported_primitive_modes": [],
+          "glb_y_up": true
+        },
+        "semantic_nodes": [
+          "Machine_Root"
+        ],
+        "fact_ids": []
+      },
       "expected": {
-        "root": "WA47510_Root",
+        "root": "Machine_Root",
         "helpers": []
       },
       "actual": {
@@ -549,82 +4715,1461 @@
         "asset_version": "2.0",
         "scene_direct_root_count": 1,
         "scene_direct_root_names": [
-          "WA47510_Root"
+          "Machine_Root"
         ],
         "root_identity_trs": true,
-        "node_count": 413,
+        "node_count": 434,
         "helper_nodes_present": [],
         "public_mesh_node_scale_status": "PASS",
-        "public_mesh_node_count": 407,
+        "public_mesh_node_count": 418,
         "public_mesh_nodes_non_identity_scale": [],
         "public_glb_decoded_counts": {
           "classification": "public_glb_decoded_geometry",
-          "nodes": 413,
-          "mesh_nodes": 407,
-          "mesh_resources": 407,
-          "primitives": 407,
-          "position_vertices": 100986,
-          "triangles": 53132,
+          "nodes": 434,
+          "mesh_nodes": 418,
+          "mesh_resources": 418,
+          "primitives": 418,
+          "position_vertices": 114108,
+          "triangles": 59424,
           "triangle_method": "decoded glTF accessor element counts; TRIANGLES count/3, strips/fans count-2"
+        },
+        "semantic_hierarchy": {
+          "FrontFrame_Main": {
+            "parent": "Articulation_FrontFrame_Root_Reconstructed",
+            "translation": [
+              0,
+              -1.2000000476837158,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "FrontTire_L": {
+            "parent": "FrontWheel_L_Pivot_ROOT",
+            "translation": [
+              0,
+              0,
+              0
+            ],
+            "rotation": [
+              0.7071068286895752,
+              0,
+              0,
+              0.7071068286895752
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "FrontWheel_L_Pivot_ROOT": {
+            "parent": "Articulation_FrontFrame_Root_Reconstructed",
+            "translation": [
+              1.600000023841858,
+              -0.3400000333786011,
+              1.190000057220459
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": false
+          },
+          "FrontTire_R": {
+            "parent": "FrontWheel_R_Pivot_ROOT",
+            "translation": [
+              0,
+              0,
+              0
+            ],
+            "rotation": [
+              0.7071068286895752,
+              0,
+              0,
+              0.7071068286895752
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "FrontWheel_R_Pivot_ROOT": {
+            "parent": "Articulation_FrontFrame_Root_Reconstructed",
+            "translation": [
+              1.600000023841858,
+              -0.3400000333786011,
+              -1.190000057220459
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": false
+          },
+          "LiftCylinder_Barrel_L": {
+            "parent": "Articulation_FrontFrame_Root_Reconstructed",
+            "translation": [
+              0.7225699424743652,
+              -0.05045509338378906,
+              0.699999988079071
+            ],
+            "rotation": [
+              0.523475170135498,
+              0.47536706924438477,
+              -0.5234751105308533,
+              0.4753670394420624
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "LiftCylinder_Barrel_R": {
+            "parent": "Articulation_FrontFrame_Root_Reconstructed",
+            "translation": [
+              0.7225699424743652,
+              -0.05045509338378906,
+              -0.699999988079071
+            ],
+            "rotation": [
+              0.523475170135498,
+              0.47536706924438477,
+              -0.5234751105308533,
+              0.4753670394420624
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "LiftCylinder_BaseClevis_L": {
+            "parent": "Articulation_FrontFrame_Root_Reconstructed",
+            "translation": [
+              0.20000000298023224,
+              0,
+              0.699999988079071
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "LiftCylinder_BaseClevis_R": {
+            "parent": "Articulation_FrontFrame_Root_Reconstructed",
+            "translation": [
+              0.20000000298023224,
+              0,
+              -0.699999988079071
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "BucketCylinder_Barrel": {
+            "parent": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+            "translation": [
+              0.4800451695919037,
+              -0.025249481201171875,
+              0
+            ],
+            "rotation": [
+              0.5546179413795471,
+              0.43863314390182495,
+              -0.5546178817749023,
+              0.43863311409950256
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "BucketCylinder_BaseClevis": {
+            "parent": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+            "translation": [
+              0.12000000476837158,
+              0.059999942779541016,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "BucketHingeCrossmember": {
+            "parent": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+            "translation": [
+              2.950000047683716,
+              -1.1600000858306885,
+              0
+            ],
+            "rotation": [
+              0,
+              0.7071066498756409,
+              0,
+              0.70710688829422
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "LiftCylinder_ArmClevis_L": {
+            "parent": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+            "translation": [
+              1.3700000047683716,
+              -0.6800000667572021,
+              0.699999988079071
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "LiftCylinder_ArmClevis_R": {
+            "parent": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+            "translation": [
+              1.3700000047683716,
+              -0.6800000667572021,
+              -0.699999988079071
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "LiftCylinder_Rod_L": {
+            "parent": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+            "translation": [
+              1.0331947803497314,
+              -0.6474809646606445,
+              0.699999988079071
+            ],
+            "rotation": [
+              0.523475170135498,
+              0.4753669500350952,
+              -0.523475170135498,
+              0.47536700963974
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "LiftCylinder_Rod_R": {
+            "parent": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+            "translation": [
+              1.0331947803497314,
+              -0.6474809646606445,
+              -0.699999988079071
+            ],
+            "rotation": [
+              0.523475170135498,
+              0.4753669500350952,
+              -0.523475170135498,
+              0.47536700963974
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "StandardLoaderArmFront_L": {
+            "parent": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+            "translation": [
+              2.109999895095825,
+              -0.8350000381469727,
+              0.7799999713897705
+            ],
+            "rotation": [
+              0,
+              0,
+              -0.18353699147701263,
+              0.9830129146575928
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "StandardLoaderArmFront_R": {
+            "parent": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+            "translation": [
+              2.109999895095825,
+              -0.8350000381469727,
+              -0.7799999713897705
+            ],
+            "rotation": [
+              0,
+              0,
+              -0.18353699147701263,
+              0.9830129146575928
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "StandardLoaderArmRear_L": {
+            "parent": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+            "translation": [
+              0.6349999904632568,
+              -0.2549999952316284,
+              0.7799999713897705
+            ],
+            "rotation": [
+              0,
+              0,
+              -0.18977363407611847,
+              0.981827974319458
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "StandardLoaderArmRear_R": {
+            "parent": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+            "translation": [
+              0.6349999904632568,
+              -0.2549999952316284,
+              -0.7799999713897705
+            ],
+            "rotation": [
+              0,
+              0,
+              -0.18977363407611847,
+              0.981827974319458
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "Bucket_ZBar_LinkEar_Reconstructed": {
+            "parent": "StockPileBucket_PivotRoot_Reconstructed",
+            "translation": [
+              -0.09999994933605194,
+              0.25000011920928955,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "BucketBoltOnCuttingEdge": {
+            "parent": "StockPileBucket_PivotRoot_Reconstructed",
+            "translation": [
+              1.9900001287460327,
+              0.31800001859664917,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "BucketSideGuard_L": {
+            "parent": "StockPileBucket_PivotRoot_Reconstructed",
+            "translation": [
+              0,
+              0,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "BucketSideGuard_R": {
+            "parent": "StockPileBucket_PivotRoot_Reconstructed",
+            "translation": [
+              0,
+              0,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "StockPileBucket_Shell": {
+            "parent": "StockPileBucket_PivotRoot_Reconstructed",
+            "translation": [
+              0,
+              0,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "StockPileBucket_PivotRoot_Reconstructed": {
+            "parent": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+            "translation": [
+              2.950000047683716,
+              -1.1600000858306885,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              -0.12922827899456024,
+              0.9916148781776428
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": false
+          },
+          "BucketCylinder_BellcrankClevis": {
+            "parent": "ZBar_Bellcrank_Pivot_ROOT_Reconstructed",
+            "translation": [
+              0.4228616952896118,
+              0.1539090871810913,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "BucketCylinder_Rod": {
+            "parent": "ZBar_Bellcrank_Pivot_ROOT_Reconstructed",
+            "translation": [
+              -0.15569889545440674,
+              0.2908973693847656,
+              0
+            ],
+            "rotation": [
+              0.5546178817749023,
+              0.4386332035064697,
+              -0.5546180009841919,
+              0.4386330544948578
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "ZBar_Bellcrank_Lower_Reconstructed": {
+            "parent": "ZBar_Bellcrank_Pivot_ROOT_Reconstructed",
+            "translation": [
+              -0.18793857097625732,
+              -0.06840395927429199,
+              0
+            ],
+            "rotation": [
+              -0.17364807426929474,
+              0.9848077893257141,
+              0,
+              8.746098245637768e-08
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "ZBar_Bellcrank_Upper_Reconstructed": {
+            "parent": "ZBar_Bellcrank_Pivot_ROOT_Reconstructed",
+            "translation": [
+              0.21143090724945068,
+              0.07695460319519043,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0.17364820837974548,
+              0.9848078489303589
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "ZBar_Bellcrank_Pivot_ROOT_Reconstructed": {
+            "parent": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+            "translation": [
+              1.3700000047683716,
+              -0.49000000953674316,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": false
+          },
+          "ZBar_BucketLink_Reconstructed": {
+            "parent": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+            "translation": [
+              1.9557676315307617,
+              -0.759764552116394,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              -0.06864021718502045,
+              0.9976415634155273
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "LoaderArm_LiftPivot_ROOT_Reconstructed": {
+            "parent": "Articulation_FrontFrame_Root_Reconstructed",
+            "translation": [
+              0.2800000011920929,
+              0.5399999618530273,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": false
+          },
+          "LoaderHose_L_01": {
+            "parent": "Articulation_FrontFrame_Root_Reconstructed",
+            "translation": [
+              0,
+              -1.2000000476837158,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "LoaderHose_R_01": {
+            "parent": "Articulation_FrontFrame_Root_Reconstructed",
+            "translation": [
+              0,
+              -1.2000000476837158,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "SteeringCylinder_FrontClevis_L": {
+            "parent": "Articulation_FrontFrame_Root_Reconstructed",
+            "translation": [
+              0.7900000214576721,
+              -0.3500000238418579,
+              0.6299999952316284
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "SteeringCylinder_FrontClevis_R": {
+            "parent": "Articulation_FrontFrame_Root_Reconstructed",
+            "translation": [
+              0.7900000214576721,
+              -0.21000003814697266,
+              -0.6299999952316284
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "SteeringCylinder_Barrel_L": {
+            "parent": "SteeringCylinder_L_YawPivot_ROOT_Reconstructed",
+            "translation": [
+              0.2580050230026245,
+              0,
+              0.20575085282325745
+            ],
+            "rotation": [
+              0.6370806694030762,
+              0.30680304765701294,
+              -0.3068031370639801,
+              0.6370807886123657
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "SteeringCylinder_Rod_L": {
+            "parent": "SteeringCylinder_L_YawPivot_ROOT_Reconstructed",
+            "translation": [
+              0.5826400518417358,
+              0,
+              0.46463698148727417
+            ],
+            "rotation": [
+              0.6370807886123657,
+              0.3068031370639801,
+              -0.3068031072616577,
+              0.6370806694030762
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "SteeringCylinder_L_YawPivot_ROOT_Reconstructed": {
+            "parent": "Articulation_FrontFrame_Root_Reconstructed",
+            "translation": [
+              0,
+              -0.3500000238418579,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": false
+          },
+          "SteeringCylinder_Barrel_R": {
+            "parent": "SteeringCylinder_R_YawPivot_ROOT_Reconstructed",
+            "translation": [
+              0.2580050230026245,
+              0,
+              -0.20575085282325745
+            ],
+            "rotation": [
+              0.30680304765701294,
+              0.637080729007721,
+              -0.6370808482170105,
+              0.3068031370639801
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "SteeringCylinder_Rod_R": {
+            "parent": "SteeringCylinder_R_YawPivot_ROOT_Reconstructed",
+            "translation": [
+              0.5826400518417358,
+              0,
+              -0.46463698148727417
+            ],
+            "rotation": [
+              0.30680304765701294,
+              0.6370808482170105,
+              -0.637080729007721,
+              0.3068031072616577
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "SteeringCylinder_R_YawPivot_ROOT_Reconstructed": {
+            "parent": "Articulation_FrontFrame_Root_Reconstructed",
+            "translation": [
+              0,
+              -0.21000003814697266,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": false
+          },
+          "Articulation_FrontFrame_Root_Reconstructed": {
+            "parent": "Machine_Root",
+            "translation": [
+              0,
+              1.2000000476837158,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": false
+          },
+          "CenterArticulationLowerPin": {
+            "parent": "Machine_Root",
+            "translation": [
+              0,
+              0.8199999928474426,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "CenterArticulationUpperPin": {
+            "parent": "Machine_Root",
+            "translation": [
+              0,
+              1.4199999570846558,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "Cab_FrontGlass": {
+            "parent": "Cab_ROPS_Root_Reconstructed",
+            "translation": [
+              0.60999995470047,
+              1.0500000715255737,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "CabRoofRail_L": {
+            "parent": "Cab_ROPS_Root_Reconstructed",
+            "translation": [
+              0.5299999713897705,
+              -1.3799999952316284,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "ROPS_Roof": {
+            "parent": "Cab_ROPS_Root_Reconstructed",
+            "translation": [
+              -0.09000003337860107,
+              2.059999942779541,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "Cab_ROPS_Root_Reconstructed": {
+            "parent": "RearFrame_Root",
+            "translation": [
+              -0.5299999713897705,
+              1.3799999952316284,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": false
+          },
+          "EngineCompartment_Core": {
+            "parent": "RearFrame_Root",
+            "translation": [
+              -2.619999885559082,
+              1.7699999809265137,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "ExhaustRainCap": {
+            "parent": "RearFrame_Root",
+            "translation": [
+              -2.619999885559082,
+              3.4200000762939453,
+              -0.7699999809265137
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "RearTire_L": {
+            "parent": "RearWheel_L_Pivot_ROOT",
+            "translation": [
+              0,
+              0,
+              0
+            ],
+            "rotation": [
+              0.7071068286895752,
+              0,
+              0,
+              0.7071068286895752
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "RearWheel_L_Pivot_ROOT": {
+            "parent": "RearAxle_Oscillation_Root_Reconstructed",
+            "translation": [
+              0,
+              0,
+              1.190000057220459
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": false
+          },
+          "RearTire_R": {
+            "parent": "RearWheel_R_Pivot_ROOT",
+            "translation": [
+              0,
+              0,
+              0
+            ],
+            "rotation": [
+              0.7071068286895752,
+              0,
+              0,
+              0.7071068286895752
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "RearWheel_R_Pivot_ROOT": {
+            "parent": "RearAxle_Oscillation_Root_Reconstructed",
+            "translation": [
+              0,
+              0,
+              -1.190000057220459
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": false
+          },
+          "RearAxle_Oscillation_Root_Reconstructed": {
+            "parent": "RearFrame_Root",
+            "translation": [
+              -1.850000023841858,
+              0.8600000143051147,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": false
+          },
+          "RearBellyGuard": {
+            "parent": "RearFrame_Root",
+            "translation": [
+              -1.8200000524520874,
+              0.5950000286102295,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "RearCoolingMask": {
+            "parent": "RearFrame_Root",
+            "translation": [
+              -3.742000102996826,
+              1.8799999952316284,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "RearCounterweight_Mass": {
+            "parent": "RearFrame_Root",
+            "translation": [
+              0,
+              0,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "RearFrame_Spine": {
+            "parent": "RearFrame_Root",
+            "translation": [
+              -1.7799999713897705,
+              0.9200000166893005,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "SteeringCylinder_BaseClevis_L": {
+            "parent": "RearFrame_Root",
+            "translation": [
+              0,
+              0.8500000238418579,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "SteeringCylinder_BaseClevis_R": {
+            "parent": "RearFrame_Root",
+            "translation": [
+              0,
+              0.9900000095367432,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": true
+          },
+          "RearFrame_Root": {
+            "parent": "Machine_Root",
+            "translation": [
+              0,
+              0,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": false
+          },
+          "Machine_Root": {
+            "parent": null,
+            "translation": [
+              0,
+              0,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "mesh": false
+          }
         },
         "unsupported_primitive_modes": [],
         "glb_y_up": true
       }
     },
     {
-      "id": "published-steering-endpoints",
-      "status": "PENDING",
-      "detail": "35 degree nominal and 40 degree end-stop facts are retained; steering-cylinder closure, swept volume, and tire/body clearance are unqualified."
-    },
-    {
-      "id": "rear-axle-oscillation",
-      "status": "PENDING",
-      "detail": "26 degree total oscillation is retained; center-pin coordinates, stops, and tire-deflection clearance are unresolved."
-    },
-    {
-      "id": "loader-linkage-closure",
-      "status": "PENDING",
-      "detail": "Standard loader-arm pivots and lift-cylinder anchors are reconstructed; endpoint renders are not a solver."
-    },
-    {
-      "id": "z-bar-linkage-closure",
-      "status": "PENDING",
-      "detail": "Bellcrank and bucket-link geometry are reconstructed; bucket-cylinder stroke continuity is unqualified."
-    },
-    {
-      "id": "dump-clearance-reach-operating-height",
-      "status": "PENDING",
-      "detail": "Published clearance, reach and fully raised operating height are retained but the brochure does not bind all measurement datums to reconstructed bucket geometry."
-    },
-    {
-      "id": "ground-and-self-collision",
-      "status": "PENDING",
-      "detail": "Source collision proxies exist, but no swept-pose collision qualification has run."
+      "id": "required-gate-contract",
+      "status": "PASS",
+      "detail": {
+        "method": "Exact required-gate ID cardinality, structured detail shape, unique semantic/fact arrays, and used-fact union coverage.",
+        "evidence": {
+          "counts": {
+            "retained_stowed_envelope": 1,
+            "wheelbase_and_grade_contact": 1,
+            "frame_articulation_continuity": 1,
+            "steering_cylinder_continuity": 1,
+            "rear_axle_oscillation_clearance": 1,
+            "full_lift_hinge_height": 1,
+            "dump_clearance_and_reach": 1,
+            "loader_linkage_closure": 1,
+            "z_bar_linkage_closure": 1,
+            "lift_and_bucket_cylinder_stroke_continuity": 1,
+            "bucket_ground_collision": 1,
+            "machine_self_collision": 1,
+            "tire_body_clearance": 1,
+            "articulation_swept_volume": 1
+          },
+          "malformed_details": [],
+          "covered_fact_ids": [
+            "bucket-capacity-heaped",
+            "bucket-capacity-struck",
+            "bucket-cylinder-bore",
+            "bucket-cylinder-count",
+            "bucket-cylinder-stroke",
+            "bucket-weight",
+            "bucket-width-stock-pile",
+            "dump-clearance-stock-pile",
+            "dump-reach-stock-pile",
+            "ground-clearance",
+            "height-roof-rail",
+            "height-rops-cab",
+            "height-top-stack",
+            "hinge-pin-height-carry-standard",
+            "hinge-pin-height-max-standard",
+            "hitch-height-standard",
+            "lift-cylinder-bore",
+            "lift-cylinder-count",
+            "lift-cylinder-stroke",
+            "operating-height-stock-pile",
+            "overall-length-stock-pile",
+            "rear-axle-oscillation",
+            "steering-angle-max-stop",
+            "steering-angle-nominal",
+            "steering-cylinder-bore",
+            "steering-cylinder-count",
+            "steering-cylinder-stroke",
+            "wheelbase",
+            "width-standard-tires"
+          ],
+          "missing_used_fact_coverage": []
+        },
+        "semantic_nodes": [],
+        "fact_ids": []
+      },
+      "expected": {
+        "count_per_required_id": 1,
+        "missing_used_fact_coverage": []
+      },
+      "actual": {
+        "counts": {
+          "retained_stowed_envelope": 1,
+          "wheelbase_and_grade_contact": 1,
+          "frame_articulation_continuity": 1,
+          "steering_cylinder_continuity": 1,
+          "rear_axle_oscillation_clearance": 1,
+          "full_lift_hinge_height": 1,
+          "dump_clearance_and_reach": 1,
+          "loader_linkage_closure": 1,
+          "z_bar_linkage_closure": 1,
+          "lift_and_bucket_cylinder_stroke_continuity": 1,
+          "bucket_ground_collision": 1,
+          "machine_self_collision": 1,
+          "tire_body_clearance": 1,
+          "articulation_swept_volume": 1
+        },
+        "malformed_details": [],
+        "missing_used_fact_coverage": []
+      }
     },
     {
       "id": "tire-transmission-engine-internals",
       "status": "PENDING",
-      "detail": "Tire carcass/tread and KHMT/driveline/engine internals remain unresolved and are not fabricated."
+      "detail": {
+        "method": "Boundary declaration; no hidden tire, KHMT, driveline or engine internals are fabricated.",
+        "evidence": {
+          "unresolved": true
+        },
+        "semantic_nodes": [],
+        "fact_ids": []
+      }
     },
     {
       "id": "powered-hood-and-cooling-mask-motion",
       "status": "PENDING",
-      "detail": "Service-panel segmentation and cooling mask are modeled; hinges, actuators and service envelopes remain unresolved."
+      "detail": {
+        "method": "Boundary declaration; service panels are visible but their unpublished actuator geometry remains unresolved.",
+        "evidence": {
+          "unresolved": true
+        },
+        "semantic_nodes": [],
+        "fact_ids": []
+      }
     },
     {
       "id": "human-visual-critic",
       "status": "PENDING",
-      "detail": "The user-directed one-time batch Grok critic runs only after all ten machine lanes are integrated."
-    },
-    {
-      "id": "viewer-browser-accessibility-mobile-performance-selection",
-      "status": "PENDING",
-      "detail": "No shared-viewer integration or browser qualification is claimed by this lane."
+      "detail": {
+        "method": "Final integrated batch critic is outside this machine-local deterministic build.",
+        "evidence": {
+          "pending": true
+        },
+        "semantic_nodes": [],
+        "fact_ids": []
+      }
     },
     {
       "id": "publication-release-deployment",
       "status": "PENDING",
-      "detail": "Only the overall critic/publisher may integrate, publish, push, or deploy this research candidate."
+      "detail": {
+        "method": "Release and deployment remain reserved to the parent integration lane.",
+        "evidence": {
+          "pending": true
+        },
+        "semantic_nodes": [],
+        "fact_ids": []
+      }
     }
   ]
 }

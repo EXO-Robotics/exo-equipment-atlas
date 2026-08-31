@@ -22,7 +22,7 @@
     "drive-system"
   ],
   "reconstructed_values": {
-    "presentation_pose": "Folded carrier study retained for fleet-scale inspectability; the selected 120-foot / 36.5 m working span remains a published evidence fact but is not reconstructed as full-length public geometry.",
+    "presentation_pose": "Folded carrier study retained for fleet-scale inspectability. Three nested truss stages per side encode a reconstructed 3.5 + 2 x (6.0 + 5.6 + 4.9) m section-length study whose arithmetic equals the published 36.5 m working span; segment allocation, folds and pivots are not manufacturer geometry.",
     "carrier_transport_width_m": 4.21,
     "carrier_transport_width_note": "Manufacturer-published with 710/60R46 tires; axle track setting within that basis remains unresolved.",
     "solution_system": "Visible tank is a neutral volume cue for the selected 1,600 US gallon liquid system; plumbing and liquid behavior are not simulated.",

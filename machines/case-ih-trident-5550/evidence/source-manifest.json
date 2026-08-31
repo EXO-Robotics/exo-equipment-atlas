@@ -16,6 +16,7 @@
       "kind": "official_brochure",
       "title": "Trident 5550 Brochure",
       "market": "United States",
+      "pages": 28,
       "retrieved": "2026-08-29",
       "official_url": "https://cnhi-p-001-delivery.sitecorecontenthub.cloud/api/public/content/5fc33b2aad7a4eb38dd0e75f5fe5eaa2?v=64288f44",
       "local_path": "research/private/case-ih-trident-5550/primary-source.pdf",
@@ -32,6 +33,9 @@
       "market": "United States",
       "retrieved": "2026-08-29",
       "official_url": "https://www.caseih.com/en-us/unitedstates/products/application-equipment/trident-combination-applicator",
+      "local_path": "research/private/case-ih-trident-5550/caseih-trident-5550-us-product.html",
+      "sha256": "e86c6cf950be236feac21ef417883a2f36569a8e3928d4c0971e9e8317904553",
+      "bytes": 345307,
       "admission": "primary",
       "applicability": "Current Trident 5550 product page; establishes 1,600-gallon liquid capacity, available 120-foot aluminum boom and recirculation, 390 horsepower, 40 mph road speed, hydrostatic 4WD, load-compensating suspension and liquid/dry conversion topology."
     }

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "machine_id": "case-ih-steiger-715-quadtrac",
-  "configuration_id": "CASEIH-STEIGER715-NAM-AG-QUADTRAC-PWRDRIVE-HDS-CAT4N-CANDIDATE",
+  "configuration_id": "CASEIH-STEIGER715-XMARKET-30IN-HDS-CAT4N-STUDY-CANDIDATE",
   "freeze_date": "2026-08-29",
   "repository_policy": {
     "source_binaries_committed": false,
@@ -47,8 +47,11 @@
       "pages": 17,
       "retrieved": "2026-08-29",
       "official_url": "https://cnhi-p-001-delivery.sitecorecontenthub.cloud/api/public/content/4613a20e486c4654a967438bc0b2fcea?v=914de6a3",
-      "admission": "secondary_configuration_constraint",
-      "applicability": "Official Case IH worldwide technical brochure used only for the Quadtrac 715 total length, total height and 30-inch-track total width. North American power, emissions, option availability and publication-family claims remain controlled by the admitted US brochure."
+      "local_path": "research/private/case-ih-steiger-715-quadtrac/caseih-quadtrac-steiger-475-715-world-technical-2024.pdf",
+      "sha256": "1a4a308b16d00beae43f19dec44b17a25dae6d3f0980c8218b2ad409363fa457",
+      "bytes": 3990830,
+      "admission": "primary",
+      "applicability": "Primary only for this explicitly cross-market technical study's worldwide Quadtrac 715 metric envelope and 30-inch-track visible basis. North American HDS, Category 4N, power, emissions and option references remain controlled separately by the US brochure. This admission is not a claim that the combined study is a North American dealer-orderable configuration."
     }
   ]
 }

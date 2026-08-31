@@ -7,7 +7,7 @@
     "source_binaries_committed": false,
     "manufacturer_geometry_committed": false,
     "manual_illustrations_are_scale_drawings": false,
-    "verification": "Official KRONE web and brochure sources are URL-bound. No manufacturer geometry, imagery, logo, or brochure binary is included."
+    "verification": "The official KRONE product HTML and 32-page brochure PDF are present under research/private and bound to declared hashes and byte counts."
   },
   "sources": [
     {
@@ -18,6 +18,9 @@
       "market": "International English",
       "retrieved": "2026-08-29",
       "official_url": "https://www.krone-agriculture.com/en/products/mower-conditioner/big-m-450/",
+      "local_path": "research/private/krone-big-m-450-cv/krone-big-m-450-product.html",
+      "sha256": "7aa190649061f36666922d1067f650555b041a143dcdadcb92227755ddd4530b",
+      "bytes": 530590,
       "admission": "primary",
       "applicability": "Current identity, working width, engine, transport envelope, steering, running-gear adjustment, mower/conditioner topology, side-unit fold and break-back, DuoGrip, and optional swath-merger functions."
     },
@@ -34,7 +37,7 @@
       "bytes": 12299311,
       "pages": 32,
       "admission": "primary",
-      "applicability": "Current product-family diagrams, mower-system construction, specification tables, and option distinctions; illustrations are not treated as scale drawings."
+      "applicability": "Current product-family diagrams, mower-system construction, specification tables, and option distinctions; illustrations are not treated as scale drawings. PDF page 30 controls the 53-degree steering fact while the current product HTML says 50 degrees."
     }
   ]
 }

@@ -35,8 +35,8 @@
   "gates": [
     {
       "id": "published-length-no-bucket",
-      "status": "PASS",
-      "detail": "Published constraint represented by explicit dimensional references; hidden geometry remains reconstructed.",
+      "status": "PENDING",
+      "detail": "Retained manufacturer constraint represented by reconstruction input or transient review pose; it is not independently qualified by decoded shipped geometry in this gate.",
       "expected": {
         "value": 3.17,
         "tolerance": 0.005
@@ -85,8 +85,8 @@
     },
     {
       "id": "published-width-450-track",
-      "status": "PASS",
-      "detail": "Published constraint represented by explicit dimensional references; hidden geometry remains reconstructed.",
+      "status": "PENDING",
+      "detail": "Retained manufacturer constraint represented by reconstruction input or transient review pose; it is not independently qualified by decoded shipped geometry in this gate.",
       "expected": {
         "value": 2.05,
         "tolerance": 0.005
@@ -98,8 +98,8 @@
     },
     {
       "id": "published-rops-height",
-      "status": "PASS",
-      "detail": "Published constraint represented by explicit dimensional references; hidden geometry remains reconstructed.",
+      "status": "PENDING",
+      "detail": "Retained manufacturer constraint represented by reconstruction input or transient review pose; it is not independently qualified by decoded shipped geometry in this gate.",
       "expected": {
         "value": 2.22,
         "tolerance": 0.005
@@ -111,8 +111,8 @@
     },
     {
       "id": "published-hinge-pin-height",
-      "status": "PASS",
-      "detail": "Published constraint represented by explicit dimensional references; hidden geometry remains reconstructed.",
+      "status": "PENDING",
+      "detail": "Retained manufacturer constraint represented by reconstruction input or transient review pose; it is not independently qualified by decoded shipped geometry in this gate.",
       "expected": {
         "value": 3.35,
         "tolerance": 0.005
@@ -124,8 +124,8 @@
     },
     {
       "id": "published-dump-height",
-      "status": "PASS",
-      "detail": "Published constraint represented by explicit dimensional references; hidden geometry remains reconstructed.",
+      "status": "PENDING",
+      "detail": "Retained manufacturer constraint represented by reconstruction input or transient review pose; it is not independently qualified by decoded shipped geometry in this gate.",
       "expected": {
         "value": 2.69,
         "tolerance": 0.008
@@ -152,8 +152,8 @@
     },
     {
       "id": "published-ground-clearance",
-      "status": "PASS",
-      "detail": "Published constraint represented by explicit dimensional references; hidden geometry remains reconstructed.",
+      "status": "PENDING",
+      "detail": "Retained manufacturer constraint represented by reconstruction input or transient review pose; it is not independently qualified by decoded shipped geometry in this gate.",
       "expected": {
         "value": 0.25,
         "tolerance": 0.005
@@ -165,8 +165,8 @@
     },
     {
       "id": "published-dump-angle",
-      "status": "PASS",
-      "detail": "Measured hinge-to-cutting-edge baseline angle below machine +X toward machine -Y; this is a visualization convention, not a claim about unpublished bucket datum geometry.",
+      "status": "PENDING",
+      "detail": "Retained manufacturer constraint represented by reconstruction input or transient review pose; it is not independently qualified by decoded shipped geometry in this gate.",
       "expected": {
         "value": 48.0,
         "tolerance": 0.1
@@ -189,8 +189,8 @@
     },
     {
       "id": "published-rollback-angle",
-      "status": "PASS",
-      "detail": "Measured hinge-to-cutting-edge baseline angle below machine +X toward machine -Y; this is a visualization convention, not a claim about unpublished bucket datum geometry.",
+      "status": "PENDING",
+      "detail": "Retained manufacturer constraint represented by reconstruction input or transient review pose; it is not independently qualified by decoded shipped geometry in this gate.",
       "expected": {
         "value": 35.0,
         "tolerance": 0.1
@@ -379,13 +379,13 @@
           "sampled_luminance_range": 0.999166
         },
         "review/renders/333p-rear-three-quarter-stowed.png": {
-          "bytes": 788154,
+          "bytes": 788164,
           "sampled_luminance_min": 0.0,
           "sampled_luminance_max": 0.991323,
           "sampled_luminance_range": 0.991323
         },
         "review/renders/333p-undercarriage-detail.png": {
-          "bytes": 761708,
+          "bytes": 761739,
           "sampled_luminance_min": 0.0,
           "sampled_luminance_max": 0.991056,
           "sampled_luminance_range": 0.991056
@@ -477,6 +477,294 @@
       "id": "publication-release-deployment",
       "status": "PENDING",
       "detail": "Only the overall publisher may advance or deploy this study."
+    },
+    {
+      "id": "decoded_public_stowed_envelope",
+      "status": "PASS",
+      "detail": {
+        "method": "Decode shipped-GLB accessor bounds with composed node transforms and compare the retained visible length and height; lateral bucket width remains unqualified because the exact bucket part is unresolved.",
+        "evidence": {
+          "decoded_visible_aabb_m": {
+            "min_xyz_m": [
+              -1.77,
+              0.001172,
+              -1.06
+            ],
+            "max_xyz_m": [
+              2.079393,
+              2.22,
+              1.06
+            ],
+            "dimensions_xyz_m": [
+              3.849393,
+              2.218828,
+              2.12
+            ],
+            "decoded_position_vertices": 79616
+          },
+          "absolute_deltas_m": {
+            "length_foundry_bucket_m": 0.009393,
+            "rops_height_m": 0.001172
+          },
+          "tolerances_m": {
+            "length": 0.06,
+            "height": 0.04
+          },
+          "lateral_dimension_qualified": false
+        },
+        "semantic_nodes": [
+          "JD333P_Root",
+          "FoundryBucket_VisualBasis",
+          "Cab_ROPS_Root_Reconstructed"
+        ],
+        "fact_ids": [
+          "length-foundry-bucket",
+          "rops-height"
+        ]
+      }
+    },
+    {
+      "id": "decoded_public_pivot_world_positions",
+      "status": "PASS",
+      "detail": {
+        "method": "Compose shipped-GLB node TRS from the active scene root and compare every deterministic build-input pivot world translation.",
+        "evidence": {
+          "expected_xyz_m": {
+            "Pivot_LiftLower_L": [
+              -0.92,
+              1.03,
+              -0.66
+            ],
+            "Pivot_LiftLower_R": [
+              -0.92,
+              1.03,
+              0.66
+            ],
+            "Pivot_LiftUpper_L": [
+              -0.72,
+              1.48,
+              -0.66
+            ],
+            "Pivot_LiftUpper_R": [
+              -0.72,
+              1.48,
+              0.66
+            ],
+            "BucketPivot_Root": [
+              1.3427,
+              0.5634,
+              0.0
+            ],
+            "DriveSprocket_Root_L": [
+              -1.2,
+              0.47,
+              -0.995
+            ],
+            "DriveSprocket_Root_R": [
+              -1.2,
+              0.47,
+              0.995
+            ]
+          },
+          "decoded_actual_xyz_m": {
+            "Pivot_LiftLower_L": [
+              -0.92,
+              1.03,
+              -0.66
+            ],
+            "Pivot_LiftLower_R": [
+              -0.92,
+              1.03,
+              0.66
+            ],
+            "Pivot_LiftUpper_L": [
+              -0.72,
+              1.48,
+              -0.66
+            ],
+            "Pivot_LiftUpper_R": [
+              -0.72,
+              1.48,
+              0.66
+            ],
+            "BucketPivot_Root": [
+              1.3427,
+              0.5634,
+              -0.0
+            ],
+            "DriveSprocket_Root_L": [
+              -1.2,
+              0.47,
+              -0.995
+            ],
+            "DriveSprocket_Root_R": [
+              -1.2,
+              0.47,
+              0.995
+            ]
+          },
+          "maximum_errors_m": {
+            "Pivot_LiftLower_L": 0.0,
+            "Pivot_LiftLower_R": 0.0,
+            "Pivot_LiftUpper_L": 0.0,
+            "Pivot_LiftUpper_R": 0.0,
+            "BucketPivot_Root": 0.0,
+            "DriveSprocket_Root_L": 0.0,
+            "DriveSprocket_Root_R": 0.0
+          },
+          "tolerance_m": 1e-05
+        },
+        "semantic_nodes": [
+          "Pivot_LiftLower_L",
+          "Pivot_LiftLower_R",
+          "Pivot_LiftUpper_L",
+          "Pivot_LiftUpper_R",
+          "BucketPivot_Root",
+          "DriveSprocket_Root_L",
+          "DriveSprocket_Root_R"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "viewer_motion_nodes_resolve",
+      "status": "PASS",
+      "detail": {
+        "method": "Resolve every viewer Auto/manual motion target by exact name in the decoded shipped-GLB node table.",
+        "evidence": {
+          "resolved": {
+            "DriveSprocket_Root_L": true,
+            "DriveSprocket_Root_R": true
+          },
+          "static_only": [
+            "coupled lift path",
+            "bucket linkage",
+            "hydraulic endpoint solve",
+            "track belt phase"
+          ]
+        },
+        "semantic_nodes": [
+          "DriveSprocket_Root_L",
+          "DriveSprocket_Root_R"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "published_roller_idler_counts",
+      "status": "PASS",
+      "detail": {
+        "method": "Count exact roller and idler semantic node names directly in the decoded shipped-GLB node table, excluding flange detail nodes.",
+        "evidence": {
+          "left_rollers": [
+            "TrackRoller_L_01",
+            "TrackRoller_L_02",
+            "TrackRoller_L_03",
+            "TrackRoller_L_04",
+            "TrackRoller_L_05"
+          ],
+          "right_rollers": [
+            "TrackRoller_R_01",
+            "TrackRoller_R_02",
+            "TrackRoller_R_03",
+            "TrackRoller_R_04",
+            "TrackRoller_R_05"
+          ],
+          "left_idlers": [
+            "TrackIdler_L_01",
+            "TrackIdler_L_02"
+          ],
+          "right_idlers": [
+            "TrackIdler_R_01",
+            "TrackIdler_R_02"
+          ],
+          "expected_per_side": {
+            "rollers": 5,
+            "idlers": 2
+          }
+        },
+        "semantic_nodes": [
+          "TrackRoller_L_01",
+          "TrackRoller_L_02",
+          "TrackRoller_L_03",
+          "TrackRoller_L_04",
+          "TrackRoller_L_05",
+          "TrackRoller_R_01",
+          "TrackRoller_R_02",
+          "TrackRoller_R_03",
+          "TrackRoller_R_04",
+          "TrackRoller_R_05",
+          "TrackIdler_L_01",
+          "TrackIdler_L_02",
+          "TrackIdler_R_01",
+          "TrackIdler_R_02"
+        ],
+        "fact_ids": [
+          "track-rollers-per-side",
+          "track-idlers-per-side"
+        ]
+      }
+    },
+    {
+      "id": "public_semantic_hierarchy",
+      "status": "PASS",
+      "detail": {
+        "method": "Count decoded shipped-GLB children below every exported motion pivot to reject empty or collapsed roots.",
+        "evidence": {
+          "pivot_child_counts": {
+            "Pivot_LiftLower_L": 2,
+            "Pivot_LiftLower_R": 2,
+            "Pivot_LiftUpper_L": 1,
+            "Pivot_LiftUpper_R": 1,
+            "BucketPivot_Root": 9,
+            "DriveSprocket_Root_L": 14,
+            "DriveSprocket_Root_R": 14
+          }
+        },
+        "semantic_nodes": [
+          "Pivot_LiftLower_L",
+          "Pivot_LiftLower_R",
+          "Pivot_LiftUpper_L",
+          "Pivot_LiftUpper_R",
+          "BucketPivot_Root",
+          "DriveSprocket_Root_L",
+          "DriveSprocket_Root_R"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "source_design_contract_binding",
+      "status": "PASS",
+      "detail": {
+        "method": "Hash-bind the deterministic build input to an admitted primary source and require its unique retained fact-ID set to equal source/design.json.",
+        "evidence": {
+          "build_input_path": "source/build-input.json",
+          "build_input_sha256": "2badf9abad04d504a6ecafd873883f9ff538f364a6d7624222700f559924bb91",
+          "design_path": "source/design.json",
+          "design_sha256": "bd54889f5882e559a5eb40aefce7d26356472b43ce19ff7c9e1bb84d270639aa",
+          "primary_source_sha256": "9c214b9253ba073f685935e44a4c73f42db766d346c7041dde73880a7a5c55fe",
+          "retained_fact_count": 14,
+          "unique_fact_count": 14
+        },
+        "semantic_nodes": [],
+        "fact_ids": [
+          "length-no-bucket",
+          "length-foundry-bucket",
+          "width-450-track",
+          "rops-height",
+          "hinge-pin-height",
+          "dump-height",
+          "dump-reach",
+          "ground-clearance",
+          "dump-angle",
+          "rollback-angle",
+          "departure-angle",
+          "front-turn-radius",
+          "track-rollers-per-side",
+          "track-idlers-per-side"
+        ]
+      }
     },
     {
       "id": "public-visible-secondary-envelope",
@@ -669,7 +957,7 @@
           ],
           "min_m": [
             -1.77,
-            0.001172,
+            0.001173,
             -1.06
           ],
           "max_m": [
@@ -693,7 +981,7 @@
           ],
           "min_m": [
             -1.77,
-            0.001172,
+            0.001173,
             -1.06
           ],
           "max_m": [
@@ -756,7 +1044,7 @@
       },
       "actual": {
         "classification": "public_glb_decoded_geometry",
-        "nodes": 281,
+        "nodes": 283,
         "mesh_nodes": 274,
         "mesh_resources": 274,
         "primitives": 274,
@@ -783,14 +1071,14 @@
           "JD333P_Root"
         ],
         "root_identity_trs": true,
-        "node_count": 281,
+        "node_count": 283,
         "helper_nodes_present": [],
         "public_mesh_node_scale_status": "PASS",
         "public_mesh_node_count": 274,
         "public_mesh_nodes_non_identity_scale": [],
         "public_glb_decoded_counts": {
           "classification": "public_glb_decoded_geometry",
-          "nodes": 281,
+          "nodes": 283,
           "mesh_nodes": 274,
           "mesh_resources": 274,
           "primitives": 274,
@@ -799,8 +1087,2306 @@
           "triangle_method": "decoded glTF accessor element counts; TRIANGLES count/3, strips/fans count-2"
         },
         "unsupported_primitive_modes": [],
+        "decoded_visible_aabb_m": {
+          "min_xyz_m": [
+            -1.77,
+            0.001172,
+            -1.06
+          ],
+          "max_xyz_m": [
+            2.079393,
+            2.22,
+            1.06
+          ],
+          "dimensions_xyz_m": [
+            3.849393,
+            2.218828,
+            2.12
+          ],
+          "decoded_position_vertices": 79616
+        },
+        "node_names": [
+          "AttachmentCarriage_Side_L",
+          "AttachmentCarriage_Side_R",
+          "BucketCuttingEdge",
+          "BucketPivot_Root",
+          "BucketSideCheek_L",
+          "BucketSideCheek_R",
+          "BucketTiltCylinder_Barrel",
+          "BucketTiltCylinder_Rod",
+          "BucketTiltLink_Reconstructed",
+          "BucketTooth_01",
+          "BucketTooth_02",
+          "BucketTooth_03",
+          "BucketTooth_04",
+          "BucketTooth_05",
+          "CabGridH_L_00",
+          "CabGridH_L_01",
+          "CabGridH_L_02",
+          "CabGridH_L_03",
+          "CabGridH_L_04",
+          "CabGridH_R_00",
+          "CabGridH_R_01",
+          "CabGridH_R_02",
+          "CabGridH_R_03",
+          "CabGridH_R_04",
+          "CabGridV_L_00",
+          "CabGridV_L_01",
+          "CabGridV_L_02",
+          "CabGridV_L_03",
+          "CabGridV_L_04",
+          "CabGridV_L_05",
+          "CabGridV_R_00",
+          "CabGridV_R_01",
+          "CabGridV_R_02",
+          "CabGridV_R_03",
+          "CabGridV_R_04",
+          "CabGridV_R_05",
+          "Cab_FrontGlass",
+          "Cab_ROPS_Root_Reconstructed",
+          "Cab_RearGlass",
+          "Cab_SideGlass_L",
+          "Cab_SideGlass_R",
+          "ControlConsole_L",
+          "ControlConsole_R",
+          "DriveSprocketTooth_L_01",
+          "DriveSprocketTooth_L_02",
+          "DriveSprocketTooth_L_03",
+          "DriveSprocketTooth_L_04",
+          "DriveSprocketTooth_L_05",
+          "DriveSprocketTooth_L_06",
+          "DriveSprocketTooth_L_07",
+          "DriveSprocketTooth_L_08",
+          "DriveSprocketTooth_L_09",
+          "DriveSprocketTooth_L_10",
+          "DriveSprocketTooth_L_11",
+          "DriveSprocketTooth_L_12",
+          "DriveSprocketTooth_R_01",
+          "DriveSprocketTooth_R_02",
+          "DriveSprocketTooth_R_03",
+          "DriveSprocketTooth_R_04",
+          "DriveSprocketTooth_R_05",
+          "DriveSprocketTooth_R_06",
+          "DriveSprocketTooth_R_07",
+          "DriveSprocketTooth_R_08",
+          "DriveSprocketTooth_R_09",
+          "DriveSprocketTooth_R_10",
+          "DriveSprocketTooth_R_11",
+          "DriveSprocketTooth_R_12",
+          "DriveSprocket_L",
+          "DriveSprocket_R",
+          "DriveSprocket_Root_L",
+          "DriveSprocket_Root_R",
+          "FinalDriveHub_L",
+          "FinalDriveHub_R",
+          "FoundryBucket_VisualBasis",
+          "Frame_BellyPan",
+          "FrontBulkhead",
+          "HydraulicHoseBundle_L_01",
+          "HydraulicHoseBundle_L_02",
+          "HydraulicHoseBundle_R_01",
+          "HydraulicHoseBundle_R_02",
+          "JD333P_Root",
+          "Joystick_L",
+          "Joystick_R",
+          "LiftCrossmember",
+          "LiftCylinder_Barrel_L",
+          "LiftCylinder_Barrel_R",
+          "LiftCylinder_Rod_L",
+          "LiftCylinder_Rod_R",
+          "MainFrame_Lower",
+          "Monitor_Display",
+          "OperatorDeck",
+          "OperatorSeat_Back",
+          "OperatorSeat_Base",
+          "PanelFastener_L_0",
+          "PanelFastener_L_1",
+          "PanelFastener_L_2",
+          "PanelFastener_L_3",
+          "PanelFastener_L_4",
+          "PanelFastener_R_0",
+          "PanelFastener_R_1",
+          "PanelFastener_R_2",
+          "PanelFastener_R_3",
+          "PanelFastener_R_4",
+          "Pivot_LiftLower_L",
+          "Pivot_LiftLower_R",
+          "Pivot_LiftUpper_L",
+          "Pivot_LiftUpper_R",
+          "QuickAttach_Interface_Reconstructed",
+          "ROPS_FrontHeader",
+          "ROPS_FrontPillar_L",
+          "ROPS_FrontPillar_R",
+          "ROPS_LowerSill_L",
+          "ROPS_LowerSill_R",
+          "ROPS_RearHeader",
+          "ROPS_RearPillar_L",
+          "ROPS_RearPillar_R",
+          "ROPS_Roof",
+          "ROPS_RoofRail_L",
+          "ROPS_RoofRail_R",
+          "RearCounterweight_Core",
+          "RearGrille_Slat_00",
+          "RearGrille_Slat_01",
+          "RearGrille_Slat_02",
+          "RearGrille_Slat_03",
+          "RearGrille_Slat_04",
+          "RearServiceDoor",
+          "SideServicePanel_L",
+          "SideServicePanel_R",
+          "TieDownRear_L",
+          "TieDownRear_R",
+          "TrackBelt_L",
+          "TrackBelt_R",
+          "TrackIdlerFlange_L_01_+0.135",
+          "TrackIdlerFlange_L_01_-0.135",
+          "TrackIdlerFlange_L_02_+0.135",
+          "TrackIdlerFlange_L_02_-0.135",
+          "TrackIdlerFlange_R_01_+0.135",
+          "TrackIdlerFlange_R_01_-0.135",
+          "TrackIdlerFlange_R_02_+0.135",
+          "TrackIdlerFlange_R_02_-0.135",
+          "TrackIdler_L_01",
+          "TrackIdler_L_02",
+          "TrackIdler_R_01",
+          "TrackIdler_R_02",
+          "TrackRollerFlange_L_01_+0.000",
+          "TrackRollerFlange_L_01_+0.125",
+          "TrackRollerFlange_L_01_-0.125",
+          "TrackRollerFlange_L_02_+0.000",
+          "TrackRollerFlange_L_02_+0.125",
+          "TrackRollerFlange_L_02_-0.125",
+          "TrackRollerFlange_L_03_+0.000",
+          "TrackRollerFlange_L_03_+0.125",
+          "TrackRollerFlange_L_03_-0.125",
+          "TrackRollerFlange_L_04_+0.000",
+          "TrackRollerFlange_L_04_+0.125",
+          "TrackRollerFlange_L_04_-0.125",
+          "TrackRollerFlange_L_05_+0.000",
+          "TrackRollerFlange_L_05_+0.125",
+          "TrackRollerFlange_L_05_-0.125",
+          "TrackRollerFlange_R_01_+0.000",
+          "TrackRollerFlange_R_01_+0.125",
+          "TrackRollerFlange_R_01_-0.125",
+          "TrackRollerFlange_R_02_+0.000",
+          "TrackRollerFlange_R_02_+0.125",
+          "TrackRollerFlange_R_02_-0.125",
+          "TrackRollerFlange_R_03_+0.000",
+          "TrackRollerFlange_R_03_+0.125",
+          "TrackRollerFlange_R_03_-0.125",
+          "TrackRollerFlange_R_04_+0.000",
+          "TrackRollerFlange_R_04_+0.125",
+          "TrackRollerFlange_R_04_-0.125",
+          "TrackRollerFlange_R_05_+0.000",
+          "TrackRollerFlange_R_05_+0.125",
+          "TrackRollerFlange_R_05_-0.125",
+          "TrackRoller_L_01",
+          "TrackRoller_L_02",
+          "TrackRoller_L_03",
+          "TrackRoller_L_04",
+          "TrackRoller_L_05",
+          "TrackRoller_R_01",
+          "TrackRoller_R_02",
+          "TrackRoller_R_03",
+          "TrackRoller_R_04",
+          "TrackRoller_R_05",
+          "TrackTread_L_01",
+          "TrackTread_L_02",
+          "TrackTread_L_03",
+          "TrackTread_L_04",
+          "TrackTread_L_05",
+          "TrackTread_L_06",
+          "TrackTread_L_07",
+          "TrackTread_L_08",
+          "TrackTread_L_09",
+          "TrackTread_L_10",
+          "TrackTread_L_11",
+          "TrackTread_L_12",
+          "TrackTread_L_13",
+          "TrackTread_L_14",
+          "TrackTread_L_15",
+          "TrackTread_L_16",
+          "TrackTread_L_17",
+          "TrackTread_L_18",
+          "TrackTread_L_19",
+          "TrackTread_L_20",
+          "TrackTread_L_21",
+          "TrackTread_L_22",
+          "TrackTread_L_23",
+          "TrackTread_L_24",
+          "TrackTread_L_25",
+          "TrackTread_L_26",
+          "TrackTread_L_27",
+          "TrackTread_L_28",
+          "TrackTread_L_29",
+          "TrackTread_L_30",
+          "TrackTread_L_31",
+          "TrackTread_L_32",
+          "TrackTread_L_33",
+          "TrackTread_L_34",
+          "TrackTread_L_35",
+          "TrackTread_L_36",
+          "TrackTread_L_37",
+          "TrackTread_L_38",
+          "TrackTread_L_39",
+          "TrackTread_L_40",
+          "TrackTread_L_41",
+          "TrackTread_L_42",
+          "TrackTread_L_43",
+          "TrackTread_L_44",
+          "TrackTread_L_45",
+          "TrackTread_L_46",
+          "TrackTread_R_01",
+          "TrackTread_R_02",
+          "TrackTread_R_03",
+          "TrackTread_R_04",
+          "TrackTread_R_05",
+          "TrackTread_R_06",
+          "TrackTread_R_07",
+          "TrackTread_R_08",
+          "TrackTread_R_09",
+          "TrackTread_R_10",
+          "TrackTread_R_11",
+          "TrackTread_R_12",
+          "TrackTread_R_13",
+          "TrackTread_R_14",
+          "TrackTread_R_15",
+          "TrackTread_R_16",
+          "TrackTread_R_17",
+          "TrackTread_R_18",
+          "TrackTread_R_19",
+          "TrackTread_R_20",
+          "TrackTread_R_21",
+          "TrackTread_R_22",
+          "TrackTread_R_23",
+          "TrackTread_R_24",
+          "TrackTread_R_25",
+          "TrackTread_R_26",
+          "TrackTread_R_27",
+          "TrackTread_R_28",
+          "TrackTread_R_29",
+          "TrackTread_R_30",
+          "TrackTread_R_31",
+          "TrackTread_R_32",
+          "TrackTread_R_33",
+          "TrackTread_R_34",
+          "TrackTread_R_35",
+          "TrackTread_R_36",
+          "TrackTread_R_37",
+          "TrackTread_R_38",
+          "TrackTread_R_39",
+          "TrackTread_R_40",
+          "TrackTread_R_41",
+          "TrackTread_R_42",
+          "TrackTread_R_43",
+          "TrackTread_R_44",
+          "TrackTread_R_45",
+          "TrackTread_R_46",
+          "Undercarriage_CenterPan",
+          "VerticalLift_LowerArm_L",
+          "VerticalLift_LowerArm_R",
+          "VerticalLift_RearRiser_L",
+          "VerticalLift_RearRiser_R",
+          "VerticalLift_UpperArm_L",
+          "VerticalLift_UpperArm_R"
+        ],
+        "node_world_translation_xyz_m": {
+          "JD333P_Root": [
+            0.0,
+            0.0,
+            -0.0
+          ],
+          "AttachmentCarriage_Side_L": [
+            1.205,
+            0.705,
+            -0.66
+          ],
+          "AttachmentCarriage_Side_R": [
+            1.205,
+            0.705,
+            0.66
+          ],
+          "BucketPivot_Root": [
+            1.3427,
+            0.5634,
+            -0.0
+          ],
+          "BucketCuttingEdge": [
+            1.99311,
+            0.132394,
+            -0.0
+          ],
+          "BucketSideCheek_L": [
+            1.747399,
+            0.548597,
+            -1.03
+          ],
+          "BucketSideCheek_R": [
+            1.747399,
+            0.548597,
+            1.03
+          ],
+          "BucketTooth_01": [
+            1.996802,
+            0.172535,
+            -0.82
+          ],
+          "BucketTooth_02": [
+            1.996802,
+            0.172535,
+            -0.41
+          ],
+          "BucketTooth_03": [
+            1.996802,
+            0.172535,
+            -0.0
+          ],
+          "BucketTooth_04": [
+            1.996802,
+            0.172535,
+            0.41
+          ],
+          "BucketTooth_05": [
+            1.996802,
+            0.172535,
+            0.82
+          ],
+          "FoundryBucket_VisualBasis": [
+            1.3427,
+            0.5634,
+            -0.0
+          ],
+          "BucketTiltCylinder_Barrel": [
+            1.154192,
+            1.045372,
+            -0.0
+          ],
+          "BucketTiltCylinder_Rod": [
+            1.431074,
+            0.911186,
+            -0.0
+          ],
+          "BucketTiltLink_Reconstructed": [
+            1.498232,
+            0.767514,
+            -0.0
+          ],
+          "Cab_ROPS_Root_Reconstructed": [
+            0.0,
+            0.0,
+            -0.0
+          ],
+          "Cab_FrontGlass": [
+            0.4,
+            1.49,
+            -0.0
+          ],
+          "Cab_RearGlass": [
+            -0.94,
+            1.49,
+            -0.0
+          ],
+          "Cab_SideGlass_L": [
+            -0.28,
+            1.5,
+            -0.475
+          ],
+          "Cab_SideGlass_R": [
+            -0.28,
+            1.5,
+            0.475
+          ],
+          "CabGridH_L_00": [
+            -0.25,
+            1.04,
+            -0.5
+          ],
+          "CabGridH_L_01": [
+            -0.25,
+            1.28,
+            -0.5
+          ],
+          "CabGridH_L_02": [
+            -0.25,
+            1.52,
+            -0.5
+          ],
+          "CabGridH_L_03": [
+            -0.25,
+            1.76,
+            -0.5
+          ],
+          "CabGridH_L_04": [
+            -0.25,
+            1.98,
+            -0.5
+          ],
+          "CabGridH_R_00": [
+            -0.25,
+            1.04,
+            0.5
+          ],
+          "CabGridH_R_01": [
+            -0.25,
+            1.28,
+            0.5
+          ],
+          "CabGridH_R_02": [
+            -0.25,
+            1.52,
+            0.5
+          ],
+          "CabGridH_R_03": [
+            -0.25,
+            1.76,
+            0.5
+          ],
+          "CabGridH_R_04": [
+            -0.25,
+            1.98,
+            0.5
+          ],
+          "CabGridV_L_00": [
+            -0.8,
+            1.5,
+            -0.498
+          ],
+          "CabGridV_L_01": [
+            -0.57,
+            1.5,
+            -0.498
+          ],
+          "CabGridV_L_02": [
+            -0.34,
+            1.5,
+            -0.498
+          ],
+          "CabGridV_L_03": [
+            -0.11,
+            1.5,
+            -0.498
+          ],
+          "CabGridV_L_04": [
+            0.12,
+            1.5,
+            -0.498
+          ],
+          "CabGridV_L_05": [
+            0.31,
+            1.5,
+            -0.498
+          ],
+          "CabGridV_R_00": [
+            -0.8,
+            1.5,
+            0.498
+          ],
+          "CabGridV_R_01": [
+            -0.57,
+            1.5,
+            0.498
+          ],
+          "CabGridV_R_02": [
+            -0.34,
+            1.5,
+            0.498
+          ],
+          "CabGridV_R_03": [
+            -0.11,
+            1.5,
+            0.498
+          ],
+          "CabGridV_R_04": [
+            0.12,
+            1.5,
+            0.498
+          ],
+          "CabGridV_R_05": [
+            0.31,
+            1.5,
+            0.498
+          ],
+          "ControlConsole_L": [
+            -0.26,
+            1.12,
+            -0.36
+          ],
+          "ControlConsole_R": [
+            -0.26,
+            1.12,
+            0.36
+          ],
+          "Joystick_L": [
+            -0.08,
+            1.28,
+            -0.36
+          ],
+          "Joystick_R": [
+            -0.08,
+            1.28,
+            0.36
+          ],
+          "Monitor_Display": [
+            0.25,
+            1.52,
+            0.31
+          ],
+          "OperatorSeat_Back": [
+            -0.59,
+            1.42,
+            -0.0
+          ],
+          "OperatorSeat_Base": [
+            -0.38,
+            1.02,
+            -0.0
+          ],
+          "ROPS_FrontHeader": [
+            0.35,
+            2.05,
+            -0.0
+          ],
+          "ROPS_FrontPillar_L": [
+            0.385,
+            1.51,
+            -0.49
+          ],
+          "ROPS_FrontPillar_R": [
+            0.385,
+            1.51,
+            0.49
+          ],
+          "ROPS_LowerSill_L": [
+            -0.23,
+            0.9,
+            -0.49
+          ],
+          "ROPS_LowerSill_R": [
+            -0.23,
+            0.9,
+            0.49
+          ],
+          "ROPS_RearHeader": [
+            -0.91,
+            2.04,
+            -0.0
+          ],
+          "ROPS_RearPillar_L": [
+            -0.93,
+            1.505,
+            -0.49
+          ],
+          "ROPS_RearPillar_R": [
+            -0.93,
+            1.505,
+            0.49
+          ],
+          "ROPS_Roof": [
+            -0.3,
+            2.16,
+            -0.0
+          ],
+          "ROPS_RoofRail_L": [
+            -0.28,
+            2.16,
+            -0.49
+          ],
+          "ROPS_RoofRail_R": [
+            -0.28,
+            2.16,
+            0.49
+          ],
+          "DriveSprocket_Root_L": [
+            -1.2,
+            0.47,
+            -0.995
+          ],
+          "DriveSprocket_L": [
+            -1.2,
+            0.47,
+            -0.995
+          ],
+          "DriveSprocketTooth_L_01": [
+            -0.915,
+            0.47,
+            -0.995
+          ],
+          "DriveSprocketTooth_L_02": [
+            -0.953183,
+            0.6125,
+            -0.995
+          ],
+          "DriveSprocketTooth_L_03": [
+            -1.0575,
+            0.716817,
+            -0.995
+          ],
+          "DriveSprocketTooth_L_04": [
+            -1.2,
+            0.755,
+            -0.995
+          ],
+          "DriveSprocketTooth_L_05": [
+            -1.3425,
+            0.716817,
+            -0.995
+          ],
+          "DriveSprocketTooth_L_06": [
+            -1.446817,
+            0.6125,
+            -0.995
+          ],
+          "DriveSprocketTooth_L_07": [
+            -1.485,
+            0.47,
+            -0.995
+          ],
+          "DriveSprocketTooth_L_08": [
+            -1.446817,
+            0.3275,
+            -0.995
+          ],
+          "DriveSprocketTooth_L_09": [
+            -1.3425,
+            0.223183,
+            -0.995
+          ],
+          "DriveSprocketTooth_L_10": [
+            -1.2,
+            0.185,
+            -0.995
+          ],
+          "DriveSprocketTooth_L_11": [
+            -1.0575,
+            0.223183,
+            -0.995
+          ],
+          "DriveSprocketTooth_L_12": [
+            -0.953183,
+            0.3275,
+            -0.995
+          ],
+          "FinalDriveHub_L": [
+            -1.2,
+            0.47,
+            -0.995
+          ],
+          "DriveSprocket_Root_R": [
+            -1.2,
+            0.47,
+            0.995
+          ],
+          "DriveSprocket_R": [
+            -1.2,
+            0.47,
+            0.995
+          ],
+          "DriveSprocketTooth_R_01": [
+            -0.915,
+            0.47,
+            0.995
+          ],
+          "DriveSprocketTooth_R_02": [
+            -0.953183,
+            0.6125,
+            0.995
+          ],
+          "DriveSprocketTooth_R_03": [
+            -1.0575,
+            0.716817,
+            0.995
+          ],
+          "DriveSprocketTooth_R_04": [
+            -1.2,
+            0.755,
+            0.995
+          ],
+          "DriveSprocketTooth_R_05": [
+            -1.3425,
+            0.716817,
+            0.995
+          ],
+          "DriveSprocketTooth_R_06": [
+            -1.446817,
+            0.6125,
+            0.995
+          ],
+          "DriveSprocketTooth_R_07": [
+            -1.485,
+            0.47,
+            0.995
+          ],
+          "DriveSprocketTooth_R_08": [
+            -1.446817,
+            0.3275,
+            0.995
+          ],
+          "DriveSprocketTooth_R_09": [
+            -1.3425,
+            0.223183,
+            0.995
+          ],
+          "DriveSprocketTooth_R_10": [
+            -1.2,
+            0.185,
+            0.995
+          ],
+          "DriveSprocketTooth_R_11": [
+            -1.0575,
+            0.223183,
+            0.995
+          ],
+          "DriveSprocketTooth_R_12": [
+            -0.953183,
+            0.3275,
+            0.995
+          ],
+          "FinalDriveHub_R": [
+            -1.2,
+            0.47,
+            0.995
+          ],
+          "Frame_BellyPan": [
+            -0.15,
+            0.3,
+            -0.0
+          ],
+          "FrontBulkhead": [
+            0.99,
+            0.91,
+            -0.0
+          ],
+          "HydraulicHoseBundle_L_01": [
+            0.0,
+            0.0,
+            -0.0
+          ],
+          "HydraulicHoseBundle_L_02": [
+            0.0,
+            0.0,
+            -0.0
+          ],
+          "HydraulicHoseBundle_R_01": [
+            0.0,
+            0.0,
+            -0.0
+          ],
+          "HydraulicHoseBundle_R_02": [
+            0.0,
+            0.0,
+            -0.0
+          ],
+          "LiftCrossmember": [
+            1.26,
+            0.88,
+            -0.0
+          ],
+          "LiftCylinder_Barrel_L": [
+            -0.741836,
+            0.79062,
+            -0.7128
+          ],
+          "LiftCylinder_Barrel_R": [
+            -0.741836,
+            0.79062,
+            0.7128
+          ],
+          "LiftCylinder_Rod_L": [
+            -0.196036,
+            1.12962,
+            -0.7128
+          ],
+          "LiftCylinder_Rod_R": [
+            -0.196036,
+            1.12962,
+            0.7128
+          ],
+          "MainFrame_Lower": [
+            -0.16,
+            0.49,
+            -0.0
+          ],
+          "OperatorDeck": [
+            -0.23,
+            0.82,
+            -0.0
+          ],
+          "PanelFastener_L_0": [
+            -1.3,
+            0.76,
+            -0.645
+          ],
+          "PanelFastener_L_1": [
+            -0.78,
+            0.83,
+            -0.645
+          ],
+          "PanelFastener_L_2": [
+            -0.25,
+            0.76,
+            -0.645
+          ],
+          "PanelFastener_L_3": [
+            0.3,
+            0.83,
+            -0.645
+          ],
+          "PanelFastener_L_4": [
+            0.74,
+            0.76,
+            -0.645
+          ],
+          "PanelFastener_R_0": [
+            -1.3,
+            0.76,
+            0.645
+          ],
+          "PanelFastener_R_1": [
+            -0.78,
+            0.83,
+            0.645
+          ],
+          "PanelFastener_R_2": [
+            -0.25,
+            0.76,
+            0.645
+          ],
+          "PanelFastener_R_3": [
+            0.3,
+            0.83,
+            0.645
+          ],
+          "PanelFastener_R_4": [
+            0.74,
+            0.76,
+            0.645
+          ],
+          "Pivot_LiftLower_L": [
+            -0.92,
+            1.03,
+            -0.66
+          ],
+          "VerticalLift_LowerArm_L": [
+            0.115,
+            0.78,
+            -0.66
+          ],
+          "VerticalLift_RearRiser_L": [
+            -0.82,
+            1.255,
+            -0.66
+          ],
+          "Pivot_LiftLower_R": [
+            -0.92,
+            1.03,
+            0.66
+          ],
+          "VerticalLift_LowerArm_R": [
+            0.115,
+            0.78,
+            0.66
+          ],
+          "VerticalLift_RearRiser_R": [
+            -0.82,
+            1.255,
+            0.66
+          ],
+          "Pivot_LiftUpper_L": [
+            -0.72,
+            1.48,
+            -0.66
+          ],
+          "VerticalLift_UpperArm_L": [
+            0.27,
+            1.18,
+            -0.66
+          ],
+          "Pivot_LiftUpper_R": [
+            -0.72,
+            1.48,
+            0.66
+          ],
+          "VerticalLift_UpperArm_R": [
+            0.27,
+            1.18,
+            0.66
+          ],
+          "QuickAttach_Interface_Reconstructed": [
+            1.2727,
+            0.6634,
+            -0.0
+          ],
+          "RearCounterweight_Core": [
+            -1.57,
+            0.89,
+            -0.0
+          ],
+          "RearGrille_Slat_00": [
+            -1.759,
+            0.83,
+            -0.0
+          ],
+          "RearGrille_Slat_01": [
+            -1.759,
+            0.94,
+            -0.0
+          ],
+          "RearGrille_Slat_02": [
+            -1.759,
+            1.05,
+            -0.0
+          ],
+          "RearGrille_Slat_03": [
+            -1.759,
+            1.16,
+            -0.0
+          ],
+          "RearGrille_Slat_04": [
+            -1.759,
+            1.27,
+            -0.0
+          ],
+          "RearServiceDoor": [
+            -1.7525,
+            1.04,
+            -0.0
+          ],
+          "SideServicePanel_L": [
+            0.0,
+            0.0,
+            -0.0
+          ],
+          "SideServicePanel_R": [
+            0.0,
+            0.0,
+            -0.0
+          ],
+          "TieDownRear_L": [
+            -1.52,
+            0.47,
+            -0.64
+          ],
+          "TieDownRear_R": [
+            -1.52,
+            0.47,
+            0.64
+          ],
+          "TrackBelt_L": [
+            0.0,
+            0.0,
+            -0.0
+          ],
+          "TrackBelt_R": [
+            0.0,
+            0.0,
+            -0.0
+          ],
+          "TrackIdler_L_01": [
+            -1.34,
+            0.34,
+            -0.8
+          ],
+          "TrackIdler_L_02": [
+            1.02,
+            0.37,
+            -0.8
+          ],
+          "TrackIdler_R_01": [
+            -1.34,
+            0.34,
+            0.8
+          ],
+          "TrackIdler_R_02": [
+            1.02,
+            0.37,
+            0.8
+          ],
+          "TrackIdlerFlange_L_01_+0.135": [
+            -1.34,
+            0.34,
+            -0.665
+          ],
+          "TrackIdlerFlange_L_01_-0.135": [
+            -1.34,
+            0.34,
+            -0.935
+          ],
+          "TrackIdlerFlange_L_02_+0.135": [
+            1.02,
+            0.37,
+            -0.665
+          ],
+          "TrackIdlerFlange_L_02_-0.135": [
+            1.02,
+            0.37,
+            -0.935
+          ],
+          "TrackIdlerFlange_R_01_+0.135": [
+            -1.34,
+            0.34,
+            0.935
+          ],
+          "TrackIdlerFlange_R_01_-0.135": [
+            -1.34,
+            0.34,
+            0.665
+          ],
+          "TrackIdlerFlange_R_02_+0.135": [
+            1.02,
+            0.37,
+            0.935
+          ],
+          "TrackIdlerFlange_R_02_-0.135": [
+            1.02,
+            0.37,
+            0.665
+          ],
+          "TrackRoller_L_01": [
+            -0.92,
+            0.235,
+            -0.8
+          ],
+          "TrackRoller_L_02": [
+            -0.51,
+            0.235,
+            -0.8
+          ],
+          "TrackRoller_L_03": [
+            -0.1,
+            0.235,
+            -0.8
+          ],
+          "TrackRoller_L_04": [
+            0.31,
+            0.235,
+            -0.8
+          ],
+          "TrackRoller_L_05": [
+            0.72,
+            0.235,
+            -0.8
+          ],
+          "TrackRoller_R_01": [
+            -0.92,
+            0.235,
+            0.8
+          ],
+          "TrackRoller_R_02": [
+            -0.51,
+            0.235,
+            0.8
+          ],
+          "TrackRoller_R_03": [
+            -0.1,
+            0.235,
+            0.8
+          ],
+          "TrackRoller_R_04": [
+            0.31,
+            0.235,
+            0.8
+          ],
+          "TrackRoller_R_05": [
+            0.72,
+            0.235,
+            0.8
+          ],
+          "TrackRollerFlange_L_01_+0.000": [
+            -0.92,
+            0.235,
+            -0.8
+          ],
+          "TrackRollerFlange_L_01_+0.125": [
+            -0.92,
+            0.235,
+            -0.675
+          ],
+          "TrackRollerFlange_L_01_-0.125": [
+            -0.92,
+            0.235,
+            -0.925
+          ],
+          "TrackRollerFlange_L_02_+0.000": [
+            -0.51,
+            0.235,
+            -0.8
+          ],
+          "TrackRollerFlange_L_02_+0.125": [
+            -0.51,
+            0.235,
+            -0.675
+          ],
+          "TrackRollerFlange_L_02_-0.125": [
+            -0.51,
+            0.235,
+            -0.925
+          ],
+          "TrackRollerFlange_L_03_+0.000": [
+            -0.1,
+            0.235,
+            -0.8
+          ],
+          "TrackRollerFlange_L_03_+0.125": [
+            -0.1,
+            0.235,
+            -0.675
+          ],
+          "TrackRollerFlange_L_03_-0.125": [
+            -0.1,
+            0.235,
+            -0.925
+          ],
+          "TrackRollerFlange_L_04_+0.000": [
+            0.31,
+            0.235,
+            -0.8
+          ],
+          "TrackRollerFlange_L_04_+0.125": [
+            0.31,
+            0.235,
+            -0.675
+          ],
+          "TrackRollerFlange_L_04_-0.125": [
+            0.31,
+            0.235,
+            -0.925
+          ],
+          "TrackRollerFlange_L_05_+0.000": [
+            0.72,
+            0.235,
+            -0.8
+          ],
+          "TrackRollerFlange_L_05_+0.125": [
+            0.72,
+            0.235,
+            -0.675
+          ],
+          "TrackRollerFlange_L_05_-0.125": [
+            0.72,
+            0.235,
+            -0.925
+          ],
+          "TrackRollerFlange_R_01_+0.000": [
+            -0.92,
+            0.235,
+            0.8
+          ],
+          "TrackRollerFlange_R_01_+0.125": [
+            -0.92,
+            0.235,
+            0.925
+          ],
+          "TrackRollerFlange_R_01_-0.125": [
+            -0.92,
+            0.235,
+            0.675
+          ],
+          "TrackRollerFlange_R_02_+0.000": [
+            -0.51,
+            0.235,
+            0.8
+          ],
+          "TrackRollerFlange_R_02_+0.125": [
+            -0.51,
+            0.235,
+            0.925
+          ],
+          "TrackRollerFlange_R_02_-0.125": [
+            -0.51,
+            0.235,
+            0.675
+          ],
+          "TrackRollerFlange_R_03_+0.000": [
+            -0.1,
+            0.235,
+            0.8
+          ],
+          "TrackRollerFlange_R_03_+0.125": [
+            -0.1,
+            0.235,
+            0.925
+          ],
+          "TrackRollerFlange_R_03_-0.125": [
+            -0.1,
+            0.235,
+            0.675
+          ],
+          "TrackRollerFlange_R_04_+0.000": [
+            0.31,
+            0.235,
+            0.8
+          ],
+          "TrackRollerFlange_R_04_+0.125": [
+            0.31,
+            0.235,
+            0.925
+          ],
+          "TrackRollerFlange_R_04_-0.125": [
+            0.31,
+            0.235,
+            0.675
+          ],
+          "TrackRollerFlange_R_05_+0.000": [
+            0.72,
+            0.235,
+            0.8
+          ],
+          "TrackRollerFlange_R_05_+0.125": [
+            0.72,
+            0.235,
+            0.925
+          ],
+          "TrackRollerFlange_R_05_-0.125": [
+            0.72,
+            0.235,
+            0.675
+          ],
+          "TrackTread_L_01": [
+            -1.47,
+            0.2,
+            -0.8
+          ],
+          "TrackTread_L_02": [
+            -1.362282,
+            0.126906,
+            -0.8
+          ],
+          "TrackTread_L_03": [
+            -1.238836,
+            0.105,
+            -0.8
+          ],
+          "TrackTread_L_04": [
+            -1.108659,
+            0.105,
+            -0.8
+          ],
+          "TrackTread_L_05": [
+            -0.978482,
+            0.105,
+            -0.8
+          ],
+          "TrackTread_L_06": [
+            -0.848305,
+            0.105,
+            -0.8
+          ],
+          "TrackTread_L_07": [
+            -0.718129,
+            0.105,
+            -0.8
+          ],
+          "TrackTread_L_08": [
+            -0.587952,
+            0.105,
+            -0.8
+          ],
+          "TrackTread_L_09": [
+            -0.457775,
+            0.105,
+            -0.8
+          ],
+          "TrackTread_L_10": [
+            -0.327598,
+            0.105,
+            -0.8
+          ],
+          "TrackTread_L_11": [
+            -0.197422,
+            0.105,
+            -0.8
+          ],
+          "TrackTread_L_12": [
+            -0.067245,
+            0.105,
+            -0.8
+          ],
+          "TrackTread_L_13": [
+            0.062932,
+            0.105,
+            -0.8
+          ],
+          "TrackTread_L_14": [
+            0.193109,
+            0.105,
+            -0.8
+          ],
+          "TrackTread_L_15": [
+            0.323285,
+            0.105,
+            -0.8
+          ],
+          "TrackTread_L_16": [
+            0.453462,
+            0.105,
+            -0.8
+          ],
+          "TrackTread_L_17": [
+            0.583639,
+            0.105,
+            -0.8
+          ],
+          "TrackTread_L_18": [
+            0.713816,
+            0.105,
+            -0.8
+          ],
+          "TrackTread_L_19": [
+            0.843992,
+            0.105,
+            -0.8
+          ],
+          "TrackTread_L_20": [
+            0.971375,
+            0.116281,
+            -0.8
+          ],
+          "TrackTread_L_21": [
+            1.086501,
+            0.177042,
+            -0.8
+          ],
+          "TrackTread_L_22": [
+            1.127687,
+            0.280958,
+            -0.8
+          ],
+          "TrackTread_L_23": [
+            1.123969,
+            0.411082,
+            -0.8
+          ],
+          "TrackTread_L_24": [
+            1.120251,
+            0.541206,
+            -0.8
+          ],
+          "TrackTread_L_25": [
+            1.015918,
+            0.612449,
+            -0.8
+          ],
+          "TrackTread_L_26": [
+            0.901682,
+            0.67,
+            -0.8
+          ],
+          "TrackTread_L_27": [
+            0.771506,
+            0.67,
+            -0.8
+          ],
+          "TrackTread_L_28": [
+            0.641329,
+            0.67,
+            -0.8
+          ],
+          "TrackTread_L_29": [
+            0.511152,
+            0.67,
+            -0.8
+          ],
+          "TrackTread_L_30": [
+            0.380975,
+            0.67,
+            -0.8
+          ],
+          "TrackTread_L_31": [
+            0.250799,
+            0.67,
+            -0.8
+          ],
+          "TrackTread_L_32": [
+            0.120622,
+            0.67,
+            -0.8
+          ],
+          "TrackTread_L_33": [
+            -0.009555,
+            0.67,
+            -0.8
+          ],
+          "TrackTread_L_34": [
+            -0.139732,
+            0.67,
+            -0.8
+          ],
+          "TrackTread_L_35": [
+            -0.269908,
+            0.67,
+            -0.8
+          ],
+          "TrackTread_L_36": [
+            -0.400085,
+            0.67,
+            -0.8
+          ],
+          "TrackTread_L_37": [
+            -0.530262,
+            0.67,
+            -0.8
+          ],
+          "TrackTread_L_38": [
+            -0.660439,
+            0.67,
+            -0.8
+          ],
+          "TrackTread_L_39": [
+            -0.790615,
+            0.67,
+            -0.8
+          ],
+          "TrackTread_L_40": [
+            -0.920792,
+            0.67,
+            -0.8
+          ],
+          "TrackTread_L_41": [
+            -1.050969,
+            0.67,
+            -0.8
+          ],
+          "TrackTread_L_42": [
+            -1.181146,
+            0.67,
+            -0.8
+          ],
+          "TrackTread_L_43": [
+            -1.299594,
+            0.633932,
+            -0.8
+          ],
+          "TrackTread_L_44": [
+            -1.404872,
+            0.557366,
+            -0.8
+          ],
+          "TrackTread_L_45": [
+            -1.47,
+            0.460354,
+            -0.8
+          ],
+          "TrackTread_L_46": [
+            -1.47,
+            0.330177,
+            -0.8
+          ],
+          "TrackTread_R_01": [
+            -1.47,
+            0.2,
+            0.8
+          ],
+          "TrackTread_R_02": [
+            -1.362282,
+            0.126906,
+            0.8
+          ],
+          "TrackTread_R_03": [
+            -1.238836,
+            0.105,
+            0.8
+          ],
+          "TrackTread_R_04": [
+            -1.108659,
+            0.105,
+            0.8
+          ],
+          "TrackTread_R_05": [
+            -0.978482,
+            0.105,
+            0.8
+          ],
+          "TrackTread_R_06": [
+            -0.848305,
+            0.105,
+            0.8
+          ],
+          "TrackTread_R_07": [
+            -0.718129,
+            0.105,
+            0.8
+          ],
+          "TrackTread_R_08": [
+            -0.587952,
+            0.105,
+            0.8
+          ],
+          "TrackTread_R_09": [
+            -0.457775,
+            0.105,
+            0.8
+          ],
+          "TrackTread_R_10": [
+            -0.327598,
+            0.105,
+            0.8
+          ],
+          "TrackTread_R_11": [
+            -0.197422,
+            0.105,
+            0.8
+          ],
+          "TrackTread_R_12": [
+            -0.067245,
+            0.105,
+            0.8
+          ],
+          "TrackTread_R_13": [
+            0.062932,
+            0.105,
+            0.8
+          ],
+          "TrackTread_R_14": [
+            0.193109,
+            0.105,
+            0.8
+          ],
+          "TrackTread_R_15": [
+            0.323285,
+            0.105,
+            0.8
+          ],
+          "TrackTread_R_16": [
+            0.453462,
+            0.105,
+            0.8
+          ],
+          "TrackTread_R_17": [
+            0.583639,
+            0.105,
+            0.8
+          ],
+          "TrackTread_R_18": [
+            0.713816,
+            0.105,
+            0.8
+          ],
+          "TrackTread_R_19": [
+            0.843992,
+            0.105,
+            0.8
+          ],
+          "TrackTread_R_20": [
+            0.971375,
+            0.116281,
+            0.8
+          ],
+          "TrackTread_R_21": [
+            1.086501,
+            0.177042,
+            0.8
+          ],
+          "TrackTread_R_22": [
+            1.127687,
+            0.280958,
+            0.8
+          ],
+          "TrackTread_R_23": [
+            1.123969,
+            0.411082,
+            0.8
+          ],
+          "TrackTread_R_24": [
+            1.120251,
+            0.541206,
+            0.8
+          ],
+          "TrackTread_R_25": [
+            1.015918,
+            0.612449,
+            0.8
+          ],
+          "TrackTread_R_26": [
+            0.901682,
+            0.67,
+            0.8
+          ],
+          "TrackTread_R_27": [
+            0.771506,
+            0.67,
+            0.8
+          ],
+          "TrackTread_R_28": [
+            0.641329,
+            0.67,
+            0.8
+          ],
+          "TrackTread_R_29": [
+            0.511152,
+            0.67,
+            0.8
+          ],
+          "TrackTread_R_30": [
+            0.380975,
+            0.67,
+            0.8
+          ],
+          "TrackTread_R_31": [
+            0.250799,
+            0.67,
+            0.8
+          ],
+          "TrackTread_R_32": [
+            0.120622,
+            0.67,
+            0.8
+          ],
+          "TrackTread_R_33": [
+            -0.009555,
+            0.67,
+            0.8
+          ],
+          "TrackTread_R_34": [
+            -0.139732,
+            0.67,
+            0.8
+          ],
+          "TrackTread_R_35": [
+            -0.269908,
+            0.67,
+            0.8
+          ],
+          "TrackTread_R_36": [
+            -0.400085,
+            0.67,
+            0.8
+          ],
+          "TrackTread_R_37": [
+            -0.530262,
+            0.67,
+            0.8
+          ],
+          "TrackTread_R_38": [
+            -0.660439,
+            0.67,
+            0.8
+          ],
+          "TrackTread_R_39": [
+            -0.790615,
+            0.67,
+            0.8
+          ],
+          "TrackTread_R_40": [
+            -0.920792,
+            0.67,
+            0.8
+          ],
+          "TrackTread_R_41": [
+            -1.050969,
+            0.67,
+            0.8
+          ],
+          "TrackTread_R_42": [
+            -1.181146,
+            0.67,
+            0.8
+          ],
+          "TrackTread_R_43": [
+            -1.299594,
+            0.633932,
+            0.8
+          ],
+          "TrackTread_R_44": [
+            -1.404872,
+            0.557366,
+            0.8
+          ],
+          "TrackTread_R_45": [
+            -1.47,
+            0.460354,
+            0.8
+          ],
+          "TrackTread_R_46": [
+            -1.47,
+            0.330177,
+            0.8
+          ],
+          "Undercarriage_CenterPan": [
+            -0.12,
+            0.37,
+            -0.0
+          ]
+        },
+        "node_parent": {
+          "JD333P_Root": null,
+          "AttachmentCarriage_Side_L": "JD333P_Root",
+          "AttachmentCarriage_Side_R": "JD333P_Root",
+          "BucketPivot_Root": "JD333P_Root",
+          "BucketCuttingEdge": "BucketPivot_Root",
+          "BucketSideCheek_L": "BucketPivot_Root",
+          "BucketSideCheek_R": "BucketPivot_Root",
+          "BucketTooth_01": "BucketPivot_Root",
+          "BucketTooth_02": "BucketPivot_Root",
+          "BucketTooth_03": "BucketPivot_Root",
+          "BucketTooth_04": "BucketPivot_Root",
+          "BucketTooth_05": "BucketPivot_Root",
+          "FoundryBucket_VisualBasis": "BucketPivot_Root",
+          "BucketTiltCylinder_Barrel": "JD333P_Root",
+          "BucketTiltCylinder_Rod": "JD333P_Root",
+          "BucketTiltLink_Reconstructed": "JD333P_Root",
+          "Cab_ROPS_Root_Reconstructed": "JD333P_Root",
+          "Cab_FrontGlass": "Cab_ROPS_Root_Reconstructed",
+          "Cab_RearGlass": "Cab_ROPS_Root_Reconstructed",
+          "Cab_SideGlass_L": "Cab_ROPS_Root_Reconstructed",
+          "Cab_SideGlass_R": "Cab_ROPS_Root_Reconstructed",
+          "CabGridH_L_00": "Cab_ROPS_Root_Reconstructed",
+          "CabGridH_L_01": "Cab_ROPS_Root_Reconstructed",
+          "CabGridH_L_02": "Cab_ROPS_Root_Reconstructed",
+          "CabGridH_L_03": "Cab_ROPS_Root_Reconstructed",
+          "CabGridH_L_04": "Cab_ROPS_Root_Reconstructed",
+          "CabGridH_R_00": "Cab_ROPS_Root_Reconstructed",
+          "CabGridH_R_01": "Cab_ROPS_Root_Reconstructed",
+          "CabGridH_R_02": "Cab_ROPS_Root_Reconstructed",
+          "CabGridH_R_03": "Cab_ROPS_Root_Reconstructed",
+          "CabGridH_R_04": "Cab_ROPS_Root_Reconstructed",
+          "CabGridV_L_00": "Cab_ROPS_Root_Reconstructed",
+          "CabGridV_L_01": "Cab_ROPS_Root_Reconstructed",
+          "CabGridV_L_02": "Cab_ROPS_Root_Reconstructed",
+          "CabGridV_L_03": "Cab_ROPS_Root_Reconstructed",
+          "CabGridV_L_04": "Cab_ROPS_Root_Reconstructed",
+          "CabGridV_L_05": "Cab_ROPS_Root_Reconstructed",
+          "CabGridV_R_00": "Cab_ROPS_Root_Reconstructed",
+          "CabGridV_R_01": "Cab_ROPS_Root_Reconstructed",
+          "CabGridV_R_02": "Cab_ROPS_Root_Reconstructed",
+          "CabGridV_R_03": "Cab_ROPS_Root_Reconstructed",
+          "CabGridV_R_04": "Cab_ROPS_Root_Reconstructed",
+          "CabGridV_R_05": "Cab_ROPS_Root_Reconstructed",
+          "ControlConsole_L": "Cab_ROPS_Root_Reconstructed",
+          "ControlConsole_R": "Cab_ROPS_Root_Reconstructed",
+          "Joystick_L": "Cab_ROPS_Root_Reconstructed",
+          "Joystick_R": "Cab_ROPS_Root_Reconstructed",
+          "Monitor_Display": "Cab_ROPS_Root_Reconstructed",
+          "OperatorSeat_Back": "Cab_ROPS_Root_Reconstructed",
+          "OperatorSeat_Base": "Cab_ROPS_Root_Reconstructed",
+          "ROPS_FrontHeader": "Cab_ROPS_Root_Reconstructed",
+          "ROPS_FrontPillar_L": "Cab_ROPS_Root_Reconstructed",
+          "ROPS_FrontPillar_R": "Cab_ROPS_Root_Reconstructed",
+          "ROPS_LowerSill_L": "Cab_ROPS_Root_Reconstructed",
+          "ROPS_LowerSill_R": "Cab_ROPS_Root_Reconstructed",
+          "ROPS_RearHeader": "Cab_ROPS_Root_Reconstructed",
+          "ROPS_RearPillar_L": "Cab_ROPS_Root_Reconstructed",
+          "ROPS_RearPillar_R": "Cab_ROPS_Root_Reconstructed",
+          "ROPS_Roof": "Cab_ROPS_Root_Reconstructed",
+          "ROPS_RoofRail_L": "Cab_ROPS_Root_Reconstructed",
+          "ROPS_RoofRail_R": "Cab_ROPS_Root_Reconstructed",
+          "DriveSprocket_Root_L": "JD333P_Root",
+          "DriveSprocket_L": "DriveSprocket_Root_L",
+          "DriveSprocketTooth_L_01": "DriveSprocket_Root_L",
+          "DriveSprocketTooth_L_02": "DriveSprocket_Root_L",
+          "DriveSprocketTooth_L_03": "DriveSprocket_Root_L",
+          "DriveSprocketTooth_L_04": "DriveSprocket_Root_L",
+          "DriveSprocketTooth_L_05": "DriveSprocket_Root_L",
+          "DriveSprocketTooth_L_06": "DriveSprocket_Root_L",
+          "DriveSprocketTooth_L_07": "DriveSprocket_Root_L",
+          "DriveSprocketTooth_L_08": "DriveSprocket_Root_L",
+          "DriveSprocketTooth_L_09": "DriveSprocket_Root_L",
+          "DriveSprocketTooth_L_10": "DriveSprocket_Root_L",
+          "DriveSprocketTooth_L_11": "DriveSprocket_Root_L",
+          "DriveSprocketTooth_L_12": "DriveSprocket_Root_L",
+          "FinalDriveHub_L": "DriveSprocket_Root_L",
+          "DriveSprocket_Root_R": "JD333P_Root",
+          "DriveSprocket_R": "DriveSprocket_Root_R",
+          "DriveSprocketTooth_R_01": "DriveSprocket_Root_R",
+          "DriveSprocketTooth_R_02": "DriveSprocket_Root_R",
+          "DriveSprocketTooth_R_03": "DriveSprocket_Root_R",
+          "DriveSprocketTooth_R_04": "DriveSprocket_Root_R",
+          "DriveSprocketTooth_R_05": "DriveSprocket_Root_R",
+          "DriveSprocketTooth_R_06": "DriveSprocket_Root_R",
+          "DriveSprocketTooth_R_07": "DriveSprocket_Root_R",
+          "DriveSprocketTooth_R_08": "DriveSprocket_Root_R",
+          "DriveSprocketTooth_R_09": "DriveSprocket_Root_R",
+          "DriveSprocketTooth_R_10": "DriveSprocket_Root_R",
+          "DriveSprocketTooth_R_11": "DriveSprocket_Root_R",
+          "DriveSprocketTooth_R_12": "DriveSprocket_Root_R",
+          "FinalDriveHub_R": "DriveSprocket_Root_R",
+          "Frame_BellyPan": "JD333P_Root",
+          "FrontBulkhead": "JD333P_Root",
+          "HydraulicHoseBundle_L_01": "JD333P_Root",
+          "HydraulicHoseBundle_L_02": "JD333P_Root",
+          "HydraulicHoseBundle_R_01": "JD333P_Root",
+          "HydraulicHoseBundle_R_02": "JD333P_Root",
+          "LiftCrossmember": "JD333P_Root",
+          "LiftCylinder_Barrel_L": "JD333P_Root",
+          "LiftCylinder_Barrel_R": "JD333P_Root",
+          "LiftCylinder_Rod_L": "JD333P_Root",
+          "LiftCylinder_Rod_R": "JD333P_Root",
+          "MainFrame_Lower": "JD333P_Root",
+          "OperatorDeck": "JD333P_Root",
+          "PanelFastener_L_0": "JD333P_Root",
+          "PanelFastener_L_1": "JD333P_Root",
+          "PanelFastener_L_2": "JD333P_Root",
+          "PanelFastener_L_3": "JD333P_Root",
+          "PanelFastener_L_4": "JD333P_Root",
+          "PanelFastener_R_0": "JD333P_Root",
+          "PanelFastener_R_1": "JD333P_Root",
+          "PanelFastener_R_2": "JD333P_Root",
+          "PanelFastener_R_3": "JD333P_Root",
+          "PanelFastener_R_4": "JD333P_Root",
+          "Pivot_LiftLower_L": "JD333P_Root",
+          "VerticalLift_LowerArm_L": "Pivot_LiftLower_L",
+          "VerticalLift_RearRiser_L": "Pivot_LiftLower_L",
+          "Pivot_LiftLower_R": "JD333P_Root",
+          "VerticalLift_LowerArm_R": "Pivot_LiftLower_R",
+          "VerticalLift_RearRiser_R": "Pivot_LiftLower_R",
+          "Pivot_LiftUpper_L": "JD333P_Root",
+          "VerticalLift_UpperArm_L": "Pivot_LiftUpper_L",
+          "Pivot_LiftUpper_R": "JD333P_Root",
+          "VerticalLift_UpperArm_R": "Pivot_LiftUpper_R",
+          "QuickAttach_Interface_Reconstructed": "JD333P_Root",
+          "RearCounterweight_Core": "JD333P_Root",
+          "RearGrille_Slat_00": "JD333P_Root",
+          "RearGrille_Slat_01": "JD333P_Root",
+          "RearGrille_Slat_02": "JD333P_Root",
+          "RearGrille_Slat_03": "JD333P_Root",
+          "RearGrille_Slat_04": "JD333P_Root",
+          "RearServiceDoor": "JD333P_Root",
+          "SideServicePanel_L": "JD333P_Root",
+          "SideServicePanel_R": "JD333P_Root",
+          "TieDownRear_L": "JD333P_Root",
+          "TieDownRear_R": "JD333P_Root",
+          "TrackBelt_L": "JD333P_Root",
+          "TrackBelt_R": "JD333P_Root",
+          "TrackIdler_L_01": "JD333P_Root",
+          "TrackIdler_L_02": "JD333P_Root",
+          "TrackIdler_R_01": "JD333P_Root",
+          "TrackIdler_R_02": "JD333P_Root",
+          "TrackIdlerFlange_L_01_+0.135": "JD333P_Root",
+          "TrackIdlerFlange_L_01_-0.135": "JD333P_Root",
+          "TrackIdlerFlange_L_02_+0.135": "JD333P_Root",
+          "TrackIdlerFlange_L_02_-0.135": "JD333P_Root",
+          "TrackIdlerFlange_R_01_+0.135": "JD333P_Root",
+          "TrackIdlerFlange_R_01_-0.135": "JD333P_Root",
+          "TrackIdlerFlange_R_02_+0.135": "JD333P_Root",
+          "TrackIdlerFlange_R_02_-0.135": "JD333P_Root",
+          "TrackRoller_L_01": "JD333P_Root",
+          "TrackRoller_L_02": "JD333P_Root",
+          "TrackRoller_L_03": "JD333P_Root",
+          "TrackRoller_L_04": "JD333P_Root",
+          "TrackRoller_L_05": "JD333P_Root",
+          "TrackRoller_R_01": "JD333P_Root",
+          "TrackRoller_R_02": "JD333P_Root",
+          "TrackRoller_R_03": "JD333P_Root",
+          "TrackRoller_R_04": "JD333P_Root",
+          "TrackRoller_R_05": "JD333P_Root",
+          "TrackRollerFlange_L_01_+0.000": "JD333P_Root",
+          "TrackRollerFlange_L_01_+0.125": "JD333P_Root",
+          "TrackRollerFlange_L_01_-0.125": "JD333P_Root",
+          "TrackRollerFlange_L_02_+0.000": "JD333P_Root",
+          "TrackRollerFlange_L_02_+0.125": "JD333P_Root",
+          "TrackRollerFlange_L_02_-0.125": "JD333P_Root",
+          "TrackRollerFlange_L_03_+0.000": "JD333P_Root",
+          "TrackRollerFlange_L_03_+0.125": "JD333P_Root",
+          "TrackRollerFlange_L_03_-0.125": "JD333P_Root",
+          "TrackRollerFlange_L_04_+0.000": "JD333P_Root",
+          "TrackRollerFlange_L_04_+0.125": "JD333P_Root",
+          "TrackRollerFlange_L_04_-0.125": "JD333P_Root",
+          "TrackRollerFlange_L_05_+0.000": "JD333P_Root",
+          "TrackRollerFlange_L_05_+0.125": "JD333P_Root",
+          "TrackRollerFlange_L_05_-0.125": "JD333P_Root",
+          "TrackRollerFlange_R_01_+0.000": "JD333P_Root",
+          "TrackRollerFlange_R_01_+0.125": "JD333P_Root",
+          "TrackRollerFlange_R_01_-0.125": "JD333P_Root",
+          "TrackRollerFlange_R_02_+0.000": "JD333P_Root",
+          "TrackRollerFlange_R_02_+0.125": "JD333P_Root",
+          "TrackRollerFlange_R_02_-0.125": "JD333P_Root",
+          "TrackRollerFlange_R_03_+0.000": "JD333P_Root",
+          "TrackRollerFlange_R_03_+0.125": "JD333P_Root",
+          "TrackRollerFlange_R_03_-0.125": "JD333P_Root",
+          "TrackRollerFlange_R_04_+0.000": "JD333P_Root",
+          "TrackRollerFlange_R_04_+0.125": "JD333P_Root",
+          "TrackRollerFlange_R_04_-0.125": "JD333P_Root",
+          "TrackRollerFlange_R_05_+0.000": "JD333P_Root",
+          "TrackRollerFlange_R_05_+0.125": "JD333P_Root",
+          "TrackRollerFlange_R_05_-0.125": "JD333P_Root",
+          "TrackTread_L_01": "JD333P_Root",
+          "TrackTread_L_02": "JD333P_Root",
+          "TrackTread_L_03": "JD333P_Root",
+          "TrackTread_L_04": "JD333P_Root",
+          "TrackTread_L_05": "JD333P_Root",
+          "TrackTread_L_06": "JD333P_Root",
+          "TrackTread_L_07": "JD333P_Root",
+          "TrackTread_L_08": "JD333P_Root",
+          "TrackTread_L_09": "JD333P_Root",
+          "TrackTread_L_10": "JD333P_Root",
+          "TrackTread_L_11": "JD333P_Root",
+          "TrackTread_L_12": "JD333P_Root",
+          "TrackTread_L_13": "JD333P_Root",
+          "TrackTread_L_14": "JD333P_Root",
+          "TrackTread_L_15": "JD333P_Root",
+          "TrackTread_L_16": "JD333P_Root",
+          "TrackTread_L_17": "JD333P_Root",
+          "TrackTread_L_18": "JD333P_Root",
+          "TrackTread_L_19": "JD333P_Root",
+          "TrackTread_L_20": "JD333P_Root",
+          "TrackTread_L_21": "JD333P_Root",
+          "TrackTread_L_22": "JD333P_Root",
+          "TrackTread_L_23": "JD333P_Root",
+          "TrackTread_L_24": "JD333P_Root",
+          "TrackTread_L_25": "JD333P_Root",
+          "TrackTread_L_26": "JD333P_Root",
+          "TrackTread_L_27": "JD333P_Root",
+          "TrackTread_L_28": "JD333P_Root",
+          "TrackTread_L_29": "JD333P_Root",
+          "TrackTread_L_30": "JD333P_Root",
+          "TrackTread_L_31": "JD333P_Root",
+          "TrackTread_L_32": "JD333P_Root",
+          "TrackTread_L_33": "JD333P_Root",
+          "TrackTread_L_34": "JD333P_Root",
+          "TrackTread_L_35": "JD333P_Root",
+          "TrackTread_L_36": "JD333P_Root",
+          "TrackTread_L_37": "JD333P_Root",
+          "TrackTread_L_38": "JD333P_Root",
+          "TrackTread_L_39": "JD333P_Root",
+          "TrackTread_L_40": "JD333P_Root",
+          "TrackTread_L_41": "JD333P_Root",
+          "TrackTread_L_42": "JD333P_Root",
+          "TrackTread_L_43": "JD333P_Root",
+          "TrackTread_L_44": "JD333P_Root",
+          "TrackTread_L_45": "JD333P_Root",
+          "TrackTread_L_46": "JD333P_Root",
+          "TrackTread_R_01": "JD333P_Root",
+          "TrackTread_R_02": "JD333P_Root",
+          "TrackTread_R_03": "JD333P_Root",
+          "TrackTread_R_04": "JD333P_Root",
+          "TrackTread_R_05": "JD333P_Root",
+          "TrackTread_R_06": "JD333P_Root",
+          "TrackTread_R_07": "JD333P_Root",
+          "TrackTread_R_08": "JD333P_Root",
+          "TrackTread_R_09": "JD333P_Root",
+          "TrackTread_R_10": "JD333P_Root",
+          "TrackTread_R_11": "JD333P_Root",
+          "TrackTread_R_12": "JD333P_Root",
+          "TrackTread_R_13": "JD333P_Root",
+          "TrackTread_R_14": "JD333P_Root",
+          "TrackTread_R_15": "JD333P_Root",
+          "TrackTread_R_16": "JD333P_Root",
+          "TrackTread_R_17": "JD333P_Root",
+          "TrackTread_R_18": "JD333P_Root",
+          "TrackTread_R_19": "JD333P_Root",
+          "TrackTread_R_20": "JD333P_Root",
+          "TrackTread_R_21": "JD333P_Root",
+          "TrackTread_R_22": "JD333P_Root",
+          "TrackTread_R_23": "JD333P_Root",
+          "TrackTread_R_24": "JD333P_Root",
+          "TrackTread_R_25": "JD333P_Root",
+          "TrackTread_R_26": "JD333P_Root",
+          "TrackTread_R_27": "JD333P_Root",
+          "TrackTread_R_28": "JD333P_Root",
+          "TrackTread_R_29": "JD333P_Root",
+          "TrackTread_R_30": "JD333P_Root",
+          "TrackTread_R_31": "JD333P_Root",
+          "TrackTread_R_32": "JD333P_Root",
+          "TrackTread_R_33": "JD333P_Root",
+          "TrackTread_R_34": "JD333P_Root",
+          "TrackTread_R_35": "JD333P_Root",
+          "TrackTread_R_36": "JD333P_Root",
+          "TrackTread_R_37": "JD333P_Root",
+          "TrackTread_R_38": "JD333P_Root",
+          "TrackTread_R_39": "JD333P_Root",
+          "TrackTread_R_40": "JD333P_Root",
+          "TrackTread_R_41": "JD333P_Root",
+          "TrackTread_R_42": "JD333P_Root",
+          "TrackTread_R_43": "JD333P_Root",
+          "TrackTread_R_44": "JD333P_Root",
+          "TrackTread_R_45": "JD333P_Root",
+          "TrackTread_R_46": "JD333P_Root",
+          "Undercarriage_CenterPan": "JD333P_Root"
+        },
+        "node_child_count": {
+          "JD333P_Root": 195,
+          "AttachmentCarriage_Side_L": 0,
+          "AttachmentCarriage_Side_R": 0,
+          "BucketPivot_Root": 9,
+          "BucketCuttingEdge": 0,
+          "BucketSideCheek_L": 0,
+          "BucketSideCheek_R": 0,
+          "BucketTooth_01": 0,
+          "BucketTooth_02": 0,
+          "BucketTooth_03": 0,
+          "BucketTooth_04": 0,
+          "BucketTooth_05": 0,
+          "FoundryBucket_VisualBasis": 0,
+          "BucketTiltCylinder_Barrel": 0,
+          "BucketTiltCylinder_Rod": 0,
+          "BucketTiltLink_Reconstructed": 0,
+          "Cab_ROPS_Root_Reconstructed": 44,
+          "Cab_FrontGlass": 0,
+          "Cab_RearGlass": 0,
+          "Cab_SideGlass_L": 0,
+          "Cab_SideGlass_R": 0,
+          "CabGridH_L_00": 0,
+          "CabGridH_L_01": 0,
+          "CabGridH_L_02": 0,
+          "CabGridH_L_03": 0,
+          "CabGridH_L_04": 0,
+          "CabGridH_R_00": 0,
+          "CabGridH_R_01": 0,
+          "CabGridH_R_02": 0,
+          "CabGridH_R_03": 0,
+          "CabGridH_R_04": 0,
+          "CabGridV_L_00": 0,
+          "CabGridV_L_01": 0,
+          "CabGridV_L_02": 0,
+          "CabGridV_L_03": 0,
+          "CabGridV_L_04": 0,
+          "CabGridV_L_05": 0,
+          "CabGridV_R_00": 0,
+          "CabGridV_R_01": 0,
+          "CabGridV_R_02": 0,
+          "CabGridV_R_03": 0,
+          "CabGridV_R_04": 0,
+          "CabGridV_R_05": 0,
+          "ControlConsole_L": 0,
+          "ControlConsole_R": 0,
+          "Joystick_L": 0,
+          "Joystick_R": 0,
+          "Monitor_Display": 0,
+          "OperatorSeat_Back": 0,
+          "OperatorSeat_Base": 0,
+          "ROPS_FrontHeader": 0,
+          "ROPS_FrontPillar_L": 0,
+          "ROPS_FrontPillar_R": 0,
+          "ROPS_LowerSill_L": 0,
+          "ROPS_LowerSill_R": 0,
+          "ROPS_RearHeader": 0,
+          "ROPS_RearPillar_L": 0,
+          "ROPS_RearPillar_R": 0,
+          "ROPS_Roof": 0,
+          "ROPS_RoofRail_L": 0,
+          "ROPS_RoofRail_R": 0,
+          "DriveSprocket_Root_L": 14,
+          "DriveSprocket_L": 0,
+          "DriveSprocketTooth_L_01": 0,
+          "DriveSprocketTooth_L_02": 0,
+          "DriveSprocketTooth_L_03": 0,
+          "DriveSprocketTooth_L_04": 0,
+          "DriveSprocketTooth_L_05": 0,
+          "DriveSprocketTooth_L_06": 0,
+          "DriveSprocketTooth_L_07": 0,
+          "DriveSprocketTooth_L_08": 0,
+          "DriveSprocketTooth_L_09": 0,
+          "DriveSprocketTooth_L_10": 0,
+          "DriveSprocketTooth_L_11": 0,
+          "DriveSprocketTooth_L_12": 0,
+          "FinalDriveHub_L": 0,
+          "DriveSprocket_Root_R": 14,
+          "DriveSprocket_R": 0,
+          "DriveSprocketTooth_R_01": 0,
+          "DriveSprocketTooth_R_02": 0,
+          "DriveSprocketTooth_R_03": 0,
+          "DriveSprocketTooth_R_04": 0,
+          "DriveSprocketTooth_R_05": 0,
+          "DriveSprocketTooth_R_06": 0,
+          "DriveSprocketTooth_R_07": 0,
+          "DriveSprocketTooth_R_08": 0,
+          "DriveSprocketTooth_R_09": 0,
+          "DriveSprocketTooth_R_10": 0,
+          "DriveSprocketTooth_R_11": 0,
+          "DriveSprocketTooth_R_12": 0,
+          "FinalDriveHub_R": 0,
+          "Frame_BellyPan": 0,
+          "FrontBulkhead": 0,
+          "HydraulicHoseBundle_L_01": 0,
+          "HydraulicHoseBundle_L_02": 0,
+          "HydraulicHoseBundle_R_01": 0,
+          "HydraulicHoseBundle_R_02": 0,
+          "LiftCrossmember": 0,
+          "LiftCylinder_Barrel_L": 0,
+          "LiftCylinder_Barrel_R": 0,
+          "LiftCylinder_Rod_L": 0,
+          "LiftCylinder_Rod_R": 0,
+          "MainFrame_Lower": 0,
+          "OperatorDeck": 0,
+          "PanelFastener_L_0": 0,
+          "PanelFastener_L_1": 0,
+          "PanelFastener_L_2": 0,
+          "PanelFastener_L_3": 0,
+          "PanelFastener_L_4": 0,
+          "PanelFastener_R_0": 0,
+          "PanelFastener_R_1": 0,
+          "PanelFastener_R_2": 0,
+          "PanelFastener_R_3": 0,
+          "PanelFastener_R_4": 0,
+          "Pivot_LiftLower_L": 2,
+          "VerticalLift_LowerArm_L": 0,
+          "VerticalLift_RearRiser_L": 0,
+          "Pivot_LiftLower_R": 2,
+          "VerticalLift_LowerArm_R": 0,
+          "VerticalLift_RearRiser_R": 0,
+          "Pivot_LiftUpper_L": 1,
+          "VerticalLift_UpperArm_L": 0,
+          "Pivot_LiftUpper_R": 1,
+          "VerticalLift_UpperArm_R": 0,
+          "QuickAttach_Interface_Reconstructed": 0,
+          "RearCounterweight_Core": 0,
+          "RearGrille_Slat_00": 0,
+          "RearGrille_Slat_01": 0,
+          "RearGrille_Slat_02": 0,
+          "RearGrille_Slat_03": 0,
+          "RearGrille_Slat_04": 0,
+          "RearServiceDoor": 0,
+          "SideServicePanel_L": 0,
+          "SideServicePanel_R": 0,
+          "TieDownRear_L": 0,
+          "TieDownRear_R": 0,
+          "TrackBelt_L": 0,
+          "TrackBelt_R": 0,
+          "TrackIdler_L_01": 0,
+          "TrackIdler_L_02": 0,
+          "TrackIdler_R_01": 0,
+          "TrackIdler_R_02": 0,
+          "TrackIdlerFlange_L_01_+0.135": 0,
+          "TrackIdlerFlange_L_01_-0.135": 0,
+          "TrackIdlerFlange_L_02_+0.135": 0,
+          "TrackIdlerFlange_L_02_-0.135": 0,
+          "TrackIdlerFlange_R_01_+0.135": 0,
+          "TrackIdlerFlange_R_01_-0.135": 0,
+          "TrackIdlerFlange_R_02_+0.135": 0,
+          "TrackIdlerFlange_R_02_-0.135": 0,
+          "TrackRoller_L_01": 0,
+          "TrackRoller_L_02": 0,
+          "TrackRoller_L_03": 0,
+          "TrackRoller_L_04": 0,
+          "TrackRoller_L_05": 0,
+          "TrackRoller_R_01": 0,
+          "TrackRoller_R_02": 0,
+          "TrackRoller_R_03": 0,
+          "TrackRoller_R_04": 0,
+          "TrackRoller_R_05": 0,
+          "TrackRollerFlange_L_01_+0.000": 0,
+          "TrackRollerFlange_L_01_+0.125": 0,
+          "TrackRollerFlange_L_01_-0.125": 0,
+          "TrackRollerFlange_L_02_+0.000": 0,
+          "TrackRollerFlange_L_02_+0.125": 0,
+          "TrackRollerFlange_L_02_-0.125": 0,
+          "TrackRollerFlange_L_03_+0.000": 0,
+          "TrackRollerFlange_L_03_+0.125": 0,
+          "TrackRollerFlange_L_03_-0.125": 0,
+          "TrackRollerFlange_L_04_+0.000": 0,
+          "TrackRollerFlange_L_04_+0.125": 0,
+          "TrackRollerFlange_L_04_-0.125": 0,
+          "TrackRollerFlange_L_05_+0.000": 0,
+          "TrackRollerFlange_L_05_+0.125": 0,
+          "TrackRollerFlange_L_05_-0.125": 0,
+          "TrackRollerFlange_R_01_+0.000": 0,
+          "TrackRollerFlange_R_01_+0.125": 0,
+          "TrackRollerFlange_R_01_-0.125": 0,
+          "TrackRollerFlange_R_02_+0.000": 0,
+          "TrackRollerFlange_R_02_+0.125": 0,
+          "TrackRollerFlange_R_02_-0.125": 0,
+          "TrackRollerFlange_R_03_+0.000": 0,
+          "TrackRollerFlange_R_03_+0.125": 0,
+          "TrackRollerFlange_R_03_-0.125": 0,
+          "TrackRollerFlange_R_04_+0.000": 0,
+          "TrackRollerFlange_R_04_+0.125": 0,
+          "TrackRollerFlange_R_04_-0.125": 0,
+          "TrackRollerFlange_R_05_+0.000": 0,
+          "TrackRollerFlange_R_05_+0.125": 0,
+          "TrackRollerFlange_R_05_-0.125": 0,
+          "TrackTread_L_01": 0,
+          "TrackTread_L_02": 0,
+          "TrackTread_L_03": 0,
+          "TrackTread_L_04": 0,
+          "TrackTread_L_05": 0,
+          "TrackTread_L_06": 0,
+          "TrackTread_L_07": 0,
+          "TrackTread_L_08": 0,
+          "TrackTread_L_09": 0,
+          "TrackTread_L_10": 0,
+          "TrackTread_L_11": 0,
+          "TrackTread_L_12": 0,
+          "TrackTread_L_13": 0,
+          "TrackTread_L_14": 0,
+          "TrackTread_L_15": 0,
+          "TrackTread_L_16": 0,
+          "TrackTread_L_17": 0,
+          "TrackTread_L_18": 0,
+          "TrackTread_L_19": 0,
+          "TrackTread_L_20": 0,
+          "TrackTread_L_21": 0,
+          "TrackTread_L_22": 0,
+          "TrackTread_L_23": 0,
+          "TrackTread_L_24": 0,
+          "TrackTread_L_25": 0,
+          "TrackTread_L_26": 0,
+          "TrackTread_L_27": 0,
+          "TrackTread_L_28": 0,
+          "TrackTread_L_29": 0,
+          "TrackTread_L_30": 0,
+          "TrackTread_L_31": 0,
+          "TrackTread_L_32": 0,
+          "TrackTread_L_33": 0,
+          "TrackTread_L_34": 0,
+          "TrackTread_L_35": 0,
+          "TrackTread_L_36": 0,
+          "TrackTread_L_37": 0,
+          "TrackTread_L_38": 0,
+          "TrackTread_L_39": 0,
+          "TrackTread_L_40": 0,
+          "TrackTread_L_41": 0,
+          "TrackTread_L_42": 0,
+          "TrackTread_L_43": 0,
+          "TrackTread_L_44": 0,
+          "TrackTread_L_45": 0,
+          "TrackTread_L_46": 0,
+          "TrackTread_R_01": 0,
+          "TrackTread_R_02": 0,
+          "TrackTread_R_03": 0,
+          "TrackTread_R_04": 0,
+          "TrackTread_R_05": 0,
+          "TrackTread_R_06": 0,
+          "TrackTread_R_07": 0,
+          "TrackTread_R_08": 0,
+          "TrackTread_R_09": 0,
+          "TrackTread_R_10": 0,
+          "TrackTread_R_11": 0,
+          "TrackTread_R_12": 0,
+          "TrackTread_R_13": 0,
+          "TrackTread_R_14": 0,
+          "TrackTread_R_15": 0,
+          "TrackTread_R_16": 0,
+          "TrackTread_R_17": 0,
+          "TrackTread_R_18": 0,
+          "TrackTread_R_19": 0,
+          "TrackTread_R_20": 0,
+          "TrackTread_R_21": 0,
+          "TrackTread_R_22": 0,
+          "TrackTread_R_23": 0,
+          "TrackTread_R_24": 0,
+          "TrackTread_R_25": 0,
+          "TrackTread_R_26": 0,
+          "TrackTread_R_27": 0,
+          "TrackTread_R_28": 0,
+          "TrackTread_R_29": 0,
+          "TrackTread_R_30": 0,
+          "TrackTread_R_31": 0,
+          "TrackTread_R_32": 0,
+          "TrackTread_R_33": 0,
+          "TrackTread_R_34": 0,
+          "TrackTread_R_35": 0,
+          "TrackTread_R_36": 0,
+          "TrackTread_R_37": 0,
+          "TrackTread_R_38": 0,
+          "TrackTread_R_39": 0,
+          "TrackTread_R_40": 0,
+          "TrackTread_R_41": 0,
+          "TrackTread_R_42": 0,
+          "TrackTread_R_43": 0,
+          "TrackTread_R_44": 0,
+          "TrackTread_R_45": 0,
+          "TrackTread_R_46": 0,
+          "Undercarriage_CenterPan": 0
+        },
         "glb_y_up": true
       }
     }
+  ],
+  "required_machine_gate_ids": [
+    "decoded_public_stowed_envelope",
+    "decoded_public_pivot_world_positions",
+    "viewer_motion_nodes_resolve",
+    "published_roller_idler_counts",
+    "public_semantic_hierarchy",
+    "source_design_contract_binding"
   ]
 }

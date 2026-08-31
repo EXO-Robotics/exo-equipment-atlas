@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-1270g",
+  "display_name": "John Deere 1270G 8W",
+  "configuration_id": "JD-1270G-8W-CH7-R86-H480C-600-CANDIDATE",
+  "archetype": "wheeled_harvester",
+  "published_constraints_used": [
+    "base-carrier-length", "front-axle-middle-joint", "rear-axle-middle-joint",
+    "wheelbase", "minimum-width-600", "transport-height", "transport-length",
+    "ground-clearance", "selected-maximum-reach", "turning-angle",
+    "boom-slewing-angle", "cab-rotation", "cab-sideways-tilt",
+    "cab-fore-aft-tilt", "drive-configuration", "boom-type", "reference-head",
+    "tire-front", "tire-rear"
+  ],
+  "reconstructed_values": {
+    "export_pivot_contract": "source/build-input.json",
+    "retained_pose": "working",
+    "motion_scope": "frame steer, front bogie, cab yaw, and CH7 slew only"
+  },
+  "unresolved_choices": [
+    "Exact tire, axle, cab-option, CH7 segment, H480C revision, transport-retention, and regional option details"
+  ],
+  "mechanical_gaps": [
+    "CH7 lift, fold, telescope, cab leveling, hydraulic endpoints, processing-head functions, and swept collision remain static or unresolved."
+  ]
+}

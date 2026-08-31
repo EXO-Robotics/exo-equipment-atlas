@@ -13,7 +13,8 @@
   "choices": {
     "undercarriage": "standard",
     "tracks": "450_mm_17.7_in",
-    "bucket_dimension_basis": "foundry_bucket",
+    "bucket_dimension_basis": "published_foundry_bucket_envelope_exact_part_unresolved",
+    "attachment_interface": "unresolved",
     "lift_path": "vertical_lift",
     "smartgrade": "not_selected_for_base_candidate"
   },

@@ -34,8 +34,12 @@
       "title": "Mobile crane LTM 1100-5.3 - The master of all roads",
       "retrieved": "2026-08-29",
       "official_url": "https://www.liebherr.com/en-int/mobile-and-crawler-cranes/mobile-cranes/ltm-mobile-cranes/ltm-1100-5-3-5387259",
+      "local_path": "research/private/liebherr-ltm-1100-5-3/liebherr-ltm-1100-5-3-product.html",
+      "sha256": "e14dcdcc6f36f075dd424fd569bd3fd3f59ae98cf44dc1c119e0b94b51a9ae10",
+      "bytes": 414215,
       "admission": "primary",
-      "note": "Official product identity and technical-data download index."
+      "applicable_fact_ids": ["telescopic-boom-maximum"],
+      "note": "Primary only for the 62 m telescopic-boom maximum. All other applied identity, dimension, carrier, and topology facts are bound to the hash-frozen technical-data PDF."
     }
   ]
 }

@@ -13,21 +13,22 @@
     "poster": "machines/john-deere-9rx-640/review/renders/john-deere-9rx-640-front-three-quarter.png"
   },
   "evidence": {
-    "boundary": "MY2025 code 9540RW with JD14/e18, 30-inch AG3500 tracks at 87-inch spacing, less PTO and less rear hitch. Overall length is published; width is evidence-derived and height reconstructed. Hidden track and articulation geometry remains reconstructed.",
-    "lede": "Autoplay separates center articulation from four-pod pitch cues so the machine reads as an articulated four-track tractor without implying physical belt or terrain simulation.",
-    "factIds": ["rated-engine-power-hp", "jd14-displacement", "public-envelope-x", "selected-track-width", "selected-track-spacing", "articulation-range", "undercarriage-oscillation"]
+    "boundary": "MY2025 North American code 9540RW with JD14/e18, 30-inch AG3500 tracks at 87-inch spacing, less PTO and less rear three-point hitch/coupler. The official Canadian 9RX 640 page publishes 8.309 m overall length with front weights, excluding hitch and coupler; the selected Category 5 drawbar remains modeled. Width is evidence-derived and height reconstructed. AU/NZ motion figures are reference-only, and all hidden track and articulation geometry remains reconstructed.",
+    "lede": "Autoplay separates center yaw, frame roll and conservative axle-height track-pod pitch cues so the machine reads as an articulated four-track tractor without implying physical belt or terrain simulation.",
+    "factIds": ["rated-engine-power-hp", "jd14-displacement", "public-envelope-x", "selected-track-width", "selected-track-spacing", "less-pto-base", "less-hitch-base", "category-five-drawbar-interface"]
   },
   "camera": {"azimuth": 0.70, "elevation": 0.30, "distance": 1.62},
   "accent": "#94a2af",
   "motion": {
     "autoplay": true,
-    "durationSeconds": 20,
+    "durationSeconds": 18,
     "mode": "sine",
-    "damping": 8.5,
+    "damping": 8,
     "channels": [
-      {"id": "center-articulation", "label": "Center articulation study", "nodes": ["Front_Frame_ROOT"], "property": "rotation.y", "from": -0.18, "to": 0.18, "phase": 0.0, "mode": "offset"},
-      {"id": "left-track-pods", "label": "Left track-pod compliance", "nodes": ["Track_FL_ROOT", "Track_RL_ROOT"], "property": "rotation.z", "from": -0.04, "to": 0.04, "phase": 0.32, "mode": "offset"},
-      {"id": "right-track-pods", "label": "Right track-pod compliance", "nodes": ["Track_FR_ROOT", "Track_RR_ROOT"], "property": "rotation.z", "from": 0.04, "to": -0.04, "phase": 0.64, "mode": "offset"}
+      {"id": "center-articulation", "mechanismJointId": "center_chassis_articulation", "label": "Center articulation study", "nodes": ["Chassis_Yaw_Pivot"], "property": "rotation.y", "from": -0.2, "to": 0.2, "phase": 0.0, "mode": "offset"},
+      {"id": "frame-roll", "mechanismJointId": "center_chassis_oscillation", "label": "Center frame-roll cue", "nodes": ["Chassis_Roll_Pivot"], "property": "rotation.x", "from": -0.006, "to": 0.006, "phase": 0.24, "mode": "offset"},
+      {"id": "left-track-pods", "mechanismJointId": "four_undercarriage_oscillations", "label": "Left track-pod compliance", "nodes": ["Track_FL_ROOT", "Track_RL_ROOT"], "property": "rotation.z", "from": -0.006, "to": 0.006, "phase": 0.46, "mode": "offset"},
+      {"id": "right-track-pods", "mechanismJointId": "four_undercarriage_oscillations", "label": "Right track-pod compliance", "nodes": ["Track_FR_ROOT", "Track_RR_ROOT"], "property": "rotation.z", "from": 0.006, "to": -0.006, "phase": 0.72, "mode": "offset"}
     ]
   }
 }

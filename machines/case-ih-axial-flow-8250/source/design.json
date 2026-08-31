@@ -14,23 +14,26 @@
     "width": 3.962,
     "height": 3.904
   },
-  "attachment_span_m": 3.962,
+  "attachment_span_m": 1.372,
   "palette": "amber",
   "published_constraints_used": [
     "public-envelope-y",
-    "public-envelope-z",
+    "wheelbase-2wd",
     "feeder-width",
     "feeder-length",
     "feeder-lateral-tilt",
+    "feeder-faceplate-tilt",
     "rotor-diameter",
+    "self-leveling-slope",
     "grain-tank-capacity",
     "unloading-auger-length"
   ],
   "reconstructed_values": {
     "longitudinal_envelope_m": 9.0,
-    "longitudinal_envelope_note": "Overall length is not published in the admitted brochure and is reconstructed for presentation; only Y and Z are manufacturer-published public-envelope axes.",
-    "header_interface": "Generic narrow feeder/header interface cue only; no named harvesting attachment or width claim.",
-    "running_gear": "Generic 2WD wheeled presentation; tire sizes, loaded radii, offsets and steering geometry are reconstructed.",
+    "longitudinal_envelope_note": "Overall length is not published in the admitted brochure and is reconstructed for presentation; only the Y envelope is manufacturer-published for the selected study.",
+    "lateral_envelope_note": "The selected dual-front tire size and offsets are unresolved. The 3.962 m retained presentation width equals the brochure's single-tire 120 in tread row and is therefore reconstructed for this dual-front study, not claimed as its published transport width.",
+    "header_interface": "Published 1.372 m by 2.388 m feeder with a coupler interface only; no named harvesting attachment, cutterbar or reel is fitted.",
+    "running_gear": "Selected dual-front 2WD presentation with six tire contacts and the published 3.752 m 2WD wheelbase; tire sizes, loaded radii, dual offsets and steering geometry remain reconstructed.",
     "materials": "Neutral unbranded amber, graphite, steel, rubber and glass with no logos, decals or copied trade dress.",
     "hidden_geometry": "Rotor center, feeder pivot, cleaning shoe, auger hinge and every hydraulic anchor are reconstructed.",
     "animation_ranges": "Conservative presentation ranges only; not machine-specific operating limits."
@@ -38,14 +41,14 @@
   "unresolved_choices": [
     "exact model year and production serial family",
     "overall longitudinal envelope",
-    "front and rear tire sizes, offsets and axle option",
+    "front and rear tire sizes, dual offsets and loaded radii",
     "unloading auger fold joint and spout option ordering",
     "residue package",
     "named header attachment",
     "public material and branding authorization"
   ],
   "mechanical_gaps": [
-    "feederhouse pivot, cylinder anchors and header coupler authority",
+    "feederhouse pivot, cylinder anchors and header coupler operating authority",
     "rotor axis and internal crop-flow geometry",
     "cleaning shoe phase, leveling linkage and fan placement",
     "unloading auger hinge, fold joint and swept clearance",

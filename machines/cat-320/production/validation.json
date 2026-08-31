@@ -3,6 +3,7 @@
   "machine_id": "cat-320",
   "configuration_id": "CAT-320-07H-NAM-RB57-R29-HD119-LU-TG790-CW42-CANDIDATE",
   "candidate_class": "technical_structural_study",
+  "release_status": "PENDING",
   "verdict": "PASS",
   "bounds": {
     "min_m": [
@@ -11,24 +12,335 @@
       -1.585
     ],
     "max_m": [
-      6.7729,
+      6.6803,
       3.1538,
       1.585
     ],
     "size_m": [
-      9.5484,
+      9.4558,
       3.1538,
       3.17
     ]
   },
   "counts": {
-    "objects": 361,
-    "meshes": 330,
-    "empties": 31,
-    "triangles": 57892,
+    "objects": 393,
+    "meshes": 365,
+    "empties": 28,
+    "triangles": 64736,
     "materials": 10
   },
-  "round_1_repair_metrics": {
+  "design": {
+    "published_constraints_used": [
+      "stick-length",
+      "transport-length",
+      "transport-height",
+      "undercarriage-width",
+      "upperframe-width",
+      "tail-swing-radius",
+      "counterweight-clearance",
+      "ground-clearance",
+      "track-length",
+      "roller-center-length",
+      "track-gauge",
+      "track-shoes-per-side",
+      "track-rollers-per-side",
+      "carrier-rollers-per-side",
+      "top-cab-height",
+      "bucket-tip-radius"
+    ]
+  },
+  "required_machine_gate_ids": [
+    "stowed_transport_envelope",
+    "published_working_envelope",
+    "cylinder_length_continuity",
+    "bucket_linkage_closure",
+    "upper_to_undercarriage_clearance",
+    "ground_collision",
+    "self_collision",
+    "track_phase_continuity"
+  ],
+  "source_configuration_traceability": {
+    "pass": true,
+    "identity_pass": true,
+    "design_pass": true,
+    "design_published_constraints_used": [
+      "stick-length",
+      "transport-length",
+      "transport-height",
+      "undercarriage-width",
+      "upperframe-width",
+      "tail-swing-radius",
+      "counterweight-clearance",
+      "ground-clearance",
+      "track-length",
+      "roller-center-length",
+      "track-gauge",
+      "track-shoes-per-side",
+      "track-rollers-per-side",
+      "carrier-rollers-per-side",
+      "top-cab-height",
+      "bucket-tip-radius"
+    ],
+    "source": {
+      "path": "research/private/cat-320/cat-320-aexq3758-01-na-technical-specifications.pdf",
+      "actual_sha256": "3c8a3801febde2f7728ba13d3b9cfe59528bc08394f9cf57dfd0e618ef158a98",
+      "actual_bytes": 2285842,
+      "manifest_sha256": "3c8a3801febde2f7728ba13d3b9cfe59528bc08394f9cf57dfd0e618ef158a98",
+      "manifest_bytes": 2285842,
+      "manifest_pages": 24,
+      "publication": "AEXQ3758-01",
+      "market": "North America",
+      "document_identity": {
+        "pdf_metadata_title": "320 Hydraulic Excavator, Technical Specifications, AEXQ3758-01",
+        "pdf_metadata_author": "Caterpillar",
+        "publication_footer": "AEXQ3758-01 (11-2025)",
+        "replaces": "AEXQ3758-00",
+        "build_number": "07H",
+        "market_label": "N Am",
+        "page_count": 24
+      },
+      "pass": true
+    },
+    "facts": {
+      "boom-length": {
+        "pass": true,
+        "source_page": 3,
+        "source_section": "Major Component Weights",
+        "source_row": "Booms (including lines, pins, stick cylinder) - Reach Boom 5.7 m (18 ft 8 in)",
+        "value": 5.7
+      },
+      "stick-length": {
+        "pass": true,
+        "source_page": 3,
+        "source_section": "Major Component Weights",
+        "source_row": "Sticks (including lines, pins, bucket cylinder, bucket linkage) - Reach Stick R2.9B1 (9 ft 6 in)",
+        "value": 2.9
+      },
+      "boom-cylinder-stroke": {
+        "pass": true,
+        "source_page": 2,
+        "source_section": "Hydraulic System",
+        "source_row": "Boom Cylinder - Stroke 1260 mm",
+        "value": 1.26
+      },
+      "stick-cylinder-stroke": {
+        "pass": true,
+        "source_page": 2,
+        "source_section": "Hydraulic System",
+        "source_row": "Stick Cylinder - Stroke 1504 mm",
+        "value": 1.504
+      },
+      "bucket-cylinder-stroke": {
+        "pass": true,
+        "source_page": 2,
+        "source_section": "Hydraulic System",
+        "source_row": "Bucket Cylinder - Stroke 1104 mm",
+        "value": 1.104
+      },
+      "transport-length": {
+        "pass": true,
+        "source_page": 4,
+        "source_section": "Dimensions - Reach/HD Reach Boom 5.7 m and Reach/HD TR Reach Stick R2.9B1",
+        "source_row": "Dimension 2 Machine Length - With Boom/Stick/Bucket Installed 9530 mm",
+        "value": 9.53
+      },
+      "transport-height": {
+        "pass": true,
+        "source_page": 4,
+        "source_section": "Dimensions - Reach/HD Reach Boom 5.7 m and Reach/HD TR Reach Stick R2.9B1",
+        "source_row": "Dimension 1 Machine Height - With Boom/Stick/Bucket Installed 3160 mm",
+        "value": 3.16
+      },
+      "undercarriage-width": {
+        "pass": true,
+        "source_page": 4,
+        "source_section": "Dimensions",
+        "source_row": "Dimension 10 Undercarriage Width - 790 mm (31 in) Shoes 3170 mm",
+        "value": 3.17
+      },
+      "maximum-digging-depth": {
+        "pass": true,
+        "source_page": 5,
+        "source_section": "Working Ranges - Reach/HD Reach Boom 5.7 m and Reach/HD TR Reach Stick R2.9B1",
+        "source_row": "Range 1 Maximum Digging Depth 6730 mm",
+        "value": 6.73
+      },
+      "maximum-ground-reach": {
+        "pass": true,
+        "source_page": 5,
+        "source_section": "Working Ranges - Reach/HD Reach Boom 5.7 m and Reach/HD TR Reach Stick R2.9B1",
+        "source_row": "Range 2 Maximum Reach at Ground Line 9870 mm",
+        "value": 9.87
+      },
+      "top-cab-height": {
+        "pass": true,
+        "source_page": 4,
+        "source_section": "Dimensions",
+        "source_row": "Dimension 1 Machine Height - Top of Cab Height 2960 mm",
+        "value": 2.96
+      },
+      "upperframe-width": {
+        "pass": true,
+        "source_page": 4,
+        "source_section": "Dimensions",
+        "source_row": "Dimension 3 Upperframe Width 2780 mm",
+        "value": 2.78
+      },
+      "tail-swing-radius": {
+        "pass": true,
+        "source_page": 4,
+        "source_section": "Dimensions",
+        "source_row": "Dimension 4 Tail Swing Radius 2830 mm",
+        "value": 2.83
+      },
+      "counterweight-clearance": {
+        "pass": true,
+        "source_page": 4,
+        "source_section": "Dimensions",
+        "source_row": "Dimension 5 Counterweight Clearance 1050 mm",
+        "value": 1.05
+      },
+      "ground-clearance": {
+        "pass": true,
+        "source_page": 4,
+        "source_section": "Dimensions",
+        "source_row": "Dimension 6 Ground Clearance 470 mm",
+        "value": 0.47
+      },
+      "track-length": {
+        "pass": true,
+        "source_page": 4,
+        "source_section": "Dimensions",
+        "source_row": "Dimension 7 Track Length 4450 mm",
+        "value": 4.45
+      },
+      "roller-center-length": {
+        "pass": true,
+        "source_page": 4,
+        "source_section": "Dimensions",
+        "source_row": "Dimension 8 Length to Center of Rollers 3650 mm",
+        "value": 3.65
+      },
+      "track-gauge": {
+        "pass": true,
+        "source_page": 4,
+        "source_section": "Dimensions",
+        "source_row": "Dimension 9 Track Gauge 2380 mm",
+        "value": 2.38
+      },
+      "bucket-tip-radius": {
+        "pass": true,
+        "source_page": 4,
+        "source_section": "Dimensions - Bucket Type HD",
+        "source_row": "Bucket Tip Radius 1570 mm",
+        "value": 1.57
+      },
+      "track-shoes-per-side": {
+        "pass": true,
+        "source_page": 2,
+        "source_section": "Track",
+        "source_row": "Number of Shoes (each side) 49",
+        "value": 49
+      },
+      "track-rollers-per-side": {
+        "pass": true,
+        "source_page": 2,
+        "source_section": "Track",
+        "source_row": "Number of Track Rollers (each side) 8",
+        "value": 8
+      },
+      "carrier-rollers-per-side": {
+        "pass": true,
+        "source_page": 2,
+        "source_section": "Track",
+        "source_row": "Number of Carrier Rollers (each side) 2",
+        "value": 2
+      }
+    },
+    "choices": {
+      "boom": {
+        "pass": true,
+        "value": "reach_5.7_m",
+        "trace": {
+          "source_id": "CAT-320-AEXQ3758-01-NAM",
+          "source_page": 3,
+          "source_section": "Operating Weight and Ground Pressure / Major Component Weights",
+          "source_row": "Reach Boom 5.7 m (18 ft 8 in)"
+        }
+      },
+      "stick": {
+        "pass": true,
+        "value": "R2.9B1_2.9_m",
+        "trace": {
+          "source_id": "CAT-320-AEXQ3758-01-NAM",
+          "source_page": 3,
+          "source_section": "Operating Weight and Ground Pressure / Major Component Weights",
+          "source_row": "Reach Stick R2.9B1 (9 ft 6 in)"
+        }
+      },
+      "bucket": {
+        "pass": true,
+        "value": "HD_1.19_m3",
+        "trace": {
+          "source_id": "CAT-320-AEXQ3758-01-NAM",
+          "source_page": 11,
+          "source_section": "Bucket Specifications and Compatibility - Pin-On (No Quick Coupler)",
+          "source_row": "Heavy Duty, linkage B, width 1200 mm, capacity 1.19 m3, 4.2 mt counterweight plus Reach Boom/R2.9 column"
+        }
+      },
+      "undercarriage": {
+        "pass": true,
+        "value": "long",
+        "trace": {
+          "source_id": "CAT-320-AEXQ3758-01-NAM",
+          "source_page": 3,
+          "source_section": "Operating Weight and Ground Pressure / Major Component Weights",
+          "source_row": "4.2 mt Counterweight + Long Undercarriage Base Machine"
+        }
+      },
+      "track_shoes": {
+        "pass": true,
+        "value": "790_mm_triple_grouser_with_step_extension",
+        "trace": {
+          "source_id": "CAT-320-AEXQ3758-01-NAM",
+          "source_page": 3,
+          "source_section": "Major Component Weights - Track Shoes",
+          "source_row": "790 mm Width, 10 mm Thick Triple Grouser Track Shoes with Step Extension"
+        }
+      },
+      "counterweight": {
+        "pass": true,
+        "value": "4.2_mt",
+        "trace": {
+          "source_id": "CAT-320-AEXQ3758-01-NAM",
+          "source_page": 3,
+          "source_section": "Operating Weight and Ground Pressure / Major Component Weights",
+          "source_row": "4.2 mt (9,300 lb) Counterweight"
+        }
+      },
+      "swing_frame": {
+        "pass": true,
+        "value": "semi_HD",
+        "trace": {
+          "source_id": "CAT-320-AEXQ3758-01-NAM",
+          "source_page": 3,
+          "source_section": "Major Component Weights - Base Machine / Swing Frame",
+          "source_row": "Base Machine with 4.2 mt counterweight, semi-HD swing frame; Semi-HD Swing Frame"
+        }
+      }
+    },
+    "mechanism_required_gates": [
+      "stowed_transport_envelope",
+      "published_working_envelope",
+      "cylinder_length_continuity",
+      "bucket_linkage_closure",
+      "upper_to_undercarriage_clearance",
+      "ground_collision",
+      "self_collision",
+      "track_phase_continuity"
+    ]
+  },
+  "geometry_metrics": {
     "tail_swing_radius_m": 2.831034718608382,
     "counterweight_clearance_agl_m": 1.0440000295639038,
     "counterweight_evaluated_bounds_m": {
@@ -71,7 +383,7 @@
     "drive_sprocket_teeth_right": 14,
     "reconstructed_hose_meshes": 24,
     "track_contact_min_y_m": 0.0,
-    "track_contact_authored_root_correction_m": -0.0723232850432396,
+    "track_contact_authored_root_correction_m": -0.07234236598014832,
     "undercarriage_center_frame_underside_agl_m": 0.4699999690055847,
     "cab_roof_top_agl_m": 2.9600000381469727,
     "lowest_visible_geometry_y_m": 0.0,
@@ -91,27 +403,1137 @@
       "Bucket_Cylinder_Rod": "Bucket_Hydraulics_ROOT",
       "Bucket_Link_Dogbone": "Bucket_Linkage_ROOT"
     },
+    "semantic_contract": {
+      "Machine_Root": {
+        "pass": true,
+        "expected": {
+          "type": "EMPTY",
+          "parent": null,
+          "role": "machine_root",
+          "min_mesh_descendants": 1
+        },
+        "observed": {
+          "type": "EMPTY",
+          "parent": null,
+          "role": "machine_root",
+          "axis": null,
+          "mesh_descendants": 365
+        }
+      },
+      "Undercarriage_ROOT": {
+        "pass": true,
+        "expected": {
+          "type": "EMPTY",
+          "parent": "Machine_Root",
+          "role": "fixed_group",
+          "min_mesh_descendants": 1
+        },
+        "observed": {
+          "type": "EMPTY",
+          "parent": "Machine_Root",
+          "role": "fixed_group",
+          "axis": null,
+          "mesh_descendants": 365
+        }
+      },
+      "Track_L_ROOT": {
+        "pass": true,
+        "expected": {
+          "type": "EMPTY",
+          "parent": "Undercarriage_ROOT",
+          "role": "track_group",
+          "min_mesh_descendants": 49
+        },
+        "observed": {
+          "type": "EMPTY",
+          "parent": "Undercarriage_ROOT",
+          "role": "track_group",
+          "axis": null,
+          "mesh_descendants": 101
+        }
+      },
+      "Track_R_ROOT": {
+        "pass": true,
+        "expected": {
+          "type": "EMPTY",
+          "parent": "Undercarriage_ROOT",
+          "role": "track_group",
+          "min_mesh_descendants": 49
+        },
+        "observed": {
+          "type": "EMPTY",
+          "parent": "Undercarriage_ROOT",
+          "role": "track_group",
+          "axis": null,
+          "mesh_descendants": 101
+        }
+      },
+      "Upper_Swing_Pivot": {
+        "pass": true,
+        "expected": {
+          "type": "EMPTY",
+          "parent": "Undercarriage_ROOT",
+          "role": "revolute_pivot",
+          "axis": "+Y",
+          "min_mesh_descendants": 1
+        },
+        "observed": {
+          "type": "EMPTY",
+          "parent": "Undercarriage_ROOT",
+          "role": "revolute_pivot",
+          "axis": "+Y",
+          "mesh_descendants": 160
+        }
+      },
+      "Upper_ROOT": {
+        "pass": true,
+        "expected": {
+          "type": "EMPTY",
+          "parent": "Upper_Swing_Pivot",
+          "role": "articulated_group",
+          "min_mesh_descendants": 1
+        },
+        "observed": {
+          "type": "EMPTY",
+          "parent": "Upper_Swing_Pivot",
+          "role": "articulated_group",
+          "axis": null,
+          "mesh_descendants": 158
+        }
+      },
+      "Boom_Pivot": {
+        "pass": true,
+        "expected": {
+          "type": "EMPTY",
+          "parent": "Upper_ROOT",
+          "role": "revolute_pivot",
+          "axis": "+Z",
+          "min_mesh_descendants": 1
+        },
+        "observed": {
+          "type": "EMPTY",
+          "parent": "Upper_ROOT",
+          "role": "revolute_pivot",
+          "axis": "+Z",
+          "mesh_descendants": 85
+        }
+      },
+      "Boom_ROOT": {
+        "pass": true,
+        "expected": {
+          "type": "EMPTY",
+          "parent": "Boom_Pivot",
+          "role": "articulated_group",
+          "min_mesh_descendants": 1
+        },
+        "observed": {
+          "type": "EMPTY",
+          "parent": "Boom_Pivot",
+          "role": "articulated_group",
+          "axis": null,
+          "mesh_descendants": 40
+        }
+      },
+      "Stick_Pivot": {
+        "pass": true,
+        "expected": {
+          "type": "EMPTY",
+          "parent": "Boom_Pivot",
+          "role": "revolute_pivot",
+          "axis": "+Z",
+          "min_mesh_descendants": 1
+        },
+        "observed": {
+          "type": "EMPTY",
+          "parent": "Boom_Pivot",
+          "role": "revolute_pivot",
+          "axis": "+Z",
+          "mesh_descendants": 44
+        }
+      },
+      "Stick_ROOT": {
+        "pass": true,
+        "expected": {
+          "type": "EMPTY",
+          "parent": "Stick_Pivot",
+          "role": "articulated_group",
+          "min_mesh_descendants": 1
+        },
+        "observed": {
+          "type": "EMPTY",
+          "parent": "Stick_Pivot",
+          "role": "articulated_group",
+          "axis": null,
+          "mesh_descendants": 29
+        }
+      },
+      "Bucket_Pivot": {
+        "pass": true,
+        "expected": {
+          "type": "EMPTY",
+          "parent": "Stick_Pivot",
+          "role": "revolute_pivot",
+          "axis": "+Z",
+          "min_mesh_descendants": 1
+        },
+        "observed": {
+          "type": "EMPTY",
+          "parent": "Stick_Pivot",
+          "role": "revolute_pivot",
+          "axis": "+Z",
+          "mesh_descendants": 14
+        }
+      },
+      "Bucket_ROOT": {
+        "pass": true,
+        "expected": {
+          "type": "EMPTY",
+          "parent": "Bucket_Pivot",
+          "role": "articulated_group",
+          "min_mesh_descendants": 1
+        },
+        "observed": {
+          "type": "EMPTY",
+          "parent": "Bucket_Pivot",
+          "role": "articulated_group",
+          "axis": null,
+          "mesh_descendants": 13
+        }
+      },
+      "Boom_Hydraulics_ROOT": {
+        "pass": true,
+        "expected": {
+          "type": "EMPTY",
+          "parent": "Upper_ROOT",
+          "role": "hydraulic_owner_group",
+          "min_mesh_descendants": 1
+        },
+        "observed": {
+          "type": "EMPTY",
+          "parent": "Upper_ROOT",
+          "role": "hydraulic_owner_group",
+          "axis": null,
+          "mesh_descendants": 8
+        }
+      },
+      "Stick_Hydraulics_ROOT": {
+        "pass": true,
+        "expected": {
+          "type": "EMPTY",
+          "parent": "Boom_ROOT",
+          "role": "hydraulic_owner_group",
+          "min_mesh_descendants": 1
+        },
+        "observed": {
+          "type": "EMPTY",
+          "parent": "Boom_ROOT",
+          "role": "hydraulic_owner_group",
+          "axis": null,
+          "mesh_descendants": 4
+        }
+      },
+      "Bucket_Hydraulics_ROOT": {
+        "pass": true,
+        "expected": {
+          "type": "EMPTY",
+          "parent": "Stick_ROOT",
+          "role": "hydraulic_owner_group",
+          "min_mesh_descendants": 1
+        },
+        "observed": {
+          "type": "EMPTY",
+          "parent": "Stick_ROOT",
+          "role": "hydraulic_owner_group",
+          "axis": null,
+          "mesh_descendants": 4
+        }
+      },
+      "Bucket_Linkage_ROOT": {
+        "pass": true,
+        "expected": {
+          "type": "EMPTY",
+          "parent": "Stick_ROOT",
+          "role": "linkage_owner_group",
+          "min_mesh_descendants": 1
+        },
+        "observed": {
+          "type": "EMPTY",
+          "parent": "Stick_ROOT",
+          "role": "linkage_owner_group",
+          "axis": null,
+          "mesh_descendants": 3
+        }
+      },
+      "Bucket_Bellcrank_ROOT": {
+        "pass": true,
+        "expected": {
+          "type": "EMPTY",
+          "parent": "Stick_ROOT",
+          "role": "linkage_pivot",
+          "min_mesh_descendants": 1
+        },
+        "observed": {
+          "type": "EMPTY",
+          "parent": "Stick_ROOT",
+          "role": "linkage_pivot",
+          "axis": null,
+          "mesh_descendants": 5
+        }
+      },
+      "PIVOT_Attachment_Pin": {
+        "pass": true,
+        "expected": {
+          "type": "MESH",
+          "parent": "Bucket_Pivot",
+          "role": "attachment_pivot"
+        },
+        "observed": {
+          "type": "MESH",
+          "parent": "Bucket_Pivot",
+          "role": "attachment_pivot",
+          "axis": null,
+          "mesh_descendants": 0
+        }
+      },
+      "Bucket_Tip_Radius_Point_1p570m": {
+        "pass": true,
+        "expected": {
+          "type": "MESH",
+          "parent": "Bucket_ROOT",
+          "role": "dimension_witness"
+        },
+        "observed": {
+          "type": "MESH",
+          "parent": "Bucket_ROOT",
+          "role": "dimension_witness",
+          "axis": null,
+          "mesh_descendants": 0
+        }
+      }
+    },
+    "track_phase": {
+      "left": {
+        "subtree_length_m": 4.449999809265137,
+        "subtree_min_x_m": -2.2249999046325684,
+        "subtree_max_x_m": 2.2249999046325684,
+        "shoe_count": 49,
+        "ordered_center_gap_min_m": 0.19320159794272979,
+        "ordered_center_gap_max_m": 0.21726793921830104,
+        "ordered_center_gap_median_m": 0.19320178112051628,
+        "max_gap_to_median_ratio": 1.1245648873328589,
+        "closure_gap_m": 0.20256026481722675,
+        "roller_center_length_m": 3.6500000953674316,
+        "centers": [
+          [
+            1.674906611442566,
+            0.037157632410526276,
+            -1.190000057220459
+          ],
+          [
+            1.481704831123352,
+            0.037157632410526276,
+            -1.190000057220459
+          ],
+          [
+            1.2885030508041382,
+            0.037157632410526276,
+            -1.190000057220459
+          ],
+          [
+            1.0953013896942139,
+            0.037157632410526276,
+            -1.190000057220459
+          ],
+          [
+            0.9020997285842896,
+            0.037157632410526276,
+            -1.190000057220459
+          ],
+          [
+            0.7088979482650757,
+            0.037157632410526276,
+            -1.190000057220459
+          ],
+          [
+            0.5156962275505066,
+            0.037157632410526276,
+            -1.190000057220459
+          ],
+          [
+            0.3224945366382599,
+            0.037157632410526276,
+            -1.190000057220459
+          ],
+          [
+            0.129292830824852,
+            0.037157632410526276,
+            -1.190000057220459
+          ],
+          [
+            -0.0639088973402977,
+            0.037157632410526276,
+            -1.190000057220459
+          ],
+          [
+            -0.2571106255054474,
+            0.037157632410526276,
+            -1.190000057220459
+          ],
+          [
+            -0.4503123164176941,
+            0.037157632410526276,
+            -1.190000057220459
+          ],
+          [
+            -0.6435140371322632,
+            0.037157632410526276,
+            -1.190000057220459
+          ],
+          [
+            -0.8367157578468323,
+            0.037157632410526276,
+            -1.190000057220459
+          ],
+          [
+            -1.0299174785614014,
+            0.037157632410526276,
+            -1.190000057220459
+          ],
+          [
+            -1.2231191396713257,
+            0.037157632410526276,
+            -1.190000057220459
+          ],
+          [
+            -1.4163209199905396,
+            0.037157632410526276,
+            -1.190000057220459
+          ],
+          [
+            -1.6095227003097534,
+            0.037157632410526276,
+            -1.190000057220459
+          ],
+          [
+            -1.8058432340621948,
+            0.03854239732027054,
+            -1.190000057220459
+          ],
+          [
+            -2.005051374435425,
+            0.11004704982042313,
+            -1.190000057220459
+          ],
+          [
+            -2.1449813842773438,
+            0.27264687418937683,
+            -1.190000057220459
+          ],
+          [
+            -2.189988851547241,
+            0.4849223494529724,
+            -1.190000057220459
+          ],
+          [
+            -2.128608465194702,
+            0.6927999258041382,
+            -1.190000057220459
+          ],
+          [
+            -1.9764763116836548,
+            0.8433263897895813,
+            -1.190000057220459
+          ],
+          [
+            -1.772344946861267,
+            0.8981575965881348,
+            -1.190000057220459
+          ],
+          [
+            -1.5791431665420532,
+            0.8981575965881348,
+            -1.190000057220459
+          ],
+          [
+            -1.385941505432129,
+            0.8981575965881348,
+            -1.190000057220459
+          ],
+          [
+            -1.1927396059036255,
+            0.8981575965881348,
+            -1.190000057220459
+          ],
+          [
+            -0.999538004398346,
+            0.8981575965881348,
+            -1.190000057220459
+          ],
+          [
+            -0.8063363432884216,
+            0.8981575965881348,
+            -1.190000057220459
+          ],
+          [
+            -0.6131345629692078,
+            0.8981575965881348,
+            -1.190000057220459
+          ],
+          [
+            -0.41993287205696106,
+            0.8981575965881348,
+            -1.190000057220459
+          ],
+          [
+            -0.22673112154006958,
+            0.8981575965881348,
+            -1.190000057220459
+          ],
+          [
+            -0.033529412001371384,
+            0.8981575965881348,
+            -1.190000057220459
+          ],
+          [
+            0.1596723049879074,
+            0.8981575965881348,
+            -1.190000057220459
+          ],
+          [
+            0.3528740406036377,
+            0.8981575965881348,
+            -1.190000057220459
+          ],
+          [
+            0.546075701713562,
+            0.8981575965881348,
+            -1.190000057220459
+          ],
+          [
+            0.7392774820327759,
+            0.8981575965881348,
+            -1.190000057220459
+          ],
+          [
+            0.9324791431427002,
+            0.8981575965881348,
+            -1.190000057220459
+          ],
+          [
+            1.1256808042526245,
+            0.8981575965881348,
+            -1.190000057220459
+          ],
+          [
+            1.3188825845718384,
+            0.8981575965881348,
+            -1.190000057220459
+          ],
+          [
+            1.5120843648910522,
+            0.8981575965881348,
+            -1.190000057220459
+          ],
+          [
+            1.7052861452102661,
+            0.8981575965881348,
+            -1.190000057220459
+          ],
+          [
+            1.9090619087219238,
+            0.8741776943206787,
+            -1.190000057220459
+          ],
+          [
+            2.0843026638031006,
+            0.7532103061676025,
+            -1.190000057220459
+          ],
+          [
+            2.1798644065856934,
+            0.5595032572746277,
+            -1.190000057220459
+          ],
+          [
+            2.1714041233062744,
+            0.34240010380744934,
+            -1.190000057220459
+          ],
+          [
+            2.0610768795013428,
+            0.15720416605472565,
+            -1.190000057220459
+          ],
+          [
+            1.876987099647522,
+            0.05109092593193054,
+            -1.190000057220459
+          ]
+        ]
+      },
+      "right": {
+        "subtree_length_m": 4.449999809265137,
+        "subtree_min_x_m": -2.2249999046325684,
+        "subtree_max_x_m": 2.2249999046325684,
+        "shoe_count": 49,
+        "ordered_center_gap_min_m": 0.19320159794272979,
+        "ordered_center_gap_max_m": 0.21726793921830104,
+        "ordered_center_gap_median_m": 0.19320178112051628,
+        "max_gap_to_median_ratio": 1.1245648873328589,
+        "closure_gap_m": 0.20256026481722675,
+        "roller_center_length_m": 3.6500000953674316,
+        "centers": [
+          [
+            1.674906611442566,
+            0.037157632410526276,
+            1.190000057220459
+          ],
+          [
+            1.481704831123352,
+            0.037157632410526276,
+            1.190000057220459
+          ],
+          [
+            1.2885030508041382,
+            0.037157632410526276,
+            1.190000057220459
+          ],
+          [
+            1.0953013896942139,
+            0.037157632410526276,
+            1.190000057220459
+          ],
+          [
+            0.9020997285842896,
+            0.037157632410526276,
+            1.190000057220459
+          ],
+          [
+            0.7088979482650757,
+            0.037157632410526276,
+            1.190000057220459
+          ],
+          [
+            0.5156962275505066,
+            0.037157632410526276,
+            1.190000057220459
+          ],
+          [
+            0.3224945366382599,
+            0.037157632410526276,
+            1.190000057220459
+          ],
+          [
+            0.129292830824852,
+            0.037157632410526276,
+            1.190000057220459
+          ],
+          [
+            -0.0639088973402977,
+            0.037157632410526276,
+            1.190000057220459
+          ],
+          [
+            -0.2571106255054474,
+            0.037157632410526276,
+            1.190000057220459
+          ],
+          [
+            -0.4503123164176941,
+            0.037157632410526276,
+            1.190000057220459
+          ],
+          [
+            -0.6435140371322632,
+            0.037157632410526276,
+            1.190000057220459
+          ],
+          [
+            -0.8367157578468323,
+            0.037157632410526276,
+            1.190000057220459
+          ],
+          [
+            -1.0299174785614014,
+            0.037157632410526276,
+            1.190000057220459
+          ],
+          [
+            -1.2231191396713257,
+            0.037157632410526276,
+            1.190000057220459
+          ],
+          [
+            -1.4163209199905396,
+            0.037157632410526276,
+            1.190000057220459
+          ],
+          [
+            -1.6095227003097534,
+            0.037157632410526276,
+            1.190000057220459
+          ],
+          [
+            -1.8058432340621948,
+            0.03854239732027054,
+            1.190000057220459
+          ],
+          [
+            -2.005051374435425,
+            0.11004704982042313,
+            1.190000057220459
+          ],
+          [
+            -2.1449813842773438,
+            0.27264687418937683,
+            1.190000057220459
+          ],
+          [
+            -2.189988851547241,
+            0.4849223494529724,
+            1.190000057220459
+          ],
+          [
+            -2.128608465194702,
+            0.6927999258041382,
+            1.190000057220459
+          ],
+          [
+            -1.9764763116836548,
+            0.8433263897895813,
+            1.190000057220459
+          ],
+          [
+            -1.772344946861267,
+            0.8981575965881348,
+            1.190000057220459
+          ],
+          [
+            -1.5791431665420532,
+            0.8981575965881348,
+            1.190000057220459
+          ],
+          [
+            -1.385941505432129,
+            0.8981575965881348,
+            1.190000057220459
+          ],
+          [
+            -1.1927396059036255,
+            0.8981575965881348,
+            1.190000057220459
+          ],
+          [
+            -0.999538004398346,
+            0.8981575965881348,
+            1.190000057220459
+          ],
+          [
+            -0.8063363432884216,
+            0.8981575965881348,
+            1.190000057220459
+          ],
+          [
+            -0.6131345629692078,
+            0.8981575965881348,
+            1.190000057220459
+          ],
+          [
+            -0.41993287205696106,
+            0.8981575965881348,
+            1.190000057220459
+          ],
+          [
+            -0.22673112154006958,
+            0.8981575965881348,
+            1.190000057220459
+          ],
+          [
+            -0.033529412001371384,
+            0.8981575965881348,
+            1.190000057220459
+          ],
+          [
+            0.1596723049879074,
+            0.8981575965881348,
+            1.190000057220459
+          ],
+          [
+            0.3528740406036377,
+            0.8981575965881348,
+            1.190000057220459
+          ],
+          [
+            0.546075701713562,
+            0.8981575965881348,
+            1.190000057220459
+          ],
+          [
+            0.7392774820327759,
+            0.8981575965881348,
+            1.190000057220459
+          ],
+          [
+            0.9324791431427002,
+            0.8981575965881348,
+            1.190000057220459
+          ],
+          [
+            1.1256808042526245,
+            0.8981575965881348,
+            1.190000057220459
+          ],
+          [
+            1.3188825845718384,
+            0.8981575965881348,
+            1.190000057220459
+          ],
+          [
+            1.5120843648910522,
+            0.8981575965881348,
+            1.190000057220459
+          ],
+          [
+            1.7052861452102661,
+            0.8981575965881348,
+            1.190000057220459
+          ],
+          [
+            1.9090619087219238,
+            0.8741776943206787,
+            1.190000057220459
+          ],
+          [
+            2.0843026638031006,
+            0.7532103061676025,
+            1.190000057220459
+          ],
+          [
+            2.1798644065856934,
+            0.5595032572746277,
+            1.190000057220459
+          ],
+          [
+            2.1714041233062744,
+            0.34240010380744934,
+            1.190000057220459
+          ],
+          [
+            2.0610768795013428,
+            0.15720416605472565,
+            1.190000057220459
+          ],
+          [
+            1.876987099647522,
+            0.05109092593193054,
+            1.190000057220459
+          ]
+        ]
+      },
+      "paired_xy_phase_error_m": 0.0
+    },
+    "bucket_tip_radius_m": 1.5699998442558314,
+    "bucket_tip_witness_radius_m": 1.5699998442558314,
+    "bucket_tip_planar_contact_error_m": 0.0,
+    "bucket_tip_3d_contact_error_m": 0.0,
+    "bucket_tip_source_id": "CAT-320-AEXQ3758-01-NAM",
+    "stick_modeled_pin_distance_m": 2.900000138118346,
+    "hydraulic_continuity": {
+      "Boom_Cylinder_L": {
+        "barrel_base_endpoint_error_m": 2.1073424255447017e-07,
+        "rod_endpoint_error_m": 2.4027400458748785e-07,
+        "barrel_rod_axial_overlap_m": 0.12261137954192236,
+        "base_eye_center_error_m": 0.0,
+        "rod_eye_center_error_m": 0.0,
+        "base_pin_center_error_m": 0.0,
+        "rod_pin_center_error_m": 0.0,
+        "physical_nodes": [
+          "Boom_Cylinder_L_Barrel",
+          "Boom_Cylinder_L_Rod",
+          "Boom_Cylinder_L_Base_Eye",
+          "Boom_Cylinder_L_Rod_Eye",
+          "PIN_Boom_Base_L",
+          "PIN_Boom_Rod_L"
+        ],
+        "pass": true
+      },
+      "Boom_Cylinder_R": {
+        "barrel_base_endpoint_error_m": 9.424321830774485e-08,
+        "rod_endpoint_error_m": 2.9802322387695312e-08,
+        "barrel_rod_axial_overlap_m": 0.12261133833089843,
+        "base_eye_center_error_m": 0.0,
+        "rod_eye_center_error_m": 0.0,
+        "base_pin_center_error_m": 0.0,
+        "rod_pin_center_error_m": 0.0,
+        "physical_nodes": [
+          "Boom_Cylinder_R_Barrel",
+          "Boom_Cylinder_R_Rod",
+          "Boom_Cylinder_R_Base_Eye",
+          "Boom_Cylinder_R_Rod_Eye",
+          "PIN_Boom_Base_R",
+          "PIN_Boom_Rod_R"
+        ],
+        "pass": true
+      },
+      "Stick_Cylinder": {
+        "barrel_base_endpoint_error_m": 8.053906004908926e-08,
+        "rod_endpoint_error_m": 5.0325258952775493e-08,
+        "barrel_rod_axial_overlap_m": 0.20020838640630245,
+        "base_eye_center_error_m": 0.0,
+        "rod_eye_center_error_m": 0.0,
+        "base_pin_center_error_m": 0.0,
+        "rod_pin_center_error_m": 0.0,
+        "physical_nodes": [
+          "Stick_Cylinder_Barrel",
+          "Stick_Cylinder_Rod",
+          "Stick_Cylinder_Base_Eye",
+          "Stick_Cylinder_Rod_Eye",
+          "PIN_Stick_Base",
+          "PIN_Stick_Rod"
+        ],
+        "pass": true
+      },
+      "Bucket_Cylinder": {
+        "barrel_base_endpoint_error_m": 4.774408713583923e-07,
+        "rod_endpoint_error_m": 5.962897962683199e-07,
+        "barrel_rod_axial_overlap_m": 0.11520105600357056,
+        "base_eye_center_error_m": 2.384185791015625e-07,
+        "rod_eye_center_error_m": 7.633118912497578e-07,
+        "base_pin_center_error_m": 0.0,
+        "rod_pin_center_error_m": 0.0,
+        "physical_nodes": [
+          "Bucket_Cylinder_Barrel",
+          "Bucket_Cylinder_Rod",
+          "Bucket_Cylinder_Base_Eye",
+          "Bucket_Cylinder_Rod_Eye",
+          "PIN_Bucket_Base",
+          "PIN_Bellcrank_Rod"
+        ],
+        "pass": true
+      }
+    },
+    "bucket_linkage_physical_closure": {
+      "bellcrank_endpoint_error_m": 6.53615984953134e-07,
+      "bucket_lug_endpoint_error_m": 4.172325564618848e-07,
+      "bellcrank_eye_center_error_m": 7.402743308767212e-07,
+      "bucket_lug_eye_center_error_m": 5.364418029785156e-07,
+      "bellcrank_pin_center_error_m": 0.0,
+      "bucket_lug_pin_center_error_m": 0.0,
+      "bucket_lug_ear_parents": {
+        "Bucket_Lug_L_Ear": "Bucket_ROOT",
+        "Bucket_Lug_R_Ear": "Bucket_ROOT"
+      },
+      "bucket_lug_pin_parent": "Bucket_ROOT",
+      "dogbone_parent": "Bucket_Linkage_ROOT",
+      "pass": true
+    },
+    "working_envelope_geometric_reachability": {
+      "measured_boom_pivot_to_stick_pivot_m": 5.404156036802772,
+      "measured_stick_pivot_to_bucket_pivot_m": 2.900000138118346,
+      "measured_bucket_tip_radius_m": 1.5699998442558314,
+      "measured_full_extension_chain_m": 9.874156019176949,
+      "calculated_ground_reach_capability_from_slew_center_m": 9.977389187866686,
+      "published_maximum_ground_reach_m": 9.87,
+      "calculated_digging_depth_capability_below_ground_m": 8.014156004871834,
+      "published_maximum_digging_depth_m": 6.73,
+      "classification": "geometric reachability check from measured model nodes; not a manufacturer limit or continuous solver",
+      "pass": true
+    },
+    "upperframe_visible_width_m": 2.7200000286102295,
+    "track_gauge_m": 2.380000114440918,
     "bucket_rod_to_bellcrank_error_m": 5.962897962683199e-07,
-    "dogbone_to_bellcrank_error_m": 8.350158375268972e-07,
-    "dogbone_to_bucket_lug_error_m": 8.472907394624193e-07
+    "dogbone_to_bellcrank_error_m": 6.53615984953134e-07,
+    "dogbone_to_bucket_lug_error_m": 4.172325564618848e-07
   },
-  "round_2_repair_metrics": {
-    "track_contact_min_y_m": 0.0,
-    "track_contact_authored_root_correction_m": -0.0723232850432396,
-    "undercarriage_center_frame_underside_agl_m": 0.4699999690055847,
-    "cab_roof_top_agl_m": 2.9600000381469727,
-    "lowest_visible_geometry_y_m": 0.0,
-    "lowest_visible_objects": [
-      "Track_L_Shoe_19",
-      "Track_R_Shoe_19"
-    ],
-    "inspection_helper_nodes_in_public_glb": []
+  "pose_metrics": {
+    "stowed_transport": {
+      "pose": "stowed_transport",
+      "front_equipment_min_y_m": 0.11589643359184265,
+      "all_visible_min_y_m": 0.0,
+      "upper_house_min_y_m": 1.0440000295639038,
+      "undercarriage_max_y_m": 0.9316575527191162,
+      "upper_to_undercarriage_vertical_gap_m": 0.1123424768447876,
+      "critical_group_aabb_separations": {
+        "bucket_to_undercarriage": {
+          "aabb_gap_m": 3.1825051307678223,
+          "axis_gaps_m": [
+            3.1825051307678223,
+            0.0,
+            0.0
+          ]
+        },
+        "bucket_to_upper_house": {
+          "aabb_gap_m": 3.812505006790161,
+          "axis_gaps_m": [
+            3.812505006790161,
+            0.0,
+            0.0
+          ]
+        },
+        "stick_to_undercarriage": {
+          "aabb_gap_m": 2.999457359313965,
+          "axis_gaps_m": [
+            2.999457359313965,
+            0.0,
+            0.0
+          ]
+        },
+        "boom_to_undercarriage": {
+          "aabb_gap_m": 0.38825666904449463,
+          "axis_gaps_m": [
+            0.0,
+            0.38825666904449463,
+            0.0
+          ]
+        }
+      }
+    },
+    "articulated_review": {
+      "pose": "articulated_review",
+      "front_equipment_min_y_m": 1.3680000305175781,
+      "all_visible_min_y_m": 0.0,
+      "upper_house_min_y_m": 1.0440000295639038,
+      "undercarriage_max_y_m": 0.9316575527191162,
+      "upper_to_undercarriage_vertical_gap_m": 0.1123424768447876,
+      "critical_group_aabb_separations": {
+        "bucket_to_undercarriage": {
+          "aabb_gap_m": 2.487425594488057,
+          "axis_gaps_m": [
+            2.4091057777404785,
+            0.6192700862884521,
+            0.0
+          ]
+        },
+        "bucket_to_upper_house": {
+          "aabb_gap_m": 2.7206735610961914,
+          "axis_gaps_m": [
+            2.7206735610961914,
+            0.0,
+            0.0
+          ]
+        },
+        "stick_to_undercarriage": {
+          "aabb_gap_m": 2.405836653280717,
+          "axis_gaps_m": [
+            1.6715748310089111,
+            1.730285406112671,
+            0.0
+          ]
+        },
+        "boom_to_undercarriage": {
+          "aabb_gap_m": 0.661206841468811,
+          "axis_gaps_m": [
+            0.0,
+            0.661206841468811,
+            0.0
+          ]
+        }
+      }
+    }
   },
+  "render_evidence": [
+    {
+      "path": "review/renders/cat-320-operator-side.png",
+      "sha256": "48c84f5b222324cf2061d84242363db223de0412dc9c211cddfaafe3d6270303",
+      "bytes": 319435,
+      "width_px": 720,
+      "height_px": 540,
+      "png_signature": true,
+      "sampled_luminance_min": 0.015135687234997749,
+      "sampled_luminance_max": 0.7840981116890907,
+      "sampled_luminance_span": 0.768962424454093,
+      "pass": true
+    },
+    {
+      "path": "review/renders/cat-320-right-three-quarter.png",
+      "sha256": "f265dae351aeeed3ad39ccc81169aa8408185f7e972f30465e03ad453962771d",
+      "bytes": 314980,
+      "width_px": 720,
+      "height_px": 540,
+      "png_signature": true,
+      "sampled_luminance_min": 0.07120627825409175,
+      "sampled_luminance_max": 0.8045757575273512,
+      "sampled_luminance_span": 0.7333694792732595,
+      "pass": true
+    },
+    {
+      "path": "review/renders/cat-320-rear-three-quarter.png",
+      "sha256": "f69398dacc86931875455dd7d24da3b9fd8364fd73aa68e9e0a2bd2440673bf5",
+      "bytes": 362581,
+      "width_px": 720,
+      "height_px": 540,
+      "png_signature": true,
+      "sampled_luminance_min": 0.08964549284130334,
+      "sampled_luminance_max": 0.8279859522104263,
+      "sampled_luminance_span": 0.738340459369123,
+      "pass": true
+    },
+    {
+      "path": "review/renders/cat-320-front-equipment.png",
+      "sha256": "6e5eadda58a62a0c30a51de9746e0eb97cdcfb74b6b6e1499eb932246106ea17",
+      "bytes": 344329,
+      "width_px": 720,
+      "height_px": 540,
+      "png_signature": true,
+      "sampled_luminance_min": 0.053517651319503784,
+      "sampled_luminance_max": 0.7913749740004539,
+      "sampled_luminance_span": 0.7378573226809501,
+      "pass": true
+    },
+    {
+      "path": "review/renders/cat-320-linkage-detail.png",
+      "sha256": "bd42c09e847e12688113a8efc72b20ab3e438ca4d66c454469fc5cc84c3d3cd3",
+      "bytes": 408917,
+      "width_px": 720,
+      "height_px": 540,
+      "png_signature": true,
+      "sampled_luminance_min": 0.011764707043766974,
+      "sampled_luminance_max": 0.9350526124954223,
+      "sampled_luminance_span": 0.9232879054516553,
+      "pass": true
+    },
+    {
+      "path": "review/renders/cat-320-drive-sprocket-detail.png",
+      "sha256": "2e491c05fc9139ea406741a4e596b05cbcfd1016b99902cb0bfc8e52a5248146",
+      "bytes": 572289,
+      "width_px": 720,
+      "height_px": 540,
+      "png_signature": true,
+      "sampled_luminance_min": 0.019057255763188004,
+      "sampled_luminance_max": 0.8415373239517211,
+      "sampled_luminance_span": 0.8224800681885331,
+      "pass": true
+    },
+    {
+      "path": "review/renders/cat-320-hydraulic-routing-detail.png",
+      "sha256": "469da1a811c1180f7e0eb7a2dcd23ad285986159726813823bf72fb3ee68f80c",
+      "bytes": 376366,
+      "width_px": 720,
+      "height_px": 540,
+      "png_signature": true,
+      "sampled_luminance_min": 0.03529411926865578,
+      "sampled_luminance_max": 0.8790337923049927,
+      "sampled_luminance_span": 0.8437396730363369,
+      "pass": true
+    },
+    {
+      "path": "review/renders/cat-320-articulated-review.png",
+      "sha256": "1c9b8f130ed8a069c6029c72aa5b18a673c77a984b904ab0a50210dce195ee4a",
+      "bytes": 320022,
+      "width_px": 720,
+      "height_px": 540,
+      "png_signature": true,
+      "sampled_luminance_min": 0.02214510004855692,
+      "sampled_luminance_max": 0.8275185012578964,
+      "sampled_luminance_span": 0.8053734012093394,
+      "pass": true
+    }
+  ],
   "glb_contract": {
     "scene_count": 1,
     "scene_roots": [
       {
-        "index": 360,
+        "index": 392,
         "name": "Machine_Root",
         "transform": {}
       }
@@ -119,76 +1541,2010 @@
     "camera_count": 0,
     "punctual_light_extension_present": false,
     "inspection_helper_nodes": [],
+    "node_names": [
+      "ANCHOR_Bellcrank_Dogbone",
+      "ANCHOR_Bellcrank_Rod",
+      "ANCHOR_Boom_Base_L",
+      "ANCHOR_Boom_Base_R",
+      "ANCHOR_Boom_Rod_L",
+      "ANCHOR_Boom_Rod_R",
+      "ANCHOR_Bucket_Base",
+      "ANCHOR_Bucket_Lug",
+      "ANCHOR_Stick_Base",
+      "ANCHOR_Stick_Rod",
+      "Air_Intake_Stack",
+      "Boom_Base_L_Mount_Ear_L",
+      "Boom_Base_L_Mount_Ear_R",
+      "Boom_Base_R_Mount_Ear_L",
+      "Boom_Base_R_Mount_Ear_R",
+      "Boom_Crown_Box",
+      "Boom_Cylinder_L_Barrel",
+      "Boom_Cylinder_L_Base_Eye",
+      "Boom_Cylinder_L_Rod",
+      "Boom_Cylinder_L_Rod_Eye",
+      "Boom_Cylinder_R_Barrel",
+      "Boom_Cylinder_R_Base_Eye",
+      "Boom_Cylinder_R_Rod",
+      "Boom_Cylinder_R_Rod_Eye",
+      "Boom_Foot_Box",
+      "Boom_Foot_Transition_Cap",
+      "Boom_Head_Box",
+      "Boom_Head_Clevis",
+      "Boom_Hose_01_Segment_01",
+      "Boom_Hose_01_Segment_02",
+      "Boom_Hose_01_Segment_03",
+      "Boom_Hose_01_Segment_04",
+      "Boom_Hose_02_Segment_01",
+      "Boom_Hose_02_Segment_02",
+      "Boom_Hose_02_Segment_03",
+      "Boom_Hose_02_Segment_04",
+      "Boom_Hose_03_Segment_01",
+      "Boom_Hose_03_Segment_02",
+      "Boom_Hose_03_Segment_03",
+      "Boom_Hose_03_Segment_04",
+      "Boom_Hose_04_Segment_01",
+      "Boom_Hose_04_Segment_02",
+      "Boom_Hose_04_Segment_03",
+      "Boom_Hose_04_Segment_04",
+      "Boom_Hydraulics_ROOT",
+      "Boom_Left_Reinforcement",
+      "Boom_Pivot",
+      "Boom_ROOT",
+      "Boom_Right_Reinforcement",
+      "Boom_Rod_L_Mount_Ear_L",
+      "Boom_Rod_L_Mount_Ear_R",
+      "Boom_Rod_R_Mount_Ear_L",
+      "Boom_Rod_R_Mount_Ear_R",
+      "Boom_Service_Pin_1.18",
+      "Boom_Service_Pin_2.26",
+      "Boom_Service_Pin_4.05",
+      "Boom_Service_Pin_5.27",
+      "Bucket_Back_Shell",
+      "Bucket_Base_Mount_Ear_L",
+      "Bucket_Base_Mount_Ear_R",
+      "Bucket_Bellcrank_Left",
+      "Bucket_Bellcrank_ROOT",
+      "Bucket_Bellcrank_Right",
+      "Bucket_Cutting_Edge",
+      "Bucket_Cylinder_Barrel",
+      "Bucket_Cylinder_Base_Eye",
+      "Bucket_Cylinder_Rod",
+      "Bucket_Cylinder_Rod_Eye",
+      "Bucket_Dogbone_Bellcrank_Eye",
+      "Bucket_Dogbone_Lug_Eye",
+      "Bucket_Hydraulics_ROOT",
+      "Bucket_Left_Side_Plate",
+      "Bucket_Link_Dogbone",
+      "Bucket_Linkage_ROOT",
+      "Bucket_Lug_L_Ear",
+      "Bucket_Lug_R_Ear",
+      "Bucket_Pivot",
+      "Bucket_ROOT",
+      "Bucket_Right_Side_Plate",
+      "Bucket_Tip_Radius_Point_1p570m",
+      "Bucket_Tooth_01",
+      "Bucket_Tooth_02",
+      "Bucket_Tooth_03",
+      "Bucket_Tooth_04",
+      "Bucket_Tooth_05",
+      "Cab_A_Pillar",
+      "Cab_Access_Step_1",
+      "Cab_Access_Step_2",
+      "Cab_Access_Step_3",
+      "Cab_B_Pillar",
+      "Cab_Belt_Rail",
+      "Cab_Floor",
+      "Cab_Front_Glass",
+      "Cab_Interior_Block",
+      "Cab_Left_Glass",
+      "Cab_Lower_Front_Glass",
+      "Cab_Mirror",
+      "Cab_Mirror_Arm",
+      "Cab_ROOT",
+      "Cab_Rear_Glass",
+      "Cab_Rear_Pillar",
+      "Cab_Right_Glass",
+      "Cab_Roof",
+      "Cab_Seat_Back",
+      "Cab_Seat_Base",
+      "Cab_Steering_Control",
+      "Cab_Work_Light",
+      "Counterweight_Core",
+      "Counterweight_Left_Cheek",
+      "Counterweight_Rear_Vent_01",
+      "Counterweight_Rear_Vent_02",
+      "Counterweight_Rear_Vent_03",
+      "Counterweight_Rear_Vent_04",
+      "Counterweight_Rear_Vent_05",
+      "Counterweight_Rear_Vent_06",
+      "Counterweight_Right_Cheek",
+      "Engine_Hood_Center_Access",
+      "Engine_Hood_Crown",
+      "Engine_House_Door_Handle_L",
+      "Engine_House_Door_Handle_R",
+      "Engine_House_Lower_Body",
+      "Engine_House_Panel_Seam_L_1",
+      "Engine_House_Panel_Seam_L_2",
+      "Engine_House_Panel_Seam_L_3",
+      "Engine_House_Panel_Seam_R_1",
+      "Engine_House_Panel_Seam_R_2",
+      "Engine_House_Panel_Seam_R_3",
+      "Engine_House_Service_Door_L",
+      "Engine_House_Service_Door_R",
+      "Engine_House_Upper_Hood",
+      "Engine_Vent_R_01",
+      "Engine_Vent_R_02",
+      "Engine_Vent_R_03",
+      "Engine_Vent_R_04",
+      "Engine_Vent_R_05",
+      "Engine_Vent_R_06",
+      "Engine_Vent_R_07",
+      "Exhaust_Muffler",
+      "Exhaust_Stack",
+      "Handrail_L_1",
+      "Handrail_L_2",
+      "Machine_Root",
+      "PIN_Bellcrank_Dogbone",
+      "PIN_Bellcrank_Rod",
+      "PIN_Boom_Base",
+      "PIN_Boom_Base_L",
+      "PIN_Boom_Base_R",
+      "PIN_Boom_Rod_L",
+      "PIN_Boom_Rod_R",
+      "PIN_Bucket_Base",
+      "PIN_Bucket_Bellcrank_Pivot",
+      "PIN_Bucket_Lug",
+      "PIN_Stick",
+      "PIN_Stick_Base",
+      "PIN_Stick_Rod",
+      "PIVOT_Attachment_Pin",
+      "Slew_Ring_Lower",
+      "Slew_Ring_Upper",
+      "Stick_Base_Mount_Ear_L",
+      "Stick_Base_Mount_Ear_R",
+      "Stick_Cylinder_Barrel",
+      "Stick_Cylinder_Base_Eye",
+      "Stick_Cylinder_Rod",
+      "Stick_Cylinder_Rod_Eye",
+      "Stick_Hose_01_Segment_01",
+      "Stick_Hose_01_Segment_02",
+      "Stick_Hose_02_Segment_01",
+      "Stick_Hose_02_Segment_02",
+      "Stick_Hose_03_Segment_01",
+      "Stick_Hose_03_Segment_02",
+      "Stick_Hose_04_Segment_01",
+      "Stick_Hose_04_Segment_02",
+      "Stick_Hydraulics_ROOT",
+      "Stick_Left_Wear_Plate",
+      "Stick_Main_Weldment",
+      "Stick_Pivot",
+      "Stick_ROOT",
+      "Stick_Right_Wear_Plate",
+      "Stick_Rod_Mount_Ear_L",
+      "Stick_Rod_Mount_Ear_R",
+      "Track_L_Carrier_Roller_01",
+      "Track_L_Carrier_Roller_02",
+      "Track_L_Carrier_Roller_Hub_01",
+      "Track_L_Carrier_Roller_Hub_02",
+      "Track_L_Drive_Sprocket_Tooth_01",
+      "Track_L_Drive_Sprocket_Tooth_02",
+      "Track_L_Drive_Sprocket_Tooth_03",
+      "Track_L_Drive_Sprocket_Tooth_04",
+      "Track_L_Drive_Sprocket_Tooth_05",
+      "Track_L_Drive_Sprocket_Tooth_06",
+      "Track_L_Drive_Sprocket_Tooth_07",
+      "Track_L_Drive_Sprocket_Tooth_08",
+      "Track_L_Drive_Sprocket_Tooth_09",
+      "Track_L_Drive_Sprocket_Tooth_10",
+      "Track_L_Drive_Sprocket_Tooth_11",
+      "Track_L_Drive_Sprocket_Tooth_12",
+      "Track_L_Drive_Sprocket_Tooth_13",
+      "Track_L_Drive_Sprocket_Tooth_14",
+      "Track_L_Front_Idler_Bolt_1",
+      "Track_L_Front_Idler_Bolt_2",
+      "Track_L_Front_Idler_Bolt_3",
+      "Track_L_Front_Idler_Bolt_4",
+      "Track_L_Front_Idler_Bolt_5",
+      "Track_L_Front_Idler_Bolt_6",
+      "Track_L_Front_Idler_Hub",
+      "Track_L_Front_Idler_Rim",
+      "Track_L_Lower_Roller_01",
+      "Track_L_Lower_Roller_02",
+      "Track_L_Lower_Roller_03",
+      "Track_L_Lower_Roller_04",
+      "Track_L_Lower_Roller_05",
+      "Track_L_Lower_Roller_06",
+      "Track_L_Lower_Roller_07",
+      "Track_L_Lower_Roller_08",
+      "Track_L_Lower_Roller_Hub_01",
+      "Track_L_Lower_Roller_Hub_02",
+      "Track_L_Lower_Roller_Hub_03",
+      "Track_L_Lower_Roller_Hub_04",
+      "Track_L_Lower_Roller_Hub_05",
+      "Track_L_Lower_Roller_Hub_06",
+      "Track_L_Lower_Roller_Hub_07",
+      "Track_L_Lower_Roller_Hub_08",
+      "Track_L_ROOT",
+      "Track_L_Rear_Sprocket_Bolt_1",
+      "Track_L_Rear_Sprocket_Bolt_2",
+      "Track_L_Rear_Sprocket_Bolt_3",
+      "Track_L_Rear_Sprocket_Bolt_4",
+      "Track_L_Rear_Sprocket_Bolt_5",
+      "Track_L_Rear_Sprocket_Bolt_6",
+      "Track_L_Rear_Sprocket_Hub",
+      "Track_L_Rear_Sprocket_Rim",
+      "Track_L_Shoe_01",
+      "Track_L_Shoe_02",
+      "Track_L_Shoe_03",
+      "Track_L_Shoe_04",
+      "Track_L_Shoe_05",
+      "Track_L_Shoe_06",
+      "Track_L_Shoe_07",
+      "Track_L_Shoe_08",
+      "Track_L_Shoe_09",
+      "Track_L_Shoe_10",
+      "Track_L_Shoe_11",
+      "Track_L_Shoe_12",
+      "Track_L_Shoe_13",
+      "Track_L_Shoe_14",
+      "Track_L_Shoe_15",
+      "Track_L_Shoe_16",
+      "Track_L_Shoe_17",
+      "Track_L_Shoe_18",
+      "Track_L_Shoe_19",
+      "Track_L_Shoe_20",
+      "Track_L_Shoe_21",
+      "Track_L_Shoe_22",
+      "Track_L_Shoe_23",
+      "Track_L_Shoe_24",
+      "Track_L_Shoe_25",
+      "Track_L_Shoe_26",
+      "Track_L_Shoe_27",
+      "Track_L_Shoe_28",
+      "Track_L_Shoe_29",
+      "Track_L_Shoe_30",
+      "Track_L_Shoe_31",
+      "Track_L_Shoe_32",
+      "Track_L_Shoe_33",
+      "Track_L_Shoe_34",
+      "Track_L_Shoe_35",
+      "Track_L_Shoe_36",
+      "Track_L_Shoe_37",
+      "Track_L_Shoe_38",
+      "Track_L_Shoe_39",
+      "Track_L_Shoe_40",
+      "Track_L_Shoe_41",
+      "Track_L_Shoe_42",
+      "Track_L_Shoe_43",
+      "Track_L_Shoe_44",
+      "Track_L_Shoe_45",
+      "Track_L_Shoe_46",
+      "Track_L_Shoe_47",
+      "Track_L_Shoe_48",
+      "Track_L_Shoe_49",
+      "Track_L_Track_Frame",
+      "Track_L_Track_Frame_Side",
+      "Track_R_Carrier_Roller_01",
+      "Track_R_Carrier_Roller_02",
+      "Track_R_Carrier_Roller_Hub_01",
+      "Track_R_Carrier_Roller_Hub_02",
+      "Track_R_Drive_Sprocket_Tooth_01",
+      "Track_R_Drive_Sprocket_Tooth_02",
+      "Track_R_Drive_Sprocket_Tooth_03",
+      "Track_R_Drive_Sprocket_Tooth_04",
+      "Track_R_Drive_Sprocket_Tooth_05",
+      "Track_R_Drive_Sprocket_Tooth_06",
+      "Track_R_Drive_Sprocket_Tooth_07",
+      "Track_R_Drive_Sprocket_Tooth_08",
+      "Track_R_Drive_Sprocket_Tooth_09",
+      "Track_R_Drive_Sprocket_Tooth_10",
+      "Track_R_Drive_Sprocket_Tooth_11",
+      "Track_R_Drive_Sprocket_Tooth_12",
+      "Track_R_Drive_Sprocket_Tooth_13",
+      "Track_R_Drive_Sprocket_Tooth_14",
+      "Track_R_Front_Idler_Bolt_1",
+      "Track_R_Front_Idler_Bolt_2",
+      "Track_R_Front_Idler_Bolt_3",
+      "Track_R_Front_Idler_Bolt_4",
+      "Track_R_Front_Idler_Bolt_5",
+      "Track_R_Front_Idler_Bolt_6",
+      "Track_R_Front_Idler_Hub",
+      "Track_R_Front_Idler_Rim",
+      "Track_R_Lower_Roller_01",
+      "Track_R_Lower_Roller_02",
+      "Track_R_Lower_Roller_03",
+      "Track_R_Lower_Roller_04",
+      "Track_R_Lower_Roller_05",
+      "Track_R_Lower_Roller_06",
+      "Track_R_Lower_Roller_07",
+      "Track_R_Lower_Roller_08",
+      "Track_R_Lower_Roller_Hub_01",
+      "Track_R_Lower_Roller_Hub_02",
+      "Track_R_Lower_Roller_Hub_03",
+      "Track_R_Lower_Roller_Hub_04",
+      "Track_R_Lower_Roller_Hub_05",
+      "Track_R_Lower_Roller_Hub_06",
+      "Track_R_Lower_Roller_Hub_07",
+      "Track_R_Lower_Roller_Hub_08",
+      "Track_R_ROOT",
+      "Track_R_Rear_Sprocket_Bolt_1",
+      "Track_R_Rear_Sprocket_Bolt_2",
+      "Track_R_Rear_Sprocket_Bolt_3",
+      "Track_R_Rear_Sprocket_Bolt_4",
+      "Track_R_Rear_Sprocket_Bolt_5",
+      "Track_R_Rear_Sprocket_Bolt_6",
+      "Track_R_Rear_Sprocket_Hub",
+      "Track_R_Rear_Sprocket_Rim",
+      "Track_R_Shoe_01",
+      "Track_R_Shoe_02",
+      "Track_R_Shoe_03",
+      "Track_R_Shoe_04",
+      "Track_R_Shoe_05",
+      "Track_R_Shoe_06",
+      "Track_R_Shoe_07",
+      "Track_R_Shoe_08",
+      "Track_R_Shoe_09",
+      "Track_R_Shoe_10",
+      "Track_R_Shoe_11",
+      "Track_R_Shoe_12",
+      "Track_R_Shoe_13",
+      "Track_R_Shoe_14",
+      "Track_R_Shoe_15",
+      "Track_R_Shoe_16",
+      "Track_R_Shoe_17",
+      "Track_R_Shoe_18",
+      "Track_R_Shoe_19",
+      "Track_R_Shoe_20",
+      "Track_R_Shoe_21",
+      "Track_R_Shoe_22",
+      "Track_R_Shoe_23",
+      "Track_R_Shoe_24",
+      "Track_R_Shoe_25",
+      "Track_R_Shoe_26",
+      "Track_R_Shoe_27",
+      "Track_R_Shoe_28",
+      "Track_R_Shoe_29",
+      "Track_R_Shoe_30",
+      "Track_R_Shoe_31",
+      "Track_R_Shoe_32",
+      "Track_R_Shoe_33",
+      "Track_R_Shoe_34",
+      "Track_R_Shoe_35",
+      "Track_R_Shoe_36",
+      "Track_R_Shoe_37",
+      "Track_R_Shoe_38",
+      "Track_R_Shoe_39",
+      "Track_R_Shoe_40",
+      "Track_R_Shoe_41",
+      "Track_R_Shoe_42",
+      "Track_R_Shoe_43",
+      "Track_R_Shoe_44",
+      "Track_R_Shoe_45",
+      "Track_R_Shoe_46",
+      "Track_R_Shoe_47",
+      "Track_R_Shoe_48",
+      "Track_R_Shoe_49",
+      "Track_R_Track_Frame",
+      "Track_R_Track_Frame_Side",
+      "Undercarriage_Center_Frame",
+      "Undercarriage_Crossmember_Front",
+      "Undercarriage_Crossmember_Rear",
+      "Undercarriage_ROOT",
+      "Upper_Deck_Main",
+      "Upper_Deck_Walkway_L",
+      "Upper_Deck_Walkway_R",
+      "Upper_ROOT",
+      "Upper_Swing_Pivot"
+    ],
+    "material_names": [
+      "Neutral_Cab_Interior",
+      "Neutral_Fastener",
+      "Neutral_Graphite_Steel",
+      "Neutral_Graphite_Trim",
+      "Neutral_Hydraulic_Rod",
+      "Neutral_Machined_Steel",
+      "Neutral_Rubber",
+      "Neutral_Slate_Body",
+      "Neutral_Smoke_Glass",
+      "Neutral_Track_Steel"
+    ],
+    "materials": [
+      {
+        "name": "Neutral_Graphite_Steel",
+        "base_color_rgba": [
+          0.03500000014901161,
+          0.04500000178813934,
+          0.054999999701976776,
+          1
+        ],
+        "metallic_factor": 0.6200000047683716,
+        "roughness_factor": 0.30000001192092896,
+        "primitive_usage_count": 64
+      },
+      {
+        "name": "Neutral_Machined_Steel",
+        "base_color_rgba": [
+          0.25,
+          0.2800000011920929,
+          0.30000001192092896,
+          1
+        ],
+        "metallic_factor": 0.8199999928474426,
+        "roughness_factor": 0.23999999463558197,
+        "primitive_usage_count": 78
+      },
+      {
+        "name": "Neutral_Fastener",
+        "base_color_rgba": [
+          0.11999999731779099,
+          0.12999999523162842,
+          0.14000000059604645,
+          1
+        ],
+        "metallic_factor": 0.8500000238418579,
+        "roughness_factor": 0.23000000417232513,
+        "primitive_usage_count": 28
+      },
+      {
+        "name": "Neutral_Track_Steel",
+        "base_color_rgba": [
+          0.07500000298023224,
+          0.08500000089406967,
+          0.0949999988079071,
+          1
+        ],
+        "metallic_factor": 0.7200000286102295,
+        "roughness_factor": 0.33000001311302185,
+        "primitive_usage_count": 103
+      },
+      {
+        "name": "Neutral_Graphite_Trim",
+        "base_color_rgba": [
+          0.06499999761581421,
+          0.07999999821186066,
+          0.09000000357627869,
+          1
+        ],
+        "metallic_factor": 0.3199999928474426,
+        "roughness_factor": 0.46000000834465027,
+        "primitive_usage_count": 38
+      },
+      {
+        "name": "Neutral_Hydraulic_Rod",
+        "base_color_rgba": [
+          0.5299999713897705,
+          0.5600000023841858,
+          0.5899999737739563,
+          1
+        ],
+        "metallic_factor": 0.9300000071525574,
+        "roughness_factor": 0.14000000059604645,
+        "primitive_usage_count": 8
+      },
+      {
+        "name": "Neutral_Slate_Body",
+        "base_color_rgba": [
+          0.23999999463558197,
+          0.28999999165534973,
+          0.3100000023841858,
+          1
+        ],
+        "metallic_factor": 0.14000000059604645,
+        "roughness_factor": 0.47999998927116394,
+        "primitive_usage_count": 13
+      },
+      {
+        "name": "Neutral_Rubber",
+        "base_color_rgba": [
+          0.014999999664723873,
+          0.017999999225139618,
+          0.020999999716877937,
+          1
+        ],
+        "metallic_factor": 0.05000000074505806,
+        "roughness_factor": 0.7799999713897705,
+        "primitive_usage_count": 24
+      },
+      {
+        "name": "Neutral_Smoke_Glass",
+        "base_color_rgba": [
+          0.04500000178813934,
+          0.0949999988079071,
+          0.11999999731779099,
+          1
+        ],
+        "metallic_factor": 0.3499999940395355,
+        "roughness_factor": 0.1599999964237213,
+        "primitive_usage_count": 6
+      },
+      {
+        "name": "Neutral_Cab_Interior",
+        "base_color_rgba": [
+          0.02500000037252903,
+          0.029999999329447746,
+          0.03400000184774399,
+          1
+        ],
+        "metallic_factor": 0.10000000149011612,
+        "roughness_factor": 0.6600000262260437,
+        "primitive_usage_count": 3
+      }
+    ],
+    "image_count": 0,
+    "texture_count": 0,
+    "animation_count": 0,
+    "skin_count": 0,
+    "external_uri_count": 0,
     "platform_axes": "+X longitudinal, +Y vertical, +Z machine right"
   },
   "gates": [
     {
+      "id": "stowed_transport_envelope",
+      "status": "PASS",
+      "detail": {
+        "method": "Evaluate exported visible meshes in the saved stowed pose; compare AABB and named component measurements to SHA-bound source facts.",
+        "evidence": {
+          "visible_aabb_xyz_m": [
+            9.4558,
+            3.1538,
+            3.17
+          ],
+          "published_transport_lhw_m": [
+            9.53,
+            3.16,
+            3.17
+          ],
+          "bucket_tip_radius_m": 1.5699998442558314,
+          "bucket_tip_witness_radius_m": 1.5699998442558314,
+          "bucket_tip_contact_error_m": 0.0,
+          "bucket_tip_3d_contact_error_m": 0.0,
+          "track_subtree_lengths_m": [
+            4.449999809265137,
+            4.449999809265137
+          ],
+          "track_gauge_m": 2.380000114440918,
+          "stick_pin_distance_m": 2.900000138118346,
+          "cab_roof_m": 2.9600000381469727,
+          "upperframe_visible_width_m": 2.7200000286102295,
+          "tail_radius_m": 2.831034718608382,
+          "counterweight_clearance_m": 1.0440000295639038,
+          "center_frame_clearance_m": 0.4699999690055847
+        },
+        "semantic_nodes": [
+          "Machine_Root",
+          "Track_L_ROOT",
+          "Track_R_ROOT",
+          "Upper_ROOT",
+          "Stick_Pivot",
+          "Bucket_Pivot",
+          "Bucket_ROOT",
+          "Bucket_Tip_Radius_Point_1p570m"
+        ],
+        "fact_ids": [
+          "transport-length",
+          "transport-height",
+          "undercarriage-width",
+          "upperframe-width",
+          "tail-swing-radius",
+          "counterweight-clearance",
+          "ground-clearance",
+          "track-gauge",
+          "top-cab-height",
+          "bucket-tip-radius",
+          "stick-length"
+        ],
+        "rendered_evidence": [
+          "review/renders/cat-320-operator-side.png",
+          "review/renders/cat-320-right-three-quarter.png"
+        ]
+      }
+    },
+    {
+      "id": "published_working_envelope",
+      "status": "PASS",
+      "detail": {
+        "method": "Use actual exported pivot transforms and semantic bucket-tip witness to test geometric reachability of the two published envelope extrema; this is compatibility evidence, not a limit solver.",
+        "evidence": {
+          "reachability": {
+            "measured_boom_pivot_to_stick_pivot_m": 5.404156036802772,
+            "measured_stick_pivot_to_bucket_pivot_m": 2.900000138118346,
+            "measured_bucket_tip_radius_m": 1.5699998442558314,
+            "measured_full_extension_chain_m": 9.874156019176949,
+            "calculated_ground_reach_capability_from_slew_center_m": 9.977389187866686,
+            "published_maximum_ground_reach_m": 9.87,
+            "calculated_digging_depth_capability_below_ground_m": 8.014156004871834,
+            "published_maximum_digging_depth_m": 6.73,
+            "classification": "geometric reachability check from measured model nodes; not a manufacturer limit or continuous solver",
+            "pass": true
+          },
+          "source_fact_records": {
+            "maximum-digging-depth": {
+              "pass": true,
+              "source_page": 5,
+              "source_section": "Working Ranges - Reach/HD Reach Boom 5.7 m and Reach/HD TR Reach Stick R2.9B1",
+              "source_row": "Range 1 Maximum Digging Depth 6730 mm",
+              "value": 6.73
+            },
+            "maximum-ground-reach": {
+              "pass": true,
+              "source_page": 5,
+              "source_section": "Working Ranges - Reach/HD Reach Boom 5.7 m and Reach/HD TR Reach Stick R2.9B1",
+              "source_row": "Range 2 Maximum Reach at Ground Line 9870 mm",
+              "value": 9.87
+            }
+          }
+        },
+        "semantic_nodes": [
+          "Upper_Swing_Pivot",
+          "Boom_Pivot",
+          "Stick_Pivot",
+          "Bucket_Pivot",
+          "Bucket_Tip_Radius_Point_1p570m"
+        ],
+        "fact_ids": [
+          "maximum-digging-depth",
+          "maximum-ground-reach",
+          "stick-length",
+          "bucket-tip-radius"
+        ],
+        "rendered_evidence": [
+          "review/renders/cat-320-articulated-review.png",
+          "review/renders/cat-320-front-equipment.png"
+        ]
+      }
+    },
+    {
+      "id": "cylinder_length_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "Measure both segment endpoints, barrel-to-rod axial overlap, eye centers, and structural pin centers for all four hydraulic assemblies in the exported stowed pose.",
+        "evidence": {
+          "assemblies": {
+            "Boom_Cylinder_L": {
+              "barrel_base_endpoint_error_m": 2.1073424255447017e-07,
+              "rod_endpoint_error_m": 2.4027400458748785e-07,
+              "barrel_rod_axial_overlap_m": 0.12261137954192236,
+              "base_eye_center_error_m": 0.0,
+              "rod_eye_center_error_m": 0.0,
+              "base_pin_center_error_m": 0.0,
+              "rod_pin_center_error_m": 0.0,
+              "physical_nodes": [
+                "Boom_Cylinder_L_Barrel",
+                "Boom_Cylinder_L_Rod",
+                "Boom_Cylinder_L_Base_Eye",
+                "Boom_Cylinder_L_Rod_Eye",
+                "PIN_Boom_Base_L",
+                "PIN_Boom_Rod_L"
+              ],
+              "pass": true
+            },
+            "Boom_Cylinder_R": {
+              "barrel_base_endpoint_error_m": 9.424321830774485e-08,
+              "rod_endpoint_error_m": 2.9802322387695312e-08,
+              "barrel_rod_axial_overlap_m": 0.12261133833089843,
+              "base_eye_center_error_m": 0.0,
+              "rod_eye_center_error_m": 0.0,
+              "base_pin_center_error_m": 0.0,
+              "rod_pin_center_error_m": 0.0,
+              "physical_nodes": [
+                "Boom_Cylinder_R_Barrel",
+                "Boom_Cylinder_R_Rod",
+                "Boom_Cylinder_R_Base_Eye",
+                "Boom_Cylinder_R_Rod_Eye",
+                "PIN_Boom_Base_R",
+                "PIN_Boom_Rod_R"
+              ],
+              "pass": true
+            },
+            "Stick_Cylinder": {
+              "barrel_base_endpoint_error_m": 8.053906004908926e-08,
+              "rod_endpoint_error_m": 5.0325258952775493e-08,
+              "barrel_rod_axial_overlap_m": 0.20020838640630245,
+              "base_eye_center_error_m": 0.0,
+              "rod_eye_center_error_m": 0.0,
+              "base_pin_center_error_m": 0.0,
+              "rod_pin_center_error_m": 0.0,
+              "physical_nodes": [
+                "Stick_Cylinder_Barrel",
+                "Stick_Cylinder_Rod",
+                "Stick_Cylinder_Base_Eye",
+                "Stick_Cylinder_Rod_Eye",
+                "PIN_Stick_Base",
+                "PIN_Stick_Rod"
+              ],
+              "pass": true
+            },
+            "Bucket_Cylinder": {
+              "barrel_base_endpoint_error_m": 4.774408713583923e-07,
+              "rod_endpoint_error_m": 5.962897962683199e-07,
+              "barrel_rod_axial_overlap_m": 0.11520105600357056,
+              "base_eye_center_error_m": 2.384185791015625e-07,
+              "rod_eye_center_error_m": 7.633118912497578e-07,
+              "base_pin_center_error_m": 0.0,
+              "rod_pin_center_error_m": 0.0,
+              "physical_nodes": [
+                "Bucket_Cylinder_Barrel",
+                "Bucket_Cylinder_Rod",
+                "Bucket_Cylinder_Base_Eye",
+                "Bucket_Cylinder_Rod_Eye",
+                "PIN_Bucket_Base",
+                "PIN_Bellcrank_Rod"
+              ],
+              "pass": true
+            }
+          },
+          "endpoint_tolerance_m": 1e-05,
+          "minimum_internal_overlap_m": 0.05,
+          "published_stroke_travel_asserted": false
+        },
+        "semantic_nodes": [
+          "Boom_Hydraulics_ROOT",
+          "Stick_Hydraulics_ROOT",
+          "Bucket_Hydraulics_ROOT",
+          "Boom_ROOT",
+          "Stick_ROOT",
+          "Bucket_Bellcrank_ROOT"
+        ],
+        "fact_ids": [],
+        "rendered_evidence": [
+          "review/renders/cat-320-hydraulic-routing-detail.png",
+          "review/renders/cat-320-front-equipment.png"
+        ]
+      }
+    },
+    {
+      "id": "bucket_linkage_closure",
+      "status": "PASS",
+      "detail": {
+        "method": "Measure dogbone endpoints and physical eye/pin centers against the reconstructed bellcrank and bucket-lug anchors, then verify lug ears and pin inherit Bucket_ROOT.",
+        "evidence": {
+          "closure": {
+            "bellcrank_endpoint_error_m": 6.53615984953134e-07,
+            "bucket_lug_endpoint_error_m": 4.172325564618848e-07,
+            "bellcrank_eye_center_error_m": 7.402743308767212e-07,
+            "bucket_lug_eye_center_error_m": 5.364418029785156e-07,
+            "bellcrank_pin_center_error_m": 0.0,
+            "bucket_lug_pin_center_error_m": 0.0,
+            "bucket_lug_ear_parents": {
+              "Bucket_Lug_L_Ear": "Bucket_ROOT",
+              "Bucket_Lug_R_Ear": "Bucket_ROOT"
+            },
+            "bucket_lug_pin_parent": "Bucket_ROOT",
+            "dogbone_parent": "Bucket_Linkage_ROOT",
+            "pass": true
+          },
+          "tolerance_m": 1e-05
+        },
+        "semantic_nodes": [
+          "Bucket_Linkage_ROOT",
+          "Bucket_Bellcrank_ROOT",
+          "Bucket_ROOT",
+          "PIN_Bellcrank_Dogbone",
+          "Bucket_Dogbone_Lug_Eye",
+          "Bucket_Lug_L_Ear",
+          "Bucket_Lug_R_Ear",
+          "PIN_Bucket_Lug"
+        ],
+        "fact_ids": [],
+        "rendered_evidence": [
+          "review/renders/cat-320-linkage-detail.png",
+          "review/renders/cat-320-articulated-review.png"
+        ]
+      }
+    },
+    {
+      "id": "upper_to_undercarriage_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "Compare evaluated upper-house minimum Y to fixed-undercarriage maximum Y in both declared review poses, excluding the intentional slew interface.",
+        "evidence": {
+          "poses": {
+            "stowed_transport": {
+              "upper_house_min_y_m": 1.0440000295639038,
+              "undercarriage_max_y_m": 0.9316575527191162,
+              "vertical_gap_m": 0.1123424768447876
+            },
+            "articulated_review": {
+              "upper_house_min_y_m": 1.0440000295639038,
+              "undercarriage_max_y_m": 0.9316575527191162,
+              "vertical_gap_m": 0.1123424768447876
+            }
+          },
+          "minimum_gap_m": 0.005
+        },
+        "semantic_nodes": [
+          "Undercarriage_ROOT",
+          "Upper_Swing_Pivot",
+          "Upper_ROOT"
+        ],
+        "fact_ids": [],
+        "rendered_evidence": [
+          "review/renders/cat-320-rear-three-quarter.png",
+          "review/renders/cat-320-right-three-quarter.png"
+        ]
+      }
+    },
+    {
+      "id": "ground_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "Evaluate all exported mesh vertices and front-equipment vertices against authored Y=0 ground in both declared review poses.",
+        "evidence": {
+          "poses": {
+            "stowed_transport": {
+              "front_equipment_min_y_m": 0.11589643359184265,
+              "all_visible_min_y_m": 0.0
+            },
+            "articulated_review": {
+              "front_equipment_min_y_m": 1.3680000305175781,
+              "all_visible_min_y_m": 0.0
+            }
+          },
+          "penetration_tolerance_m": 0.001
+        },
+        "semantic_nodes": [
+          "Machine_Root",
+          "Track_L_ROOT",
+          "Track_R_ROOT",
+          "Boom_ROOT",
+          "Stick_ROOT",
+          "Bucket_ROOT"
+        ],
+        "fact_ids": [
+          "ground-clearance"
+        ],
+        "rendered_evidence": [
+          "review/renders/cat-320-operator-side.png",
+          "review/renders/cat-320-articulated-review.png"
+        ]
+      }
+    },
+    {
+      "id": "self_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "Require positive evaluated AABB separation for four nonadjacent critical group pairs in each declared review pose; adjacent designed joints are excluded.",
+        "evidence": {
+          "poses": {
+            "stowed_transport": {
+              "bucket_to_undercarriage": {
+                "aabb_gap_m": 3.1825051307678223,
+                "axis_gaps_m": [
+                  3.1825051307678223,
+                  0.0,
+                  0.0
+                ]
+              },
+              "bucket_to_upper_house": {
+                "aabb_gap_m": 3.812505006790161,
+                "axis_gaps_m": [
+                  3.812505006790161,
+                  0.0,
+                  0.0
+                ]
+              },
+              "stick_to_undercarriage": {
+                "aabb_gap_m": 2.999457359313965,
+                "axis_gaps_m": [
+                  2.999457359313965,
+                  0.0,
+                  0.0
+                ]
+              },
+              "boom_to_undercarriage": {
+                "aabb_gap_m": 0.38825666904449463,
+                "axis_gaps_m": [
+                  0.0,
+                  0.38825666904449463,
+                  0.0
+                ]
+              }
+            },
+            "articulated_review": {
+              "bucket_to_undercarriage": {
+                "aabb_gap_m": 2.487425594488057,
+                "axis_gaps_m": [
+                  2.4091057777404785,
+                  0.6192700862884521,
+                  0.0
+                ]
+              },
+              "bucket_to_upper_house": {
+                "aabb_gap_m": 2.7206735610961914,
+                "axis_gaps_m": [
+                  2.7206735610961914,
+                  0.0,
+                  0.0
+                ]
+              },
+              "stick_to_undercarriage": {
+                "aabb_gap_m": 2.405836653280717,
+                "axis_gaps_m": [
+                  1.6715748310089111,
+                  1.730285406112671,
+                  0.0
+                ]
+              },
+              "boom_to_undercarriage": {
+                "aabb_gap_m": 0.661206841468811,
+                "axis_gaps_m": [
+                  0.0,
+                  0.661206841468811,
+                  0.0
+                ]
+              }
+            }
+          },
+          "minimum_aabb_gap_m": 0.005,
+          "scope": "two declared reconstructed review poses; not a continuous swept-volume solver"
+        },
+        "semantic_nodes": [
+          "Undercarriage_ROOT",
+          "Upper_ROOT",
+          "Boom_ROOT",
+          "Stick_ROOT",
+          "Bucket_ROOT"
+        ],
+        "fact_ids": [],
+        "rendered_evidence": [
+          "review/renders/cat-320-operator-side.png",
+          "review/renders/cat-320-articulated-review.png"
+        ]
+      }
+    },
+    {
+      "id": "track_phase_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "Measure ordered shoe-mesh centroids including the closing link, bilateral XY phase agreement, exact subtree length, and sprocket-to-idler centers.",
+        "evidence": {
+          "left": {
+            "subtree_length_m": 4.449999809265137,
+            "subtree_min_x_m": -2.2249999046325684,
+            "subtree_max_x_m": 2.2249999046325684,
+            "shoe_count": 49,
+            "ordered_center_gap_min_m": 0.19320159794272979,
+            "ordered_center_gap_max_m": 0.21726793921830104,
+            "ordered_center_gap_median_m": 0.19320178112051628,
+            "max_gap_to_median_ratio": 1.1245648873328589,
+            "closure_gap_m": 0.20256026481722675,
+            "roller_center_length_m": 3.6500000953674316
+          },
+          "right": {
+            "subtree_length_m": 4.449999809265137,
+            "subtree_min_x_m": -2.2249999046325684,
+            "subtree_max_x_m": 2.2249999046325684,
+            "shoe_count": 49,
+            "ordered_center_gap_min_m": 0.19320159794272979,
+            "ordered_center_gap_max_m": 0.21726793921830104,
+            "ordered_center_gap_median_m": 0.19320178112051628,
+            "max_gap_to_median_ratio": 1.1245648873328589,
+            "closure_gap_m": 0.20256026481722675,
+            "roller_center_length_m": 3.6500000953674316
+          },
+          "paired_xy_phase_error_m": 0.0,
+          "maximum_gap_to_median_ratio": 1.25
+        },
+        "semantic_nodes": [
+          "Track_L_ROOT",
+          "Track_R_ROOT",
+          "Track_L_Rear_Sprocket_Hub",
+          "Track_L_Front_Idler_Hub",
+          "Track_R_Rear_Sprocket_Hub",
+          "Track_R_Front_Idler_Hub"
+        ],
+        "fact_ids": [
+          "track-length",
+          "roller-center-length",
+          "track-gauge",
+          "track-shoes-per-side",
+          "track-rollers-per-side",
+          "carrier-rollers-per-side"
+        ],
+        "rendered_evidence": [
+          "review/renders/cat-320-drive-sprocket-detail.png",
+          "review/renders/cat-320-rear-three-quarter.png"
+        ]
+      }
+    },
+    {
       "id": "builder-execution",
       "status": "PASS",
-      "detail": "Factory-startup background builder reached receipt generation."
+      "detail": {
+        "method": "Background Blender reached post-export measurement and receipt generation.",
+        "evidence": {
+          "blender_version": "5.1.1"
+        }
+      }
     },
     {
       "id": "candidate-class-boundary",
       "status": "PASS",
-      "detail": "technical_structural_study; not engineering authority."
+      "detail": {
+        "candidate_class": "technical_structural_study",
+        "configuration_status": "research_candidate"
+      }
     },
     {
-      "id": "scene-units-and-axes",
-      "status": "PASS",
-      "detail": "Meters; +X toward bucket, +Y vertical, +Z machine right."
-    },
-    {
-      "id": "independent-authoring-boundary",
-      "status": "PASS",
-      "detail": "No CAD, copied texture, downloaded geometry, logo, or manufacturer binary is embedded."
-    },
-    {
-      "id": "required-semantic-nodes",
+      "id": "source-configuration-traceability",
       "status": "PASS",
       "detail": {
-        "Machine_Root": true,
-        "Undercarriage_ROOT": true,
-        "Track_L_ROOT": true,
-        "Track_R_ROOT": true,
-        "Upper_Swing_Pivot": true,
-        "Upper_ROOT": true,
-        "Boom_Pivot": true,
-        "Boom_ROOT": true,
-        "Stick_Pivot": true,
-        "Stick_ROOT": true,
-        "Bucket_Pivot": true,
-        "Bucket_ROOT": true,
-        "Hydraulics_ROOT": true,
-        "Boom_Hydraulics_ROOT": true,
-        "Stick_Hydraulics_ROOT": true,
-        "Bucket_Hydraulics_ROOT": true,
-        "Linkage_ROOT": true,
-        "Bucket_Linkage_ROOT": true,
-        "Bucket_Bellcrank_ROOT": true,
-        "PIVOT_Attachment_Pin": true
+        "pass": true,
+        "identity_pass": true,
+        "design_pass": true,
+        "design_published_constraints_used": [
+          "stick-length",
+          "transport-length",
+          "transport-height",
+          "undercarriage-width",
+          "upperframe-width",
+          "tail-swing-radius",
+          "counterweight-clearance",
+          "ground-clearance",
+          "track-length",
+          "roller-center-length",
+          "track-gauge",
+          "track-shoes-per-side",
+          "track-rollers-per-side",
+          "carrier-rollers-per-side",
+          "top-cab-height",
+          "bucket-tip-radius"
+        ],
+        "source": {
+          "path": "research/private/cat-320/cat-320-aexq3758-01-na-technical-specifications.pdf",
+          "actual_sha256": "3c8a3801febde2f7728ba13d3b9cfe59528bc08394f9cf57dfd0e618ef158a98",
+          "actual_bytes": 2285842,
+          "manifest_sha256": "3c8a3801febde2f7728ba13d3b9cfe59528bc08394f9cf57dfd0e618ef158a98",
+          "manifest_bytes": 2285842,
+          "manifest_pages": 24,
+          "publication": "AEXQ3758-01",
+          "market": "North America",
+          "document_identity": {
+            "pdf_metadata_title": "320 Hydraulic Excavator, Technical Specifications, AEXQ3758-01",
+            "pdf_metadata_author": "Caterpillar",
+            "publication_footer": "AEXQ3758-01 (11-2025)",
+            "replaces": "AEXQ3758-00",
+            "build_number": "07H",
+            "market_label": "N Am",
+            "page_count": 24
+          },
+          "pass": true
+        },
+        "facts": {
+          "boom-length": {
+            "pass": true,
+            "source_page": 3,
+            "source_section": "Major Component Weights",
+            "source_row": "Booms (including lines, pins, stick cylinder) - Reach Boom 5.7 m (18 ft 8 in)",
+            "value": 5.7
+          },
+          "stick-length": {
+            "pass": true,
+            "source_page": 3,
+            "source_section": "Major Component Weights",
+            "source_row": "Sticks (including lines, pins, bucket cylinder, bucket linkage) - Reach Stick R2.9B1 (9 ft 6 in)",
+            "value": 2.9
+          },
+          "boom-cylinder-stroke": {
+            "pass": true,
+            "source_page": 2,
+            "source_section": "Hydraulic System",
+            "source_row": "Boom Cylinder - Stroke 1260 mm",
+            "value": 1.26
+          },
+          "stick-cylinder-stroke": {
+            "pass": true,
+            "source_page": 2,
+            "source_section": "Hydraulic System",
+            "source_row": "Stick Cylinder - Stroke 1504 mm",
+            "value": 1.504
+          },
+          "bucket-cylinder-stroke": {
+            "pass": true,
+            "source_page": 2,
+            "source_section": "Hydraulic System",
+            "source_row": "Bucket Cylinder - Stroke 1104 mm",
+            "value": 1.104
+          },
+          "transport-length": {
+            "pass": true,
+            "source_page": 4,
+            "source_section": "Dimensions - Reach/HD Reach Boom 5.7 m and Reach/HD TR Reach Stick R2.9B1",
+            "source_row": "Dimension 2 Machine Length - With Boom/Stick/Bucket Installed 9530 mm",
+            "value": 9.53
+          },
+          "transport-height": {
+            "pass": true,
+            "source_page": 4,
+            "source_section": "Dimensions - Reach/HD Reach Boom 5.7 m and Reach/HD TR Reach Stick R2.9B1",
+            "source_row": "Dimension 1 Machine Height - With Boom/Stick/Bucket Installed 3160 mm",
+            "value": 3.16
+          },
+          "undercarriage-width": {
+            "pass": true,
+            "source_page": 4,
+            "source_section": "Dimensions",
+            "source_row": "Dimension 10 Undercarriage Width - 790 mm (31 in) Shoes 3170 mm",
+            "value": 3.17
+          },
+          "maximum-digging-depth": {
+            "pass": true,
+            "source_page": 5,
+            "source_section": "Working Ranges - Reach/HD Reach Boom 5.7 m and Reach/HD TR Reach Stick R2.9B1",
+            "source_row": "Range 1 Maximum Digging Depth 6730 mm",
+            "value": 6.73
+          },
+          "maximum-ground-reach": {
+            "pass": true,
+            "source_page": 5,
+            "source_section": "Working Ranges - Reach/HD Reach Boom 5.7 m and Reach/HD TR Reach Stick R2.9B1",
+            "source_row": "Range 2 Maximum Reach at Ground Line 9870 mm",
+            "value": 9.87
+          },
+          "top-cab-height": {
+            "pass": true,
+            "source_page": 4,
+            "source_section": "Dimensions",
+            "source_row": "Dimension 1 Machine Height - Top of Cab Height 2960 mm",
+            "value": 2.96
+          },
+          "upperframe-width": {
+            "pass": true,
+            "source_page": 4,
+            "source_section": "Dimensions",
+            "source_row": "Dimension 3 Upperframe Width 2780 mm",
+            "value": 2.78
+          },
+          "tail-swing-radius": {
+            "pass": true,
+            "source_page": 4,
+            "source_section": "Dimensions",
+            "source_row": "Dimension 4 Tail Swing Radius 2830 mm",
+            "value": 2.83
+          },
+          "counterweight-clearance": {
+            "pass": true,
+            "source_page": 4,
+            "source_section": "Dimensions",
+            "source_row": "Dimension 5 Counterweight Clearance 1050 mm",
+            "value": 1.05
+          },
+          "ground-clearance": {
+            "pass": true,
+            "source_page": 4,
+            "source_section": "Dimensions",
+            "source_row": "Dimension 6 Ground Clearance 470 mm",
+            "value": 0.47
+          },
+          "track-length": {
+            "pass": true,
+            "source_page": 4,
+            "source_section": "Dimensions",
+            "source_row": "Dimension 7 Track Length 4450 mm",
+            "value": 4.45
+          },
+          "roller-center-length": {
+            "pass": true,
+            "source_page": 4,
+            "source_section": "Dimensions",
+            "source_row": "Dimension 8 Length to Center of Rollers 3650 mm",
+            "value": 3.65
+          },
+          "track-gauge": {
+            "pass": true,
+            "source_page": 4,
+            "source_section": "Dimensions",
+            "source_row": "Dimension 9 Track Gauge 2380 mm",
+            "value": 2.38
+          },
+          "bucket-tip-radius": {
+            "pass": true,
+            "source_page": 4,
+            "source_section": "Dimensions - Bucket Type HD",
+            "source_row": "Bucket Tip Radius 1570 mm",
+            "value": 1.57
+          },
+          "track-shoes-per-side": {
+            "pass": true,
+            "source_page": 2,
+            "source_section": "Track",
+            "source_row": "Number of Shoes (each side) 49",
+            "value": 49
+          },
+          "track-rollers-per-side": {
+            "pass": true,
+            "source_page": 2,
+            "source_section": "Track",
+            "source_row": "Number of Track Rollers (each side) 8",
+            "value": 8
+          },
+          "carrier-rollers-per-side": {
+            "pass": true,
+            "source_page": 2,
+            "source_section": "Track",
+            "source_row": "Number of Carrier Rollers (each side) 2",
+            "value": 2
+          }
+        },
+        "choices": {
+          "boom": {
+            "pass": true,
+            "value": "reach_5.7_m",
+            "trace": {
+              "source_id": "CAT-320-AEXQ3758-01-NAM",
+              "source_page": 3,
+              "source_section": "Operating Weight and Ground Pressure / Major Component Weights",
+              "source_row": "Reach Boom 5.7 m (18 ft 8 in)"
+            }
+          },
+          "stick": {
+            "pass": true,
+            "value": "R2.9B1_2.9_m",
+            "trace": {
+              "source_id": "CAT-320-AEXQ3758-01-NAM",
+              "source_page": 3,
+              "source_section": "Operating Weight and Ground Pressure / Major Component Weights",
+              "source_row": "Reach Stick R2.9B1 (9 ft 6 in)"
+            }
+          },
+          "bucket": {
+            "pass": true,
+            "value": "HD_1.19_m3",
+            "trace": {
+              "source_id": "CAT-320-AEXQ3758-01-NAM",
+              "source_page": 11,
+              "source_section": "Bucket Specifications and Compatibility - Pin-On (No Quick Coupler)",
+              "source_row": "Heavy Duty, linkage B, width 1200 mm, capacity 1.19 m3, 4.2 mt counterweight plus Reach Boom/R2.9 column"
+            }
+          },
+          "undercarriage": {
+            "pass": true,
+            "value": "long",
+            "trace": {
+              "source_id": "CAT-320-AEXQ3758-01-NAM",
+              "source_page": 3,
+              "source_section": "Operating Weight and Ground Pressure / Major Component Weights",
+              "source_row": "4.2 mt Counterweight + Long Undercarriage Base Machine"
+            }
+          },
+          "track_shoes": {
+            "pass": true,
+            "value": "790_mm_triple_grouser_with_step_extension",
+            "trace": {
+              "source_id": "CAT-320-AEXQ3758-01-NAM",
+              "source_page": 3,
+              "source_section": "Major Component Weights - Track Shoes",
+              "source_row": "790 mm Width, 10 mm Thick Triple Grouser Track Shoes with Step Extension"
+            }
+          },
+          "counterweight": {
+            "pass": true,
+            "value": "4.2_mt",
+            "trace": {
+              "source_id": "CAT-320-AEXQ3758-01-NAM",
+              "source_page": 3,
+              "source_section": "Operating Weight and Ground Pressure / Major Component Weights",
+              "source_row": "4.2 mt (9,300 lb) Counterweight"
+            }
+          },
+          "swing_frame": {
+            "pass": true,
+            "value": "semi_HD",
+            "trace": {
+              "source_id": "CAT-320-AEXQ3758-01-NAM",
+              "source_page": 3,
+              "source_section": "Major Component Weights - Base Machine / Swing Frame",
+              "source_row": "Base Machine with 4.2 mt counterweight, semi-HD swing frame; Semi-HD Swing Frame"
+            }
+          }
+        },
+        "mechanism_required_gates": [
+          "stowed_transport_envelope",
+          "published_working_envelope",
+          "cylinder_length_continuity",
+          "bucket_linkage_closure",
+          "upper_to_undercarriage_clearance",
+          "ground_collision",
+          "self_collision",
+          "track_phase_continuity"
+        ]
+      }
+    },
+    {
+      "id": "required-gate-id-reconciliation",
+      "status": "PASS",
+      "detail": {
+        "mechanism_required_gates": [
+          "stowed_transport_envelope",
+          "published_working_envelope",
+          "cylinder_length_continuity",
+          "bucket_linkage_closure",
+          "upper_to_undercarriage_clearance",
+          "ground_collision",
+          "self_collision",
+          "track_phase_continuity"
+        ],
+        "validation_required_gates": [
+          "stowed_transport_envelope",
+          "published_working_envelope",
+          "cylinder_length_continuity",
+          "bucket_linkage_closure",
+          "upper_to_undercarriage_clearance",
+          "ground_collision",
+          "self_collision",
+          "track_phase_continuity"
+        ]
+      }
+    },
+    {
+      "id": "required-gate-fact-coverage",
+      "status": "PASS",
+      "detail": {
+        "design_published_constraints_used": [
+          "stick-length",
+          "transport-length",
+          "transport-height",
+          "undercarriage-width",
+          "upperframe-width",
+          "tail-swing-radius",
+          "counterweight-clearance",
+          "ground-clearance",
+          "track-length",
+          "roller-center-length",
+          "track-gauge",
+          "track-shoes-per-side",
+          "track-rollers-per-side",
+          "carrier-rollers-per-side",
+          "top-cab-height",
+          "bucket-tip-radius"
+        ],
+        "pass_gate_fact_id_union": [
+          "bucket-tip-radius",
+          "carrier-rollers-per-side",
+          "counterweight-clearance",
+          "ground-clearance",
+          "maximum-digging-depth",
+          "maximum-ground-reach",
+          "roller-center-length",
+          "stick-length",
+          "tail-swing-radius",
+          "top-cab-height",
+          "track-gauge",
+          "track-length",
+          "track-rollers-per-side",
+          "track-shoes-per-side",
+          "transport-height",
+          "transport-length",
+          "undercarriage-width",
+          "upperframe-width"
+        ]
+      }
+    },
+    {
+      "id": "required-semantic-contract",
+      "status": "PASS",
+      "detail": {
+        "Machine_Root": {
+          "pass": true,
+          "expected": {
+            "type": "EMPTY",
+            "parent": null,
+            "role": "machine_root",
+            "min_mesh_descendants": 1
+          },
+          "observed": {
+            "type": "EMPTY",
+            "parent": null,
+            "role": "machine_root",
+            "axis": null,
+            "mesh_descendants": 365
+          }
+        },
+        "Undercarriage_ROOT": {
+          "pass": true,
+          "expected": {
+            "type": "EMPTY",
+            "parent": "Machine_Root",
+            "role": "fixed_group",
+            "min_mesh_descendants": 1
+          },
+          "observed": {
+            "type": "EMPTY",
+            "parent": "Machine_Root",
+            "role": "fixed_group",
+            "axis": null,
+            "mesh_descendants": 365
+          }
+        },
+        "Track_L_ROOT": {
+          "pass": true,
+          "expected": {
+            "type": "EMPTY",
+            "parent": "Undercarriage_ROOT",
+            "role": "track_group",
+            "min_mesh_descendants": 49
+          },
+          "observed": {
+            "type": "EMPTY",
+            "parent": "Undercarriage_ROOT",
+            "role": "track_group",
+            "axis": null,
+            "mesh_descendants": 101
+          }
+        },
+        "Track_R_ROOT": {
+          "pass": true,
+          "expected": {
+            "type": "EMPTY",
+            "parent": "Undercarriage_ROOT",
+            "role": "track_group",
+            "min_mesh_descendants": 49
+          },
+          "observed": {
+            "type": "EMPTY",
+            "parent": "Undercarriage_ROOT",
+            "role": "track_group",
+            "axis": null,
+            "mesh_descendants": 101
+          }
+        },
+        "Upper_Swing_Pivot": {
+          "pass": true,
+          "expected": {
+            "type": "EMPTY",
+            "parent": "Undercarriage_ROOT",
+            "role": "revolute_pivot",
+            "axis": "+Y",
+            "min_mesh_descendants": 1
+          },
+          "observed": {
+            "type": "EMPTY",
+            "parent": "Undercarriage_ROOT",
+            "role": "revolute_pivot",
+            "axis": "+Y",
+            "mesh_descendants": 160
+          }
+        },
+        "Upper_ROOT": {
+          "pass": true,
+          "expected": {
+            "type": "EMPTY",
+            "parent": "Upper_Swing_Pivot",
+            "role": "articulated_group",
+            "min_mesh_descendants": 1
+          },
+          "observed": {
+            "type": "EMPTY",
+            "parent": "Upper_Swing_Pivot",
+            "role": "articulated_group",
+            "axis": null,
+            "mesh_descendants": 158
+          }
+        },
+        "Boom_Pivot": {
+          "pass": true,
+          "expected": {
+            "type": "EMPTY",
+            "parent": "Upper_ROOT",
+            "role": "revolute_pivot",
+            "axis": "+Z",
+            "min_mesh_descendants": 1
+          },
+          "observed": {
+            "type": "EMPTY",
+            "parent": "Upper_ROOT",
+            "role": "revolute_pivot",
+            "axis": "+Z",
+            "mesh_descendants": 85
+          }
+        },
+        "Boom_ROOT": {
+          "pass": true,
+          "expected": {
+            "type": "EMPTY",
+            "parent": "Boom_Pivot",
+            "role": "articulated_group",
+            "min_mesh_descendants": 1
+          },
+          "observed": {
+            "type": "EMPTY",
+            "parent": "Boom_Pivot",
+            "role": "articulated_group",
+            "axis": null,
+            "mesh_descendants": 40
+          }
+        },
+        "Stick_Pivot": {
+          "pass": true,
+          "expected": {
+            "type": "EMPTY",
+            "parent": "Boom_Pivot",
+            "role": "revolute_pivot",
+            "axis": "+Z",
+            "min_mesh_descendants": 1
+          },
+          "observed": {
+            "type": "EMPTY",
+            "parent": "Boom_Pivot",
+            "role": "revolute_pivot",
+            "axis": "+Z",
+            "mesh_descendants": 44
+          }
+        },
+        "Stick_ROOT": {
+          "pass": true,
+          "expected": {
+            "type": "EMPTY",
+            "parent": "Stick_Pivot",
+            "role": "articulated_group",
+            "min_mesh_descendants": 1
+          },
+          "observed": {
+            "type": "EMPTY",
+            "parent": "Stick_Pivot",
+            "role": "articulated_group",
+            "axis": null,
+            "mesh_descendants": 29
+          }
+        },
+        "Bucket_Pivot": {
+          "pass": true,
+          "expected": {
+            "type": "EMPTY",
+            "parent": "Stick_Pivot",
+            "role": "revolute_pivot",
+            "axis": "+Z",
+            "min_mesh_descendants": 1
+          },
+          "observed": {
+            "type": "EMPTY",
+            "parent": "Stick_Pivot",
+            "role": "revolute_pivot",
+            "axis": "+Z",
+            "mesh_descendants": 14
+          }
+        },
+        "Bucket_ROOT": {
+          "pass": true,
+          "expected": {
+            "type": "EMPTY",
+            "parent": "Bucket_Pivot",
+            "role": "articulated_group",
+            "min_mesh_descendants": 1
+          },
+          "observed": {
+            "type": "EMPTY",
+            "parent": "Bucket_Pivot",
+            "role": "articulated_group",
+            "axis": null,
+            "mesh_descendants": 13
+          }
+        },
+        "Boom_Hydraulics_ROOT": {
+          "pass": true,
+          "expected": {
+            "type": "EMPTY",
+            "parent": "Upper_ROOT",
+            "role": "hydraulic_owner_group",
+            "min_mesh_descendants": 1
+          },
+          "observed": {
+            "type": "EMPTY",
+            "parent": "Upper_ROOT",
+            "role": "hydraulic_owner_group",
+            "axis": null,
+            "mesh_descendants": 8
+          }
+        },
+        "Stick_Hydraulics_ROOT": {
+          "pass": true,
+          "expected": {
+            "type": "EMPTY",
+            "parent": "Boom_ROOT",
+            "role": "hydraulic_owner_group",
+            "min_mesh_descendants": 1
+          },
+          "observed": {
+            "type": "EMPTY",
+            "parent": "Boom_ROOT",
+            "role": "hydraulic_owner_group",
+            "axis": null,
+            "mesh_descendants": 4
+          }
+        },
+        "Bucket_Hydraulics_ROOT": {
+          "pass": true,
+          "expected": {
+            "type": "EMPTY",
+            "parent": "Stick_ROOT",
+            "role": "hydraulic_owner_group",
+            "min_mesh_descendants": 1
+          },
+          "observed": {
+            "type": "EMPTY",
+            "parent": "Stick_ROOT",
+            "role": "hydraulic_owner_group",
+            "axis": null,
+            "mesh_descendants": 4
+          }
+        },
+        "Bucket_Linkage_ROOT": {
+          "pass": true,
+          "expected": {
+            "type": "EMPTY",
+            "parent": "Stick_ROOT",
+            "role": "linkage_owner_group",
+            "min_mesh_descendants": 1
+          },
+          "observed": {
+            "type": "EMPTY",
+            "parent": "Stick_ROOT",
+            "role": "linkage_owner_group",
+            "axis": null,
+            "mesh_descendants": 3
+          }
+        },
+        "Bucket_Bellcrank_ROOT": {
+          "pass": true,
+          "expected": {
+            "type": "EMPTY",
+            "parent": "Stick_ROOT",
+            "role": "linkage_pivot",
+            "min_mesh_descendants": 1
+          },
+          "observed": {
+            "type": "EMPTY",
+            "parent": "Stick_ROOT",
+            "role": "linkage_pivot",
+            "axis": null,
+            "mesh_descendants": 5
+          }
+        },
+        "PIVOT_Attachment_Pin": {
+          "pass": true,
+          "expected": {
+            "type": "MESH",
+            "parent": "Bucket_Pivot",
+            "role": "attachment_pivot"
+          },
+          "observed": {
+            "type": "MESH",
+            "parent": "Bucket_Pivot",
+            "role": "attachment_pivot",
+            "axis": null,
+            "mesh_descendants": 0
+          }
+        },
+        "Bucket_Tip_Radius_Point_1p570m": {
+          "pass": true,
+          "expected": {
+            "type": "MESH",
+            "parent": "Bucket_ROOT",
+            "role": "dimension_witness"
+          },
+          "observed": {
+            "type": "MESH",
+            "parent": "Bucket_ROOT",
+            "role": "dimension_witness",
+            "axis": null,
+            "mesh_descendants": 0
+          }
+        }
       }
     },
     {
       "id": "hierarchy-and-pivot-parenting",
       "status": "PASS",
-      "detail": "Upper, boom, stick, and bucket are separate pivot-parented groups."
-    },
-    {
-      "id": "track-published-counts",
-      "status": "PASS",
       "detail": {
-        "shoes": [
-          49,
-          49
-        ],
-        "lower_rollers": [
-          8,
-          8
-        ],
-        "carrier_rollers": [
-          2,
-          2
-        ]
+        "method": "Compare actual type, parent, role, axis, and exported mesh descendants with REQUIRED_SEMANTICS.",
+        "records": {
+          "Machine_Root": {
+            "pass": true,
+            "expected": {
+              "type": "EMPTY",
+              "parent": null,
+              "role": "machine_root",
+              "min_mesh_descendants": 1
+            },
+            "observed": {
+              "type": "EMPTY",
+              "parent": null,
+              "role": "machine_root",
+              "axis": null,
+              "mesh_descendants": 365
+            }
+          },
+          "Undercarriage_ROOT": {
+            "pass": true,
+            "expected": {
+              "type": "EMPTY",
+              "parent": "Machine_Root",
+              "role": "fixed_group",
+              "min_mesh_descendants": 1
+            },
+            "observed": {
+              "type": "EMPTY",
+              "parent": "Machine_Root",
+              "role": "fixed_group",
+              "axis": null,
+              "mesh_descendants": 365
+            }
+          },
+          "Track_L_ROOT": {
+            "pass": true,
+            "expected": {
+              "type": "EMPTY",
+              "parent": "Undercarriage_ROOT",
+              "role": "track_group",
+              "min_mesh_descendants": 49
+            },
+            "observed": {
+              "type": "EMPTY",
+              "parent": "Undercarriage_ROOT",
+              "role": "track_group",
+              "axis": null,
+              "mesh_descendants": 101
+            }
+          },
+          "Track_R_ROOT": {
+            "pass": true,
+            "expected": {
+              "type": "EMPTY",
+              "parent": "Undercarriage_ROOT",
+              "role": "track_group",
+              "min_mesh_descendants": 49
+            },
+            "observed": {
+              "type": "EMPTY",
+              "parent": "Undercarriage_ROOT",
+              "role": "track_group",
+              "axis": null,
+              "mesh_descendants": 101
+            }
+          },
+          "Upper_Swing_Pivot": {
+            "pass": true,
+            "expected": {
+              "type": "EMPTY",
+              "parent": "Undercarriage_ROOT",
+              "role": "revolute_pivot",
+              "axis": "+Y",
+              "min_mesh_descendants": 1
+            },
+            "observed": {
+              "type": "EMPTY",
+              "parent": "Undercarriage_ROOT",
+              "role": "revolute_pivot",
+              "axis": "+Y",
+              "mesh_descendants": 160
+            }
+          },
+          "Upper_ROOT": {
+            "pass": true,
+            "expected": {
+              "type": "EMPTY",
+              "parent": "Upper_Swing_Pivot",
+              "role": "articulated_group",
+              "min_mesh_descendants": 1
+            },
+            "observed": {
+              "type": "EMPTY",
+              "parent": "Upper_Swing_Pivot",
+              "role": "articulated_group",
+              "axis": null,
+              "mesh_descendants": 158
+            }
+          },
+          "Boom_Pivot": {
+            "pass": true,
+            "expected": {
+              "type": "EMPTY",
+              "parent": "Upper_ROOT",
+              "role": "revolute_pivot",
+              "axis": "+Z",
+              "min_mesh_descendants": 1
+            },
+            "observed": {
+              "type": "EMPTY",
+              "parent": "Upper_ROOT",
+              "role": "revolute_pivot",
+              "axis": "+Z",
+              "mesh_descendants": 85
+            }
+          },
+          "Boom_ROOT": {
+            "pass": true,
+            "expected": {
+              "type": "EMPTY",
+              "parent": "Boom_Pivot",
+              "role": "articulated_group",
+              "min_mesh_descendants": 1
+            },
+            "observed": {
+              "type": "EMPTY",
+              "parent": "Boom_Pivot",
+              "role": "articulated_group",
+              "axis": null,
+              "mesh_descendants": 40
+            }
+          },
+          "Stick_Pivot": {
+            "pass": true,
+            "expected": {
+              "type": "EMPTY",
+              "parent": "Boom_Pivot",
+              "role": "revolute_pivot",
+              "axis": "+Z",
+              "min_mesh_descendants": 1
+            },
+            "observed": {
+              "type": "EMPTY",
+              "parent": "Boom_Pivot",
+              "role": "revolute_pivot",
+              "axis": "+Z",
+              "mesh_descendants": 44
+            }
+          },
+          "Stick_ROOT": {
+            "pass": true,
+            "expected": {
+              "type": "EMPTY",
+              "parent": "Stick_Pivot",
+              "role": "articulated_group",
+              "min_mesh_descendants": 1
+            },
+            "observed": {
+              "type": "EMPTY",
+              "parent": "Stick_Pivot",
+              "role": "articulated_group",
+              "axis": null,
+              "mesh_descendants": 29
+            }
+          },
+          "Bucket_Pivot": {
+            "pass": true,
+            "expected": {
+              "type": "EMPTY",
+              "parent": "Stick_Pivot",
+              "role": "revolute_pivot",
+              "axis": "+Z",
+              "min_mesh_descendants": 1
+            },
+            "observed": {
+              "type": "EMPTY",
+              "parent": "Stick_Pivot",
+              "role": "revolute_pivot",
+              "axis": "+Z",
+              "mesh_descendants": 14
+            }
+          },
+          "Bucket_ROOT": {
+            "pass": true,
+            "expected": {
+              "type": "EMPTY",
+              "parent": "Bucket_Pivot",
+              "role": "articulated_group",
+              "min_mesh_descendants": 1
+            },
+            "observed": {
+              "type": "EMPTY",
+              "parent": "Bucket_Pivot",
+              "role": "articulated_group",
+              "axis": null,
+              "mesh_descendants": 13
+            }
+          },
+          "Boom_Hydraulics_ROOT": {
+            "pass": true,
+            "expected": {
+              "type": "EMPTY",
+              "parent": "Upper_ROOT",
+              "role": "hydraulic_owner_group",
+              "min_mesh_descendants": 1
+            },
+            "observed": {
+              "type": "EMPTY",
+              "parent": "Upper_ROOT",
+              "role": "hydraulic_owner_group",
+              "axis": null,
+              "mesh_descendants": 8
+            }
+          },
+          "Stick_Hydraulics_ROOT": {
+            "pass": true,
+            "expected": {
+              "type": "EMPTY",
+              "parent": "Boom_ROOT",
+              "role": "hydraulic_owner_group",
+              "min_mesh_descendants": 1
+            },
+            "observed": {
+              "type": "EMPTY",
+              "parent": "Boom_ROOT",
+              "role": "hydraulic_owner_group",
+              "axis": null,
+              "mesh_descendants": 4
+            }
+          },
+          "Bucket_Hydraulics_ROOT": {
+            "pass": true,
+            "expected": {
+              "type": "EMPTY",
+              "parent": "Stick_ROOT",
+              "role": "hydraulic_owner_group",
+              "min_mesh_descendants": 1
+            },
+            "observed": {
+              "type": "EMPTY",
+              "parent": "Stick_ROOT",
+              "role": "hydraulic_owner_group",
+              "axis": null,
+              "mesh_descendants": 4
+            }
+          },
+          "Bucket_Linkage_ROOT": {
+            "pass": true,
+            "expected": {
+              "type": "EMPTY",
+              "parent": "Stick_ROOT",
+              "role": "linkage_owner_group",
+              "min_mesh_descendants": 1
+            },
+            "observed": {
+              "type": "EMPTY",
+              "parent": "Stick_ROOT",
+              "role": "linkage_owner_group",
+              "axis": null,
+              "mesh_descendants": 3
+            }
+          },
+          "Bucket_Bellcrank_ROOT": {
+            "pass": true,
+            "expected": {
+              "type": "EMPTY",
+              "parent": "Stick_ROOT",
+              "role": "linkage_pivot",
+              "min_mesh_descendants": 1
+            },
+            "observed": {
+              "type": "EMPTY",
+              "parent": "Stick_ROOT",
+              "role": "linkage_pivot",
+              "axis": null,
+              "mesh_descendants": 5
+            }
+          },
+          "PIVOT_Attachment_Pin": {
+            "pass": true,
+            "expected": {
+              "type": "MESH",
+              "parent": "Bucket_Pivot",
+              "role": "attachment_pivot"
+            },
+            "observed": {
+              "type": "MESH",
+              "parent": "Bucket_Pivot",
+              "role": "attachment_pivot",
+              "axis": null,
+              "mesh_descendants": 0
+            }
+          },
+          "Bucket_Tip_Radius_Point_1p570m": {
+            "pass": true,
+            "expected": {
+              "type": "MESH",
+              "parent": "Bucket_ROOT",
+              "role": "dimension_witness"
+            },
+            "observed": {
+              "type": "MESH",
+              "parent": "Bucket_ROOT",
+              "role": "dimension_witness",
+              "axis": null,
+              "mesh_descendants": 0
+            }
+          }
+        }
       }
     },
     {
@@ -197,103 +3553,13 @@
       "detail": {
         "measured_shoe_bottom_y_m": 0.0,
         "authored_ground_y_m": 0.0,
-        "absolute_tolerance_m": 0.001,
-        "classification": "evaluated_visible_reconstructed_track_geometry"
-      }
-    },
-    {
-      "id": "published-center-frame-ground-clearance",
-      "status": "PASS",
-      "detail": {
-        "measured_underside_agl_m": 0.4699999690055847,
-        "published_m": 0.47,
-        "absolute_tolerance_m": 0.005,
-        "classification": "published_constraint_reconstructed_geometry"
-      }
-    },
-    {
-      "id": "visible-grade-integrity",
-      "status": "PASS",
-      "detail": {
-        "lowest_visible_y_m": 0.0,
-        "track_contact_y_m": 0.0,
-        "lowest_visible_objects": [
-          "Track_L_Shoe_19",
-          "Track_R_Shoe_19"
-        ],
-        "nonvisual_grade_witness_used": false
-      }
-    },
-    {
-      "id": "cab-roof-published-height",
-      "status": "PASS",
-      "detail": {
-        "measured_roof_top_agl_m": 2.9600000381469727,
-        "published_m": 2.96,
-        "absolute_tolerance_m": 0.025,
-        "classification": "published_constraint_reconstructed_geometry"
-      }
-    },
-    {
-      "id": "transport-width-envelope",
-      "status": "PASS",
-      "detail": {
-        "modeled_m": 3.17,
-        "published_m": 3.17,
-        "absolute_tolerance_m": 0.04,
-        "classification": "published_constraint_reconstructed_geometry"
-      }
-    },
-    {
-      "id": "transport-height-envelope",
-      "status": "PASS",
-      "detail": {
-        "modeled_m": 3.1538,
-        "published_m": 3.16,
-        "absolute_tolerance_m": 0.05,
-        "classification": "published_constraint_reconstructed_pose"
-      }
-    },
-    {
-      "id": "transport-length-envelope",
-      "status": "PASS",
-      "detail": {
-        "modeled_m": 9.5484,
-        "published_m": 9.53,
-        "absolute_tolerance_m": 0.08,
-        "classification": "published_constraint_reconstructed_pose"
-      }
-    },
-    {
-      "id": "tail-swing-radius-evaluated-mesh",
-      "status": "PASS",
-      "detail": {
-        "baseline_m": 2.4167622706023075,
-        "modeled_m": 2.831034718608382,
-        "published_m": 2.83,
-        "absolute_tolerance_m": 0.015,
-        "classification": "published_constraint_reconstructed_geometry"
-      }
-    },
-    {
-      "id": "counterweight-clearance-evaluated-mesh",
-      "status": "PASS",
-      "detail": {
-        "baseline_m": 1.4858722686767578,
-        "modeled_m": 1.0440000295639038,
-        "published_m": 1.05,
-        "absolute_tolerance_m": 0.015,
-        "classification": "published_constraint_reconstructed_geometry"
+        "absolute_tolerance_m": 0.001
       }
     },
     {
       "id": "engine-house-reconstructed-proportion",
       "status": "PASS",
       "detail": {
-        "baseline_m": {
-          "length": 1.8363363146781921,
-          "height": 1.2400001287460327
-        },
         "modeled_m": {
           "length": 2.5781678557395935,
           "height": 1.0200001001358032
@@ -307,25 +3573,14 @@
             0.95,
             1.15
           ]
-        },
-        "classification": "reconstructed_visual_proportion_not_manufacturer_fact"
-      }
-    },
-    {
-      "id": "drive-sprocket-teeth-readable",
-      "status": "PASS",
-      "detail": {
-        "left": 14,
-        "right": 14,
-        "expected_reconstructed_each_side": 14,
-        "classification": "reconstructed_readability_cue"
+        }
       }
     },
     {
       "id": "hydraulic-linkage-owner-hierarchy",
       "status": "PASS",
       "detail": {
-        "expected": {
+        "owners": {
           "Boom_Cylinder_L_Barrel": "Boom_Hydraulics_ROOT",
           "Boom_Cylinder_L_Rod": "Boom_Hydraulics_ROOT",
           "Boom_Cylinder_R_Barrel": "Boom_Hydraulics_ROOT",
@@ -336,31 +3591,95 @@
           "Bucket_Cylinder_Rod": "Bucket_Hydraulics_ROOT",
           "Bucket_Link_Dogbone": "Bucket_Linkage_ROOT"
         },
-        "actual": {
-          "Boom_Cylinder_L_Barrel": "Boom_Hydraulics_ROOT",
-          "Boom_Cylinder_L_Rod": "Boom_Hydraulics_ROOT",
-          "Boom_Cylinder_R_Barrel": "Boom_Hydraulics_ROOT",
-          "Boom_Cylinder_R_Rod": "Boom_Hydraulics_ROOT",
-          "Stick_Cylinder_Barrel": "Stick_Hydraulics_ROOT",
-          "Stick_Cylinder_Rod": "Stick_Hydraulics_ROOT",
-          "Bucket_Cylinder_Barrel": "Bucket_Hydraulics_ROOT",
-          "Bucket_Cylinder_Rod": "Bucket_Hydraulics_ROOT",
-          "Bucket_Link_Dogbone": "Bucket_Linkage_ROOT"
+        "physical_assemblies": {
+          "Boom_Cylinder_L": {
+            "barrel_base_endpoint_error_m": 2.1073424255447017e-07,
+            "rod_endpoint_error_m": 2.4027400458748785e-07,
+            "barrel_rod_axial_overlap_m": 0.12261137954192236,
+            "base_eye_center_error_m": 0.0,
+            "rod_eye_center_error_m": 0.0,
+            "base_pin_center_error_m": 0.0,
+            "rod_pin_center_error_m": 0.0,
+            "physical_nodes": [
+              "Boom_Cylinder_L_Barrel",
+              "Boom_Cylinder_L_Rod",
+              "Boom_Cylinder_L_Base_Eye",
+              "Boom_Cylinder_L_Rod_Eye",
+              "PIN_Boom_Base_L",
+              "PIN_Boom_Rod_L"
+            ],
+            "pass": true
+          },
+          "Boom_Cylinder_R": {
+            "barrel_base_endpoint_error_m": 9.424321830774485e-08,
+            "rod_endpoint_error_m": 2.9802322387695312e-08,
+            "barrel_rod_axial_overlap_m": 0.12261133833089843,
+            "base_eye_center_error_m": 0.0,
+            "rod_eye_center_error_m": 0.0,
+            "base_pin_center_error_m": 0.0,
+            "rod_pin_center_error_m": 0.0,
+            "physical_nodes": [
+              "Boom_Cylinder_R_Barrel",
+              "Boom_Cylinder_R_Rod",
+              "Boom_Cylinder_R_Base_Eye",
+              "Boom_Cylinder_R_Rod_Eye",
+              "PIN_Boom_Base_R",
+              "PIN_Boom_Rod_R"
+            ],
+            "pass": true
+          },
+          "Stick_Cylinder": {
+            "barrel_base_endpoint_error_m": 8.053906004908926e-08,
+            "rod_endpoint_error_m": 5.0325258952775493e-08,
+            "barrel_rod_axial_overlap_m": 0.20020838640630245,
+            "base_eye_center_error_m": 0.0,
+            "rod_eye_center_error_m": 0.0,
+            "base_pin_center_error_m": 0.0,
+            "rod_pin_center_error_m": 0.0,
+            "physical_nodes": [
+              "Stick_Cylinder_Barrel",
+              "Stick_Cylinder_Rod",
+              "Stick_Cylinder_Base_Eye",
+              "Stick_Cylinder_Rod_Eye",
+              "PIN_Stick_Base",
+              "PIN_Stick_Rod"
+            ],
+            "pass": true
+          },
+          "Bucket_Cylinder": {
+            "barrel_base_endpoint_error_m": 4.774408713583923e-07,
+            "rod_endpoint_error_m": 5.962897962683199e-07,
+            "barrel_rod_axial_overlap_m": 0.11520105600357056,
+            "base_eye_center_error_m": 2.384185791015625e-07,
+            "rod_eye_center_error_m": 7.633118912497578e-07,
+            "base_pin_center_error_m": 0.0,
+            "rod_pin_center_error_m": 0.0,
+            "physical_nodes": [
+              "Bucket_Cylinder_Barrel",
+              "Bucket_Cylinder_Rod",
+              "Bucket_Cylinder_Base_Eye",
+              "Bucket_Cylinder_Rod_Eye",
+              "PIN_Bucket_Base",
+              "PIN_Bellcrank_Rod"
+            ],
+            "pass": true
+          }
         },
-        "classification": "structural_ownership_not_engineering_authority"
-      }
-    },
-    {
-      "id": "bucket-cylinder-bellcrank-static-closure",
-      "status": "PASS",
-      "detail": {
-        "errors_m": {
-          "bucket_rod_to_bellcrank_error_m": 5.962897962683199e-07,
-          "dogbone_to_bellcrank_error_m": 8.350158375268972e-07,
-          "dogbone_to_bucket_lug_error_m": 8.472907394624193e-07
-        },
-        "tolerance_m": 1e-05,
-        "classification": "static_reconstructed_visual_closure_not_kinematic_validation"
+        "linkage": {
+          "bellcrank_endpoint_error_m": 6.53615984953134e-07,
+          "bucket_lug_endpoint_error_m": 4.172325564618848e-07,
+          "bellcrank_eye_center_error_m": 7.402743308767212e-07,
+          "bucket_lug_eye_center_error_m": 5.364418029785156e-07,
+          "bellcrank_pin_center_error_m": 0.0,
+          "bucket_lug_pin_center_error_m": 0.0,
+          "bucket_lug_ear_parents": {
+            "Bucket_Lug_L_Ear": "Bucket_ROOT",
+            "Bucket_Lug_R_Ear": "Bucket_ROOT"
+          },
+          "bucket_lug_pin_parent": "Bucket_ROOT",
+          "dogbone_parent": "Bucket_Linkage_ROOT",
+          "pass": true
+        }
       }
     },
     {
@@ -371,21 +3690,13 @@
       }
     },
     {
-      "id": "reconstructed-hose-bundles",
-      "status": "PASS",
-      "detail": {
-        "segment_meshes": 24,
-        "classification": "reconstructed_exterior_routing_cues_only"
-      }
-    },
-    {
       "id": "glb-platform-contract",
       "status": "PASS",
       "detail": {
         "scene_count": 1,
         "scene_roots": [
           {
-            "index": 360,
+            "index": 392,
             "name": "Machine_Root",
             "transform": {}
           }
@@ -393,27 +3704,624 @@
         "camera_count": 0,
         "punctual_light_extension_present": false,
         "inspection_helper_nodes": [],
+        "node_names": [
+          "ANCHOR_Bellcrank_Dogbone",
+          "ANCHOR_Bellcrank_Rod",
+          "ANCHOR_Boom_Base_L",
+          "ANCHOR_Boom_Base_R",
+          "ANCHOR_Boom_Rod_L",
+          "ANCHOR_Boom_Rod_R",
+          "ANCHOR_Bucket_Base",
+          "ANCHOR_Bucket_Lug",
+          "ANCHOR_Stick_Base",
+          "ANCHOR_Stick_Rod",
+          "Air_Intake_Stack",
+          "Boom_Base_L_Mount_Ear_L",
+          "Boom_Base_L_Mount_Ear_R",
+          "Boom_Base_R_Mount_Ear_L",
+          "Boom_Base_R_Mount_Ear_R",
+          "Boom_Crown_Box",
+          "Boom_Cylinder_L_Barrel",
+          "Boom_Cylinder_L_Base_Eye",
+          "Boom_Cylinder_L_Rod",
+          "Boom_Cylinder_L_Rod_Eye",
+          "Boom_Cylinder_R_Barrel",
+          "Boom_Cylinder_R_Base_Eye",
+          "Boom_Cylinder_R_Rod",
+          "Boom_Cylinder_R_Rod_Eye",
+          "Boom_Foot_Box",
+          "Boom_Foot_Transition_Cap",
+          "Boom_Head_Box",
+          "Boom_Head_Clevis",
+          "Boom_Hose_01_Segment_01",
+          "Boom_Hose_01_Segment_02",
+          "Boom_Hose_01_Segment_03",
+          "Boom_Hose_01_Segment_04",
+          "Boom_Hose_02_Segment_01",
+          "Boom_Hose_02_Segment_02",
+          "Boom_Hose_02_Segment_03",
+          "Boom_Hose_02_Segment_04",
+          "Boom_Hose_03_Segment_01",
+          "Boom_Hose_03_Segment_02",
+          "Boom_Hose_03_Segment_03",
+          "Boom_Hose_03_Segment_04",
+          "Boom_Hose_04_Segment_01",
+          "Boom_Hose_04_Segment_02",
+          "Boom_Hose_04_Segment_03",
+          "Boom_Hose_04_Segment_04",
+          "Boom_Hydraulics_ROOT",
+          "Boom_Left_Reinforcement",
+          "Boom_Pivot",
+          "Boom_ROOT",
+          "Boom_Right_Reinforcement",
+          "Boom_Rod_L_Mount_Ear_L",
+          "Boom_Rod_L_Mount_Ear_R",
+          "Boom_Rod_R_Mount_Ear_L",
+          "Boom_Rod_R_Mount_Ear_R",
+          "Boom_Service_Pin_1.18",
+          "Boom_Service_Pin_2.26",
+          "Boom_Service_Pin_4.05",
+          "Boom_Service_Pin_5.27",
+          "Bucket_Back_Shell",
+          "Bucket_Base_Mount_Ear_L",
+          "Bucket_Base_Mount_Ear_R",
+          "Bucket_Bellcrank_Left",
+          "Bucket_Bellcrank_ROOT",
+          "Bucket_Bellcrank_Right",
+          "Bucket_Cutting_Edge",
+          "Bucket_Cylinder_Barrel",
+          "Bucket_Cylinder_Base_Eye",
+          "Bucket_Cylinder_Rod",
+          "Bucket_Cylinder_Rod_Eye",
+          "Bucket_Dogbone_Bellcrank_Eye",
+          "Bucket_Dogbone_Lug_Eye",
+          "Bucket_Hydraulics_ROOT",
+          "Bucket_Left_Side_Plate",
+          "Bucket_Link_Dogbone",
+          "Bucket_Linkage_ROOT",
+          "Bucket_Lug_L_Ear",
+          "Bucket_Lug_R_Ear",
+          "Bucket_Pivot",
+          "Bucket_ROOT",
+          "Bucket_Right_Side_Plate",
+          "Bucket_Tip_Radius_Point_1p570m",
+          "Bucket_Tooth_01",
+          "Bucket_Tooth_02",
+          "Bucket_Tooth_03",
+          "Bucket_Tooth_04",
+          "Bucket_Tooth_05",
+          "Cab_A_Pillar",
+          "Cab_Access_Step_1",
+          "Cab_Access_Step_2",
+          "Cab_Access_Step_3",
+          "Cab_B_Pillar",
+          "Cab_Belt_Rail",
+          "Cab_Floor",
+          "Cab_Front_Glass",
+          "Cab_Interior_Block",
+          "Cab_Left_Glass",
+          "Cab_Lower_Front_Glass",
+          "Cab_Mirror",
+          "Cab_Mirror_Arm",
+          "Cab_ROOT",
+          "Cab_Rear_Glass",
+          "Cab_Rear_Pillar",
+          "Cab_Right_Glass",
+          "Cab_Roof",
+          "Cab_Seat_Back",
+          "Cab_Seat_Base",
+          "Cab_Steering_Control",
+          "Cab_Work_Light",
+          "Counterweight_Core",
+          "Counterweight_Left_Cheek",
+          "Counterweight_Rear_Vent_01",
+          "Counterweight_Rear_Vent_02",
+          "Counterweight_Rear_Vent_03",
+          "Counterweight_Rear_Vent_04",
+          "Counterweight_Rear_Vent_05",
+          "Counterweight_Rear_Vent_06",
+          "Counterweight_Right_Cheek",
+          "Engine_Hood_Center_Access",
+          "Engine_Hood_Crown",
+          "Engine_House_Door_Handle_L",
+          "Engine_House_Door_Handle_R",
+          "Engine_House_Lower_Body",
+          "Engine_House_Panel_Seam_L_1",
+          "Engine_House_Panel_Seam_L_2",
+          "Engine_House_Panel_Seam_L_3",
+          "Engine_House_Panel_Seam_R_1",
+          "Engine_House_Panel_Seam_R_2",
+          "Engine_House_Panel_Seam_R_3",
+          "Engine_House_Service_Door_L",
+          "Engine_House_Service_Door_R",
+          "Engine_House_Upper_Hood",
+          "Engine_Vent_R_01",
+          "Engine_Vent_R_02",
+          "Engine_Vent_R_03",
+          "Engine_Vent_R_04",
+          "Engine_Vent_R_05",
+          "Engine_Vent_R_06",
+          "Engine_Vent_R_07",
+          "Exhaust_Muffler",
+          "Exhaust_Stack",
+          "Handrail_L_1",
+          "Handrail_L_2",
+          "Machine_Root",
+          "PIN_Bellcrank_Dogbone",
+          "PIN_Bellcrank_Rod",
+          "PIN_Boom_Base",
+          "PIN_Boom_Base_L",
+          "PIN_Boom_Base_R",
+          "PIN_Boom_Rod_L",
+          "PIN_Boom_Rod_R",
+          "PIN_Bucket_Base",
+          "PIN_Bucket_Bellcrank_Pivot",
+          "PIN_Bucket_Lug",
+          "PIN_Stick",
+          "PIN_Stick_Base",
+          "PIN_Stick_Rod",
+          "PIVOT_Attachment_Pin",
+          "Slew_Ring_Lower",
+          "Slew_Ring_Upper",
+          "Stick_Base_Mount_Ear_L",
+          "Stick_Base_Mount_Ear_R",
+          "Stick_Cylinder_Barrel",
+          "Stick_Cylinder_Base_Eye",
+          "Stick_Cylinder_Rod",
+          "Stick_Cylinder_Rod_Eye",
+          "Stick_Hose_01_Segment_01",
+          "Stick_Hose_01_Segment_02",
+          "Stick_Hose_02_Segment_01",
+          "Stick_Hose_02_Segment_02",
+          "Stick_Hose_03_Segment_01",
+          "Stick_Hose_03_Segment_02",
+          "Stick_Hose_04_Segment_01",
+          "Stick_Hose_04_Segment_02",
+          "Stick_Hydraulics_ROOT",
+          "Stick_Left_Wear_Plate",
+          "Stick_Main_Weldment",
+          "Stick_Pivot",
+          "Stick_ROOT",
+          "Stick_Right_Wear_Plate",
+          "Stick_Rod_Mount_Ear_L",
+          "Stick_Rod_Mount_Ear_R",
+          "Track_L_Carrier_Roller_01",
+          "Track_L_Carrier_Roller_02",
+          "Track_L_Carrier_Roller_Hub_01",
+          "Track_L_Carrier_Roller_Hub_02",
+          "Track_L_Drive_Sprocket_Tooth_01",
+          "Track_L_Drive_Sprocket_Tooth_02",
+          "Track_L_Drive_Sprocket_Tooth_03",
+          "Track_L_Drive_Sprocket_Tooth_04",
+          "Track_L_Drive_Sprocket_Tooth_05",
+          "Track_L_Drive_Sprocket_Tooth_06",
+          "Track_L_Drive_Sprocket_Tooth_07",
+          "Track_L_Drive_Sprocket_Tooth_08",
+          "Track_L_Drive_Sprocket_Tooth_09",
+          "Track_L_Drive_Sprocket_Tooth_10",
+          "Track_L_Drive_Sprocket_Tooth_11",
+          "Track_L_Drive_Sprocket_Tooth_12",
+          "Track_L_Drive_Sprocket_Tooth_13",
+          "Track_L_Drive_Sprocket_Tooth_14",
+          "Track_L_Front_Idler_Bolt_1",
+          "Track_L_Front_Idler_Bolt_2",
+          "Track_L_Front_Idler_Bolt_3",
+          "Track_L_Front_Idler_Bolt_4",
+          "Track_L_Front_Idler_Bolt_5",
+          "Track_L_Front_Idler_Bolt_6",
+          "Track_L_Front_Idler_Hub",
+          "Track_L_Front_Idler_Rim",
+          "Track_L_Lower_Roller_01",
+          "Track_L_Lower_Roller_02",
+          "Track_L_Lower_Roller_03",
+          "Track_L_Lower_Roller_04",
+          "Track_L_Lower_Roller_05",
+          "Track_L_Lower_Roller_06",
+          "Track_L_Lower_Roller_07",
+          "Track_L_Lower_Roller_08",
+          "Track_L_Lower_Roller_Hub_01",
+          "Track_L_Lower_Roller_Hub_02",
+          "Track_L_Lower_Roller_Hub_03",
+          "Track_L_Lower_Roller_Hub_04",
+          "Track_L_Lower_Roller_Hub_05",
+          "Track_L_Lower_Roller_Hub_06",
+          "Track_L_Lower_Roller_Hub_07",
+          "Track_L_Lower_Roller_Hub_08",
+          "Track_L_ROOT",
+          "Track_L_Rear_Sprocket_Bolt_1",
+          "Track_L_Rear_Sprocket_Bolt_2",
+          "Track_L_Rear_Sprocket_Bolt_3",
+          "Track_L_Rear_Sprocket_Bolt_4",
+          "Track_L_Rear_Sprocket_Bolt_5",
+          "Track_L_Rear_Sprocket_Bolt_6",
+          "Track_L_Rear_Sprocket_Hub",
+          "Track_L_Rear_Sprocket_Rim",
+          "Track_L_Shoe_01",
+          "Track_L_Shoe_02",
+          "Track_L_Shoe_03",
+          "Track_L_Shoe_04",
+          "Track_L_Shoe_05",
+          "Track_L_Shoe_06",
+          "Track_L_Shoe_07",
+          "Track_L_Shoe_08",
+          "Track_L_Shoe_09",
+          "Track_L_Shoe_10",
+          "Track_L_Shoe_11",
+          "Track_L_Shoe_12",
+          "Track_L_Shoe_13",
+          "Track_L_Shoe_14",
+          "Track_L_Shoe_15",
+          "Track_L_Shoe_16",
+          "Track_L_Shoe_17",
+          "Track_L_Shoe_18",
+          "Track_L_Shoe_19",
+          "Track_L_Shoe_20",
+          "Track_L_Shoe_21",
+          "Track_L_Shoe_22",
+          "Track_L_Shoe_23",
+          "Track_L_Shoe_24",
+          "Track_L_Shoe_25",
+          "Track_L_Shoe_26",
+          "Track_L_Shoe_27",
+          "Track_L_Shoe_28",
+          "Track_L_Shoe_29",
+          "Track_L_Shoe_30",
+          "Track_L_Shoe_31",
+          "Track_L_Shoe_32",
+          "Track_L_Shoe_33",
+          "Track_L_Shoe_34",
+          "Track_L_Shoe_35",
+          "Track_L_Shoe_36",
+          "Track_L_Shoe_37",
+          "Track_L_Shoe_38",
+          "Track_L_Shoe_39",
+          "Track_L_Shoe_40",
+          "Track_L_Shoe_41",
+          "Track_L_Shoe_42",
+          "Track_L_Shoe_43",
+          "Track_L_Shoe_44",
+          "Track_L_Shoe_45",
+          "Track_L_Shoe_46",
+          "Track_L_Shoe_47",
+          "Track_L_Shoe_48",
+          "Track_L_Shoe_49",
+          "Track_L_Track_Frame",
+          "Track_L_Track_Frame_Side",
+          "Track_R_Carrier_Roller_01",
+          "Track_R_Carrier_Roller_02",
+          "Track_R_Carrier_Roller_Hub_01",
+          "Track_R_Carrier_Roller_Hub_02",
+          "Track_R_Drive_Sprocket_Tooth_01",
+          "Track_R_Drive_Sprocket_Tooth_02",
+          "Track_R_Drive_Sprocket_Tooth_03",
+          "Track_R_Drive_Sprocket_Tooth_04",
+          "Track_R_Drive_Sprocket_Tooth_05",
+          "Track_R_Drive_Sprocket_Tooth_06",
+          "Track_R_Drive_Sprocket_Tooth_07",
+          "Track_R_Drive_Sprocket_Tooth_08",
+          "Track_R_Drive_Sprocket_Tooth_09",
+          "Track_R_Drive_Sprocket_Tooth_10",
+          "Track_R_Drive_Sprocket_Tooth_11",
+          "Track_R_Drive_Sprocket_Tooth_12",
+          "Track_R_Drive_Sprocket_Tooth_13",
+          "Track_R_Drive_Sprocket_Tooth_14",
+          "Track_R_Front_Idler_Bolt_1",
+          "Track_R_Front_Idler_Bolt_2",
+          "Track_R_Front_Idler_Bolt_3",
+          "Track_R_Front_Idler_Bolt_4",
+          "Track_R_Front_Idler_Bolt_5",
+          "Track_R_Front_Idler_Bolt_6",
+          "Track_R_Front_Idler_Hub",
+          "Track_R_Front_Idler_Rim",
+          "Track_R_Lower_Roller_01",
+          "Track_R_Lower_Roller_02",
+          "Track_R_Lower_Roller_03",
+          "Track_R_Lower_Roller_04",
+          "Track_R_Lower_Roller_05",
+          "Track_R_Lower_Roller_06",
+          "Track_R_Lower_Roller_07",
+          "Track_R_Lower_Roller_08",
+          "Track_R_Lower_Roller_Hub_01",
+          "Track_R_Lower_Roller_Hub_02",
+          "Track_R_Lower_Roller_Hub_03",
+          "Track_R_Lower_Roller_Hub_04",
+          "Track_R_Lower_Roller_Hub_05",
+          "Track_R_Lower_Roller_Hub_06",
+          "Track_R_Lower_Roller_Hub_07",
+          "Track_R_Lower_Roller_Hub_08",
+          "Track_R_ROOT",
+          "Track_R_Rear_Sprocket_Bolt_1",
+          "Track_R_Rear_Sprocket_Bolt_2",
+          "Track_R_Rear_Sprocket_Bolt_3",
+          "Track_R_Rear_Sprocket_Bolt_4",
+          "Track_R_Rear_Sprocket_Bolt_5",
+          "Track_R_Rear_Sprocket_Bolt_6",
+          "Track_R_Rear_Sprocket_Hub",
+          "Track_R_Rear_Sprocket_Rim",
+          "Track_R_Shoe_01",
+          "Track_R_Shoe_02",
+          "Track_R_Shoe_03",
+          "Track_R_Shoe_04",
+          "Track_R_Shoe_05",
+          "Track_R_Shoe_06",
+          "Track_R_Shoe_07",
+          "Track_R_Shoe_08",
+          "Track_R_Shoe_09",
+          "Track_R_Shoe_10",
+          "Track_R_Shoe_11",
+          "Track_R_Shoe_12",
+          "Track_R_Shoe_13",
+          "Track_R_Shoe_14",
+          "Track_R_Shoe_15",
+          "Track_R_Shoe_16",
+          "Track_R_Shoe_17",
+          "Track_R_Shoe_18",
+          "Track_R_Shoe_19",
+          "Track_R_Shoe_20",
+          "Track_R_Shoe_21",
+          "Track_R_Shoe_22",
+          "Track_R_Shoe_23",
+          "Track_R_Shoe_24",
+          "Track_R_Shoe_25",
+          "Track_R_Shoe_26",
+          "Track_R_Shoe_27",
+          "Track_R_Shoe_28",
+          "Track_R_Shoe_29",
+          "Track_R_Shoe_30",
+          "Track_R_Shoe_31",
+          "Track_R_Shoe_32",
+          "Track_R_Shoe_33",
+          "Track_R_Shoe_34",
+          "Track_R_Shoe_35",
+          "Track_R_Shoe_36",
+          "Track_R_Shoe_37",
+          "Track_R_Shoe_38",
+          "Track_R_Shoe_39",
+          "Track_R_Shoe_40",
+          "Track_R_Shoe_41",
+          "Track_R_Shoe_42",
+          "Track_R_Shoe_43",
+          "Track_R_Shoe_44",
+          "Track_R_Shoe_45",
+          "Track_R_Shoe_46",
+          "Track_R_Shoe_47",
+          "Track_R_Shoe_48",
+          "Track_R_Shoe_49",
+          "Track_R_Track_Frame",
+          "Track_R_Track_Frame_Side",
+          "Undercarriage_Center_Frame",
+          "Undercarriage_Crossmember_Front",
+          "Undercarriage_Crossmember_Rear",
+          "Undercarriage_ROOT",
+          "Upper_Deck_Main",
+          "Upper_Deck_Walkway_L",
+          "Upper_Deck_Walkway_R",
+          "Upper_ROOT",
+          "Upper_Swing_Pivot"
+        ],
+        "material_names": [
+          "Neutral_Cab_Interior",
+          "Neutral_Fastener",
+          "Neutral_Graphite_Steel",
+          "Neutral_Graphite_Trim",
+          "Neutral_Hydraulic_Rod",
+          "Neutral_Machined_Steel",
+          "Neutral_Rubber",
+          "Neutral_Slate_Body",
+          "Neutral_Smoke_Glass",
+          "Neutral_Track_Steel"
+        ],
+        "materials": [
+          {
+            "name": "Neutral_Graphite_Steel",
+            "base_color_rgba": [
+              0.03500000014901161,
+              0.04500000178813934,
+              0.054999999701976776,
+              1
+            ],
+            "metallic_factor": 0.6200000047683716,
+            "roughness_factor": 0.30000001192092896,
+            "primitive_usage_count": 64
+          },
+          {
+            "name": "Neutral_Machined_Steel",
+            "base_color_rgba": [
+              0.25,
+              0.2800000011920929,
+              0.30000001192092896,
+              1
+            ],
+            "metallic_factor": 0.8199999928474426,
+            "roughness_factor": 0.23999999463558197,
+            "primitive_usage_count": 78
+          },
+          {
+            "name": "Neutral_Fastener",
+            "base_color_rgba": [
+              0.11999999731779099,
+              0.12999999523162842,
+              0.14000000059604645,
+              1
+            ],
+            "metallic_factor": 0.8500000238418579,
+            "roughness_factor": 0.23000000417232513,
+            "primitive_usage_count": 28
+          },
+          {
+            "name": "Neutral_Track_Steel",
+            "base_color_rgba": [
+              0.07500000298023224,
+              0.08500000089406967,
+              0.0949999988079071,
+              1
+            ],
+            "metallic_factor": 0.7200000286102295,
+            "roughness_factor": 0.33000001311302185,
+            "primitive_usage_count": 103
+          },
+          {
+            "name": "Neutral_Graphite_Trim",
+            "base_color_rgba": [
+              0.06499999761581421,
+              0.07999999821186066,
+              0.09000000357627869,
+              1
+            ],
+            "metallic_factor": 0.3199999928474426,
+            "roughness_factor": 0.46000000834465027,
+            "primitive_usage_count": 38
+          },
+          {
+            "name": "Neutral_Hydraulic_Rod",
+            "base_color_rgba": [
+              0.5299999713897705,
+              0.5600000023841858,
+              0.5899999737739563,
+              1
+            ],
+            "metallic_factor": 0.9300000071525574,
+            "roughness_factor": 0.14000000059604645,
+            "primitive_usage_count": 8
+          },
+          {
+            "name": "Neutral_Slate_Body",
+            "base_color_rgba": [
+              0.23999999463558197,
+              0.28999999165534973,
+              0.3100000023841858,
+              1
+            ],
+            "metallic_factor": 0.14000000059604645,
+            "roughness_factor": 0.47999998927116394,
+            "primitive_usage_count": 13
+          },
+          {
+            "name": "Neutral_Rubber",
+            "base_color_rgba": [
+              0.014999999664723873,
+              0.017999999225139618,
+              0.020999999716877937,
+              1
+            ],
+            "metallic_factor": 0.05000000074505806,
+            "roughness_factor": 0.7799999713897705,
+            "primitive_usage_count": 24
+          },
+          {
+            "name": "Neutral_Smoke_Glass",
+            "base_color_rgba": [
+              0.04500000178813934,
+              0.0949999988079071,
+              0.11999999731779099,
+              1
+            ],
+            "metallic_factor": 0.3499999940395355,
+            "roughness_factor": 0.1599999964237213,
+            "primitive_usage_count": 6
+          },
+          {
+            "name": "Neutral_Cab_Interior",
+            "base_color_rgba": [
+              0.02500000037252903,
+              0.029999999329447746,
+              0.03400000184774399,
+              1
+            ],
+            "metallic_factor": 0.10000000149011612,
+            "roughness_factor": 0.6600000262260437,
+            "primitive_usage_count": 3
+          }
+        ],
+        "image_count": 0,
+        "texture_count": 0,
+        "animation_count": 0,
+        "skin_count": 0,
+        "external_uri_count": 0,
         "platform_axes": "+X longitudinal, +Y vertical, +Z machine right"
       }
     },
     {
-      "id": "public-glb-inspection-helpers-stripped",
+      "id": "neutral-unbranded-materials",
       "status": "PASS",
       "detail": {
-        "exported_inspection_helper_nodes": [],
-        "private_blend_inspection_nodes_retained": true
+        "method": "Inspect exported GLB material names, decoded base colors, primitive usage, images, textures, and external URIs; require the dominant body and trim to be low-saturation slate/graphite and reject yellow/ochre or manufacturer-identifying names.",
+        "palette_contract": {
+          "pass": true,
+          "body": {
+            "name": "Neutral_Slate_Body",
+            "base_color_rgba": [
+              0.23999999463558197,
+              0.28999999165534973,
+              0.3100000023841858,
+              1
+            ],
+            "metallic_factor": 0.14000000059604645,
+            "roughness_factor": 0.47999998927116394,
+            "primitive_usage_count": 13
+          },
+          "trim": {
+            "name": "Neutral_Graphite_Trim",
+            "base_color_rgba": [
+              0.06499999761581421,
+              0.07999999821186066,
+              0.09000000357627869,
+              1
+            ],
+            "metallic_factor": 0.3199999928474426,
+            "roughness_factor": 0.46000000834465027,
+            "primitive_usage_count": 38
+          },
+          "minimum_primitive_uses_each": 10,
+          "maximum_rgb_channel_spread": 0.1,
+          "required_channel_order": "R <= G <= B",
+          "prohibited_name_tokens": [
+            "caterpillar",
+            "cat_yellow",
+            "yellow",
+            "ochre"
+          ]
+        },
+        "material_names": [
+          "Neutral_Cab_Interior",
+          "Neutral_Fastener",
+          "Neutral_Graphite_Steel",
+          "Neutral_Graphite_Trim",
+          "Neutral_Hydraulic_Rod",
+          "Neutral_Machined_Steel",
+          "Neutral_Rubber",
+          "Neutral_Slate_Body",
+          "Neutral_Smoke_Glass",
+          "Neutral_Track_Steel"
+        ],
+        "image_count": 0,
+        "texture_count": 0,
+        "external_uri_count": 0
+      }
+    },
+    {
+      "id": "independent-authoring-boundary",
+      "status": "PASS",
+      "detail": {
+        "method": "Inspect GLB for embedded/external images, textures, or external buffers and bind the independently authored builder hash in the receipt.",
+        "image_count": 0,
+        "texture_count": 0,
+        "external_uri_count": 0
       }
     },
     {
       "id": "object-count",
       "status": "PASS",
-      "detail": 361
+      "detail": {
+        "objects": 393,
+        "minimum": 180
+      }
     },
     {
       "id": "triangle-budget",
       "status": "PASS",
       "detail": {
-        "triangles": 57892,
+        "triangles": 64736,
         "budget": [
           20000,
           220000
@@ -421,59 +4329,129 @@
       }
     },
     {
-      "id": "neutral-unbranded-materials",
-      "status": "PASS",
-      "detail": "Neutral materials only; no manufacturer logo or exact livery claim."
-    },
-    {
-      "id": "transport-pose-cylinder-visual-closure",
+      "id": "review-renders-measured",
       "status": "PASS",
       "detail": {
-        "static_bucket_closure_errors_m": {
-          "bucket_rod_to_bellcrank_error_m": 5.962897962683199e-07,
-          "dogbone_to_bellcrank_error_m": 8.350158375268972e-07,
-          "dogbone_to_bucket_lug_error_m": 8.472907394624193e-07
-        },
-        "published_stroke_travel_asserted": false
-      }
-    },
-    {
-      "id": "review-renders-nonempty",
-      "status": "PASS",
-      "detail": {
-        "count": 8,
-        "minimum_bytes": 20000
+        "method": "Decode every generated PNG and measure exact dimensions, bytes, signature, SHA-256, and sampled luminance span.",
+        "renders": [
+          {
+            "path": "review/renders/cat-320-operator-side.png",
+            "sha256": "48c84f5b222324cf2061d84242363db223de0412dc9c211cddfaafe3d6270303",
+            "bytes": 319435,
+            "width_px": 720,
+            "height_px": 540,
+            "png_signature": true,
+            "sampled_luminance_min": 0.015135687234997749,
+            "sampled_luminance_max": 0.7840981116890907,
+            "sampled_luminance_span": 0.768962424454093,
+            "pass": true
+          },
+          {
+            "path": "review/renders/cat-320-right-three-quarter.png",
+            "sha256": "f265dae351aeeed3ad39ccc81169aa8408185f7e972f30465e03ad453962771d",
+            "bytes": 314980,
+            "width_px": 720,
+            "height_px": 540,
+            "png_signature": true,
+            "sampled_luminance_min": 0.07120627825409175,
+            "sampled_luminance_max": 0.8045757575273512,
+            "sampled_luminance_span": 0.7333694792732595,
+            "pass": true
+          },
+          {
+            "path": "review/renders/cat-320-rear-three-quarter.png",
+            "sha256": "f69398dacc86931875455dd7d24da3b9fd8364fd73aa68e9e0a2bd2440673bf5",
+            "bytes": 362581,
+            "width_px": 720,
+            "height_px": 540,
+            "png_signature": true,
+            "sampled_luminance_min": 0.08964549284130334,
+            "sampled_luminance_max": 0.8279859522104263,
+            "sampled_luminance_span": 0.738340459369123,
+            "pass": true
+          },
+          {
+            "path": "review/renders/cat-320-front-equipment.png",
+            "sha256": "6e5eadda58a62a0c30a51de9746e0eb97cdcfb74b6b6e1499eb932246106ea17",
+            "bytes": 344329,
+            "width_px": 720,
+            "height_px": 540,
+            "png_signature": true,
+            "sampled_luminance_min": 0.053517651319503784,
+            "sampled_luminance_max": 0.7913749740004539,
+            "sampled_luminance_span": 0.7378573226809501,
+            "pass": true
+          },
+          {
+            "path": "review/renders/cat-320-linkage-detail.png",
+            "sha256": "bd42c09e847e12688113a8efc72b20ab3e438ca4d66c454469fc5cc84c3d3cd3",
+            "bytes": 408917,
+            "width_px": 720,
+            "height_px": 540,
+            "png_signature": true,
+            "sampled_luminance_min": 0.011764707043766974,
+            "sampled_luminance_max": 0.9350526124954223,
+            "sampled_luminance_span": 0.9232879054516553,
+            "pass": true
+          },
+          {
+            "path": "review/renders/cat-320-drive-sprocket-detail.png",
+            "sha256": "2e491c05fc9139ea406741a4e596b05cbcfd1016b99902cb0bfc8e52a5248146",
+            "bytes": 572289,
+            "width_px": 720,
+            "height_px": 540,
+            "png_signature": true,
+            "sampled_luminance_min": 0.019057255763188004,
+            "sampled_luminance_max": 0.8415373239517211,
+            "sampled_luminance_span": 0.8224800681885331,
+            "pass": true
+          },
+          {
+            "path": "review/renders/cat-320-hydraulic-routing-detail.png",
+            "sha256": "469da1a811c1180f7e0eb7a2dcd23ad285986159726813823bf72fb3ee68f80c",
+            "bytes": 376366,
+            "width_px": 720,
+            "height_px": 540,
+            "png_signature": true,
+            "sampled_luminance_min": 0.03529411926865578,
+            "sampled_luminance_max": 0.8790337923049927,
+            "sampled_luminance_span": 0.8437396730363369,
+            "pass": true
+          },
+          {
+            "path": "review/renders/cat-320-articulated-review.png",
+            "sha256": "1c9b8f130ed8a069c6029c72aa5b18a673c77a984b904ab0a50210dce195ee4a",
+            "bytes": 320022,
+            "width_px": 720,
+            "height_px": 540,
+            "png_signature": true,
+            "sampled_luminance_min": 0.02214510004855692,
+            "sampled_luminance_max": 0.8275185012578964,
+            "sampled_luminance_span": 0.8053734012093394,
+            "pass": true
+          }
+        ]
       }
     },
     {
       "id": "configuration-freeze",
       "status": "PENDING",
-      "detail": "Research candidate retains unresolved coupler, thumb, OPG, grade-control, camera, serial/order, and rights choices."
+      "detail": "Research candidate retains unresolved serial/order, coupler, thumb, OPG, grade/camera, and rights choices."
     },
     {
-      "id": "mechanical-solver",
+      "id": "continuous-mechanical-limit-solver",
       "status": "PENDING",
-      "detail": "No solver, limits, or cylinder travel validation yet."
+      "detail": "Required PASS gates cover the two declared reconstructed review poses and geometric reachability only; no continuous manufacturer limit solver is claimed."
     },
     {
-      "id": "published-working-envelope",
+      "id": "continuous-swept-collision-engineering",
       "status": "PENDING",
-      "detail": "Dig depth/reach are recorded evidence constraints but are not demonstrated by this static study."
-    },
-    {
-      "id": "bucket-linkage-kinematic-closure",
-      "status": "PENDING",
-      "detail": "Current linkage is reconstructed visual closure only."
-    },
-    {
-      "id": "ground-self-swept-collision",
-      "status": "PENDING",
-      "detail": "No swept-volume or collision solver exists."
+      "detail": "Required collision PASS gates cover measured declared poses, not a continuous swept-volume engineering analysis."
     },
     {
       "id": "critic-human-visual-review",
       "status": "PENDING",
-      "detail": "Overall critic must inspect exact render and asset hashes."
+      "detail": "Overall critic must inspect the exact render and asset hashes."
     },
     {
       "id": "viewer-browser-accessibility-mobile-selection-performance",

@@ -29,11 +29,24 @@ GLB_PATH = MACHINE_DIR / "assets/john-deere-1270g-structural-study.glb"
 RECEIPT_PATH = MACHINE_DIR / "production/asset-receipt.json"
 VALIDATION_PATH = MACHINE_DIR / "production/validation.json"
 RENDER_DIR = MACHINE_DIR / "review/renders"
+BUILD_INPUT_PATH = MACHINE_DIR / "source/build-input.json"
+SOURCE_MANIFEST_PATH = MACHINE_DIR / "evidence/source-manifest.json"
+DESIGN_PATH = MACHINE_DIR / "source/design.json"
+MECHANISM_PATH = MACHINE_DIR / "mechanism.json"
 
 
 def mv(x: float, y: float, z: float) -> Vector:
     """Machine +X/+Y/+Z to Blender +X/+Z/+Y storage."""
     return Vector((x, z, y))
+
+
+def load_build_input() -> dict:
+    payload = json.loads(BUILD_INPUT_PATH.read_text(encoding="utf-8"))
+    if payload.get("machine_id") != MACHINE_ID or payload.get("configuration_id") != CONFIGURATION_ID:
+        raise RuntimeError("build-input identity does not match builder identity")
+    if not payload.get("export_pivots_world_xyz_m") or not payload.get("viewer_motion_nodes"):
+        raise RuntimeError("build-input must bind pivots and viewer motion nodes")
+    return payload
 
 
 PUBLISHED = {
@@ -163,6 +176,41 @@ def set_parent(obj: bpy.types.Object, parent: bpy.types.Object, preserve_world=T
     obj.parent = parent
     if preserve_world:
         obj.matrix_world = world
+
+
+def rebase_export_pivot(obj: bpy.types.Object, machine_world_xyz) -> None:
+    """Give an exported pivot real local TRS while preserving its static children."""
+    child_world = {child: child.matrix_world.copy() for child in obj.children}
+    target_world = Matrix.Translation(mv(*machine_world_xyz))
+    parent_world = obj.parent.matrix_world.copy() if obj.parent else Matrix.Identity(4)
+    obj.matrix_parent_inverse = Matrix.Identity(4)
+    obj.matrix_basis = parent_world.inverted() @ target_world
+    bpy.context.view_layer.update()
+    for child, world in child_world.items():
+        child.matrix_parent_inverse = Matrix.Identity(4)
+        child.matrix_basis = target_world.inverted() @ world
+    bpy.context.view_layer.update()
+
+
+def prepare_export_motion_hierarchy(root: bpy.types.Object, build_input: dict) -> None:
+    """Create exported CH7 joint roots; unsupported compound joints stay static."""
+    slew = ART["slew"]
+    lift = add_empty("CH7_Lift_Pivot_Reconstructed", (0, 0, 0), "Boom", 0.18, slew)
+    fold = add_empty("CH7_Fold_Pivot_Reconstructed", (0, 0, 0), "Boom", 0.17, lift)
+    telescope = add_empty("CH7_Telescope_Pivot_Reconstructed", (0, 0, 0), "Boom", 0.16, fold)
+    for name in ("CH7_InnerBoom", "CH7_InnerBoom_ParallelLink", "CH7_LiftCylinder", "CH7_LiftRod", "CH7_BasePin"):
+        set_parent(ART[name], lift)
+    for name in ("CH7_OuterBoom", "CH7_FoldCylinder", "CH7_FoldRod", "CH7_ElbowPin"):
+        set_parent(ART[name], fold)
+    for name in ("CH7_TelescopeHousing", "CH7_Telescope", "CH7_TelescopeCylinder", "CH7_TelescopeRod", "CH7_WristPin"):
+        set_parent(ART[name], telescope)
+    set_parent(ART["rotator"], telescope)
+    ART.update(lift_pivot=lift, fold_pivot=fold, telescope_pivot=telescope)
+    for name, machine_xyz in build_input["export_pivots_world_xyz_m"].items():
+        obj = bpy.data.objects.get(name)
+        if obj is None:
+            raise RuntimeError(f"build-input pivot is absent: {name}")
+        rebase_export_pivot(obj, machine_xyz)
 
 
 def material(name: str, color: tuple[float, float, float, float], metallic=0.0,
@@ -970,8 +1018,24 @@ def render_review_set() -> None:
 
     reset_articulation()
     apply_pose("transport")
+    # Review-only cutaway: the near pair of 1.46 m tires otherwise hides the
+    # balanced-bogie beam, central hub, and axle stubs completely. Hide that
+    # wheel subtree for this diagnostic frame, then restore it before every
+    # subsequent render and before the public export.
+    bogie_cutaway_roots = [
+        bpy.data.objects["Front_Rear_L_Root"],
+        bpy.data.objects["Front_Front_L_Root"],
+    ]
+    bogie_cutaway_objects = [
+        obj for obj in bpy.data.objects
+        if any(obj == root or is_descendant_of(obj, root) for root in bogie_cutaway_roots)
+    ]
+    for obj in bogie_cutaway_objects:
+        obj.hide_render = True
     render_view("1270g-front-bogie-detail.png", (3.0, 1.85, -4.7),
                 (2.15, 0.70, -0.75), 70)
+    for obj in bogie_cutaway_objects:
+        obj.hide_render = False
     render_view("1270g-cab-operator-side.png", (0.85, 3.0, -4.8),
                 (0.75, 2.52, 0.0), 72)
 
@@ -1226,6 +1290,18 @@ def inspect_glb(path: Path) -> dict:
                      and root.get("translation", [0, 0, 0]) == [0, 0, 0]
                      and root.get("rotation", [0, 0, 0, 1]) == [0, 0, 0, 1]
                      and root.get("scale", [1, 1, 1]) == [1, 1, 1])
+    node_world_translation = {}
+    node_parent = {}
+    def visit_node(index: int, parent_world: Matrix, parent_name=None) -> None:
+        node = nodes[index]
+        world = parent_world @ gltf_node_matrix(node)
+        name = node.get("name", f"node-{index}")
+        node_world_translation[name] = [round(world[row][3], 6) for row in range(3)]
+        node_parent[name] = parent_name
+        for child in node.get("children", []):
+            visit_node(child, world, name)
+    for root_index in scene_nodes:
+        visit_node(root_index, Matrix.Identity(4))
     return {
         "glb_version": gltf.get("asset", {}).get("version"),
         "default_scene_direct_root_count": len(scene_nodes),
@@ -1240,6 +1316,8 @@ def inspect_glb(path: Path) -> dict:
         "nonidentity_mesh_scales": nonidentity_scales,
         "leaked_helpers": sorted(helpers & node_names),
         "visible_bounds_m": decoded_glb_bounds(gltf, binary),
+        "node_world_translation_xyz_m": node_world_translation,
+        "node_parent": node_parent,
     }
 
 
@@ -1293,8 +1371,8 @@ def validate(root: bpy.types.Object, counts: dict, bounds: dict) -> dict:
         expected = PUBLISHED[fact_id]
         delta = abs(actual - expected)
         gates.append(gate(
-            f"published-{fact_id}", "PASS" if delta <= tolerances[fact_id] else "FAIL",
-            "Published configuration constraint represented by an explicit independently authored datum; publication art is not treated as a scale drawing.",
+            f"published-{fact_id}", "PENDING",
+            "Design-input datum retained for reconstruction; this does not claim an independently decoded public-geometry measurement.",
             {"value": expected, "tolerance": tolerances[fact_id]},
             {"value": round(actual, 6), "absolute_delta": round(delta, 6)},
         ))
@@ -1303,8 +1381,8 @@ def validate(root: bpy.types.Object, counts: dict, bounds: dict) -> dict:
     reach = max_pose["selected_horizontal_reach"]
     apply_pose(RECONSTRUCTED["retained_pose"])
     gates.append(gate(
-        "published-selected-maximum-reach", "PASS" if abs(reach - 8.6) <= 0.001 else "FAIL",
-        "The selected 8.6 m head-included choice is represented in the max-reach review pose. Crane pivot, segment lengths and head reference point remain reconstructed.",
+        "published-selected-maximum-reach", "PENDING",
+        "The 8.6 m choice is represented only by a transient reconstructed review pose; it is not shipped motion or manufacturer-bound pivot proof.",
         {"value_m": 8.6, "tolerance_m": 0.001, "head_identity": "H480C reference head"},
         {"value_m": round(reach, 6), "pose": max_pose},
     ))
@@ -1385,7 +1463,9 @@ def semantic_nodes() -> list[str]:
         "FrontBogieBeam_L", "FrontBogieBeam_R", "RearRigidAxle_Front",
         "RearRigidAxle_Rear", "CabRotation_Root_Reconstructed",
         "CabLeveling_Root_Reconstructed", "PowerUnit_Core",
-        "CH7_Slew_Root_Reconstructed", "CH7_InnerBoom", "CH7_OuterBoom",
+        "CH7_Slew_Root_Reconstructed", "CH7_Lift_Pivot_Reconstructed",
+        "CH7_Fold_Pivot_Reconstructed", "CH7_Telescope_Pivot_Reconstructed",
+        "CH7_InnerBoom", "CH7_OuterBoom",
         "CH7_TelescopeHousing", "CH7_Telescope", "CH7_LiftCylinder",
         "CH7_LiftRod", "CH7_FoldCylinder", "CH7_FoldRod",
         "Head_Rotator_Root_Reconstructed", "H480C_ReferenceHead_Root_Reconstructed",
@@ -1398,6 +1478,134 @@ def semantic_nodes() -> list[str]:
 def append_post_export_gates(validation: dict, scale_result: dict,
                              glb: dict) -> None:
     gates = validation["gates"]
+    build_input = load_build_input()
+    design = json.loads(DESIGN_PATH.read_text(encoding="utf-8"))
+    mechanism = json.loads(MECHANISM_PATH.read_text(encoding="utf-8"))
+    if (len(build_input["retained_fact_ids"]) != len(set(build_input["retained_fact_ids"]))
+            or build_input["retained_fact_ids"] != design["published_constraints_used"]):
+        raise RuntimeError("build-input retained facts do not exactly match source/design.json")
+    decoded_nodes = glb["node_world_translation_xyz_m"]
+    pivot_actual = {
+        name: decoded_nodes.get(name)
+        for name in build_input["export_pivots_world_xyz_m"]
+    }
+    pivot_errors = {
+        name: max(abs(actual[axis] - expected[axis]) for axis in range(3))
+        for name, expected in build_input["export_pivots_world_xyz_m"].items()
+        for actual in [pivot_actual.get(name)] if actual is not None
+    }
+    pivots_ok = (
+        len(pivot_errors) == len(build_input["export_pivots_world_xyz_m"])
+        and max(pivot_errors.values(), default=math.inf) <= 1e-5
+    )
+    expected_parents = {
+        "CH7_Lift_Pivot_Reconstructed": "CH7_Slew_Root_Reconstructed",
+        "CH7_Fold_Pivot_Reconstructed": "CH7_Lift_Pivot_Reconstructed",
+        "CH7_Telescope_Pivot_Reconstructed": "CH7_Fold_Pivot_Reconstructed",
+        "Head_Rotator_Root_Reconstructed": "CH7_Telescope_Pivot_Reconstructed",
+    }
+    actual_parents = {name: glb["node_parent"].get(name) for name in expected_parents}
+    hierarchy_ok = actual_parents == expected_parents
+    motion_nodes = build_input["viewer_motion_nodes"]
+    motion_resolution = {name: name in decoded_nodes for name in motion_nodes}
+    hydraulic_nodes = [
+        "CH7_LiftCylinder", "CH7_LiftRod", "CH7_FoldCylinder",
+        "CH7_FoldRod", "CH7_TelescopeCylinder", "CH7_TelescopeRod",
+    ]
+    hydraulic_resolution = {name: name in decoded_nodes for name in hydraulic_nodes}
+    decoded_width = glb["visible_bounds_m"]["size_m"][2]
+    width_delta = abs(decoded_width - PUBLISHED["minimum-width-600"])
+    required = [
+        gate(
+            "decoded_public_envelope",
+            "PASS" if width_delta <= 0.07 else "FAIL",
+            {
+                "method": "Decode every reachable shipped-GLB POSITION vertex, compose node transforms, and compare the lateral AABB dimension to the published 600-series minimum-width datum.",
+                "evidence": {
+                    "decoded_visible_aabb_m": glb["visible_bounds_m"],
+                    "published_minimum_width_m": PUBLISHED["minimum-width-600"],
+                    "absolute_delta_m": round(width_delta, 6),
+                    "tolerance_m": 0.07,
+                },
+                "semantic_nodes": ["JD1270G_Root"],
+                "fact_ids": ["minimum-width-600"],
+            },
+        ),
+        gate(
+            "decoded_public_pivot_world_positions",
+            "PASS" if pivots_ok else "FAIL",
+            {
+                "method": "Compose shipped-GLB node TRS from the active scene roots and compare every deterministic build-input pivot world translation.",
+                "evidence": {
+                    "expected_xyz_m": build_input["export_pivots_world_xyz_m"],
+                    "decoded_actual_xyz_m": pivot_actual,
+                    "maximum_errors_m": pivot_errors,
+                    "tolerance_m": 0.00001,
+                },
+                "semantic_nodes": list(build_input["export_pivots_world_xyz_m"]),
+                "fact_ids": ["front-axle-middle-joint"],
+            },
+        ),
+        gate(
+            "exported_ch7_joint_hierarchy",
+            "PASS" if hierarchy_ok else "FAIL",
+            {
+                "method": "Decode shipped-GLB parent indices and compare the CH7 slew/lift/fold/telescope/head chain to the required exported hierarchy.",
+                "evidence": {"expected_parent": expected_parents, "decoded_parent": actual_parents},
+                "semantic_nodes": list(expected_parents),
+                "fact_ids": ["boom-type"],
+            },
+        ),
+        gate(
+            "viewer_motion_nodes_resolve",
+            "PASS" if all(motion_resolution.values()) else "FAIL",
+            {
+                "method": "Resolve every viewer Auto/manual motion target by exact name in the decoded shipped-GLB node table.",
+                "evidence": {"resolved": motion_resolution, "static_only": build_input["static_only"]},
+                "semantic_nodes": motion_nodes,
+                "fact_ids": ["turning-angle", "cab-rotation", "boom-slewing-angle"],
+            },
+        ),
+        gate(
+            "static_hydraulic_components_present",
+            "PASS" if all(hydraulic_resolution.values()) else "FAIL",
+            {
+                "method": "Resolve each explicitly static CH7 hydraulic barrel/rod component by exact name in the decoded shipped GLB; no dynamic closure is claimed.",
+                "evidence": {"resolved": hydraulic_resolution, "dynamic_solver": False},
+                "semantic_nodes": hydraulic_nodes,
+                "fact_ids": [],
+            },
+        ),
+        gate(
+            "source_design_contract_binding",
+            "PASS" if (
+                any(
+                    source.get("admission") == "primary"
+                    and source.get("sha256") == build_input["primary_source_sha256"]
+                    for source in json.loads(SOURCE_MANIFEST_PATH.read_text(encoding="utf-8"))["sources"]
+                )
+            ) else "FAIL",
+            {
+                "method": "Hash the deterministic build-input file, verify its machine/configuration identity at load time, and bind its unique retained fact IDs to the manufacturer constraints copied into the receipt.",
+                "evidence": {
+                    "build_input_path": str(BUILD_INPUT_PATH.relative_to(MACHINE_DIR)),
+                    "build_input_sha256": sha256(BUILD_INPUT_PATH),
+                    "design_path": str(DESIGN_PATH.relative_to(MACHINE_DIR)),
+                    "design_sha256": sha256(DESIGN_PATH),
+                    "primary_source_sha256": build_input["primary_source_sha256"],
+                    "retained_fact_count": len(build_input["retained_fact_ids"]),
+                    "unique_fact_count": len(set(build_input["retained_fact_ids"])),
+                },
+                "semantic_nodes": [],
+                "fact_ids": build_input["retained_fact_ids"],
+            },
+        ),
+    ]
+    existing_ids = {item["id"] for item in gates}
+    gates.extend(item for item in required if item["id"] not in existing_ids)
+    if [item["id"] for item in required] != mechanism["required_gates"]:
+        raise RuntimeError("required validation gate order differs from mechanism.json")
+    validation["required_machine_gate_ids"] = mechanism["required_gates"]
     gates.append(gate("public-mesh-identity-scales",
                       "PASS" if not scale_result["residual"] else "FAIL",
                       "Every public Blender mesh has applied local scale before export.",
@@ -1440,7 +1648,7 @@ def write_outputs(validation: dict, source_counts: dict, scale_result: dict,
         "transport-height": "PDF page 7",
         "transport-length": "PDF page 7",
         "ground-clearance": "PDF page 7, dimension E",
-        "selected-maximum-reach": "PDF page 6 and official 8W product page",
+        "selected-maximum-reach": "PDF page 6",
         "turning-angle": "PDF page 6",
         "boom-slewing-angle": "PDF page 6",
         "cab-rotation": "PDF page 6",
@@ -1456,12 +1664,16 @@ def write_outputs(validation: dict, source_counts: dict, scale_result: dict,
                     if fact_id == "transport-length" else "configuration_or_geometry_constraint"),
         })
     published_constraints.extend([
-        {"id": "drive-configuration", "value": "8x8", "source_id": "JD-1270G-8W-LA-PAGE", "location": "official product page", "use": "configuration_identity"},
+        {"id": "drive-configuration", "value": "8x8", "source_id": "JD-1270G-MWH1270GF", "location": "PDF page 7, 8W column", "use": "configuration_identity"},
         {"id": "boom-type", "value": "CH7", "source_id": "JD-1270G-MWH1270GF", "location": "PDF page 6", "use": "configuration_identity"},
-        {"id": "reference-head", "value": "H480C", "source_id": "JD-1270G-8W-LA-PAGE", "location": "official product page", "use": "reference_head_identity_only_geometry_reconstructed"},
+        {"id": "reference-head", "value": "H480C", "source_id": "JD-1270G-MWH1270GF", "location": "PDF page 6, harvester-head list", "use": "reference_head_identity_only_geometry_reconstructed"},
         {"id": "tire-front", "value": "26.5-20", "source_id": "JD-1270G-MWH1270GF", "location": "PDF page 7", "use": "configuration_identity_visual_profile_reconstructed"},
         {"id": "tire-rear", "value": "26.5-20", "source_id": "JD-1270G-MWH1270GF", "location": "PDF page 7", "use": "configuration_identity_visual_profile_reconstructed"},
     ])
+    build_input = load_build_input()
+    receipt_fact_ids = [item["id"] for item in published_constraints]
+    if len(receipt_fact_ids) != len(set(receipt_fact_ids)) or set(receipt_fact_ids) != set(build_input["retained_fact_ids"]):
+        raise RuntimeError("build-input retained_fact_ids do not exactly bind receipt constraints")
     receipt = {
         "schema_version": "1.0.0",
         "machine_id": MACHINE_ID,
@@ -1480,7 +1692,14 @@ def write_outputs(validation: dict, source_counts: dict, scale_result: dict,
             "factory_startup_background_required": True,
             "builder_path": str(BUILDER_PATH.relative_to(MACHINE_DIR)),
             "builder_sha256": sha256(BUILDER_PATH),
+            "builder_bytes": BUILDER_PATH.stat().st_size,
+            "deterministic_build_input": {
+                "path": str(BUILD_INPUT_PATH.relative_to(MACHINE_DIR)),
+                "sha256": sha256(BUILD_INPUT_PATH),
+                "bytes": BUILD_INPUT_PATH.stat().st_size,
+            },
         },
+        "design": {"path": str(DESIGN_PATH.relative_to(MACHINE_DIR)), "sha256": sha256(DESIGN_PATH), "bytes": DESIGN_PATH.stat().st_size},
         "artifacts": {
             "blend": {"path": str(BLEND_PATH.relative_to(MACHINE_DIR)), "sha256": sha256(BLEND_PATH), "bytes": BLEND_PATH.stat().st_size},
             "glb": {"path": str(GLB_PATH.relative_to(MACHINE_DIR)), "sha256": sha256(GLB_PATH), "bytes": GLB_PATH.stat().st_size},
@@ -1510,6 +1729,12 @@ def write_outputs(validation: dict, source_counts: dict, scale_result: dict,
         "semantic_nodes": {name: bpy.data.objects.get(name) is not None for name in semantic_nodes()},
         "source_only_helper_nodes": source_helpers,
         "manufacturer_published_constraints_used": published_constraints,
+        "published_constraint_ids_declared": build_input["retained_fact_ids"],
+        "machine_specific_gate_evidence": [
+            {"id": by_id[gate_id]["id"], "status": by_id[gate_id]["status"], "detail": by_id[gate_id]["detail"]}
+            for by_id in [{item["id"]: item for item in validation["gates"]}]
+            for gate_id in validation["required_machine_gate_ids"]
+        ],
         "reconstructed_values": RECONSTRUCTED,
         "unresolved_choices_and_mechanical_gaps": UNRESOLVED,
         "renders": render_entries,
@@ -1548,6 +1773,8 @@ def main() -> None:
     build_studio()
     add_metadata()
     render_review_set()
+    build_input = load_build_input()
+    prepare_export_motion_hierarchy(root, build_input)
     source_counts = evaluated_counts(root, public_only=False)
     public_counts = evaluated_counts(root, public_only=True)
     bounds = evaluated_public_bounds(root)

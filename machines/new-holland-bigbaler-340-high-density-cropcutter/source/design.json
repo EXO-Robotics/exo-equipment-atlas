@@ -9,7 +9,7 @@
     "width": 2.987,
     "height": 3.454
   },
-  "palette": "sand",
+  "palette": "slate",
   "published_constraints_used": [
     "public-envelope-x",
     "public-envelope-y",
@@ -25,8 +25,8 @@
   "reconstructed_values": {
     "transport_pose": "Chute closed and handrails up define the retained manufacturer-published envelope.",
     "crop_path": "Pickup, CropCutter, stuffer, plunger, knotter and bale chamber volumes are schematic visual cues without crop simulation.",
-    "running_gear": "Tandem running gear is abstracted to the generic square-baler archetype; tire identity remains unresolved because the brochure labels conflict.",
-    "materials": "Neutral unbranded sand, graphite, steel and rubber with no logos, decals or copied trade dress.",
+    "running_gear": "Four visible tires on two reconstructed tandem axles encode the published Auto-Steer feature; tire make, exact order label, tread, suspension centers and linkage remain unresolved because the brochure labels conflict.",
+    "materials": "Neutral unbranded slate, graphite, steel and rubber with restrained amber visibility cues and no logos, decals or copied trade dress.",
     "hidden_geometry": "PTO driveline, flywheel, stuffer crank, plunger crank, knotters, density doors and steering joints are reconstructed.",
     "animation_ranges": "Plunger presentation displacement uses the published 0.748 m stroke span; phase, speed and every other range remain reconstructed."
   },

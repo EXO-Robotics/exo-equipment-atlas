@@ -1,14 +1,14 @@
 {
   "schema_version": "1.0.0",
   "machine_id": "john-deere-8r-410",
-  "configuration_id": "JD-8R410-MY2024-NA-JD9-E23-ILS-CAT4N3-CANDIDATE",
+  "configuration_id": "JD-8R410-MY2024-NA-POWERTECH9L-E23-ILS-CAT4N3-CANDIDATE",
   "freeze_date": "2026-08-29",
   "repository_policy": {
     "source_binaries_committed": false,
     "manufacturer_geometry_committed": false,
     "manufacturer_imagery_committed": false,
     "manual_illustrations_are_scale_drawings": false,
-    "verification": "The official Deere brochure was inspected and hash-bound under research/private. Public output redistributes no manufacturer PDF, imagery, texture, logo or geometry."
+    "verification": "The official North American Deere brochure and the cross-market Latin America product-page reference were inspected and hash-bound under research/private. Public output redistributes no manufacturer PDF, imagery, texture, logo or geometry."
   },
   "sources": [
     {
@@ -35,8 +35,12 @@
       "market": "Latin America",
       "retrieved": "2026-08-29",
       "official_url": "https://www.deere.com/latin-america/es/tractores/tractores-grandes/8r-rt-rx-serie/8r410/",
-      "admission": "corroborating",
-      "use": "Manufacturer-published overall-length corroboration only; width and height are not treated as published for the selected configuration."
+      "local_path": "research/private/john-deere-8r-410/deere-8r-410-latam-product.html",
+      "sha256": "cab00c59b9bd60e96e4c3edfda1293a996f44d14195fce5c8a99303a7c5961c5",
+      "bytes": 479203,
+      "admission": "reference_only",
+      "applicability": "Cross-market 8R 410 product-page reference only. It does not establish the overall length of the selected MY2024 North American configuration.",
+      "use": "Reference for a reconstructed 6.636 m presentation envelope only; no Latin America dimension is promoted to a North American configuration constraint."
     }
   ]
 }

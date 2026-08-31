@@ -16,8 +16,8 @@
   },
   "builder": {
     "path": "source/blender/build_case_ih_axial_flow_8250.py",
-    "sha256": "ce23d0cecda8f96d9f4543fe3b2647ba2d880bae287ac80ca4e13635cdabdf3a",
-    "bytes": 669,
+    "sha256": "7459da5c0775d2c0360718be55fdebc6c4a5fee3d4a58ad7ad2be888931eae28",
+    "bytes": 46261,
     "deterministic": true,
     "network_used": false,
     "downloaded_geometry_used": false,
@@ -27,30 +27,30 @@
   },
   "shared_generator": {
     "path": "../../scripts/fleet/build_machine.py",
-    "sha256": "02b99250651741b462b3dae8b2471db723beb689dfe89e1c7e251d7402fe0f55",
-    "bytes": 78579
+    "sha256": "9e36599f0c9bbac097422a8766e3ef1c81e6fc9432f024d99a24b79da18264df",
+    "bytes": 81778
   },
   "design": {
     "path": "source/design.json",
-    "sha256": "ec030b91b2ee5a51d17114fa5d132ef2200144025b8eb82a26b120a36660fd77",
-    "bytes": 2252,
+    "sha256": "333c3cbc79c066d2d92b8ff2c27a44fbb8a51f17bf3051ca3fc65a4171a4fb91",
+    "bytes": 2724,
     "schema_version": "1.0.0"
   },
   "artifacts": {
     "blend": {
       "path": "source/blender/case-ih-axial-flow-8250-structural-study.blend",
-      "sha256": "19041eaf22fd659b7ce01403013780eb095bf6fba59ae3526e208f0cc4dadc65",
-      "bytes": 235754
+      "sha256": "c874344ff63618330a8862370f7b044b7595b239f53fa0cb8563f36bb76ba6ff",
+      "bytes": 294468
     },
     "glb": {
       "path": "assets/case-ih-axial-flow-8250-structural-study.glb",
-      "sha256": "b63ddcf3a934cc0a45d51354dfb973eda58434097bb45275cb38547ddebeabe7",
-      "bytes": 1496280
+      "sha256": "a085b91446786ea38d714c29fb0b1c9d8bb34ff4ca2c3c671fa8f1f7ce9ccfe2",
+      "bytes": 1957364
     },
     "validation": {
       "path": "production/validation.json",
-      "sha256": "01325948155579f4f25d042d960efcddb36064f64e94ec9127d582e1e6cfa3c9",
-      "bytes": 7922
+      "sha256": "3b4e097134d26f360d95da2565b5f7fdb96aa4c5651ef34a247c1ee1653b4a31",
+      "bytes": 51716
     }
   },
   "scene": {
@@ -82,10 +82,10 @@
       3.904,
       3.962
     ],
-    "objects": 212,
-    "meshes": 190,
-    "triangles": 28968,
-    "materials": 7
+    "objects": 292,
+    "meshes": 255,
+    "triangles": 37356,
+    "materials": 10
   },
   "glb_contract": {
     "glb_version": "2.0",
@@ -94,18 +94,18 @@
     "root_name": "Machine_Root",
     "root_record": {},
     "identity_root": true,
-    "nodes": 212,
-    "mesh_nodes": 190,
-    "mesh_definitions": 190,
-    "materials": 7,
-    "triangles": 28968,
+    "nodes": 292,
+    "mesh_nodes": 255,
+    "mesh_definitions": 255,
+    "materials": 10,
+    "triangles": 37356,
     "cameras": 0,
     "punctual_lights": false,
     "images": 0,
     "textures": 0,
     "nonidentity_mesh_scales": {},
     "helper_like_mesh_nodes": [],
-    "semantic_motion_nodes": 21,
+    "semantic_motion_nodes": 37,
     "bounds": {
       "min_m": [
         -4.5,
@@ -129,49 +129,514 @@
     "Fixed_Structure_ROOT": true,
     "Running_Gear_ROOT": true,
     "Hydraulics_ROOT": true,
-    "Service_Detail_ROOT": true,
     "Header_Lift_Pivot": true,
-    "Header_ROOT": true,
-    "Reel_Pivot": true,
-    "Reel_ROOT": true,
     "Feederhouse_ROOT": true,
+    "Feeder_Lateral_Tilt_Pivot": true,
+    "Feeder_Faceplate_ForeAft_Pivot": true,
+    "Feeder_Faceplate_ROOT": true,
+    "AFX_Rotor_ROOT": true,
+    "Cleaning_System_Level_ROOT": true,
     "Unloader_Swing_Pivot": true,
-    "Unloader_ROOT": true
+    "Unloader_ROOT": true,
+    "Unloader_Fold_Pivot": true,
+    "Unloader_Fold_ROOT": true,
+    "Unloader_Spout_Pivot": true,
+    "Unloader_Spout_ROOT": true,
+    "Front_Drive_Axle_ROOT": true,
+    "Rear_Axle_ROOT": true,
+    "Rear_Steering_L_Pivot": true,
+    "Rear_Steering_R_Pivot": true
   },
-  "manufacturer_published_constraints_used": [
+  "semantic_node_roles": {},
+  "published_constraint_ids_declared": [
     "public-envelope-y",
-    "public-envelope-z",
+    "wheelbase-2wd",
     "feeder-width",
     "feeder-length",
     "feeder-lateral-tilt",
+    "feeder-faceplate-tilt",
     "rotor-diameter",
+    "self-leveling-slope",
     "grain-tank-capacity",
     "unloading-auger-length"
   ],
+  "machine_specific_gate_evidence": [
+    {
+      "id": "model_year_boundary_visible",
+      "status": "PASS",
+      "detail": {
+        "method": "configuration and viewer boundary disclosure comparison",
+        "evidence": {
+          "configuration_model_year": "unresolved; admitted specification brochure copyright 2022",
+          "viewer_boundary": "Copyright-2022 250 Series research candidate with exact model year unresolved. This six-contact dual-front, 2WD, feeder-only study does not claim the brochure's single-tire width as its selected transport width. Overall length, tire sizes and offsets, hidden crop-flow geometry, pivots, steering and motion limits are reconstructed.",
+          "authority": "configuration_and_viewer_disclosure_check"
+        },
+        "semantic_nodes": [],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "frozen_visible_configuration",
+      "status": "PASS",
+      "detail": {
+        "method": "selected-option record compared with authored tire and attachment topology",
+        "evidence": {
+          "selected_front_running_gear": "dual_drive_tires_visual_study",
+          "selected_header": "not_fitted_feederhouse_only",
+          "selected_grain_tank": "410_bu_14448_L",
+          "tire_meshes": [
+            "Front_L_Inner_Tire",
+            "Front_L_Outer_Tire",
+            "Front_R_Inner_Tire",
+            "Front_R_Outer_Tire",
+            "Rear_L_Tire",
+            "Rear_R_Tire"
+          ],
+          "fitted_header_meshes": [],
+          "fitted_residue_option_meshes": [],
+          "visible_grain_tank_mesh": "Grain_Tank_Lower"
+        },
+        "semantic_nodes": [
+          "Front_Drive_Axle_ROOT",
+          "Rear_Axle_ROOT",
+          "Feederhouse_ROOT",
+          "Grain_Tank_Lower"
+        ],
+        "fact_ids": [
+          "grain-tank-capacity"
+        ]
+      }
+    },
+    {
+      "id": "single_identity_root",
+      "status": "PASS",
+      "detail": {
+        "method": "GLB scene-root identity inspection",
+        "evidence": {
+          "scene_root_count": 1,
+          "root_name": "Machine_Root",
+          "identity_root": true
+        },
+        "semantic_nodes": [
+          "Machine_Root"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "wheeled_contact",
+      "status": "PASS",
+      "detail": {
+        "method": "world-space tire AABB contact and axle-center wheelbase measurement",
+        "evidence": {
+          "contact_count": 6,
+          "tire_minimum_y_m": {
+            "Front_L_Inner_Tire": 0.0,
+            "Front_L_Outer_Tire": 0.0,
+            "Front_R_Inner_Tire": 0.0,
+            "Front_R_Outer_Tire": 0.0,
+            "Rear_L_Tire": 0.0,
+            "Rear_R_Tire": 0.0
+          },
+          "measured_wheelbase_m": 3.752,
+          "published_2wd_wheelbase_m": 3.752,
+          "wheelbase_fact": {
+            "id": "wheelbase-2wd",
+            "subject": "2WD axle wheelbase",
+            "value": 3.752,
+            "unit": "m",
+            "authority": "manufacturer_published",
+            "source_id": "CASEIH-AF250-US-BROCHURE-2022",
+            "location": "PDF physical page 19, 147.7 in 2WD axle row"
+          },
+          "absolute_tolerance_m": 0.003
+        },
+        "semantic_nodes": [
+          "Front_Drive_Axle_ROOT",
+          "Rear_Axle_ROOT",
+          "Rear_Steering_L_Pivot",
+          "Rear_Steering_R_Pivot"
+        ],
+        "fact_ids": [
+          "wheelbase-2wd"
+        ]
+      }
+    },
+    {
+      "id": "feeder_and_faceplate_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "world-space feeder dimensions plus parent-chain continuity inspection",
+        "evidence": {
+          "measured_feeder_length_m": 2.388,
+          "published_feeder_length_m": 2.388,
+          "measured_feeder_width_m": 1.372,
+          "published_feeder_width_m": 1.372,
+          "coupler_descends_from_lift_pivot": true,
+          "viewer_lateral_tilt_range_deg": [
+            -4.999973,
+            4.999973
+          ],
+          "published_lateral_tilt_each_side_deg": 5.0,
+          "viewer_faceplate_total_range_deg": 12.000028,
+          "published_faceplate_total_range_deg": 12.0,
+          "feeder_bounds_m": {
+            "min": [
+              2.032,
+              0.860753,
+              -0.686
+            ],
+            "max": [
+              4.42,
+              1.48,
+              0.686
+            ]
+          }
+        },
+        "semantic_nodes": [
+          "Header_Lift_Pivot",
+          "Feederhouse_ROOT",
+          "Feeder_Lateral_Tilt_Pivot",
+          "Feeder_Faceplate_ForeAft_Pivot",
+          "Feeder_Faceplate_ROOT"
+        ],
+        "fact_ids": [
+          "feeder-width",
+          "feeder-length",
+          "feeder-lateral-tilt",
+          "feeder-faceplate-tilt"
+        ]
+      }
+    },
+    {
+      "id": "rotor_containment",
+      "status": "PASS",
+      "detail": {
+        "method": "world-space rotor diameter and containment-guard margin measurement",
+        "evidence": {
+          "measured_rotor_size_xyz_m": [
+            3.1,
+            0.762,
+            0.762
+          ],
+          "published_rotor_diameter_m": 0.762,
+          "minimum_guard_margin_m": 0.129,
+          "rotor_bounds_m": {
+            "min": [
+              -1.9,
+              1.869,
+              -0.381
+            ],
+            "max": [
+              1.2,
+              2.631,
+              0.381
+            ]
+          },
+          "guard_bounds_m": {
+            "min": [
+              -2.06,
+              1.74,
+              -0.625
+            ],
+            "max": [
+              1.36,
+              2.76,
+              0.625
+            ]
+          }
+        },
+        "semantic_nodes": [
+          "AFX_Rotor_ROOT"
+        ],
+        "fact_ids": [
+          "rotor-diameter"
+        ]
+      }
+    },
+    {
+      "id": "cleaning_system_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "world-space cleaning-component AABBs inside reconstructed containment",
+        "evidence": {
+          "component_names": [
+            "Cleaning_Grain_Pan",
+            "Cleaning_Upper_Sieve",
+            "Cleaning_Lower_Sieve",
+            "Crossflow_Fan"
+          ],
+          "reconstructed_separator_bounds_m": {
+            "min": [
+              -2.775,
+              0.65,
+              -1.26
+            ],
+            "max": [
+              1.675,
+              3.41,
+              1.26
+            ]
+          },
+          "samples": [
+            {
+              "level_angle_deg": -7.0,
+              "bounds_m": {
+                "min": [
+                  -2.155367,
+                  0.72306,
+                  -0.806752
+                ],
+                "max": [
+                  0.900674,
+                  1.514669,
+                  0.855499
+                ]
+              },
+              "minimum_containment_margin_m": 0.07306
+            },
+            {
+              "level_angle_deg": 0.0,
+              "bounds_m": {
+                "min": [
+                  -2.155367,
+                  0.8045,
+                  -0.83
+                ],
+                "max": [
+                  0.900674,
+                  1.426472,
+                  0.83
+                ]
+              },
+              "minimum_containment_margin_m": 0.1545
+            },
+            {
+              "level_angle_deg": 7.0,
+              "bounds_m": {
+                "min": [
+                  -2.155367,
+                  0.72306,
+                  -0.855499
+                ],
+                "max": [
+                  0.900674,
+                  1.514669,
+                  0.806752
+                ]
+              },
+              "minimum_containment_margin_m": 0.07306
+            }
+          ],
+          "minimum_sampled_margin_m": 0.07306,
+          "viewer_level_range_deg": [
+            -6.999997,
+            6.999997
+          ],
+          "published_level_range_deg": [
+            -7.0,
+            7.0
+          ],
+          "authority": "reconstructed_containment_not_cleaning_performance"
+        },
+        "semantic_nodes": [
+          "Cleaning_System_Level_ROOT",
+          "Crossflow_Fan_ROOT"
+        ],
+        "fact_ids": [
+          "self-leveling-slope"
+        ]
+      }
+    },
+    {
+      "id": "unloader_fold_swing_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "centerline-length sum and nested fold/swing parent-chain inspection",
+        "evidence": {
+          "mechanism_joint_ids": {
+            "swing": "unloading_auger_swing",
+            "fold": "unloading_auger_fold"
+          },
+          "base_xyz_m": [
+            -0.82,
+            2.93,
+            -1.43
+          ],
+          "inner_centerline_m": 3.6,
+          "outer_centerline_m": 5.200000000000001,
+          "total_centerline_m": 8.8,
+          "fold_unfold_range_deg": [
+            0.0,
+            -180.0
+          ],
+          "swing_range_deg": [
+            0.0,
+            62.0
+          ],
+          "published_total_centerline_m": 8.8,
+          "outer_tube_descends_from_fold_pivot": true,
+          "fold_pivot_descends_from_swing_pivot": true
+        },
+        "semantic_nodes": [
+          "Unloader_Swing_Pivot",
+          "Unloader_ROOT",
+          "Unloader_Fold_Pivot",
+          "Unloader_Fold_ROOT",
+          "Unloader_Spout_Pivot",
+          "Unloader_Spout_ROOT"
+        ],
+        "fact_ids": [
+          "unloading-auger-length"
+        ]
+      }
+    },
+    {
+      "id": "ground_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "neutral whole-machine bounds plus sampled moving-unloader minimum height",
+        "evidence": {
+          "neutral_public_minimum_y_m": 0.0,
+          "measured_public_height_m": 3.904,
+          "published_cab_height_m": 3.904,
+          "sampled_unloader_minimum_y_m": 2.81,
+          "absolute_tolerance_m": 0.003
+        },
+        "semantic_nodes": [
+          "Machine_Root",
+          "Unloader_Swing_Pivot",
+          "Unloader_Fold_Pivot"
+        ],
+        "fact_ids": [
+          "public-envelope-y"
+        ]
+      }
+    },
+    {
+      "id": "self_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "bounded moving-component versus protected-body AABB separation sampling",
+        "evidence": {
+          "sampled_unloader_minimum_body_aabb_separation_m": 0.05,
+          "samples": [
+            {
+              "swing_deg": 0.0,
+              "fold_deg": 0.0,
+              "minimum_y_m": 2.81,
+              "minimum_body_aabb_separation_m": 0.05
+            },
+            {
+              "swing_deg": 0.0,
+              "fold_deg": -45.0,
+              "minimum_y_m": 2.81,
+              "minimum_body_aabb_separation_m": 0.08
+            },
+            {
+              "swing_deg": 0.0,
+              "fold_deg": -90.0,
+              "minimum_y_m": 2.81,
+              "minimum_body_aabb_separation_m": 0.08
+            },
+            {
+              "swing_deg": 0.0,
+              "fold_deg": -135.0,
+              "minimum_y_m": 2.81,
+              "minimum_body_aabb_separation_m": 0.08
+            },
+            {
+              "swing_deg": 0.0,
+              "fold_deg": -180.0,
+              "minimum_y_m": 2.81,
+              "minimum_body_aabb_separation_m": 0.08
+            },
+            {
+              "swing_deg": 15.0,
+              "fold_deg": -180.0,
+              "minimum_y_m": 2.81,
+              "minimum_body_aabb_separation_m": 0.083067
+            },
+            {
+              "swing_deg": 30.0,
+              "fold_deg": -180.0,
+              "minimum_y_m": 2.81,
+              "minimum_body_aabb_separation_m": 0.092058
+            },
+            {
+              "swing_deg": 45.0,
+              "fold_deg": -180.0,
+              "minimum_y_m": 2.81,
+              "minimum_body_aabb_separation_m": 0.10636
+            },
+            {
+              "swing_deg": 62.0,
+              "fold_deg": -180.0,
+              "minimum_y_m": 2.81,
+              "minimum_body_aabb_separation_m": 0.127748
+            }
+          ],
+          "method": "conservative moving-component versus protected-body AABB separation"
+        },
+        "semantic_nodes": [
+          "Unloader_Swing_Pivot",
+          "Unloader_Fold_Pivot"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "swept_volume_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "nine-position fold and swing presentation-sweep sampling",
+        "evidence": {
+          "sample_count": 9,
+          "sampled_fold_range_deg": [
+            0,
+            -180
+          ],
+          "sampled_swing_range_deg": [
+            0,
+            62
+          ],
+          "minimum_ground_y_m": 2.81,
+          "minimum_body_aabb_separation_m": 0.05,
+          "authority": "bounded_presentation_sampling_not_operational_clearance_authority"
+        },
+        "semantic_nodes": [
+          "Unloader_Swing_Pivot",
+          "Unloader_Fold_Pivot"
+        ],
+        "fact_ids": []
+      }
+    }
+  ],
   "reconstructed_values": {
     "longitudinal_envelope_m": 9.0,
-    "longitudinal_envelope_note": "Overall length is not published in the admitted brochure and is reconstructed for presentation; only Y and Z are manufacturer-published public-envelope axes.",
-    "header_interface": "Generic narrow feeder/header interface cue only; no named harvesting attachment or width claim.",
-    "running_gear": "Generic 2WD wheeled presentation; tire sizes, loaded radii, offsets and steering geometry are reconstructed.",
+    "longitudinal_envelope_note": "Overall length is not published in the admitted brochure and is reconstructed for presentation; only the Y envelope is manufacturer-published for the selected study.",
+    "lateral_envelope_note": "The selected dual-front tire size and offsets are unresolved. The 3.962 m retained presentation width equals the brochure's single-tire 120 in tread row and is therefore reconstructed for this dual-front study, not claimed as its published transport width.",
+    "header_interface": "Published 1.372 m by 2.388 m feeder with a coupler interface only; no named harvesting attachment, cutterbar or reel is fitted.",
+    "running_gear": "Selected dual-front 2WD presentation with six tire contacts and the published 3.752 m 2WD wheelbase; tire sizes, loaded radii, dual offsets and steering geometry remain reconstructed.",
     "materials": "Neutral unbranded amber, graphite, steel, rubber and glass with no logos, decals or copied trade dress.",
     "hidden_geometry": "Rotor center, feeder pivot, cleaning shoe, auger hinge and every hydraulic anchor are reconstructed.",
     "animation_ranges": "Conservative presentation ranges only; not machine-specific operating limits.",
     "generic_archetype_geometry": "combine proportions and visible detail are independently reconstructed for this technical study.",
     "visible_envelope_calibration": {
-      "classification": "reconstructed_visible_envelope_calibration",
+      "classification": "authored_visible_envelope_measurement",
       "source_bounds_m": {
         "min_m": [
-          -4.146246,
+          -4.5,
           0.0,
           -1.981
         ],
         "max_m": [
-          4.86,
+          4.5,
           3.904,
           1.981
         ],
         "size_m": [
-          9.006246,
+          9.0,
           3.904,
           3.962
         ]
@@ -194,9 +659,9 @@
         ]
       },
       "axis_scale_factors": [
-        0.999306471,
-        0.999999989,
-        1.000000027
+        1.0,
+        1.0,
+        1.0
       ],
       "calibrated_bounds_m": {
         "min_m": [
@@ -215,20 +680,20 @@
           3.962
         ]
       },
-      "authority": "reconstructed_not_machine_specific_engineering"
+      "authority": "independently_measured_from_authored_geometry"
     }
   },
   "unresolved_choices": [
     "exact model year and production serial family",
     "overall longitudinal envelope",
-    "front and rear tire sizes, offsets and axle option",
+    "front and rear tire sizes, dual offsets and loaded radii",
     "unloading auger fold joint and spout option ordering",
     "residue package",
     "named header attachment",
     "public material and branding authorization"
   ],
   "mechanical_gaps": [
-    "feederhouse pivot, cylinder anchors and header coupler authority",
+    "feederhouse pivot, cylinder anchors and header coupler operating authority",
     "rotor axis and internal crop-flow geometry",
     "cleaning shoe phase, leveling linkage and fan placement",
     "unloading auger hinge, fold joint and swept clearance",
@@ -237,33 +702,33 @@
   "renders": [
     {
       "path": "review/renders/case-ih-axial-flow-8250-operator-side.png",
-      "sha256": "c182854b15e9e5107892dd86a3432a8c546405705e8b5af4c61ee64b5d6cc8d1",
-      "bytes": 262096
+      "sha256": "fe7e1f61470b4fbc9e5c4de406aef49afbd073b6f1ff8261ca76cd05cc3cf38f",
+      "bytes": 291973
     },
     {
       "path": "review/renders/case-ih-axial-flow-8250-front-three-quarter.png",
-      "sha256": "0166519aee3a118486e785750babd73889a256a88a9b6b8cc7f2fcfdca9214c2",
-      "bytes": 322263
+      "sha256": "f5b8d0e7b5ba1b83602c0e96ef3810d43fd302120976eb6cde8c5c0aa9731a66",
+      "bytes": 328524
     },
     {
       "path": "review/renders/case-ih-axial-flow-8250-rear-three-quarter.png",
-      "sha256": "450cf42ef6b88e7fbca99cf79ac5c6947535fa6964fce78ca5da638bdcff2569",
-      "bytes": 296056
+      "sha256": "45c44cb1a7f62fcbd8969a73f3bdf9a6ce213db0dd73117249f1d2184efb5da7",
+      "bytes": 280799
     },
     {
       "path": "review/renders/case-ih-axial-flow-8250-elevated-technical.png",
-      "sha256": "fbc56318a0a2bdbeb36b51d418c809d9a342dca7823ebfab6ae4aebf3b61c384",
-      "bytes": 370829
+      "sha256": "2c7779074c54a6436106e749a91a27e9edb5a60565a1078cd306c5c4bdd846fd",
+      "bytes": 373186
     },
     {
       "path": "review/renders/case-ih-axial-flow-8250-articulation-detail.png",
-      "sha256": "bd0945a29213ac4291fc237d677b5d7504380382f058f529ab1bf0a2f460f8ff",
-      "bytes": 350218
+      "sha256": "54a8664743e1d93101beb7e706bb7bc323ea504083b1ce11e5030f1e423e32b6",
+      "bytes": 302021
     },
     {
       "path": "review/renders/case-ih-axial-flow-8250-right-side.png",
-      "sha256": "be117621aa5b4a94dba3c21bed47d8242dc433cc54f1eab8452ae83f6356ca69",
-      "bytes": 260501
+      "sha256": "a4e7e2294364f30b4cb4418543c7b74302260c46c2c759673b1fe8278050a3eb",
+      "bytes": 265570
     }
   ],
   "build_verdict": "PASS",

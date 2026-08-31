@@ -16,8 +16,8 @@
   },
   "builder": {
     "path": "source/blender/build_volvo_a40j.py",
-    "sha256": "4984f34ce06dcd5696a92d7b080f39f75e334f91a760f1dd8b9e4f2e2f9b4749",
-    "bytes": 6998,
+    "sha256": "a5467c3ba5dcac2a0bb6ae126e9bee09ac691b56d0b14103b28a11f10cc13ada",
+    "bytes": 26363,
     "deterministic": true,
     "network_used": false,
     "downloaded_geometry_used": false,
@@ -27,30 +27,30 @@
   },
   "shared_generator": {
     "path": "../../scripts/fleet/build_machine.py",
-    "sha256": "02b99250651741b462b3dae8b2471db723beb689dfe89e1c7e251d7402fe0f55",
-    "bytes": 78579
+    "sha256": "9e36599f0c9bbac097422a8766e3ef1c81e6fc9432f024d99a24b79da18264df",
+    "bytes": 81778
   },
   "design": {
     "path": "source/design.json",
-    "sha256": "b32305b278511c73c6e585cf896ca6a647b1c0bc8358d295c22683f2857370f6",
-    "bytes": 1219,
+    "sha256": "89ebcc2750f1324464b5e1608cee52a5fd3d06f6c1a43ed9c6e5a915bb576e8d",
+    "bytes": 1341,
     "schema_version": "1.0.0"
   },
   "artifacts": {
     "blend": {
       "path": "source/blender/volvo-a40j-structural-study.blend",
-      "sha256": "bd54062d08e3420dbcaceadfb1eed0b5c12900cf13b17a527d717fb426406b7d",
-      "bytes": 244187
+      "sha256": "55eaed38064f596021942aad66b1c52455c20dbf1c6394f049037de5ac9ab4fd",
+      "bytes": 237317
     },
     "glb": {
       "path": "assets/volvo-a40j-structural-study.glb",
-      "sha256": "bb2f522b3e53f8e3b6ca260952f7eb32c7f2bfb50a846be74ba2cd40b8285d5d",
-      "bytes": 1413016
+      "sha256": "9274229097f1a36999b8f1ef782a8d0a548571f9e4f4bc220d3bed4ccb6f7c80",
+      "bytes": 1416892
     },
     "validation": {
       "path": "production/validation.json",
-      "sha256": "36acf0de1dd41e2fd7bbd44a81e553a3eb7e031224d6a6bfd5d31ecc4062f8b6",
-      "bytes": 8408
+      "sha256": "f177b3f82cde566f49fc42397c1175f2fa64a5475c69830615a4d70b14716d8f",
+      "bytes": 55117
     }
   },
   "scene": {
@@ -82,10 +82,10 @@
       3.626,
       3.401
     ],
-    "objects": 215,
-    "meshes": 190,
-    "triangles": 26976,
-    "materials": 6
+    "objects": 222,
+    "meshes": 194,
+    "triangles": 27040,
+    "materials": 7
   },
   "glb_contract": {
     "glb_version": "2.0",
@@ -94,18 +94,18 @@
     "root_name": "Machine_Root",
     "root_record": {},
     "identity_root": true,
-    "nodes": 215,
-    "mesh_nodes": 190,
-    "mesh_definitions": 190,
-    "materials": 6,
-    "triangles": 26976,
+    "nodes": 222,
+    "mesh_nodes": 194,
+    "mesh_definitions": 194,
+    "materials": 7,
+    "triangles": 27040,
     "cameras": 0,
     "punctual_lights": false,
     "images": 0,
     "textures": 0,
     "nonidentity_mesh_scales": {},
     "helper_like_mesh_nodes": [],
-    "semantic_motion_nodes": 24,
+    "semantic_motion_nodes": 27,
     "bounds": {
       "min_m": [
         -5.6305,
@@ -129,14 +129,18 @@
     "Fixed_Structure_ROOT": true,
     "Running_Gear_ROOT": true,
     "Hydraulics_ROOT": true,
-    "Service_Detail_ROOT": true,
     "Chassis_Yaw_Pivot": true,
     "Front_Frame_ROOT": true,
     "Rear_Frame_ROOT": true,
     "Bed_Tip_Pivot": true,
-    "Bed_ROOT": true
+    "Bed_ROOT": true,
+    "Rear_Oscillation_Pivot": true,
+    "Bogie_L_ROOT": true,
+    "Bogie_R_ROOT": true,
+    "Dump_Hoist_ROOT": true
   },
-  "manufacturer_published_constraints_used": [
+  "semantic_node_roles": {},
+  "published_constraint_ids_declared": [
     "public-envelope-x",
     "public-envelope-y",
     "public-envelope-z",
@@ -144,25 +148,663 @@
     "articulation-range",
     "body-tip-angle"
   ],
+  "machine_specific_gate_evidence": [
+    {
+      "id": "published_static_envelope",
+      "status": "PASS",
+      "detail": {
+        "method": "Decode the retained GLB vertex AABB and measure the visible belly-guard underside against the hash-bound A40J guide.",
+        "evidence": {
+          "measured_size_xyz_m": [
+            11.261,
+            3.626,
+            3.401
+          ],
+          "published_size_xyz_m": [
+            11.261,
+            3.626,
+            3.401
+          ],
+          "absolute_error_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "measured_belly_guard_min_y_m": 0.494,
+          "published_ground_clearance_m": 0.494,
+          "tolerance_m": 0.03
+        },
+        "semantic_nodes": [
+          "Front_Bumper",
+          "Rear_Bed_Tail_Crossmember",
+          "Cab_Roof_Guard",
+          "Dump_Bed_Outer_Rail_L",
+          "Belly_Guard"
+        ],
+        "fact_ids": [
+          "public-envelope-x",
+          "public-envelope-y",
+          "public-envelope-z",
+          "ground-clearance"
+        ]
+      }
+    },
+    {
+      "id": "six_tire_contact",
+      "status": "PASS",
+      "detail": {
+        "method": "Measure the world-space mesh minimum Y for each of the six independently exported tire carcasses in the neutral 29.5R25-basis pose.",
+        "evidence": {
+          "tire_minimum_y_m": {
+            "Front_L_Tire": 0.0,
+            "Front_R_Tire": 0.0,
+            "Middle_L_Tire": 0.0,
+            "Middle_R_Tire": 0.0,
+            "Rear_L_Tire": 0.0,
+            "Rear_R_Tire": 0.0
+          },
+          "allowed_minimum_y_m": -0.03
+        },
+        "semantic_nodes": [
+          "Front_L_Wheel_ROOT",
+          "Front_R_Wheel_ROOT",
+          "Middle_L_Wheel_ROOT",
+          "Middle_R_Wheel_ROOT",
+          "Rear_L_Wheel_ROOT",
+          "Rear_R_Wheel_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "articulation_endpoint_and_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "Traverse the yaw-to-oscillation-to-rear-frame parent chain and compare the bounded Auto steering extrema with the published 45-degree each-side limit.",
+        "evidence": {
+          "hierarchy": [
+            "Chassis_Yaw_Pivot",
+            "Rear_Oscillation_Pivot",
+            "Rear_Frame_ROOT"
+          ],
+          "viewer_extrema_rad": [
+            -0.36,
+            0.36
+          ],
+          "viewer_extrema_deg": [
+            -20.626481,
+            20.626481
+          ],
+          "published_limit_deg_each_side": 45,
+          "full_published_limit_modeled": false
+        },
+        "semantic_nodes": [
+          "Chassis_Yaw_Pivot",
+          "Rear_Oscillation_Pivot",
+          "Rear_Frame_ROOT"
+        ],
+        "fact_ids": [
+          "articulation-range"
+        ]
+      }
+    },
+    {
+      "id": "frame_oscillation_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "Inspect the explicit longitudinal oscillation pivot hierarchy and exported mesh ownership; keep it neutral in flat-ground Auto because terrain compensation is unresolved.",
+        "evidence": {
+          "hierarchy": [
+            "Chassis_Yaw_Pivot",
+            "Rear_Oscillation_Pivot",
+            "Rear_Frame_ROOT"
+          ],
+          "axis": "+X",
+          "viewer_channel_present": false,
+          "reason_not_autoplayed": "rear tire contact cannot remain physical on a flat plane without terrain or suspension compensation"
+        },
+        "semantic_nodes": [
+          "Rear_Oscillation_Pivot",
+          "Rear_Frame_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "left_right_bogie_contact",
+      "status": "PASS",
+      "detail": {
+        "method": "Traverse each tandem-bogie root to its middle and rear wheel pivots, then measure both tire contacts per side in the neutral flat-ground pose.",
+        "evidence": {
+          "bogies": {
+            "L": {
+              "root_parent": "Rear_Frame_ROOT",
+              "wheel_pivots": [
+                "Middle_L_Wheel_Pivot",
+                "Rear_L_Wheel_Pivot"
+              ],
+              "minimum_tire_y_m": 0.0
+            },
+            "R": {
+              "root_parent": "Rear_Frame_ROOT",
+              "wheel_pivots": [
+                "Middle_R_Wheel_Pivot",
+                "Rear_R_Wheel_Pivot"
+              ],
+              "minimum_tire_y_m": 0.0
+            }
+          },
+          "motion_state": "neutral_only_without_terrain_solver"
+        },
+        "semantic_nodes": [
+          "Bogie_L_ROOT",
+          "Bogie_R_ROOT",
+          "Middle_L_Wheel_ROOT",
+          "Rear_L_Wheel_ROOT",
+          "Middle_R_Wheel_ROOT",
+          "Rear_R_Wheel_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "dump_body_69_degree_endpoint",
+      "status": "PASS",
+      "detail": {
+        "method": "Apply the exact reconstructed Bed_ROOT endpoint, read its rotation, and measure the complete public minimum Y at that pose.",
+        "evidence": {
+          "rotation_z_rad": -1.204277158,
+          "rotation_magnitude_deg": 68.999999,
+          "body_bounds_m": {
+            "min_m": [
+              -2.4045095443725586,
+              1.2518657445907593,
+              -1.7005000114440918
+            ],
+            "max_m": [
+              0.28845393657684326,
+              6.45520544052124,
+              1.7005000114440918
+            ]
+          },
+          "minimum_public_y_m": 0.0
+        },
+        "semantic_nodes": [
+          "Bed_ROOT",
+          "Dump_Bed_Floor",
+          "Rear_Bed_Tail_Crossmember"
+        ],
+        "fact_ids": [
+          "body-tip-angle"
+        ]
+      }
+    },
+    {
+      "id": "dump_cylinder_visual_closure",
+      "status": "PASS",
+      "detail": {
+        "method": "Measure the paired moving lower-clevis centers against the fixed saddle cross-pin in the stowed pose and verify invariant local clearance below the bed floor.",
+        "evidence": {
+          "stowed_clevis_to_cross_pin": [
+            {
+              "node": "Dump_Hoist_L_Lower_Clevis",
+              "xy_error_m": 0.0,
+              "z_m": -0.493145,
+              "within_cross_pin_span": true
+            },
+            {
+              "node": "Dump_Hoist_R_Lower_Clevis",
+              "xy_error_m": 0.0,
+              "z_m": 0.493145,
+              "within_cross_pin_span": true
+            }
+          ],
+          "underbed_clearance": {
+            "classification": "reconstructed_underbed_hoist_clearance",
+            "floor_underside_local_y_m": 0.03626,
+            "highest_hoist_local_y_m": -0.063455,
+            "minimum_local_clearance_m": 0.099715,
+            "sampled_body_tip_deg": [
+              0,
+              17.25,
+              34.5,
+              51.75,
+              69
+            ],
+            "motion_invariance": "Hoist and bed floor share Bed_ROOT; local clearance is invariant over the bounded presentation rotation.",
+            "authority": "reconstructed_visualization_not_kinematic_solver"
+          },
+          "boundary": "Stowed visual closure and under-bed clearance only; dynamic cylinder stroke and changing anchors remain unresolved."
+        },
+        "semantic_nodes": [
+          "Dump_Hoist_ROOT",
+          "Dump_Hoist_Chassis_Saddle",
+          "Dump_Hoist_Chassis_Pin",
+          "Dump_Hoist_L_Barrel",
+          "Dump_Hoist_R_Barrel"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "cab_body_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "Measure neutral cab-to-body longitudinal AABB separation and sample their complete subtrees through every exact Auto pose.",
+        "evidence": {
+          "neutral_cab_bounds_m": {
+            "min_m": [
+              2.026979923248291,
+              1.52292001247406,
+              -0.824402391910553
+            ],
+            "max_m": [
+              4.053959846496582,
+              3.626000165939331,
+              0.824402391910553
+            ]
+          },
+          "neutral_body_bounds_m": {
+            "min_m": [
+              -5.630500316619873,
+              1.2112932205200195,
+              -1.7005000114440918
+            ],
+            "max_m": [
+              -0.3378298282623291,
+              2.9359655380249023,
+              1.7005000114440918
+            ]
+          },
+          "neutral_longitudinal_gap_m": 2.36481,
+          "collision_sample_indices": []
+        },
+        "semantic_nodes": [
+          "Operator_Station_ROOT",
+          "Bed_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "ground_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "Measure neutral retained GLB minimum Y and discretely sample the exact articulation and dump-body Auto channels over one 18-second cycle.",
+        "evidence": {
+          "neutral_minimum_y_m": 0.0,
+          "motion_audit": {
+            "sample_count": 37,
+            "minimum_public_y_m": 0.0,
+            "bed_cab_collision_sample_indices": [],
+            "samples": [
+              {
+                "index": 0,
+                "progress": 0.0,
+                "yaw_rad": -0.36,
+                "body_tip_rad": -1.107935,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 1,
+                "progress": 0.027778,
+                "yaw_rad": -0.354531,
+                "body_tip_rad": -1.041031,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 2,
+                "progress": 0.055556,
+                "yaw_rad": -0.338289,
+                "body_tip_rad": -0.974126,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 3,
+                "progress": 0.083333,
+                "yaw_rad": -0.311769,
+                "body_tip_rad": -0.907222,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 4,
+                "progress": 0.111111,
+                "yaw_rad": -0.275776,
+                "body_tip_rad": -0.840318,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 5,
+                "progress": 0.138889,
+                "yaw_rad": -0.231404,
+                "body_tip_rad": -0.773414,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 6,
+                "progress": 0.166667,
+                "yaw_rad": -0.18,
+                "body_tip_rad": -0.706509,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 7,
+                "progress": 0.194444,
+                "yaw_rad": -0.123127,
+                "body_tip_rad": -0.639605,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 8,
+                "progress": 0.222222,
+                "yaw_rad": -0.062513,
+                "body_tip_rad": -0.572701,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 9,
+                "progress": 0.25,
+                "yaw_rad": -0.0,
+                "body_tip_rad": -0.505796,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 10,
+                "progress": 0.277778,
+                "yaw_rad": 0.062513,
+                "body_tip_rad": -0.438892,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 11,
+                "progress": 0.305556,
+                "yaw_rad": 0.123127,
+                "body_tip_rad": -0.371988,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 12,
+                "progress": 0.333333,
+                "yaw_rad": 0.18,
+                "body_tip_rad": -0.305084,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 13,
+                "progress": 0.361111,
+                "yaw_rad": 0.231404,
+                "body_tip_rad": -0.238179,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 14,
+                "progress": 0.388889,
+                "yaw_rad": 0.275776,
+                "body_tip_rad": -0.171275,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 15,
+                "progress": 0.416667,
+                "yaw_rad": 0.311769,
+                "body_tip_rad": -0.104371,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 16,
+                "progress": 0.444444,
+                "yaw_rad": 0.338289,
+                "body_tip_rad": -0.037466,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 17,
+                "progress": 0.472222,
+                "yaw_rad": 0.354531,
+                "body_tip_rad": -0.029438,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 18,
+                "progress": 0.5,
+                "yaw_rad": 0.36,
+                "body_tip_rad": -0.096342,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 19,
+                "progress": 0.527778,
+                "yaw_rad": 0.354531,
+                "body_tip_rad": -0.163246,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 20,
+                "progress": 0.555556,
+                "yaw_rad": 0.338289,
+                "body_tip_rad": -0.230151,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 21,
+                "progress": 0.583333,
+                "yaw_rad": 0.311769,
+                "body_tip_rad": -0.297055,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 22,
+                "progress": 0.611111,
+                "yaw_rad": 0.275776,
+                "body_tip_rad": -0.363959,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 23,
+                "progress": 0.638889,
+                "yaw_rad": 0.231404,
+                "body_tip_rad": -0.430864,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 24,
+                "progress": 0.666667,
+                "yaw_rad": 0.18,
+                "body_tip_rad": -0.497768,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 25,
+                "progress": 0.694444,
+                "yaw_rad": 0.123127,
+                "body_tip_rad": -0.564672,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 26,
+                "progress": 0.722222,
+                "yaw_rad": 0.062513,
+                "body_tip_rad": -0.631576,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 27,
+                "progress": 0.75,
+                "yaw_rad": 0.0,
+                "body_tip_rad": -0.698481,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 28,
+                "progress": 0.777778,
+                "yaw_rad": -0.062513,
+                "body_tip_rad": -0.765385,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 29,
+                "progress": 0.805556,
+                "yaw_rad": -0.123127,
+                "body_tip_rad": -0.832289,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 30,
+                "progress": 0.833333,
+                "yaw_rad": -0.18,
+                "body_tip_rad": -0.899194,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 31,
+                "progress": 0.861111,
+                "yaw_rad": -0.231404,
+                "body_tip_rad": -0.966098,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 32,
+                "progress": 0.888889,
+                "yaw_rad": -0.275776,
+                "body_tip_rad": -1.033002,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 33,
+                "progress": 0.916667,
+                "yaw_rad": -0.311769,
+                "body_tip_rad": -1.099906,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 34,
+                "progress": 0.944444,
+                "yaw_rad": -0.338289,
+                "body_tip_rad": -1.166811,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 35,
+                "progress": 0.972222,
+                "yaw_rad": -0.354531,
+                "body_tip_rad": -1.174839,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              },
+              {
+                "index": 36,
+                "progress": 1.0,
+                "yaw_rad": -0.36,
+                "body_tip_rad": -1.107935,
+                "minimum_public_y_m": 0.0,
+                "bed_cab_aabb_intersection": false
+              }
+            ],
+            "boundary": "Discrete exact 18-second viewer-channel sampling; not a terrain, continuous collision, load, or stability solver."
+          },
+          "allowed_minimum_y_m": -0.03
+        },
+        "semantic_nodes": [
+          "Front_L_Wheel_ROOT",
+          "Rear_R_Wheel_ROOT",
+          "Bed_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "self_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "Test cab and dump-body subtree AABBs at all 37 exact Auto samples, retaining the neutral longitudinal separation measurement.",
+        "evidence": {
+          "neutral_longitudinal_gap_m": 2.36481,
+          "collision_sample_indices": [],
+          "sample_count": 37
+        },
+        "semantic_nodes": [
+          "Operator_Station_ROOT",
+          "Bed_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "swept_volume_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "Conservatively sample public minimum-Y and cab/body subtree AABBs at 37 phase-aligned poses spanning the complete declared Auto cycle.",
+        "evidence": {
+          "sample_count": 37,
+          "minimum_public_y_m": 0.0,
+          "collision_sample_indices": [],
+          "continuous_solver": false,
+          "boundary": "Discrete exact 18-second viewer-channel sampling; not a terrain, continuous collision, load, or stability solver."
+        },
+        "semantic_nodes": [
+          "Chassis_Yaw_Pivot",
+          "Rear_Frame_ROOT",
+          "Bed_ROOT",
+          "Operator_Station_ROOT"
+        ],
+        "fact_ids": []
+      }
+    }
+  ],
   "reconstructed_values": {
     "hidden_geometry": "All articulation and oscillation centers, bogies, body hinge, cylinder anchors, underbody, tire surfaces, motion curves and internal construction are reconstructed visualization choices.",
     "dump_hoist_geometry": "Twin low-profile tipping cylinders, moving clevises and final under-bed knuckles are independently reconstructed. They remain rigidly below the bed floor through the bounded 0 to 69 degree Bed_ROOT presentation; this is not a kinematic or load solver.",
     "generic_archetype_geometry": "articulated_hauler proportions and visible detail are independently reconstructed for this technical study.",
     "visible_envelope_calibration": {
-      "classification": "reconstructed_visible_envelope_calibration",
+      "classification": "authored_visible_envelope_measurement",
       "source_bounds_m": {
         "min_m": [
-          -5.51789,
+          -5.6305,
           0.0,
           -1.7005
         ],
         "max_m": [
-          4.5044,
+          5.6305,
           3.626,
           1.7005
         ],
         "size_m": [
-          10.02229,
+          11.261,
           3.626,
           3.401
         ]
@@ -185,9 +827,9 @@
         ]
       },
       "axis_scale_factors": [
-        1.12359548,
-        0.999999954,
-        0.999999993
+        1.0,
+        1.0,
+        1.0
       ],
       "calibrated_bounds_m": {
         "min_m": [
@@ -206,7 +848,7 @@
           3.401
         ]
       },
-      "authority": "reconstructed_not_machine_specific_engineering"
+      "authority": "independently_measured_from_authored_geometry"
     }
   },
   "unresolved_choices": [
@@ -216,38 +858,38 @@
   ],
   "mechanical_gaps": [
     "No authoritative articulation, bogie or dump-body solver",
-    "No collision or swept-volume proof"
+    "Only bounded discrete presentation-pose clearance sampling is provided; no continuous collision, terrain, stability, load, or swept-volume engineering proof"
   ],
   "renders": [
     {
       "path": "review/renders/volvo-a40j-operator-side.png",
-      "sha256": "e5001b2ce5ea4248abff07cbf7fc1ff46bfd988e4df5f9bdd17f6bbe44bdeaec",
-      "bytes": 233011
+      "sha256": "7111ac13124112950f70eb9e409ecc3e500513957b398eb8e3ce8973278d7f5e",
+      "bytes": 235844
     },
     {
       "path": "review/renders/volvo-a40j-front-three-quarter.png",
-      "sha256": "dfcaf55caa9e060ec3580f482475823c097bcf6e83d5b479e6ce30da273b9680",
-      "bytes": 269864
+      "sha256": "fd3cfaf38926dcc0415bc0bd69a0f793fe35c9939f33c00364a3f0932bb35822",
+      "bytes": 269888
     },
     {
       "path": "review/renders/volvo-a40j-rear-three-quarter.png",
-      "sha256": "1e64e376546eb256a25a43f4de7edcbd07b6648c0db0d630ec17b7698787ba5c",
-      "bytes": 258678
+      "sha256": "84ff1b3a62e2c26e50e22b7d847a6c494da66d0feb9227d8d38c929a5277f662",
+      "bytes": 260716
     },
     {
       "path": "review/renders/volvo-a40j-elevated-technical.png",
-      "sha256": "d4242307fdb5652e3d6a41f6938c2152f11c4d89c5e85c346a5b34c1ad77d0ab",
-      "bytes": 349306
+      "sha256": "048a3f8387e895002829bca1587d54ebf07eb3e057c69ac71a283cf7b6e869e8",
+      "bytes": 350364
     },
     {
       "path": "review/renders/volvo-a40j-articulation-detail.png",
-      "sha256": "3c3b59543f3c2dc11354dde1999276e98bbfe8f29ff7b57aa516bede96dfa879",
-      "bytes": 294338
+      "sha256": "663228776ef3cc5a1944bf60e22f2a455906f0955f7be9bb4e320ccf18e0cfa2",
+      "bytes": 292262
     },
     {
       "path": "review/renders/volvo-a40j-right-side.png",
-      "sha256": "522218b3465810f7e012b20d99aec71ad4eb67e4f276ba12bfedfc41c26a2099",
-      "bytes": 231217
+      "sha256": "72f815013f0761976778e5576ccf0295883009560b00b7776ae0aba8064da889",
+      "bytes": 234902
     }
   ],
   "build_verdict": "PASS",

@@ -8,7 +8,7 @@
     "brand": "Komatsu",
     "model": "PC210LC-11",
     "product_class": "crawler_excavator",
-    "market": "Conventional Tier 4 Final configuration; current New Zealand identity with North American dimensional publication"
+    "market": "Conventional Tier 4 Final research selection: New Zealand URL identity anchor plus North American dimensional brochure; no claim that regional standard equipment is identical"
   },
   "choices": {
     "machine_control": "conventional_non_i",
@@ -34,5 +34,5 @@
     "all front-equipment pivot and cylinder anchor coordinates",
     "public material and branding authorization"
   ],
-  "boundary": "Technical structural study only. Published transport dimensions, undercarriage, front-equipment lengths, compatible bucket, engine output and working ranges constrain the visible study. Pivots, cylinder anchors, upper swing bearing, track kinematics, hose routing, motion curves, forces, clearances and hidden structures are reconstructed and not engineering authority."
+  "boundary": "Technical structural study only. North American brochure pages 20-22 constrain the explicit visible dimensions, selected TL width, working-range scalar checks, cylinder topology and stroke ceilings. The New Zealand URL anchors identity only. Regional standard-equipment equivalence, pivots, anchors, swing bearing, track kinematics, hoses, forces and hidden structures remain unresolved or reconstructed and are not engineering authority."
 }

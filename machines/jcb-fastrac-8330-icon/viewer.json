@@ -13,24 +13,25 @@
     "poster": "machines/jcb-fastrac-8330-icon/review/renders/jcb-fastrac-8330-icon-operator-side.png"
   },
   "evidence": {
-    "boundary": "Neutral technical structural study; suspension, steering, hitch, PTO and hidden geometry are reconstructed, not engineering authority. The front linkage is a selected reconstructed three-point presentation constrained by the published optional 3500 kg capacity; no Category 3N class or geometry is claimed.",
-    "lede": "Current US 8330 iCON performance is paired with an explicitly identified 8000-series static-dimension reference; the two regional power calibrations are not blended.",
-    "factIds": ["public-envelope-x","public-envelope-y","public-envelope-z","rated-power","maximum-power","maximum-road-speed","rear-linkage-capacity","suspension-cylinder-diameter"]
+    "boundary": "Neutral technical structural study. The hash-bound US source supports retained performance and linkage-capacity facts only. Envelope, wheelbase, ground clearance, selected tires, track centers, suspension, steering, hitch geometry, PTO geometry and hidden construction are reconstructed and not engineering or order authority.",
+    "lede": "Current US 8330 iCON performance is shown with an explicitly reconstructed static geometry and tire basis; the rejected retired French locator is not used as US configuration authority.",
+    "factIds": ["rated-power","maximum-power","maximum-road-speed","rear-linkage-capacity","front-linkage-capacity"]
   },
   "camera": {"azimuth":-0.72,"elevation":0.34,"distance":9.8},
   "accent": "#7797a7",
   "motion": {
     "autoplay": true,
-    "durationSeconds": 15,
+    "durationSeconds": 18,
     "mode": "sine",
-    "damping": 6.5,
+    "damping": 8,
     "channels": [
-      {"id":"front-suspension","label":"Hydropneumatic front ride","nodes":["Front_Axle_ROOT"],"property":"position.y","from":-0.035,"to":0.045,"phase":0.0},
-      {"id":"front-steering","label":"Front steering","nodes":["Steering_L_Pivot","Steering_R_Pivot"],"property":"rotation.y","from":-0.24,"to":0.24,"phase":0.25},
-      {"id":"rear-suspension","label":"Hydropneumatic rear ride","nodes":["Rear_Axle_ROOT"],"property":"position.y","from":-0.025,"to":0.035,"phase":0.36},
-      {"id":"front-linkage","label":"Selected front linkage study","nodes":["Front_Hitch_ROOT"],"property":"rotation.z","from":-0.20,"to":0.12,"phase":0.42},
-      {"id":"rear-linkage","label":"Rear three-point linkage","nodes":["Rear_Hitch_ROOT"],"property":"rotation.z","from":-0.08,"to":0.34,"phase":0.5},
-      {"id":"rear-pto","label":"Rear PTO study","nodes":["PTO_ROOT"],"property":"rotation.x","from":-0.65,"to":0.65,"phase":0.75}
+      {"id":"front-suspension","mechanismJointId":"front_axle_suspension","label":"Hydropneumatic front ride","nodes":["Front_Axle_ROOT"],"property":"position.y","from":0,"to":0.04,"phase":0.0,"mode":"offset","autoplay":"sine"},
+      {"id":"front-steering","mechanismJointId":"front_steering","label":"Front steering","nodes":["Steering_L_Pivot","Steering_R_Pivot"],"property":"rotation.y","from":-0.24,"to":0.24,"phase":0.25,"mode":"offset","autoplay":"sine"},
+      {"id":"rear-suspension","mechanismJointId":"rear_axle_suspension","label":"Hydropneumatic rear ride","nodes":["Rear_Axle_ROOT"],"property":"position.y","from":0,"to":0.035,"phase":0.36,"mode":"offset","autoplay":"sine"},
+      {"id":"field-travel","mechanismJointId":"wheel_rotation","label":"Four-wheel field travel","nodes":["Front_L_Wheel_Pivot","Front_R_Wheel_Pivot","Rear_L_Wheel_Pivot","Rear_R_Wheel_Pivot"],"property":"rotation.z","from":0,"to":6.283185307179586,"phase":0.18,"mode":"offset","autoplay":"sine"},
+      {"id":"front-linkage","mechanismJointId":"front_three_point_linkage","label":"Selected front linkage study","nodes":["Front_Hitch_ROOT"],"property":"rotation.z","from":0,"to":0.12,"phase":0.42,"mode":"offset","autoplay":"sine"},
+      {"id":"rear-linkage","mechanismJointId":"rear_three_point_linkage","label":"Rear three-point linkage","nodes":["Rear_Hitch_ROOT"],"property":"rotation.z","from":0,"to":-0.18,"phase":0.5,"mode":"offset","autoplay":"sine"},
+      {"id":"rear-pto","mechanismJointId":"rear_pto_rotation","label":"Rear PTO shaft study","nodes":["PTO_Shaft_ROTATION_ROOT"],"property":"rotation.x","from":0,"to":6.283185307179586,"phase":0.75,"mode":"offset","autoplay":"sine"}
     ]
   }
 }

@@ -17,7 +17,7 @@ import struct
 from pathlib import Path
 
 import bpy
-from mathutils import Matrix, Vector
+from mathutils import Matrix, Quaternion, Vector
 
 
 SCRIPT_PATH = Path(__file__).resolve()
@@ -27,6 +27,10 @@ GLB_PATH = MACHINE_DIR / "assets" / "john-deere-470-p-tier-structural-study.glb"
 RECEIPT_PATH = MACHINE_DIR / "production" / "asset-receipt.json"
 VALIDATION_PATH = MACHINE_DIR / "production" / "validation.json"
 RENDER_DIR = MACHINE_DIR / "review" / "renders"
+BUILD_INPUT_PATH = MACHINE_DIR / "source" / "build-input.json"
+SOURCE_MANIFEST_PATH = MACHINE_DIR / "evidence" / "source-manifest.json"
+DESIGN_PATH = MACHINE_DIR / "source" / "design.json"
+MECHANISM_PATH = MACHINE_DIR / "mechanism.json"
 
 MACHINE_ID = "john-deere-470-p-tier"
 CONFIGURATION_ID = "JD-470P-NAM-B70-A39-B234-W1370-TSG900-CW8400-CANDIDATE"
@@ -68,6 +72,21 @@ PUBLISHED = {
     "maximum_digging_depth_m": 8.27,
     "work_light_count": 9,
 }
+
+PUBLISHED_FACT_IDS = [
+    "boom-length", "arm-length", "bucket-capacity-operating-weight",
+    "bucket-width-operating-weight", "counterweight-mass", "overall-length",
+    "overall-height", "tail-swing-radius", "idler-sprocket-centers",
+    "undercarriage-length", "counterweight-clearance", "upperstructure-width",
+    "cab-height", "track-shoe-width", "track-gauge-operating",
+    "overall-width-operating", "ground-clearance", "track-shoes-per-side",
+    "track-rollers-per-side", "carrier-rollers-per-side", "boom-cylinder-count",
+    "boom-cylinder-bore", "boom-cylinder-rod", "boom-cylinder-stroke",
+    "arm-cylinder-bore", "arm-cylinder-rod", "arm-cylinder-stroke",
+    "bucket-cylinder-bore", "bucket-cylinder-rod", "bucket-cylinder-stroke",
+    "maximum-reach", "maximum-ground-reach", "maximum-digging-depth",
+    "work-light-count",
+]
 
 RECONSTRUCTED = {
     "transport_pose": {
@@ -117,15 +136,21 @@ REQUIRED_NODES = [
     "Arm_ROOT",
     "Bucket_Pivot",
     "Bucket_ROOT",
-    "Hydraulics_ROOT",
     "Boom_Hydraulics_ROOT",
     "Arm_Hydraulics_ROOT",
     "Bucket_Hydraulics_ROOT",
-    "Linkage_ROOT",
     "Bucket_Linkage_ROOT",
     "Bucket_Bellcrank_ROOT",
-    "PIVOT_Attachment_Pin",
 ]
+
+
+def load_build_input() -> dict:
+    payload = json.loads(BUILD_INPUT_PATH.read_text(encoding="utf-8"))
+    if payload.get("machine_id") != MACHINE_ID or payload.get("configuration_id") != CONFIGURATION_ID:
+        raise RuntimeError("build-input identity does not match builder identity")
+    if not payload.get("export_pivots_world_xyz_m") or not payload.get("viewer_motion_nodes"):
+        raise RuntimeError("build-input must bind pivots and viewer motion nodes")
+    return payload
 
 
 def sha256(path: Path) -> str:
@@ -447,9 +472,9 @@ def build_track(side, z_center, root, mats):
 
 def create_model():
     mats = {
-        "body": material("Neutral_Copper_Clay", (0.43, 0.18, 0.070), 0.18, 0.36),
-        "body_light": material("Neutral_Clay_Highlight", (0.63, 0.30, 0.105), 0.12, 0.34),
-        "body_dark": material("Neutral_Clay_Shadow", (0.245, 0.085, 0.036), 0.20, 0.38),
+        "body": material("Neutral_Warm_Slate", (0.34, 0.27, 0.21), 0.18, 0.36),
+        "body_light": material("Neutral_Warm_Highlight", (0.50, 0.40, 0.30), 0.12, 0.34),
+        "body_dark": material("Neutral_Warm_Shadow", (0.19, 0.15, 0.12), 0.20, 0.38),
         "graphite": material("Neutral_Graphite", (0.045, 0.055, 0.067), 0.44, 0.38),
         "track": material("Neutral_Track_Steel", (0.060, 0.066, 0.073), 0.72, 0.34),
         "steel": material("Neutral_Machined_Steel", (0.20, 0.225, 0.25), 0.78, 0.26),
@@ -642,9 +667,9 @@ def create_model():
     boom_hydraulics = empty("Boom_Hydraulics_ROOT", parent=upper, role="hydraulic_owner_group", size=0.16)
     arm_hydraulics = empty("Arm_Hydraulics_ROOT", parent=boom_root, role="hydraulic_owner_group", size=0.16)
     bucket_hydraulics = empty("Bucket_Hydraulics_ROOT", parent=arm_root, role="hydraulic_owner_group", size=0.16)
-    linkage = empty("Linkage_ROOT", parent=machine, role="linkage_group", size=0.18)
-    bucket_linkage = empty("Bucket_Linkage_ROOT", parent=arm_root, role="linkage_owner_group", size=0.16)
-    bellcrank = empty("Bucket_Bellcrank_ROOT", (2.32,-2.13,0.0), arm_root, "linkage_pivot", "CIRCLE", 0.14)
+    linkage = empty("Linkage_ROOT", parent=arm_root, role="linkage_group", size=0.18)
+    bucket_linkage = empty("Bucket_Linkage_ROOT", parent=linkage, role="linkage_owner_group", size=0.16)
+    bellcrank = empty("Bucket_Bellcrank_ROOT", (2.32,-2.13,0.0), linkage, "linkage_pivot", "CIRCLE", 0.14)
     for z, suffix in ((-0.34,"L"),(0.34,"R")):
         side_profile(f"Bucket_Bellcrank_{suffix}", [(-0.24,0.34),(0.36,0.08),(0.22,-0.25),(-0.16,-0.10)], 0.050, mats["body_dark"], bellcrank, z_center=z, bevel_width=0.012, role="bucket_bellcrank")
     add_pin("PIN_Bucket_Bellcrank", (0,0,0), 0.090, 0.84, mats["steel"], bellcrank, "linkage_pin")
@@ -806,12 +831,13 @@ def render_all(model):
     # inspected. The plate is restored before save/export.
     cutaway_objects = [
         bpy.data.objects["Bucket_Side_Plate_L"],
+        bpy.data.objects["Bucket_Side_Plate_R"],
         bpy.data.objects["Bucket_Curved_Back_Cue"],
         bpy.data.objects["Bucket_Heel_Wear_Plate"],
     ]
     for obj in cutaway_objects:
         obj.hide_render = True
-    paths.append(render_view("bucket-linkage-detail", (10.4,3.2,-4.6), (7.35,0.72,-0.05), 72))
+    paths.append(render_view("bucket-linkage-detail", (8.8,2.2,-3.0), (7.72,0.92,0.0), 82))
     for obj in cutaway_objects:
         obj.hide_render = False
     paths.append(render_view("cab-service-detail", (-1.0,4.2,-7.3), (-0.55,1.85,-1.0), 66))
@@ -962,22 +988,99 @@ def inspect_glb_contract(path: Path):
     if document is None:
         raise RuntimeError("GLB JSON chunk missing")
     scene = document["scenes"][document.get("scene",0)]
+    nodes = document.get("nodes",[])
     roots = []
     for index in scene.get("nodes",[]):
-        node = document["nodes"][index]
+        node = nodes[index]
         transforms = {key:node[key] for key in ("translation","rotation","scale","matrix") if key in node}
         roots.append({"index":index,"name":node.get("name"),"transform":transforms})
+
+    def local_matrix(node):
+        if "matrix" in node:
+            values = node["matrix"]
+            return Matrix((
+                (values[0], values[4], values[8], values[12]),
+                (values[1], values[5], values[9], values[13]),
+                (values[2], values[6], values[10], values[14]),
+                (values[3], values[7], values[11], values[15]),
+            ))
+        translation = node.get("translation", [0.0, 0.0, 0.0])
+        rotation = node.get("rotation", [0.0, 0.0, 0.0, 1.0])
+        scale = node.get("scale", [1.0, 1.0, 1.0])
+        return (
+            Matrix.Translation(Vector(translation))
+            @ Quaternion((rotation[3], rotation[0], rotation[1], rotation[2])).to_matrix().to_4x4()
+            @ Matrix.Diagonal(Vector((*scale, 1.0)))
+        )
+
+    bounds_min = Vector((math.inf, math.inf, math.inf))
+    bounds_max = Vector((-math.inf, -math.inf, -math.inf))
+    world_translation_by_name = {}
+    parent_by_name = {}
+    child_count_by_name = {}
+
+    def visit(node_index, parent_world, parent_name=None):
+        node = nodes[node_index]
+        world_matrix = parent_world @ local_matrix(node)
+        name = node.get("name",f"node-{node_index}")
+        world_translation_by_name[name] = [round(world_matrix[row][3],6) for row in range(3)]
+        parent_by_name[name] = parent_name
+        child_count_by_name[name] = len(node.get("children",[]))
+        if "mesh" in node:
+            for primitive in document["meshes"][node["mesh"]].get("primitives",[]):
+                position_index = primitive.get("attributes",{}).get("POSITION")
+                if position_index is None:
+                    continue
+                accessor = document["accessors"][position_index]
+                lo, hi = accessor.get("min"), accessor.get("max")
+                if lo is None or hi is None:
+                    continue
+                for x in (lo[0],hi[0]):
+                    for y in (lo[1],hi[1]):
+                        for z in (lo[2],hi[2]):
+                            point = world_matrix @ Vector((x,y,z))
+                            for axis in range(3):
+                                bounds_min[axis] = min(bounds_min[axis],point[axis])
+                                bounds_max[axis] = max(bounds_max[axis],point[axis])
+        for child in node.get("children",[]):
+            visit(child,world_matrix,name)
+
+    for root_index in scene.get("nodes",[]):
+        visit(root_index,Matrix.Identity(4))
+    decoded_bounds = {
+        "min_xyz_m":[round(value,6) for value in bounds_min],
+        "max_xyz_m":[round(value,6) for value in bounds_max],
+        "dimensions_xyz_m":[round(bounds_max[axis]-bounds_min[axis],6) for axis in range(3)],
+    }
     mesh_scale_offenders = []
-    for node in document.get("nodes",[]):
+    for node in nodes:
         if "mesh" not in node:
             continue
         scale = node.get("scale",[1,1,1])
         if any(abs(value-1.0)>1e-4 for value in scale):
             mesh_scale_offenders.append({"name":node.get("name"),"scale":scale})
     helper_names = sorted(
-        node.get("name","") for node in document.get("nodes",[])
+        node.get("name","") for node in nodes
         if node.get("name","").startswith(("INSPECT_","Inspection_","Review_","Camera_"))
     )
+    decoded_triangles = 0
+    primitive_count = 0
+    unsupported_primitive_modes = []
+    for mesh in document.get("meshes",[]):
+        for primitive in mesh.get("primitives",[]):
+            primitive_count += 1
+            position_index = primitive.get("attributes",{}).get("POSITION")
+            index_accessor = primitive.get("indices")
+            element_count = (document["accessors"][index_accessor]["count"]
+                             if index_accessor is not None
+                             else document["accessors"][position_index]["count"])
+            mode = primitive.get("mode",4)
+            if mode == 4:
+                decoded_triangles += element_count // 3
+            elif mode in (5,6):
+                decoded_triangles += max(0,element_count-2)
+            else:
+                unsupported_primitive_modes.append(mode)
     return {
         "scene_count": len(document.get("scenes",[])),
         "scene_roots": roots,
@@ -988,10 +1091,32 @@ def inspect_glb_contract(path: Path):
         "node_count": len(document.get("nodes",[])),
         "mesh_count": len(document.get("meshes",[])),
         "material_count": len(document.get("materials",[])),
+        "primitive_count": primitive_count,
+        "decoded_triangle_count": decoded_triangles,
+        "unsupported_primitive_modes": sorted(set(unsupported_primitive_modes)),
+        "decoded_visible_aabb_m": decoded_bounds,
+        "node_names": sorted(world_translation_by_name),
+        "node_world_translation_xyz_m": world_translation_by_name,
+        "node_parent": parent_by_name,
+        "node_child_count": child_count_by_name,
     }
 
 
 def create_validation(bounds, counts, metrics, glb_contract, render_paths):
+    build_input = load_build_input()
+    design = json.loads(DESIGN_PATH.read_text(encoding="utf-8"))
+    mechanism = json.loads(MECHANISM_PATH.read_text(encoding="utf-8"))
+    retained_fact_ids = build_input["retained_fact_ids"]
+    if (len(retained_fact_ids) != len(set(retained_fact_ids))
+            or retained_fact_ids != design["published_constraints_used"]
+            or retained_fact_ids != PUBLISHED_FACT_IDS):
+        raise RuntimeError("build-input, design, and receipt fact contracts differ")
+    source_manifest = json.loads(SOURCE_MANIFEST_PATH.read_text(encoding="utf-8"))
+    source_binding_ok = any(
+        source.get("admission") == "primary"
+        and source.get("sha256") == build_input["primary_source_sha256"]
+        for source in source_manifest["sources"]
+    )
     node_presence = {name:bpy.data.objects.get(name) is not None for name in REQUIRED_NODES}
     component_counts = metrics["published_component_counts"]
     track_count_ok = component_counts == {
@@ -1015,7 +1140,71 @@ def create_validation(bounds, counts, metrics, glb_contract, render_paths):
     closure_max = max(metrics["bucket_linkage_static_closure_errors_m"].values())
     render_ok = len(render_paths) >= 7 and all(path.exists() and path.stat().st_size > 20000 for path in render_paths)
     x_size, y_size, z_size = bounds["size_m"]
+    decoded_bounds = glb_contract["decoded_visible_aabb_m"]
+    decoded_dimensions = decoded_bounds["dimensions_xyz_m"]
+    envelope_deltas = {
+        "overall_length_m": round(abs(decoded_dimensions[0]-PUBLISHED["overall_length_m"]),6),
+        "overall_height_m": round(abs(decoded_dimensions[1]-PUBLISHED["overall_height_m"]),6),
+        "overall_width_operating_m": round(abs(decoded_dimensions[2]-PUBLISHED["overall_width_operating_m"]),6),
+    }
+    envelope_ok = (
+        envelope_deltas["overall_length_m"] <= 0.06
+        and envelope_deltas["overall_height_m"] <= 0.04
+        and envelope_deltas["overall_width_operating_m"] <= 0.025
+    )
+    decoded_nodes = glb_contract["node_world_translation_xyz_m"]
+    pivot_actual = {name:decoded_nodes.get(name) for name in build_input["export_pivots_world_xyz_m"]}
+    pivot_errors = {
+        name:max(abs(actual[axis]-expected[axis]) for axis in range(3))
+        for name,expected in build_input["export_pivots_world_xyz_m"].items()
+        for actual in [pivot_actual.get(name)] if actual is not None
+    }
+    expected_pivot_parents = {
+        "Upper_Swing_Pivot":"Machine_Root",
+        "Boom_Pivot":"Upper_ROOT",
+        "Arm_Pivot":"Boom_ROOT",
+        "Bucket_Pivot":"Arm_ROOT",
+    }
+    actual_pivot_parents = {name:glb_contract["node_parent"].get(name) for name in expected_pivot_parents}
+    pivots_ok = (
+        len(pivot_errors) == len(build_input["export_pivots_world_xyz_m"])
+        and max(pivot_errors.values(),default=math.inf) <= 1e-5
+        and actual_pivot_parents == expected_pivot_parents
+    )
+    motion_nodes = build_input["viewer_motion_nodes"]
+    motion_resolution = {name:name in decoded_nodes for name in motion_nodes}
+    linkage_nodes = [
+        "Bucket_Linkage_ROOT", "Bucket_Bellcrank_ROOT", "Bucket_Cylinder_Rod",
+        "Bucket_Link_Dogbone_L", "Bucket_Link_Dogbone_R", "Bucket_ROOT",
+    ]
+    linkage_resolution = {name:name in decoded_nodes for name in linkage_nodes}
+    node_names = glb_contract["node_names"]
+    shoes_l = sorted(name for name in node_names if name.startswith("Track_L_Shoe_"))
+    shoes_r = sorted(name for name in node_names if name.startswith("Track_R_Shoe_"))
+    rollers_l = sorted(name for name in node_names if name.startswith("Track_L_Lower_Roller_") and "Hub" not in name)
+    rollers_r = sorted(name for name in node_names if name.startswith("Track_R_Lower_Roller_") and "Hub" not in name)
+    carriers_l = sorted(name for name in node_names if name.startswith("Track_L_Carrier_Roller_") and "Hub" not in name)
+    carriers_r = sorted(name for name in node_names if name.startswith("Track_R_Carrier_Roller_") and "Hub" not in name)
+    decoded_counts_ok = (
+        len(shoes_l) == len(shoes_r) == 53
+        and len(rollers_l) == len(rollers_r) == 9
+        and len(carriers_l) == len(carriers_r) == 3
+    )
+    identity_scales_ok = (
+        len(root_records) == 1 and root_records[0]["name"] == "Machine_Root"
+        and root_records[0]["transform"] == {} and not glb_contract["mesh_scale_offenders"]
+    )
+    required_gates = [
+        {"id":"decoded_public_transport_envelope","status":"PASS" if envelope_ok else "FAIL","detail":{"method":"Decode shipped-GLB accessor bounds with composed node transforms and compare the visible retained-pose AABB to the selected published length, height, and operating width.","evidence":{"decoded_visible_aabb_m":decoded_bounds,"absolute_deltas_m":envelope_deltas,"tolerances_m":{"length":0.06,"height":0.04,"width":0.025}},"semantic_nodes":["Machine_Root"],"fact_ids":["overall-length","overall-height","overall-width-operating"]}},
+        {"id":"decoded_public_pivot_world_positions","status":"PASS" if pivots_ok else "FAIL","detail":{"method":"Compose shipped-GLB node TRS and parent indices, then compare every deterministic pivot world translation and hierarchy edge.","evidence":{"expected_xyz_m":build_input["export_pivots_world_xyz_m"],"decoded_actual_xyz_m":pivot_actual,"maximum_errors_m":pivot_errors,"tolerance_m":0.00001,"expected_parent":expected_pivot_parents,"decoded_parent":actual_pivot_parents},"semantic_nodes":list(build_input["export_pivots_world_xyz_m"]),"fact_ids":[]}},
+        {"id":"viewer_motion_nodes_resolve","status":"PASS" if all(motion_resolution.values()) else "FAIL","detail":{"method":"Resolve every viewer Auto/manual motion target by exact name in the decoded shipped-GLB node table.","evidence":{"resolved":motion_resolution,"static_only":build_input["static_only"]},"semantic_nodes":motion_nodes,"fact_ids":[]}},
+        {"id":"static_bucket_linkage_components_present","status":"PASS" if all(linkage_resolution.values()) else "FAIL","detail":{"method":"Resolve the static reconstructed bellcrank, cylinder rod, twin dogbones, linkage owner, and bucket subtree in the decoded shipped GLB; no dynamic closure is claimed.","evidence":{"resolved":linkage_resolution,"dynamic_solver":False,"static_source_closure_max_error_m":closure_max},"semantic_nodes":linkage_nodes,"fact_ids":["bucket-cylinder-bore","bucket-cylinder-rod","bucket-cylinder-stroke"]}},
+        {"id":"published_roller_and_shoe_counts","status":"PASS" if decoded_counts_ok else "FAIL","detail":{"method":"Count exact shoe, lower-roller, and carrier-roller semantic node names directly in the decoded shipped-GLB node table, excluding hub detail nodes.","evidence":{"left_shoes":shoes_l,"right_shoes":shoes_r,"left_track_rollers":rollers_l,"right_track_rollers":rollers_r,"left_carrier_rollers":carriers_l,"right_carrier_rollers":carriers_r,"expected_per_side":{"shoes":53,"track_rollers":9,"carrier_rollers":3}},"semantic_nodes":["Track_L_ROOT","Track_R_ROOT"],"fact_ids":["track-shoes-per-side","track-rollers-per-side","carrier-rollers-per-side"]}},
+        {"id":"identity_root_and_applied_scales","status":"PASS" if identity_scales_ok else "FAIL","detail":{"method":"Decode the active GLB scene root TRS and every mesh-bearing node scale from the shipped artifact.","evidence":{"scene_roots":root_records,"mesh_scale_offenders":glb_contract["mesh_scale_offenders"],"mesh_count":glb_contract["mesh_count"]},"semantic_nodes":["Machine_Root"],"fact_ids":[]}},
+        {"id":"source_design_contract_binding","status":"PASS" if source_binding_ok else "FAIL","detail":{"method":"Hash-bind the deterministic build input to an admitted primary source and require its unique retained fact IDs to exactly equal source/design.json.","evidence":{"build_input_path":rel(BUILD_INPUT_PATH),"build_input_sha256":sha256(BUILD_INPUT_PATH),"design_path":rel(DESIGN_PATH),"design_sha256":sha256(DESIGN_PATH),"primary_source_sha256":build_input["primary_source_sha256"],"retained_fact_count":len(retained_fact_ids),"unique_fact_count":len(set(retained_fact_ids))},"semantic_nodes":[],"fact_ids":retained_fact_ids}},
+    ]
     gates = [
+        *required_gates,
         {"id":"builder-execution","status":"PASS","detail":"Factory-startup background builder reached deterministic receipt generation."},
         {"id":"candidate-class-boundary","status":"PASS","detail":"technical_structural_study / research_candidate; not engineering authority."},
         {"id":"scene-units-and-axes","status":"PASS","detail":"Meters; +X toward bucket, +Y up, +Z machine right."},
@@ -1050,6 +1239,10 @@ def create_validation(bounds, counts, metrics, glb_contract, render_paths):
         {"id":"publication-and-deployment","status":"PENDING","detail":"Only the overall publisher may admit, commit, push, or deploy this artifact."},
     ]
     failed = [gate["id"] for gate in gates if gate["status"]=="FAIL"]
+    required_gate_ids = mechanism["required_gates"]
+    required_by_id = {gate["id"]:gate for gate in required_gates}
+    if list(required_by_id) != required_gate_ids:
+        raise RuntimeError("required validation gate order differs from mechanism.json")
     payload = {
         "schema_version":"1.0.0",
         "machine_id":MACHINE_ID,
@@ -1061,6 +1254,7 @@ def create_validation(bounds, counts, metrics, glb_contract, render_paths):
         "counts":counts,
         "measured_metrics":metrics,
         "glb_contract":glb_contract,
+        "required_machine_gate_ids":required_gate_ids,
         "gates":gates,
         "failed_gate_ids":failed,
         "higher_stage_gates_pending":True,
@@ -1110,6 +1304,14 @@ def main():
     glb_contract = inspect_glb_contract(GLB_PATH)
     metrics = collect_metrics(model,objects)
     validation = create_validation(bounds,counts,metrics,glb_contract,render_paths)
+    mechanism = json.loads(MECHANISM_PATH.read_text(encoding="utf-8"))
+    validation_by_id = {gate["id"]:gate for gate in validation["gates"]}
+    machine_gate_evidence = [
+        {"id":validation_by_id[gate_id]["id"],
+         "status":validation_by_id[gate_id]["status"],
+         "detail":validation_by_id[gate_id]["detail"]}
+        for gate_id in mechanism["required_gates"]
+    ]
     node_presence = {name:bpy.data.objects.get(name) is not None for name in REQUIRED_NODES}
     render_records = [{"path":rel(path),"sha256":sha256(path),"bytes":path.stat().st_size} for path in render_paths]
     receipt = {
@@ -1122,30 +1324,37 @@ def main():
         "blender":{"version":bpy.app.version_string,"factory_startup_required":True,"background_required":True},
         "builder":{
             "path":rel(SCRIPT_PATH),"sha256":sha256(SCRIPT_PATH),"deterministic":True,
+            "bytes":SCRIPT_PATH.stat().st_size,
             "network_used":False,"downloaded_geometry_used":False,"manufacturer_cad_used":False,
             "copied_textures_used":False,"copied_imagery_used":False,"opaque_addons_used":False,
         },
+        "design":{"path":rel(DESIGN_PATH),"sha256":sha256(DESIGN_PATH),"bytes":DESIGN_PATH.stat().st_size},
         "artifacts":{
             "blend":{"path":rel(BLEND_PATH),"sha256":sha256(BLEND_PATH),"bytes":BLEND_PATH.stat().st_size},
             "glb":{"path":rel(GLB_PATH),"sha256":sha256(GLB_PATH),"bytes":GLB_PATH.stat().st_size},
+            "validation":{"path":rel(VALIDATION_PATH),"sha256":sha256(VALIDATION_PATH),"bytes":VALIDATION_PATH.stat().st_size},
         },
         "scene":{
             "units":"meters",
             "axes":{"longitudinal":"+X toward bucket","vertical":"+Y","lateral":"+Z machine right"},
-            "visible_aabb_xyz_m":bounds["size_m"],"bounds":bounds,**counts,
+            "visible_aabb_xyz_m":glb_contract["decoded_visible_aabb_m"]["dimensions_xyz_m"],
+            "bounds":{
+                "min_m":glb_contract["decoded_visible_aabb_m"]["min_xyz_m"],
+                "max_m":glb_contract["decoded_visible_aabb_m"]["max_xyz_m"],
+                "size_m":glb_contract["decoded_visible_aabb_m"]["dimensions_xyz_m"],
+                "classification":"decoded shipped public GLB accessor bounds with composed node transforms",
+            },
+            "objects":glb_contract["node_count"],
+            "meshes":glb_contract["mesh_count"],
+            "triangles":glb_contract["decoded_triangle_count"],
+            "materials":glb_contract["material_count"],
+            "blend_source_counts":counts,
         },
         "public_glb_contract":glb_contract,
         "required_semantic_nodes":node_presence,
-        "manufacturer_published_constraints_used":[
-            "boom-length","arm-length","bucket-capacity-operating-weight","bucket-width-operating-weight",
-            "counterweight-mass","overall-length","overall-height","tail-swing-radius","idler-sprocket-centers",
-            "undercarriage-length","counterweight-clearance","upperstructure-width","cab-height","track-shoe-width",
-            "track-gauge-operating","overall-width-operating","ground-clearance","track-shoes-per-side",
-            "track-rollers-per-side","carrier-rollers-per-side","boom-cylinder-count","boom-cylinder-bore",
-            "boom-cylinder-rod","boom-cylinder-stroke","arm-cylinder-bore","arm-cylinder-rod","arm-cylinder-stroke",
-            "bucket-cylinder-bore","bucket-cylinder-rod","bucket-cylinder-stroke","maximum-reach",
-            "maximum-ground-reach","maximum-digging-depth","work-light-count",
-        ],
+        "manufacturer_published_constraints_used":PUBLISHED_FACT_IDS,
+        "published_constraint_ids_declared":PUBLISHED_FACT_IDS,
+        "machine_specific_gate_evidence":machine_gate_evidence,
         "reconstructed_values":RECONSTRUCTED,
         "measured_metrics":metrics,
         "unresolved_choices":[

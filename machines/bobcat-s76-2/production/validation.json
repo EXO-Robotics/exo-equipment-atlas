@@ -45,8 +45,8 @@
         "tolerance_m": 0.035
       },
       "actual": {
-        "m": 3.61181,
-        "absolute_error_m": 0.00501
+        "m": 3.602377,
+        "absolute_error_m": 0.004423
       }
     },
     {
@@ -117,6 +117,8 @@
         "BucketTiltCylinderBarrel": true,
         "BobTach_Interface_Reconstructed": true,
         "BucketPivotRoot": true,
+        "LiftMotion_ROOT": true,
+        "LiftHydraulics_ROOT": true,
         "Standard74BucketShell_Reconstructed": true,
         "BucketCuttingEdge": true
       },
@@ -138,6 +140,8 @@
         "BucketTiltCylinderBarrel": true,
         "BobTach_Interface_Reconstructed": true,
         "BucketPivotRoot": true,
+        "LiftMotion_ROOT": true,
+        "LiftHydraulics_ROOT": true,
         "Standard74BucketShell_Reconstructed": true,
         "BucketCuttingEdge": true
       }
@@ -151,7 +155,7 @@
       },
       "actual": {
         "status": "PASS",
-        "baked_node_count": 24,
+        "baked_node_count": 25,
         "before_non_identity": {
           "AttachmentCarriageSide_L": [
             0.16497651,
@@ -163,20 +167,25 @@
             0.07,
             0.0825
           ],
+          "BucketTiltBaseCrossmember": [
+            0.56999993,
+            0.05,
+            0.06
+          ],
           "BucketTiltBellcrank_Reconstructed": [
-            0.07500001,
+            0.10124227,
             0.045,
             0.05
           ],
           "BucketTiltCylinderBarrel": [
             0.07199999,
             0.07199999,
-            0.11118648
+            0.13588612
           ],
           "BucketTiltCylinderRod": [
             0.041,
             0.041,
-            0.08387759
+            0.10251054
           ],
           "CabFrontPillar_L": [
             0.57866234,
@@ -294,12 +303,12 @@
           "BobcatS76_2_Root"
         ],
         "root_identity_trs": true,
-        "node_count": 250,
-        "mesh_node_count": 247,
-        "mesh_resource_count": 247,
-        "primitive_count": 247,
-        "position_vertices": 26414,
-        "triangles": 14360,
+        "node_count": 257,
+        "mesh_node_count": 251,
+        "mesh_resource_count": 251,
+        "primitive_count": 251,
+        "position_vertices": 26654,
+        "triangles": 14504,
         "public_mesh_nodes_non_identity_scale": [],
         "helper_nodes_present": [],
         "camera_count": 0,
@@ -322,6 +331,250 @@
       },
       "actual": {
         "count": 8
+      }
+    },
+    {
+      "id": "stowed_visible_envelope",
+      "status": "PASS",
+      "detail": {
+        "method": "Evaluated retained-pose public mesh vertices against the frozen standard-bucket envelope and verified selected visible configuration nodes.",
+        "evidence": {
+          "scope": "evaluated retained-pose production meshes",
+          "modeled_xyz_m": [
+            3.602377,
+            2.08,
+            1.8796
+          ],
+          "published_xyz_m": [
+            3.6068,
+            2.08026,
+            1.8796
+          ],
+          "length_without_attachment_m": 2.8956,
+          "overall_width_m": 1.8288,
+          "cab_visible_mesh_descendants": 45,
+          "standard_tire_designation": "12 x 16.5, 12 PR"
+        },
+        "semantic_nodes": [
+          "BobcatS76_2_Root",
+          "CabEnclosure_Root"
+        ],
+        "fact_ids": [
+          "length-standard-bucket",
+          "length-without-attachment",
+          "overall-width",
+          "bucket-width",
+          "overall-height",
+          "cab-enclosure-standard",
+          "led-work-lights-standard"
+        ]
+      }
+    },
+    {
+      "id": "full_lift_hinge_height",
+      "status": "PASS",
+      "detail": {
+        "method": "Solved the reconstructed full-lift review pose to the frozen hinge-pin height and measured the resulting hinge center.",
+        "evidence": {
+          "modeled_m": 3.25882,
+          "published_m": 3.25882,
+          "scope": "review-pose reconstructed pivot constrained to published height"
+        },
+        "semantic_nodes": [
+          "LiftMotion_ROOT",
+          "BucketPivotRoot"
+        ],
+        "fact_ids": [
+          "hinge-pin-height"
+        ]
+      }
+    },
+    {
+      "id": "maximum_height_reach_context",
+      "status": "PASS",
+      "detail": {
+        "method": "Measured the reconstructed hinge-to-lip horizontal offset at the full-lift review pose while preserving the unresolved manufacturer datum boundary.",
+        "evidence": {
+          "modeled_reconstructed_lip_horizontal_offset_m": 0.8509000257391321,
+          "published_reach_m": 0.8509,
+          "datum_boundary": "manufacturer reach datum is not identified; this is a visible reconstructed context cue, not engineering endpoint authority"
+        },
+        "semantic_nodes": [
+          "BucketPivotRoot"
+        ],
+        "fact_ids": [
+          "reach-maximum-height"
+        ]
+      }
+    },
+    {
+      "id": "lift_four_bar_visual_closure",
+      "status": "PASS",
+      "detail": {
+        "method": "Traversed the reconstructed lift motion owner and counted its exported visible mesh descendants.",
+        "evidence": {
+          "hierarchy": {
+            "pivot_world_machine_xyz_m": [
+              -0.98,
+              1.29,
+              0.0
+            ],
+            "expected_pivot_world_machine_xyz_m": [
+              -0.98,
+              1.29,
+              0.0
+            ],
+            "visible_mesh_descendants": 25
+          },
+          "visible_members": [
+            "VerticalLift_MainArm_L/R",
+            "VerticalLift_UpperLink_L/R",
+            "AttachmentCarriageSide_L/R",
+            "LiftCrossmember"
+          ],
+          "scope": "explicit reconstructed visual hierarchy"
+        },
+        "semantic_nodes": [
+          "LiftMotion_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "bucket_linkage_visual_closure",
+      "status": "PASS",
+      "detail": {
+        "method": "Traversed the bucket pivot subtree and verified a visible shell, cutting edge, interface, and reconstructed bellcrank closure.",
+        "evidence": {
+          "hierarchy": {
+            "pivot_world_machine_xyz_m": [
+              1.368,
+              0.505,
+              0.0
+            ],
+            "expected_stowed_pivot_world_machine_xyz_m": [
+              1.368,
+              0.505,
+              0.0
+            ],
+            "visible_mesh_descendants": 13
+          },
+          "bellcrank": "BucketTiltBellcrank_Reconstructed",
+          "interface": "BobTach_Interface_Reconstructed",
+          "nominal_bucket_width_in": 74,
+          "scope": "reconstructed visual closure only"
+        },
+        "semantic_nodes": [
+          "BucketPivotRoot"
+        ],
+        "fact_ids": [
+          "standard-bucket-nominal-width"
+        ]
+      }
+    },
+    {
+      "id": "hydraulic_cylinder_endpoint_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "Measured each visible reconstructed barrel-to-rod joint after the retained-pose dependency-graph update.",
+        "evidence": {
+          "barrel_to_rod_joint_errors_m": {
+            "lift_left": 1.1920928955078125e-07,
+            "lift_right": 1.1920928955078125e-07,
+            "bucket_tilt": 1.3025276499688794e-07
+          },
+          "hydraulic_root": {
+            "visible_mesh_descendants": 10
+          },
+          "scope": "visible split-cylinder continuity; anchor and stroke authority remain PENDING"
+        },
+        "semantic_nodes": [
+          "LiftHydraulics_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "wheelbase_and_four_wheel_presence",
+      "status": "PASS",
+      "detail": {
+        "method": "Measured reconstructed axle-center spacing and counted the four exported standard-tire casing meshes.",
+        "evidence": {
+          "wheelbase_modeled_m": 1.22682,
+          "wheelbase_published_m": 1.22682,
+          "wheel_count": 4,
+          "standard_tire_designation": "12 x 16.5, 12 PR"
+        },
+        "semantic_nodes": [
+          "BobcatS76_2_Root"
+        ],
+        "fact_ids": [
+          "wheelbase",
+          "standard-tire-designation"
+        ]
+      }
+    },
+    {
+      "id": "tire_ground_contact",
+      "status": "PASS",
+      "detail": {
+        "method": "Evaluated tire and tread mesh vertices against the authored floor datum.",
+        "evidence": {
+          "tire_minimum_y_m": -0.0,
+          "floor_y_m": 0.0,
+          "tolerance_m": 0.025
+        },
+        "semantic_nodes": [
+          "BobcatS76_2_Root"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "bucket_ground_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "Evaluated all retained-pose bucket-subtree mesh vertices against the authored floor datum.",
+        "evidence": {
+          "retained_pose_bucket_minimum_y_m": 0.054883,
+          "floor_y_m": 0.0,
+          "scope": "static retained-pose screen"
+        },
+        "semantic_nodes": [
+          "BucketPivotRoot"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "self_collision_risk",
+      "status": "PASS",
+      "detail": {
+        "method": "Compared retained-pose bucket and cab evaluated AABBs as a fail-closed static separation screen.",
+        "evidence": {
+          "retained_pose_bucket_to_cab_longitudinal_gap_m": 0.7747989999999999,
+          "scope": "static AABB risk screen; continuous self/swept-volume solver remains PENDING"
+        },
+        "semantic_nodes": [
+          "BucketPivotRoot",
+          "CabEnclosure_Root"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "rights_boundary",
+      "status": "PASS",
+      "detail": {
+        "method": "Inspected authored material and asset provenance records for the exported root.",
+        "evidence": {
+          "materials": "neutral unbranded",
+          "logos": 0,
+          "copied_geometry": false,
+          "copied_textures": false
+        },
+        "semantic_nodes": [],
+        "fact_ids": []
       }
     },
     {
@@ -356,9 +609,66 @@
     }
   ],
   "summary": {
-    "pass": 15,
+    "pass": 26,
     "pending": 6,
     "fail": 0
   },
-  "failed_gate_ids": []
+  "failed_gate_ids": [],
+  "required_machine_gate_ids": [
+    "stowed_visible_envelope",
+    "full_lift_hinge_height",
+    "maximum_height_reach_context",
+    "lift_four_bar_visual_closure",
+    "bucket_linkage_visual_closure",
+    "hydraulic_cylinder_endpoint_continuity",
+    "wheelbase_and_four_wheel_presence",
+    "tire_ground_contact",
+    "bucket_ground_clearance",
+    "self_collision_risk",
+    "rights_boundary"
+  ],
+  "mechanism_required_gate_ids": [
+    "stowed_visible_envelope",
+    "full_lift_hinge_height",
+    "maximum_height_reach_context",
+    "lift_four_bar_visual_closure",
+    "bucket_linkage_visual_closure",
+    "hydraulic_cylinder_endpoint_continuity",
+    "wheelbase_and_four_wheel_presence",
+    "tire_ground_contact",
+    "bucket_ground_clearance",
+    "self_collision_risk",
+    "rights_boundary"
+  ],
+  "mechanism_hierarchy_evidence": {
+    "LiftMotion_ROOT": {
+      "pivot_world_machine_xyz_m": [
+        -0.98,
+        1.29,
+        0.0
+      ],
+      "expected_pivot_world_machine_xyz_m": [
+        -0.98,
+        1.29,
+        0.0
+      ],
+      "visible_mesh_descendants": 25
+    },
+    "LiftHydraulics_ROOT": {
+      "visible_mesh_descendants": 10
+    },
+    "BucketPivotRoot": {
+      "pivot_world_machine_xyz_m": [
+        1.368,
+        0.505,
+        0.0
+      ],
+      "expected_stowed_pivot_world_machine_xyz_m": [
+        1.368,
+        0.505,
+        0.0
+      ],
+      "visible_mesh_descendants": 13
+    }
+  }
 }

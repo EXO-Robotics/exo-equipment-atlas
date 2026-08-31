@@ -26,5 +26,25 @@
     "elevation": 0.29,
     "distance": 1.52
   },
-  "accent": "#ca8e42"
+  "accent": "#4f8791",
+  "motion": {
+    "autoplay": true,
+    "durationSeconds": 18,
+    "mode": "sine",
+    "damping": 8,
+    "channels": [
+      {
+        "id": "cyclic-circle-inspection",
+        "mechanismJointId": "circle_rotation",
+        "label": "Standard circle cyclic inspection - reconstructed pose",
+        "nodes": ["Circle_Rotation_Pivot"],
+        "property": "rotation.y",
+        "from": -0.22,
+        "to": 0.22,
+        "phase": 0.0,
+        "mode": "offset",
+        "autoplay": "sine"
+      }
+    ]
+  }
 }

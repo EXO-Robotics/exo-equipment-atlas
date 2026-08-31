@@ -4,7 +4,7 @@
   "configuration_id": "KOM-WA475-10-NAM-STD-STOCKPILE42-L3-CW-CANDIDATE",
   "coordinate_system": {"longitudinal":"+X toward bucket","vertical":"+Y","lateral":"+Z machine right"},
   "joints": [
-    {"id":"frame_articulation","type":"revolute_articulated_steering","axis":"+Y","authority":"reconstructed","source_ids":["KOM-WA47510-AESS942-0225"],"published_constraints":["35 degrees each direction","40 degrees maximum end stop","two steering cylinders"],"unresolved":["kingpin coordinates, bearing stack, cylinder anchors, steering-cylinder bore/stroke applicability, Ackermann-equivalent path and compliance"]},
+    {"id":"frame_articulation","type":"revolute_articulated_steering","axis":"+Y","authority":"reconstructed","source_ids":["KOM-WA47510-AESS942-0225"],"published_constraints":["35 degrees each direction","40 degrees maximum end stop","two 95 x 441 mm steering cylinders"],"unresolved":["kingpin coordinates, bearing stack, cylinder anchors, Ackermann-equivalent path and compliance"]},
     {"id":"rear_axle_oscillation","type":"revolute_oscillating_axle","axis":"+X","authority":"reconstructed","source_ids":["KOM-WA47510-AESS942-0225"],"published_constraints":["26 degrees total oscillation"],"unresolved":["rear axle center-pin coordinates, bump stops, bearing geometry and load-dependent tire deflection"]},
     {"id":"front_wheels","type":"four_wheel_drive_visual_rotation","axis":"+Z","authority":"reconstructed","source_ids":["KOM-WA47510-AESS942-0225"],"unresolved":["tire rolling radius, tread pitch, rim offset, hub reduction geometry and wheel phase"]},
     {"id":"rear_wheels","type":"four_wheel_drive_visual_rotation","axis":"+Z","authority":"reconstructed","source_ids":["KOM-WA47510-AESS942-0225"],"unresolved":["tire rolling radius, tread pitch, rim offset, hub reduction geometry and wheel phase"]},
@@ -15,5 +15,5 @@
     {"id":"swing_out_cooling_mask","type":"inspection_only_hinge","axis":"+Y","authority":"reconstructed","source_ids":["KOM-WA47510-AESS942-0225"],"published_constraints":["swing-out fan/radiator mask service feature"],"unresolved":["hinge coordinates, swing angle, latch and fan package geometry"]}
   ],
   "required_gates": ["retained_stowed_envelope","wheelbase_and_grade_contact","frame_articulation_continuity","steering_cylinder_continuity","rear_axle_oscillation_clearance","full_lift_hinge_height","dump_clearance_and_reach","loader_linkage_closure","z_bar_linkage_closure","lift_and_bucket_cylinder_stroke_continuity","bucket_ground_collision","machine_self_collision","tire_body_clearance","articulation_swept_volume"],
-  "release_state": "no_geometry_no_solver_no_claim"
+  "release_state": "technical_structural_study_built_solver_unverified"
 }

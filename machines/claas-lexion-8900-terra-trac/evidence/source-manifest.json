@@ -7,23 +7,24 @@
     "source_binaries_committed": false,
     "manufacturer_geometry_committed": false,
     "manual_illustrations_are_scale_drawings": false,
-    "verification": "The parent release lane will download the canonical primary PDF into research/private and replace the pending digest and byte declaration before repository admission."
+    "verification": "The admitted PDF and HTML captures are present and bound to declared hashes and byte counts."
   },
   "sources": [
     {
-      "id": "CLAAS-L8900-NA-BROCHURE",
+      "id": "CLAAS-L8900-WORLDWIDE-BROCHURE",
       "publisher": "CLAAS",
       "kind": "official_product_brochure",
-      "title": "LEXION 8000 / 7000 product brochure",
-      "publication": "stable media 1333800",
-      "market": "North America",
+      "title": "LEXION 8900-7400 product brochure",
+      "publication": "HRC / 101012131025 KK LC 0126",
+      "market": "Worldwide Stage V brochure distributed by CLAAS UK",
       "retrieved": "2026-08-29",
       "official_url": "https://www.claas.com/caas/claas/media/stable/1333800",
       "local_path": "research/private/claas-lexion-8900-terra-trac/primary-source.pdf",
       "sha256": "12a178239992686bb4b229bf69275c248cc1b1b3b9d62ce54ca72aac59648b0b",
       "bytes": 18742261,
+      "pages": 39,
       "admission": "primary",
-      "note": "Canonical private-binary identity will be sealed by the parent release lane."
+      "note": "The physical PDF identifies CLAAS UK on page 39 and says it is designed for worldwide use on page 38. It supports shared component measurements only, not the North American 779 hp configuration freeze."
     },
     {
       "id": "CLAAS-L8900-NA-PRESS",
@@ -34,8 +35,11 @@
       "market": "North America",
       "retrieved": "2026-08-29",
       "official_url": "https://www.claas.com/en-us/press/press-releases/2024-07-16-claas-rolls-out-lexion-8900-tt",
+      "local_path": "research/private/claas-lexion-8900-terra-trac/claas-lexion-8900-terra-trac-na-press.html",
+      "sha256": "37b3cd76b293022d38724057eb914426143615ea18b210a04c70e8a86257a512",
+      "bytes": 661268,
       "admission": "primary",
-      "note": "Controls the North American 779 max hp SAE presentation and the selected CONVIO FLEX 1530 configuration."
+      "note": "Hash-bound local capture controls the North American 779 max hp SAE presentation and the selected CONVIO FLEX 1530, 510 bu, and 5.1 bu/s configuration facts."
     },
     {
       "id": "CLAAS-L8000-NA-PRODUCT",
@@ -45,8 +49,11 @@
       "market": "North America",
       "retrieved": "2026-08-29",
       "official_url": "https://www.claas.com/en-us/agricultural-machinery/combine-harvesters/lexion-8000",
+      "local_path": "research/private/claas-lexion-8900-terra-trac/claas-lexion-8000-na-product.html",
+      "sha256": "c9f35d97fabb270110a5df325bff3fb14718a79a1f2f504a63ae0161aed89951",
+      "bytes": 1554965,
       "admission": "reference_only",
-      "note": "Current family-level mechanism descriptions and technical-data table; market-specific 790 hp wording is not mixed into the press-release power freeze."
+      "note": "Hash-bound family-level topology reference only. Its rotor family facts and 790 hp wording do not control the selected 8900 North American geometry or viewer claims."
     },
     {
       "id": "CLAAS-L8000-NA-BROCHURE",

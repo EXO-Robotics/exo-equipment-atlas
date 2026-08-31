@@ -13,9 +13,9 @@
     "poster": "machines/case-ih-trident-5550/review/renders/case-ih-trident-5550-operator-side.png"
   },
   "evidence": {
-    "boundary": "Neutral 1,600-gallon liquid-system study retaining the folded carrier envelope for fleet-scale inspection. The selected 120-foot boom span is evidence only; its segment lengths, folds and breakaways are not claimed as scale geometry.",
-    "lede": "The official brochure fixes the 9.72 x 4.21 x 4.01 m folded carrier envelope and the selected 36.5 m boom working span while the public model remains a structural study, not application or safety guidance.",
-    "factIds": ["public-envelope-x", "public-envelope-y", "public-envelope-z", "boom-working-span", "liquid-tank-capacity", "pwm-frequency"]
+    "boundary": "Neutral 1,600-gallon liquid-system study retaining the folded carrier envelope for fleet-scale inspection. Nested section lengths encode the published 36.5 m span arithmetically, but their allocation, folds, breakaways, steering, suspension and hydraulics remain reconstructed.",
+    "lede": "The official sources fix the 9.72 x 4.21 x 4.01 m folded carrier envelope, 4.32 m visible-study wheelbase, 1,600-gallon tank and selected 36.5 m boom span while the public model remains a structural study, not application or safety guidance.",
+    "factIds": ["public-envelope-x", "public-envelope-y", "public-envelope-z", "wheelbase", "boom-working-span", "selected-boom-width", "liquid-tank-capacity", "drive-system", "pwm-frequency"]
   },
   "camera": {"azimuth": 0.54, "elevation": 0.27, "distance": 1.43},
   "accent": "#758696",
@@ -23,10 +23,20 @@
     "autoplay": true,
     "durationSeconds": 18,
     "mode": "sine",
-    "damping": 5.8,
+    "damping": 8,
     "channels": [
-      {"id":"left-boom-fold","label":"Left boom fold - reconstructed","nodes":["Boom_L_Fold_Pivot"],"property":"rotation.y","from":0.0,"to":1.18,"phase":0.0,"mode":"offset","autoplay":"ping-pong"},
-      {"id":"right-boom-fold","label":"Right boom fold - reconstructed","nodes":["Boom_R_Fold_Pivot"],"property":"rotation.y","from":0.0,"to":-1.18,"phase":0.0,"mode":"offset","autoplay":"ping-pong"}
+      {"id":"front-steering","label":"Front steering - reconstructed","mechanismJointId":"front_steering_left_right","nodes":["Front_L_Steering_Pivot","Front_R_Steering_Pivot"],"property":"rotation.y","from":-0.12,"to":0.12,"phase":0.0,"mode":"offset"},
+      {"id":"rear-steering","label":"Rear steering - reconstructed","mechanismJointId":"rear_steering_left_right","nodes":["Rear_L_Steering_Pivot","Rear_R_Steering_Pivot"],"property":"rotation.y","from":-0.08,"to":0.08,"phase":0.5,"direction":-1,"mode":"offset"},
+      {"id":"load-level-suspension","label":"Four-corner load-level cue - reconstructed","mechanismJointId":"four_corner_load_compensating_suspension","nodes":["Front_L_Suspension_ROOT","Front_R_Suspension_ROOT","Rear_L_Suspension_ROOT","Rear_R_Suspension_ROOT"],"property":"position.y","from":0.0,"to":0.03,"phase":0.18,"mode":"offset"},
+      {"id":"boom-center-lift","label":"Boom center lift - reconstructed","mechanismJointId":"boom_center_raise_lower","nodes":["Boom_Center_Lift_ROOT"],"property":"position.y","from":0.0,"to":0.16,"phase":0.30,"mode":"offset"},
+      {"id":"boom-roll","label":"Boom roll compensation - reconstructed","mechanismJointId":"boom_roll_compensation","nodes":["Boom_Center_Roll_Pivot"],"property":"rotation.x","from":-0.03,"to":0.03,"phase":0.42,"mode":"offset"},
+      {"id":"left-boom-inner-fold","label":"Left boom inner stage - reconstructed","mechanismJointId":"boom_left_fold","nodes":["Boom_L_Fold_Pivot"],"property":"rotation.y","from":0.0,"to":1.05,"phase":0.52,"mode":"offset"},
+      {"id":"right-boom-inner-fold","label":"Right boom inner stage - reconstructed","mechanismJointId":"boom_right_fold","nodes":["Boom_R_Fold_Pivot"],"property":"rotation.y","from":0.0,"to":-1.05,"phase":0.52,"mode":"offset"},
+      {"id":"left-boom-mid-fold","label":"Left boom middle stage - reconstructed","mechanismJointId":"boom_left_fold","nodes":["Boom_L_Mid_Fold_Pivot"],"property":"rotation.y","from":0.0,"to":-2.10,"phase":0.60,"mode":"offset"},
+      {"id":"right-boom-mid-fold","label":"Right boom middle stage - reconstructed","mechanismJointId":"boom_right_fold","nodes":["Boom_R_Mid_Fold_Pivot"],"property":"rotation.y","from":0.0,"to":2.10,"phase":0.60,"mode":"offset"},
+      {"id":"left-boom-tip-fold","label":"Left boom tip stage - reconstructed","mechanismJointId":"boom_left_fold","nodes":["Boom_L_Tip_Fold_Pivot"],"property":"rotation.y","from":0.0,"to":2.10,"phase":0.68,"mode":"offset"},
+      {"id":"right-boom-tip-fold","label":"Right boom tip stage - reconstructed","mechanismJointId":"boom_right_fold","nodes":["Boom_R_Tip_Fold_Pivot"],"property":"rotation.y","from":0.0,"to":-2.10,"phase":0.68,"mode":"offset"},
+      {"id":"nozzle-pulse-cue","label":"AIM Command pulse cue - reconstructed","mechanismJointId":"nozzle_valve_pulse","nodes":["Nozzle_Valve_Pulse_ROOT"],"property":"position.y","from":0.0,"to":0.012,"phase":0.76,"mode":"offset"}
     ]
   }
 }

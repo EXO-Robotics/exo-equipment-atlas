@@ -45,6 +45,7 @@
     {
       "id": "left_hardbar_compliance",
       "type": "suspended_track_frame_oscillation",
+      "axis": "+Z",
       "authority": "reconstructed",
       "published_travel_in": 10,
       "source_ids": ["FENDT-1100-MT-NA-2025", "FENDT-1100-MT-US-PAGE"],
@@ -58,6 +59,7 @@
     {
       "id": "right_hardbar_compliance",
       "type": "suspended_track_frame_oscillation",
+      "axis": "+Z",
       "authority": "reconstructed",
       "published_travel_in": 10,
       "source_ids": ["FENDT-1100-MT-NA-2025", "FENDT-1100-MT-US-PAGE"],
@@ -83,6 +85,7 @@
     {
       "id": "smartride_plus_leveling",
       "type": "hydraulic_chassis_pitch_leveling",
+      "axis": "+Y",
       "authority": "reconstructed",
       "source_ids": ["FENDT-1100-MT-NA-2025", "FENDT-1100-MT-US-PAGE"],
       "unresolved": [
@@ -95,6 +98,7 @@
     {
       "id": "cab_rear_suspension",
       "type": "two_point_suspended_cab_visual",
+      "axis": "+Y",
       "authority": "reconstructed",
       "published_rear_travel_mm": 100,
       "source_ids": ["FENDT-1100-MT-NA-2025"],
@@ -107,6 +111,7 @@
     {
       "id": "rear_three_point_lift",
       "type": "steerable_three_point_lift",
+      "axis": "+Z",
       "authority": "reconstructed",
       "published_capacity_kg": 6800,
       "source_ids": ["FENDT-1100-MT-NA-2025", "FENDT-1100-MT-US-PAGE"],
@@ -166,5 +171,5 @@
     "self_collision",
     "neutral_unbranded_material_review"
   ],
-  "release_state": "no_geometry_no_solver_no_claim"
+  "release_state": "technical_structural_study_built_solver_unverified"
 }

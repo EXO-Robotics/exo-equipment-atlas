@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-310-p-tier",
+  "display_name": "John Deere 310 P-Tier",
+  "configuration_id": "JD-310P-NAM-FT4-MFWD-STD-DIPPER-CANDIDATE",
+  "archetype": "backhoe_loader",
+  "published_constraints_used": [
+    "overall-length", "overall-width", "cab-height", "mfwd-wheelbase",
+    "loader-boom-cylinder-stroke", "loader-bucket-cylinder-stroke",
+    "backhoe-boom-cylinder-stroke", "backhoe-crowd-cylinder-stroke",
+    "backhoe-bucket-cylinder-stroke", "backhoe-swing", "backhoe-bucket-rotation",
+    "loader-dump-angle", "loader-rollback-angle", "backhoe-transport-height",
+    "stabilizer-spread-operating", "stabilizer-overall-width-operating",
+    "loader-boom-cylinder-bore", "loader-boom-cylinder-rod",
+    "loader-bucket-cylinder-bore", "loader-bucket-cylinder-rod",
+    "backhoe-boom-cylinder-bore", "backhoe-boom-cylinder-rod",
+    "backhoe-crowd-cylinder-bore", "backhoe-crowd-cylinder-rod",
+    "backhoe-bucket-cylinder-bore", "backhoe-bucket-cylinder-rod",
+    "backhoe-swing-cylinder-bore", "backhoe-swing-cylinder-rod",
+    "standard-stabilizer-cylinder-bore", "standard-stabilizer-cylinder-rod",
+    "mfwd-steering-cylinder-bore", "mfwd-steering-cylinder-rod"
+  ],
+  "reconstructed_values": {
+    "export_pivot_contract": "source/build-input.json",
+    "operator_station_visual_basis": "optional enclosed cab, not a frozen order choice",
+    "motion_scope": "rigid backhoe swing only"
+  },
+  "unresolved_choices": [
+    "Canopy versus optional cab, buckets, couplers, counterweight, tyres, hydraulics, controls, and all hidden linkage dimensions"
+  ],
+  "mechanical_gaps": [
+    "Loader, backhoe boom/dipper/bucket, stabilizer, steering, hydraulic endpoint, and swept-collision solvers remain outside the interactive claim."
+  ]
+}

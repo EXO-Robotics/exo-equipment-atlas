@@ -13,9 +13,9 @@
     "poster": "machines/john-deere-8r-410/review/renders/john-deere-8r-410-front-three-quarter.png"
   },
   "evidence": {
-    "boundary": "MY2024 North American 8R 410 source freeze. The 6.636 m length is manufacturer-published; presentation width and height plus all hidden ILS, steering and hitch geometry are reconstructed. Neutral unbranded study only.",
-    "lede": "A slow technical sequence separates ILS axle articulation, steering, three-point lift and PTO cues without claiming a suspension solver or operating envelope.",
-    "factIds": ["rated-engine-power-hp", "engine-displacement", "public-envelope-x", "ils-wheelbase", "ils-axle-clearance", "rear-hitch-capacity"]
+    "boundary": "MY2024 North American 8R 410 source freeze. Overall North American length, width and height are unresolved; the 6.636 m presentation length is reconstructed from a reference-only Latin America page. Hidden ILS, steering and hitch geometry is reconstructed. Neutral unbranded study only.",
+    "lede": "A slow technical sequence separates the left and right ILS visual roots, steering, three-point lift and PTO cues without claiming a suspension solver or operating envelope.",
+    "factIds": ["rated-engine-power-hp", "engine-displacement", "ils-wheelbase", "ils-axle-clearance", "rear-hitch-capacity", "rear-pto-interface"]
   },
   "camera": {"azimuth": 0.72, "elevation": 0.31, "distance": 1.58},
   "accent": "#9aa8b4",
@@ -25,10 +25,12 @@
     "mode": "sine",
     "damping": 8,
     "channels": [
-      {"id": "ils-articulation", "label": "ILS axle articulation study", "nodes": ["Front_Axle_ROOT"], "property": "rotation.x", "from": -0.08, "to": 0.08, "phase": 0.0, "mode": "offset"},
-      {"id": "front-steering", "label": "Front steering study", "nodes": ["Steering_L_Pivot", "Steering_R_Pivot"], "property": "rotation.y", "from": -0.18, "to": 0.18, "phase": 0.22, "mode": "offset"},
-      {"id": "rear-hitch", "label": "Rear three-point lift study", "nodes": ["Rear_Hitch_ROOT"], "property": "rotation.z", "from": -0.12, "to": 0.34, "phase": 0.52, "mode": "offset", "autoplay": "ping-pong"},
-      {"id": "rear-pto", "label": "Rear PTO visual cue", "nodes": ["PTO_ROOT"], "property": "rotation.x", "from": 0, "to": 6.283185, "phase": 0.72, "mode": "offset"}
+      {"id": "ils-left-articulation", "mechanismJointId": "ils_left_suspension_visual", "label": "Left ILS articulation study", "nodes": ["ILS_L_Suspension_ROOT"], "property": "rotation.x", "from": -0.025, "to": 0.025, "phase": 0.0, "mode": "offset"},
+      {"id": "ils-right-articulation", "mechanismJointId": "ils_right_suspension_visual", "label": "Right ILS articulation study", "nodes": ["ILS_R_Suspension_ROOT"], "property": "rotation.x", "from": 0.025, "to": -0.025, "phase": 0.18, "mode": "offset"},
+      {"id": "front-left-steering", "mechanismJointId": "front_left_steering", "label": "Front left steering study", "nodes": ["Steering_L_Pivot"], "property": "rotation.y", "from": -0.16, "to": 0.16, "phase": 0.31, "mode": "offset"},
+      {"id": "front-right-steering", "mechanismJointId": "front_right_steering", "label": "Front right steering study", "nodes": ["Steering_R_Pivot"], "property": "rotation.y", "from": -0.16, "to": 0.16, "phase": 0.31, "mode": "offset"},
+      {"id": "rear-hitch", "mechanismJointId": "rear_hitch_raise_lower", "label": "Rear three-point lift study", "nodes": ["Rear_Hitch_ROOT"], "property": "rotation.z", "from": -0.1, "to": 0.24, "phase": 0.56, "mode": "offset", "autoplay": "ping-pong"},
+      {"id": "rear-pto", "mechanismJointId": "rear_pto_visual_rotation", "label": "Rear PTO visual cue", "nodes": ["PTO_ROOT"], "property": "rotation.x", "from": 0, "to": 6.283185, "phase": 0.78, "mode": "offset"}
     ]
   }
 }

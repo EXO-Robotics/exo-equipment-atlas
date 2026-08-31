@@ -83,6 +83,9 @@
           "camera_count": 0,
           "light_extension_present": false,
           "mesh_node_count": 407,
+          "node_count": 418,
+          "mesh_resource_count": 407,
+          "material_count": 10,
           "primitive_count": 407,
           "decoded_shipped_triangle_count": 74208,
           "unsupported_primitive_modes": [],
@@ -101,7 +104,2519 @@
             7.24,
             3.3898,
             2.2
-          ]
+          ],
+          "node_world_translation_xyz_m": {
+            "ROOT_310P_CANDIDATE": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Cab_Floor": [
+              -0.54,
+              1.05,
+              0.0
+            ],
+            "Cab_Header_Front": [
+              -0.18,
+              2.67,
+              0.0
+            ],
+            "Cab_Header_Rear": [
+              -1.03,
+              2.67,
+              0.0
+            ],
+            "Cab_LowerBulkhead": [
+              -0.62,
+              1.25,
+              0.0
+            ],
+            "Cab_RearLowerPanel": [
+              -1.08,
+              1.52,
+              0.0
+            ],
+            "Cab_RockerPanel_+1": [
+              -0.54,
+              1.12,
+              0.71
+            ],
+            "Cab_RockerPanel_-1": [
+              -0.54,
+              1.12,
+              -0.71
+            ],
+            "Cab_Roof": [
+              -0.56,
+              2.755,
+              0.0
+            ],
+            "Cab_Worklight_Housing_+1": [
+              -0.22,
+              2.73,
+              0.49
+            ],
+            "Cab_Worklight_Housing_-1": [
+              -0.22,
+              2.73,
+              -0.49
+            ],
+            "CabGlass_Front": [
+              -0.11,
+              1.92,
+              0.0
+            ],
+            "CabGlass_Rear": [
+              -1.065,
+              1.92,
+              0.0
+            ],
+            "CabGlass_Side_+1": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "CabGlass_Side_-1": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "CabPillar_FrontLeft": [
+              -0.1,
+              1.925,
+              -0.66
+            ],
+            "CabPillar_FrontRight": [
+              -0.1,
+              1.925,
+              0.66
+            ],
+            "CabPillar_RearLeft": [
+              -1.075,
+              1.925,
+              -0.66
+            ],
+            "CabPillar_RearRight": [
+              -1.075,
+              1.925,
+              0.66
+            ],
+            "CabStep_+1": [
+              -0.535,
+              0.93,
+              0.77
+            ],
+            "CabStep_-1": [
+              -0.535,
+              0.93,
+              -0.77
+            ],
+            "Door_Divider_+1": [
+              -0.61,
+              1.92,
+              0.7
+            ],
+            "Door_Divider_-1": [
+              -0.61,
+              1.92,
+              -0.7
+            ],
+            "Door_Handle_+1": [
+              -0.28,
+              1.75,
+              0.715
+            ],
+            "Door_Handle_-1": [
+              -0.28,
+              1.75,
+              -0.715
+            ],
+            "Door_MidRail_+1": [
+              -0.57,
+              1.58,
+              0.7
+            ],
+            "Door_MidRail_-1": [
+              -0.57,
+              1.58,
+              -0.7
+            ],
+            "Engine_Cowl_Rear": [
+              0.17,
+              1.39,
+              0.0
+            ],
+            "Engine_Hood_Crown": [
+              0.8,
+              1.645,
+              0.0
+            ],
+            "Engine_Hood_Lower": [
+              0.88,
+              1.18,
+              0.0
+            ],
+            "Engine_Hood_Sloped": [
+              0.93,
+              1.52,
+              0.0
+            ],
+            "Engine_Nose_Brow": [
+              1.66,
+              1.58,
+              0.0
+            ],
+            "Exhaust_Stack": [
+              0.26,
+              2.0,
+              -0.42
+            ],
+            "Exhaust_Tip": [
+              0.305,
+              2.64,
+              -0.42
+            ],
+            "Front_Axle_Differential": [
+              1.095,
+              0.54,
+              0.0
+            ],
+            "Front_Driveshaft": [
+              0.425,
+              0.755,
+              0.0
+            ],
+            "Front_Grille": [
+              1.7,
+              1.25,
+              0.0
+            ],
+            "Grille_Slat_00": [
+              1.735,
+              1.05,
+              0.0
+            ],
+            "Grille_Slat_01": [
+              1.735,
+              1.12,
+              0.0
+            ],
+            "Grille_Slat_02": [
+              1.735,
+              1.19,
+              0.0
+            ],
+            "Grille_Slat_03": [
+              1.735,
+              1.26,
+              0.0
+            ],
+            "Grille_Slat_04": [
+              1.735,
+              1.33,
+              0.0
+            ],
+            "Grille_Slat_05": [
+              1.735,
+              1.4,
+              0.0
+            ],
+            "Grille_Slat_06": [
+              1.735,
+              1.47,
+              0.0
+            ],
+            "Hood_Profile_+1": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Hood_Profile_-1": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Hood_ServicePanel_+1": [
+              0.88,
+              1.24,
+              0.558
+            ],
+            "Hood_ServicePanel_-1": [
+              0.88,
+              1.24,
+              -0.558
+            ],
+            "HoodVent_+1_00": [
+              1.15,
+              1.34,
+              0.578
+            ],
+            "HoodVent_+1_01": [
+              1.25,
+              1.34,
+              0.578
+            ],
+            "HoodVent_+1_02": [
+              1.35,
+              1.34,
+              0.578
+            ],
+            "HoodVent_+1_03": [
+              1.45,
+              1.34,
+              0.578
+            ],
+            "HoodVent_-1_00": [
+              1.15,
+              1.34,
+              -0.578
+            ],
+            "HoodVent_-1_01": [
+              1.25,
+              1.34,
+              -0.578
+            ],
+            "HoodVent_-1_02": [
+              1.35,
+              1.34,
+              -0.578
+            ],
+            "HoodVent_-1_03": [
+              1.45,
+              1.34,
+              -0.578
+            ],
+            "Instrument_Console": [
+              -0.08,
+              1.58,
+              0.22
+            ],
+            "Mainframe_Unitized": [
+              -0.05,
+              0.69,
+              0.0
+            ],
+            "MFWD_Front_Axle": [
+              1.095,
+              0.54,
+              0.0
+            ],
+            "MFWD_SteeringCylinder_Barrel": [
+              1.02,
+              0.6,
+              -0.2496
+            ],
+            "MFWD_SteeringCylinder_BasePin": [
+              1.02,
+              0.6,
+              -0.52
+            ],
+            "MFWD_SteeringCylinder_Rod": [
+              1.02,
+              0.6,
+              0.2704
+            ],
+            "MFWD_SteeringCylinder_RodPin": [
+              1.02,
+              0.6,
+              0.52
+            ],
+            "Operator_SeatBack": [
+              -0.78,
+              1.68,
+              0.0
+            ],
+            "Operator_SeatBase": [
+              -0.62,
+              1.28,
+              0.0
+            ],
+            "Pivot_BackhoeSwing": [
+              -1.73,
+              1.05,
+              0.0
+            ],
+            "Backhoe_SwingFrame": [
+              -1.72,
+              1.08,
+              0.0
+            ],
+            "Backhoe_SwingKingpin": [
+              -1.73,
+              1.05,
+              0.0
+            ],
+            "BackhoeSwingCylinder_Left_Barrel": [
+              -1.6425,
+              0.95575,
+              -0.37325
+            ],
+            "BackhoeSwingCylinder_Left_BasePin": [
+              -1.56,
+              0.92,
+              -0.42
+            ],
+            "BackhoeSwingCylinder_Left_Rod": [
+              -1.7925,
+              1.02075,
+              -0.28825
+            ],
+            "BackhoeSwingCylinder_Left_RodPin": [
+              -1.86,
+              1.05,
+              -0.25
+            ],
+            "BackhoeSwingCylinder_Right_Barrel": [
+              -1.6425,
+              0.95575,
+              0.37325
+            ],
+            "BackhoeSwingCylinder_Right_BasePin": [
+              -1.56,
+              0.92,
+              0.42
+            ],
+            "BackhoeSwingCylinder_Right_Rod": [
+              -1.7925,
+              1.02075,
+              0.28825
+            ],
+            "BackhoeSwingCylinder_Right_RodPin": [
+              -1.86,
+              1.05,
+              0.25
+            ],
+            "Pivot_BackhoeBoom": [
+              -1.88,
+              1.25,
+              0.0
+            ],
+            "Backhoe_HoseBundle_+1_A": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Backhoe_HoseBundle_-1_A": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "BackhoeBoom_HeadGusset_Left": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "BackhoeBoom_HeadGusset_Right": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "BackhoeBoom_Lower": [
+              -2.04,
+              1.915,
+              0.0
+            ],
+            "BackhoeBoom_MainPin": [
+              -1.88,
+              1.25,
+              0.0
+            ],
+            "BackhoeBoom_Upper": [
+              -2.44,
+              2.89,
+              0.0
+            ],
+            "BackhoeBoomCylinder_Barrel": [
+              -1.8643,
+              1.8183,
+              0.0
+            ],
+            "BackhoeBoomCylinder_BasePin": [
+              -1.67,
+              1.45,
+              0.0
+            ],
+            "BackhoeBoomCylinder_Rod": [
+              -2.1993,
+              2.4533,
+              0.0
+            ],
+            "BackhoeBoomCylinder_RodPin": [
+              -2.34,
+              2.72,
+              0.0
+            ],
+            "Pivot_BackhoeDipper": [
+              -2.68,
+              3.2,
+              0.0
+            ],
+            "Backhoe_BucketBellcrank": [
+              -3.58,
+              1.685,
+              0.0
+            ],
+            "Backhoe_BucketLink": [
+              -3.7,
+              1.47,
+              0.0
+            ],
+            "BackhoeBucketCylinder_Barrel": [
+              -3.044,
+              2.663,
+              0.0
+            ],
+            "BackhoeBucketCylinder_BasePin": [
+              -2.84,
+              3.02,
+              0.0
+            ],
+            "BackhoeBucketCylinder_Rod": [
+              -3.384,
+              2.068,
+              0.0
+            ],
+            "BackhoeBucketCylinder_RodPin": [
+              -3.52,
+              1.83,
+              0.0
+            ],
+            "BackhoeCrowdCylinder_Barrel": [
+              -2.456,
+              2.6625,
+              0.0
+            ],
+            "BackhoeCrowdCylinder_BasePin": [
+              -2.24,
+              2.73,
+              0.0
+            ],
+            "BackhoeCrowdCylinder_Rod": [
+              -2.856,
+              2.5375,
+              0.0
+            ],
+            "BackhoeCrowdCylinder_RodPin": [
+              -3.04,
+              2.48,
+              0.0
+            ],
+            "BackhoeDipper_Lower": [
+              -3.33,
+              1.95,
+              0.0
+            ],
+            "BackhoeDipper_MainPin": [
+              -2.68,
+              3.2,
+              0.0
+            ],
+            "BackhoeDipper_Upper": [
+              -2.88,
+              2.775,
+              0.0
+            ],
+            "Pivot_BackhoeBucket": [
+              -3.58,
+              1.55,
+              0.0
+            ],
+            "BackhoeBucket_Cheek_+1": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "BackhoeBucket_Cheek_-1": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "BackhoeBucket_MainPin": [
+              -3.58,
+              1.55,
+              0.0
+            ],
+            "BackhoeBucket_Shell_00": [
+              -3.62,
+              1.445,
+              0.0
+            ],
+            "BackhoeBucket_Shell_01": [
+              -3.73,
+              1.27,
+              0.0
+            ],
+            "BackhoeBucket_Shell_02": [
+              -3.89,
+              1.2,
+              0.0
+            ],
+            "BackhoeBucket_Shell_03": [
+              -4.025,
+              1.27,
+              0.0
+            ],
+            "BackhoeBucket_Shell_04": [
+              -4.0775,
+              1.385,
+              0.0
+            ],
+            "BackhoeBucket_Tooth_00": [
+              -4.085,
+              1.43,
+              -0.24
+            ],
+            "BackhoeBucket_Tooth_01": [
+              -4.085,
+              1.43,
+              -0.08
+            ],
+            "BackhoeBucket_Tooth_02": [
+              -4.085,
+              1.43,
+              0.08
+            ],
+            "BackhoeBucket_Tooth_03": [
+              -4.085,
+              1.43,
+              0.24
+            ],
+            "Pivot_FrontLoaderBoom": [
+              0.22,
+              1.58,
+              0.0
+            ],
+            "Loader_Bellcrank": [
+              1.965,
+              1.025,
+              0.0
+            ],
+            "Loader_Bellcrank_Pin": [
+              2.15,
+              0.88,
+              0.0
+            ],
+            "Loader_Crossmember": [
+              1.7,
+              1.1,
+              0.0
+            ],
+            "Loader_HoseBundle_+1_A": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Loader_HoseBundle_-1_A": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "Loader_ZBar_Link": [
+              2.38,
+              0.77,
+              0.0
+            ],
+            "LoaderBoom_Front_+1": [
+              2.105,
+              0.85,
+              0.58
+            ],
+            "LoaderBoom_Front_-1": [
+              2.105,
+              0.85,
+              -0.58
+            ],
+            "LoaderBoom_MainPin_+1": [
+              0.22,
+              1.58,
+              0.58
+            ],
+            "LoaderBoom_MainPin_-1": [
+              0.22,
+              1.58,
+              -0.58
+            ],
+            "LoaderBoom_Rear_+1": [
+              0.885,
+              1.38,
+              0.58
+            ],
+            "LoaderBoom_Rear_-1": [
+              0.885,
+              1.38,
+              -0.58
+            ],
+            "LoaderBoomCylinder_+1_Barrel": [
+              0.7825,
+              1.10425,
+              0.48
+            ],
+            "LoaderBoomCylinder_+1_BasePin": [
+              0.48,
+              1.03,
+              0.48
+            ],
+            "LoaderBoomCylinder_+1_Rod": [
+              1.3325,
+              1.23925,
+              0.48
+            ],
+            "LoaderBoomCylinder_+1_RodPin": [
+              1.58,
+              1.3,
+              0.48
+            ],
+            "LoaderBoomCylinder_-1_Barrel": [
+              0.7825,
+              1.10425,
+              -0.48
+            ],
+            "LoaderBoomCylinder_-1_BasePin": [
+              0.48,
+              1.03,
+              -0.48
+            ],
+            "LoaderBoomCylinder_-1_Rod": [
+              1.3325,
+              1.23925,
+              -0.48
+            ],
+            "LoaderBoomCylinder_-1_RodPin": [
+              1.58,
+              1.3,
+              -0.48
+            ],
+            "LoaderBucketCylinder_Barrel": [
+              0.96,
+              1.485,
+              0.0
+            ],
+            "LoaderBucketCylinder_BasePin": [
+              0.6,
+              1.62,
+              0.0
+            ],
+            "LoaderBucketCylinder_Rod": [
+              1.56,
+              1.26,
+              0.0
+            ],
+            "LoaderBucketCylinder_RodPin": [
+              1.8,
+              1.17,
+              0.0
+            ],
+            "Pivot_FrontLoaderBucket": [
+              2.66,
+              0.52,
+              0.0
+            ],
+            "FrontBucket_Cheek_+1": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "FrontBucket_Cheek_-1": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "FrontBucket_CuttingEdge": [
+              3.085,
+              0.15,
+              0.0
+            ],
+            "FrontBucket_Pin_+1": [
+              2.66,
+              0.52,
+              0.61
+            ],
+            "FrontBucket_Pin_-1": [
+              2.66,
+              0.52,
+              -0.61
+            ],
+            "FrontBucket_Shell_00": [
+              3.0425,
+              0.16,
+              0.0
+            ],
+            "FrontBucket_Shell_01": [
+              2.93,
+              0.21,
+              0.0
+            ],
+            "FrontBucket_Shell_02": [
+              2.81,
+              0.33,
+              0.0
+            ],
+            "FrontBucket_Shell_03": [
+              2.735,
+              0.545,
+              0.0
+            ],
+            "Pivot_FrontSteer_Left": [
+              1.095,
+              0.54,
+              -0.86
+            ],
+            "FrontLeft_Hub": [
+              1.095,
+              0.54,
+              -0.9
+            ],
+            "FrontLeft_Lug_+1_00": [
+              1.2408,
+              0.54,
+              -0.728
+            ],
+            "FrontLeft_Lug_+1_01": [
+              1.198096,
+              0.643096,
+              -0.728
+            ],
+            "FrontLeft_Lug_+1_02": [
+              1.095,
+              0.6858,
+              -0.728
+            ],
+            "FrontLeft_Lug_+1_03": [
+              0.991904,
+              0.643096,
+              -0.728
+            ],
+            "FrontLeft_Lug_+1_04": [
+              0.9492,
+              0.54,
+              -0.728
+            ],
+            "FrontLeft_Lug_+1_05": [
+              0.991904,
+              0.436904,
+              -0.728
+            ],
+            "FrontLeft_Lug_+1_06": [
+              1.095,
+              0.3942,
+              -0.728
+            ],
+            "FrontLeft_Lug_+1_07": [
+              1.198096,
+              0.436904,
+              -0.728
+            ],
+            "FrontLeft_Lug_-1_00": [
+              1.2408,
+              0.54,
+              -1.072
+            ],
+            "FrontLeft_Lug_-1_01": [
+              1.198096,
+              0.643096,
+              -1.072
+            ],
+            "FrontLeft_Lug_-1_02": [
+              1.095,
+              0.6858,
+              -1.072
+            ],
+            "FrontLeft_Lug_-1_03": [
+              0.991904,
+              0.643096,
+              -1.072
+            ],
+            "FrontLeft_Lug_-1_04": [
+              0.9492,
+              0.54,
+              -1.072
+            ],
+            "FrontLeft_Lug_-1_05": [
+              0.991904,
+              0.436904,
+              -1.072
+            ],
+            "FrontLeft_Lug_-1_06": [
+              1.095,
+              0.3942,
+              -1.072
+            ],
+            "FrontLeft_Lug_-1_07": [
+              1.198096,
+              0.436904,
+              -1.072
+            ],
+            "FrontLeft_Rim": [
+              1.095,
+              0.54,
+              -0.9
+            ],
+            "FrontLeft_RimLip_+1": [
+              1.095,
+              0.54,
+              -0.722
+            ],
+            "FrontLeft_RimLip_-1": [
+              1.095,
+              0.54,
+              -1.078
+            ],
+            "FrontLeft_SidewallShoulder_+1": [
+              1.095,
+              0.54,
+              -0.752
+            ],
+            "FrontLeft_SidewallShoulder_-1": [
+              1.095,
+              0.54,
+              -1.048
+            ],
+            "FrontLeft_Tire": [
+              1.095,
+              0.54,
+              -0.9
+            ],
+            "FrontLeft_Tread_+1_00": [
+              1.5918,
+              0.54,
+              -0.788
+            ],
+            "FrontLeft_Tread_+1_01": [
+              1.561839,
+              0.709916,
+              -0.788
+            ],
+            "FrontLeft_Tread_+1_02": [
+              1.475571,
+              0.859337,
+              -0.788
+            ],
+            "FrontLeft_Tread_+1_03": [
+              1.3434,
+              0.970241,
+              -0.788
+            ],
+            "FrontLeft_Tread_+1_04": [
+              1.181268,
+              1.029253,
+              -0.788
+            ],
+            "FrontLeft_Tread_+1_05": [
+              1.008732,
+              1.029253,
+              -0.788
+            ],
+            "FrontLeft_Tread_+1_06": [
+              0.8466,
+              0.970241,
+              -0.788
+            ],
+            "FrontLeft_Tread_+1_07": [
+              0.714429,
+              0.859337,
+              -0.788
+            ],
+            "FrontLeft_Tread_+1_08": [
+              0.628161,
+              0.709916,
+              -0.788
+            ],
+            "FrontLeft_Tread_+1_09": [
+              0.5982,
+              0.54,
+              -0.788
+            ],
+            "FrontLeft_Tread_+1_10": [
+              0.628161,
+              0.370084,
+              -0.788
+            ],
+            "FrontLeft_Tread_+1_11": [
+              0.714429,
+              0.220663,
+              -0.788
+            ],
+            "FrontLeft_Tread_+1_12": [
+              0.8466,
+              0.109759,
+              -0.788
+            ],
+            "FrontLeft_Tread_+1_13": [
+              1.008732,
+              0.050748,
+              -0.788
+            ],
+            "FrontLeft_Tread_+1_14": [
+              1.181268,
+              0.050748,
+              -0.788
+            ],
+            "FrontLeft_Tread_+1_15": [
+              1.3434,
+              0.109759,
+              -0.788
+            ],
+            "FrontLeft_Tread_+1_16": [
+              1.475571,
+              0.220663,
+              -0.788
+            ],
+            "FrontLeft_Tread_+1_17": [
+              1.561839,
+              0.370084,
+              -0.788
+            ],
+            "FrontLeft_Tread_-1_00": [
+              1.5918,
+              0.54,
+              -1.012
+            ],
+            "FrontLeft_Tread_-1_01": [
+              1.561839,
+              0.709916,
+              -1.012
+            ],
+            "FrontLeft_Tread_-1_02": [
+              1.475571,
+              0.859337,
+              -1.012
+            ],
+            "FrontLeft_Tread_-1_03": [
+              1.3434,
+              0.970241,
+              -1.012
+            ],
+            "FrontLeft_Tread_-1_04": [
+              1.181268,
+              1.029253,
+              -1.012
+            ],
+            "FrontLeft_Tread_-1_05": [
+              1.008732,
+              1.029253,
+              -1.012
+            ],
+            "FrontLeft_Tread_-1_06": [
+              0.8466,
+              0.970241,
+              -1.012
+            ],
+            "FrontLeft_Tread_-1_07": [
+              0.714429,
+              0.859337,
+              -1.012
+            ],
+            "FrontLeft_Tread_-1_08": [
+              0.628161,
+              0.709916,
+              -1.012
+            ],
+            "FrontLeft_Tread_-1_09": [
+              0.5982,
+              0.54,
+              -1.012
+            ],
+            "FrontLeft_Tread_-1_10": [
+              0.628161,
+              0.370084,
+              -1.012
+            ],
+            "FrontLeft_Tread_-1_11": [
+              0.714429,
+              0.220663,
+              -1.012
+            ],
+            "FrontLeft_Tread_-1_12": [
+              0.8466,
+              0.109759,
+              -1.012
+            ],
+            "FrontLeft_Tread_-1_13": [
+              1.008732,
+              0.050748,
+              -1.012
+            ],
+            "FrontLeft_Tread_-1_14": [
+              1.181268,
+              0.050748,
+              -1.012
+            ],
+            "FrontLeft_Tread_-1_15": [
+              1.3434,
+              0.109759,
+              -1.012
+            ],
+            "FrontLeft_Tread_-1_16": [
+              1.475571,
+              0.220663,
+              -1.012
+            ],
+            "FrontLeft_Tread_-1_17": [
+              1.561839,
+              0.370084,
+              -1.012
+            ],
+            "Pivot_FrontSteer_Right": [
+              1.095,
+              0.54,
+              0.86
+            ],
+            "FrontRight_Hub": [
+              1.095,
+              0.54,
+              0.9
+            ],
+            "FrontRight_Lug_+1_00": [
+              1.2408,
+              0.54,
+              1.072
+            ],
+            "FrontRight_Lug_+1_01": [
+              1.198096,
+              0.643096,
+              1.072
+            ],
+            "FrontRight_Lug_+1_02": [
+              1.095,
+              0.6858,
+              1.072
+            ],
+            "FrontRight_Lug_+1_03": [
+              0.991904,
+              0.643096,
+              1.072
+            ],
+            "FrontRight_Lug_+1_04": [
+              0.9492,
+              0.54,
+              1.072
+            ],
+            "FrontRight_Lug_+1_05": [
+              0.991904,
+              0.436904,
+              1.072
+            ],
+            "FrontRight_Lug_+1_06": [
+              1.095,
+              0.3942,
+              1.072
+            ],
+            "FrontRight_Lug_+1_07": [
+              1.198096,
+              0.436904,
+              1.072
+            ],
+            "FrontRight_Lug_-1_00": [
+              1.2408,
+              0.54,
+              0.728
+            ],
+            "FrontRight_Lug_-1_01": [
+              1.198096,
+              0.643096,
+              0.728
+            ],
+            "FrontRight_Lug_-1_02": [
+              1.095,
+              0.6858,
+              0.728
+            ],
+            "FrontRight_Lug_-1_03": [
+              0.991904,
+              0.643096,
+              0.728
+            ],
+            "FrontRight_Lug_-1_04": [
+              0.9492,
+              0.54,
+              0.728
+            ],
+            "FrontRight_Lug_-1_05": [
+              0.991904,
+              0.436904,
+              0.728
+            ],
+            "FrontRight_Lug_-1_06": [
+              1.095,
+              0.3942,
+              0.728
+            ],
+            "FrontRight_Lug_-1_07": [
+              1.198096,
+              0.436904,
+              0.728
+            ],
+            "FrontRight_Rim": [
+              1.095,
+              0.54,
+              0.9
+            ],
+            "FrontRight_RimLip_+1": [
+              1.095,
+              0.54,
+              1.078
+            ],
+            "FrontRight_RimLip_-1": [
+              1.095,
+              0.54,
+              0.722
+            ],
+            "FrontRight_SidewallShoulder_+1": [
+              1.095,
+              0.54,
+              1.048
+            ],
+            "FrontRight_SidewallShoulder_-1": [
+              1.095,
+              0.54,
+              0.752
+            ],
+            "FrontRight_Tire": [
+              1.095,
+              0.54,
+              0.9
+            ],
+            "FrontRight_Tread_+1_00": [
+              1.5918,
+              0.54,
+              1.012
+            ],
+            "FrontRight_Tread_+1_01": [
+              1.561839,
+              0.709916,
+              1.012
+            ],
+            "FrontRight_Tread_+1_02": [
+              1.475571,
+              0.859337,
+              1.012
+            ],
+            "FrontRight_Tread_+1_03": [
+              1.3434,
+              0.970241,
+              1.012
+            ],
+            "FrontRight_Tread_+1_04": [
+              1.181268,
+              1.029253,
+              1.012
+            ],
+            "FrontRight_Tread_+1_05": [
+              1.008732,
+              1.029253,
+              1.012
+            ],
+            "FrontRight_Tread_+1_06": [
+              0.8466,
+              0.970241,
+              1.012
+            ],
+            "FrontRight_Tread_+1_07": [
+              0.714429,
+              0.859337,
+              1.012
+            ],
+            "FrontRight_Tread_+1_08": [
+              0.628161,
+              0.709916,
+              1.012
+            ],
+            "FrontRight_Tread_+1_09": [
+              0.5982,
+              0.54,
+              1.012
+            ],
+            "FrontRight_Tread_+1_10": [
+              0.628161,
+              0.370084,
+              1.012
+            ],
+            "FrontRight_Tread_+1_11": [
+              0.714429,
+              0.220663,
+              1.012
+            ],
+            "FrontRight_Tread_+1_12": [
+              0.8466,
+              0.109759,
+              1.012
+            ],
+            "FrontRight_Tread_+1_13": [
+              1.008732,
+              0.050748,
+              1.012
+            ],
+            "FrontRight_Tread_+1_14": [
+              1.181268,
+              0.050748,
+              1.012
+            ],
+            "FrontRight_Tread_+1_15": [
+              1.3434,
+              0.109759,
+              1.012
+            ],
+            "FrontRight_Tread_+1_16": [
+              1.475571,
+              0.220663,
+              1.012
+            ],
+            "FrontRight_Tread_+1_17": [
+              1.561839,
+              0.370084,
+              1.012
+            ],
+            "FrontRight_Tread_-1_00": [
+              1.5918,
+              0.54,
+              0.788
+            ],
+            "FrontRight_Tread_-1_01": [
+              1.561839,
+              0.709916,
+              0.788
+            ],
+            "FrontRight_Tread_-1_02": [
+              1.475571,
+              0.859337,
+              0.788
+            ],
+            "FrontRight_Tread_-1_03": [
+              1.3434,
+              0.970241,
+              0.788
+            ],
+            "FrontRight_Tread_-1_04": [
+              1.181268,
+              1.029253,
+              0.788
+            ],
+            "FrontRight_Tread_-1_05": [
+              1.008732,
+              1.029253,
+              0.788
+            ],
+            "FrontRight_Tread_-1_06": [
+              0.8466,
+              0.970241,
+              0.788
+            ],
+            "FrontRight_Tread_-1_07": [
+              0.714429,
+              0.859337,
+              0.788
+            ],
+            "FrontRight_Tread_-1_08": [
+              0.628161,
+              0.709916,
+              0.788
+            ],
+            "FrontRight_Tread_-1_09": [
+              0.5982,
+              0.54,
+              0.788
+            ],
+            "FrontRight_Tread_-1_10": [
+              0.628161,
+              0.370084,
+              0.788
+            ],
+            "FrontRight_Tread_-1_11": [
+              0.714429,
+              0.220663,
+              0.788
+            ],
+            "FrontRight_Tread_-1_12": [
+              0.8466,
+              0.109759,
+              0.788
+            ],
+            "FrontRight_Tread_-1_13": [
+              1.008732,
+              0.050748,
+              0.788
+            ],
+            "FrontRight_Tread_-1_14": [
+              1.181268,
+              0.050748,
+              0.788
+            ],
+            "FrontRight_Tread_-1_15": [
+              1.3434,
+              0.109759,
+              0.788
+            ],
+            "FrontRight_Tread_-1_16": [
+              1.475571,
+              0.220663,
+              0.788
+            ],
+            "FrontRight_Tread_-1_17": [
+              1.561839,
+              0.370084,
+              0.788
+            ],
+            "Pivot_Stabilizer_Left": [
+              -1.58,
+              0.72,
+              -0.5
+            ],
+            "StabilizerArm_Left": [
+              -1.59,
+              1.22,
+              -0.5
+            ],
+            "StabilizerCylinder_Left_Barrel": [
+              -1.529,
+              1.0856,
+              -0.4574
+            ],
+            "StabilizerCylinder_Left_BasePin": [
+              -1.5,
+              0.9,
+              -0.44
+            ],
+            "StabilizerCylinder_Left_Rod": [
+              -1.579,
+              1.4056,
+              -0.4874
+            ],
+            "StabilizerCylinder_Left_RodPin": [
+              -1.6,
+              1.54,
+              -0.5
+            ],
+            "StabilizerFoot_Left": [
+              -1.6,
+              1.79,
+              -0.5
+            ],
+            "StabilizerFootWearPlate_Left": [
+              -1.6,
+              1.855,
+              -0.5
+            ],
+            "StabilizerPivotBoss_Left": [
+              -1.58,
+              0.72,
+              -0.5
+            ],
+            "Pivot_Stabilizer_Right": [
+              -1.58,
+              0.72,
+              0.5
+            ],
+            "StabilizerArm_Right": [
+              -1.59,
+              1.22,
+              0.5
+            ],
+            "StabilizerCylinder_Right_Barrel": [
+              -1.529,
+              1.0856,
+              0.4574
+            ],
+            "StabilizerCylinder_Right_BasePin": [
+              -1.5,
+              0.9,
+              0.44
+            ],
+            "StabilizerCylinder_Right_Rod": [
+              -1.579,
+              1.4056,
+              0.4874
+            ],
+            "StabilizerCylinder_Right_RodPin": [
+              -1.6,
+              1.54,
+              0.5
+            ],
+            "StabilizerFoot_Right": [
+              -1.6,
+              1.79,
+              0.5
+            ],
+            "StabilizerFootWearPlate_Right": [
+              -1.6,
+              1.855,
+              0.5
+            ],
+            "StabilizerPivotBoss_Right": [
+              -1.58,
+              0.72,
+              0.5
+            ],
+            "Rear_Axle": [
+              -1.095,
+              0.72,
+              0.0
+            ],
+            "Rear_Axle_Differential": [
+              -1.095,
+              0.72,
+              0.0
+            ],
+            "RearFender_FrontSlope_+1": [
+              -0.58,
+              1.19,
+              0.83
+            ],
+            "RearFender_FrontSlope_-1": [
+              -0.58,
+              1.19,
+              -0.83
+            ],
+            "RearFender_RearSlope_+1": [
+              -1.58,
+              1.18,
+              0.83
+            ],
+            "RearFender_RearSlope_-1": [
+              -1.58,
+              1.18,
+              -0.83
+            ],
+            "RearFender_Top_+1": [
+              -1.08,
+              1.43,
+              0.83
+            ],
+            "RearFender_Top_-1": [
+              -1.08,
+              1.43,
+              -0.83
+            ],
+            "RearLeft_Hub": [
+              -1.095,
+              0.72,
+              -0.86
+            ],
+            "RearLeft_Lug_+1_00": [
+              -0.9006,
+              0.72,
+              -0.6536
+            ],
+            "RearLeft_Lug_+1_01": [
+              -0.957538,
+              0.857462,
+              -0.6536
+            ],
+            "RearLeft_Lug_+1_02": [
+              -1.095,
+              0.9144,
+              -0.6536
+            ],
+            "RearLeft_Lug_+1_03": [
+              -1.232462,
+              0.857462,
+              -0.6536
+            ],
+            "RearLeft_Lug_+1_04": [
+              -1.2894,
+              0.72,
+              -0.6536
+            ],
+            "RearLeft_Lug_+1_05": [
+              -1.232462,
+              0.582538,
+              -0.6536
+            ],
+            "RearLeft_Lug_+1_06": [
+              -1.095,
+              0.5256,
+              -0.6536
+            ],
+            "RearLeft_Lug_+1_07": [
+              -0.957538,
+              0.582538,
+              -0.6536
+            ],
+            "RearLeft_Lug_-1_00": [
+              -0.9006,
+              0.72,
+              -1.0664
+            ],
+            "RearLeft_Lug_-1_01": [
+              -0.957538,
+              0.857462,
+              -1.0664
+            ],
+            "RearLeft_Lug_-1_02": [
+              -1.095,
+              0.9144,
+              -1.0664
+            ],
+            "RearLeft_Lug_-1_03": [
+              -1.232462,
+              0.857462,
+              -1.0664
+            ],
+            "RearLeft_Lug_-1_04": [
+              -1.2894,
+              0.72,
+              -1.0664
+            ],
+            "RearLeft_Lug_-1_05": [
+              -1.232462,
+              0.582538,
+              -1.0664
+            ],
+            "RearLeft_Lug_-1_06": [
+              -1.095,
+              0.5256,
+              -1.0664
+            ],
+            "RearLeft_Lug_-1_07": [
+              -0.957538,
+              0.582538,
+              -1.0664
+            ],
+            "RearLeft_Rim": [
+              -1.095,
+              0.72,
+              -0.86
+            ],
+            "RearLeft_RimLip_+1": [
+              -1.095,
+              0.72,
+              -0.6464
+            ],
+            "RearLeft_RimLip_-1": [
+              -1.095,
+              0.72,
+              -1.0736
+            ],
+            "RearLeft_SidewallShoulder_+1": [
+              -1.095,
+              0.72,
+              -0.6824
+            ],
+            "RearLeft_SidewallShoulder_-1": [
+              -1.095,
+              0.72,
+              -1.0376
+            ],
+            "RearLeft_Tire": [
+              -1.095,
+              0.72,
+              -0.86
+            ],
+            "RearLeft_Tread_+1_00": [
+              -0.4326,
+              0.72,
+              -0.7256
+            ],
+            "RearLeft_Tread_+1_01": [
+              -0.472548,
+              0.946554,
+              -0.7256
+            ],
+            "RearLeft_Tread_+1_02": [
+              -0.587572,
+              1.145782,
+              -0.7256
+            ],
+            "RearLeft_Tread_+1_03": [
+              -0.7638,
+              1.293655,
+              -0.7256
+            ],
+            "RearLeft_Tread_+1_04": [
+              -0.979975,
+              1.372337,
+              -0.7256
+            ],
+            "RearLeft_Tread_+1_05": [
+              -1.210025,
+              1.372337,
+              -0.7256
+            ],
+            "RearLeft_Tread_+1_06": [
+              -1.4262,
+              1.293655,
+              -0.7256
+            ],
+            "RearLeft_Tread_+1_07": [
+              -1.602428,
+              1.145782,
+              -0.7256
+            ],
+            "RearLeft_Tread_+1_08": [
+              -1.717452,
+              0.946554,
+              -0.7256
+            ],
+            "RearLeft_Tread_+1_09": [
+              -1.7574,
+              0.72,
+              -0.7256
+            ],
+            "RearLeft_Tread_+1_10": [
+              -1.717452,
+              0.493446,
+              -0.7256
+            ],
+            "RearLeft_Tread_+1_11": [
+              -1.602428,
+              0.294217,
+              -0.7256
+            ],
+            "RearLeft_Tread_+1_12": [
+              -1.4262,
+              0.146345,
+              -0.7256
+            ],
+            "RearLeft_Tread_+1_13": [
+              -1.210025,
+              0.067663,
+              -0.7256
+            ],
+            "RearLeft_Tread_+1_14": [
+              -0.979975,
+              0.067663,
+              -0.7256
+            ],
+            "RearLeft_Tread_+1_15": [
+              -0.7638,
+              0.146345,
+              -0.7256
+            ],
+            "RearLeft_Tread_+1_16": [
+              -0.587572,
+              0.294217,
+              -0.7256
+            ],
+            "RearLeft_Tread_+1_17": [
+              -0.472548,
+              0.493446,
+              -0.7256
+            ],
+            "RearLeft_Tread_-1_00": [
+              -0.4326,
+              0.72,
+              -0.9944
+            ],
+            "RearLeft_Tread_-1_01": [
+              -0.472548,
+              0.946554,
+              -0.9944
+            ],
+            "RearLeft_Tread_-1_02": [
+              -0.587572,
+              1.145782,
+              -0.9944
+            ],
+            "RearLeft_Tread_-1_03": [
+              -0.7638,
+              1.293655,
+              -0.9944
+            ],
+            "RearLeft_Tread_-1_04": [
+              -0.979975,
+              1.372337,
+              -0.9944
+            ],
+            "RearLeft_Tread_-1_05": [
+              -1.210025,
+              1.372337,
+              -0.9944
+            ],
+            "RearLeft_Tread_-1_06": [
+              -1.4262,
+              1.293655,
+              -0.9944
+            ],
+            "RearLeft_Tread_-1_07": [
+              -1.602428,
+              1.145782,
+              -0.9944
+            ],
+            "RearLeft_Tread_-1_08": [
+              -1.717452,
+              0.946554,
+              -0.9944
+            ],
+            "RearLeft_Tread_-1_09": [
+              -1.7574,
+              0.72,
+              -0.9944
+            ],
+            "RearLeft_Tread_-1_10": [
+              -1.717452,
+              0.493446,
+              -0.9944
+            ],
+            "RearLeft_Tread_-1_11": [
+              -1.602428,
+              0.294217,
+              -0.9944
+            ],
+            "RearLeft_Tread_-1_12": [
+              -1.4262,
+              0.146345,
+              -0.9944
+            ],
+            "RearLeft_Tread_-1_13": [
+              -1.210025,
+              0.067663,
+              -0.9944
+            ],
+            "RearLeft_Tread_-1_14": [
+              -0.979975,
+              0.067663,
+              -0.9944
+            ],
+            "RearLeft_Tread_-1_15": [
+              -0.7638,
+              0.146345,
+              -0.9944
+            ],
+            "RearLeft_Tread_-1_16": [
+              -0.587572,
+              0.294217,
+              -0.9944
+            ],
+            "RearLeft_Tread_-1_17": [
+              -0.472548,
+              0.493446,
+              -0.9944
+            ],
+            "RearRight_Hub": [
+              -1.095,
+              0.72,
+              0.86
+            ],
+            "RearRight_Lug_+1_00": [
+              -0.9006,
+              0.72,
+              1.0664
+            ],
+            "RearRight_Lug_+1_01": [
+              -0.957538,
+              0.857462,
+              1.0664
+            ],
+            "RearRight_Lug_+1_02": [
+              -1.095,
+              0.9144,
+              1.0664
+            ],
+            "RearRight_Lug_+1_03": [
+              -1.232462,
+              0.857462,
+              1.0664
+            ],
+            "RearRight_Lug_+1_04": [
+              -1.2894,
+              0.72,
+              1.0664
+            ],
+            "RearRight_Lug_+1_05": [
+              -1.232462,
+              0.582538,
+              1.0664
+            ],
+            "RearRight_Lug_+1_06": [
+              -1.095,
+              0.5256,
+              1.0664
+            ],
+            "RearRight_Lug_+1_07": [
+              -0.957538,
+              0.582538,
+              1.0664
+            ],
+            "RearRight_Lug_-1_00": [
+              -0.9006,
+              0.72,
+              0.6536
+            ],
+            "RearRight_Lug_-1_01": [
+              -0.957538,
+              0.857462,
+              0.6536
+            ],
+            "RearRight_Lug_-1_02": [
+              -1.095,
+              0.9144,
+              0.6536
+            ],
+            "RearRight_Lug_-1_03": [
+              -1.232462,
+              0.857462,
+              0.6536
+            ],
+            "RearRight_Lug_-1_04": [
+              -1.2894,
+              0.72,
+              0.6536
+            ],
+            "RearRight_Lug_-1_05": [
+              -1.232462,
+              0.582538,
+              0.6536
+            ],
+            "RearRight_Lug_-1_06": [
+              -1.095,
+              0.5256,
+              0.6536
+            ],
+            "RearRight_Lug_-1_07": [
+              -0.957538,
+              0.582538,
+              0.6536
+            ],
+            "RearRight_Rim": [
+              -1.095,
+              0.72,
+              0.86
+            ],
+            "RearRight_RimLip_+1": [
+              -1.095,
+              0.72,
+              1.0736
+            ],
+            "RearRight_RimLip_-1": [
+              -1.095,
+              0.72,
+              0.6464
+            ],
+            "RearRight_SidewallShoulder_+1": [
+              -1.095,
+              0.72,
+              1.0376
+            ],
+            "RearRight_SidewallShoulder_-1": [
+              -1.095,
+              0.72,
+              0.6824
+            ],
+            "RearRight_Tire": [
+              -1.095,
+              0.72,
+              0.86
+            ],
+            "RearRight_Tread_+1_00": [
+              -0.4326,
+              0.72,
+              0.9944
+            ],
+            "RearRight_Tread_+1_01": [
+              -0.472548,
+              0.946554,
+              0.9944
+            ],
+            "RearRight_Tread_+1_02": [
+              -0.587572,
+              1.145782,
+              0.9944
+            ],
+            "RearRight_Tread_+1_03": [
+              -0.7638,
+              1.293655,
+              0.9944
+            ],
+            "RearRight_Tread_+1_04": [
+              -0.979975,
+              1.372337,
+              0.9944
+            ],
+            "RearRight_Tread_+1_05": [
+              -1.210025,
+              1.372337,
+              0.9944
+            ],
+            "RearRight_Tread_+1_06": [
+              -1.4262,
+              1.293655,
+              0.9944
+            ],
+            "RearRight_Tread_+1_07": [
+              -1.602428,
+              1.145782,
+              0.9944
+            ],
+            "RearRight_Tread_+1_08": [
+              -1.717452,
+              0.946554,
+              0.9944
+            ],
+            "RearRight_Tread_+1_09": [
+              -1.7574,
+              0.72,
+              0.9944
+            ],
+            "RearRight_Tread_+1_10": [
+              -1.717452,
+              0.493446,
+              0.9944
+            ],
+            "RearRight_Tread_+1_11": [
+              -1.602428,
+              0.294217,
+              0.9944
+            ],
+            "RearRight_Tread_+1_12": [
+              -1.4262,
+              0.146345,
+              0.9944
+            ],
+            "RearRight_Tread_+1_13": [
+              -1.210025,
+              0.067663,
+              0.9944
+            ],
+            "RearRight_Tread_+1_14": [
+              -0.979975,
+              0.067663,
+              0.9944
+            ],
+            "RearRight_Tread_+1_15": [
+              -0.7638,
+              0.146345,
+              0.9944
+            ],
+            "RearRight_Tread_+1_16": [
+              -0.587572,
+              0.294217,
+              0.9944
+            ],
+            "RearRight_Tread_+1_17": [
+              -0.472548,
+              0.493446,
+              0.9944
+            ],
+            "RearRight_Tread_-1_00": [
+              -0.4326,
+              0.72,
+              0.7256
+            ],
+            "RearRight_Tread_-1_01": [
+              -0.472548,
+              0.946554,
+              0.7256
+            ],
+            "RearRight_Tread_-1_02": [
+              -0.587572,
+              1.145782,
+              0.7256
+            ],
+            "RearRight_Tread_-1_03": [
+              -0.7638,
+              1.293655,
+              0.7256
+            ],
+            "RearRight_Tread_-1_04": [
+              -0.979975,
+              1.372337,
+              0.7256
+            ],
+            "RearRight_Tread_-1_05": [
+              -1.210025,
+              1.372337,
+              0.7256
+            ],
+            "RearRight_Tread_-1_06": [
+              -1.4262,
+              1.293655,
+              0.7256
+            ],
+            "RearRight_Tread_-1_07": [
+              -1.602428,
+              1.145782,
+              0.7256
+            ],
+            "RearRight_Tread_-1_08": [
+              -1.717452,
+              0.946554,
+              0.7256
+            ],
+            "RearRight_Tread_-1_09": [
+              -1.7574,
+              0.72,
+              0.7256
+            ],
+            "RearRight_Tread_-1_10": [
+              -1.717452,
+              0.493446,
+              0.7256
+            ],
+            "RearRight_Tread_-1_11": [
+              -1.602428,
+              0.294217,
+              0.7256
+            ],
+            "RearRight_Tread_-1_12": [
+              -1.4262,
+              0.146345,
+              0.7256
+            ],
+            "RearRight_Tread_-1_13": [
+              -1.210025,
+              0.067663,
+              0.7256
+            ],
+            "RearRight_Tread_-1_14": [
+              -0.979975,
+              0.067663,
+              0.7256
+            ],
+            "RearRight_Tread_-1_15": [
+              -0.7638,
+              0.146345,
+              0.7256
+            ],
+            "RearRight_Tread_-1_16": [
+              -0.587572,
+              0.294217,
+              0.7256
+            ],
+            "RearRight_Tread_-1_17": [
+              -0.472548,
+              0.493446,
+              0.7256
+            ],
+            "Steering_Column": [
+              -0.145,
+              1.59,
+              -0.18
+            ],
+            "Steering_TieRod": [
+              1.095,
+              0.49,
+              0.0
+            ],
+            "Steering_Wheel": [
+              -0.17,
+              1.7,
+              -0.18
+            ],
+            "Transmission_Housing": [
+              -0.35,
+              0.83,
+              0.0
+            ]
+          },
+          "node_child_count": {
+            "ROOT_310P_CANDIDATE": 200,
+            "Cab_Floor": 0,
+            "Cab_Header_Front": 0,
+            "Cab_Header_Rear": 0,
+            "Cab_LowerBulkhead": 0,
+            "Cab_RearLowerPanel": 0,
+            "Cab_RockerPanel_+1": 0,
+            "Cab_RockerPanel_-1": 0,
+            "Cab_Roof": 0,
+            "Cab_Worklight_Housing_+1": 0,
+            "Cab_Worklight_Housing_-1": 0,
+            "CabGlass_Front": 0,
+            "CabGlass_Rear": 0,
+            "CabGlass_Side_+1": 0,
+            "CabGlass_Side_-1": 0,
+            "CabPillar_FrontLeft": 0,
+            "CabPillar_FrontRight": 0,
+            "CabPillar_RearLeft": 0,
+            "CabPillar_RearRight": 0,
+            "CabStep_+1": 0,
+            "CabStep_-1": 0,
+            "Door_Divider_+1": 0,
+            "Door_Divider_-1": 0,
+            "Door_Handle_+1": 0,
+            "Door_Handle_-1": 0,
+            "Door_MidRail_+1": 0,
+            "Door_MidRail_-1": 0,
+            "Engine_Cowl_Rear": 0,
+            "Engine_Hood_Crown": 0,
+            "Engine_Hood_Lower": 0,
+            "Engine_Hood_Sloped": 0,
+            "Engine_Nose_Brow": 0,
+            "Exhaust_Stack": 0,
+            "Exhaust_Tip": 0,
+            "Front_Axle_Differential": 0,
+            "Front_Driveshaft": 0,
+            "Front_Grille": 0,
+            "Grille_Slat_00": 0,
+            "Grille_Slat_01": 0,
+            "Grille_Slat_02": 0,
+            "Grille_Slat_03": 0,
+            "Grille_Slat_04": 0,
+            "Grille_Slat_05": 0,
+            "Grille_Slat_06": 0,
+            "Hood_Profile_+1": 0,
+            "Hood_Profile_-1": 0,
+            "Hood_ServicePanel_+1": 0,
+            "Hood_ServicePanel_-1": 0,
+            "HoodVent_+1_00": 0,
+            "HoodVent_+1_01": 0,
+            "HoodVent_+1_02": 0,
+            "HoodVent_+1_03": 0,
+            "HoodVent_-1_00": 0,
+            "HoodVent_-1_01": 0,
+            "HoodVent_-1_02": 0,
+            "HoodVent_-1_03": 0,
+            "Instrument_Console": 0,
+            "Mainframe_Unitized": 0,
+            "MFWD_Front_Axle": 0,
+            "MFWD_SteeringCylinder_Barrel": 0,
+            "MFWD_SteeringCylinder_BasePin": 0,
+            "MFWD_SteeringCylinder_Rod": 0,
+            "MFWD_SteeringCylinder_RodPin": 0,
+            "Operator_SeatBack": 0,
+            "Operator_SeatBase": 0,
+            "Pivot_BackhoeSwing": 11,
+            "Backhoe_SwingFrame": 0,
+            "Backhoe_SwingKingpin": 0,
+            "BackhoeSwingCylinder_Left_Barrel": 0,
+            "BackhoeSwingCylinder_Left_BasePin": 0,
+            "BackhoeSwingCylinder_Left_Rod": 0,
+            "BackhoeSwingCylinder_Left_RodPin": 0,
+            "BackhoeSwingCylinder_Right_Barrel": 0,
+            "BackhoeSwingCylinder_Right_BasePin": 0,
+            "BackhoeSwingCylinder_Right_Rod": 0,
+            "BackhoeSwingCylinder_Right_RodPin": 0,
+            "Pivot_BackhoeBoom": 12,
+            "Backhoe_HoseBundle_+1_A": 0,
+            "Backhoe_HoseBundle_-1_A": 0,
+            "BackhoeBoom_HeadGusset_Left": 0,
+            "BackhoeBoom_HeadGusset_Right": 0,
+            "BackhoeBoom_Lower": 0,
+            "BackhoeBoom_MainPin": 0,
+            "BackhoeBoom_Upper": 0,
+            "BackhoeBoomCylinder_Barrel": 0,
+            "BackhoeBoomCylinder_BasePin": 0,
+            "BackhoeBoomCylinder_Rod": 0,
+            "BackhoeBoomCylinder_RodPin": 0,
+            "Pivot_BackhoeDipper": 14,
+            "Backhoe_BucketBellcrank": 0,
+            "Backhoe_BucketLink": 0,
+            "BackhoeBucketCylinder_Barrel": 0,
+            "BackhoeBucketCylinder_BasePin": 0,
+            "BackhoeBucketCylinder_Rod": 0,
+            "BackhoeBucketCylinder_RodPin": 0,
+            "BackhoeCrowdCylinder_Barrel": 0,
+            "BackhoeCrowdCylinder_BasePin": 0,
+            "BackhoeCrowdCylinder_Rod": 0,
+            "BackhoeCrowdCylinder_RodPin": 0,
+            "BackhoeDipper_Lower": 0,
+            "BackhoeDipper_MainPin": 0,
+            "BackhoeDipper_Upper": 0,
+            "Pivot_BackhoeBucket": 12,
+            "BackhoeBucket_Cheek_+1": 0,
+            "BackhoeBucket_Cheek_-1": 0,
+            "BackhoeBucket_MainPin": 0,
+            "BackhoeBucket_Shell_00": 0,
+            "BackhoeBucket_Shell_01": 0,
+            "BackhoeBucket_Shell_02": 0,
+            "BackhoeBucket_Shell_03": 0,
+            "BackhoeBucket_Shell_04": 0,
+            "BackhoeBucket_Tooth_00": 0,
+            "BackhoeBucket_Tooth_01": 0,
+            "BackhoeBucket_Tooth_02": 0,
+            "BackhoeBucket_Tooth_03": 0,
+            "Pivot_FrontLoaderBoom": 25,
+            "Loader_Bellcrank": 0,
+            "Loader_Bellcrank_Pin": 0,
+            "Loader_Crossmember": 0,
+            "Loader_HoseBundle_+1_A": 0,
+            "Loader_HoseBundle_-1_A": 0,
+            "Loader_ZBar_Link": 0,
+            "LoaderBoom_Front_+1": 0,
+            "LoaderBoom_Front_-1": 0,
+            "LoaderBoom_MainPin_+1": 0,
+            "LoaderBoom_MainPin_-1": 0,
+            "LoaderBoom_Rear_+1": 0,
+            "LoaderBoom_Rear_-1": 0,
+            "LoaderBoomCylinder_+1_Barrel": 0,
+            "LoaderBoomCylinder_+1_BasePin": 0,
+            "LoaderBoomCylinder_+1_Rod": 0,
+            "LoaderBoomCylinder_+1_RodPin": 0,
+            "LoaderBoomCylinder_-1_Barrel": 0,
+            "LoaderBoomCylinder_-1_BasePin": 0,
+            "LoaderBoomCylinder_-1_Rod": 0,
+            "LoaderBoomCylinder_-1_RodPin": 0,
+            "LoaderBucketCylinder_Barrel": 0,
+            "LoaderBucketCylinder_BasePin": 0,
+            "LoaderBucketCylinder_Rod": 0,
+            "LoaderBucketCylinder_RodPin": 0,
+            "Pivot_FrontLoaderBucket": 9,
+            "FrontBucket_Cheek_+1": 0,
+            "FrontBucket_Cheek_-1": 0,
+            "FrontBucket_CuttingEdge": 0,
+            "FrontBucket_Pin_+1": 0,
+            "FrontBucket_Pin_-1": 0,
+            "FrontBucket_Shell_00": 0,
+            "FrontBucket_Shell_01": 0,
+            "FrontBucket_Shell_02": 0,
+            "FrontBucket_Shell_03": 0,
+            "Pivot_FrontSteer_Left": 59,
+            "FrontLeft_Hub": 0,
+            "FrontLeft_Lug_+1_00": 0,
+            "FrontLeft_Lug_+1_01": 0,
+            "FrontLeft_Lug_+1_02": 0,
+            "FrontLeft_Lug_+1_03": 0,
+            "FrontLeft_Lug_+1_04": 0,
+            "FrontLeft_Lug_+1_05": 0,
+            "FrontLeft_Lug_+1_06": 0,
+            "FrontLeft_Lug_+1_07": 0,
+            "FrontLeft_Lug_-1_00": 0,
+            "FrontLeft_Lug_-1_01": 0,
+            "FrontLeft_Lug_-1_02": 0,
+            "FrontLeft_Lug_-1_03": 0,
+            "FrontLeft_Lug_-1_04": 0,
+            "FrontLeft_Lug_-1_05": 0,
+            "FrontLeft_Lug_-1_06": 0,
+            "FrontLeft_Lug_-1_07": 0,
+            "FrontLeft_Rim": 0,
+            "FrontLeft_RimLip_+1": 0,
+            "FrontLeft_RimLip_-1": 0,
+            "FrontLeft_SidewallShoulder_+1": 0,
+            "FrontLeft_SidewallShoulder_-1": 0,
+            "FrontLeft_Tire": 0,
+            "FrontLeft_Tread_+1_00": 0,
+            "FrontLeft_Tread_+1_01": 0,
+            "FrontLeft_Tread_+1_02": 0,
+            "FrontLeft_Tread_+1_03": 0,
+            "FrontLeft_Tread_+1_04": 0,
+            "FrontLeft_Tread_+1_05": 0,
+            "FrontLeft_Tread_+1_06": 0,
+            "FrontLeft_Tread_+1_07": 0,
+            "FrontLeft_Tread_+1_08": 0,
+            "FrontLeft_Tread_+1_09": 0,
+            "FrontLeft_Tread_+1_10": 0,
+            "FrontLeft_Tread_+1_11": 0,
+            "FrontLeft_Tread_+1_12": 0,
+            "FrontLeft_Tread_+1_13": 0,
+            "FrontLeft_Tread_+1_14": 0,
+            "FrontLeft_Tread_+1_15": 0,
+            "FrontLeft_Tread_+1_16": 0,
+            "FrontLeft_Tread_+1_17": 0,
+            "FrontLeft_Tread_-1_00": 0,
+            "FrontLeft_Tread_-1_01": 0,
+            "FrontLeft_Tread_-1_02": 0,
+            "FrontLeft_Tread_-1_03": 0,
+            "FrontLeft_Tread_-1_04": 0,
+            "FrontLeft_Tread_-1_05": 0,
+            "FrontLeft_Tread_-1_06": 0,
+            "FrontLeft_Tread_-1_07": 0,
+            "FrontLeft_Tread_-1_08": 0,
+            "FrontLeft_Tread_-1_09": 0,
+            "FrontLeft_Tread_-1_10": 0,
+            "FrontLeft_Tread_-1_11": 0,
+            "FrontLeft_Tread_-1_12": 0,
+            "FrontLeft_Tread_-1_13": 0,
+            "FrontLeft_Tread_-1_14": 0,
+            "FrontLeft_Tread_-1_15": 0,
+            "FrontLeft_Tread_-1_16": 0,
+            "FrontLeft_Tread_-1_17": 0,
+            "Pivot_FrontSteer_Right": 59,
+            "FrontRight_Hub": 0,
+            "FrontRight_Lug_+1_00": 0,
+            "FrontRight_Lug_+1_01": 0,
+            "FrontRight_Lug_+1_02": 0,
+            "FrontRight_Lug_+1_03": 0,
+            "FrontRight_Lug_+1_04": 0,
+            "FrontRight_Lug_+1_05": 0,
+            "FrontRight_Lug_+1_06": 0,
+            "FrontRight_Lug_+1_07": 0,
+            "FrontRight_Lug_-1_00": 0,
+            "FrontRight_Lug_-1_01": 0,
+            "FrontRight_Lug_-1_02": 0,
+            "FrontRight_Lug_-1_03": 0,
+            "FrontRight_Lug_-1_04": 0,
+            "FrontRight_Lug_-1_05": 0,
+            "FrontRight_Lug_-1_06": 0,
+            "FrontRight_Lug_-1_07": 0,
+            "FrontRight_Rim": 0,
+            "FrontRight_RimLip_+1": 0,
+            "FrontRight_RimLip_-1": 0,
+            "FrontRight_SidewallShoulder_+1": 0,
+            "FrontRight_SidewallShoulder_-1": 0,
+            "FrontRight_Tire": 0,
+            "FrontRight_Tread_+1_00": 0,
+            "FrontRight_Tread_+1_01": 0,
+            "FrontRight_Tread_+1_02": 0,
+            "FrontRight_Tread_+1_03": 0,
+            "FrontRight_Tread_+1_04": 0,
+            "FrontRight_Tread_+1_05": 0,
+            "FrontRight_Tread_+1_06": 0,
+            "FrontRight_Tread_+1_07": 0,
+            "FrontRight_Tread_+1_08": 0,
+            "FrontRight_Tread_+1_09": 0,
+            "FrontRight_Tread_+1_10": 0,
+            "FrontRight_Tread_+1_11": 0,
+            "FrontRight_Tread_+1_12": 0,
+            "FrontRight_Tread_+1_13": 0,
+            "FrontRight_Tread_+1_14": 0,
+            "FrontRight_Tread_+1_15": 0,
+            "FrontRight_Tread_+1_16": 0,
+            "FrontRight_Tread_+1_17": 0,
+            "FrontRight_Tread_-1_00": 0,
+            "FrontRight_Tread_-1_01": 0,
+            "FrontRight_Tread_-1_02": 0,
+            "FrontRight_Tread_-1_03": 0,
+            "FrontRight_Tread_-1_04": 0,
+            "FrontRight_Tread_-1_05": 0,
+            "FrontRight_Tread_-1_06": 0,
+            "FrontRight_Tread_-1_07": 0,
+            "FrontRight_Tread_-1_08": 0,
+            "FrontRight_Tread_-1_09": 0,
+            "FrontRight_Tread_-1_10": 0,
+            "FrontRight_Tread_-1_11": 0,
+            "FrontRight_Tread_-1_12": 0,
+            "FrontRight_Tread_-1_13": 0,
+            "FrontRight_Tread_-1_14": 0,
+            "FrontRight_Tread_-1_15": 0,
+            "FrontRight_Tread_-1_16": 0,
+            "FrontRight_Tread_-1_17": 0,
+            "Pivot_Stabilizer_Left": 8,
+            "StabilizerArm_Left": 0,
+            "StabilizerCylinder_Left_Barrel": 0,
+            "StabilizerCylinder_Left_BasePin": 0,
+            "StabilizerCylinder_Left_Rod": 0,
+            "StabilizerCylinder_Left_RodPin": 0,
+            "StabilizerFoot_Left": 0,
+            "StabilizerFootWearPlate_Left": 0,
+            "StabilizerPivotBoss_Left": 0,
+            "Pivot_Stabilizer_Right": 8,
+            "StabilizerArm_Right": 0,
+            "StabilizerCylinder_Right_Barrel": 0,
+            "StabilizerCylinder_Right_BasePin": 0,
+            "StabilizerCylinder_Right_Rod": 0,
+            "StabilizerCylinder_Right_RodPin": 0,
+            "StabilizerFoot_Right": 0,
+            "StabilizerFootWearPlate_Right": 0,
+            "StabilizerPivotBoss_Right": 0,
+            "Rear_Axle": 0,
+            "Rear_Axle_Differential": 0,
+            "RearFender_FrontSlope_+1": 0,
+            "RearFender_FrontSlope_-1": 0,
+            "RearFender_RearSlope_+1": 0,
+            "RearFender_RearSlope_-1": 0,
+            "RearFender_Top_+1": 0,
+            "RearFender_Top_-1": 0,
+            "RearLeft_Hub": 0,
+            "RearLeft_Lug_+1_00": 0,
+            "RearLeft_Lug_+1_01": 0,
+            "RearLeft_Lug_+1_02": 0,
+            "RearLeft_Lug_+1_03": 0,
+            "RearLeft_Lug_+1_04": 0,
+            "RearLeft_Lug_+1_05": 0,
+            "RearLeft_Lug_+1_06": 0,
+            "RearLeft_Lug_+1_07": 0,
+            "RearLeft_Lug_-1_00": 0,
+            "RearLeft_Lug_-1_01": 0,
+            "RearLeft_Lug_-1_02": 0,
+            "RearLeft_Lug_-1_03": 0,
+            "RearLeft_Lug_-1_04": 0,
+            "RearLeft_Lug_-1_05": 0,
+            "RearLeft_Lug_-1_06": 0,
+            "RearLeft_Lug_-1_07": 0,
+            "RearLeft_Rim": 0,
+            "RearLeft_RimLip_+1": 0,
+            "RearLeft_RimLip_-1": 0,
+            "RearLeft_SidewallShoulder_+1": 0,
+            "RearLeft_SidewallShoulder_-1": 0,
+            "RearLeft_Tire": 0,
+            "RearLeft_Tread_+1_00": 0,
+            "RearLeft_Tread_+1_01": 0,
+            "RearLeft_Tread_+1_02": 0,
+            "RearLeft_Tread_+1_03": 0,
+            "RearLeft_Tread_+1_04": 0,
+            "RearLeft_Tread_+1_05": 0,
+            "RearLeft_Tread_+1_06": 0,
+            "RearLeft_Tread_+1_07": 0,
+            "RearLeft_Tread_+1_08": 0,
+            "RearLeft_Tread_+1_09": 0,
+            "RearLeft_Tread_+1_10": 0,
+            "RearLeft_Tread_+1_11": 0,
+            "RearLeft_Tread_+1_12": 0,
+            "RearLeft_Tread_+1_13": 0,
+            "RearLeft_Tread_+1_14": 0,
+            "RearLeft_Tread_+1_15": 0,
+            "RearLeft_Tread_+1_16": 0,
+            "RearLeft_Tread_+1_17": 0,
+            "RearLeft_Tread_-1_00": 0,
+            "RearLeft_Tread_-1_01": 0,
+            "RearLeft_Tread_-1_02": 0,
+            "RearLeft_Tread_-1_03": 0,
+            "RearLeft_Tread_-1_04": 0,
+            "RearLeft_Tread_-1_05": 0,
+            "RearLeft_Tread_-1_06": 0,
+            "RearLeft_Tread_-1_07": 0,
+            "RearLeft_Tread_-1_08": 0,
+            "RearLeft_Tread_-1_09": 0,
+            "RearLeft_Tread_-1_10": 0,
+            "RearLeft_Tread_-1_11": 0,
+            "RearLeft_Tread_-1_12": 0,
+            "RearLeft_Tread_-1_13": 0,
+            "RearLeft_Tread_-1_14": 0,
+            "RearLeft_Tread_-1_15": 0,
+            "RearLeft_Tread_-1_16": 0,
+            "RearLeft_Tread_-1_17": 0,
+            "RearRight_Hub": 0,
+            "RearRight_Lug_+1_00": 0,
+            "RearRight_Lug_+1_01": 0,
+            "RearRight_Lug_+1_02": 0,
+            "RearRight_Lug_+1_03": 0,
+            "RearRight_Lug_+1_04": 0,
+            "RearRight_Lug_+1_05": 0,
+            "RearRight_Lug_+1_06": 0,
+            "RearRight_Lug_+1_07": 0,
+            "RearRight_Lug_-1_00": 0,
+            "RearRight_Lug_-1_01": 0,
+            "RearRight_Lug_-1_02": 0,
+            "RearRight_Lug_-1_03": 0,
+            "RearRight_Lug_-1_04": 0,
+            "RearRight_Lug_-1_05": 0,
+            "RearRight_Lug_-1_06": 0,
+            "RearRight_Lug_-1_07": 0,
+            "RearRight_Rim": 0,
+            "RearRight_RimLip_+1": 0,
+            "RearRight_RimLip_-1": 0,
+            "RearRight_SidewallShoulder_+1": 0,
+            "RearRight_SidewallShoulder_-1": 0,
+            "RearRight_Tire": 0,
+            "RearRight_Tread_+1_00": 0,
+            "RearRight_Tread_+1_01": 0,
+            "RearRight_Tread_+1_02": 0,
+            "RearRight_Tread_+1_03": 0,
+            "RearRight_Tread_+1_04": 0,
+            "RearRight_Tread_+1_05": 0,
+            "RearRight_Tread_+1_06": 0,
+            "RearRight_Tread_+1_07": 0,
+            "RearRight_Tread_+1_08": 0,
+            "RearRight_Tread_+1_09": 0,
+            "RearRight_Tread_+1_10": 0,
+            "RearRight_Tread_+1_11": 0,
+            "RearRight_Tread_+1_12": 0,
+            "RearRight_Tread_+1_13": 0,
+            "RearRight_Tread_+1_14": 0,
+            "RearRight_Tread_+1_15": 0,
+            "RearRight_Tread_+1_16": 0,
+            "RearRight_Tread_+1_17": 0,
+            "RearRight_Tread_-1_00": 0,
+            "RearRight_Tread_-1_01": 0,
+            "RearRight_Tread_-1_02": 0,
+            "RearRight_Tread_-1_03": 0,
+            "RearRight_Tread_-1_04": 0,
+            "RearRight_Tread_-1_05": 0,
+            "RearRight_Tread_-1_06": 0,
+            "RearRight_Tread_-1_07": 0,
+            "RearRight_Tread_-1_08": 0,
+            "RearRight_Tread_-1_09": 0,
+            "RearRight_Tread_-1_10": 0,
+            "RearRight_Tread_-1_11": 0,
+            "RearRight_Tread_-1_12": 0,
+            "RearRight_Tread_-1_13": 0,
+            "RearRight_Tread_-1_14": 0,
+            "RearRight_Tread_-1_15": 0,
+            "RearRight_Tread_-1_16": 0,
+            "RearRight_Tread_-1_17": 0,
+            "Steering_Column": 0,
+            "Steering_TieRod": 0,
+            "Steering_Wheel": 0,
+            "Transmission_Housing": 0
+          }
         }
       }
     },
@@ -119,6 +2634,9 @@
         "camera_count": 0,
         "light_extension_present": false,
         "mesh_node_count": 407,
+        "node_count": 418,
+        "mesh_resource_count": 407,
+        "material_count": 10,
         "primitive_count": 407,
         "decoded_shipped_triangle_count": 74208,
         "unsupported_primitive_modes": [],
@@ -137,7 +2655,2519 @@
           7.24,
           3.3898,
           2.2
-        ]
+        ],
+        "node_world_translation_xyz_m": {
+          "ROOT_310P_CANDIDATE": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Cab_Floor": [
+            -0.54,
+            1.05,
+            0.0
+          ],
+          "Cab_Header_Front": [
+            -0.18,
+            2.67,
+            0.0
+          ],
+          "Cab_Header_Rear": [
+            -1.03,
+            2.67,
+            0.0
+          ],
+          "Cab_LowerBulkhead": [
+            -0.62,
+            1.25,
+            0.0
+          ],
+          "Cab_RearLowerPanel": [
+            -1.08,
+            1.52,
+            0.0
+          ],
+          "Cab_RockerPanel_+1": [
+            -0.54,
+            1.12,
+            0.71
+          ],
+          "Cab_RockerPanel_-1": [
+            -0.54,
+            1.12,
+            -0.71
+          ],
+          "Cab_Roof": [
+            -0.56,
+            2.755,
+            0.0
+          ],
+          "Cab_Worklight_Housing_+1": [
+            -0.22,
+            2.73,
+            0.49
+          ],
+          "Cab_Worklight_Housing_-1": [
+            -0.22,
+            2.73,
+            -0.49
+          ],
+          "CabGlass_Front": [
+            -0.11,
+            1.92,
+            0.0
+          ],
+          "CabGlass_Rear": [
+            -1.065,
+            1.92,
+            0.0
+          ],
+          "CabGlass_Side_+1": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "CabGlass_Side_-1": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "CabPillar_FrontLeft": [
+            -0.1,
+            1.925,
+            -0.66
+          ],
+          "CabPillar_FrontRight": [
+            -0.1,
+            1.925,
+            0.66
+          ],
+          "CabPillar_RearLeft": [
+            -1.075,
+            1.925,
+            -0.66
+          ],
+          "CabPillar_RearRight": [
+            -1.075,
+            1.925,
+            0.66
+          ],
+          "CabStep_+1": [
+            -0.535,
+            0.93,
+            0.77
+          ],
+          "CabStep_-1": [
+            -0.535,
+            0.93,
+            -0.77
+          ],
+          "Door_Divider_+1": [
+            -0.61,
+            1.92,
+            0.7
+          ],
+          "Door_Divider_-1": [
+            -0.61,
+            1.92,
+            -0.7
+          ],
+          "Door_Handle_+1": [
+            -0.28,
+            1.75,
+            0.715
+          ],
+          "Door_Handle_-1": [
+            -0.28,
+            1.75,
+            -0.715
+          ],
+          "Door_MidRail_+1": [
+            -0.57,
+            1.58,
+            0.7
+          ],
+          "Door_MidRail_-1": [
+            -0.57,
+            1.58,
+            -0.7
+          ],
+          "Engine_Cowl_Rear": [
+            0.17,
+            1.39,
+            0.0
+          ],
+          "Engine_Hood_Crown": [
+            0.8,
+            1.645,
+            0.0
+          ],
+          "Engine_Hood_Lower": [
+            0.88,
+            1.18,
+            0.0
+          ],
+          "Engine_Hood_Sloped": [
+            0.93,
+            1.52,
+            0.0
+          ],
+          "Engine_Nose_Brow": [
+            1.66,
+            1.58,
+            0.0
+          ],
+          "Exhaust_Stack": [
+            0.26,
+            2.0,
+            -0.42
+          ],
+          "Exhaust_Tip": [
+            0.305,
+            2.64,
+            -0.42
+          ],
+          "Front_Axle_Differential": [
+            1.095,
+            0.54,
+            0.0
+          ],
+          "Front_Driveshaft": [
+            0.425,
+            0.755,
+            0.0
+          ],
+          "Front_Grille": [
+            1.7,
+            1.25,
+            0.0
+          ],
+          "Grille_Slat_00": [
+            1.735,
+            1.05,
+            0.0
+          ],
+          "Grille_Slat_01": [
+            1.735,
+            1.12,
+            0.0
+          ],
+          "Grille_Slat_02": [
+            1.735,
+            1.19,
+            0.0
+          ],
+          "Grille_Slat_03": [
+            1.735,
+            1.26,
+            0.0
+          ],
+          "Grille_Slat_04": [
+            1.735,
+            1.33,
+            0.0
+          ],
+          "Grille_Slat_05": [
+            1.735,
+            1.4,
+            0.0
+          ],
+          "Grille_Slat_06": [
+            1.735,
+            1.47,
+            0.0
+          ],
+          "Hood_Profile_+1": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Hood_Profile_-1": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Hood_ServicePanel_+1": [
+            0.88,
+            1.24,
+            0.558
+          ],
+          "Hood_ServicePanel_-1": [
+            0.88,
+            1.24,
+            -0.558
+          ],
+          "HoodVent_+1_00": [
+            1.15,
+            1.34,
+            0.578
+          ],
+          "HoodVent_+1_01": [
+            1.25,
+            1.34,
+            0.578
+          ],
+          "HoodVent_+1_02": [
+            1.35,
+            1.34,
+            0.578
+          ],
+          "HoodVent_+1_03": [
+            1.45,
+            1.34,
+            0.578
+          ],
+          "HoodVent_-1_00": [
+            1.15,
+            1.34,
+            -0.578
+          ],
+          "HoodVent_-1_01": [
+            1.25,
+            1.34,
+            -0.578
+          ],
+          "HoodVent_-1_02": [
+            1.35,
+            1.34,
+            -0.578
+          ],
+          "HoodVent_-1_03": [
+            1.45,
+            1.34,
+            -0.578
+          ],
+          "Instrument_Console": [
+            -0.08,
+            1.58,
+            0.22
+          ],
+          "Mainframe_Unitized": [
+            -0.05,
+            0.69,
+            0.0
+          ],
+          "MFWD_Front_Axle": [
+            1.095,
+            0.54,
+            0.0
+          ],
+          "MFWD_SteeringCylinder_Barrel": [
+            1.02,
+            0.6,
+            -0.2496
+          ],
+          "MFWD_SteeringCylinder_BasePin": [
+            1.02,
+            0.6,
+            -0.52
+          ],
+          "MFWD_SteeringCylinder_Rod": [
+            1.02,
+            0.6,
+            0.2704
+          ],
+          "MFWD_SteeringCylinder_RodPin": [
+            1.02,
+            0.6,
+            0.52
+          ],
+          "Operator_SeatBack": [
+            -0.78,
+            1.68,
+            0.0
+          ],
+          "Operator_SeatBase": [
+            -0.62,
+            1.28,
+            0.0
+          ],
+          "Pivot_BackhoeSwing": [
+            -1.73,
+            1.05,
+            0.0
+          ],
+          "Backhoe_SwingFrame": [
+            -1.72,
+            1.08,
+            0.0
+          ],
+          "Backhoe_SwingKingpin": [
+            -1.73,
+            1.05,
+            0.0
+          ],
+          "BackhoeSwingCylinder_Left_Barrel": [
+            -1.6425,
+            0.95575,
+            -0.37325
+          ],
+          "BackhoeSwingCylinder_Left_BasePin": [
+            -1.56,
+            0.92,
+            -0.42
+          ],
+          "BackhoeSwingCylinder_Left_Rod": [
+            -1.7925,
+            1.02075,
+            -0.28825
+          ],
+          "BackhoeSwingCylinder_Left_RodPin": [
+            -1.86,
+            1.05,
+            -0.25
+          ],
+          "BackhoeSwingCylinder_Right_Barrel": [
+            -1.6425,
+            0.95575,
+            0.37325
+          ],
+          "BackhoeSwingCylinder_Right_BasePin": [
+            -1.56,
+            0.92,
+            0.42
+          ],
+          "BackhoeSwingCylinder_Right_Rod": [
+            -1.7925,
+            1.02075,
+            0.28825
+          ],
+          "BackhoeSwingCylinder_Right_RodPin": [
+            -1.86,
+            1.05,
+            0.25
+          ],
+          "Pivot_BackhoeBoom": [
+            -1.88,
+            1.25,
+            0.0
+          ],
+          "Backhoe_HoseBundle_+1_A": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Backhoe_HoseBundle_-1_A": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "BackhoeBoom_HeadGusset_Left": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "BackhoeBoom_HeadGusset_Right": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "BackhoeBoom_Lower": [
+            -2.04,
+            1.915,
+            0.0
+          ],
+          "BackhoeBoom_MainPin": [
+            -1.88,
+            1.25,
+            0.0
+          ],
+          "BackhoeBoom_Upper": [
+            -2.44,
+            2.89,
+            0.0
+          ],
+          "BackhoeBoomCylinder_Barrel": [
+            -1.8643,
+            1.8183,
+            0.0
+          ],
+          "BackhoeBoomCylinder_BasePin": [
+            -1.67,
+            1.45,
+            0.0
+          ],
+          "BackhoeBoomCylinder_Rod": [
+            -2.1993,
+            2.4533,
+            0.0
+          ],
+          "BackhoeBoomCylinder_RodPin": [
+            -2.34,
+            2.72,
+            0.0
+          ],
+          "Pivot_BackhoeDipper": [
+            -2.68,
+            3.2,
+            0.0
+          ],
+          "Backhoe_BucketBellcrank": [
+            -3.58,
+            1.685,
+            0.0
+          ],
+          "Backhoe_BucketLink": [
+            -3.7,
+            1.47,
+            0.0
+          ],
+          "BackhoeBucketCylinder_Barrel": [
+            -3.044,
+            2.663,
+            0.0
+          ],
+          "BackhoeBucketCylinder_BasePin": [
+            -2.84,
+            3.02,
+            0.0
+          ],
+          "BackhoeBucketCylinder_Rod": [
+            -3.384,
+            2.068,
+            0.0
+          ],
+          "BackhoeBucketCylinder_RodPin": [
+            -3.52,
+            1.83,
+            0.0
+          ],
+          "BackhoeCrowdCylinder_Barrel": [
+            -2.456,
+            2.6625,
+            0.0
+          ],
+          "BackhoeCrowdCylinder_BasePin": [
+            -2.24,
+            2.73,
+            0.0
+          ],
+          "BackhoeCrowdCylinder_Rod": [
+            -2.856,
+            2.5375,
+            0.0
+          ],
+          "BackhoeCrowdCylinder_RodPin": [
+            -3.04,
+            2.48,
+            0.0
+          ],
+          "BackhoeDipper_Lower": [
+            -3.33,
+            1.95,
+            0.0
+          ],
+          "BackhoeDipper_MainPin": [
+            -2.68,
+            3.2,
+            0.0
+          ],
+          "BackhoeDipper_Upper": [
+            -2.88,
+            2.775,
+            0.0
+          ],
+          "Pivot_BackhoeBucket": [
+            -3.58,
+            1.55,
+            0.0
+          ],
+          "BackhoeBucket_Cheek_+1": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "BackhoeBucket_Cheek_-1": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "BackhoeBucket_MainPin": [
+            -3.58,
+            1.55,
+            0.0
+          ],
+          "BackhoeBucket_Shell_00": [
+            -3.62,
+            1.445,
+            0.0
+          ],
+          "BackhoeBucket_Shell_01": [
+            -3.73,
+            1.27,
+            0.0
+          ],
+          "BackhoeBucket_Shell_02": [
+            -3.89,
+            1.2,
+            0.0
+          ],
+          "BackhoeBucket_Shell_03": [
+            -4.025,
+            1.27,
+            0.0
+          ],
+          "BackhoeBucket_Shell_04": [
+            -4.0775,
+            1.385,
+            0.0
+          ],
+          "BackhoeBucket_Tooth_00": [
+            -4.085,
+            1.43,
+            -0.24
+          ],
+          "BackhoeBucket_Tooth_01": [
+            -4.085,
+            1.43,
+            -0.08
+          ],
+          "BackhoeBucket_Tooth_02": [
+            -4.085,
+            1.43,
+            0.08
+          ],
+          "BackhoeBucket_Tooth_03": [
+            -4.085,
+            1.43,
+            0.24
+          ],
+          "Pivot_FrontLoaderBoom": [
+            0.22,
+            1.58,
+            0.0
+          ],
+          "Loader_Bellcrank": [
+            1.965,
+            1.025,
+            0.0
+          ],
+          "Loader_Bellcrank_Pin": [
+            2.15,
+            0.88,
+            0.0
+          ],
+          "Loader_Crossmember": [
+            1.7,
+            1.1,
+            0.0
+          ],
+          "Loader_HoseBundle_+1_A": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Loader_HoseBundle_-1_A": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Loader_ZBar_Link": [
+            2.38,
+            0.77,
+            0.0
+          ],
+          "LoaderBoom_Front_+1": [
+            2.105,
+            0.85,
+            0.58
+          ],
+          "LoaderBoom_Front_-1": [
+            2.105,
+            0.85,
+            -0.58
+          ],
+          "LoaderBoom_MainPin_+1": [
+            0.22,
+            1.58,
+            0.58
+          ],
+          "LoaderBoom_MainPin_-1": [
+            0.22,
+            1.58,
+            -0.58
+          ],
+          "LoaderBoom_Rear_+1": [
+            0.885,
+            1.38,
+            0.58
+          ],
+          "LoaderBoom_Rear_-1": [
+            0.885,
+            1.38,
+            -0.58
+          ],
+          "LoaderBoomCylinder_+1_Barrel": [
+            0.7825,
+            1.10425,
+            0.48
+          ],
+          "LoaderBoomCylinder_+1_BasePin": [
+            0.48,
+            1.03,
+            0.48
+          ],
+          "LoaderBoomCylinder_+1_Rod": [
+            1.3325,
+            1.23925,
+            0.48
+          ],
+          "LoaderBoomCylinder_+1_RodPin": [
+            1.58,
+            1.3,
+            0.48
+          ],
+          "LoaderBoomCylinder_-1_Barrel": [
+            0.7825,
+            1.10425,
+            -0.48
+          ],
+          "LoaderBoomCylinder_-1_BasePin": [
+            0.48,
+            1.03,
+            -0.48
+          ],
+          "LoaderBoomCylinder_-1_Rod": [
+            1.3325,
+            1.23925,
+            -0.48
+          ],
+          "LoaderBoomCylinder_-1_RodPin": [
+            1.58,
+            1.3,
+            -0.48
+          ],
+          "LoaderBucketCylinder_Barrel": [
+            0.96,
+            1.485,
+            0.0
+          ],
+          "LoaderBucketCylinder_BasePin": [
+            0.6,
+            1.62,
+            0.0
+          ],
+          "LoaderBucketCylinder_Rod": [
+            1.56,
+            1.26,
+            0.0
+          ],
+          "LoaderBucketCylinder_RodPin": [
+            1.8,
+            1.17,
+            0.0
+          ],
+          "Pivot_FrontLoaderBucket": [
+            2.66,
+            0.52,
+            0.0
+          ],
+          "FrontBucket_Cheek_+1": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "FrontBucket_Cheek_-1": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "FrontBucket_CuttingEdge": [
+            3.085,
+            0.15,
+            0.0
+          ],
+          "FrontBucket_Pin_+1": [
+            2.66,
+            0.52,
+            0.61
+          ],
+          "FrontBucket_Pin_-1": [
+            2.66,
+            0.52,
+            -0.61
+          ],
+          "FrontBucket_Shell_00": [
+            3.0425,
+            0.16,
+            0.0
+          ],
+          "FrontBucket_Shell_01": [
+            2.93,
+            0.21,
+            0.0
+          ],
+          "FrontBucket_Shell_02": [
+            2.81,
+            0.33,
+            0.0
+          ],
+          "FrontBucket_Shell_03": [
+            2.735,
+            0.545,
+            0.0
+          ],
+          "Pivot_FrontSteer_Left": [
+            1.095,
+            0.54,
+            -0.86
+          ],
+          "FrontLeft_Hub": [
+            1.095,
+            0.54,
+            -0.9
+          ],
+          "FrontLeft_Lug_+1_00": [
+            1.2408,
+            0.54,
+            -0.728
+          ],
+          "FrontLeft_Lug_+1_01": [
+            1.198096,
+            0.643096,
+            -0.728
+          ],
+          "FrontLeft_Lug_+1_02": [
+            1.095,
+            0.6858,
+            -0.728
+          ],
+          "FrontLeft_Lug_+1_03": [
+            0.991904,
+            0.643096,
+            -0.728
+          ],
+          "FrontLeft_Lug_+1_04": [
+            0.9492,
+            0.54,
+            -0.728
+          ],
+          "FrontLeft_Lug_+1_05": [
+            0.991904,
+            0.436904,
+            -0.728
+          ],
+          "FrontLeft_Lug_+1_06": [
+            1.095,
+            0.3942,
+            -0.728
+          ],
+          "FrontLeft_Lug_+1_07": [
+            1.198096,
+            0.436904,
+            -0.728
+          ],
+          "FrontLeft_Lug_-1_00": [
+            1.2408,
+            0.54,
+            -1.072
+          ],
+          "FrontLeft_Lug_-1_01": [
+            1.198096,
+            0.643096,
+            -1.072
+          ],
+          "FrontLeft_Lug_-1_02": [
+            1.095,
+            0.6858,
+            -1.072
+          ],
+          "FrontLeft_Lug_-1_03": [
+            0.991904,
+            0.643096,
+            -1.072
+          ],
+          "FrontLeft_Lug_-1_04": [
+            0.9492,
+            0.54,
+            -1.072
+          ],
+          "FrontLeft_Lug_-1_05": [
+            0.991904,
+            0.436904,
+            -1.072
+          ],
+          "FrontLeft_Lug_-1_06": [
+            1.095,
+            0.3942,
+            -1.072
+          ],
+          "FrontLeft_Lug_-1_07": [
+            1.198096,
+            0.436904,
+            -1.072
+          ],
+          "FrontLeft_Rim": [
+            1.095,
+            0.54,
+            -0.9
+          ],
+          "FrontLeft_RimLip_+1": [
+            1.095,
+            0.54,
+            -0.722
+          ],
+          "FrontLeft_RimLip_-1": [
+            1.095,
+            0.54,
+            -1.078
+          ],
+          "FrontLeft_SidewallShoulder_+1": [
+            1.095,
+            0.54,
+            -0.752
+          ],
+          "FrontLeft_SidewallShoulder_-1": [
+            1.095,
+            0.54,
+            -1.048
+          ],
+          "FrontLeft_Tire": [
+            1.095,
+            0.54,
+            -0.9
+          ],
+          "FrontLeft_Tread_+1_00": [
+            1.5918,
+            0.54,
+            -0.788
+          ],
+          "FrontLeft_Tread_+1_01": [
+            1.561839,
+            0.709916,
+            -0.788
+          ],
+          "FrontLeft_Tread_+1_02": [
+            1.475571,
+            0.859337,
+            -0.788
+          ],
+          "FrontLeft_Tread_+1_03": [
+            1.3434,
+            0.970241,
+            -0.788
+          ],
+          "FrontLeft_Tread_+1_04": [
+            1.181268,
+            1.029253,
+            -0.788
+          ],
+          "FrontLeft_Tread_+1_05": [
+            1.008732,
+            1.029253,
+            -0.788
+          ],
+          "FrontLeft_Tread_+1_06": [
+            0.8466,
+            0.970241,
+            -0.788
+          ],
+          "FrontLeft_Tread_+1_07": [
+            0.714429,
+            0.859337,
+            -0.788
+          ],
+          "FrontLeft_Tread_+1_08": [
+            0.628161,
+            0.709916,
+            -0.788
+          ],
+          "FrontLeft_Tread_+1_09": [
+            0.5982,
+            0.54,
+            -0.788
+          ],
+          "FrontLeft_Tread_+1_10": [
+            0.628161,
+            0.370084,
+            -0.788
+          ],
+          "FrontLeft_Tread_+1_11": [
+            0.714429,
+            0.220663,
+            -0.788
+          ],
+          "FrontLeft_Tread_+1_12": [
+            0.8466,
+            0.109759,
+            -0.788
+          ],
+          "FrontLeft_Tread_+1_13": [
+            1.008732,
+            0.050748,
+            -0.788
+          ],
+          "FrontLeft_Tread_+1_14": [
+            1.181268,
+            0.050748,
+            -0.788
+          ],
+          "FrontLeft_Tread_+1_15": [
+            1.3434,
+            0.109759,
+            -0.788
+          ],
+          "FrontLeft_Tread_+1_16": [
+            1.475571,
+            0.220663,
+            -0.788
+          ],
+          "FrontLeft_Tread_+1_17": [
+            1.561839,
+            0.370084,
+            -0.788
+          ],
+          "FrontLeft_Tread_-1_00": [
+            1.5918,
+            0.54,
+            -1.012
+          ],
+          "FrontLeft_Tread_-1_01": [
+            1.561839,
+            0.709916,
+            -1.012
+          ],
+          "FrontLeft_Tread_-1_02": [
+            1.475571,
+            0.859337,
+            -1.012
+          ],
+          "FrontLeft_Tread_-1_03": [
+            1.3434,
+            0.970241,
+            -1.012
+          ],
+          "FrontLeft_Tread_-1_04": [
+            1.181268,
+            1.029253,
+            -1.012
+          ],
+          "FrontLeft_Tread_-1_05": [
+            1.008732,
+            1.029253,
+            -1.012
+          ],
+          "FrontLeft_Tread_-1_06": [
+            0.8466,
+            0.970241,
+            -1.012
+          ],
+          "FrontLeft_Tread_-1_07": [
+            0.714429,
+            0.859337,
+            -1.012
+          ],
+          "FrontLeft_Tread_-1_08": [
+            0.628161,
+            0.709916,
+            -1.012
+          ],
+          "FrontLeft_Tread_-1_09": [
+            0.5982,
+            0.54,
+            -1.012
+          ],
+          "FrontLeft_Tread_-1_10": [
+            0.628161,
+            0.370084,
+            -1.012
+          ],
+          "FrontLeft_Tread_-1_11": [
+            0.714429,
+            0.220663,
+            -1.012
+          ],
+          "FrontLeft_Tread_-1_12": [
+            0.8466,
+            0.109759,
+            -1.012
+          ],
+          "FrontLeft_Tread_-1_13": [
+            1.008732,
+            0.050748,
+            -1.012
+          ],
+          "FrontLeft_Tread_-1_14": [
+            1.181268,
+            0.050748,
+            -1.012
+          ],
+          "FrontLeft_Tread_-1_15": [
+            1.3434,
+            0.109759,
+            -1.012
+          ],
+          "FrontLeft_Tread_-1_16": [
+            1.475571,
+            0.220663,
+            -1.012
+          ],
+          "FrontLeft_Tread_-1_17": [
+            1.561839,
+            0.370084,
+            -1.012
+          ],
+          "Pivot_FrontSteer_Right": [
+            1.095,
+            0.54,
+            0.86
+          ],
+          "FrontRight_Hub": [
+            1.095,
+            0.54,
+            0.9
+          ],
+          "FrontRight_Lug_+1_00": [
+            1.2408,
+            0.54,
+            1.072
+          ],
+          "FrontRight_Lug_+1_01": [
+            1.198096,
+            0.643096,
+            1.072
+          ],
+          "FrontRight_Lug_+1_02": [
+            1.095,
+            0.6858,
+            1.072
+          ],
+          "FrontRight_Lug_+1_03": [
+            0.991904,
+            0.643096,
+            1.072
+          ],
+          "FrontRight_Lug_+1_04": [
+            0.9492,
+            0.54,
+            1.072
+          ],
+          "FrontRight_Lug_+1_05": [
+            0.991904,
+            0.436904,
+            1.072
+          ],
+          "FrontRight_Lug_+1_06": [
+            1.095,
+            0.3942,
+            1.072
+          ],
+          "FrontRight_Lug_+1_07": [
+            1.198096,
+            0.436904,
+            1.072
+          ],
+          "FrontRight_Lug_-1_00": [
+            1.2408,
+            0.54,
+            0.728
+          ],
+          "FrontRight_Lug_-1_01": [
+            1.198096,
+            0.643096,
+            0.728
+          ],
+          "FrontRight_Lug_-1_02": [
+            1.095,
+            0.6858,
+            0.728
+          ],
+          "FrontRight_Lug_-1_03": [
+            0.991904,
+            0.643096,
+            0.728
+          ],
+          "FrontRight_Lug_-1_04": [
+            0.9492,
+            0.54,
+            0.728
+          ],
+          "FrontRight_Lug_-1_05": [
+            0.991904,
+            0.436904,
+            0.728
+          ],
+          "FrontRight_Lug_-1_06": [
+            1.095,
+            0.3942,
+            0.728
+          ],
+          "FrontRight_Lug_-1_07": [
+            1.198096,
+            0.436904,
+            0.728
+          ],
+          "FrontRight_Rim": [
+            1.095,
+            0.54,
+            0.9
+          ],
+          "FrontRight_RimLip_+1": [
+            1.095,
+            0.54,
+            1.078
+          ],
+          "FrontRight_RimLip_-1": [
+            1.095,
+            0.54,
+            0.722
+          ],
+          "FrontRight_SidewallShoulder_+1": [
+            1.095,
+            0.54,
+            1.048
+          ],
+          "FrontRight_SidewallShoulder_-1": [
+            1.095,
+            0.54,
+            0.752
+          ],
+          "FrontRight_Tire": [
+            1.095,
+            0.54,
+            0.9
+          ],
+          "FrontRight_Tread_+1_00": [
+            1.5918,
+            0.54,
+            1.012
+          ],
+          "FrontRight_Tread_+1_01": [
+            1.561839,
+            0.709916,
+            1.012
+          ],
+          "FrontRight_Tread_+1_02": [
+            1.475571,
+            0.859337,
+            1.012
+          ],
+          "FrontRight_Tread_+1_03": [
+            1.3434,
+            0.970241,
+            1.012
+          ],
+          "FrontRight_Tread_+1_04": [
+            1.181268,
+            1.029253,
+            1.012
+          ],
+          "FrontRight_Tread_+1_05": [
+            1.008732,
+            1.029253,
+            1.012
+          ],
+          "FrontRight_Tread_+1_06": [
+            0.8466,
+            0.970241,
+            1.012
+          ],
+          "FrontRight_Tread_+1_07": [
+            0.714429,
+            0.859337,
+            1.012
+          ],
+          "FrontRight_Tread_+1_08": [
+            0.628161,
+            0.709916,
+            1.012
+          ],
+          "FrontRight_Tread_+1_09": [
+            0.5982,
+            0.54,
+            1.012
+          ],
+          "FrontRight_Tread_+1_10": [
+            0.628161,
+            0.370084,
+            1.012
+          ],
+          "FrontRight_Tread_+1_11": [
+            0.714429,
+            0.220663,
+            1.012
+          ],
+          "FrontRight_Tread_+1_12": [
+            0.8466,
+            0.109759,
+            1.012
+          ],
+          "FrontRight_Tread_+1_13": [
+            1.008732,
+            0.050748,
+            1.012
+          ],
+          "FrontRight_Tread_+1_14": [
+            1.181268,
+            0.050748,
+            1.012
+          ],
+          "FrontRight_Tread_+1_15": [
+            1.3434,
+            0.109759,
+            1.012
+          ],
+          "FrontRight_Tread_+1_16": [
+            1.475571,
+            0.220663,
+            1.012
+          ],
+          "FrontRight_Tread_+1_17": [
+            1.561839,
+            0.370084,
+            1.012
+          ],
+          "FrontRight_Tread_-1_00": [
+            1.5918,
+            0.54,
+            0.788
+          ],
+          "FrontRight_Tread_-1_01": [
+            1.561839,
+            0.709916,
+            0.788
+          ],
+          "FrontRight_Tread_-1_02": [
+            1.475571,
+            0.859337,
+            0.788
+          ],
+          "FrontRight_Tread_-1_03": [
+            1.3434,
+            0.970241,
+            0.788
+          ],
+          "FrontRight_Tread_-1_04": [
+            1.181268,
+            1.029253,
+            0.788
+          ],
+          "FrontRight_Tread_-1_05": [
+            1.008732,
+            1.029253,
+            0.788
+          ],
+          "FrontRight_Tread_-1_06": [
+            0.8466,
+            0.970241,
+            0.788
+          ],
+          "FrontRight_Tread_-1_07": [
+            0.714429,
+            0.859337,
+            0.788
+          ],
+          "FrontRight_Tread_-1_08": [
+            0.628161,
+            0.709916,
+            0.788
+          ],
+          "FrontRight_Tread_-1_09": [
+            0.5982,
+            0.54,
+            0.788
+          ],
+          "FrontRight_Tread_-1_10": [
+            0.628161,
+            0.370084,
+            0.788
+          ],
+          "FrontRight_Tread_-1_11": [
+            0.714429,
+            0.220663,
+            0.788
+          ],
+          "FrontRight_Tread_-1_12": [
+            0.8466,
+            0.109759,
+            0.788
+          ],
+          "FrontRight_Tread_-1_13": [
+            1.008732,
+            0.050748,
+            0.788
+          ],
+          "FrontRight_Tread_-1_14": [
+            1.181268,
+            0.050748,
+            0.788
+          ],
+          "FrontRight_Tread_-1_15": [
+            1.3434,
+            0.109759,
+            0.788
+          ],
+          "FrontRight_Tread_-1_16": [
+            1.475571,
+            0.220663,
+            0.788
+          ],
+          "FrontRight_Tread_-1_17": [
+            1.561839,
+            0.370084,
+            0.788
+          ],
+          "Pivot_Stabilizer_Left": [
+            -1.58,
+            0.72,
+            -0.5
+          ],
+          "StabilizerArm_Left": [
+            -1.59,
+            1.22,
+            -0.5
+          ],
+          "StabilizerCylinder_Left_Barrel": [
+            -1.529,
+            1.0856,
+            -0.4574
+          ],
+          "StabilizerCylinder_Left_BasePin": [
+            -1.5,
+            0.9,
+            -0.44
+          ],
+          "StabilizerCylinder_Left_Rod": [
+            -1.579,
+            1.4056,
+            -0.4874
+          ],
+          "StabilizerCylinder_Left_RodPin": [
+            -1.6,
+            1.54,
+            -0.5
+          ],
+          "StabilizerFoot_Left": [
+            -1.6,
+            1.79,
+            -0.5
+          ],
+          "StabilizerFootWearPlate_Left": [
+            -1.6,
+            1.855,
+            -0.5
+          ],
+          "StabilizerPivotBoss_Left": [
+            -1.58,
+            0.72,
+            -0.5
+          ],
+          "Pivot_Stabilizer_Right": [
+            -1.58,
+            0.72,
+            0.5
+          ],
+          "StabilizerArm_Right": [
+            -1.59,
+            1.22,
+            0.5
+          ],
+          "StabilizerCylinder_Right_Barrel": [
+            -1.529,
+            1.0856,
+            0.4574
+          ],
+          "StabilizerCylinder_Right_BasePin": [
+            -1.5,
+            0.9,
+            0.44
+          ],
+          "StabilizerCylinder_Right_Rod": [
+            -1.579,
+            1.4056,
+            0.4874
+          ],
+          "StabilizerCylinder_Right_RodPin": [
+            -1.6,
+            1.54,
+            0.5
+          ],
+          "StabilizerFoot_Right": [
+            -1.6,
+            1.79,
+            0.5
+          ],
+          "StabilizerFootWearPlate_Right": [
+            -1.6,
+            1.855,
+            0.5
+          ],
+          "StabilizerPivotBoss_Right": [
+            -1.58,
+            0.72,
+            0.5
+          ],
+          "Rear_Axle": [
+            -1.095,
+            0.72,
+            0.0
+          ],
+          "Rear_Axle_Differential": [
+            -1.095,
+            0.72,
+            0.0
+          ],
+          "RearFender_FrontSlope_+1": [
+            -0.58,
+            1.19,
+            0.83
+          ],
+          "RearFender_FrontSlope_-1": [
+            -0.58,
+            1.19,
+            -0.83
+          ],
+          "RearFender_RearSlope_+1": [
+            -1.58,
+            1.18,
+            0.83
+          ],
+          "RearFender_RearSlope_-1": [
+            -1.58,
+            1.18,
+            -0.83
+          ],
+          "RearFender_Top_+1": [
+            -1.08,
+            1.43,
+            0.83
+          ],
+          "RearFender_Top_-1": [
+            -1.08,
+            1.43,
+            -0.83
+          ],
+          "RearLeft_Hub": [
+            -1.095,
+            0.72,
+            -0.86
+          ],
+          "RearLeft_Lug_+1_00": [
+            -0.9006,
+            0.72,
+            -0.6536
+          ],
+          "RearLeft_Lug_+1_01": [
+            -0.957538,
+            0.857462,
+            -0.6536
+          ],
+          "RearLeft_Lug_+1_02": [
+            -1.095,
+            0.9144,
+            -0.6536
+          ],
+          "RearLeft_Lug_+1_03": [
+            -1.232462,
+            0.857462,
+            -0.6536
+          ],
+          "RearLeft_Lug_+1_04": [
+            -1.2894,
+            0.72,
+            -0.6536
+          ],
+          "RearLeft_Lug_+1_05": [
+            -1.232462,
+            0.582538,
+            -0.6536
+          ],
+          "RearLeft_Lug_+1_06": [
+            -1.095,
+            0.5256,
+            -0.6536
+          ],
+          "RearLeft_Lug_+1_07": [
+            -0.957538,
+            0.582538,
+            -0.6536
+          ],
+          "RearLeft_Lug_-1_00": [
+            -0.9006,
+            0.72,
+            -1.0664
+          ],
+          "RearLeft_Lug_-1_01": [
+            -0.957538,
+            0.857462,
+            -1.0664
+          ],
+          "RearLeft_Lug_-1_02": [
+            -1.095,
+            0.9144,
+            -1.0664
+          ],
+          "RearLeft_Lug_-1_03": [
+            -1.232462,
+            0.857462,
+            -1.0664
+          ],
+          "RearLeft_Lug_-1_04": [
+            -1.2894,
+            0.72,
+            -1.0664
+          ],
+          "RearLeft_Lug_-1_05": [
+            -1.232462,
+            0.582538,
+            -1.0664
+          ],
+          "RearLeft_Lug_-1_06": [
+            -1.095,
+            0.5256,
+            -1.0664
+          ],
+          "RearLeft_Lug_-1_07": [
+            -0.957538,
+            0.582538,
+            -1.0664
+          ],
+          "RearLeft_Rim": [
+            -1.095,
+            0.72,
+            -0.86
+          ],
+          "RearLeft_RimLip_+1": [
+            -1.095,
+            0.72,
+            -0.6464
+          ],
+          "RearLeft_RimLip_-1": [
+            -1.095,
+            0.72,
+            -1.0736
+          ],
+          "RearLeft_SidewallShoulder_+1": [
+            -1.095,
+            0.72,
+            -0.6824
+          ],
+          "RearLeft_SidewallShoulder_-1": [
+            -1.095,
+            0.72,
+            -1.0376
+          ],
+          "RearLeft_Tire": [
+            -1.095,
+            0.72,
+            -0.86
+          ],
+          "RearLeft_Tread_+1_00": [
+            -0.4326,
+            0.72,
+            -0.7256
+          ],
+          "RearLeft_Tread_+1_01": [
+            -0.472548,
+            0.946554,
+            -0.7256
+          ],
+          "RearLeft_Tread_+1_02": [
+            -0.587572,
+            1.145782,
+            -0.7256
+          ],
+          "RearLeft_Tread_+1_03": [
+            -0.7638,
+            1.293655,
+            -0.7256
+          ],
+          "RearLeft_Tread_+1_04": [
+            -0.979975,
+            1.372337,
+            -0.7256
+          ],
+          "RearLeft_Tread_+1_05": [
+            -1.210025,
+            1.372337,
+            -0.7256
+          ],
+          "RearLeft_Tread_+1_06": [
+            -1.4262,
+            1.293655,
+            -0.7256
+          ],
+          "RearLeft_Tread_+1_07": [
+            -1.602428,
+            1.145782,
+            -0.7256
+          ],
+          "RearLeft_Tread_+1_08": [
+            -1.717452,
+            0.946554,
+            -0.7256
+          ],
+          "RearLeft_Tread_+1_09": [
+            -1.7574,
+            0.72,
+            -0.7256
+          ],
+          "RearLeft_Tread_+1_10": [
+            -1.717452,
+            0.493446,
+            -0.7256
+          ],
+          "RearLeft_Tread_+1_11": [
+            -1.602428,
+            0.294217,
+            -0.7256
+          ],
+          "RearLeft_Tread_+1_12": [
+            -1.4262,
+            0.146345,
+            -0.7256
+          ],
+          "RearLeft_Tread_+1_13": [
+            -1.210025,
+            0.067663,
+            -0.7256
+          ],
+          "RearLeft_Tread_+1_14": [
+            -0.979975,
+            0.067663,
+            -0.7256
+          ],
+          "RearLeft_Tread_+1_15": [
+            -0.7638,
+            0.146345,
+            -0.7256
+          ],
+          "RearLeft_Tread_+1_16": [
+            -0.587572,
+            0.294217,
+            -0.7256
+          ],
+          "RearLeft_Tread_+1_17": [
+            -0.472548,
+            0.493446,
+            -0.7256
+          ],
+          "RearLeft_Tread_-1_00": [
+            -0.4326,
+            0.72,
+            -0.9944
+          ],
+          "RearLeft_Tread_-1_01": [
+            -0.472548,
+            0.946554,
+            -0.9944
+          ],
+          "RearLeft_Tread_-1_02": [
+            -0.587572,
+            1.145782,
+            -0.9944
+          ],
+          "RearLeft_Tread_-1_03": [
+            -0.7638,
+            1.293655,
+            -0.9944
+          ],
+          "RearLeft_Tread_-1_04": [
+            -0.979975,
+            1.372337,
+            -0.9944
+          ],
+          "RearLeft_Tread_-1_05": [
+            -1.210025,
+            1.372337,
+            -0.9944
+          ],
+          "RearLeft_Tread_-1_06": [
+            -1.4262,
+            1.293655,
+            -0.9944
+          ],
+          "RearLeft_Tread_-1_07": [
+            -1.602428,
+            1.145782,
+            -0.9944
+          ],
+          "RearLeft_Tread_-1_08": [
+            -1.717452,
+            0.946554,
+            -0.9944
+          ],
+          "RearLeft_Tread_-1_09": [
+            -1.7574,
+            0.72,
+            -0.9944
+          ],
+          "RearLeft_Tread_-1_10": [
+            -1.717452,
+            0.493446,
+            -0.9944
+          ],
+          "RearLeft_Tread_-1_11": [
+            -1.602428,
+            0.294217,
+            -0.9944
+          ],
+          "RearLeft_Tread_-1_12": [
+            -1.4262,
+            0.146345,
+            -0.9944
+          ],
+          "RearLeft_Tread_-1_13": [
+            -1.210025,
+            0.067663,
+            -0.9944
+          ],
+          "RearLeft_Tread_-1_14": [
+            -0.979975,
+            0.067663,
+            -0.9944
+          ],
+          "RearLeft_Tread_-1_15": [
+            -0.7638,
+            0.146345,
+            -0.9944
+          ],
+          "RearLeft_Tread_-1_16": [
+            -0.587572,
+            0.294217,
+            -0.9944
+          ],
+          "RearLeft_Tread_-1_17": [
+            -0.472548,
+            0.493446,
+            -0.9944
+          ],
+          "RearRight_Hub": [
+            -1.095,
+            0.72,
+            0.86
+          ],
+          "RearRight_Lug_+1_00": [
+            -0.9006,
+            0.72,
+            1.0664
+          ],
+          "RearRight_Lug_+1_01": [
+            -0.957538,
+            0.857462,
+            1.0664
+          ],
+          "RearRight_Lug_+1_02": [
+            -1.095,
+            0.9144,
+            1.0664
+          ],
+          "RearRight_Lug_+1_03": [
+            -1.232462,
+            0.857462,
+            1.0664
+          ],
+          "RearRight_Lug_+1_04": [
+            -1.2894,
+            0.72,
+            1.0664
+          ],
+          "RearRight_Lug_+1_05": [
+            -1.232462,
+            0.582538,
+            1.0664
+          ],
+          "RearRight_Lug_+1_06": [
+            -1.095,
+            0.5256,
+            1.0664
+          ],
+          "RearRight_Lug_+1_07": [
+            -0.957538,
+            0.582538,
+            1.0664
+          ],
+          "RearRight_Lug_-1_00": [
+            -0.9006,
+            0.72,
+            0.6536
+          ],
+          "RearRight_Lug_-1_01": [
+            -0.957538,
+            0.857462,
+            0.6536
+          ],
+          "RearRight_Lug_-1_02": [
+            -1.095,
+            0.9144,
+            0.6536
+          ],
+          "RearRight_Lug_-1_03": [
+            -1.232462,
+            0.857462,
+            0.6536
+          ],
+          "RearRight_Lug_-1_04": [
+            -1.2894,
+            0.72,
+            0.6536
+          ],
+          "RearRight_Lug_-1_05": [
+            -1.232462,
+            0.582538,
+            0.6536
+          ],
+          "RearRight_Lug_-1_06": [
+            -1.095,
+            0.5256,
+            0.6536
+          ],
+          "RearRight_Lug_-1_07": [
+            -0.957538,
+            0.582538,
+            0.6536
+          ],
+          "RearRight_Rim": [
+            -1.095,
+            0.72,
+            0.86
+          ],
+          "RearRight_RimLip_+1": [
+            -1.095,
+            0.72,
+            1.0736
+          ],
+          "RearRight_RimLip_-1": [
+            -1.095,
+            0.72,
+            0.6464
+          ],
+          "RearRight_SidewallShoulder_+1": [
+            -1.095,
+            0.72,
+            1.0376
+          ],
+          "RearRight_SidewallShoulder_-1": [
+            -1.095,
+            0.72,
+            0.6824
+          ],
+          "RearRight_Tire": [
+            -1.095,
+            0.72,
+            0.86
+          ],
+          "RearRight_Tread_+1_00": [
+            -0.4326,
+            0.72,
+            0.9944
+          ],
+          "RearRight_Tread_+1_01": [
+            -0.472548,
+            0.946554,
+            0.9944
+          ],
+          "RearRight_Tread_+1_02": [
+            -0.587572,
+            1.145782,
+            0.9944
+          ],
+          "RearRight_Tread_+1_03": [
+            -0.7638,
+            1.293655,
+            0.9944
+          ],
+          "RearRight_Tread_+1_04": [
+            -0.979975,
+            1.372337,
+            0.9944
+          ],
+          "RearRight_Tread_+1_05": [
+            -1.210025,
+            1.372337,
+            0.9944
+          ],
+          "RearRight_Tread_+1_06": [
+            -1.4262,
+            1.293655,
+            0.9944
+          ],
+          "RearRight_Tread_+1_07": [
+            -1.602428,
+            1.145782,
+            0.9944
+          ],
+          "RearRight_Tread_+1_08": [
+            -1.717452,
+            0.946554,
+            0.9944
+          ],
+          "RearRight_Tread_+1_09": [
+            -1.7574,
+            0.72,
+            0.9944
+          ],
+          "RearRight_Tread_+1_10": [
+            -1.717452,
+            0.493446,
+            0.9944
+          ],
+          "RearRight_Tread_+1_11": [
+            -1.602428,
+            0.294217,
+            0.9944
+          ],
+          "RearRight_Tread_+1_12": [
+            -1.4262,
+            0.146345,
+            0.9944
+          ],
+          "RearRight_Tread_+1_13": [
+            -1.210025,
+            0.067663,
+            0.9944
+          ],
+          "RearRight_Tread_+1_14": [
+            -0.979975,
+            0.067663,
+            0.9944
+          ],
+          "RearRight_Tread_+1_15": [
+            -0.7638,
+            0.146345,
+            0.9944
+          ],
+          "RearRight_Tread_+1_16": [
+            -0.587572,
+            0.294217,
+            0.9944
+          ],
+          "RearRight_Tread_+1_17": [
+            -0.472548,
+            0.493446,
+            0.9944
+          ],
+          "RearRight_Tread_-1_00": [
+            -0.4326,
+            0.72,
+            0.7256
+          ],
+          "RearRight_Tread_-1_01": [
+            -0.472548,
+            0.946554,
+            0.7256
+          ],
+          "RearRight_Tread_-1_02": [
+            -0.587572,
+            1.145782,
+            0.7256
+          ],
+          "RearRight_Tread_-1_03": [
+            -0.7638,
+            1.293655,
+            0.7256
+          ],
+          "RearRight_Tread_-1_04": [
+            -0.979975,
+            1.372337,
+            0.7256
+          ],
+          "RearRight_Tread_-1_05": [
+            -1.210025,
+            1.372337,
+            0.7256
+          ],
+          "RearRight_Tread_-1_06": [
+            -1.4262,
+            1.293655,
+            0.7256
+          ],
+          "RearRight_Tread_-1_07": [
+            -1.602428,
+            1.145782,
+            0.7256
+          ],
+          "RearRight_Tread_-1_08": [
+            -1.717452,
+            0.946554,
+            0.7256
+          ],
+          "RearRight_Tread_-1_09": [
+            -1.7574,
+            0.72,
+            0.7256
+          ],
+          "RearRight_Tread_-1_10": [
+            -1.717452,
+            0.493446,
+            0.7256
+          ],
+          "RearRight_Tread_-1_11": [
+            -1.602428,
+            0.294217,
+            0.7256
+          ],
+          "RearRight_Tread_-1_12": [
+            -1.4262,
+            0.146345,
+            0.7256
+          ],
+          "RearRight_Tread_-1_13": [
+            -1.210025,
+            0.067663,
+            0.7256
+          ],
+          "RearRight_Tread_-1_14": [
+            -0.979975,
+            0.067663,
+            0.7256
+          ],
+          "RearRight_Tread_-1_15": [
+            -0.7638,
+            0.146345,
+            0.7256
+          ],
+          "RearRight_Tread_-1_16": [
+            -0.587572,
+            0.294217,
+            0.7256
+          ],
+          "RearRight_Tread_-1_17": [
+            -0.472548,
+            0.493446,
+            0.7256
+          ],
+          "Steering_Column": [
+            -0.145,
+            1.59,
+            -0.18
+          ],
+          "Steering_TieRod": [
+            1.095,
+            0.49,
+            0.0
+          ],
+          "Steering_Wheel": [
+            -0.17,
+            1.7,
+            -0.18
+          ],
+          "Transmission_Housing": [
+            -0.35,
+            0.83,
+            0.0
+          ]
+        },
+        "node_child_count": {
+          "ROOT_310P_CANDIDATE": 200,
+          "Cab_Floor": 0,
+          "Cab_Header_Front": 0,
+          "Cab_Header_Rear": 0,
+          "Cab_LowerBulkhead": 0,
+          "Cab_RearLowerPanel": 0,
+          "Cab_RockerPanel_+1": 0,
+          "Cab_RockerPanel_-1": 0,
+          "Cab_Roof": 0,
+          "Cab_Worklight_Housing_+1": 0,
+          "Cab_Worklight_Housing_-1": 0,
+          "CabGlass_Front": 0,
+          "CabGlass_Rear": 0,
+          "CabGlass_Side_+1": 0,
+          "CabGlass_Side_-1": 0,
+          "CabPillar_FrontLeft": 0,
+          "CabPillar_FrontRight": 0,
+          "CabPillar_RearLeft": 0,
+          "CabPillar_RearRight": 0,
+          "CabStep_+1": 0,
+          "CabStep_-1": 0,
+          "Door_Divider_+1": 0,
+          "Door_Divider_-1": 0,
+          "Door_Handle_+1": 0,
+          "Door_Handle_-1": 0,
+          "Door_MidRail_+1": 0,
+          "Door_MidRail_-1": 0,
+          "Engine_Cowl_Rear": 0,
+          "Engine_Hood_Crown": 0,
+          "Engine_Hood_Lower": 0,
+          "Engine_Hood_Sloped": 0,
+          "Engine_Nose_Brow": 0,
+          "Exhaust_Stack": 0,
+          "Exhaust_Tip": 0,
+          "Front_Axle_Differential": 0,
+          "Front_Driveshaft": 0,
+          "Front_Grille": 0,
+          "Grille_Slat_00": 0,
+          "Grille_Slat_01": 0,
+          "Grille_Slat_02": 0,
+          "Grille_Slat_03": 0,
+          "Grille_Slat_04": 0,
+          "Grille_Slat_05": 0,
+          "Grille_Slat_06": 0,
+          "Hood_Profile_+1": 0,
+          "Hood_Profile_-1": 0,
+          "Hood_ServicePanel_+1": 0,
+          "Hood_ServicePanel_-1": 0,
+          "HoodVent_+1_00": 0,
+          "HoodVent_+1_01": 0,
+          "HoodVent_+1_02": 0,
+          "HoodVent_+1_03": 0,
+          "HoodVent_-1_00": 0,
+          "HoodVent_-1_01": 0,
+          "HoodVent_-1_02": 0,
+          "HoodVent_-1_03": 0,
+          "Instrument_Console": 0,
+          "Mainframe_Unitized": 0,
+          "MFWD_Front_Axle": 0,
+          "MFWD_SteeringCylinder_Barrel": 0,
+          "MFWD_SteeringCylinder_BasePin": 0,
+          "MFWD_SteeringCylinder_Rod": 0,
+          "MFWD_SteeringCylinder_RodPin": 0,
+          "Operator_SeatBack": 0,
+          "Operator_SeatBase": 0,
+          "Pivot_BackhoeSwing": 11,
+          "Backhoe_SwingFrame": 0,
+          "Backhoe_SwingKingpin": 0,
+          "BackhoeSwingCylinder_Left_Barrel": 0,
+          "BackhoeSwingCylinder_Left_BasePin": 0,
+          "BackhoeSwingCylinder_Left_Rod": 0,
+          "BackhoeSwingCylinder_Left_RodPin": 0,
+          "BackhoeSwingCylinder_Right_Barrel": 0,
+          "BackhoeSwingCylinder_Right_BasePin": 0,
+          "BackhoeSwingCylinder_Right_Rod": 0,
+          "BackhoeSwingCylinder_Right_RodPin": 0,
+          "Pivot_BackhoeBoom": 12,
+          "Backhoe_HoseBundle_+1_A": 0,
+          "Backhoe_HoseBundle_-1_A": 0,
+          "BackhoeBoom_HeadGusset_Left": 0,
+          "BackhoeBoom_HeadGusset_Right": 0,
+          "BackhoeBoom_Lower": 0,
+          "BackhoeBoom_MainPin": 0,
+          "BackhoeBoom_Upper": 0,
+          "BackhoeBoomCylinder_Barrel": 0,
+          "BackhoeBoomCylinder_BasePin": 0,
+          "BackhoeBoomCylinder_Rod": 0,
+          "BackhoeBoomCylinder_RodPin": 0,
+          "Pivot_BackhoeDipper": 14,
+          "Backhoe_BucketBellcrank": 0,
+          "Backhoe_BucketLink": 0,
+          "BackhoeBucketCylinder_Barrel": 0,
+          "BackhoeBucketCylinder_BasePin": 0,
+          "BackhoeBucketCylinder_Rod": 0,
+          "BackhoeBucketCylinder_RodPin": 0,
+          "BackhoeCrowdCylinder_Barrel": 0,
+          "BackhoeCrowdCylinder_BasePin": 0,
+          "BackhoeCrowdCylinder_Rod": 0,
+          "BackhoeCrowdCylinder_RodPin": 0,
+          "BackhoeDipper_Lower": 0,
+          "BackhoeDipper_MainPin": 0,
+          "BackhoeDipper_Upper": 0,
+          "Pivot_BackhoeBucket": 12,
+          "BackhoeBucket_Cheek_+1": 0,
+          "BackhoeBucket_Cheek_-1": 0,
+          "BackhoeBucket_MainPin": 0,
+          "BackhoeBucket_Shell_00": 0,
+          "BackhoeBucket_Shell_01": 0,
+          "BackhoeBucket_Shell_02": 0,
+          "BackhoeBucket_Shell_03": 0,
+          "BackhoeBucket_Shell_04": 0,
+          "BackhoeBucket_Tooth_00": 0,
+          "BackhoeBucket_Tooth_01": 0,
+          "BackhoeBucket_Tooth_02": 0,
+          "BackhoeBucket_Tooth_03": 0,
+          "Pivot_FrontLoaderBoom": 25,
+          "Loader_Bellcrank": 0,
+          "Loader_Bellcrank_Pin": 0,
+          "Loader_Crossmember": 0,
+          "Loader_HoseBundle_+1_A": 0,
+          "Loader_HoseBundle_-1_A": 0,
+          "Loader_ZBar_Link": 0,
+          "LoaderBoom_Front_+1": 0,
+          "LoaderBoom_Front_-1": 0,
+          "LoaderBoom_MainPin_+1": 0,
+          "LoaderBoom_MainPin_-1": 0,
+          "LoaderBoom_Rear_+1": 0,
+          "LoaderBoom_Rear_-1": 0,
+          "LoaderBoomCylinder_+1_Barrel": 0,
+          "LoaderBoomCylinder_+1_BasePin": 0,
+          "LoaderBoomCylinder_+1_Rod": 0,
+          "LoaderBoomCylinder_+1_RodPin": 0,
+          "LoaderBoomCylinder_-1_Barrel": 0,
+          "LoaderBoomCylinder_-1_BasePin": 0,
+          "LoaderBoomCylinder_-1_Rod": 0,
+          "LoaderBoomCylinder_-1_RodPin": 0,
+          "LoaderBucketCylinder_Barrel": 0,
+          "LoaderBucketCylinder_BasePin": 0,
+          "LoaderBucketCylinder_Rod": 0,
+          "LoaderBucketCylinder_RodPin": 0,
+          "Pivot_FrontLoaderBucket": 9,
+          "FrontBucket_Cheek_+1": 0,
+          "FrontBucket_Cheek_-1": 0,
+          "FrontBucket_CuttingEdge": 0,
+          "FrontBucket_Pin_+1": 0,
+          "FrontBucket_Pin_-1": 0,
+          "FrontBucket_Shell_00": 0,
+          "FrontBucket_Shell_01": 0,
+          "FrontBucket_Shell_02": 0,
+          "FrontBucket_Shell_03": 0,
+          "Pivot_FrontSteer_Left": 59,
+          "FrontLeft_Hub": 0,
+          "FrontLeft_Lug_+1_00": 0,
+          "FrontLeft_Lug_+1_01": 0,
+          "FrontLeft_Lug_+1_02": 0,
+          "FrontLeft_Lug_+1_03": 0,
+          "FrontLeft_Lug_+1_04": 0,
+          "FrontLeft_Lug_+1_05": 0,
+          "FrontLeft_Lug_+1_06": 0,
+          "FrontLeft_Lug_+1_07": 0,
+          "FrontLeft_Lug_-1_00": 0,
+          "FrontLeft_Lug_-1_01": 0,
+          "FrontLeft_Lug_-1_02": 0,
+          "FrontLeft_Lug_-1_03": 0,
+          "FrontLeft_Lug_-1_04": 0,
+          "FrontLeft_Lug_-1_05": 0,
+          "FrontLeft_Lug_-1_06": 0,
+          "FrontLeft_Lug_-1_07": 0,
+          "FrontLeft_Rim": 0,
+          "FrontLeft_RimLip_+1": 0,
+          "FrontLeft_RimLip_-1": 0,
+          "FrontLeft_SidewallShoulder_+1": 0,
+          "FrontLeft_SidewallShoulder_-1": 0,
+          "FrontLeft_Tire": 0,
+          "FrontLeft_Tread_+1_00": 0,
+          "FrontLeft_Tread_+1_01": 0,
+          "FrontLeft_Tread_+1_02": 0,
+          "FrontLeft_Tread_+1_03": 0,
+          "FrontLeft_Tread_+1_04": 0,
+          "FrontLeft_Tread_+1_05": 0,
+          "FrontLeft_Tread_+1_06": 0,
+          "FrontLeft_Tread_+1_07": 0,
+          "FrontLeft_Tread_+1_08": 0,
+          "FrontLeft_Tread_+1_09": 0,
+          "FrontLeft_Tread_+1_10": 0,
+          "FrontLeft_Tread_+1_11": 0,
+          "FrontLeft_Tread_+1_12": 0,
+          "FrontLeft_Tread_+1_13": 0,
+          "FrontLeft_Tread_+1_14": 0,
+          "FrontLeft_Tread_+1_15": 0,
+          "FrontLeft_Tread_+1_16": 0,
+          "FrontLeft_Tread_+1_17": 0,
+          "FrontLeft_Tread_-1_00": 0,
+          "FrontLeft_Tread_-1_01": 0,
+          "FrontLeft_Tread_-1_02": 0,
+          "FrontLeft_Tread_-1_03": 0,
+          "FrontLeft_Tread_-1_04": 0,
+          "FrontLeft_Tread_-1_05": 0,
+          "FrontLeft_Tread_-1_06": 0,
+          "FrontLeft_Tread_-1_07": 0,
+          "FrontLeft_Tread_-1_08": 0,
+          "FrontLeft_Tread_-1_09": 0,
+          "FrontLeft_Tread_-1_10": 0,
+          "FrontLeft_Tread_-1_11": 0,
+          "FrontLeft_Tread_-1_12": 0,
+          "FrontLeft_Tread_-1_13": 0,
+          "FrontLeft_Tread_-1_14": 0,
+          "FrontLeft_Tread_-1_15": 0,
+          "FrontLeft_Tread_-1_16": 0,
+          "FrontLeft_Tread_-1_17": 0,
+          "Pivot_FrontSteer_Right": 59,
+          "FrontRight_Hub": 0,
+          "FrontRight_Lug_+1_00": 0,
+          "FrontRight_Lug_+1_01": 0,
+          "FrontRight_Lug_+1_02": 0,
+          "FrontRight_Lug_+1_03": 0,
+          "FrontRight_Lug_+1_04": 0,
+          "FrontRight_Lug_+1_05": 0,
+          "FrontRight_Lug_+1_06": 0,
+          "FrontRight_Lug_+1_07": 0,
+          "FrontRight_Lug_-1_00": 0,
+          "FrontRight_Lug_-1_01": 0,
+          "FrontRight_Lug_-1_02": 0,
+          "FrontRight_Lug_-1_03": 0,
+          "FrontRight_Lug_-1_04": 0,
+          "FrontRight_Lug_-1_05": 0,
+          "FrontRight_Lug_-1_06": 0,
+          "FrontRight_Lug_-1_07": 0,
+          "FrontRight_Rim": 0,
+          "FrontRight_RimLip_+1": 0,
+          "FrontRight_RimLip_-1": 0,
+          "FrontRight_SidewallShoulder_+1": 0,
+          "FrontRight_SidewallShoulder_-1": 0,
+          "FrontRight_Tire": 0,
+          "FrontRight_Tread_+1_00": 0,
+          "FrontRight_Tread_+1_01": 0,
+          "FrontRight_Tread_+1_02": 0,
+          "FrontRight_Tread_+1_03": 0,
+          "FrontRight_Tread_+1_04": 0,
+          "FrontRight_Tread_+1_05": 0,
+          "FrontRight_Tread_+1_06": 0,
+          "FrontRight_Tread_+1_07": 0,
+          "FrontRight_Tread_+1_08": 0,
+          "FrontRight_Tread_+1_09": 0,
+          "FrontRight_Tread_+1_10": 0,
+          "FrontRight_Tread_+1_11": 0,
+          "FrontRight_Tread_+1_12": 0,
+          "FrontRight_Tread_+1_13": 0,
+          "FrontRight_Tread_+1_14": 0,
+          "FrontRight_Tread_+1_15": 0,
+          "FrontRight_Tread_+1_16": 0,
+          "FrontRight_Tread_+1_17": 0,
+          "FrontRight_Tread_-1_00": 0,
+          "FrontRight_Tread_-1_01": 0,
+          "FrontRight_Tread_-1_02": 0,
+          "FrontRight_Tread_-1_03": 0,
+          "FrontRight_Tread_-1_04": 0,
+          "FrontRight_Tread_-1_05": 0,
+          "FrontRight_Tread_-1_06": 0,
+          "FrontRight_Tread_-1_07": 0,
+          "FrontRight_Tread_-1_08": 0,
+          "FrontRight_Tread_-1_09": 0,
+          "FrontRight_Tread_-1_10": 0,
+          "FrontRight_Tread_-1_11": 0,
+          "FrontRight_Tread_-1_12": 0,
+          "FrontRight_Tread_-1_13": 0,
+          "FrontRight_Tread_-1_14": 0,
+          "FrontRight_Tread_-1_15": 0,
+          "FrontRight_Tread_-1_16": 0,
+          "FrontRight_Tread_-1_17": 0,
+          "Pivot_Stabilizer_Left": 8,
+          "StabilizerArm_Left": 0,
+          "StabilizerCylinder_Left_Barrel": 0,
+          "StabilizerCylinder_Left_BasePin": 0,
+          "StabilizerCylinder_Left_Rod": 0,
+          "StabilizerCylinder_Left_RodPin": 0,
+          "StabilizerFoot_Left": 0,
+          "StabilizerFootWearPlate_Left": 0,
+          "StabilizerPivotBoss_Left": 0,
+          "Pivot_Stabilizer_Right": 8,
+          "StabilizerArm_Right": 0,
+          "StabilizerCylinder_Right_Barrel": 0,
+          "StabilizerCylinder_Right_BasePin": 0,
+          "StabilizerCylinder_Right_Rod": 0,
+          "StabilizerCylinder_Right_RodPin": 0,
+          "StabilizerFoot_Right": 0,
+          "StabilizerFootWearPlate_Right": 0,
+          "StabilizerPivotBoss_Right": 0,
+          "Rear_Axle": 0,
+          "Rear_Axle_Differential": 0,
+          "RearFender_FrontSlope_+1": 0,
+          "RearFender_FrontSlope_-1": 0,
+          "RearFender_RearSlope_+1": 0,
+          "RearFender_RearSlope_-1": 0,
+          "RearFender_Top_+1": 0,
+          "RearFender_Top_-1": 0,
+          "RearLeft_Hub": 0,
+          "RearLeft_Lug_+1_00": 0,
+          "RearLeft_Lug_+1_01": 0,
+          "RearLeft_Lug_+1_02": 0,
+          "RearLeft_Lug_+1_03": 0,
+          "RearLeft_Lug_+1_04": 0,
+          "RearLeft_Lug_+1_05": 0,
+          "RearLeft_Lug_+1_06": 0,
+          "RearLeft_Lug_+1_07": 0,
+          "RearLeft_Lug_-1_00": 0,
+          "RearLeft_Lug_-1_01": 0,
+          "RearLeft_Lug_-1_02": 0,
+          "RearLeft_Lug_-1_03": 0,
+          "RearLeft_Lug_-1_04": 0,
+          "RearLeft_Lug_-1_05": 0,
+          "RearLeft_Lug_-1_06": 0,
+          "RearLeft_Lug_-1_07": 0,
+          "RearLeft_Rim": 0,
+          "RearLeft_RimLip_+1": 0,
+          "RearLeft_RimLip_-1": 0,
+          "RearLeft_SidewallShoulder_+1": 0,
+          "RearLeft_SidewallShoulder_-1": 0,
+          "RearLeft_Tire": 0,
+          "RearLeft_Tread_+1_00": 0,
+          "RearLeft_Tread_+1_01": 0,
+          "RearLeft_Tread_+1_02": 0,
+          "RearLeft_Tread_+1_03": 0,
+          "RearLeft_Tread_+1_04": 0,
+          "RearLeft_Tread_+1_05": 0,
+          "RearLeft_Tread_+1_06": 0,
+          "RearLeft_Tread_+1_07": 0,
+          "RearLeft_Tread_+1_08": 0,
+          "RearLeft_Tread_+1_09": 0,
+          "RearLeft_Tread_+1_10": 0,
+          "RearLeft_Tread_+1_11": 0,
+          "RearLeft_Tread_+1_12": 0,
+          "RearLeft_Tread_+1_13": 0,
+          "RearLeft_Tread_+1_14": 0,
+          "RearLeft_Tread_+1_15": 0,
+          "RearLeft_Tread_+1_16": 0,
+          "RearLeft_Tread_+1_17": 0,
+          "RearLeft_Tread_-1_00": 0,
+          "RearLeft_Tread_-1_01": 0,
+          "RearLeft_Tread_-1_02": 0,
+          "RearLeft_Tread_-1_03": 0,
+          "RearLeft_Tread_-1_04": 0,
+          "RearLeft_Tread_-1_05": 0,
+          "RearLeft_Tread_-1_06": 0,
+          "RearLeft_Tread_-1_07": 0,
+          "RearLeft_Tread_-1_08": 0,
+          "RearLeft_Tread_-1_09": 0,
+          "RearLeft_Tread_-1_10": 0,
+          "RearLeft_Tread_-1_11": 0,
+          "RearLeft_Tread_-1_12": 0,
+          "RearLeft_Tread_-1_13": 0,
+          "RearLeft_Tread_-1_14": 0,
+          "RearLeft_Tread_-1_15": 0,
+          "RearLeft_Tread_-1_16": 0,
+          "RearLeft_Tread_-1_17": 0,
+          "RearRight_Hub": 0,
+          "RearRight_Lug_+1_00": 0,
+          "RearRight_Lug_+1_01": 0,
+          "RearRight_Lug_+1_02": 0,
+          "RearRight_Lug_+1_03": 0,
+          "RearRight_Lug_+1_04": 0,
+          "RearRight_Lug_+1_05": 0,
+          "RearRight_Lug_+1_06": 0,
+          "RearRight_Lug_+1_07": 0,
+          "RearRight_Lug_-1_00": 0,
+          "RearRight_Lug_-1_01": 0,
+          "RearRight_Lug_-1_02": 0,
+          "RearRight_Lug_-1_03": 0,
+          "RearRight_Lug_-1_04": 0,
+          "RearRight_Lug_-1_05": 0,
+          "RearRight_Lug_-1_06": 0,
+          "RearRight_Lug_-1_07": 0,
+          "RearRight_Rim": 0,
+          "RearRight_RimLip_+1": 0,
+          "RearRight_RimLip_-1": 0,
+          "RearRight_SidewallShoulder_+1": 0,
+          "RearRight_SidewallShoulder_-1": 0,
+          "RearRight_Tire": 0,
+          "RearRight_Tread_+1_00": 0,
+          "RearRight_Tread_+1_01": 0,
+          "RearRight_Tread_+1_02": 0,
+          "RearRight_Tread_+1_03": 0,
+          "RearRight_Tread_+1_04": 0,
+          "RearRight_Tread_+1_05": 0,
+          "RearRight_Tread_+1_06": 0,
+          "RearRight_Tread_+1_07": 0,
+          "RearRight_Tread_+1_08": 0,
+          "RearRight_Tread_+1_09": 0,
+          "RearRight_Tread_+1_10": 0,
+          "RearRight_Tread_+1_11": 0,
+          "RearRight_Tread_+1_12": 0,
+          "RearRight_Tread_+1_13": 0,
+          "RearRight_Tread_+1_14": 0,
+          "RearRight_Tread_+1_15": 0,
+          "RearRight_Tread_+1_16": 0,
+          "RearRight_Tread_+1_17": 0,
+          "RearRight_Tread_-1_00": 0,
+          "RearRight_Tread_-1_01": 0,
+          "RearRight_Tread_-1_02": 0,
+          "RearRight_Tread_-1_03": 0,
+          "RearRight_Tread_-1_04": 0,
+          "RearRight_Tread_-1_05": 0,
+          "RearRight_Tread_-1_06": 0,
+          "RearRight_Tread_-1_07": 0,
+          "RearRight_Tread_-1_08": 0,
+          "RearRight_Tread_-1_09": 0,
+          "RearRight_Tread_-1_10": 0,
+          "RearRight_Tread_-1_11": 0,
+          "RearRight_Tread_-1_12": 0,
+          "RearRight_Tread_-1_13": 0,
+          "RearRight_Tread_-1_14": 0,
+          "RearRight_Tread_-1_15": 0,
+          "RearRight_Tread_-1_16": 0,
+          "RearRight_Tread_-1_17": 0,
+          "Steering_Column": 0,
+          "Steering_TieRod": 0,
+          "Steering_Wheel": 0,
+          "Transmission_Housing": 0
+        }
       }
     },
     {
@@ -161,42 +5191,46 @@
     },
     {
       "id": "published-transport-length-witness",
-      "status": "PASS",
+      "status": "PENDING",
       "detail": {
         "expected_m": 7.24,
         "reconstructed_endpoints_m": [
           -4.125,
           3.115
-        ]
+        ],
+        "qualification": "design witness only; decoded public envelope is the qualifying gate"
       }
     },
     {
       "id": "published-width-witness",
-      "status": "PASS",
+      "status": "PENDING",
       "detail": {
         "expected_m": 2.2,
         "reconstructed_tire_outer_planes_m": [
           -1.1,
           1.1
-        ]
+        ],
+        "qualification": "design witness only; decoded public envelope is the qualifying gate"
       }
     },
     {
       "id": "published-cab-height-witness",
-      "status": "PASS",
+      "status": "PENDING",
       "detail": {
         "expected_m": 2.81,
         "ground_y_m": 0.0,
-        "roof_top_y_m": 2.81
+        "roof_top_y_m": 2.81,
+        "qualification": "reconstructed datum; not independently decoded in this gate"
       }
     },
     {
       "id": "published-mfwd-wheelbase",
-      "status": "PASS",
+      "status": "PENDING",
       "detail": {
         "expected_m": 2.19,
         "front_axle_x_m": 1.095,
-        "rear_axle_x_m": -1.095
+        "rear_axle_x_m": -1.095,
+        "qualification": "design witness only; decoded pivot gate is the qualifying evidence"
       }
     },
     {
@@ -215,6 +5249,302 @@
         ],
         "tolerance_m": 0.01,
         "height_basis": "published standard-backhoe transport height; cab roof separately constrained to 2.81 m"
+      }
+    },
+    {
+      "id": "decoded_public_transport_envelope",
+      "status": "PASS",
+      "detail": {
+        "method": "Decode shipped-GLB accessor bounds and compose all reachable node transforms before comparing the visible transport AABB.",
+        "evidence": {
+          "expected_xyz_m": [
+            7.24,
+            3.39,
+            2.2
+          ],
+          "decoded_actual_xyz_m": [
+            7.24,
+            3.3898,
+            2.2
+          ],
+          "tolerance_m": 0.01
+        },
+        "semantic_nodes": [
+          "ROOT_310P_CANDIDATE"
+        ],
+        "fact_ids": [
+          "overall-length",
+          "overall-width",
+          "backhoe-transport-height"
+        ]
+      }
+    },
+    {
+      "id": "decoded_public_pivot_world_positions",
+      "status": "PASS",
+      "detail": {
+        "method": "Compose shipped-GLB node TRS from the active scene root and compare every deterministic build-input pivot world translation.",
+        "evidence": {
+          "expected_xyz_m": {
+            "Pivot_FrontSteer_Left": [
+              1.095,
+              0.54,
+              -0.86
+            ],
+            "Pivot_FrontSteer_Right": [
+              1.095,
+              0.54,
+              0.86
+            ],
+            "Pivot_FrontLoaderBoom": [
+              0.22,
+              1.58,
+              0.0
+            ],
+            "Pivot_FrontLoaderBucket": [
+              2.66,
+              0.52,
+              0.0
+            ],
+            "Pivot_BackhoeSwing": [
+              -1.73,
+              1.05,
+              0.0
+            ],
+            "Pivot_BackhoeBoom": [
+              -1.88,
+              1.25,
+              0.0
+            ],
+            "Pivot_BackhoeDipper": [
+              -2.68,
+              3.2,
+              0.0
+            ],
+            "Pivot_BackhoeBucket": [
+              -3.58,
+              1.55,
+              0.0
+            ],
+            "Pivot_Stabilizer_Left": [
+              -1.58,
+              0.72,
+              -0.5
+            ],
+            "Pivot_Stabilizer_Right": [
+              -1.58,
+              0.72,
+              0.5
+            ]
+          },
+          "decoded_actual_xyz_m": {
+            "Pivot_FrontSteer_Left": [
+              1.095,
+              0.54,
+              -0.86
+            ],
+            "Pivot_FrontSteer_Right": [
+              1.095,
+              0.54,
+              0.86
+            ],
+            "Pivot_FrontLoaderBoom": [
+              0.22,
+              1.58,
+              0.0
+            ],
+            "Pivot_FrontLoaderBucket": [
+              2.66,
+              0.52,
+              0.0
+            ],
+            "Pivot_BackhoeSwing": [
+              -1.73,
+              1.05,
+              0.0
+            ],
+            "Pivot_BackhoeBoom": [
+              -1.88,
+              1.25,
+              0.0
+            ],
+            "Pivot_BackhoeDipper": [
+              -2.68,
+              3.2,
+              0.0
+            ],
+            "Pivot_BackhoeBucket": [
+              -3.58,
+              1.55,
+              0.0
+            ],
+            "Pivot_Stabilizer_Left": [
+              -1.58,
+              0.72,
+              -0.5
+            ],
+            "Pivot_Stabilizer_Right": [
+              -1.58,
+              0.72,
+              0.5
+            ]
+          },
+          "maximum_errors_m": {
+            "Pivot_FrontSteer_Left": 0.0,
+            "Pivot_FrontSteer_Right": 0.0,
+            "Pivot_FrontLoaderBoom": 0.0,
+            "Pivot_FrontLoaderBucket": 0.0,
+            "Pivot_BackhoeSwing": 0.0,
+            "Pivot_BackhoeBoom": 0.0,
+            "Pivot_BackhoeDipper": 0.0,
+            "Pivot_BackhoeBucket": 0.0,
+            "Pivot_Stabilizer_Left": 0.0,
+            "Pivot_Stabilizer_Right": 0.0
+          },
+          "tolerance_m": 1e-05
+        },
+        "semantic_nodes": [
+          "Pivot_FrontSteer_Left",
+          "Pivot_FrontSteer_Right",
+          "Pivot_FrontLoaderBoom",
+          "Pivot_FrontLoaderBucket",
+          "Pivot_BackhoeSwing",
+          "Pivot_BackhoeBoom",
+          "Pivot_BackhoeDipper",
+          "Pivot_BackhoeBucket",
+          "Pivot_Stabilizer_Left",
+          "Pivot_Stabilizer_Right"
+        ],
+        "fact_ids": [
+          "mfwd-wheelbase"
+        ]
+      }
+    },
+    {
+      "id": "viewer_motion_nodes_resolve",
+      "status": "PASS",
+      "detail": {
+        "method": "Resolve every viewer Auto/manual motion target by exact name in the decoded shipped-GLB node table.",
+        "evidence": {
+          "resolved": {
+            "Pivot_BackhoeSwing": true
+          },
+          "static_only": [
+            "loader linkage",
+            "backhoe boom/dipper/bucket linkage",
+            "stabilizers",
+            "steering linkage",
+            "hydraulic endpoint solve"
+          ]
+        },
+        "semantic_nodes": [
+          "Pivot_BackhoeSwing"
+        ],
+        "fact_ids": [
+          "backhoe-swing"
+        ]
+      }
+    },
+    {
+      "id": "public_semantic_hierarchy",
+      "status": "PASS",
+      "detail": {
+        "method": "Count decoded shipped-GLB children below every exported pivot to reject empty or collapsed motion roots.",
+        "evidence": {
+          "pivot_child_counts": {
+            "Pivot_FrontSteer_Left": 59,
+            "Pivot_FrontSteer_Right": 59,
+            "Pivot_FrontLoaderBoom": 25,
+            "Pivot_FrontLoaderBucket": 9,
+            "Pivot_BackhoeSwing": 11,
+            "Pivot_BackhoeBoom": 12,
+            "Pivot_BackhoeDipper": 14,
+            "Pivot_BackhoeBucket": 12,
+            "Pivot_Stabilizer_Left": 8,
+            "Pivot_Stabilizer_Right": 8
+          }
+        },
+        "semantic_nodes": [
+          "Pivot_FrontSteer_Left",
+          "Pivot_FrontSteer_Right",
+          "Pivot_FrontLoaderBoom",
+          "Pivot_FrontLoaderBucket",
+          "Pivot_BackhoeSwing",
+          "Pivot_BackhoeBoom",
+          "Pivot_BackhoeDipper",
+          "Pivot_BackhoeBucket",
+          "Pivot_Stabilizer_Left",
+          "Pivot_Stabilizer_Right"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "decoded_public_asset_counts",
+      "status": "PASS",
+      "detail": {
+        "method": "Count nodes, mesh resources, mesh-bearing nodes, and materials directly from the shipped GLB JSON tables.",
+        "evidence": {
+          "nodes": 418,
+          "mesh_resources": 407,
+          "mesh_nodes": 407,
+          "materials": 10
+        },
+        "semantic_nodes": [
+          "ROOT_310P_CANDIDATE"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "source_design_contract_binding",
+      "status": "PASS",
+      "detail": {
+        "method": "Hash-bind the deterministic build input to an admitted primary source and require its unique retained fact-ID set to equal source/design.json.",
+        "evidence": {
+          "build_input_path": "machines/john-deere-310-p-tier/source/build-input.json",
+          "build_input_sha256": "753599146c49862d150a885d4af3f58c8b48e4f4038e2e90b3a0c4482b1635f0",
+          "design_path": "machines/john-deere-310-p-tier/source/design.json",
+          "design_sha256": "7881d18bd46aa0541148f98ee30dd10f2b4a9287d2b25a1c3a3699b9cc48edef",
+          "primary_source_sha256": "c0c2d6b6cfbe0da36080e43863e126cdff5e8e732e7c39588716f0cd215995bc",
+          "retained_fact_count": 32,
+          "unique_fact_count": 32
+        },
+        "semantic_nodes": [],
+        "fact_ids": [
+          "overall-length",
+          "overall-width",
+          "cab-height",
+          "mfwd-wheelbase",
+          "loader-boom-cylinder-stroke",
+          "loader-bucket-cylinder-stroke",
+          "backhoe-boom-cylinder-stroke",
+          "backhoe-crowd-cylinder-stroke",
+          "backhoe-bucket-cylinder-stroke",
+          "backhoe-swing",
+          "backhoe-bucket-rotation",
+          "loader-dump-angle",
+          "loader-rollback-angle",
+          "backhoe-transport-height",
+          "stabilizer-spread-operating",
+          "stabilizer-overall-width-operating",
+          "loader-boom-cylinder-bore",
+          "loader-boom-cylinder-rod",
+          "loader-bucket-cylinder-bore",
+          "loader-bucket-cylinder-rod",
+          "backhoe-boom-cylinder-bore",
+          "backhoe-boom-cylinder-rod",
+          "backhoe-crowd-cylinder-bore",
+          "backhoe-crowd-cylinder-rod",
+          "backhoe-bucket-cylinder-bore",
+          "backhoe-bucket-cylinder-rod",
+          "backhoe-swing-cylinder-bore",
+          "backhoe-swing-cylinder-rod",
+          "standard-stabilizer-cylinder-bore",
+          "standard-stabilizer-cylinder-rod",
+          "mfwd-steering-cylinder-bore",
+          "mfwd-steering-cylinder-rod"
+        ]
       }
     },
     {
@@ -282,11 +5612,12 @@
       "id": "render-files-nonempty",
       "status": "PASS",
       "detail": {
-        "machines/john-deere-310-p-tier/review/renders/transport-front-three-quarter.png": 535325,
+        "machines/john-deere-310-p-tier/review/renders/transport-front-three-quarter.png": 535323,
         "machines/john-deere-310-p-tier/review/renders/transport-rear-three-quarter.png": 549388,
-        "machines/john-deere-310-p-tier/review/renders/technical-side.png": 472633,
-        "machines/john-deere-310-p-tier/review/renders/articulated-inspection.png": 593437,
-        "machines/john-deere-310-p-tier/review/renders/linkage-stabilizer-detail.png": 649396
+        "machines/john-deere-310-p-tier/review/renders/technical-side.png": 472549,
+        "machines/john-deere-310-p-tier/review/renders/articulated-inspection.png": 592268,
+        "machines/john-deere-310-p-tier/review/renders/linkage-stabilizer-detail.png": 648342,
+        "machines/john-deere-310-p-tier/review/renders/front-loader-hydraulic-detail.png": 721465
       }
     },
     {
@@ -349,6 +5680,14 @@
       "status": "PENDING",
       "detail": "Only overall publisher may admit or publish this artifact."
     }
+  ],
+  "required_machine_gate_ids": [
+    "decoded_public_transport_envelope",
+    "decoded_public_pivot_world_positions",
+    "viewer_motion_nodes_resolve",
+    "public_semantic_hierarchy",
+    "decoded_public_asset_counts",
+    "source_design_contract_binding"
   ],
   "blocking_failures": [],
   "higher_stage_gates_pending": true

@@ -11,7 +11,7 @@
   "bounds": {
     "min_m": [
       -3.379,
-      -0.0,
+      0.002061,
       -1.475
     ],
     "max_m": [
@@ -21,32 +21,32 @@
     ],
     "size_m": [
       6.758,
-      3.754,
+      3.75194,
       2.95
     ]
   },
   "counts": {
-    "objects": 204,
-    "meshes": 190,
-    "triangles": 28472,
-    "materials": 5
+    "objects": 196,
+    "meshes": 177,
+    "triangles": 24512,
+    "materials": 8
   },
   "envelope_fit": {
-    "classification": "reconstructed_visible_envelope_calibration",
+    "classification": "authored_visible_envelope_measurement",
     "source_bounds_m": {
       "min_m": [
-        -3.31142,
-        -0.003939,
+        -3.379,
+        0.002061,
         -1.475
       ],
       "max_m": [
-        2.3653,
+        3.379,
         3.754,
         1.475
       ],
       "size_m": [
-        5.67672,
-        3.757939,
+        6.758,
+        3.75194,
         2.95
       ]
     },
@@ -68,14 +68,14 @@
       ]
     },
     "axis_scale_factors": [
-      1.190476211,
-      0.998951736,
-      0.999999984
+      1.0,
+      1.0,
+      1.0
     ],
     "calibrated_bounds_m": {
       "min_m": [
         -3.379,
-        -0.0,
+        0.002061,
         -1.475
       ],
       "max_m": [
@@ -85,11 +85,11 @@
       ],
       "size_m": [
         6.758,
-        3.754,
+        3.75194,
         2.95
       ]
     },
-    "authority": "reconstructed_not_machine_specific_engineering"
+    "authority": "independently_measured_from_authored_geometry"
   },
   "glb_contract": {
     "glb_version": "2.0",
@@ -98,22 +98,22 @@
     "root_name": "Machine_Root",
     "root_record": {},
     "identity_root": true,
-    "nodes": 204,
-    "mesh_nodes": 190,
-    "mesh_definitions": 190,
-    "materials": 5,
-    "triangles": 28472,
+    "nodes": 196,
+    "mesh_nodes": 177,
+    "mesh_definitions": 177,
+    "materials": 8,
+    "triangles": 24512,
     "cameras": 0,
     "punctual_lights": false,
     "images": 0,
     "textures": 0,
     "nonidentity_mesh_scales": {},
     "helper_like_mesh_nodes": [],
-    "semantic_motion_nodes": 13,
+    "semantic_motion_nodes": 18,
     "bounds": {
       "min_m": [
         -3.379,
-        -0.0,
+        0.002061,
         -1.475
       ],
       "max_m": [
@@ -123,16 +123,38 @@
       ],
       "size_m": [
         6.758,
-        3.754,
+        3.75194,
         2.95
       ]
     }
   },
+  "required_machine_gate_ids": [
+    "published_length_envelope",
+    "published_standard_width_envelope",
+    "published_height_envelope",
+    "track_wheelbase",
+    "ground_clearance",
+    "left_right_track_separation",
+    "track_component_continuity",
+    "independent_hardbar_compliance",
+    "smartride_plus_leveling_continuity",
+    "cab_suspension_continuity",
+    "three_point_linkage_continuity",
+    "drawbar_range_not_claimed",
+    "ground_collision",
+    "self_collision",
+    "neutral_unbranded_material_review"
+  ],
   "gates": [
     {
       "id": "builder-execution",
       "status": "PASS",
       "detail": "Factory-startup background builder reached validation generation."
+    },
+    {
+      "id": "machine-specific-builder",
+      "status": "PASS",
+      "detail": "Machine-local subclass owns the selected machine topology."
     },
     {
       "id": "candidate-class-boundary",
@@ -158,25 +180,733 @@
       "id": "required-semantic-nodes",
       "status": "PASS",
       "detail": {
-        "Machine_Root": true,
-        "Fixed_Structure_ROOT": true,
-        "Running_Gear_ROOT": true,
-        "Hydraulics_ROOT": true,
-        "Service_Detail_ROOT": true,
-        "Track_L_ROOT": true,
-        "Track_R_ROOT": true,
-        "SmartRide_Level_ROOT": true,
-        "Cab_Suspension_ROOT": true,
-        "Rear_Hitch_Pivot": true,
-        "Rear_Hitch_ROOT": true,
-        "Drawbar_Pivot": true
+        "Machine_Root": {
+          "present": true,
+          "role": "identity_root",
+          "visible_mesh_descendants": [
+            "Access_Step_L_1",
+            "Access_Step_L_2",
+            "Access_Step_L_3",
+            "Access_Step_R_1",
+            "Access_Step_R_2",
+            "Access_Step_R_3",
+            "Cab_Rear_Suspension_Strut_L",
+            "Cab_Rear_Suspension_Strut_R",
+            "Cab_Front_Windscreen",
+            "Cab_L_Corner_Glass",
+            "Cab_R_Corner_Glass",
+            "Cab_Roof_Profile",
+            "Cab_Structural_Shell",
+            "Operator_Seat",
+            "Published_Height_Roof",
+            "Clearance_Support_1",
+            "Clearance_Support_2",
+            "Clearance_Support_3",
+            "Clearance_Support_4",
+            "Drawbar",
+            "Drawbar_Tongue",
+            "Front_Cooling_Core",
+            "Front_Cooling_Grille_Slat_1",
+            "Front_Cooling_Grille_Slat_2",
+            "Front_Cooling_Grille_Slat_3",
+            "Front_Cooling_Grille_Slat_4",
+            "Front_Cooling_Grille_Slat_5",
+            "Front_Cooling_Grille_Slat_6",
+            "Front_Cooling_Grille_Slat_7",
+            "Front_Cooling_Grille_Slat_8",
+            "Front_Cooling_Grille_Slat_9",
+            "Front_End_Structure",
+            "Front_Frame_Extension",
+            "Ground_Clearance_Crossmember",
+            "Hood_Top_Service_Cowl",
+            "Neutral_Exhaust_Stack",
+            "Platform_Handrail_L",
+            "Platform_Handrail_R",
+            "Platform_Handrail_Top_L",
+            "Platform_Handrail_Top_R",
+            "Power_Module_Profile",
+            "Rear_End_Structure",
+            "Rear_Frame_Extension",
+            "Rear_Hitch_Coupler_Frame",
+            "Rear_Hitch_L_Lift_Cylinder",
+            "Rear_Hitch_L_Lower_Link",
+            "Rear_Hitch_Links",
+            "Rear_Hitch_R_Lift_Cylinder",
+            "Rear_Hitch_R_Lower_Link",
+            "Rear_Hitch_Top_Link",
+            "Rear_Implement_Interface_Crossbar",
+            "Rear_PTO_Guard",
+            "Rear_PTO_Shaft",
+            "Rigid_Main_Frame",
+            "Service_Access_Step",
+            "Service_Platform_L",
+            "Service_Platform_R",
+            "SmartRide_Cross_Link",
+            "SmartRide_L_Cylinder",
+            "SmartRide_R_Cylinder",
+            "Track_Fender_L",
+            "Track_Fender_R",
+            "Track_L_Hardbar_Cylinder",
+            "Track_L_Hardbar_Rocker",
+            "Track_R_Hardbar_Cylinder",
+            "Track_R_Hardbar_Rocker",
+            "Transmission_Case",
+            "Underhood_Engine_Block",
+            "Hydraulic_Manifold_Line",
+            "Track_L_Bogie_Arm_1",
+            "Track_L_Bogie_Arm_2",
+            "Track_L_Bogie_Arm_3",
+            "Track_L_Bogie_Arm_4",
+            "Track_L_Carrier_Gusset",
+            "Track_L_Frame",
+            "Track_L_Front_Wheel",
+            "Track_L_Pad_01",
+            "Track_L_Pad_02",
+            "Track_L_Pad_03",
+            "Track_L_Pad_04",
+            "Track_L_Pad_05",
+            "Track_L_Pad_06",
+            "Track_L_Pad_07",
+            "Track_L_Pad_08",
+            "Track_L_Pad_09",
+            "Track_L_Pad_10",
+            "Track_L_Pad_11",
+            "Track_L_Pad_12",
+            "Track_L_Pad_13",
+            "Track_L_Pad_14",
+            "Track_L_Pad_15",
+            "Track_L_Pad_16",
+            "Track_L_Pad_17",
+            "Track_L_Pad_18",
+            "Track_L_Pad_19",
+            "Track_L_Pad_20",
+            "Track_L_Pad_21",
+            "Track_L_Pad_22",
+            "Track_L_Pad_23",
+            "Track_L_Pad_24",
+            "Track_L_Pad_25",
+            "Track_L_Pad_26",
+            "Track_L_Pad_27",
+            "Track_L_Pad_28",
+            "Track_L_Pad_29",
+            "Track_L_Pad_30",
+            "Track_L_Pad_31",
+            "Track_L_Pad_32",
+            "Track_L_Pad_33",
+            "Track_L_Pad_34",
+            "Track_L_Pad_35",
+            "Track_L_Pad_36",
+            "Track_L_Pad_37",
+            "Track_L_Pad_38",
+            "Track_L_Rear_Wheel",
+            "Track_L_Roller_01",
+            "Track_L_Roller_02",
+            "Track_L_Roller_03",
+            "Track_L_Roller_04",
+            "Track_L_Tension_Link",
+            "Track_L_Upper_Support_Wheel_1",
+            "Track_L_Upper_Support_Wheel_2",
+            "Track_L_Upper_Support_Wheel_3",
+            "Track_R_Bogie_Arm_1",
+            "Track_R_Bogie_Arm_2",
+            "Track_R_Bogie_Arm_3",
+            "Track_R_Bogie_Arm_4",
+            "Track_R_Carrier_Gusset",
+            "Track_R_Frame",
+            "Track_R_Front_Wheel",
+            "Track_R_Pad_01",
+            "Track_R_Pad_02",
+            "Track_R_Pad_03",
+            "Track_R_Pad_04",
+            "Track_R_Pad_05",
+            "Track_R_Pad_06",
+            "Track_R_Pad_07",
+            "Track_R_Pad_08",
+            "Track_R_Pad_09",
+            "Track_R_Pad_10",
+            "Track_R_Pad_11",
+            "Track_R_Pad_12",
+            "Track_R_Pad_13",
+            "Track_R_Pad_14",
+            "Track_R_Pad_15",
+            "Track_R_Pad_16",
+            "Track_R_Pad_17",
+            "Track_R_Pad_18",
+            "Track_R_Pad_19",
+            "Track_R_Pad_20",
+            "Track_R_Pad_21",
+            "Track_R_Pad_22",
+            "Track_R_Pad_23",
+            "Track_R_Pad_24",
+            "Track_R_Pad_25",
+            "Track_R_Pad_26",
+            "Track_R_Pad_27",
+            "Track_R_Pad_28",
+            "Track_R_Pad_29",
+            "Track_R_Pad_30",
+            "Track_R_Pad_31",
+            "Track_R_Pad_32",
+            "Track_R_Pad_33",
+            "Track_R_Pad_34",
+            "Track_R_Pad_35",
+            "Track_R_Pad_36",
+            "Track_R_Pad_37",
+            "Track_R_Pad_38",
+            "Track_R_Rear_Wheel",
+            "Track_R_Roller_01",
+            "Track_R_Roller_02",
+            "Track_R_Roller_03",
+            "Track_R_Roller_04",
+            "Track_R_Tension_Link",
+            "Track_R_Upper_Support_Wheel_1",
+            "Track_R_Upper_Support_Wheel_2",
+            "Track_R_Upper_Support_Wheel_3"
+          ]
+        },
+        "Fixed_Structure_ROOT": {
+          "present": true,
+          "role": "fixed_structure_root",
+          "visible_mesh_descendants": [
+            "Access_Step_L_1",
+            "Access_Step_L_2",
+            "Access_Step_L_3",
+            "Access_Step_R_1",
+            "Access_Step_R_2",
+            "Access_Step_R_3",
+            "Cab_Rear_Suspension_Strut_L",
+            "Cab_Rear_Suspension_Strut_R",
+            "Cab_Front_Windscreen",
+            "Cab_L_Corner_Glass",
+            "Cab_R_Corner_Glass",
+            "Cab_Roof_Profile",
+            "Cab_Structural_Shell",
+            "Operator_Seat",
+            "Published_Height_Roof",
+            "Clearance_Support_1",
+            "Clearance_Support_2",
+            "Clearance_Support_3",
+            "Clearance_Support_4",
+            "Drawbar",
+            "Drawbar_Tongue",
+            "Front_Cooling_Core",
+            "Front_Cooling_Grille_Slat_1",
+            "Front_Cooling_Grille_Slat_2",
+            "Front_Cooling_Grille_Slat_3",
+            "Front_Cooling_Grille_Slat_4",
+            "Front_Cooling_Grille_Slat_5",
+            "Front_Cooling_Grille_Slat_6",
+            "Front_Cooling_Grille_Slat_7",
+            "Front_Cooling_Grille_Slat_8",
+            "Front_Cooling_Grille_Slat_9",
+            "Front_End_Structure",
+            "Front_Frame_Extension",
+            "Ground_Clearance_Crossmember",
+            "Hood_Top_Service_Cowl",
+            "Neutral_Exhaust_Stack",
+            "Platform_Handrail_L",
+            "Platform_Handrail_R",
+            "Platform_Handrail_Top_L",
+            "Platform_Handrail_Top_R",
+            "Power_Module_Profile",
+            "Rear_End_Structure",
+            "Rear_Frame_Extension",
+            "Rear_Hitch_Coupler_Frame",
+            "Rear_Hitch_L_Lift_Cylinder",
+            "Rear_Hitch_L_Lower_Link",
+            "Rear_Hitch_Links",
+            "Rear_Hitch_R_Lift_Cylinder",
+            "Rear_Hitch_R_Lower_Link",
+            "Rear_Hitch_Top_Link",
+            "Rear_Implement_Interface_Crossbar",
+            "Rear_PTO_Guard",
+            "Rear_PTO_Shaft",
+            "Rigid_Main_Frame",
+            "Service_Access_Step",
+            "Service_Platform_L",
+            "Service_Platform_R",
+            "SmartRide_Cross_Link",
+            "SmartRide_L_Cylinder",
+            "SmartRide_R_Cylinder",
+            "Track_Fender_L",
+            "Track_Fender_R",
+            "Track_L_Hardbar_Cylinder",
+            "Track_L_Hardbar_Rocker",
+            "Track_R_Hardbar_Cylinder",
+            "Track_R_Hardbar_Rocker",
+            "Transmission_Case",
+            "Underhood_Engine_Block"
+          ]
+        },
+        "Running_Gear_ROOT": {
+          "present": true,
+          "role": "running_gear_root",
+          "visible_mesh_descendants": [
+            "Track_L_Bogie_Arm_1",
+            "Track_L_Bogie_Arm_2",
+            "Track_L_Bogie_Arm_3",
+            "Track_L_Bogie_Arm_4",
+            "Track_L_Carrier_Gusset",
+            "Track_L_Frame",
+            "Track_L_Front_Wheel",
+            "Track_L_Pad_01",
+            "Track_L_Pad_02",
+            "Track_L_Pad_03",
+            "Track_L_Pad_04",
+            "Track_L_Pad_05",
+            "Track_L_Pad_06",
+            "Track_L_Pad_07",
+            "Track_L_Pad_08",
+            "Track_L_Pad_09",
+            "Track_L_Pad_10",
+            "Track_L_Pad_11",
+            "Track_L_Pad_12",
+            "Track_L_Pad_13",
+            "Track_L_Pad_14",
+            "Track_L_Pad_15",
+            "Track_L_Pad_16",
+            "Track_L_Pad_17",
+            "Track_L_Pad_18",
+            "Track_L_Pad_19",
+            "Track_L_Pad_20",
+            "Track_L_Pad_21",
+            "Track_L_Pad_22",
+            "Track_L_Pad_23",
+            "Track_L_Pad_24",
+            "Track_L_Pad_25",
+            "Track_L_Pad_26",
+            "Track_L_Pad_27",
+            "Track_L_Pad_28",
+            "Track_L_Pad_29",
+            "Track_L_Pad_30",
+            "Track_L_Pad_31",
+            "Track_L_Pad_32",
+            "Track_L_Pad_33",
+            "Track_L_Pad_34",
+            "Track_L_Pad_35",
+            "Track_L_Pad_36",
+            "Track_L_Pad_37",
+            "Track_L_Pad_38",
+            "Track_L_Rear_Wheel",
+            "Track_L_Roller_01",
+            "Track_L_Roller_02",
+            "Track_L_Roller_03",
+            "Track_L_Roller_04",
+            "Track_L_Tension_Link",
+            "Track_L_Upper_Support_Wheel_1",
+            "Track_L_Upper_Support_Wheel_2",
+            "Track_L_Upper_Support_Wheel_3",
+            "Track_R_Bogie_Arm_1",
+            "Track_R_Bogie_Arm_2",
+            "Track_R_Bogie_Arm_3",
+            "Track_R_Bogie_Arm_4",
+            "Track_R_Carrier_Gusset",
+            "Track_R_Frame",
+            "Track_R_Front_Wheel",
+            "Track_R_Pad_01",
+            "Track_R_Pad_02",
+            "Track_R_Pad_03",
+            "Track_R_Pad_04",
+            "Track_R_Pad_05",
+            "Track_R_Pad_06",
+            "Track_R_Pad_07",
+            "Track_R_Pad_08",
+            "Track_R_Pad_09",
+            "Track_R_Pad_10",
+            "Track_R_Pad_11",
+            "Track_R_Pad_12",
+            "Track_R_Pad_13",
+            "Track_R_Pad_14",
+            "Track_R_Pad_15",
+            "Track_R_Pad_16",
+            "Track_R_Pad_17",
+            "Track_R_Pad_18",
+            "Track_R_Pad_19",
+            "Track_R_Pad_20",
+            "Track_R_Pad_21",
+            "Track_R_Pad_22",
+            "Track_R_Pad_23",
+            "Track_R_Pad_24",
+            "Track_R_Pad_25",
+            "Track_R_Pad_26",
+            "Track_R_Pad_27",
+            "Track_R_Pad_28",
+            "Track_R_Pad_29",
+            "Track_R_Pad_30",
+            "Track_R_Pad_31",
+            "Track_R_Pad_32",
+            "Track_R_Pad_33",
+            "Track_R_Pad_34",
+            "Track_R_Pad_35",
+            "Track_R_Pad_36",
+            "Track_R_Pad_37",
+            "Track_R_Pad_38",
+            "Track_R_Rear_Wheel",
+            "Track_R_Roller_01",
+            "Track_R_Roller_02",
+            "Track_R_Roller_03",
+            "Track_R_Roller_04",
+            "Track_R_Tension_Link",
+            "Track_R_Upper_Support_Wheel_1",
+            "Track_R_Upper_Support_Wheel_2",
+            "Track_R_Upper_Support_Wheel_3"
+          ]
+        },
+        "Hydraulics_ROOT": {
+          "present": true,
+          "role": "hydraulics_root",
+          "visible_mesh_descendants": [
+            "Hydraulic_Manifold_Line"
+          ]
+        },
+        "Track_L_ROOT": {
+          "present": true,
+          "role": "track_root",
+          "visible_mesh_descendants": [
+            "Track_L_Bogie_Arm_1",
+            "Track_L_Bogie_Arm_2",
+            "Track_L_Bogie_Arm_3",
+            "Track_L_Bogie_Arm_4",
+            "Track_L_Carrier_Gusset",
+            "Track_L_Frame",
+            "Track_L_Front_Wheel",
+            "Track_L_Pad_01",
+            "Track_L_Pad_02",
+            "Track_L_Pad_03",
+            "Track_L_Pad_04",
+            "Track_L_Pad_05",
+            "Track_L_Pad_06",
+            "Track_L_Pad_07",
+            "Track_L_Pad_08",
+            "Track_L_Pad_09",
+            "Track_L_Pad_10",
+            "Track_L_Pad_11",
+            "Track_L_Pad_12",
+            "Track_L_Pad_13",
+            "Track_L_Pad_14",
+            "Track_L_Pad_15",
+            "Track_L_Pad_16",
+            "Track_L_Pad_17",
+            "Track_L_Pad_18",
+            "Track_L_Pad_19",
+            "Track_L_Pad_20",
+            "Track_L_Pad_21",
+            "Track_L_Pad_22",
+            "Track_L_Pad_23",
+            "Track_L_Pad_24",
+            "Track_L_Pad_25",
+            "Track_L_Pad_26",
+            "Track_L_Pad_27",
+            "Track_L_Pad_28",
+            "Track_L_Pad_29",
+            "Track_L_Pad_30",
+            "Track_L_Pad_31",
+            "Track_L_Pad_32",
+            "Track_L_Pad_33",
+            "Track_L_Pad_34",
+            "Track_L_Pad_35",
+            "Track_L_Pad_36",
+            "Track_L_Pad_37",
+            "Track_L_Pad_38",
+            "Track_L_Rear_Wheel",
+            "Track_L_Roller_01",
+            "Track_L_Roller_02",
+            "Track_L_Roller_03",
+            "Track_L_Roller_04",
+            "Track_L_Tension_Link",
+            "Track_L_Upper_Support_Wheel_1",
+            "Track_L_Upper_Support_Wheel_2",
+            "Track_L_Upper_Support_Wheel_3"
+          ]
+        },
+        "Track_R_ROOT": {
+          "present": true,
+          "role": "track_root",
+          "visible_mesh_descendants": [
+            "Track_R_Bogie_Arm_1",
+            "Track_R_Bogie_Arm_2",
+            "Track_R_Bogie_Arm_3",
+            "Track_R_Bogie_Arm_4",
+            "Track_R_Carrier_Gusset",
+            "Track_R_Frame",
+            "Track_R_Front_Wheel",
+            "Track_R_Pad_01",
+            "Track_R_Pad_02",
+            "Track_R_Pad_03",
+            "Track_R_Pad_04",
+            "Track_R_Pad_05",
+            "Track_R_Pad_06",
+            "Track_R_Pad_07",
+            "Track_R_Pad_08",
+            "Track_R_Pad_09",
+            "Track_R_Pad_10",
+            "Track_R_Pad_11",
+            "Track_R_Pad_12",
+            "Track_R_Pad_13",
+            "Track_R_Pad_14",
+            "Track_R_Pad_15",
+            "Track_R_Pad_16",
+            "Track_R_Pad_17",
+            "Track_R_Pad_18",
+            "Track_R_Pad_19",
+            "Track_R_Pad_20",
+            "Track_R_Pad_21",
+            "Track_R_Pad_22",
+            "Track_R_Pad_23",
+            "Track_R_Pad_24",
+            "Track_R_Pad_25",
+            "Track_R_Pad_26",
+            "Track_R_Pad_27",
+            "Track_R_Pad_28",
+            "Track_R_Pad_29",
+            "Track_R_Pad_30",
+            "Track_R_Pad_31",
+            "Track_R_Pad_32",
+            "Track_R_Pad_33",
+            "Track_R_Pad_34",
+            "Track_R_Pad_35",
+            "Track_R_Pad_36",
+            "Track_R_Pad_37",
+            "Track_R_Pad_38",
+            "Track_R_Rear_Wheel",
+            "Track_R_Roller_01",
+            "Track_R_Roller_02",
+            "Track_R_Roller_03",
+            "Track_R_Roller_04",
+            "Track_R_Tension_Link",
+            "Track_R_Upper_Support_Wheel_1",
+            "Track_R_Upper_Support_Wheel_2",
+            "Track_R_Upper_Support_Wheel_3"
+          ]
+        },
+        "SmartRide_Level_ROOT": {
+          "present": true,
+          "role": "suspension_motion_root",
+          "visible_mesh_descendants": [
+            "Track_L_Bogie_Arm_1",
+            "Track_L_Bogie_Arm_2",
+            "Track_L_Bogie_Arm_3",
+            "Track_L_Bogie_Arm_4",
+            "Track_L_Carrier_Gusset",
+            "Track_L_Frame",
+            "Track_L_Front_Wheel",
+            "Track_L_Pad_01",
+            "Track_L_Pad_02",
+            "Track_L_Pad_03",
+            "Track_L_Pad_04",
+            "Track_L_Pad_05",
+            "Track_L_Pad_06",
+            "Track_L_Pad_07",
+            "Track_L_Pad_08",
+            "Track_L_Pad_09",
+            "Track_L_Pad_10",
+            "Track_L_Pad_11",
+            "Track_L_Pad_12",
+            "Track_L_Pad_13",
+            "Track_L_Pad_14",
+            "Track_L_Pad_15",
+            "Track_L_Pad_16",
+            "Track_L_Pad_17",
+            "Track_L_Pad_18",
+            "Track_L_Pad_19",
+            "Track_L_Pad_20",
+            "Track_L_Pad_21",
+            "Track_L_Pad_22",
+            "Track_L_Pad_23",
+            "Track_L_Pad_24",
+            "Track_L_Pad_25",
+            "Track_L_Pad_26",
+            "Track_L_Pad_27",
+            "Track_L_Pad_28",
+            "Track_L_Pad_29",
+            "Track_L_Pad_30",
+            "Track_L_Pad_31",
+            "Track_L_Pad_32",
+            "Track_L_Pad_33",
+            "Track_L_Pad_34",
+            "Track_L_Pad_35",
+            "Track_L_Pad_36",
+            "Track_L_Pad_37",
+            "Track_L_Pad_38",
+            "Track_L_Rear_Wheel",
+            "Track_L_Roller_01",
+            "Track_L_Roller_02",
+            "Track_L_Roller_03",
+            "Track_L_Roller_04",
+            "Track_L_Tension_Link",
+            "Track_L_Upper_Support_Wheel_1",
+            "Track_L_Upper_Support_Wheel_2",
+            "Track_L_Upper_Support_Wheel_3",
+            "Track_R_Bogie_Arm_1",
+            "Track_R_Bogie_Arm_2",
+            "Track_R_Bogie_Arm_3",
+            "Track_R_Bogie_Arm_4",
+            "Track_R_Carrier_Gusset",
+            "Track_R_Frame",
+            "Track_R_Front_Wheel",
+            "Track_R_Pad_01",
+            "Track_R_Pad_02",
+            "Track_R_Pad_03",
+            "Track_R_Pad_04",
+            "Track_R_Pad_05",
+            "Track_R_Pad_06",
+            "Track_R_Pad_07",
+            "Track_R_Pad_08",
+            "Track_R_Pad_09",
+            "Track_R_Pad_10",
+            "Track_R_Pad_11",
+            "Track_R_Pad_12",
+            "Track_R_Pad_13",
+            "Track_R_Pad_14",
+            "Track_R_Pad_15",
+            "Track_R_Pad_16",
+            "Track_R_Pad_17",
+            "Track_R_Pad_18",
+            "Track_R_Pad_19",
+            "Track_R_Pad_20",
+            "Track_R_Pad_21",
+            "Track_R_Pad_22",
+            "Track_R_Pad_23",
+            "Track_R_Pad_24",
+            "Track_R_Pad_25",
+            "Track_R_Pad_26",
+            "Track_R_Pad_27",
+            "Track_R_Pad_28",
+            "Track_R_Pad_29",
+            "Track_R_Pad_30",
+            "Track_R_Pad_31",
+            "Track_R_Pad_32",
+            "Track_R_Pad_33",
+            "Track_R_Pad_34",
+            "Track_R_Pad_35",
+            "Track_R_Pad_36",
+            "Track_R_Pad_37",
+            "Track_R_Pad_38",
+            "Track_R_Rear_Wheel",
+            "Track_R_Roller_01",
+            "Track_R_Roller_02",
+            "Track_R_Roller_03",
+            "Track_R_Roller_04",
+            "Track_R_Tension_Link",
+            "Track_R_Upper_Support_Wheel_1",
+            "Track_R_Upper_Support_Wheel_2",
+            "Track_R_Upper_Support_Wheel_3"
+          ]
+        },
+        "Cab_Suspension_ROOT": {
+          "present": true,
+          "role": "suspension_motion_root",
+          "visible_mesh_descendants": [
+            "Cab_Rear_Suspension_Strut_L",
+            "Cab_Rear_Suspension_Strut_R",
+            "Cab_Front_Windscreen",
+            "Cab_L_Corner_Glass",
+            "Cab_R_Corner_Glass",
+            "Cab_Roof_Profile",
+            "Cab_Structural_Shell",
+            "Operator_Seat",
+            "Published_Height_Roof"
+          ]
+        },
+        "Rear_Hitch_Pivot": {
+          "present": true,
+          "role": "pivot",
+          "visible_mesh_descendants": [
+            "Rear_Hitch_Coupler_Frame",
+            "Rear_Hitch_L_Lift_Cylinder",
+            "Rear_Hitch_L_Lower_Link",
+            "Rear_Hitch_Links",
+            "Rear_Hitch_R_Lift_Cylinder",
+            "Rear_Hitch_R_Lower_Link",
+            "Rear_Hitch_Top_Link"
+          ]
+        },
+        "Rear_Hitch_ROOT": {
+          "present": true,
+          "role": "motion_root",
+          "visible_mesh_descendants": [
+            "Rear_Hitch_Coupler_Frame",
+            "Rear_Hitch_L_Lift_Cylinder",
+            "Rear_Hitch_L_Lower_Link",
+            "Rear_Hitch_Links",
+            "Rear_Hitch_R_Lift_Cylinder",
+            "Rear_Hitch_R_Lower_Link",
+            "Rear_Hitch_Top_Link"
+          ]
+        },
+        "Drawbar_Pivot": {
+          "present": true,
+          "role": "pivot",
+          "visible_mesh_descendants": [
+            "Drawbar"
+          ]
+        },
+        "Track_L_Hardbar_ROOT": {
+          "present": true,
+          "role": "suspension_motion_root",
+          "visible_mesh_descendants": [
+            "Track_L_Hardbar_Cylinder",
+            "Track_L_Hardbar_Rocker"
+          ]
+        },
+        "Track_R_Hardbar_ROOT": {
+          "present": true,
+          "role": "suspension_motion_root",
+          "visible_mesh_descendants": [
+            "Track_R_Hardbar_Cylinder",
+            "Track_R_Hardbar_Rocker"
+          ]
+        },
+        "SmartRide_Visual_ROOT": {
+          "present": true,
+          "role": "suspension_motion_root",
+          "visible_mesh_descendants": [
+            "SmartRide_Cross_Link",
+            "SmartRide_L_Cylinder",
+            "SmartRide_R_Cylinder"
+          ]
+        },
+        "Rear_PTO_Shaft_ROOT": {
+          "present": true,
+          "role": "rotary_root",
+          "visible_mesh_descendants": [
+            "Rear_PTO_Shaft"
+          ]
+        },
+        "Ground_Clearance_Crossmember": {
+          "present": true,
+          "role": "chassis_clearance_datum",
+          "visible_mesh_descendants": [
+            "Ground_Clearance_Crossmember"
+          ]
+        },
+        "Rear_Hitch_L_Lower_Link": {
+          "present": true,
+          "role": "hitch_link",
+          "visible_mesh_descendants": [
+            "Rear_Hitch_L_Lower_Link"
+          ]
+        },
+        "Rear_Hitch_R_Lower_Link": {
+          "present": true,
+          "role": "hitch_link",
+          "visible_mesh_descendants": [
+            "Rear_Hitch_R_Lower_Link"
+          ]
+        },
+        "Rear_Hitch_Top_Link": {
+          "present": true,
+          "role": "hitch_link",
+          "visible_mesh_descendants": [
+            "Rear_Hitch_Top_Link"
+          ]
+        }
       }
     },
     {
       "id": "semantic-motion-hierarchy",
       "status": "PASS",
       "detail": {
-        "semantic_motion_nodes": 13
+        "semantic_motion_nodes": 18
       }
     },
     {
@@ -212,24 +942,24 @@
       "id": "node-density",
       "status": "PASS",
       "detail": {
-        "actual": 204,
-        "minimum": 200
+        "actual": 196,
+        "minimum": 80
       }
     },
     {
       "id": "mesh-density",
       "status": "PASS",
       "detail": {
-        "actual": 190,
-        "minimum": 180
+        "actual": 177,
+        "minimum": 60
       }
     },
     {
       "id": "triangle-density",
       "status": "PASS",
       "detail": {
-        "actual": 28472,
-        "minimum": 10000
+        "actual": 24512,
+        "minimum": 5000
       }
     },
     {
@@ -238,7 +968,7 @@
       "detail": {
         "min_m": [
           -3.379,
-          -0.0,
+          0.002061,
           -1.475
         ],
         "max_m": [
@@ -248,7 +978,7 @@
         ],
         "size_m": [
           6.758,
-          3.754,
+          3.75194,
           2.95
         ]
       }
@@ -259,7 +989,7 @@
       "detail": {
         "actual_size_m": [
           6.758,
-          3.754,
+          3.75194,
           2.95
         ],
         "expected_size_m": [
@@ -268,7 +998,7 @@
           2.95
         ],
         "absolute_tolerance_m": 0.03,
-        "minimum_y_m": -0.0
+        "minimum_y_m": 0.002061
       }
     },
     {
@@ -277,27 +1007,27 @@
       "detail": [
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/fendt-1167-vario-mt/review/renders/fendt-1167-vario-mt-operator-side.png",
-          "bytes": 274889
+          "bytes": 294610
         },
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/fendt-1167-vario-mt/review/renders/fendt-1167-vario-mt-front-three-quarter.png",
-          "bytes": 325212
+          "bytes": 328729
         },
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/fendt-1167-vario-mt/review/renders/fendt-1167-vario-mt-rear-three-quarter.png",
-          "bytes": 321075
+          "bytes": 325397
         },
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/fendt-1167-vario-mt/review/renders/fendt-1167-vario-mt-elevated-technical.png",
-          "bytes": 366871
+          "bytes": 385186
         },
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/fendt-1167-vario-mt/review/renders/fendt-1167-vario-mt-articulation-detail.png",
-          "bytes": 350984
+          "bytes": 361020
         },
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/fendt-1167-vario-mt/review/renders/fendt-1167-vario-mt-right-side.png",
-          "bytes": 276230
+          "bytes": 293795
         }
       ]
     },
@@ -307,87 +1037,331 @@
       "detail": "Neutral palette and procedural materials only; no manufacturer marks or textures."
     },
     {
-      "id": "fendt-rear-interface-continuity",
+      "id": "published_length_envelope",
       "status": "PASS",
       "detail": {
-        "classification": "reconstructed_rest_pose_aabb_continuity_only",
-        "authority": "Visualization continuity check only; not manufacturer-published pivot geometry, an operating limit, a load path, or engineering authority.",
-        "required_minimum_overlap_m": 0.001,
-        "chassis_to_hitch": {
-          "objects": [
-            "Rigid_Main_Frame",
-            "Rear_Hitch_Links"
-          ],
-          "first_bounds_m": {
-            "min_xyz": [
-              -2.252667,
-              1.091454,
-              -0.708
-            ],
-            "max_xyz": [
-              3.057191,
-              1.616463,
-              0.708
-            ]
-          },
-          "second_bounds_m": {
-            "min_xyz": [
-              -3.298548,
-              0.941451,
-              -0.236
-            ],
-            "max_xyz": [
-              -2.172214,
-              1.166455,
-              0.236
-            ]
-          },
-          "overlap_xyz_m": {
-            "x": 0.080452,
-            "y": 0.075001,
-            "z": 0.472
-          },
-          "minimum_overlap_m": 0.075001,
-          "passes_required_overlap": true
+        "method": "decoded GLB visible AABB X span",
+        "evidence": {
+          "measured_m": 6.758,
+          "target_m": 6.758,
+          "tolerance_m": 0.003
         },
-        "hitch_to_drawbar": {
-          "objects": [
-            "Rear_Hitch_Links",
-            "Drawbar"
-          ],
-          "first_bounds_m": {
-            "min_xyz": [
-              -3.298548,
-              0.941451,
-              -0.236
-            ],
-            "max_xyz": [
-              -2.172214,
-              1.166455,
-              0.236
-            ]
-          },
-          "second_bounds_m": {
-            "min_xyz": [
-              -3.379,
-              0.819574,
-              -0.118
-            ],
-            "max_xyz": [
-              -2.413572,
-              0.988327,
-              0.118
-            ]
-          },
-          "overlap_xyz_m": {
-            "x": 0.884976,
-            "y": 0.046876,
-            "z": 0.236
-          },
-          "minimum_overlap_m": 0.046876,
-          "passes_required_overlap": true
+        "semantic_nodes": [
+          "Front_End_Structure",
+          "Rear_End_Structure"
+        ],
+        "fact_ids": [
+          "public-envelope-x"
+        ],
+        "authority": "Computed visualization evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "published_standard_width_envelope",
+      "status": "PASS",
+      "detail": {
+        "method": "decoded GLB visible AABB Z span",
+        "evidence": {
+          "measured_m": 2.95,
+          "target_m": 2.95,
+          "tolerance_m": 0.003
         },
-        "measured_minimum_overlap_m": 0.046876
+        "semantic_nodes": [
+          "Track_L_ROOT",
+          "Track_R_ROOT"
+        ],
+        "fact_ids": [
+          "public-envelope-z"
+        ],
+        "authority": "Computed visualization evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "published_height_envelope",
+      "status": "PASS",
+      "detail": {
+        "method": "decoded GLB visible AABB Y span",
+        "evidence": {
+          "measured_m": 3.75194,
+          "target_m": 3.754,
+          "tolerance_m": 0.003
+        },
+        "semantic_nodes": [
+          "Published_Height_Roof"
+        ],
+        "fact_ids": [
+          "public-envelope-y"
+        ],
+        "authority": "Computed visualization evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "track_wheelbase",
+      "status": "PASS",
+      "detail": {
+        "method": "world-space front/rear wheel-center subtraction",
+        "evidence": {
+          "measured_m": {
+            "L": 3.0,
+            "R": 3.0
+          },
+          "target_m": 3.0,
+          "tolerance_m": 0.003
+        },
+        "semantic_nodes": [
+          "Track_L_Front_Wheel",
+          "Track_L_Rear_Wheel",
+          "Track_R_Front_Wheel",
+          "Track_R_Rear_Wheel"
+        ],
+        "fact_ids": [
+          "track-wheelbase"
+        ],
+        "authority": "Computed visualization evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "ground_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "named chassis-datum minimum Y",
+        "evidence": {
+          "measured_m": 0.359,
+          "target_m": 0.359,
+          "tolerance_m": 0.003
+        },
+        "semantic_nodes": [
+          "Ground_Clearance_Crossmember"
+        ],
+        "fact_ids": [
+          "ground-clearance"
+        ],
+        "authority": "Computed visualization evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "left_right_track_separation",
+      "status": "PASS",
+      "detail": {
+        "method": "belt-pad world AABB width and mirrored root centers",
+        "evidence": {
+          "belt_width_m": {
+            "L": 0.762,
+            "R": 0.762
+          },
+          "target_belt_width_m": 0.762,
+          "absolute_root_centers_z_m": {
+            "L": 1.094,
+            "R": 1.094
+          }
+        },
+        "semantic_nodes": [
+          "Track_L_ROOT",
+          "Track_R_ROOT"
+        ],
+        "fact_ids": [
+          "selected-track-belt-width"
+        ],
+        "authority": "Computed visualization evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "track_component_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "named loop component inventory plus ground-contact equality",
+        "evidence": {
+          "left_meshes": 54,
+          "right_meshes": 54,
+          "front_radius_m": 0.64,
+          "rear_radius_m": 0.76,
+          "rest_minimum_y_m": 0.00019
+        },
+        "semantic_nodes": [
+          "Track_L_ROOT",
+          "Track_R_ROOT"
+        ],
+        "fact_ids": [
+          "midwheel-sets-per-side"
+        ],
+        "authority": "Computed visualization evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "independent_hardbar_compliance",
+      "status": "PASS",
+      "detail": {
+        "method": "three-pose subtree ground-clearance sweep",
+        "evidence": {
+          "presentation_angles_rad": [
+            -0.08,
+            0.0,
+            0.08
+          ],
+          "minimum_y_samples_m": {
+            "Track_L_Hardbar_ROOT": [
+              1.011551,
+              0.970264,
+              0.929358
+            ],
+            "Track_R_Hardbar_ROOT": [
+              1.011551,
+              0.970264,
+              0.929358
+            ]
+          },
+          "distinct_roots": true,
+          "published_travel_not_converted_to_angle": true
+        },
+        "semantic_nodes": [
+          "Track_L_Hardbar_ROOT",
+          "Track_R_Hardbar_ROOT"
+        ],
+        "fact_ids": [
+          "smartride-hardbar-travel"
+        ],
+        "authority": "Computed visualization evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "smartride_plus_leveling_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "two-endpoint visible hydraulic subtree sweep",
+        "evidence": {
+          "presentation_offsets_m": [
+            0.0,
+            0.12
+          ],
+          "minimum_y_samples_m": [
+            0.99,
+            1.11
+          ],
+          "visible_meshes": 3,
+          "published_leveling_range_unresolved": true
+        },
+        "semantic_nodes": [
+          "SmartRide_Visual_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed visualization evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "cab_suspension_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "motion-root hierarchy and nonempty visible subtree",
+        "evidence": {
+          "parent": "Fixed_Structure_ROOT",
+          "visible_meshes": 9,
+          "viewer_range_m": [
+            0.0,
+            0.08
+          ],
+          "published_rear_travel_m": 0.1,
+          "mapping_to_viewer_axis_reconstructed": true
+        },
+        "semantic_nodes": [
+          "Cab_Suspension_ROOT"
+        ],
+        "fact_ids": [
+          "cab-rear-suspension-travel"
+        ],
+        "authority": "Computed visualization evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "three_point_linkage_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "rest-pose three-axis AABB overlap for chassis-hitch-drawbar chain",
+        "evidence": {
+          "chassis_to_hitch_overlap_xyz_m": [
+            0.06758,
+            0.07508,
+            0.472
+          ],
+          "hitch_to_drawbar_overlap_xyz_m": [
+            0.74338,
+            0.046925,
+            0.236
+          ]
+        },
+        "semantic_nodes": [
+          "Rear_Hitch_Pivot",
+          "Rear_Hitch_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed visualization evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "drawbar_range_not_claimed",
+      "status": "PASS",
+      "detail": {
+        "method": "viewer-channel ownership scan",
+        "evidence": {
+          "drawbar_nodes_animated": [],
+          "numeric_limit_withheld": true
+        },
+        "semantic_nodes": [],
+        "fact_ids": [],
+        "authority": "Computed visualization evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "ground_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "rest AABB plus all exposed suspension endpoint samples",
+        "evidence": {
+          "rest_minimum_y_m": 0.00019,
+          "hardbar_minimum_y_m": 0.929358,
+          "smartride_minimum_y_m": 0.99
+        },
+        "semantic_nodes": [
+          "Track_L_ROOT",
+          "Track_R_ROOT",
+          "Track_L_Hardbar_ROOT",
+          "Track_R_Hardbar_ROOT",
+          "SmartRide_Visual_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed visualization evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "self_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "separate motion-root ownership and bounded endpoint sweep",
+        "evidence": {
+          "belt_roots_static": true,
+          "rear_interface_minimum_overlap_m": 0.046925
+        },
+        "semantic_nodes": [
+          "Track_L_Hardbar_ROOT",
+          "Track_R_Hardbar_ROOT",
+          "SmartRide_Visual_ROOT",
+          "Rear_Hitch_Pivot"
+        ],
+        "fact_ids": [],
+        "authority": "Computed visualization evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "neutral_unbranded_material_review",
+      "status": "PASS",
+      "detail": {
+        "method": "procedural material rights-tag scan",
+        "evidence": {
+          "material_count": 8,
+          "all_neutral_unbranded": true
+        },
+        "semantic_nodes": [],
+        "fact_ids": [],
+        "authority": "Computed visualization evidence only; not engineering or operating authority."
       }
     },
     {

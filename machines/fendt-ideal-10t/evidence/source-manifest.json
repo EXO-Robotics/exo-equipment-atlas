@@ -15,29 +15,28 @@
     {
       "id": "FENDT-IDEAL-2301-TECHNICAL",
       "publisher": "AGCO GmbH - Fendt",
-      "kind": "official_equipment_and_technical_data_pdf",
-      "title": "Fendt IDEAL - Ausstattungsvarianten und technische Daten",
+      "kind": "rejected_redirect_capture",
+      "title": "Rejected Fendt 2301 technical-data locator",
       "publication": "2301 technical-data matrix",
       "market": "International / European Stage V",
-      "pages": 2,
       "retrieved": "2026-08-29",
       "official_url": "https://www.fendt.com/de/geneva-assets/article/162181/484553-fendtideal-2301-td-de-web.pdf",
-      "admission": "configuration_authority",
-      "use": "Primary authority for the IDEAL 10T column and the frozen current equipment combination: TrakRide, Heavy Duty traction drive, Streamer 210, 8.4 m M folding tube, ShortCut, chaff spreader, ActiveSpread SwingFlow, Stage V MAN engine, Vision cab, PowerFold ladder, dimensions, capacities, and standard-versus-optional status."
+      "admission": "quarantined",
+      "use": "Rejected for technical use: the locator resolved to brochure-index HTML rather than the claimed two-page technical-data PDF. No facts or dimensions are admitted from this entry."
     },
     {
       "id": "FENDT-IDEAL-GB-TECHDATA-1152010",
       "publisher": "AGCO GmbH - Fendt",
-      "kind": "official_live_technical_data_table",
+      "kind": "official_live_technical_data_table_html",
       "title": "Fendt IDEAL - Technical data",
       "market": "Great Britain / English",
       "retrieved": "2026-08-29",
       "official_url": "https://api.fendt.com/techdata/GB/en/1152010/Fendt-IDEAL",
-      "local_path": "research/private/fendt-ideal-10t/primary-source.html",
-      "sha256": "e42eba5733ba62f8d153b89578cf834a33b6d444d534f0260a01556ebd0f1f5a",
-      "bytes": 180456,
+      "local_path": "research/private/fendt-ideal-10t/fendt-ideal-gb-technical-data.html",
+      "sha256": "eace0a0da433acb87590e9f049b4514ae6e341e095aa6561f459a1b8c077499e",
+      "bytes": 313280,
       "admission": "primary",
-      "use": "Current GB corroboration for the IDEAL 10T model column, PowerFlow range, Dual Helix dimensions and speeds, Stage V engine, Streamer 210 capacity and rate, MotionShift, TrakRide, and carrier envelope range. Values are admitted only where the IDEAL 10T column is unambiguous."
+      "use": "Hash-bound current GB capture. Only the unambiguous IDEAL 10T MotionShift two-step fact is admitted from this freeze; no envelope, attachment, running-gear, capacity, or mechanism-dimension claim is bound to this source."
     },
     {
       "id": "FENDT-IDEAL-MY2023-INNOVATIONS",
@@ -49,8 +48,8 @@
       "published": "2022-08-26",
       "retrieved": "2026-08-29",
       "official_url": "https://www.fendt.com/int/innovations-for-the-fendt-ideal-press-conference-22",
-      "admission": "running_gear_configuration_authority",
-      "use": "Binds the selected 30-inch/76 cm track with 520/85R30 rear steering tyre combination and its 3.49 m exterior width. Also confirms Heavy Duty drive availability for tracked 10T machines."
+      "admission": "reference_only",
+      "use": "Product-family observation context only. The unbound page is not admitted as configuration or dimensional authority in this package."
     },
     {
       "id": "FENDT-IDEAL-INT-PRODUCT",
@@ -60,8 +59,8 @@
       "market": "International",
       "retrieved": "2026-08-29",
       "official_url": "https://www.fendt.com/int/agricultural-machinery/combines/fendt-ideal",
-      "admission": "primary_mechanism_reference",
-      "use": "Authority for visible functional topology and published operating relationships: PowerFlow reel drive, crop-elevator lift and tilt compensation, Dual Helix and RotorFeeder processing, AirSense reversible cooling, TrakRide presentation, MotionShift, and Stage V product-family context. Images are observation references only and are not redistributed or treated as scale drawings."
+      "admission": "reference_only",
+      "use": "Named product-family mechanism context only. All public geometry, topology, pivots, dimensions, and motion endpoints in this study remain reconstructed and are not admitted as manufacturer facts from this unbound page."
     },
     {
       "id": "FENDT-IDEAL-GRAIN-DISCHARGE",
@@ -71,8 +70,8 @@
       "market": "International",
       "retrieved": "2026-08-29",
       "official_url": "https://www.fendt.com/int/agricultural-machinery/combines/spotlight-grain-tank-and-discharge",
-      "admission": "mechanism_corroboration",
-      "use": "Corroborates Streamer 210 capacity and discharge rate, the functional auger relationship, and the hydraulically operated terminal flap. Older tube-length examples on this feature page do not override the 2301 matrix's selected 8.4 m folding tube."
+      "admission": "reference_only",
+      "use": "Product-family observation context only; no capacity, rate, tube length, height, or flap geometry is admitted from this unbound page."
     }
   ]
 }

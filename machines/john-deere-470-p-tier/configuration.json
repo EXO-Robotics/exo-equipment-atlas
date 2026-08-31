@@ -14,10 +14,10 @@
   "choices": {
     "boom": "one_piece_7.0_m",
     "arm": "3.9_m",
-    "bucket": "operating_weight_basis_2.34_m3_1370_mm",
+    "bucket": "published_operating_weight_basis_2.34_m3_1370_mm_exact_family_unresolved",
     "undercarriage": "hydraulic_variable_gauge_operating_position",
     "track_shoes": "900_mm_triple_semi_grouser_53_each_side",
-    "counterweight": "8400_kg_with_removal_device",
+    "counterweight": "8400_kg_with_listed_removal_device_exterior_unresolved",
     "grade_management": "not_modeled",
     "auxiliary_hydraulics": "not_frozen"
   },

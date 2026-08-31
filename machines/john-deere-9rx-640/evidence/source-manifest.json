@@ -8,7 +8,7 @@
     "manufacturer_geometry_committed": false,
     "manufacturer_imagery_committed": false,
     "manual_illustrations_are_scale_drawings": false,
-    "verification": "The official 1 November 2024 Deere price book was inspected and hash-bound under research/private. No manufacturer PDF, imagery, texture, logo or geometry is redistributed."
+    "verification": "The official 1 November 2024 North American Deere price book, Canadian product page, and cross-market AU/NZ brochure were inspected and hash-bound under research/private. No manufacturer PDF, imagery, texture, logo or geometry is redistributed."
   },
   "sources": [
     {
@@ -35,8 +35,12 @@
       "market": "Canada",
       "retrieved": "2026-08-29",
       "official_url": "https://www.deere.ca/en/tractors/4wd-track-tractors/9rx-640/",
-      "admission": "corroborating",
-      "use": "Manufacturer-published overall length, wheelbase, drawbar clearance and shipping-weight corroboration."
+      "local_path": "research/private/john-deere-9rx-640/deere-9rx-640-canada-product.html",
+      "sha256": "201fcc94d916a51ceb905398979c6fd436c903d43918abf96f9ff7d53dc67358",
+      "bytes": 395453,
+      "admission": "primary",
+      "applicability": "Official Canadian 9RX 640 page within the declared North American market; admitted only for the model-specific 8.309 m overall length with front weights, excluding three-point hitch and coupler. The selected code 4000 less-hitch base has no rear three-point hitch/coupler; its separately selected Category 5 drawbar remains present.",
+      "use": "Primary authority for exact 9RX 640 overall length with front weights, excluding hitch and coupler. Other page dimensions and weights are not retained as configuration constraints."
     },
     {
       "id": "JD-9-SERIES-AUNZ-2023",
@@ -48,8 +52,12 @@
       "pages": 32,
       "retrieved": "2026-08-29",
       "official_url": "https://www.deere.com/assets/pdfs/common/products/tractors/4wd-track-tractors/9-series-au-nz-CP8264_LR.pdf",
-      "admission": "corroborating",
-      "use": "First-party structural and specification authority for 36-degree articulation, 15-degree chassis oscillation and plus/minus 10-degree undercarriage oscillation on standard 9RX tractors."
+      "local_path": "research/private/john-deere-9rx-640/deere-9-series-au-nz-cp8264.pdf",
+      "sha256": "966387febebaca01eab3d45ae968d13c6f2387ee577f719b1567b9886c700efc",
+      "bytes": 60009829,
+      "admission": "reference_only",
+      "applicability": "Cross-market AU/NZ 9RX family reference; it does not establish selected MY2025 North American configuration limits.",
+      "use": "Reference for reconstructed articulation, frame-roll and track-pod comparator checks only. Its 36-degree, 15-degree and plus/minus 10-degree values are not retained North American configuration facts."
     }
   ]
 }

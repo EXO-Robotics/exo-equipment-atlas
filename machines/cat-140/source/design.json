@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "cat-140",
+  "display_name": "Cat 140",
+  "configuration_id": "CAT-140-16A-NAM-LVR-NONAWD-STDCIRCLE-MB12-RR14R24-PB-RRS-CANDIDATE",
+  "archetype": "motor_grader",
+  "dimensions_m": {
+    "length": 10.297,
+    "width": 3.658,
+    "height": 3.454
+  },
+  "palette": "neutral_slate_muted_teal",
+  "published_constraints_used": [
+    "publication-family",
+    "controls-choice",
+    "drive-choice",
+    "tire-choice",
+    "moldboard-width",
+    "moldboard-height",
+    "circle-teeth-count",
+    "circle-rotation",
+    "link-bar-positions",
+    "drawbar-shoes",
+    "steering-range",
+    "articulation-range",
+    "wheel-lean-range",
+    "front-axle-total-oscillation",
+    "cab-height",
+    "front-axle-center-height",
+    "top-of-cylinders-height",
+    "exhaust-height",
+    "push-plate-to-ripper-length",
+    "tandem-wheel-spacing",
+    "front-axle-to-rear-axle",
+    "front-axle-to-articulation",
+    "rear-axle-to-articulation",
+    "rear-axle-ground-clearance",
+    "rear-tire-centerline-width",
+    "outside-rear-tires-width",
+    "outside-front-tires-width",
+    "ripper-shank-holders",
+    "ripper-shank-spacing",
+    "push-block-and-ripper-basis"
+  ],
+  "published_references_not_applied_as_geometry_constraints": [
+    "moldboard-thickness",
+    "moldboard-arc-radius",
+    "moldboard-throat-clearance",
+    "front-tire-to-rear-length",
+    "rear-axle-to-rear",
+    "typical-operating-weight",
+    "ripper-depth"
+  ],
+  "reconstructed_values": {
+    "hidden_joint_centers": "All pivots not fixed by published station dimensions are reconstructed.",
+    "hydraulic_anchors": "Machine-local visual-study anchors with measured mesh closure at declared poses; not manufacturer strokes, pressures, or loads.",
+    "circle_geometry": "The 64-tooth count and 360-degree cyclic capability are published. Ring diameter, tooth form, pinion, guides, and engagement geometry are reconstructed.",
+    "collision_evidence": "Neutral, articulated, drawbar/sideshift, and exact viewer endpoint/neutral samples cover named mesh/AABB pairs in declared common rigid-frame spaces only; no continuous engineering collision solver is claimed.",
+    "neutral_material_policy": "Unbranded slate, deep graphite, machined steel, rubber, smoke glass, and restrained muted-teal inspection accents; no logos, copied textures, or manufacturer trade-dress claim."
+  },
+  "unresolved_choices": [
+    "exact serial number and dealer order code",
+    "cab trim and seat package",
+    "tire manufacturer, loaded radius and tread pattern",
+    "lighting and guard package",
+    "public material and branding authorization"
+  ],
+  "mechanical_gaps": [
+    "Manufacturer joint-center, cylinder-stroke, hose/fitting, force, pressure, and load authority",
+    "Continuous motion interpolation and full ground, self, and swept-volume collision solving",
+    "Ackermann steering and wheel-lean interaction",
+    "Operator-training and safety authority"
+  ]
+}

@@ -16,8 +16,8 @@
   },
   "builder": {
     "path": "source/blender/build_john_deere_r4045.py",
-    "sha256": "80a7d9e1f6bba5c81b4c51cdc2d20073b847e50889b07fa0421aaad6ffeb46f5",
-    "bytes": 662,
+    "sha256": "e22473b80e920dbbc33f844ebe5b4d80e15b7f1a143c0cff834fcb3f9c044e72",
+    "bytes": 53423,
     "deterministic": true,
     "network_used": false,
     "downloaded_geometry_used": false,
@@ -27,30 +27,30 @@
   },
   "shared_generator": {
     "path": "../../scripts/fleet/build_machine.py",
-    "sha256": "02b99250651741b462b3dae8b2471db723beb689dfe89e1c7e251d7402fe0f55",
-    "bytes": 78579
+    "sha256": "9e36599f0c9bbac097422a8766e3ef1c81e6fc9432f024d99a24b79da18264df",
+    "bytes": 81778
   },
   "design": {
     "path": "source/design.json",
-    "sha256": "01024daeed9543c2aae7b6af6374aef2976c851270c245bbd6f5e87fbf791867",
-    "bytes": 2469,
+    "sha256": "94d975bccd7ffb96fa4797b8bd571d3b632a9e3014a2bcc97ca4e358a0ef3860",
+    "bytes": 4298,
     "schema_version": "1.0.0"
   },
   "artifacts": {
     "blend": {
       "path": "source/blender/john-deere-r4045-structural-study.blend",
-      "sha256": "7b733e28c002b0c2724aec7237c5dd890eb844579ac89325fc306cb2b6112b90",
-      "bytes": 259828
+      "sha256": "1339c91e2d2bb8f05eb0938a8512c494fc72aa4797569365f5b3fc3ec6a16ca6",
+      "bytes": 573231
     },
     "glb": {
       "path": "assets/john-deere-r4045-structural-study.glb",
-      "sha256": "f03d81d7e1e8e420057c61f5c3e24b365dcdcf7f334d811eb9a2933457085cf5",
-      "bytes": 1804632
+      "sha256": "f05b68f401acf32fcbadc307c99fae376df87323b1c7483efa7b79ac1ecf24e9",
+      "bytes": 5123184
     },
     "validation": {
       "path": "production/validation.json",
-      "sha256": "4aac1d3571e3e87fa2bdcf9de5ebb21b9505743f9906c25f5acdd3ce7e966ba1",
-      "bytes": 7830
+      "sha256": "5eb11944aca35cce039ebe938130e51fa462e08bd50ae7906c4a3c8dfc034a52",
+      "bytes": 260289
     }
   },
   "scene": {
@@ -62,30 +62,30 @@
     },
     "bounds": {
       "min_m": [
-        -4.7,
+        -3.82,
         0.0,
-        -18.288
+        -18.100002
       ],
       "max_m": [
-        4.7,
-        4.0,
-        18.288
+        4.27,
+        3.88,
+        18.100002
       ],
       "size_m": [
-        9.4,
-        4.0,
-        36.576
+        8.09,
+        3.88,
+        36.200005
       ]
     },
     "visible_aabb_xyz_m": [
-      9.4,
-      4.0,
-      36.576
+      8.09,
+      3.88,
+      36.200005
     ],
-    "objects": 212,
-    "meshes": 190,
-    "triangles": 35224,
-    "materials": 6
+    "objects": 968,
+    "meshes": 851,
+    "triangles": 97396,
+    "materials": 8
   },
   "glb_contract": {
     "glb_version": "2.0",
@@ -94,33 +94,33 @@
     "root_name": "Machine_Root",
     "root_record": {},
     "identity_root": true,
-    "nodes": 212,
-    "mesh_nodes": 190,
-    "mesh_definitions": 190,
-    "materials": 6,
-    "triangles": 35224,
+    "nodes": 968,
+    "mesh_nodes": 851,
+    "mesh_definitions": 851,
+    "materials": 8,
+    "triangles": 97396,
     "cameras": 0,
     "punctual_lights": false,
     "images": 0,
     "textures": 0,
     "nonidentity_mesh_scales": {},
     "helper_like_mesh_nodes": [],
-    "semantic_motion_nodes": 21,
+    "semantic_motion_nodes": 116,
     "bounds": {
       "min_m": [
-        -4.7,
+        -3.82,
         0.0,
-        -18.288
+        -18.100002
       ],
       "max_m": [
-        4.7,
-        4.0,
-        18.288
+        4.27,
+        3.88,
+        18.100002
       ],
       "size_m": [
-        9.4,
-        4.0,
-        36.576
+        8.09,
+        3.88,
+        36.200005
       ]
     }
   },
@@ -129,18 +129,35 @@
     "Fixed_Structure_ROOT": true,
     "Running_Gear_ROOT": true,
     "Hydraulics_ROOT": true,
-    "Service_Detail_ROOT": true,
-    "Front_Axle_Oscillation_Pivot": true,
     "Front_Axle_ROOT": true,
     "Boom_Center_ROOT": true,
     "Boom_L_Fold_Pivot": true,
     "Boom_L_ROOT": true,
     "Boom_R_Fold_Pivot": true,
-    "Boom_R_ROOT": true
+    "Boom_R_ROOT": true,
+    "Front_Axle_Group_ROOT": true,
+    "Front_L_Suspension_ROOT": true,
+    "Front_R_Suspension_ROOT": true,
+    "Rear_L_Suspension_ROOT": true,
+    "Rear_R_Suspension_ROOT": true,
+    "Steering_L_Pivot": true,
+    "Steering_R_Pivot": true,
+    "Boom_Center_Lift_ROOT": true,
+    "Boom_Center_Roll_Pivot": true,
+    "Boom_L_Mid_Fold_Pivot": true,
+    "Boom_L_Mid_ROOT": true,
+    "Boom_L_Tip_Fold_Pivot": true,
+    "Boom_L_Tip_ROOT": true,
+    "Boom_R_Mid_Fold_Pivot": true,
+    "Boom_R_Mid_ROOT": true,
+    "Boom_R_Tip_Fold_Pivot": true,
+    "Boom_R_Tip_ROOT": true,
+    "Solution_Pump_ROOT": true
   },
-  "manufacturer_published_constraints_used": [
-    "public-envelope-z",
-    "boom-working-span",
+  "semantic_node_roles": {},
+  "published_constraint_ids_declared": [
+    "model-identity",
+    "selected-boom",
     "crop-clearance",
     "hydraulic-tread-range",
     "solution-tank-capacity",
@@ -148,82 +165,662 @@
     "selected-boom-plumbing",
     "selected-auto-boom-leveling"
   ],
+  "machine_specific_gate_evidence": [
+    {
+      "id": "frozen_06W5N_4920_5165_4995_configuration",
+      "status": "PASS",
+      "detail": {
+        "method": "Compare the runtime configuration identity and counted selected-package component nodes with the hash-bound MY2020 order-guide selections.",
+        "evidence": {
+          "configuration_id": "JD-R4045-MY2020-NA-06W5N-4920-5165-4995-CANDIDATE",
+          "selected_codes": [
+            "06W5N",
+            "4920",
+            "5165",
+            "4995",
+            "5465"
+          ],
+          "measured_component_counts": {
+            "five_position_nozzle_bodies": 72,
+            "nozzle_turret_ports": 360,
+            "section_control_valves": 11,
+            "boom_level_sensor_bodies": 5
+          },
+          "authority": "Counts are checked against the admitted MY2020 order-guide configuration; positions remain reconstructed."
+        },
+        "semantic_nodes": [
+          "Solution_Tank_1200gal_Exterior",
+          "Boom_Center_ROOT",
+          "Nozzle_Body_01",
+          "Nozzle_Body_72",
+          "Section_Control_Valve_01",
+          "Section_Control_Valve_11",
+          "Boom_Level_Sensor_Center_ROOT"
+        ],
+        "fact_ids": [
+          "model-identity"
+        ]
+      }
+    },
+    {
+      "id": "selected_120ft_boom_presence",
+      "status": "PASS",
+      "detail": {
+        "method": "Verify a complete bilateral three-stage steel-boom presentation for the nominal catalog 36 m (120 ft) option, while recording the authored span as reconstructed rather than a published tip-to-tip dimension.",
+        "evidence": {
+          "catalog_option_label": "36 m (120 ft) steel boom",
+          "catalog_authority": "nominal selected option identity only",
+          "authored_visible_z_span_m": 36.200005,
+          "authored_presentation_target_m": 36.2,
+          "tip_to_tip_manufacturer_dimension_claimed": false,
+          "boundary": "The 36.20 m visible span is reconstructed to stage the selected 72-body, 0.508 m-pitch package; it is not a Deere tip-to-tip measurement."
+        },
+        "semantic_nodes": [
+          "Boom_Center_ROOT",
+          "Boom_L_ROOT",
+          "Boom_L_Mid_ROOT",
+          "Boom_L_Tip_ROOT",
+          "Boom_R_ROOT",
+          "Boom_R_Mid_ROOT",
+          "Boom_R_Tip_ROOT",
+          "Boom_L_Tip_End_Structure",
+          "Boom_R_Tip_End_Structure"
+        ],
+        "fact_ids": [
+          "selected-boom"
+        ]
+      }
+    },
+    {
+      "id": "four_tire_contact",
+      "status": "PASS",
+      "detail": {
+        "method": "Measure each authored tire mesh world AABB in the neutral pose; require four zero-plane contacts and equal X/Y tire diameters.",
+        "evidence": {
+          "tire_count": 4,
+          "neutral_contact_tolerance_m": 0.002,
+          "circularity_tolerance_m": 0.002,
+          "tires": [
+            {
+              "node": "Front_L_Tire",
+              "minimum_y_m": 0.0,
+              "diameter_x_m": 2.0,
+              "diameter_y_m": 2.0,
+              "radial_difference_m": 0.0
+            },
+            {
+              "node": "Front_R_Tire",
+              "minimum_y_m": 0.0,
+              "diameter_x_m": 2.0,
+              "diameter_y_m": 2.0,
+              "radial_difference_m": 0.0
+            },
+            {
+              "node": "Rear_L_Tire",
+              "minimum_y_m": 0.0,
+              "diameter_x_m": 2.0,
+              "diameter_y_m": 2.0,
+              "radial_difference_m": 0.0
+            },
+            {
+              "node": "Rear_R_Tire",
+              "minimum_y_m": 0.0,
+              "diameter_x_m": 2.0,
+              "diameter_y_m": 2.0,
+              "radial_difference_m": 0.0
+            }
+          ],
+          "tire_configuration_authority": "Reconstructed generic row-crop tire envelope; exact order code remains unresolved."
+        },
+        "semantic_nodes": [
+          "Front_L_Tire",
+          "Front_R_Tire",
+          "Rear_L_Tire",
+          "Rear_R_Tire"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "front_axle_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "Traverse both front tire and steering-link parent chains and measure tread centers, frame underside, and visible front running-gear descendants without asserting axle oscillation.",
+        "evidence": {
+          "measured_parent_paths": {
+            "L": [
+              "Front_L_Tire",
+              "Front_L_Wheel_ROOT",
+              "Front_L_Wheel_Pivot",
+              "Steering_L_Pivot",
+              "Front_L_Suspension_ROOT",
+              "Front_Axle_ROOT",
+              "Front_Axle_Group_ROOT",
+              "Running_Gear_ROOT",
+              "Machine_Root"
+            ],
+            "R": [
+              "Front_R_Tire",
+              "Front_R_Wheel_ROOT",
+              "Front_R_Wheel_Pivot",
+              "Steering_R_Pivot",
+              "Front_R_Suspension_ROOT",
+              "Front_Axle_ROOT",
+              "Front_Axle_Group_ROOT",
+              "Running_Gear_ROOT",
+              "Machine_Root"
+            ]
+          },
+          "steering_link_parent_paths": {
+            "L": [
+              "Front_L_Steering_Link_Rod",
+              "Steering_L_Pivot",
+              "Front_L_Suspension_ROOT",
+              "Front_Axle_ROOT",
+              "Front_Axle_Group_ROOT",
+              "Running_Gear_ROOT",
+              "Machine_Root"
+            ],
+            "R": [
+              "Front_R_Steering_Link_Rod",
+              "Steering_R_Pivot",
+              "Front_R_Suspension_ROOT",
+              "Front_Axle_ROOT",
+              "Front_Axle_Group_ROOT",
+              "Running_Gear_ROOT",
+              "Machine_Root"
+            ]
+          },
+          "steering_ram_parent_paths": {
+            "L": [
+              "Front_L_Steering_Ram_Cue",
+              "Steering_L_Pivot",
+              "Front_L_Suspension_ROOT",
+              "Front_Axle_ROOT",
+              "Front_Axle_Group_ROOT",
+              "Running_Gear_ROOT",
+              "Machine_Root"
+            ],
+            "R": [
+              "Front_R_Steering_Ram_Cue",
+              "Steering_R_Pivot",
+              "Front_R_Suspension_ROOT",
+              "Front_Axle_ROOT",
+              "Front_Axle_Group_ROOT",
+              "Running_Gear_ROOT",
+              "Machine_Root"
+            ]
+          },
+          "linkage_descends_from_steering_pivots": true,
+          "front_axle_oscillation_claimed": false,
+          "measured_front_tread_center_m": 3.658,
+          "published_tread_range_m": [
+            3.05,
+            4.06
+          ],
+          "measured_frame_underside_m": 1.47,
+          "published_crop_clearance_m": 1.47,
+          "front_axle_visible_descendant_meshes": 82,
+          "hierarchy": "front group -> independent suspension/tread roots -> steering pivots with linkage cues -> wheel pivots -> circular tires"
+        },
+        "semantic_nodes": [
+          "Front_Axle_ROOT",
+          "Front_L_Suspension_ROOT",
+          "Front_R_Suspension_ROOT",
+          "Steering_L_Pivot",
+          "Steering_R_Pivot",
+          "Front_L_Wheel_Pivot",
+          "Front_R_Wheel_Pivot"
+        ],
+        "fact_ids": [
+          "crop-clearance",
+          "hydraulic-tread-range"
+        ]
+      }
+    },
+    {
+      "id": "boom_fold_symmetry",
+      "status": "PASS",
+      "detail": {
+        "method": "Compare mirrored inner, mid, and tip fold-root descendant mesh counts and record the paired reconstructed fold targets.",
+        "evidence": {
+          "neutral_pose_pairs": [
+            {
+              "roots": [
+                "Boom_L_ROOT",
+                "Boom_R_ROOT"
+              ],
+              "mesh_counts": [
+                290,
+                290
+              ],
+              "symmetric": true
+            },
+            {
+              "roots": [
+                "Boom_L_Mid_ROOT",
+                "Boom_R_Mid_ROOT"
+              ],
+              "mesh_counts": [
+                181,
+                181
+              ],
+              "symmetric": true
+            },
+            {
+              "roots": [
+                "Boom_L_Tip_ROOT",
+                "Boom_R_Tip_ROOT"
+              ],
+              "mesh_counts": [
+                74,
+                74
+              ],
+              "symmetric": true
+            }
+          ],
+          "viewer_transport_fold_targets_rad": {
+            "inner": [
+              -1.42,
+              1.42
+            ],
+            "mid": [
+              2.84,
+              -2.84
+            ],
+            "tip": [
+              -2.84,
+              2.84
+            ]
+          },
+          "boundary": "Alternating accordion-fold pivots and target angles are reconstructed and deliberately bounded; they are not operator limits."
+        },
+        "semantic_nodes": [
+          "Boom_L_Fold_Pivot",
+          "Boom_L_ROOT",
+          "Boom_L_Mid_Fold_Pivot",
+          "Boom_L_Mid_ROOT",
+          "Boom_L_Tip_Fold_Pivot",
+          "Boom_L_Tip_ROOT",
+          "Boom_R_Fold_Pivot",
+          "Boom_R_ROOT",
+          "Boom_R_Mid_Fold_Pivot",
+          "Boom_R_Mid_ROOT",
+          "Boom_R_Tip_Fold_Pivot",
+          "Boom_R_Tip_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "boom_center_tank_cab_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "Measure neutral-pose tank, center-rail and cab world AABB surfaces and the gross cylindrical tank enclosure volume against the selected capacity.",
+        "evidence": {
+          "measured_tank_exterior_cylinder_volume_m3": 4.849048,
+          "published_solution_capacity_m3": 4.542494,
+          "boom_center_lower_rail_x_max_m": -3.62,
+          "tank_x_min_m": -1.12,
+          "tank_to_boom_center_rail_aabb_surface_clearance_m": 2.5,
+          "cab_to_boom_center_rail_aabb_surface_clearance_m": 6.3,
+          "tank_internal_volume_claimed": false
+        },
+        "semantic_nodes": [
+          "Boom_Center_ROOT",
+          "Solution_Tank_1200gal_Exterior",
+          "Cab_Rear_Glass"
+        ],
+        "fact_ids": [
+          "solution-tank-capacity"
+        ]
+      }
+    },
+    {
+      "id": "application_plumbing_topology",
+      "status": "PASS",
+      "detail": {
+        "method": "Count the selected nozzle, valve and sensor topology, measure nozzle pitch, and verify neutral-pose AABB contact through the tank-pump-center feed, six fold flex connectors, 72 branch drops and nozzle bodies.",
+        "evidence": {
+          "nozzle_body_count": 72,
+          "nozzle_branch_drop_count": 72,
+          "five_position_port_count": 360,
+          "section_control_valve_count": 11,
+          "boom_level_sensor_count": 5,
+          "measured_pitch_m": [
+            0.507999,
+            0.508,
+            0.508001
+          ],
+          "published_pitch_m": 0.508,
+          "maximum_pitch_error_m": 1e-06,
+          "authored_tip_to_outer_nozzle_center_margins": [
+            0.066,
+            0.066
+          ],
+          "fold_flex_contacts": [
+            {
+              "flex": "Boom_L_Center_Inner_Flex_Hose",
+              "upstream": "Boom_Center_Wet_Pipe",
+              "downstream": "Boom_L_Inner_Wet_Pipe",
+              "upstream_aabb_surface_gap_m": 0.0,
+              "downstream_aabb_surface_gap_m": 0.0
+            },
+            {
+              "flex": "Boom_L_Inner_Mid_Flex_Hose",
+              "upstream": "Boom_L_Inner_Wet_Pipe",
+              "downstream": "Boom_L_Mid_Wet_Pipe",
+              "upstream_aabb_surface_gap_m": 0.0,
+              "downstream_aabb_surface_gap_m": 0.0
+            },
+            {
+              "flex": "Boom_L_Mid_Tip_Flex_Hose",
+              "upstream": "Boom_L_Mid_Wet_Pipe",
+              "downstream": "Boom_L_Tip_Wet_Pipe",
+              "upstream_aabb_surface_gap_m": 0.0,
+              "downstream_aabb_surface_gap_m": 0.0
+            },
+            {
+              "flex": "Boom_R_Center_Inner_Flex_Hose",
+              "upstream": "Boom_Center_Wet_Pipe",
+              "downstream": "Boom_R_Inner_Wet_Pipe",
+              "upstream_aabb_surface_gap_m": 0.0,
+              "downstream_aabb_surface_gap_m": 0.0
+            },
+            {
+              "flex": "Boom_R_Inner_Mid_Flex_Hose",
+              "upstream": "Boom_R_Inner_Wet_Pipe",
+              "downstream": "Boom_R_Mid_Wet_Pipe",
+              "upstream_aabb_surface_gap_m": 0.0,
+              "downstream_aabb_surface_gap_m": 0.0
+            },
+            {
+              "flex": "Boom_R_Mid_Tip_Flex_Hose",
+              "upstream": "Boom_R_Mid_Wet_Pipe",
+              "downstream": "Boom_R_Tip_Wet_Pipe",
+              "upstream_aabb_surface_gap_m": 0.0,
+              "downstream_aabb_surface_gap_m": 0.0
+            }
+          ],
+          "maximum_fold_flex_aabb_surface_gap_m": 0.0,
+          "maximum_nozzle_branch_aabb_surface_gap_m": 0.0,
+          "tank_pump_boom_contacts": [
+            {
+              "nodes": [
+                "Tank_To_Pump_Wet_Line",
+                "Solution_Tank_1200gal_Exterior"
+              ],
+              "aabb_surface_gap_m": 0.0
+            },
+            {
+              "nodes": [
+                "Tank_To_Pump_Wet_Line",
+                "Solution_Centrifugal_Pump"
+              ],
+              "aabb_surface_gap_m": 0.0
+            },
+            {
+              "nodes": [
+                "Pump_To_Boom_Wet_Line",
+                "Solution_Centrifugal_Pump"
+              ],
+              "aabb_surface_gap_m": 0.0
+            },
+            {
+              "nodes": [
+                "Pump_To_Boom_Wet_Line",
+                "Boom_Center_Wet_Pipe"
+              ],
+              "aabb_surface_gap_m": 0.0
+            },
+            {
+              "nodes": [
+                "Pump_To_Boom_Wet_Line",
+                "Boom_Center_Feed_Manifold"
+              ],
+              "aabb_surface_gap_m": 0.0
+            }
+          ],
+          "maximum_tank_pump_boom_aabb_surface_gap_m": 0.0,
+          "boundary": "Neutral-pose visible static topology only; flexible-hose sweep, pressure, flow, droplets and operating behavior remain unresolved."
+        },
+        "semantic_nodes": [
+          "Solution_Pump_ROOT",
+          "Tank_To_Pump_Wet_Line",
+          "Pump_To_Boom_Wet_Line",
+          "Boom_Center_Wet_Pipe",
+          "Boom_Center_Feed_Manifold",
+          "Boom_L_Center_Inner_Flex_Hose",
+          "Boom_L_Inner_Mid_Flex_Hose",
+          "Boom_L_Mid_Tip_Flex_Hose",
+          "Boom_R_Center_Inner_Flex_Hose",
+          "Boom_R_Inner_Mid_Flex_Hose",
+          "Boom_R_Mid_Tip_Flex_Hose",
+          "Nozzle_Drop_Line_01",
+          "Nozzle_Drop_Line_72",
+          "Nozzle_Body_01",
+          "Nozzle_Body_72",
+          "Section_Control_Valve_01",
+          "Section_Control_Valve_11",
+          "Boom_Level_Sensor_Center_ROOT"
+        ],
+        "fact_ids": [
+          "selected-nozzle-spacing",
+          "selected-boom-plumbing",
+          "selected-auto-boom-leveling"
+        ]
+      }
+    },
+    {
+      "id": "ground_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "Measure the exported neutral-pose minimum Y, then sample all public mesh AABBs at 0.25-second intervals across the exact phased 18-second Auto target path.",
+        "evidence": {
+          "neutral_pose_public_minimum_y_m": 0.0,
+          "sampled_auto_path": {
+            "duration_seconds": 18,
+            "sample_count": 73,
+            "sample_interval_seconds": 0.25,
+            "minimum_public_y_m": 0.0,
+            "major_carrier_collision_count": 0,
+            "first_collisions": [],
+            "sampled_carrier_nodes": [
+              "Solution_Tank_1200gal_Exterior",
+              "Engine_House",
+              "High_Clearance_Frame",
+              "Cab_Floor",
+              "Cab_Roof",
+              "Cab_Front_Glass",
+              "Cab_Rear_Glass",
+              "Cab_L_Glass",
+              "Cab_R_Glass",
+              "Front_L_Tire",
+              "Front_R_Tire",
+              "Rear_L_Tire",
+              "Rear_R_Tire"
+            ],
+            "sampled_wing_mesh_count": 582,
+            "boundary": "Discrete target-path AABB audit of the exact viewer channel ranges and phases; not continuous collision detection, a hydraulic solver, terrain response, or a safety limit."
+          },
+          "allowed_tolerance_m": -0.002
+        },
+        "semantic_nodes": [
+          "Front_L_Tire",
+          "Front_R_Tire",
+          "Rear_L_Tire",
+          "Rear_R_Tire"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "self_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "Measure neutral major-volume gaps, then sample every articulated wing mesh against the tank, engine, frame, cab and tire AABBs across the exact phased 18-second Auto target path.",
+        "evidence": {
+          "neutral_tank_to_engine_x_gap_m": 0.68,
+          "neutral_tank_to_boom_center_rail_aabb_surface_gap_m": 2.5,
+          "sampled_auto_path": {
+            "duration_seconds": 18,
+            "sample_count": 73,
+            "sample_interval_seconds": 0.25,
+            "minimum_public_y_m": 0.0,
+            "major_carrier_collision_count": 0,
+            "first_collisions": [],
+            "sampled_carrier_nodes": [
+              "Solution_Tank_1200gal_Exterior",
+              "Engine_House",
+              "High_Clearance_Frame",
+              "Cab_Floor",
+              "Cab_Roof",
+              "Cab_Front_Glass",
+              "Cab_Rear_Glass",
+              "Cab_L_Glass",
+              "Cab_R_Glass",
+              "Front_L_Tire",
+              "Front_R_Tire",
+              "Rear_L_Tire",
+              "Rear_R_Tire"
+            ],
+            "sampled_wing_mesh_count": 582,
+            "boundary": "Discrete target-path AABB audit of the exact viewer channel ranges and phases; not continuous collision detection, a hydraulic solver, terrain response, or a safety limit."
+          }
+        },
+        "semantic_nodes": [
+          "Solution_Tank_1200gal_Exterior",
+          "Engine_House",
+          "Boom_Center_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "neutral_unbranded_material_review",
+      "status": "PASS",
+      "detail": {
+        "method": "Enumerate every used Blender material and image datablock; reject branded names or image textures.",
+        "evidence": {
+          "used_materials": [
+            "Neutral_Body",
+            "Neutral_Body_Shadow",
+            "Neutral_Glass",
+            "Neutral_Graphite",
+            "Neutral_Rod",
+            "Neutral_Rubber",
+            "Neutral_Steel",
+            "Neutral_Visibility_Cue"
+          ],
+          "disallowed_material_names": [],
+          "external_image_textures": [],
+          "rights_boundary": "Neutral procedural materials only; no logo, copied livery, texture, or manufacturer geometry."
+        },
+        "semantic_nodes": [],
+        "fact_ids": []
+      }
+    }
+  ],
   "reconstructed_values": {
-    "presentation_length_m": 9.4,
-    "presentation_height_m": 4.0,
+    "presentation_length_m": 8.09,
+    "presentation_height_m": 3.88,
     "carrier_display_envelope_m": [
-      9.4,
-      4.5,
-      4.0
+      8.09,
+      4.078,
+      3.88
     ],
-    "carrier_envelope_note": "Carrier length, overall width and height are conservative presentation values. The published 3.05-4.06 m figure is wheel tread, not overall width.",
-    "selected_boom_span_m": 36.576,
-    "selected_boom_span_note": "Manufacturer-published 120 ft selected working width retained as the deployed lateral display envelope; truss segments, pivots, fold geometry and breakaways remain reconstructed.",
-    "tank_visualization": "Neutral exterior tank cue for the published 1,200 U.S. gallon capacity; no internal volume, liquid or plumbing simulation.",
+    "carrier_envelope_note": "The 8.09 x 4.078 x 3.88 m carrier values are measured limits of this independently authored partial presentation, not manufacturer dimensions. The published 3.05-4.06 m figure is wheel tread, not overall width.",
+    "authored_boom_presentation_span_m": 36.2,
+    "selected_boom_span_note": "The order guide identifies the option only as nominal 36 m (120 ft). The visible 36.20 m deployed presentation is reconstructed to contain 72 bodies at 0.508 m pitch and is not asserted as Deere tip-to-tip dimensional authority.",
+    "tank_visualization": "Neutral cylindrical stainless enclosure with 4.849 m3 gross exterior volume for the published 1,200 U.S. gallon (4.542 m3) capacity; no internal volume, liquid or pressure simulation.",
+    "neutral_tread_center_m": 3.658,
+    "neutral_tread_note": "Reconstructed neutral wheel-center tread lies inside the published 3.05-4.06 m hydraulic range; viewer travel is bounded to 4.018 m.",
+    "reconstructed_tire_envelope_m": {
+      "diameter": 2.0,
+      "width": 0.42
+    },
+    "reconstructed_tire_note": "Circular generic row-crop tire envelope only. No tire order code, section width, loaded radius or approved fitment is claimed.",
+    "frame_underside_m": 1.47,
+    "frame_underside_note": "The visible main-frame underside is authored at the published 1.47 m standard-tire crop-clearance plane; hubs, tires and suspension remain below it.",
+    "boom_section_spans_m_per_side": {
+      "center_half": 1.83,
+      "inner": 6.096,
+      "mid": 6.096,
+      "tip": 4.078
+    },
+    "boom_section_note": "Three articulated wing stages per side sum to the reconstructed 36.20 m presentation span. Section lengths, yaw pivots and transport choreography are not published.",
+    "selected_application_topology": {
+      "nozzle_bodies": 72,
+      "turret_positions_per_body": 5,
+      "section_control_valves": 11,
+      "level_sensors": 5,
+      "nozzle_pitch_m": 0.508
+    },
+    "selected_application_topology_note": "Counts and 20-inch pitch are manufacturer-published for codes 5165, 4995 and 5465; mounting coordinates and visible pipe routing are reconstructed.",
     "materials": "Neutral unbranded slate, graphite, steel, rubber and glass; no logos, decals or copied trade dress.",
     "all_hidden_pivots": "Reconstructed visual hierarchy only.",
-    "all_animation_ranges": "Conservative presentation ranges, not operator limits.",
+    "all_animation_ranges": "Bounded steering, tread, boom lift/roll and three-stage accordion-fold presentation ranges; visible steering linkage cues follow their pivots, but no Ackermann, cylinder-closure or hydraulic solution is claimed.",
     "hidden_geometry": "All hidden structure, pivot centers, anchors, linkage proportions, underbody volumes, and internal geometry are reconstructed visualization choices unless a design record explicitly identifies a manufacturer-published envelope constraint.",
     "generic_archetype_geometry": "high_clearance_sprayer proportions and visible detail are independently reconstructed for this technical study.",
     "visible_envelope_calibration": {
-      "classification": "reconstructed_visible_envelope_calibration",
+      "classification": "authored_visible_envelope_measurement",
       "source_bounds_m": {
         "min_m": [
-          -3.526,
+          -3.82,
           0.0,
-          -18.288
+          -18.100002
         ],
         "max_m": [
-          3.526,
-          4.0,
-          18.288
+          4.27,
+          3.88,
+          18.100002
         ],
         "size_m": [
-          7.052,
-          4.0,
-          36.576
+          8.09,
+          3.88,
+          36.200005
         ]
       },
       "target_bounds_m": {
         "min_m": [
-          -4.7,
+          -4.045,
           0.0,
-          -18.288
+          -18.1
         ],
         "max_m": [
-          4.7,
-          4.0,
-          18.288
+          4.045,
+          3.88,
+          18.1
         ],
         "size_m": [
-          9.4,
-          4.0,
-          36.576
+          8.09,
+          3.88,
+          36.2
         ]
       },
       "axis_scale_factors": [
-        1.332955181,
         1.0,
-        0.999999994
+        1.0,
+        1.0
       ],
       "calibrated_bounds_m": {
         "min_m": [
-          -4.7,
+          -3.82,
           0.0,
-          -18.288
+          -18.100002
         ],
         "max_m": [
-          4.7,
-          4.0,
-          18.288
+          4.27,
+          3.88,
+          18.100002
         ],
         "size_m": [
-          9.4,
-          4.0,
-          36.576
+          8.09,
+          3.88,
+          36.200005
         ]
       },
-      "authority": "reconstructed_not_machine_specific_engineering"
+      "authority": "independently_measured_from_authored_geometry"
     }
   },
   "unresolved_choices": [
@@ -234,40 +831,40 @@
     "exact exterior surfacing and service-detail placement"
   ],
   "mechanical_gaps": [
-    "Boom fold and axle oscillation are bounded visual articulations without terrain, suspension, steering, hydraulic or collision physics.",
-    "Boom plumbing and nozzle marks do not simulate pressure, rate, droplets, wind, section control or application coverage.",
-    "Powertrain, wheel motors, suspension internals, tank internals and hydraulic systems are not modeled as engineering assemblies."
+    "Steering, independent suspension, hydraulic tread and three-stage boom roots are visible reconstructed hierarchies without terrain, Ackermann, cylinder-closure, hydraulic or swept-collision physics.",
+    "The neutral-pose tank-pump-center route, six fold flex connectors, 72 nozzle branch drops and nozzle bodies form visible static topology; hose sweep, pressure, rate, droplets, wind, section control and application coverage are not simulated.",
+    "Powertrain, wheel motors, air-spring internals, tank internals and hydraulic systems are not modeled as engineering assemblies."
   ],
   "renders": [
     {
       "path": "review/renders/john-deere-r4045-operator-side.png",
-      "sha256": "56a06de45255285c0388bb1e58f41142f095bac6cc8939b25c160d118e426cc7",
-      "bytes": 228309
+      "sha256": "500267d6846a08db846d6aa33f7e0e3bfa00eb2b7a1545137223fca542a4e51d",
+      "bytes": 287582
     },
     {
       "path": "review/renders/john-deere-r4045-front-three-quarter.png",
-      "sha256": "55ff2a9a880b2cfe04ba45310625047c0028f5584e10d15f41510b32dc293486",
-      "bytes": 178952
+      "sha256": "e2a32bc1b80a87e4004383716c2c2019e13684f84c820783e0f9c0f6452fa55e",
+      "bytes": 314807
     },
     {
       "path": "review/renders/john-deere-r4045-rear-three-quarter.png",
-      "sha256": "4daebbddc605cc6b127d681c2b17fae919dcb840959a84c30cd2d1d2f259fb7c",
-      "bytes": 249643
+      "sha256": "c702474f812e4dd8623246c3528e95bb3892e273a5610b5d95635844970d44ea",
+      "bytes": 309273
     },
     {
       "path": "review/renders/john-deere-r4045-elevated-technical.png",
-      "sha256": "fd03cd5ba1b37bdbe06d19b29f69ddcee2ff7adda18c7b28a9c188749e52798e",
-      "bytes": 250422
+      "sha256": "3870b03758bff40986d4814fe901966226a12199baa58925aeaa0ad826a1b44d",
+      "bytes": 259290
     },
     {
       "path": "review/renders/john-deere-r4045-articulation-detail.png",
-      "sha256": "966c8c62f6f5fa3eb55578b60dc98993db040364aff90949fba268e028d1dc51",
-      "bytes": 273174
+      "sha256": "4c4e436bb7aec67cbb41ef90d3c14bf0f98358d71e51055c56b4ce8bc3db9c8e",
+      "bytes": 338010
     },
     {
       "path": "review/renders/john-deere-r4045-right-side.png",
-      "sha256": "f16b45dadb7a7b992dd05565486ff437ef8a65a2db4df1921dd4522e9fb53bb7",
-      "bytes": 221440
+      "sha256": "1b438bb458addc492ac93abd326dee61cf0db20c8d59b9297d74728ce5ae5c5e",
+      "bytes": 290026
     }
   ],
   "build_verdict": "PASS",

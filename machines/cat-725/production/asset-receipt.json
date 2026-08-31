@@ -12,7 +12,8 @@
   },
   "builder": {
     "path": "source/blender/build_cat_725.py",
-    "sha256": "eab125d11ea75ce671d3565c45602f4ec8724a75a2cf1e5640cfd76f6e4da19c",
+    "sha256": "0d2c9404e0da80fde4d38f88e0f7474a7c4d8152ca9c6b005a62a54e54dcfe43",
+    "bytes": 79162,
     "deterministic": true,
     "network_used": false,
     "downloaded_geometry_used": false,
@@ -23,13 +24,18 @@
   "artifacts": {
     "blend": {
       "path": "source/blender/cat-725-structural-study.blend",
-      "sha256": "6bfdcc8ef57bec5d6cf4147c2eedeeba5f5a9f5da529bd94ed065fe84bb80a1f",
-      "bytes": 622177
+      "sha256": "fee2bc66e7318e819401533982634111dbdc05d588f6bfa302e225695af89a4b",
+      "bytes": 631005
     },
     "glb": {
       "path": "assets/cat-725-structural-study.glb",
-      "sha256": "a36e195e016fa164bada91ad8f47e1b148a19bfbd34f4f635832f630c03c63b1",
-      "bytes": 8886508
+      "sha256": "795d45786572dde03351a5c359891f1d07dff874624f5ee4b1ce1b48965a5a36",
+      "bytes": 9068092
+    },
+    "validation": {
+      "path": "production/validation.json",
+      "sha256": "4cd7d062059fd00ff9012edd6b7cc062af6513c0ee2f3b8279e5d30b9c8dac56",
+      "bytes": 19534
     }
   },
   "scene": {
@@ -61,17 +67,17 @@
         3.676
       ]
     },
-    "objects": 843,
-    "meshes": 814,
-    "empties": 29,
-    "triangles": 131088,
+    "objects": 854,
+    "meshes": 824,
+    "empties": 30,
+    "triangles": 133840,
     "materials": 17
   },
   "glb_contract": {
     "scene_count": 1,
     "scene_roots": [
       {
-        "index": 842,
+        "index": 853,
         "name": "Machine_Root",
         "transform": {}
       }
@@ -109,31 +115,395 @@
     "Steering_Hydraulics_ROOT": true,
     "Hoist_Hydraulics_ROOT": true,
     "Driveline_ROOT": true,
+    "Tandem_Driveline_ROOT": true,
     "Cab_ROOT": true
   },
+  "published_constraint_ids_declared": [],
+  "machine_specific_gate_evidence": [
+    {
+      "id": "published_transport_envelope",
+      "status": "PASS",
+      "detail": {
+        "method": "Evaluated retained-pose public mesh vertices in declared machine axes against the hash-bound technical specification.",
+        "evidence": {
+          "modeled_xyz_m": [
+            10.4525,
+            3.4967,
+            3.676
+          ],
+          "published_xyz_m": [
+            10.445,
+            3.498,
+            3.676
+          ],
+          "tolerances_m": [
+            0.05,
+            0.035,
+            0.025
+          ]
+        },
+        "semantic_nodes": [
+          "Machine_Root",
+          "Front_Tractor_ROOT",
+          "Rear_Frame_ROOT",
+          "Dump_Body_ROOT"
+        ],
+        "fact_ids": [
+          "overall-length",
+          "height-transport-position",
+          "overall-width"
+        ]
+      }
+    },
+    {
+      "id": "published_axle_spacing",
+      "status": "PASS",
+      "detail": {
+        "method": "Measured semantic axle-root world translations and subtracted longitudinal centers.",
+        "evidence": {
+          "front_to_middle_modeled_m": 3.9790000915527344,
+          "front_to_middle_published_m": 3.979,
+          "middle_to_rear_modeled_m": 1.6999998092651367,
+          "middle_to_rear_published_m": 1.7
+        },
+        "semantic_nodes": [
+          "Front_Axle_Oscillation_Pivot",
+          "Axle_Mid_ROOT",
+          "Axle_Rear_ROOT"
+        ],
+        "fact_ids": [
+          "front-to-middle-axle-spacing",
+          "tandem-axle-spacing"
+        ]
+      }
+    },
+    {
+      "id": "six_tire_identity",
+      "status": "PASS",
+      "detail": {
+        "method": "Counted exported semantic wheel roots and bound the selected designation to the frozen standard-equipment row.",
+        "evidence": {
+          "wheel_root_count": 6,
+          "published_count": 6,
+          "designation": "23.5R25"
+        },
+        "semantic_nodes": [
+          "Wheel_FL_ROOT",
+          "Wheel_FR_ROOT",
+          "Wheel_ML_ROOT",
+          "Wheel_MR_ROOT",
+          "Wheel_RL_ROOT",
+          "Wheel_RR_ROOT"
+        ],
+        "fact_ids": [
+          "standard-tire-count"
+        ]
+      }
+    },
+    {
+      "id": "articulation_hierarchy",
+      "status": "PASS",
+      "detail": {
+        "method": "Traversed exported parent-child topology, measured the pivot world position, and hash-bound a cutaway render with the near access hardware hidden.",
+        "evidence": {
+          "pivot_world_m": [
+            0.15,
+            1.08,
+            0.0
+          ],
+          "visible_mesh_descendants": 466,
+          "steering_hydraulic_mesh_descendants": 4,
+          "detail_render": {
+            "sha256": "2075ef053262bb9ddf16ee4b8c24de239dd02e1a648a75f7613ab843625b6edb",
+            "bytes": 412006
+          },
+          "review_range_deg": [
+            -45.0,
+            45.0
+          ]
+        },
+        "semantic_nodes": [
+          "Rear_Articulation_Pivot",
+          "Rear_Frame_ROOT",
+          "Steering_Hydraulics_ROOT"
+        ],
+        "fact_ids": [
+          "steering-angle"
+        ]
+      }
+    },
+    {
+      "id": "front_oscillation_hierarchy",
+      "status": "PASS",
+      "detail": {
+        "method": "Traversed the exported front-axle pivot subtree and measured its world-space center; review range is evidence-derived because page bytes are not frozen.",
+        "evidence": {
+          "pivot_world_m": [
+            2.45,
+            0.8252,
+            0.0
+          ],
+          "visible_mesh_descendants": 208,
+          "review_range_deg": [
+            -6.0,
+            6.0
+          ],
+          "authority": "evidence_derived_unfrozen_official_page"
+        },
+        "semantic_nodes": [
+          "Front_Axle_Oscillation_Pivot",
+          "Front_Axle_ROOT",
+          "Wheel_FL_ROOT",
+          "Wheel_FR_ROOT"
+        ],
+        "fact_ids": [
+          "front-suspension-oscillation"
+        ]
+      }
+    },
+    {
+      "id": "dump_body_tip_envelope",
+      "status": "PASS",
+      "detail": {
+        "method": "Applied the published drawing-angle review reference about the reconstructed hinge and evaluated dump-body mesh bounds.",
+        "evidence": {
+          "review_angle_deg": 70.0,
+          "modeled_tipped_max_y_m": 6.4084,
+          "published_tipped_height_m": 6.414,
+          "tolerance_m": 0.1,
+          "hinge_authority": "reconstructed"
+        },
+        "semantic_nodes": [
+          "Dump_Body_Hinge",
+          "Dump_Body_ROOT"
+        ],
+        "fact_ids": [
+          "body-height-fully-tipped",
+          "body-tip-reference"
+        ]
+      }
+    },
+    {
+      "id": "steering_and_hoist_cylinder_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "Measured each reconstructed rod-end mesh endpoint against its semantic anchor after retained and review pose refreshes.",
+        "evidence": {
+          "endpoint_errors_m": {
+            "steer_left": 5.960464477539063e-08,
+            "steer_right": 1.3328003749250113e-07,
+            "hoist_left": 0.0,
+            "hoist_right": 0.0
+          },
+          "maximum_error_m": 1.3328003749250113e-07,
+          "tolerance_m": 0.0001,
+          "scope": "visual continuity only; stroke and load behavior remain PENDING"
+        },
+        "semantic_nodes": [
+          "Steering_Hydraulics_ROOT",
+          "Hoist_Hydraulics_ROOT",
+          "Dump_Body_Hinge",
+          "Rear_Articulation_Pivot"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "ground_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "Evaluated retained tire tread and sampled 70-degree dump-body mesh minima against the authored floor plane.",
+        "evidence": {
+          "retained_tire_min_y_m": 0.0013150861486792564,
+          "sampled_tipped_body_min_y_m": 0.6899,
+          "floor_y_m": 0.0,
+          "scope": "sampled structural-study poses; continuous collision solver remains PENDING"
+        },
+        "semantic_nodes": [
+          "Wheel_FL_ROOT",
+          "Wheel_FR_ROOT",
+          "Wheel_ML_ROOT",
+          "Wheel_MR_ROOT",
+          "Wheel_RL_ROOT",
+          "Wheel_RR_ROOT",
+          "Dump_Body_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "self_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "Screened retained, articulated-oscillated, and fully tipped review poses through evaluated bounds, refreshed cylinder closure, and hash-bound renders.",
+        "evidence": {
+          "sampled_pose_count": 3,
+          "tipped_body_bounds_m": {
+            "min_m": [
+              -5.2391,
+              0.6899,
+              -1.4555
+            ],
+            "max_m": [
+              -2.807,
+              6.4084,
+              1.4555
+            ],
+            "size_m": [
+              2.4321,
+              5.7185,
+              2.911
+            ]
+          },
+          "articulated_render": {
+            "sha256": "155dcf1342a1836e5a540c5483290a5a37ab0c165be26680d071857c6f7d7585",
+            "bytes": 387203
+          },
+          "raised_render": {
+            "sha256": "1869f34ad8e858da4b1d8a96b754031caa5eb80784b372522278d23429f1ff66",
+            "bytes": 366367
+          },
+          "scope": "sampled visual risk screen; complete self-collision solver remains PENDING"
+        },
+        "semantic_nodes": [
+          "Rear_Articulation_Pivot",
+          "Front_Axle_Oscillation_Pivot",
+          "Dump_Body_Hinge"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "swept_volume_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "Sampled independent articulation, axle-oscillation, and dump-body endpoint review poses and retained exact render hashes.",
+        "evidence": {
+          "sampled_pose_renders": {
+            "cat-725-articulated-oscillation-review": {
+              "sha256": "155dcf1342a1836e5a540c5483290a5a37ab0c165be26680d071857c6f7d7585",
+              "bytes": 387203
+            },
+            "cat-725-raised-body-review": {
+              "sha256": "1869f34ad8e858da4b1d8a96b754031caa5eb80784b372522278d23429f1ff66",
+              "bytes": 366367
+            },
+            "cat-725-raised-hoist-detail": {
+              "sha256": "cbfdfb670f0ea045730a2749d0e48de934d59327ad279c6048a5708d7602ccdf",
+              "bytes": 464990
+            }
+          },
+          "scope": "sampled visual swept-volume screen only; continuous solver remains PENDING"
+        },
+        "semantic_nodes": [
+          "Rear_Articulation_Pivot",
+          "Front_Axle_Oscillation_Pivot",
+          "Dump_Body_Hinge",
+          "Steering_Hydraulics_ROOT",
+          "Hoist_Hydraulics_ROOT"
+        ],
+        "fact_ids": []
+      }
+    }
+  ],
   "manufacturer_published_constraints_used": [
-    "overall-length",
-    "height-transport-position",
-    "overall-width",
-    "width-over-tire",
-    "width-over-fenders",
-    "body-width",
-    "body-length",
-    "body-inside-length",
-    "body-height-fully-tipped",
-    "body-tip-reference",
-    "ground-clearance",
-    "rear-axle-to-body-rear",
-    "tandem-axle-spacing",
-    "front-to-middle-axle-spacing",
-    "front-axle-to-machine-front",
-    "steering-angle",
-    "front-suspension-oscillation",
-    "standard-tire-count",
-    "rated-payload",
-    "heaped-body-capacity",
-    "body-raise-time",
-    "body-lower-time"
+    {
+      "fact_id": "overall-length",
+      "use": "geometry_and_gate_constraint",
+      "consumer": "retained public X envelope"
+    },
+    {
+      "fact_id": "height-transport-position",
+      "use": "geometry_and_gate_constraint",
+      "consumer": "cab roof and retained public Y envelope"
+    },
+    {
+      "fact_id": "overall-width",
+      "use": "geometry_and_gate_constraint",
+      "consumer": "mirror-to-mirror retained public Z envelope"
+    },
+    {
+      "fact_id": "body-height-fully-tipped",
+      "use": "review_pose_gate_constraint",
+      "consumer": "evaluated Dump_Body_ROOT 70-degree review bounds"
+    },
+    {
+      "fact_id": "body-tip-reference",
+      "use": "review_pose_constraint",
+      "consumer": "Dump_Body_Hinge review rotation"
+    },
+    {
+      "fact_id": "tandem-axle-spacing",
+      "use": "geometry_constraint",
+      "consumer": "Axle_Mid_ROOT to Axle_Rear_ROOT centers"
+    },
+    {
+      "fact_id": "front-to-middle-axle-spacing",
+      "use": "geometry_constraint",
+      "consumer": "Front_Axle_Oscillation_Pivot to Axle_Mid_ROOT centers"
+    },
+    {
+      "fact_id": "steering-angle",
+      "use": "range_metadata_and_review_bound",
+      "consumer": "Rear_Articulation_Pivot range metadata"
+    },
+    {
+      "fact_id": "standard-tire-count",
+      "use": "configuration_and_topology_constraint",
+      "consumer": "six wheel-root/tire assemblies"
+    }
+  ],
+  "evidence_derived_references_used": [
+    {
+      "fact_id": "front-suspension-oscillation",
+      "use": "review_range_context",
+      "consumer": "Front_Axle_Oscillation_Pivot range metadata",
+      "boundary": "official dynamic page bytes not frozen"
+    }
+  ],
+  "manufacturer_published_facts_not_applied": [
+    {
+      "fact_ids": [
+        "width-over-tire",
+        "width-over-fenders",
+        "body-width",
+        "body-length",
+        "body-inside-length",
+        "rear-axle-to-body-rear",
+        "front-axle-to-machine-front"
+      ],
+      "reason": "retained as source context; no direct independently measured builder consumer is claimed"
+    },
+    {
+      "fact_ids": [
+        "ground-clearance"
+      ],
+      "reason": "published datum is unresolved and the frame-rail surrogate is explicitly PENDING"
+    },
+    {
+      "fact_ids": [
+        "rated-payload",
+        "heaped-body-capacity",
+        "body-front-plate-thickness",
+        "body-base-plate-thickness",
+        "body-side-plate-thickness",
+        "body-raise-time",
+        "body-lower-time"
+      ],
+      "reason": "display or configuration context only; no mass, volume, plate-gauge, timing, or load solver consumer"
+    }
+  ],
+  "mechanism_required_gate_ids": [
+    "published_transport_envelope",
+    "published_axle_spacing",
+    "six_tire_identity",
+    "articulation_hierarchy",
+    "front_oscillation_hierarchy",
+    "dump_body_tip_envelope",
+    "steering_and_hoist_cylinder_continuity",
+    "ground_collision",
+    "self_collision",
+    "swept_volume_collision"
   ],
   "reconstructed_values": {
     "front_axle_center_m": [
@@ -183,7 +553,7 @@
     "steering_hydraulics": "Barrels, rods, routing, and all anchor coordinates are reconstructed.",
     "driveline": "Driveshafts, universal-joint cues, transfer case, and differential geometry are reconstructed exterior cues.",
     "cab_engine_body_details": "Visible silhouette, panels, glass boundaries, steps, rails, lighting, vents, and hose routes are independently observed and reconstructed.",
-    "material_colors": "Neutral rust ochre, graphite, rubber, steel, and smoked glass; no logo or protected exact livery claim."
+    "material_colors": "Neutral cool slate, graphite, rubber, steel, and smoked glass with only restrained safety-lens accents; no logo or protected exact livery claim."
   },
   "unresolved_choices": [
     "exact serial or order family",
@@ -207,58 +577,58 @@
   "renders": [
     {
       "path": "review/renders/cat-725-operator-side.png",
-      "sha256": "8362c04e644c7c1bef67f7ab55323c8cf3619cd4b76372992d497a003ce17b27",
-      "bytes": 336819
+      "sha256": "17c6f46f77fbc2e49d75eb02efb3e56819bfd1b8eea56c0484571dcf20bd8e12",
+      "bytes": 331102
     },
     {
       "path": "review/renders/cat-725-right-three-quarter.png",
-      "sha256": "a33b42e5c079a15311def6b34d400ffe7ef8c3855cf3c37f7bf081ed2828a69b",
-      "bytes": 347945
+      "sha256": "92f3c9c48f441aa0500fbfdb027eb6a7455af5459632c8b39857d0f8b4929acb",
+      "bytes": 343703
     },
     {
       "path": "review/renders/cat-725-rear-three-quarter.png",
-      "sha256": "7f7d38d8cc0328487db380cb8ed5e2e51f71695f0f89de604e86b7cc2f9434ca",
-      "bytes": 365475
+      "sha256": "6a278d0092420ff54833ec6bd8dc8ab607211233e96330ce4be0d8c21ef4489c",
+      "bytes": 361597
     },
     {
       "path": "review/renders/cat-725-front-three-quarter.png",
-      "sha256": "9004d8ce1f492ad1afa4f968196324a6b11caedc6a2268c50b7af5b0646379b4",
-      "bytes": 343756
+      "sha256": "cbcfd952d7796004bd7ae905bedbe85df6a43a21220c61f9ad95f11c6a62ea6b",
+      "bytes": 337150
     },
     {
       "path": "review/renders/cat-725-articulation-knuckle-detail.png",
-      "sha256": "3422d2cc6f6cb1df62e2e7db64a49c7256ec97856db374a046a7a95905ce95a7",
-      "bytes": 453149
+      "sha256": "2075ef053262bb9ddf16ee4b8c24de239dd02e1a648a75f7613ab843625b6edb",
+      "bytes": 412006
     },
     {
       "path": "review/renders/cat-725-tandem-driveline-detail.png",
-      "sha256": "794489e705cec38bb78e891806ead115b066a997e5725dc49a9df09195beb33e",
-      "bytes": 409820
+      "sha256": "4122bd544ce4d9989d83efae8b0089c248086e772cd052ddb48e5722a9ff838a",
+      "bytes": 458409
     },
     {
       "path": "review/renders/cat-725-articulated-oscillation-review.png",
-      "sha256": "99451118bd5aeb9cfc23a7ced91f44b216629d60990c17993bc22f38264c7750",
-      "bytes": 394650
+      "sha256": "155dcf1342a1836e5a540c5483290a5a37ab0c165be26680d071857c6f7d7585",
+      "bytes": 387203
     },
     {
       "path": "review/renders/cat-725-front-oscillation-detail.png",
-      "sha256": "83d555afd16ecc81bab5ded722e8d0ec0e33e6f5096f6279cd6583edf8def8af",
-      "bytes": 450757
+      "sha256": "cf6a104d7e9dd054c1850ee52e6d6862c19315125c2c64e199cdcfcc0b4eebc7",
+      "bytes": 441121
     },
     {
       "path": "review/renders/cat-725-front-oscillation-technical-cutaway.png",
-      "sha256": "4185e54a135f4ad7bb084328e18af9260d5e07f42e9f13bac50bfd44d4509cce",
-      "bytes": 436424
+      "sha256": "1d51b07fa01654a723f560926482aef6d2e117480bf5c95d0e1f90f804d8ec91",
+      "bytes": 435505
     },
     {
       "path": "review/renders/cat-725-raised-body-review.png",
-      "sha256": "ee9e5b58a60a395e3c17f9c753bd1586c92e33715a84428325557c64e77c62d4",
-      "bytes": 373885
+      "sha256": "1869f34ad8e858da4b1d8a96b754031caa5eb80784b372522278d23429f1ff66",
+      "bytes": 366367
     },
     {
       "path": "review/renders/cat-725-raised-hoist-detail.png",
-      "sha256": "7f3f6c10acb06348c75cc22cef0354122716d557518d063239d01ddc1504edbe",
-      "bytes": 472087
+      "sha256": "cbfdfb670f0ea045730a2749d0e48de934d59327ad279c6048a5708d7602ccdf",
+      "bytes": 464990
     }
   ],
   "build_verdict": "PASS",

@@ -26,5 +26,49 @@
     "elevation": 0.31,
     "distance": 1.5
   },
-  "accent": "#cb8f3f"
+  "accent": "#cb8f3f",
+  "motion": {
+    "autoplay": true,
+    "durationSeconds": 18,
+    "mode": "sine",
+    "damping": 8,
+    "channels": [
+      {
+        "id": "blade-lift-inspection",
+        "mechanismJointId": "blade_lift",
+        "label": "Blade lift inspection motion - reconstructed",
+        "nodes": ["Blade_Lift_Pivot"],
+        "property": "rotation.z",
+        "from": 0.0,
+        "to": 0.06,
+        "phase": 0.0,
+        "mode": "offset",
+        "autoplay": "sine"
+      },
+      {
+        "id": "blade-tilt-inspection",
+        "mechanismJointId": "blade_tilt",
+        "label": "Blade tilt inspection motion - reconstructed",
+        "nodes": ["Blade_Tilt_Pivot"],
+        "property": "rotation.x",
+        "from": -0.02,
+        "to": 0.02,
+        "phase": 0.42,
+        "mode": "offset",
+        "autoplay": "sine"
+      },
+      {
+        "id": "blade-pitch-linkage-inspection",
+        "mechanismJointId": "blade_pitch",
+        "label": "Blade pitch linkage inspection - reconstructed",
+        "nodes": ["Linkage_ROOT"],
+        "property": "rotation.z",
+        "from": -0.035,
+        "to": 0.035,
+        "phase": 0.68,
+        "mode": "offset",
+        "autoplay": "sine"
+      }
+    ]
+  }
 }

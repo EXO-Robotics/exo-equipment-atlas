@@ -22,10 +22,10 @@
     ]
   },
   "counts": {
-    "objects": 843,
-    "meshes": 814,
-    "empties": 29,
-    "triangles": 131088,
+    "objects": 854,
+    "meshes": 824,
+    "empties": 30,
+    "triangles": 133840,
     "materials": 17
   },
   "metrics": {
@@ -92,13 +92,38 @@
       "steer_right": 1.3328003749250113e-07,
       "hoist_left": 0.0,
       "hoist_right": 0.0
+    },
+    "semantic_visible_mesh_descendants": {
+      "Rear_Articulation_Pivot": 466,
+      "Front_Axle_Oscillation_Pivot": 208,
+      "Dump_Body_Hinge": 38,
+      "Steering_Hydraulics_ROOT": 4,
+      "Hoist_Hydraulics_ROOT": 6,
+      "Tandem_Driveline_ROOT": 7
+    },
+    "semantic_pivot_world_m": {
+      "Rear_Articulation_Pivot": [
+        0.15,
+        1.08,
+        0.0
+      ],
+      "Front_Axle_Oscillation_Pivot": [
+        2.45,
+        0.8252,
+        0.0
+      ],
+      "Dump_Body_Hinge": [
+        -4.185,
+        1.2,
+        0.0
+      ]
     }
   },
   "glb_contract": {
     "scene_count": 1,
     "scene_roots": [
       {
-        "index": 842,
+        "index": 853,
         "name": "Machine_Root",
         "transform": {}
       }
@@ -109,6 +134,30 @@
     "mesh_scale_offenders": [],
     "platform_axes": "+X longitudinal toward tractor front, +Y vertical, +Z machine right"
   },
+  "required_machine_gate_ids": [
+    "published_transport_envelope",
+    "published_axle_spacing",
+    "six_tire_identity",
+    "articulation_hierarchy",
+    "front_oscillation_hierarchy",
+    "dump_body_tip_envelope",
+    "steering_and_hoist_cylinder_continuity",
+    "ground_collision",
+    "self_collision",
+    "swept_volume_collision"
+  ],
+  "mechanism_required_gate_ids": [
+    "published_transport_envelope",
+    "published_axle_spacing",
+    "six_tire_identity",
+    "articulation_hierarchy",
+    "front_oscillation_hierarchy",
+    "dump_body_tip_envelope",
+    "steering_and_hoist_cylinder_continuity",
+    "ground_collision",
+    "self_collision",
+    "swept_volume_collision"
+  ],
   "gates": [
     {
       "id": "builder-execution",
@@ -154,6 +203,7 @@
         "Steering_Hydraulics_ROOT": true,
         "Hoist_Hydraulics_ROOT": true,
         "Driveline_ROOT": true,
+        "Tandem_Driveline_ROOT": true,
         "Cab_ROOT": true
       }
     },
@@ -191,12 +241,12 @@
     },
     {
       "id": "published-ground-clearance-frame-cue",
-      "status": "PASS",
+      "status": "PENDING",
       "detail": {
-        "modeled_m": 0.574999988079071,
-        "published_m": 0.533,
-        "tolerance_m": 0.05,
-        "classification": "published_constraint_reconstructed_frame_geometry"
+        "modeled_frame_rail_underside_m": 0.574999988079071,
+        "published_ground_clearance_m": 0.533,
+        "absolute_difference_m": 0.041999988079071016,
+        "classification": "unresolved_datum_not_a_passed_geometry_constraint"
       }
     },
     {
@@ -274,7 +324,7 @@
         "scene_count": 1,
         "scene_roots": [
           {
-            "index": 842,
+            "index": 853,
             "name": "Machine_Root",
             "transform": {}
           }
@@ -298,7 +348,7 @@
       "id": "object-density",
       "status": "PASS",
       "detail": {
-        "objects": 843,
+        "objects": 854,
         "minimum": 300
       }
     },
@@ -306,7 +356,7 @@
       "id": "triangle-budget",
       "status": "PASS",
       "detail": {
-        "triangles": 131088,
+        "triangles": 133840,
         "budget": [
           30000,
           240000
@@ -336,6 +386,291 @@
       "id": "raised-body-review",
       "status": "PASS",
       "detail": "Direct full-pose and hoist-detail renders use the published 70 degree drawing reference with reconstructed hinge and anchors."
+    },
+    {
+      "id": "published_transport_envelope",
+      "status": "PASS",
+      "detail": {
+        "method": "Evaluated retained-pose public mesh vertices in declared machine axes against the hash-bound technical specification.",
+        "evidence": {
+          "modeled_xyz_m": [
+            10.4525,
+            3.4967,
+            3.676
+          ],
+          "published_xyz_m": [
+            10.445,
+            3.498,
+            3.676
+          ],
+          "tolerances_m": [
+            0.05,
+            0.035,
+            0.025
+          ]
+        },
+        "semantic_nodes": [
+          "Machine_Root",
+          "Front_Tractor_ROOT",
+          "Rear_Frame_ROOT",
+          "Dump_Body_ROOT"
+        ],
+        "fact_ids": [
+          "overall-length",
+          "height-transport-position",
+          "overall-width"
+        ]
+      }
+    },
+    {
+      "id": "published_axle_spacing",
+      "status": "PASS",
+      "detail": {
+        "method": "Measured semantic axle-root world translations and subtracted longitudinal centers.",
+        "evidence": {
+          "front_to_middle_modeled_m": 3.9790000915527344,
+          "front_to_middle_published_m": 3.979,
+          "middle_to_rear_modeled_m": 1.6999998092651367,
+          "middle_to_rear_published_m": 1.7
+        },
+        "semantic_nodes": [
+          "Front_Axle_Oscillation_Pivot",
+          "Axle_Mid_ROOT",
+          "Axle_Rear_ROOT"
+        ],
+        "fact_ids": [
+          "front-to-middle-axle-spacing",
+          "tandem-axle-spacing"
+        ]
+      }
+    },
+    {
+      "id": "six_tire_identity",
+      "status": "PASS",
+      "detail": {
+        "method": "Counted exported semantic wheel roots and bound the selected designation to the frozen standard-equipment row.",
+        "evidence": {
+          "wheel_root_count": 6,
+          "published_count": 6,
+          "designation": "23.5R25"
+        },
+        "semantic_nodes": [
+          "Wheel_FL_ROOT",
+          "Wheel_FR_ROOT",
+          "Wheel_ML_ROOT",
+          "Wheel_MR_ROOT",
+          "Wheel_RL_ROOT",
+          "Wheel_RR_ROOT"
+        ],
+        "fact_ids": [
+          "standard-tire-count"
+        ]
+      }
+    },
+    {
+      "id": "articulation_hierarchy",
+      "status": "PASS",
+      "detail": {
+        "method": "Traversed exported parent-child topology, measured the pivot world position, and hash-bound a cutaway render with the near access hardware hidden.",
+        "evidence": {
+          "pivot_world_m": [
+            0.15,
+            1.08,
+            0.0
+          ],
+          "visible_mesh_descendants": 466,
+          "steering_hydraulic_mesh_descendants": 4,
+          "detail_render": {
+            "sha256": "2075ef053262bb9ddf16ee4b8c24de239dd02e1a648a75f7613ab843625b6edb",
+            "bytes": 412006
+          },
+          "review_range_deg": [
+            -45.0,
+            45.0
+          ]
+        },
+        "semantic_nodes": [
+          "Rear_Articulation_Pivot",
+          "Rear_Frame_ROOT",
+          "Steering_Hydraulics_ROOT"
+        ],
+        "fact_ids": [
+          "steering-angle"
+        ]
+      }
+    },
+    {
+      "id": "front_oscillation_hierarchy",
+      "status": "PASS",
+      "detail": {
+        "method": "Traversed the exported front-axle pivot subtree and measured its world-space center; review range is evidence-derived because page bytes are not frozen.",
+        "evidence": {
+          "pivot_world_m": [
+            2.45,
+            0.8252,
+            0.0
+          ],
+          "visible_mesh_descendants": 208,
+          "review_range_deg": [
+            -6.0,
+            6.0
+          ],
+          "authority": "evidence_derived_unfrozen_official_page"
+        },
+        "semantic_nodes": [
+          "Front_Axle_Oscillation_Pivot",
+          "Front_Axle_ROOT",
+          "Wheel_FL_ROOT",
+          "Wheel_FR_ROOT"
+        ],
+        "fact_ids": [
+          "front-suspension-oscillation"
+        ]
+      }
+    },
+    {
+      "id": "dump_body_tip_envelope",
+      "status": "PASS",
+      "detail": {
+        "method": "Applied the published drawing-angle review reference about the reconstructed hinge and evaluated dump-body mesh bounds.",
+        "evidence": {
+          "review_angle_deg": 70.0,
+          "modeled_tipped_max_y_m": 6.4084,
+          "published_tipped_height_m": 6.414,
+          "tolerance_m": 0.1,
+          "hinge_authority": "reconstructed"
+        },
+        "semantic_nodes": [
+          "Dump_Body_Hinge",
+          "Dump_Body_ROOT"
+        ],
+        "fact_ids": [
+          "body-height-fully-tipped",
+          "body-tip-reference"
+        ]
+      }
+    },
+    {
+      "id": "steering_and_hoist_cylinder_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "Measured each reconstructed rod-end mesh endpoint against its semantic anchor after retained and review pose refreshes.",
+        "evidence": {
+          "endpoint_errors_m": {
+            "steer_left": 5.960464477539063e-08,
+            "steer_right": 1.3328003749250113e-07,
+            "hoist_left": 0.0,
+            "hoist_right": 0.0
+          },
+          "maximum_error_m": 1.3328003749250113e-07,
+          "tolerance_m": 0.0001,
+          "scope": "visual continuity only; stroke and load behavior remain PENDING"
+        },
+        "semantic_nodes": [
+          "Steering_Hydraulics_ROOT",
+          "Hoist_Hydraulics_ROOT",
+          "Dump_Body_Hinge",
+          "Rear_Articulation_Pivot"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "ground_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "Evaluated retained tire tread and sampled 70-degree dump-body mesh minima against the authored floor plane.",
+        "evidence": {
+          "retained_tire_min_y_m": 0.0013150861486792564,
+          "sampled_tipped_body_min_y_m": 0.6899,
+          "floor_y_m": 0.0,
+          "scope": "sampled structural-study poses; continuous collision solver remains PENDING"
+        },
+        "semantic_nodes": [
+          "Wheel_FL_ROOT",
+          "Wheel_FR_ROOT",
+          "Wheel_ML_ROOT",
+          "Wheel_MR_ROOT",
+          "Wheel_RL_ROOT",
+          "Wheel_RR_ROOT",
+          "Dump_Body_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "self_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "Screened retained, articulated-oscillated, and fully tipped review poses through evaluated bounds, refreshed cylinder closure, and hash-bound renders.",
+        "evidence": {
+          "sampled_pose_count": 3,
+          "tipped_body_bounds_m": {
+            "min_m": [
+              -5.2391,
+              0.6899,
+              -1.4555
+            ],
+            "max_m": [
+              -2.807,
+              6.4084,
+              1.4555
+            ],
+            "size_m": [
+              2.4321,
+              5.7185,
+              2.911
+            ]
+          },
+          "articulated_render": {
+            "sha256": "155dcf1342a1836e5a540c5483290a5a37ab0c165be26680d071857c6f7d7585",
+            "bytes": 387203
+          },
+          "raised_render": {
+            "sha256": "1869f34ad8e858da4b1d8a96b754031caa5eb80784b372522278d23429f1ff66",
+            "bytes": 366367
+          },
+          "scope": "sampled visual risk screen; complete self-collision solver remains PENDING"
+        },
+        "semantic_nodes": [
+          "Rear_Articulation_Pivot",
+          "Front_Axle_Oscillation_Pivot",
+          "Dump_Body_Hinge"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "swept_volume_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "Sampled independent articulation, axle-oscillation, and dump-body endpoint review poses and retained exact render hashes.",
+        "evidence": {
+          "sampled_pose_renders": {
+            "cat-725-articulated-oscillation-review": {
+              "sha256": "155dcf1342a1836e5a540c5483290a5a37ab0c165be26680d071857c6f7d7585",
+              "bytes": 387203
+            },
+            "cat-725-raised-body-review": {
+              "sha256": "1869f34ad8e858da4b1d8a96b754031caa5eb80784b372522278d23429f1ff66",
+              "bytes": 366367
+            },
+            "cat-725-raised-hoist-detail": {
+              "sha256": "cbfdfb670f0ea045730a2749d0e48de934d59327ad279c6048a5708d7602ccdf",
+              "bytes": 464990
+            }
+          },
+          "scope": "sampled visual swept-volume screen only; continuous solver remains PENDING"
+        },
+        "semantic_nodes": [
+          "Rear_Articulation_Pivot",
+          "Front_Axle_Oscillation_Pivot",
+          "Dump_Body_Hinge",
+          "Steering_Hydraulics_ROOT",
+          "Hoist_Hydraulics_ROOT"
+        ],
+        "fact_ids": []
+      }
     },
     {
       "id": "configuration-freeze",

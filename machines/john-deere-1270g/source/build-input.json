@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-1270g",
+  "configuration_id": "JD-1270G-8W-CH7-R86-H480C-600-CANDIDATE",
+  "primary_source_sha256": "b93cbf91f1e72fd91b78b53b8f52dd4aeaf917537db3d77903c3731d46720e22",
+  "retained_fact_ids": [
+    "base-carrier-length",
+    "front-axle-middle-joint",
+    "rear-axle-middle-joint",
+    "wheelbase",
+    "minimum-width-600",
+    "transport-height",
+    "transport-length",
+    "ground-clearance",
+    "selected-maximum-reach",
+    "turning-angle",
+    "boom-slewing-angle",
+    "cab-rotation",
+    "cab-sideways-tilt",
+    "cab-fore-aft-tilt",
+    "drive-configuration",
+    "boom-type",
+    "reference-head",
+    "tire-front",
+    "tire-rear"
+  ],
+  "export_pivots_world_xyz_m": {
+    "FrameSteer_Pivot_Reconstructed": [0.0, 1.08, 0.0],
+    "FrontBalancedBogie_Pivot_Reconstructed": [2.15, 0.83, 0.0],
+    "CabRotation_Root_Reconstructed": [0.72, 1.20, 0.0],
+    "CabLeveling_Root_Reconstructed": [0.72, 1.36, 0.0],
+    "CH7_Slew_Root_Reconstructed": [1.65, 2.05, 0.0],
+    "CH7_Lift_Pivot_Reconstructed": [1.65, 2.20, 0.0],
+    "CH7_Fold_Pivot_Reconstructed": [3.60, 4.45, 0.0],
+    "CH7_Telescope_Pivot_Reconstructed": [5.78, 3.62, 0.0]
+  },
+  "viewer_motion_nodes": ["FrameSteer_Pivot_Reconstructed", "FrontBalancedBogie_Pivot_Reconstructed", "CabRotation_Root_Reconstructed", "CH7_Slew_Root_Reconstructed"],
+  "static_only": ["CH7 lift/fold/telescope", "cab leveling", "hydraulic endpoint solve", "head processing functions"]
+}

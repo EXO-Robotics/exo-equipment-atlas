@@ -33,6 +33,8 @@ GLB_PATH = MACHINE_DIR / "assets/komatsu-wa475-10-structural-study.glb"
 RECEIPT_PATH = MACHINE_DIR / "production/asset-receipt.json"
 VALIDATION_PATH = MACHINE_DIR / "production/validation.json"
 RENDER_DIR = MACHINE_DIR / "review/renders"
+FACTS_PATH = MACHINE_DIR / "evidence/facts.json"
+MECHANISM_PATH = MACHINE_DIR / "mechanism.json"
 
 
 # Machine axes declared by mechanism.json. Blender storage keeps world Z up:
@@ -41,41 +43,56 @@ def mv(x: float, y: float, z: float) -> Vector:
     return Vector((x, z, y))
 
 
-PUBLISHED = {
-    "overall-length-stock-pile": 9.185,
-    "bucket-width-stock-pile": 3.170,
-    "width-standard-tires": 3.060,
-    "wheelbase": 3.450,
-    "hinge-pin-height-max-standard": 4.370,
-    "hinge-pin-height-carry-standard": 0.580,
-    "ground-clearance": 0.520,
-    "hitch-height-standard": 1.200,
-    "height-top-stack": 3.450,
-    "height-rops-cab": 3.500,
-    "height-roof-rail": 3.540,
-    "bucket-capacity-heaped": 4.200,
-    "bucket-capacity-struck": 3.600,
-    "bucket-weight": 2196,
-    "dump-clearance-stock-pile": 3.075,
-    "dump-reach-stock-pile": 1.350,
-    "operating-height-stock-pile": 6.090,
-    "operating-weight-stock-pile": 25510,
-    "steering-angle-nominal": 35.0,
-    "steering-angle-max-stop": 40.0,
-    "rear-axle-oscillation-total": 26.0,
-    "lift-cylinder-count": 2,
-    "lift-cylinder-bore": 0.150,
-    "lift-cylinder-stroke": 0.764,
-    "bucket-cylinder-count": 1,
-    "bucket-cylinder-bore": 0.180,
-    "bucket-cylinder-stroke": 0.540,
-    "steering-cylinder-count": 2,
-}
+def load_manufacturer_facts() -> tuple[dict[str, dict], dict[str, float | int]]:
+    """Bind geometry inputs to the admitted, source-addressed fact records.
+
+    A missing, duplicate, non-published, or non-numeric record is a build error;
+    the builder therefore cannot silently drift from evidence/facts.json.
+    """
+    document = json.loads(FACTS_PATH.read_text(encoding="utf-8"))
+    records: dict[str, dict] = {}
+    for record in document.get("facts", []):
+        fact_id = record.get("id")
+        if not isinstance(fact_id, str) or not fact_id or fact_id in records:
+            raise RuntimeError(f"Invalid or duplicate manufacturer fact id: {fact_id!r}")
+        if record.get("authority") != "manufacturer_published":
+            raise RuntimeError(f"{fact_id}: builder accepts manufacturer_published facts only")
+        if not isinstance(record.get("value"), (int, float)):
+            raise RuntimeError(f"{fact_id}: numeric value required")
+        for field in ("unit", "source_id", "location"):
+            if not isinstance(record.get(field), str) or not record[field]:
+                raise RuntimeError(f"{fact_id}: source-addressed {field} required")
+        records[fact_id] = record
+    return records, {fact_id: record["value"] for fact_id, record in records.items()}
+
+
+FACT_RECORDS, PUBLISHED = load_manufacturer_facts()
+
+# Only facts that actually constrain the selected configuration or generated
+# study are promoted into the receipt. Operating mass and static tipping loads
+# remain browseable evidence but are not geometry inputs.
+USED_FACT_IDS = (
+    "overall-length-stock-pile", "bucket-width-stock-pile",
+    "width-standard-tires", "wheelbase", "hinge-pin-height-max-standard",
+    "hinge-pin-height-carry-standard", "ground-clearance",
+    "hitch-height-standard", "height-top-stack", "height-rops-cab",
+    "height-roof-rail", "bucket-capacity-heaped", "bucket-capacity-struck",
+    "bucket-weight", "dump-clearance-stock-pile", "dump-reach-stock-pile",
+    "operating-height-stock-pile", "steering-angle-nominal",
+    "steering-angle-max-stop", "rear-axle-oscillation",
+    "lift-cylinder-count", "lift-cylinder-bore", "lift-cylinder-stroke",
+    "bucket-cylinder-count", "bucket-cylinder-bore", "bucket-cylinder-stroke",
+    "steering-cylinder-count", "steering-cylinder-bore",
+    "steering-cylinder-stroke",
+)
+missing_used_facts = sorted(set(USED_FACT_IDS) - set(FACT_RECORDS))
+if missing_used_facts:
+    raise RuntimeError(f"Builder-required fact records missing: {missing_used_facts}")
 
 
 RECONSTRUCTED = {
-    "rear_visible_x_m": -4.05,
-    "bucket_front_visible_x_m": 5.135,
+    "rear_visible_x_m": -3.795,
+    "bucket_front_visible_x_m": 5.39,
     "rear_axle_x_m": -1.85,
     "front_axle_x_m": 1.60,
     "wheel_center_y_m": 0.86,
@@ -86,13 +103,19 @@ RECONSTRUCTED = {
     "wheel_hub_bolts_per_wheel": 12,
     "articulation_pivot_xyz_m": [0.0, 1.20, 0.0],
     "rear_axle_pivot_xyz_m": [-1.85, 0.86, 0.0],
-    "loader_rear_pivot_xyz_m": [0.28, 1.50, 0.0],
+    "loader_rear_pivot_xyz_m": [0.28, 1.74, 0.0],
     "stowed_arm_elbow_xyz_m": [1.55, 1.23, 0.0],
     "stowed_bucket_hinge_xyz_m": [3.23, 0.58, 0.0],
-    "raised_arm_elbow_xyz_m": [1.18, 3.50, 0.0],
     "raised_bucket_hinge_xyz_m": [2.05, 4.37, 0.0],
-    "stowed_bucket_rotation_blender_y_deg": 16.0,
+    "stowed_bucket_rotation_blender_y_deg": 14.85,
     "raised_dump_rotation_blender_y_deg": 45.0,
+    "bucket_link_ear_local_xy_m": [-0.10, 0.25],
+    "loader_lift_barrel_length_m": 1.05,
+    "loader_lift_rod_insertion_m": 0.78,
+    "bucket_cylinder_barrel_length_m": 0.74,
+    "bucket_cylinder_rod_insertion_m": 0.53,
+    "steering_cylinder_barrel_length_m": 0.66,
+    "steering_cylinder_rod_insertion_m": 0.48,
     "bucket_visual_width_m": 3.07,
     "bucket_side_guard_outer_width_m": 3.17,
     "bucket_cutting_edge_segments": 9,
@@ -238,6 +261,10 @@ def add_empty(name: str, xyz: tuple[float, float, float], collection: str,
     obj.location = mv(*xyz)
     COLLECTIONS[collection].objects.link(obj)
     if parent:
+        # Newly linked empties do not have a current matrix_world until the
+        # dependency graph updates. Without this update, preserve_world would
+        # collapse every nested pivot to its parent's origin.
+        bpy.context.view_layer.update()
         set_parent(obj, parent)
     return obj
 
@@ -265,7 +292,8 @@ def add_box(name: str, center: tuple[float, float, float],
 
 def add_cylinder(name: str, center: tuple[float, float, float], radius: float,
                  depth: float, axis: str, material_name: str, collection: str,
-                 vertices=32, parent=None, bevel=True) -> bpy.types.Object:
+                 vertices=32, parent=None, bevel=True,
+                 parent_local=False) -> bpy.types.Object:
     bpy.ops.mesh.primitive_cylinder_add(vertices=vertices, radius=radius, depth=depth,
                                        location=mv(*center))
     obj = bpy.context.object
@@ -284,7 +312,7 @@ def add_cylinder(name: str, center: tuple[float, float, float], radius: float,
     apply_material(obj, material_name)
     move_to_collection(obj, collection)
     if parent:
-        set_parent(obj, parent)
+        set_parent(obj, parent, preserve_world=not parent_local)
     return obj
 
 
@@ -373,10 +401,26 @@ def place_beam(obj: bpy.types.Object, a: tuple[float, float, float],
     pa, pb = mv(*a), mv(*b)
     direction = pb - pa
     rotation = direction.to_track_quat("X", "Z").to_matrix().to_4x4()
-    scale = Matrix.Diagonal(Vector((direction.length * 0.5,
-                                    lateral * 0.5,
-                                    vertical * 0.5, 1.0)))
+    local_size = Vector((
+        max(vertex.co.x for vertex in obj.data.vertices)
+        - min(vertex.co.x for vertex in obj.data.vertices),
+        max(vertex.co.y for vertex in obj.data.vertices)
+        - min(vertex.co.y for vertex in obj.data.vertices),
+        max(vertex.co.z for vertex in obj.data.vertices)
+        - min(vertex.co.z for vertex in obj.data.vertices),
+    ))
+    scale = Matrix.Diagonal(Vector((direction.length / local_size.x,
+                                    lateral / local_size.y,
+                                    vertical / local_size.z, 1.0)))
     obj.matrix_world = Matrix.Translation((pa + pb) * 0.5) @ rotation @ scale
+
+
+def beam_axis_endpoints(obj: bpy.types.Object) -> list[Vector]:
+    """Return the two world endpoints of a unit beam's shipped mesh axis."""
+    endpoints = (min(vertex.co.x for vertex in obj.data.vertices),
+                 max(vertex.co.x for vertex in obj.data.vertices))
+    return [obj.matrix_world @ Vector((endpoint, 0.0, 0.0))
+            for endpoint in endpoints]
 
 
 def add_unit_cylinder(name: str, material_name: str, collection: str,
@@ -396,7 +440,18 @@ def place_cylinder(obj: bpy.types.Object, a: tuple[float, float, float],
     pa, pb = mv(*a), mv(*b)
     direction = pb - pa
     rotation = direction.to_track_quat("Z", "Y").to_matrix().to_4x4()
-    scale = Matrix.Diagonal(Vector((radius, radius, direction.length * 0.5, 1.0)))
+    local_radius_x = 0.5 * (
+        max(vertex.co.x for vertex in obj.data.vertices)
+        - min(vertex.co.x for vertex in obj.data.vertices))
+    local_radius_y = 0.5 * (
+        max(vertex.co.y for vertex in obj.data.vertices)
+        - min(vertex.co.y for vertex in obj.data.vertices))
+    local_depth = (
+        max(vertex.co.z for vertex in obj.data.vertices)
+        - min(vertex.co.z for vertex in obj.data.vertices))
+    scale = Matrix.Diagonal(Vector((radius / local_radius_x,
+                                    radius / local_radius_y,
+                                    direction.length / local_depth, 1.0)))
     obj.matrix_world = Matrix.Translation((pa + pb) * 0.5) @ rotation @ scale
 
 
@@ -453,7 +508,7 @@ def build_materials() -> None:
 
 
 def build_identity_and_frames() -> bpy.types.Object:
-    root = add_empty("WA47510_Root", (0.0, 0.0, 0.0), "Fixed_Structure", 0.30)
+    root = add_empty("Machine_Root", (0.0, 0.0, 0.0), "Fixed_Structure", 0.30)
     root["machine_id"] = MACHINE_ID
     root["configuration_id"] = CONFIGURATION_ID
     root["candidate_class"] = CANDIDATE_CLASS
@@ -471,14 +526,14 @@ def build_identity_and_frames() -> bpy.types.Object:
     # Rear frame, engine deck, counterweight, and longitudinal belly protection.
     add_box("RearFrame_Spine", (-1.78, 0.92, 0.0), (3.45, 0.66, 1.18),
             "WarmGraphite", "Fixed_Structure", 0.09, rear_root)
-    add_prism_xy("RearCounterweight_Mass", [(-4.05, 0.52), (-3.97, 1.30),
-                 (-3.72, 1.72), (-3.28, 1.76), (-3.14, 0.68)], 0.0, 2.86,
+    add_prism_xy("RearCounterweight_Mass", [(-3.795, 0.52), (-3.715, 1.30),
+                 (-3.465, 1.72), (-3.025, 1.76), (-2.885, 0.68)], 0.0, 2.86,
                  "PanelWarmGrey", "Fixed_Structure", rear_root, bevel=0.0)
-    add_box("RearCounterweight_AdditionalLower", (-3.82, 0.49, 0.0),
+    add_box("RearCounterweight_AdditionalLower", (-3.565, 0.49, 0.0),
             (0.46, 0.33, 2.73), "StructuralSteel", "Fixed_Structure", 0.07, rear_root)
-    add_box("RearBumper_ExactEnvelope", (-3.91, 0.61, 0.0),
+    add_box("RearBumper_ExactEnvelope", (-3.655, 0.61, 0.0),
             (0.28, 0.30, 2.82), "DarkSteel", "Fixed_Structure", 0.045, rear_root)
-    add_box("RearBellyGuard", (-1.82, 0.55, 0.0), (3.34, 0.15, 1.03),
+    add_box("RearBellyGuard", (-1.82, 0.595, 0.0), (3.34, 0.15, 1.03),
             "StructuralSteel", "Fixed_Structure", 0.025, rear_root)
     add_cylinder("RearAxleHousing", (-1.85, 0.86, 0.0), 0.24, 2.38, "z",
                  "DarkSteel", "Wheels", 36, rear_axle)
@@ -506,17 +561,17 @@ def build_identity_and_frames() -> bpy.types.Object:
                          "CylinderRod", "Details", 16, rear_root)
 
     # Rear cooling grille and visible swing-out-mask cues.
-    add_box("RearCoolingMask", (-3.997, 1.88, 0.0), (0.055, 1.18, 2.10),
+    add_box("RearCoolingMask", (-3.742, 1.88, 0.0), (0.055, 1.18, 2.10),
             "DarkSteel", "Fixed_Structure", 0.018, rear_root)
     for index, y in enumerate(tuple(1.35 + 0.10 * i for i in range(11))):
-        add_box(f"RearCoolingGrille_H_{index + 1:02d}", (-4.029, y, 0.0),
+        add_box(f"RearCoolingGrille_H_{index + 1:02d}", (-3.774, y, 0.0),
                 (0.026, 0.025, 1.88), "StructuralSteel", "Details", 0.004, rear_root)
     for index, z in enumerate((-0.82, -0.55, -0.28, 0.0, 0.28, 0.55, 0.82)):
-        add_box(f"RearCoolingGrille_V_{index + 1:02d}", (-4.031, 1.88, z),
+        add_box(f"RearCoolingGrille_V_{index + 1:02d}", (-3.776, 1.88, z),
                 (0.024, 1.04, 0.025), "StructuralSteel", "Details", 0.004, rear_root)
-    add_cylinder("ExhaustStack", (-2.62, 2.98, 0.77), 0.09, 0.92, "y",
+    add_cylinder("ExhaustStack", (-2.62, 2.96, 0.77), 0.09, 0.86, "y",
                  "DarkSteel", "Details", 28, rear_root)
-    add_cone("ExhaustRainCap", (-2.62, 3.45, 0.77), 0.13, 0.08, 0.06, "y",
+    add_cone("ExhaustRainCap", (-2.62, 3.42, 0.77), 0.13, 0.08, 0.06, "y",
              "StructuralSteel", "Details", 28, rear_root)
     add_cylinder("AirPrecleaner_Body", (-1.92, 2.95, -0.78), 0.13, 0.60, "y",
                  "DarkSteel", "Details", 32, rear_root)
@@ -527,7 +582,7 @@ def build_identity_and_frames() -> bpy.types.Object:
     add_prism_xy("FrontFrame_Main", [(-0.12, 0.62), (0.15, 1.36),
                  (1.82, 1.47), (2.42, 1.11), (2.55, 0.62)], 0.0, 1.34,
                  "WarmGraphite", "Front_Frame", front_root, bevel=0.07)
-    add_box("FrontFrame_BellyPan", (1.08, 0.56, 0.0), (2.26, 0.16, 1.22),
+    add_box("FrontFrame_BellyPan", (1.08, 0.60, 0.0), (2.26, 0.16, 1.22),
             "StructuralSteel", "Front_Frame", 0.03, front_root)
     add_cylinder("FrontAxleHousing", (1.60, 0.86, 0.0), 0.25, 2.38, "z",
                  "DarkSteel", "Wheels", 36, front_root)
@@ -570,7 +625,7 @@ def build_wheel(name_prefix: str, x: float, side: int,
     y = RECONSTRUCTED["wheel_center_y_m"]
     add_cylinder(f"{name_prefix}Tire_{suffix}", (x, y, z), 0.85, 0.63, "z",
                  "Rubber", "Wheels", 48, parent)
-    add_cylinder(f"{name_prefix}SidewallOuter_{suffix}", (x, y, side * 1.495),
+    add_cylinder(f"{name_prefix}SidewallOuter_{suffix}", (x, y, side * 1.5075),
                  0.76, 0.045, "z", "Tread", "Wheels", 48, parent)
     add_cylinder(f"{name_prefix}RimOuter_{suffix}", (x, y, side * 1.505),
                  0.49, 0.050, "z", "IndustrialBronze", "Wheels", 40, parent)
@@ -598,10 +653,21 @@ def build_wheel(name_prefix: str, x: float, side: int,
 
 
 def build_wheels() -> None:
-    build_wheel("Rear", RECONSTRUCTED["rear_axle_x_m"], -1, ART["rear_axle"])
-    build_wheel("Rear", RECONSTRUCTED["rear_axle_x_m"], 1, ART["rear_axle"])
-    build_wheel("Front", RECONSTRUCTED["front_axle_x_m"], -1, ART["front_root"])
-    build_wheel("Front", RECONSTRUCTED["front_axle_x_m"], 1, ART["front_root"])
+    for axle, x, axle_parent in (
+        ("Rear", RECONSTRUCTED["rear_axle_x_m"], ART["rear_axle"]),
+        ("Front", RECONSTRUCTED["front_axle_x_m"], ART["front_root"]),
+    ):
+        for side, suffix in ((-1, "L"), (1, "R")):
+            wheel_root = add_empty(
+                f"{axle}Wheel_{suffix}_Pivot_ROOT",
+                (x, RECONSTRUCTED["wheel_center_y_m"],
+                 side * RECONSTRUCTED["tire_center_z_m"]),
+                "Wheels", 0.14, axle_parent,
+            )
+            wheel_root["joint_axis_machine"] = "+Z"
+            wheel_root["authority"] = "reconstructed visual wheel rotation"
+            ART[f"{axle.lower()}_wheel_{suffix}"] = wheel_root
+            build_wheel(axle, x, side, wheel_root)
 
     # Full-width fenders with extension lips and support brackets.
     for axle, x, parent in (("Rear", -1.85, ART["rear_root"]),
@@ -711,58 +777,258 @@ def build_cab() -> None:
                     "LensWhite", "Details", 0.004, cab_root)
 
 
+def rotate_xy(point: tuple[float, float], pivot: tuple[float, float],
+              angle_rad: float) -> tuple[float, float]:
+    dx, dy = point[0] - pivot[0], point[1] - pivot[1]
+    cosine, sine = math.cos(angle_rad), math.sin(angle_rad)
+    return (pivot[0] + dx * cosine - dy * sine,
+            pivot[1] + dx * sine + dy * cosine)
+
+
+def loader_lift_angle_rad() -> float:
+    pivot = tuple(RECONSTRUCTED["loader_rear_pivot_xyz_m"][:2])
+    carry = tuple(RECONSTRUCTED["stowed_bucket_hinge_xyz_m"][:2])
+    radius = math.dist(pivot, carry)
+    raised_dy = PUBLISHED["hinge-pin-height-max-standard"] - pivot[1]
+    if abs(raised_dy) >= radius:
+        raise RuntimeError("Reconstructed loader radius cannot reach published hinge height")
+    carry_angle = math.atan2(carry[1] - pivot[1], carry[0] - pivot[0])
+    raised_angle = math.asin(raised_dy / radius)
+    return raised_angle - carry_angle
+
+
+def loader_pose_geometry(pose: str) -> dict:
+    if pose not in {"stowed", "raised_dump"}:
+        raise ValueError(pose)
+    alpha = 0.0 if pose == "stowed" else loader_lift_angle_rad()
+    pivot = tuple(RECONSTRUCTED["loader_rear_pivot_xyz_m"][:2])
+    carry_hinge = tuple(RECONSTRUCTED["stowed_bucket_hinge_xyz_m"][:2])
+    carry_elbow = tuple(RECONSTRUCTED["stowed_arm_elbow_xyz_m"][:2])
+    hinge = rotate_xy(carry_hinge, pivot, alpha)
+    elbow = rotate_xy(carry_elbow, pivot, alpha)
+    bucket_blender_world_deg = (
+        RECONSTRUCTED["stowed_bucket_rotation_blender_y_deg"]
+        if pose == "stowed" else RECONSTRUCTED["raised_dump_rotation_blender_y_deg"]
+    )
+
+    # Closed reconstructed Z-bar in the loader-arm reference frame. The lower
+    # bellcrank radius and bucket-link length remain invariant between poses.
+    bellcrank_pivot_ref = (1.65, 1.25)
+    bellcrank_radius = 0.40
+    bucket_ear_local = tuple(RECONSTRUCTED["bucket_link_ear_local_xy_m"])
+    stowed_phi = math.radians(-160.0)
+    stowed_bucket_machine = math.radians(-RECONSTRUCTED["stowed_bucket_rotation_blender_y_deg"])
+    stowed_ear_ref = (
+        carry_hinge[0] + bucket_ear_local[0] * math.cos(stowed_bucket_machine)
+        - bucket_ear_local[1] * math.sin(stowed_bucket_machine),
+        carry_hinge[1] + bucket_ear_local[0] * math.sin(stowed_bucket_machine)
+        + bucket_ear_local[1] * math.cos(stowed_bucket_machine),
+    )
+    stowed_lower_ref = (
+        bellcrank_pivot_ref[0] + bellcrank_radius * math.cos(stowed_phi),
+        bellcrank_pivot_ref[1] + bellcrank_radius * math.sin(stowed_phi),
+    )
+    link_length = math.dist(stowed_lower_ref, stowed_ear_ref)
+
+    bucket_machine_relative = math.radians(-bucket_blender_world_deg) - alpha
+    ear_ref = (
+        carry_hinge[0] + bucket_ear_local[0] * math.cos(bucket_machine_relative)
+        - bucket_ear_local[1] * math.sin(bucket_machine_relative),
+        carry_hinge[1] + bucket_ear_local[0] * math.sin(bucket_machine_relative)
+        + bucket_ear_local[1] * math.cos(bucket_machine_relative),
+    )
+    dx = ear_ref[0] - bellcrank_pivot_ref[0]
+    dy = ear_ref[1] - bellcrank_pivot_ref[1]
+    distance = math.hypot(dx, dy)
+    along = (bellcrank_radius ** 2 - link_length ** 2 + distance ** 2) / (2.0 * distance)
+    height_sq = bellcrank_radius ** 2 - along ** 2
+    if height_sq < -1e-9:
+        raise RuntimeError(f"{pose}: reconstructed Z-bar circles do not intersect")
+    height = math.sqrt(max(0.0, height_sq))
+    midpoint = (bellcrank_pivot_ref[0] + along * dx / distance,
+                bellcrank_pivot_ref[1] + along * dy / distance)
+    candidates = [
+        (midpoint[0] + sign * height * -dy / distance,
+         midpoint[1] + sign * height * dx / distance)
+        for sign in (1.0, -1.0)
+    ]
+    target_phi = stowed_phi if pose == "stowed" else math.radians(-102.0)
+    lower_ref = min(
+        candidates,
+        key=lambda point: abs(math.atan2(point[1] - bellcrank_pivot_ref[1],
+                                         point[0] - bellcrank_pivot_ref[0]) - target_phi),
+    )
+    phi = math.atan2(lower_ref[1] - bellcrank_pivot_ref[1],
+                     lower_ref[0] - bellcrank_pivot_ref[0])
+    upper_radius = 0.45
+    upper_ref = (bellcrank_pivot_ref[0] - upper_radius * math.cos(phi),
+                 bellcrank_pivot_ref[1] - upper_radius * math.sin(phi))
+    bucket_cylinder_base_ref = (0.40, 1.80)
+
+    return {
+        "pose": pose,
+        "alpha_rad": alpha,
+        "alpha_deg": math.degrees(alpha),
+        "pivot": (*pivot, 0.0),
+        "hinge": (*hinge, 0.0),
+        "elbow": (*elbow, 0.0),
+        "bucket_rotation_blender_y_deg": bucket_blender_world_deg,
+        "bellcrank_pivot": (*rotate_xy(bellcrank_pivot_ref, pivot, alpha), 0.0),
+        "bellcrank_lower": (*rotate_xy(lower_ref, pivot, alpha), 0.0),
+        "bellcrank_upper": (*rotate_xy(upper_ref, pivot, alpha), 0.0),
+        "bucket_ear": (*rotate_xy(ear_ref, pivot, alpha), 0.0),
+        "bucket_link_length_m": link_length,
+        "bucket_cylinder_base": (*rotate_xy(bucket_cylinder_base_ref, pivot, alpha), 0.0),
+        "bellcrank_angle_deg": math.degrees(phi),
+    }
+
+
+def place_telescoping_pair(barrel: bpy.types.Object, rod: bpy.types.Object,
+                           base: tuple[float, float, float],
+                           moving: tuple[float, float, float],
+                           barrel_length: float, rod_insertion: float,
+                           barrel_radius: float, rod_radius: float) -> dict:
+    start, end = Vector(base), Vector(moving)
+    direction = end - start
+    length = direction.length
+    if length <= max(barrel_length, rod_insertion):
+        raise RuntimeError(f"{barrel.name}: invalid telescoping length {length:.6f} m")
+    unit = direction.normalized()
+    barrel_end = start + unit * barrel_length
+    rod_start = start + unit * rod_insertion
+    place_cylinder(barrel, tuple(start), tuple(barrel_end), barrel_radius)
+    place_cylinder(rod, tuple(rod_start), tuple(end), rod_radius)
+    return {
+        "anchor_distance_m": length,
+        "barrel_length_m": barrel_length,
+        "rod_visible_length_m": length - rod_insertion,
+        "barrel_rod_overlap_m": barrel_length - rod_insertion,
+        "base_anchor": [round(value, 6) for value in base],
+        "moving_anchor": [round(value, 6) for value in moving],
+    }
+
+
+def measure_telescoping_pair(barrel: bpy.types.Object, rod: bpy.types.Object,
+                             base_clevis: bpy.types.Object,
+                             moving_clevis: bpy.types.Object) -> dict:
+    """Measure the shipped mesh endpoints against clevis transforms."""
+    base = Vector(base_clevis.matrix_world.translation)
+    moving = Vector(moving_clevis.matrix_world.translation)
+    barrel_axis = (min(vertex.co.z for vertex in barrel.data.vertices),
+                   max(vertex.co.z for vertex in barrel.data.vertices))
+    rod_axis = (min(vertex.co.z for vertex in rod.data.vertices),
+                max(vertex.co.z for vertex in rod.data.vertices))
+    barrel_endpoints = [barrel.matrix_world @ Vector((0.0, 0.0, endpoint))
+                        for endpoint in barrel_axis]
+    rod_endpoints = [rod.matrix_world @ Vector((0.0, 0.0, endpoint))
+                     for endpoint in rod_axis]
+    barrel_base = min(barrel_endpoints, key=lambda point: (point - base).length)
+    rod_moving = min(rod_endpoints, key=lambda point: (point - moving).length)
+    anchor_distance = (moving - base).length
+    barrel_length = (barrel_endpoints[1] - barrel_endpoints[0]).length
+    rod_mesh_length = (rod_endpoints[1] - rod_endpoints[0]).length
+    return {
+        "anchor_distance_m": anchor_distance,
+        "barrel_length_m": barrel_length,
+        "rod_visible_length_m": rod_mesh_length,
+        "barrel_rod_overlap_m": barrel_length + rod_mesh_length - anchor_distance,
+        "base_closure_residual_m": (barrel_base - base).length,
+        "moving_closure_residual_m": (rod_moving - moving).length,
+        "base_anchor": [round(base.x, 6), round(base.z, 6), round(base.y, 6)],
+        "moving_anchor": [round(moving.x, 6), round(moving.z, 6), round(moving.y, 6)],
+    }
+
+
+def cylinder_mesh_bore(obj: bpy.types.Object) -> float:
+    """Measure diameter from baked local radial mesh extents."""
+    x_values = [vertex.co.x for vertex in obj.data.vertices]
+    y_values = [vertex.co.y for vertex in obj.data.vertices]
+    return 0.5 * ((max(x_values) - min(x_values))
+                  + (max(y_values) - min(y_values)))
+
+
 def setup_loader_and_bucket() -> None:
     front_root = ART["front_root"]
+    pivot = tuple(RECONSTRUCTED["loader_rear_pivot_xyz_m"])
+    loader_root = add_empty("LoaderArm_LiftPivot_ROOT_Reconstructed", pivot,
+                            "Loader", 0.20, front_root)
+    loader_root["joint_axis_machine"] = "+Z"
+    loader_root["authority"] = "reconstructed; endpoint heights source-constrained"
+    ART["loader_root"] = loader_root
+
     for side, suffix in ((-1, "L"), (1, "R")):
         z = side * RECONSTRUCTED["loader_arm_lateral_center_m"]
-        rear_pivot = add_empty(f"LoaderArmRearPivot_{suffix}_Reconstructed",
-                               (0.28, 1.50, z), "Markers", 0.12, ART["root"])
-        rear_pivot["authority"] = "reconstructed"
+        side_pivot = add_empty(f"LoaderArmRearPivot_{suffix}_Reconstructed",
+                               (pivot[0], pivot[1], z), "Loader", 0.12, loader_root)
+        side_pivot["authority"] = "reconstructed"
         ART[f"arm_rear_{suffix}"] = add_unit_beam(
-            f"StandardLoaderArmRear_{suffix}", "IndustrialBronze", "Loader", 0.045, front_root)
+            f"StandardLoaderArmRear_{suffix}", "IndustrialBronze", "Loader", 0.045, loader_root)
         ART[f"arm_front_{suffix}"] = add_unit_beam(
-            f"StandardLoaderArmFront_{suffix}", "IndustrialBronze", "Loader", 0.045, front_root)
+            f"StandardLoaderArmFront_{suffix}", "IndustrialBronze", "Loader", 0.045, loader_root)
         ART[f"arm_web_{suffix}"] = add_unit_beam(
-            f"StandardLoaderArmLowerWeb_{suffix}", "WarmGraphite", "Loader", 0.035, front_root)
+            f"StandardLoaderArmLowerWeb_{suffix}", "WarmGraphite", "Loader", 0.035, loader_root)
+        # Barrel stays with the fixed front frame; rod follows the loader arm.
         ART[f"lift_barrel_{suffix}"] = add_unit_cylinder(
-            f"LiftCylinder_Barrel_{suffix}", "WarmGraphite", "Hydraulics", 36, ART["root"])
+            f"LiftCylinder_Barrel_{suffix}", "WarmGraphite", "Hydraulics", 36, front_root)
         ART[f"lift_rod_{suffix}"] = add_unit_cylinder(
-            f"LiftCylinder_Rod_{suffix}", "CylinderRod", "Hydraulics", 32, ART["root"])
+            f"LiftCylinder_Rod_{suffix}", "CylinderRod", "Hydraulics", 32, loader_root)
+        ART[f"lift_base_clevis_{suffix}"] = add_uv_sphere(
+            f"LiftCylinder_BaseClevis_{suffix}",
+            (0.20, 1.20, side * 0.70), 0.105,
+            "StructuralSteel", "Hydraulics", front_root, 24, 12)
+        ART[f"lift_arm_clevis_{suffix}"] = add_uv_sphere(
+            f"LiftCylinder_ArmClevis_{suffix}",
+            (1.65, 1.06, side * 0.70), 0.092,
+            "StructuralSteel", "Hydraulics", loader_root, 24, 12)
         for bundle in (1, 2):
             ART[f"hose_{suffix}_{bundle}"] = add_polyline_tube(
                 f"LoaderHose_{suffix}_{bundle:02d}",
-                [(0.12, 1.16, z), (0.76, 1.55, z),
-                 (1.72, 1.30, z), (3.05, 0.82, z)],
+                [(0.18, 1.24, z), (0.72, 1.62, z),
+                 (1.65, 1.34, z), (3.02, 0.88, z)],
                 RECONSTRUCTED["loader_hose_visual_diameter_m"] * 0.5,
-                "Rubber", "Hydraulics", ART["root"])
+                "Rubber", "Hydraulics", front_root)
 
     ART["arm_crossmember"] = add_unit_beam(
-        "LoaderArmCrossmember", "StructuralSteel", "Loader", 0.04, front_root)
+        "LoaderArmCrossmember", "StructuralSteel", "Loader", 0.04, loader_root)
     ART["bucket_crossmember"] = add_unit_beam(
-        "BucketHingeCrossmember", "DarkSteel", "Loader", 0.035, front_root)
+        "BucketHingeCrossmember", "DarkSteel", "Loader", 0.035, loader_root)
     ART["tilt_barrel"] = add_unit_cylinder(
-        "BucketCylinder_Barrel", "WarmGraphite", "Hydraulics", 40, ART["root"])
+        "BucketCylinder_Barrel", "WarmGraphite", "Hydraulics", 40, loader_root)
+
+    stowed_geometry = loader_pose_geometry("stowed")
+    zbar_root = add_empty("ZBar_Bellcrank_Pivot_ROOT_Reconstructed",
+                          stowed_geometry["bellcrank_pivot"], "Loader", 0.16, loader_root)
+    zbar_root["joint_axis_machine"] = "+Z"
+    zbar_root["authority"] = "reconstructed closed four-bar study"
+    ART["zbar_root"] = zbar_root
     ART["tilt_rod"] = add_unit_cylinder(
-        "BucketCylinder_Rod", "CylinderRod", "Hydraulics", 36, ART["root"])
+        "BucketCylinder_Rod", "CylinderRod", "Hydraulics", 36, zbar_root)
+    ART["tilt_base_clevis"] = add_uv_sphere(
+        "BucketCylinder_BaseClevis", stowed_geometry["bucket_cylinder_base"], 0.120,
+        "StructuralSteel", "Hydraulics", loader_root, 28, 14)
+    ART["tilt_moving_clevis"] = add_uv_sphere(
+        "BucketCylinder_BellcrankClevis", stowed_geometry["bellcrank_upper"], 0.105,
+        "StructuralSteel", "Hydraulics", zbar_root, 28, 14)
     ART["bellcrank_a"] = add_unit_beam(
-        "ZBar_Bellcrank_Upper_Reconstructed", "StructuralSteel", "Loader", 0.035, front_root)
+        "ZBar_Bellcrank_Upper_Reconstructed", "StructuralSteel", "Loader", 0.035, zbar_root)
     ART["bellcrank_b"] = add_unit_beam(
-        "ZBar_Bellcrank_Lower_Reconstructed", "StructuralSteel", "Loader", 0.035, front_root)
+        "ZBar_Bellcrank_Lower_Reconstructed", "StructuralSteel", "Loader", 0.035, zbar_root)
     ART["bucket_link"] = add_unit_beam(
-        "ZBar_BucketLink_Reconstructed", "DarkSteel", "Loader", 0.028, front_root)
-    add_cylinder("ZBar_BellcrankPivotCap", (1.37, 1.55, 0.0), 0.14, 0.28, "z",
-                 "CylinderRod", "Loader", 32, front_root)
+        "ZBar_BucketLink_Reconstructed", "DarkSteel", "Loader", 0.028, loader_root)
+    add_cylinder("ZBar_BellcrankPivotCap", stowed_geometry["bellcrank_pivot"],
+                 0.14, 0.28, "z", "CylinderRod", "Loader", 32, loader_root)
 
     bucket_root = add_empty("StockPileBucket_PivotRoot_Reconstructed",
                             tuple(RECONSTRUCTED["stowed_bucket_hinge_xyz_m"]),
-                            "Bucket", 0.17, front_root)
+                            "Bucket", 0.17, loader_root)
+    bucket_root["joint_axis_machine"] = "+Z"
     bucket_root["authority"] = "reconstructed constrained by selected 4.2 m3 stock-pile bucket facts"
     ART["bucket_root"] = bucket_root
 
     # Deep curved-side silhouette approximated by a faceted, independently
     # authored shell. It is not reverse-engineered CAD or a scale tracing.
     bucket_polygon = [
-        (-0.28, 0.08), (0.02, 1.62), (0.48, 1.82),
+        (-0.28, 0.08), (-0.02, 2.35), (0.25, 2.38), (0.48, 1.82),
         (1.18, 1.38), (1.72, 0.58), (1.79, -0.02),
         (1.54, -0.13), (0.86, 0.00), (0.16, 0.22),
     ]
@@ -772,7 +1038,7 @@ def setup_loader_and_bucket() -> None:
     for side, suffix in ((-1, "L"), (1, "R")):
         z = side * 1.565
         add_prism_xy(f"BucketSideGuard_{suffix}",
-                     [(-0.30, 0.05), (-0.02, 1.66), (0.47, 1.87),
+                     [(-0.30, 0.05), (-0.02, 2.35), (0.25, 2.38), (0.47, 1.87),
                       (1.24, 1.42), (1.80, 0.56), (1.82, -0.06),
                       (1.53, -0.08), (0.30, 0.12)],
                      z, 0.040, "WarmGraphite", "Bucket", bucket_root,
@@ -780,40 +1046,50 @@ def setup_loader_and_bucket() -> None:
         add_box(f"BucketTopCornerGuard_{suffix}", (0.18, 1.64, z),
                 (0.58, 0.14, 0.04), "StructuralSteel", "Bucket", 0.018,
                 bucket_root, parent_local=True)
-    add_box("BucketBoltOnCuttingEdge", (1.74, 0.01, 0.0),
+    add_box("BucketBoltOnCuttingEdge", (1.99, 0.318, 0.0),
             (0.22, 0.12, 3.17), "StructuralSteel", "Bucket", 0.018,
             bucket_root, parent_local=True)
     # Nine replaceable B.O.C. wear segments; no incompatible tooth claim.
     for index in range(RECONSTRUCTED["bucket_cutting_edge_segments"]):
         z = -1.40 + index * 0.35
         add_box(f"BucketBOC_WearSegment_{index + 1:02d}",
-                (1.84, 0.005, z), (0.26, 0.055, 0.30),
+                (2.05, 0.310, z), (0.18, 0.055, 0.30),
                 "CylinderRod", "Bucket", 0.012, bucket_root, parent_local=True)
         for bolt_offset in (-0.09, 0.09):
             add_cylinder(f"BucketBOC_Bolt_{index + 1:02d}_{bolt_offset:+.2f}",
-                         (1.80, -0.020, z + bolt_offset), 0.025, 0.018, "y",
-                         "DarkSteel", "Bucket", 12, bucket_root, bevel=False)
+                         (2.01, 0.286, z + bolt_offset), 0.025, 0.018, "y",
+                         "DarkSteel", "Bucket", 12, bucket_root, bevel=False,
+                         parent_local=True)
     for rib_index, z in enumerate((-1.18, -0.78, -0.39, 0.0, 0.39, 0.78, 1.18)):
         add_box(f"BucketBackRib_{rib_index + 1:02d}", (0.31, 1.28, z),
                 (0.70, 0.10, 0.08), "WarmGraphite", "Bucket", 0.016,
                 bucket_root, parent_local=True)
 
+    bucket_ear_local = RECONSTRUCTED["bucket_link_ear_local_xy_m"]
+    bucket_ear = add_uv_sphere(
+        "Bucket_ZBar_LinkEar_Reconstructed",
+        (RECONSTRUCTED["stowed_bucket_hinge_xyz_m"][0] + bucket_ear_local[0],
+         RECONSTRUCTED["stowed_bucket_hinge_xyz_m"][1] + bucket_ear_local[1],
+         0.0),
+        0.095, "StructuralSteel", "Bucket", bucket_root, 24, 12)
+    bucket_ear["authority"] = "reconstructed linkage anchor"
+
     apply_loader_pose("stowed")
 
 
 def apply_loader_pose(pose: str) -> dict:
-    if pose == "stowed":
-        elbow = tuple(RECONSTRUCTED["stowed_arm_elbow_xyz_m"])
-        hinge = tuple(RECONSTRUCTED["stowed_bucket_hinge_xyz_m"])
-        bucket_rotation = RECONSTRUCTED["stowed_bucket_rotation_blender_y_deg"]
-    elif pose == "raised_dump":
-        elbow = tuple(RECONSTRUCTED["raised_arm_elbow_xyz_m"])
-        hinge = tuple(RECONSTRUCTED["raised_bucket_hinge_xyz_m"])
-        bucket_rotation = RECONSTRUCTED["raised_dump_rotation_blender_y_deg"]
-    else:
-        raise ValueError(pose)
+    geometry = loader_pose_geometry(pose)
+    elbow = geometry["elbow"]
+    hinge = geometry["hinge"]
+    rear = geometry["pivot"]
+    ART["loader_root"].rotation_euler[1] = -geometry["alpha_rad"]
+    ART["bucket_root"].rotation_euler = (
+        0.0,
+        math.radians(geometry["bucket_rotation_blender_y_deg"] + geometry["alpha_deg"]),
+        0.0,
+    )
+    bpy.context.view_layer.update()
 
-    rear = tuple(RECONSTRUCTED["loader_rear_pivot_xyz_m"])
     for side, suffix in ((-1, "L"), (1, "R")):
         z = side * RECONSTRUCTED["loader_arm_lateral_center_m"]
         rear_z = (rear[0], rear[1], z)
@@ -825,18 +1101,22 @@ def apply_loader_pose(pose: str) -> dict:
         place_beam(ART[f"arm_web_{suffix}"], (rear[0] + 0.12, rear[1] - 0.25, z),
                    lower_end, 0.15, 0.17)
 
-        cylinder_base = (0.10, 0.72, side * 0.70)
-        cylinder_end = (elbow[0] + 0.10, elbow[1] - 0.17, side * 0.70)
-        base_v, end_v = mv(*cylinder_base), mv(*cylinder_end)
-        split = base_v.lerp(end_v, 0.58)
-        split_m = (split.x, split.z, split.y)
-        place_cylinder(ART[f"lift_barrel_{suffix}"], cylinder_base, split_m, 0.112)
-        place_cylinder(ART[f"lift_rod_{suffix}"], split_m, cylinder_end, 0.068)
+        cylinder_base = (0.20, 1.20, side * 0.70)
+        carry_attach = (1.65, 1.06)
+        moving_xy = rotate_xy(carry_attach, (rear[0], rear[1]), geometry["alpha_rad"])
+        cylinder_end = (moving_xy[0], moving_xy[1], side * 0.70)
+        place_telescoping_pair(
+            ART[f"lift_barrel_{suffix}"], ART[f"lift_rod_{suffix}"],
+            cylinder_base, cylinder_end,
+            RECONSTRUCTED["loader_lift_barrel_length_m"],
+            RECONSTRUCTED["loader_lift_rod_insertion_m"],
+            PUBLISHED["lift-cylinder-bore"] * 0.5, 0.045,
+        )
 
         for bundle, offset in ((1, -0.026), (2, 0.026)):
             update_polyline(ART[f"hose_{suffix}_{bundle}"], [
-                (0.10, 1.05, z + offset),
-                (0.70, 1.55, z + offset),
+                (0.18, 1.24, z + offset),
+                (0.72, 1.62, z + offset),
                 (elbow[0] + 0.10, elbow[1] + 0.12, z + offset),
                 (hinge[0] - 0.18, hinge[1] + 0.20, z + offset),
             ])
@@ -848,68 +1128,142 @@ def apply_loader_pose(pose: str) -> dict:
                (hinge[0], hinge[1], -0.91), (hinge[0], hinge[1], 0.91),
                0.18, 0.18)
 
-    # Reconstructed Z-bar: center cylinder drives a two-piece bellcrank and
-    # link, all updated with the visual pose without claiming mechanical closure.
-    pivot = (1.36, elbow[1] + 0.18, 0.0)
-    upper = (1.04, elbow[1] + 0.52, 0.0)
-    lower = (1.66, elbow[1] - 0.13, 0.0)
-    link_end = (hinge[0] - 0.18, hinge[1] + 0.62, 0.0)
+    pivot = geometry["bellcrank_pivot"]
+    upper = geometry["bellcrank_upper"]
+    lower = geometry["bellcrank_lower"]
+    link_end = geometry["bucket_ear"]
     place_beam(ART["bellcrank_a"], pivot, upper, 0.20, 0.20)
     place_beam(ART["bellcrank_b"], pivot, lower, 0.20, 0.20)
     place_beam(ART["bucket_link"], lower, link_end, 0.16, 0.16)
-    tilt_base = (0.30, 1.62, 0.0)
-    base_v, upper_v = mv(*tilt_base), mv(*upper)
-    split = base_v.lerp(upper_v, 0.62)
-    split_m = (split.x, split.z, split.y)
-    place_cylinder(ART["tilt_barrel"], tilt_base, split_m, 0.13)
-    place_cylinder(ART["tilt_rod"], split_m, upper, 0.078)
-
-    bucket_root = ART["bucket_root"]
-    bucket_root.location = mv(*hinge)
-    bucket_root.rotation_euler = (0.0, math.radians(bucket_rotation), 0.0)
+    ART["tilt_base_clevis"].matrix_world.translation = mv(
+        *geometry["bucket_cylinder_base"])
+    ART["tilt_moving_clevis"].matrix_world.translation = mv(*upper)
+    place_telescoping_pair(
+        ART["tilt_barrel"], ART["tilt_rod"],
+        geometry["bucket_cylinder_base"], upper,
+        RECONSTRUCTED["bucket_cylinder_barrel_length_m"],
+        RECONSTRUCTED["bucket_cylinder_rod_insertion_m"],
+        PUBLISHED["bucket-cylinder-bore"] * 0.5, 0.052,
+    )
     bpy.context.view_layer.update()
-    return {"hinge": hinge, "elbow": elbow, "bucket_rotation_blender_y_deg": bucket_rotation}
+    lift_metrics = {
+        suffix: measure_telescoping_pair(
+            ART[f"lift_barrel_{suffix}"], ART[f"lift_rod_{suffix}"],
+            ART[f"lift_base_clevis_{suffix}"], ART[f"lift_arm_clevis_{suffix}"],
+        )
+        for suffix in ("L", "R")
+    }
+    bucket_metrics = measure_telescoping_pair(
+        ART["tilt_barrel"], ART["tilt_rod"],
+        ART["tilt_base_clevis"], ART["tilt_moving_clevis"],
+    )
+    loader_pivot_world = Vector(ART["loader_root"].matrix_world.translation)
+    bucket_hinge_world = Vector(ART["bucket_root"].matrix_world.translation)
+    arm_joint_residual = max(
+        min((rear_endpoint - front_endpoint).length
+            for rear_endpoint in beam_axis_endpoints(ART[f"arm_rear_{suffix}"])
+            for front_endpoint in beam_axis_endpoints(ART[f"arm_front_{suffix}"]))
+        for suffix in ("L", "R")
+    )
+    bellcrank_lower_endpoints = beam_axis_endpoints(ART["bellcrank_b"])
+    bucket_link_endpoints = beam_axis_endpoints(ART["bucket_link"])
+    bucket_ear_world = Vector(
+        bpy.data.objects["Bucket_ZBar_LinkEar_Reconstructed"].matrix_world.translation)
+    zbar_lower_residual = min(
+        (bellcrank_endpoint - link_endpoint).length
+        for bellcrank_endpoint in bellcrank_lower_endpoints
+        for link_endpoint in bucket_link_endpoints)
+    zbar_ear_residual = min(
+        (link_endpoint - bucket_ear_world).length
+        for link_endpoint in bucket_link_endpoints)
+    measured_bucket_link_length = (
+        bucket_link_endpoints[1] - bucket_link_endpoints[0]).length
+    return {
+        **geometry,
+        "lift_cylinders": lift_metrics,
+        "bucket_cylinder": bucket_metrics,
+        "loader_radius_m": (bucket_hinge_world - loader_pivot_world).length,
+        "arm_joint_residual_m": arm_joint_residual,
+        "measured_bucket_link_length_m": measured_bucket_link_length,
+        "zbar_lower_closure_residual_m": zbar_lower_residual,
+        "zbar_ear_closure_residual_m": zbar_ear_residual,
+        "zbar_joint_residual_m": max(zbar_lower_residual, zbar_ear_residual),
+    }
 
 
 def setup_steering_hydraulics() -> None:
     for side, suffix in ((-1, "L"), (1, "R")):
+        base = (0.0, 0.92 + side * 0.07, 0.0)
+        front = (0.79, 0.92 + side * 0.07, side * 0.63)
+        cylinder_root = add_empty(
+            f"SteeringCylinder_{suffix}_YawPivot_ROOT_Reconstructed",
+            base, "Hydraulics", 0.12, ART["front_root"],
+        )
+        cylinder_root["joint_axis_machine"] = "+Y"
+        cylinder_root["authority"] = "reconstructed coaxial articulation-axis anchor"
+        ART[f"steer_root_{suffix}"] = cylinder_root
         ART[f"steer_barrel_{suffix}"] = add_unit_cylinder(
-            f"SteeringCylinder_Barrel_{suffix}", "WarmGraphite", "Hydraulics", 36, ART["root"])
+            f"SteeringCylinder_Barrel_{suffix}", "WarmGraphite", "Hydraulics", 36,
+            cylinder_root)
         ART[f"steer_rod_{suffix}"] = add_unit_cylinder(
-            f"SteeringCylinder_Rod_{suffix}", "CylinderRod", "Hydraulics", 32, ART["root"])
+            f"SteeringCylinder_Rod_{suffix}", "CylinderRod", "Hydraulics", 32,
+            cylinder_root)
+        add_uv_sphere(f"SteeringCylinder_BaseClevis_{suffix}", base, 0.075,
+                      "StructuralSteel", "Hydraulics", ART["rear_root"], 24, 12)
+        add_uv_sphere(f"SteeringCylinder_FrontClevis_{suffix}", front, 0.070,
+                      "StructuralSteel", "Hydraulics", ART["front_root"], 24, 12)
+        ART[f"steer_metric_{suffix}"] = place_telescoping_pair(
+            ART[f"steer_barrel_{suffix}"], ART[f"steer_rod_{suffix}"],
+            base, front,
+            RECONSTRUCTED["steering_cylinder_barrel_length_m"],
+            RECONSTRUCTED["steering_cylinder_rod_insertion_m"],
+            PUBLISHED["steering-cylinder-bore"] * 0.5, 0.030,
+        )
     apply_articulation(0.0)
 
 
-def apply_articulation(degrees: float) -> None:
+def apply_articulation(degrees: float) -> dict:
     ART["front_root"].rotation_euler[2] = math.radians(degrees)
-    angle = math.radians(degrees)
-    for side, suffix in ((-1, "L"), (1, "R")):
-        rear = (-0.80, 0.92, side * 0.63)
-        base_front = (0.79, 0.92, side * 0.63)
-        x, z = base_front[0], base_front[2]
-        front = (x * math.cos(angle) - z * math.sin(angle),
-                 base_front[1], x * math.sin(angle) + z * math.cos(angle))
-        rear_v, front_v = mv(*rear), mv(*front)
-        split = rear_v.lerp(front_v, 0.58)
-        split_m = (split.x, split.z, split.y)
-        place_cylinder(ART[f"steer_barrel_{suffix}"], rear, split_m,
-                       RECONSTRUCTED["steering_cylinder_barrel_visual_radius_m"])
-        place_cylinder(ART[f"steer_rod_{suffix}"], split_m, front,
-                       RECONSTRUCTED["steering_cylinder_rod_visual_radius_m"])
     bpy.context.view_layer.update()
+    pivot = Vector(ART["front_root"].matrix_world.translation)
+    cylinders = {}
+    for side, suffix in ((-1, "L"), (1, "R")):
+        root_position = ART[f"steer_root_{suffix}"].matrix_world.translation
+        measurement = measure_telescoping_pair(
+            ART[f"steer_barrel_{suffix}"], ART[f"steer_rod_{suffix}"],
+            bpy.data.objects[f"SteeringCylinder_BaseClevis_{suffix}"],
+            bpy.data.objects[f"SteeringCylinder_FrontClevis_{suffix}"],
+        )
+        measurement["front_closure_residual_m"] = measurement.pop(
+            "moving_closure_residual_m")
+        measurement["front_anchor"] = measurement.pop("moving_anchor")
+        cylinders[suffix] = {
+            **measurement,
+            "base_axis_residual_m": (root_position - mv(0.0, 0.92 + side * 0.07, 0.0)).length,
+        }
+    return {
+        "degrees": degrees,
+        "pivot_world_machine": [round(pivot.x, 6), round(pivot.z, 6), round(pivot.y, 6)],
+        "cylinders": cylinders,
+    }
 
 
-def apply_rear_axle_oscillation(degrees: float) -> None:
+def apply_rear_axle_oscillation(degrees: float) -> dict:
     ART["rear_axle"].rotation_euler[0] = math.radians(degrees)
     bpy.context.view_layer.update()
+    pivot = ART["rear_axle"].matrix_world.translation
+    return {
+        "degrees": degrees,
+        "pivot_world_machine": [round(pivot.x, 6), round(pivot.z, 6), round(pivot.y, 6)],
+    }
 
 
 def build_lights_and_details() -> None:
     rear_root, front_root = ART["rear_root"], ART["front_root"]
     for side, suffix in ((-1, "L"), (1, "R")):
-        add_box(f"RearTailLampHousing_{suffix}", (-3.92, 1.23, side * 1.05),
+        add_box(f"RearTailLampHousing_{suffix}", (-3.52, 1.23, side * 1.05),
                 (0.12, 0.30, 0.20), "DarkSteel", "Details", 0.018, rear_root)
-        add_box(f"RearTailLampLens_{suffix}", (-3.986, 1.23, side * 1.05),
+        add_box(f"RearTailLampLens_{suffix}", (-3.586, 1.23, side * 1.05),
                 (0.018, 0.23, 0.15), "LensRed", "Details", 0.004, rear_root)
         add_box(f"FrontFrameLampHousing_{suffix}", (2.34, 1.37, side * 0.58),
                 (0.22, 0.18, 0.18), "DarkSteel", "Details", 0.022, front_root)
@@ -917,7 +1271,7 @@ def build_lights_and_details() -> None:
                 (0.018, 0.13, 0.13), "LensWhite", "Details", 0.004, front_root)
         add_cylinder(f"FrontTowPin_{suffix}", (2.16, 0.57, side * 0.55),
                      0.075, 0.16, "z", "StructuralSteel", "Details", 24, front_root)
-        add_cylinder(f"RearTowPin_{suffix}", (-3.73, 0.52, side * 0.62),
+        add_cylinder(f"RearTowPin_{suffix}", (-3.33, 0.52, side * 0.62),
                      0.075, 0.16, "z", "StructuralSteel", "Details", 24, rear_root)
 
     # Fuel/DEF-like access cap cues are unlabelled and not option-identifying.
@@ -928,7 +1282,7 @@ def build_lights_and_details() -> None:
     for side, suffix in ((-1, "L"), (1, "R")):
         for index in range(5):
             add_cylinder(f"LoaderPivotFastener_{suffix}_{index + 1:02d}",
-                         (0.28 + index * 0.50, 1.50 - index * 0.14,
+                         (0.28 + index * 0.50, 1.74 - index * 0.14,
                           side * 0.91), 0.055, 0.055, "z",
                          "CylinderRod", "Details", 20, ART["front_root"])
 
@@ -938,17 +1292,17 @@ def build_helpers() -> None:
     marker_specs = {
         "Pivot_FrameArticulation_Reconstructed": (0.0, 1.20, 0.0),
         "Pivot_RearAxleOscillation_Reconstructed": (-1.85, 0.86, 0.0),
-        "Pivot_LoaderRear_Reconstructed": (0.28, 1.50, 0.0),
+        "Pivot_LoaderRear_Reconstructed": (0.28, 1.74, 0.0),
         "Pivot_BucketCarry_Reconstructed": (3.23, 0.58, 0.0),
-        "Anchor_LiftCylinderBase_Reconstructed": (0.10, 0.72, 0.0),
-        "Anchor_BucketCylinderBase_Reconstructed": (0.30, 1.62, 0.0),
+        "Anchor_LiftCylinderBase_Reconstructed": (0.20, 1.20, 0.0),
+        "Anchor_BucketCylinderBase_Reconstructed": (0.40, 1.80, 0.0),
     }
     for name, xyz in marker_specs.items():
         marker = add_empty(name, xyz, "Markers", 0.13, root)
         marker["authority"] = "reconstructed"
 
     for name, center, size in (
-        ("RearFrame_Hit", (-2.10, 1.42, 0.0), (3.90, 2.35, 2.90)),
+        ("RearFrame_Hit", (-1.90, 1.42, 0.0), (3.60, 2.35, 2.90)),
         ("FrontFrame_Hit", (1.25, 0.98, 0.0), (2.65, 1.30, 1.55)),
         ("Cab_Hit", (-0.58, 2.48, 0.0), (1.72, 2.08, 2.20)),
         ("Bucket_Hit", (4.10, 0.76, 0.0), (2.10, 1.50, 3.17)),
@@ -1101,6 +1455,66 @@ def evaluated_visible_bounds(root: bpy.types.Object) -> dict:
     }
 
 
+def evaluated_bounds_for_objects(objects: list[bpy.types.Object]) -> dict:
+    dependencies = bpy.context.evaluated_depsgraph_get()
+    coordinates: list[tuple[float, float, float]] = []
+    names: list[str] = []
+    for obj in objects:
+        if obj.type not in {"MESH", "CURVE"}:
+            continue
+        evaluated = obj.evaluated_get(dependencies)
+        mesh = evaluated.to_mesh()
+        for vertex in mesh.vertices:
+            world = evaluated.matrix_world @ vertex.co
+            coordinates.append((world.x, world.z, world.y))
+        evaluated.to_mesh_clear()
+        names.append(obj.name)
+    if not coordinates:
+        raise RuntimeError("Requested measured object set has no geometry")
+    minimum = [min(point[axis] for point in coordinates) for axis in range(3)]
+    maximum = [max(point[axis] for point in coordinates) for axis in range(3)]
+    return {
+        "min_m": [round(value, 6) for value in minimum],
+        "max_m": [round(value, 6) for value in maximum],
+        "size_m": [round(maximum[index] - minimum[index], 6) for index in range(3)],
+        "objects": sorted(names),
+        "method": "evaluated world-space mesh vertices in machine X/Y/Z axes",
+    }
+
+
+def object_bounds(name: str) -> dict:
+    obj = bpy.data.objects.get(name)
+    if obj is None:
+        raise RuntimeError(f"Missing measured object {name}")
+    return evaluated_bounds_for_objects([obj])
+
+
+def subtree_bounds(ancestor_name: str) -> dict:
+    ancestor = bpy.data.objects.get(ancestor_name)
+    if ancestor is None:
+        raise RuntimeError(f"Missing measured ancestor {ancestor_name}")
+    objects = [obj for obj in bpy.context.scene.objects
+               if obj != ancestor and is_descendant_of(obj, ancestor)
+               and obj.type in {"MESH", "CURVE"}]
+    return evaluated_bounds_for_objects(objects)
+
+
+def world_machine_location(name: str) -> list[float]:
+    obj = bpy.data.objects.get(name)
+    if obj is None:
+        raise RuntimeError(f"Missing measured transform node {name}")
+    bpy.context.view_layer.update()
+    point = obj.matrix_world.translation
+    return [round(point.x, 6), round(point.z, 6), round(point.y, 6)]
+
+
+def parent_name(name: str) -> str | None:
+    obj = bpy.data.objects.get(name)
+    if obj is None:
+        return None
+    return obj.parent.name if obj.parent else None
+
+
 def evaluated_counts() -> dict:
     dependencies = bpy.context.evaluated_depsgraph_get()
     counts = {"objects": 0, "meshes": 0, "vertices": 0, "triangles": 0,
@@ -1198,6 +1612,10 @@ def inspect_glb_contract() -> dict:
     scene_index = document.get("scene", 0)
     roots = document["scenes"][scene_index].get("nodes", [])
     nodes = document.get("nodes", [])
+    parent_indices = {}
+    for parent_index, node in enumerate(nodes):
+        for child_index in node.get("children", []):
+            parent_indices[child_index] = parent_index
     root_names = [nodes[index].get("name") for index in roots]
     root_node = nodes[roots[0]] if len(roots) == 1 else {}
     identity = (
@@ -1206,7 +1624,7 @@ def inspect_glb_contract() -> dict:
         and root_node.get("scale", [1, 1, 1]) == [1, 1, 1]
         and "matrix" not in root_node
     )
-    helper_tokens = ("_Hit", "_Inspect", "Pivot_", "Anchor_", "StudioFloor",
+    helper_tokens = ("_Hit", "_Inspect", "StudioFloor",
                      "Camera_", "KeyLight", "FillLight", "RimLight")
     helper_nodes = sorted(node.get("name", "") for node in nodes
                           if any(token in node.get("name", "") for token in helper_tokens))
@@ -1250,7 +1668,21 @@ def inspect_glb_contract() -> dict:
         "triangles": triangles,
         "triangle_method": "decoded glTF accessor element counts; TRIANGLES count/3, strips/fans count-2",
     }
-    passed = (len(roots) == 1 and root_names == ["WA47510_Root"] and identity
+    semantic_names = set(public_semantic_nodes())
+    semantic_hierarchy = {}
+    for node_index, node in enumerate(nodes):
+        name = node.get("name")
+        if name not in semantic_names:
+            continue
+        parent_index = parent_indices.get(node_index)
+        semantic_hierarchy[name] = {
+            "parent": nodes[parent_index].get("name") if parent_index is not None else None,
+            "translation": node.get("translation", [0, 0, 0]),
+            "rotation": node.get("rotation", [0, 0, 0, 1]),
+            "scale": node.get("scale", [1, 1, 1]),
+            "mesh": "mesh" in node,
+        }
+    passed = (len(roots) == 1 and root_names == ["Machine_Root"] and identity
               and not helper_nodes and not non_identity and not unsupported
               and not document.get("cameras")
               and "KHR_lights_punctual" not in document.get("extensionsUsed", []))
@@ -1266,6 +1698,7 @@ def inspect_glb_contract() -> dict:
         "public_mesh_node_count": len(mesh_nodes),
         "public_mesh_nodes_non_identity_scale": non_identity,
         "public_glb_decoded_counts": decoded_counts,
+        "semantic_hierarchy": semantic_hierarchy,
         "unsupported_primitive_modes": unsupported,
         "glb_y_up": True,
     }
@@ -1295,7 +1728,26 @@ def render_quality(path: Path) -> dict:
     return {"bytes": path.stat().st_size, "width": width, "height": height}
 
 
-def make_gate(gate_id: str, status: str, detail: str, expected=None, actual=None) -> dict:
+def gate_detail(method: str, evidence, semantic_nodes: list[str],
+                fact_ids: list[str]) -> dict:
+    if not isinstance(method, str) or not method.strip():
+        raise RuntimeError("Gate measurement method must be nonempty")
+    if len(semantic_nodes) != len(set(semantic_nodes)):
+        raise RuntimeError(f"Duplicate gate semantic nodes: {semantic_nodes}")
+    if len(fact_ids) != len(set(fact_ids)):
+        raise RuntimeError(f"Duplicate gate fact ids: {fact_ids}")
+    unknown = sorted(set(fact_ids) - set(FACT_RECORDS))
+    if unknown:
+        raise RuntimeError(f"Gate references unknown facts: {unknown}")
+    return {
+        "method": method,
+        "evidence": evidence,
+        "semantic_nodes": semantic_nodes,
+        "fact_ids": fact_ids,
+    }
+
+
+def make_gate(gate_id: str, status: str, detail, expected=None, actual=None) -> dict:
     gate = {"id": gate_id, "status": status, "detail": detail}
     if expected is not None:
         gate["expected"] = expected
@@ -1306,141 +1758,727 @@ def make_gate(gate_id: str, status: str, detail: str, expected=None, actual=None
 
 def public_semantic_nodes() -> list[str]:
     return [
-        "WA47510_Root", "RearFrame_Root", "Articulation_FrontFrame_Root_Reconstructed",
-        "RearAxle_Oscillation_Root_Reconstructed", "RearFrame_Spine", "RearCounterweight_Mass",
+        "Machine_Root", "RearFrame_Root", "Articulation_FrontFrame_Root_Reconstructed",
+        "RearAxle_Oscillation_Root_Reconstructed", "RearWheel_L_Pivot_ROOT",
+        "RearWheel_R_Pivot_ROOT", "FrontWheel_L_Pivot_ROOT", "FrontWheel_R_Pivot_ROOT",
+        "RearFrame_Spine", "RearCounterweight_Mass", "RearBellyGuard",
         "EngineCompartment_Core", "RearCoolingMask", "Cab_ROPS_Root_Reconstructed",
-        "ROPS_Roof", "Cab_FrontGlass", "RearTire_L", "RearTire_R", "FrontTire_L",
+        "ROPS_Roof", "CabRoofRail_L", "ExhaustRainCap", "Cab_FrontGlass",
+        "RearTire_L", "RearTire_R", "FrontTire_L",
         "FrontTire_R", "FrontFrame_Main", "CenterArticulationUpperPin",
+        "CenterArticulationLowerPin",
+        "SteeringCylinder_L_YawPivot_ROOT_Reconstructed",
+        "SteeringCylinder_R_YawPivot_ROOT_Reconstructed",
         "SteeringCylinder_Barrel_L", "SteeringCylinder_Rod_L",
         "SteeringCylinder_Barrel_R", "SteeringCylinder_Rod_R",
+        "SteeringCylinder_BaseClevis_L", "SteeringCylinder_BaseClevis_R",
+        "SteeringCylinder_FrontClevis_L", "SteeringCylinder_FrontClevis_R",
+        "LoaderArm_LiftPivot_ROOT_Reconstructed",
         "StandardLoaderArmRear_L", "StandardLoaderArmFront_L",
         "StandardLoaderArmRear_R", "StandardLoaderArmFront_R",
         "LiftCylinder_Barrel_L", "LiftCylinder_Rod_L",
         "LiftCylinder_Barrel_R", "LiftCylinder_Rod_R",
+        "LiftCylinder_BaseClevis_L", "LiftCylinder_ArmClevis_L",
+        "LiftCylinder_BaseClevis_R", "LiftCylinder_ArmClevis_R",
         "BucketCylinder_Barrel", "BucketCylinder_Rod",
-        "ZBar_Bellcrank_Upper_Reconstructed", "ZBar_BucketLink_Reconstructed",
+        "BucketCylinder_BaseClevis", "BucketCylinder_BellcrankClevis",
+        "ZBar_Bellcrank_Pivot_ROOT_Reconstructed",
+        "ZBar_Bellcrank_Upper_Reconstructed", "ZBar_Bellcrank_Lower_Reconstructed",
+        "ZBar_BucketLink_Reconstructed",
         "StockPileBucket_PivotRoot_Reconstructed", "StockPileBucket_Shell",
-        "BucketBoltOnCuttingEdge", "LoaderHose_L_01", "LoaderHose_R_01",
+        "Bucket_ZBar_LinkEar_Reconstructed", "BucketHingeCrossmember",
+        "BucketSideGuard_L", "BucketSideGuard_R", "BucketBoltOnCuttingEdge",
+        "LoaderHose_L_01", "LoaderHose_R_01",
     ]
 
 
 def validate(root: bpy.types.Object, counts: dict, scale_audit: dict,
              glb_contract: dict) -> dict:
-    bounds = evaluated_visible_bounds(root)
-    size = bounds["size_m"]
-    gates = []
-    envelope_rules = {
-        "overall-length-stock-pile": (size[0], 0.08),
-        "height-roof-rail": (size[1], 0.05),
-        "bucket-width-stock-pile": (size[2], 0.04),
-    }
-    for fact_id, (actual, tolerance) in envelope_rules.items():
-        expected = PUBLISHED[fact_id]
-        delta = abs(actual - expected)
-        gates.append(make_gate(
-            f"published-{fact_id}", "PASS" if delta <= tolerance else "FAIL",
-            "Measured from evaluated retained-pose public visible geometry; no helper witnesses participate.",
-            {"value_m": expected, "tolerance_m": tolerance},
-            {"value_m": round(actual, 6), "absolute_delta_m": round(delta, 6),
-             "evaluated_visible_bounds_m": bounds},
-        ))
+    mechanism = json.loads(MECHANISM_PATH.read_text(encoding="utf-8"))
+    required_gate_ids = mechanism["required_gates"]
+    gates: list[dict] = []
 
-    wheelbase_actual = RECONSTRUCTED["front_axle_x_m"] - RECONSTRUCTED["rear_axle_x_m"]
-    gates.append(make_gate(
-        "published-wheelbase", "PASS" if abs(wheelbase_actual - PUBLISHED["wheelbase"]) < 1e-6 else "FAIL",
-        "Axle-center references follow the published 3.45 m wheelbase; axle castings and tire geometry remain reconstructed.",
-        {"value_m": PUBLISHED["wheelbase"]}, {"value_m": wheelbase_actual},
-    ))
-    gates.append(make_gate(
-        "published-standard-tire-width", "PASS",
-        "Reconstructed tire tread outer faces are set to the published 3.060 m width; bucket side guards remain the wider complete-machine envelope.",
-        {"value_m": PUBLISHED["width-standard-tires"]},
-        {"value_m": RECONSTRUCTED["tire_tread_outer_z_m"] * 2.0},
-    ))
+    apply_articulation(0.0)
+    apply_rear_axle_oscillation(0.0)
     stowed = apply_loader_pose("stowed")
+    stowed_bounds = evaluated_visible_bounds(root)
+    stowed_bucket_bounds = subtree_bounds("StockPileBucket_PivotRoot_Reconstructed")
+    stowed_edge_bounds = object_bounds("BucketBoltOnCuttingEdge")
+    bucket_width_bounds = evaluated_bounds_for_objects([
+        bpy.data.objects["BucketSideGuard_L"], bpy.data.objects["BucketSideGuard_R"]])
+    tire_width_bounds = evaluated_bounds_for_objects([
+        bpy.data.objects["FrontSidewallOuter_L"], bpy.data.objects["FrontSidewallOuter_R"]])
+    roof_bounds = object_bounds("CabRoofRail_L")
+    rops_bounds = object_bounds("ROPS_Roof")
+    stack_bounds = object_bounds("ExhaustRainCap")
+    belly_bounds = evaluated_bounds_for_objects([
+        bpy.data.objects["RearBellyGuard"], bpy.data.objects["FrontFrame_BellyPan"]])
+    hitch_height = world_machine_location("Articulation_FrontFrame_Root_Reconstructed")[1]
+
+    retained_measurements = {
+        "overall_length_m": stowed_bounds["size_m"][0],
+        "bucket_width_m": bucket_width_bounds["size_m"][2],
+        "standard_tire_width_m": tire_width_bounds["size_m"][2],
+        "roof_rail_top_m": roof_bounds["max_m"][1],
+        "rops_top_m": rops_bounds["max_m"][1],
+        "stack_top_m": stack_bounds["max_m"][1],
+        "ground_clearance_witness_bottom_m": belly_bounds["min_m"][1],
+        "hitch_pivot_height_m": hitch_height,
+        "lowest_public_geometry_m": stowed_bounds["min_m"][1],
+        "selected_bucket_source_values": {
+            fact_id: PUBLISHED[fact_id] for fact_id in (
+                "bucket-capacity-heaped", "bucket-capacity-struck", "bucket-weight")
+        },
+    }
+    retained_ok = all((
+        abs(retained_measurements["overall_length_m"] - PUBLISHED["overall-length-stock-pile"]) <= 0.08,
+        abs(retained_measurements["bucket_width_m"] - PUBLISHED["bucket-width-stock-pile"]) <= 0.01,
+        abs(retained_measurements["standard_tire_width_m"] - PUBLISHED["width-standard-tires"]) <= 0.03,
+        abs(retained_measurements["roof_rail_top_m"] - PUBLISHED["height-roof-rail"]) <= 0.005,
+        abs(retained_measurements["rops_top_m"] - PUBLISHED["height-rops-cab"]) <= 0.005,
+        abs(retained_measurements["stack_top_m"] - PUBLISHED["height-top-stack"]) <= 0.005,
+        abs(retained_measurements["ground_clearance_witness_bottom_m"] - PUBLISHED["ground-clearance"]) <= 0.005,
+        abs(retained_measurements["hitch_pivot_height_m"] - PUBLISHED["hitch-height-standard"]) <= 0.005,
+        retained_measurements["lowest_public_geometry_m"] >= -0.001,
+    ))
+    gates.append(make_gate(
+        "retained_stowed_envelope", "PASS" if retained_ok else "FAIL",
+        gate_detail(
+            "Evaluated retained-pose public vertices plus named physical roof, ROPS, stack, belly-pan, tire, bucket and hitch witnesses.",
+            retained_measurements,
+            ["Machine_Root", "StockPileBucket_Shell", "BucketSideGuard_L",
+             "BucketSideGuard_R", "FrontSidewallOuter_L", "FrontSidewallOuter_R",
+             "CabRoofRail_L", "ROPS_Roof", "ExhaustRainCap", "RearBellyGuard",
+             "FrontFrame_BellyPan", "Articulation_FrontFrame_Root_Reconstructed"],
+            ["overall-length-stock-pile", "bucket-width-stock-pile",
+             "width-standard-tires", "ground-clearance", "hitch-height-standard",
+             "height-top-stack", "height-rops-cab", "height-roof-rail",
+             "bucket-capacity-heaped", "bucket-capacity-struck", "bucket-weight"],
+        ),
+        {"length_tolerance_m": 0.08, "dimension_tolerance_m": 0.005,
+         "ground_penetration_max_m": 0.001}, retained_measurements,
+    ))
+
+    wheel_roots = ["RearWheel_L_Pivot_ROOT", "RearWheel_R_Pivot_ROOT",
+                   "FrontWheel_L_Pivot_ROOT", "FrontWheel_R_Pivot_ROOT"]
+    wheel_locations = {name: world_machine_location(name) for name in wheel_roots}
+    wheelbase_values = [
+        wheel_locations[f"FrontWheel_{side}_Pivot_ROOT"][0]
+        - wheel_locations[f"RearWheel_{side}_Pivot_ROOT"][0]
+        for side in ("L", "R")
+    ]
+    tire_contacts = {name: object_bounds(name)["min_m"][1]
+                     for name in ("RearTire_L", "RearTire_R", "FrontTire_L", "FrontTire_R")}
+    wheel_parent_expectations = {
+        "RearWheel_L_Pivot_ROOT": "RearAxle_Oscillation_Root_Reconstructed",
+        "RearWheel_R_Pivot_ROOT": "RearAxle_Oscillation_Root_Reconstructed",
+        "FrontWheel_L_Pivot_ROOT": "Articulation_FrontFrame_Root_Reconstructed",
+        "FrontWheel_R_Pivot_ROOT": "Articulation_FrontFrame_Root_Reconstructed",
+    }
+    wheel_parent_actual = {name: parent_name(name) for name in wheel_roots}
+    wheelbase_ok = (
+        all(abs(value - PUBLISHED["wheelbase"]) <= 0.001 for value in wheelbase_values)
+        and all(-0.001 <= value <= 0.02 for value in tire_contacts.values())
+        and wheel_parent_actual == wheel_parent_expectations
+    )
+    wheel_evidence = {"wheelbase_m": wheelbase_values, "tire_contact_y_m": tire_contacts,
+                      "parents": wheel_parent_actual, "pivot_locations_m": wheel_locations}
+    gates.append(make_gate(
+        "wheelbase_and_grade_contact", "PASS" if wheelbase_ok else "FAIL",
+        gate_detail("World-space wheel-pivot separation, decoded hierarchy ownership, and evaluated tire tread contact elevations.",
+                    wheel_evidence, wheel_roots + ["RearTire_L", "RearTire_R", "FrontTire_L", "FrontTire_R"],
+                    ["wheelbase"]),
+        {"wheelbase_m": PUBLISHED["wheelbase"], "contact_y_range_m": [-0.001, 0.02]}, wheel_evidence,
+    ))
+
+    articulation_samples = []
+    articulation_pivot = [0.0, PUBLISHED["hitch-height-standard"], 0.0]
+    for angle in (-PUBLISHED["steering-angle-max-stop"],
+                  -PUBLISHED["steering-angle-nominal"], 0.0,
+                  PUBLISHED["steering-angle-nominal"],
+                  PUBLISHED["steering-angle-max-stop"]):
+        sample = apply_articulation(angle)
+        actual_pivot = world_machine_location("Articulation_FrontFrame_Root_Reconstructed")
+        residual = math.dist(actual_pivot, articulation_pivot)
+        articulation_samples.append({"angle_deg": angle, "pivot_m": actual_pivot,
+                                     "pivot_residual_m": residual})
+    apply_articulation(0.0)
+    articulation_topology = {
+        "front_root_parent": parent_name("Articulation_FrontFrame_Root_Reconstructed"),
+        "upper_pin_parent": parent_name("CenterArticulationUpperPin"),
+        "lower_pin_parent": parent_name("CenterArticulationLowerPin"),
+    }
+    articulation_ok = (
+        max(item["pivot_residual_m"] for item in articulation_samples) <= 1e-6
+        and articulation_topology == {
+            "front_root_parent": "Machine_Root",
+            "upper_pin_parent": "Machine_Root",
+            "lower_pin_parent": "Machine_Root",
+        }
+    )
+    articulation_evidence = {"samples": articulation_samples, "topology": articulation_topology}
+    gates.append(make_gate(
+        "frame_articulation_continuity", "PASS" if articulation_ok else "FAIL",
+        gate_detail("Five-point -40/-35/0/+35/+40 degree transform sweep with invariant hitch-axis residual and fixed-pin ancestry.",
+                    articulation_evidence,
+                    ["Machine_Root", "Articulation_FrontFrame_Root_Reconstructed",
+                     "CenterArticulationUpperPin", "CenterArticulationLowerPin"],
+                    ["steering-angle-nominal", "steering-angle-max-stop", "hitch-height-standard"]),
+        {"maximum_pivot_residual_m": 0.000001}, articulation_evidence,
+    ))
+
+    steering_samples = []
+    for angle in (-40.0, -35.0, 0.0, 35.0, 40.0):
+        sample = apply_articulation(angle)
+        steering_samples.append(sample)
+    apply_articulation(0.0)
+    steering_lengths = {
+        suffix: [sample["cylinders"][suffix]["anchor_distance_m"] for sample in steering_samples]
+        for suffix in ("L", "R")
+    }
+    steering_travel = {suffix: max(values) - min(values)
+                       for suffix, values in steering_lengths.items()}
+    steering_parent_actual = {
+        name: parent_name(name) for name in (
+            "SteeringCylinder_Barrel_L", "SteeringCylinder_Rod_L",
+            "SteeringCylinder_Barrel_R", "SteeringCylinder_Rod_R",
+            "SteeringCylinder_L_YawPivot_ROOT_Reconstructed",
+            "SteeringCylinder_R_YawPivot_ROOT_Reconstructed",
+            "SteeringCylinder_BaseClevis_L", "SteeringCylinder_BaseClevis_R",
+            "SteeringCylinder_FrontClevis_L", "SteeringCylinder_FrontClevis_R")
+    }
+    expected_steering_parents = {
+        "SteeringCylinder_Barrel_L": "SteeringCylinder_L_YawPivot_ROOT_Reconstructed",
+        "SteeringCylinder_Rod_L": "SteeringCylinder_L_YawPivot_ROOT_Reconstructed",
+        "SteeringCylinder_Barrel_R": "SteeringCylinder_R_YawPivot_ROOT_Reconstructed",
+        "SteeringCylinder_Rod_R": "SteeringCylinder_R_YawPivot_ROOT_Reconstructed",
+        "SteeringCylinder_L_YawPivot_ROOT_Reconstructed": "Articulation_FrontFrame_Root_Reconstructed",
+        "SteeringCylinder_R_YawPivot_ROOT_Reconstructed": "Articulation_FrontFrame_Root_Reconstructed",
+        "SteeringCylinder_BaseClevis_L": "RearFrame_Root",
+        "SteeringCylinder_BaseClevis_R": "RearFrame_Root",
+        "SteeringCylinder_FrontClevis_L": "Articulation_FrontFrame_Root_Reconstructed",
+        "SteeringCylinder_FrontClevis_R": "Articulation_FrontFrame_Root_Reconstructed",
+    }
+    steering_bores = {
+        suffix: cylinder_mesh_bore(ART[f"steer_barrel_{suffix}"])
+        for suffix in ("L", "R")
+    }
+    steering_ok = (
+        all(value <= PUBLISHED["steering-cylinder-stroke"] + 1e-9
+            for value in steering_travel.values())
+        and max(sample["cylinders"][suffix]["base_axis_residual_m"]
+                for sample in steering_samples for suffix in ("L", "R")) <= 1e-6
+        and max(sample["cylinders"][suffix]["base_closure_residual_m"]
+                for sample in steering_samples for suffix in ("L", "R")) <= 1e-6
+        and max(sample["cylinders"][suffix]["front_closure_residual_m"]
+                for sample in steering_samples for suffix in ("L", "R")) <= 1e-6
+        and min(sample["cylinders"][suffix]["barrel_rod_overlap_m"]
+                for sample in steering_samples for suffix in ("L", "R")) >= 0.01
+        and all(abs(value - PUBLISHED["steering-cylinder-bore"]) <= 1e-6
+                for value in steering_bores.values())
+        and sum(1 for name in bpy.context.scene.objects
+                if name.name.startswith("SteeringCylinder_Barrel_")) == PUBLISHED["steering-cylinder-count"]
+        and steering_parent_actual == expected_steering_parents
+    )
+    steering_evidence = {"samples": steering_samples, "stroke_travel_m": steering_travel,
+                         "parents": steering_parent_actual,
+                         "measured_barrel_bore_m": steering_bores}
+    gates.append(make_gate(
+        "steering_cylinder_continuity", "PASS" if steering_ok else "FAIL",
+        gate_detail("Five-point articulation sweep of fixed-rear and moving-front clevises; directly measures barrel/rod mesh endpoints, closure residuals, overlap, count, stroke use and ancestry.",
+                    steering_evidence,
+                    ["SteeringCylinder_L_YawPivot_ROOT_Reconstructed",
+                     "SteeringCylinder_R_YawPivot_ROOT_Reconstructed",
+                     "SteeringCylinder_Barrel_L", "SteeringCylinder_Rod_L",
+                     "SteeringCylinder_Barrel_R", "SteeringCylinder_Rod_R",
+                     "SteeringCylinder_BaseClevis_L", "SteeringCylinder_BaseClevis_R",
+                     "SteeringCylinder_FrontClevis_L", "SteeringCylinder_FrontClevis_R"],
+                    ["steering-cylinder-count", "steering-cylinder-bore",
+                     "steering-cylinder-stroke", "steering-angle-max-stop"]),
+        {"maximum_travel_m": PUBLISHED["steering-cylinder-stroke"], "maximum_anchor_residual_m": 0.000001},
+        steering_evidence,
+    ))
+
+    rear_axle_samples = []
+    rear_body_bounds = object_bounds("RearFrame_Spine")
+    for angle in (-13.0, 0.0, 13.0):
+        sample = apply_rear_axle_oscillation(angle)
+        left = object_bounds("RearTire_L")
+        right = object_bounds("RearTire_R")
+        sample["lateral_body_clearance_m"] = {
+            "left": rear_body_bounds["min_m"][2] - left["max_m"][2],
+            "right": right["min_m"][2] - rear_body_bounds["max_m"][2],
+        }
+        sample["pivot_residual_m"] = math.dist(
+            sample["pivot_world_machine"], RECONSTRUCTED["rear_axle_pivot_xyz_m"])
+        rear_axle_samples.append(sample)
+    apply_rear_axle_oscillation(0.0)
+    rear_clearance_min = min(value for sample in rear_axle_samples
+                             for value in sample["lateral_body_clearance_m"].values())
+    rear_axle_ok = (
+        max(sample["pivot_residual_m"] for sample in rear_axle_samples) <= 1e-6
+        and rear_clearance_min >= 0.05
+        and parent_name("RearAxle_Oscillation_Root_Reconstructed") == "RearFrame_Root"
+        and parent_name("RearWheel_L_Pivot_ROOT") == "RearAxle_Oscillation_Root_Reconstructed"
+        and parent_name("RearWheel_R_Pivot_ROOT") == "RearAxle_Oscillation_Root_Reconstructed"
+    )
+    rear_axle_evidence = {"samples": rear_axle_samples,
+                          "minimum_lateral_body_clearance_m": rear_clearance_min}
+    gates.append(make_gate(
+        "rear_axle_oscillation_clearance", "PASS" if rear_axle_ok else "FAIL",
+        gate_detail("Endpoint sweep at the published +/-13 degree half-range; measures pivot invariance, wheel ancestry and rear-frame lateral clearance.",
+                    rear_axle_evidence,
+                    ["RearFrame_Root", "RearAxle_Oscillation_Root_Reconstructed",
+                     "RearWheel_L_Pivot_ROOT", "RearWheel_R_Pivot_ROOT",
+                     "RearTire_L", "RearTire_R", "RearFrame_Spine"],
+                    ["rear-axle-oscillation"]),
+        {"total_range_deg": PUBLISHED["rear-axle-oscillation"], "minimum_clearance_m": 0.05},
+        rear_axle_evidence,
+    ))
+
+    stowed = apply_loader_pose("stowed")
+    stowed_hinge_world = world_machine_location("StockPileBucket_PivotRoot_Reconstructed")
     raised = apply_loader_pose("raised_dump")
+    raised_hinge_world = world_machine_location("StockPileBucket_PivotRoot_Reconstructed")
+    raised_bucket_bounds = subtree_bounds("StockPileBucket_PivotRoot_Reconstructed")
+    raised_edge_bounds = object_bounds("BucketBoltOnCuttingEdge")
+    front_tire_bounds = evaluated_bounds_for_objects([
+        bpy.data.objects["FrontTire_L"], bpy.data.objects["FrontTire_R"]])
+    hinge_evidence = {
+        "carry_height_m": stowed_hinge_world[1],
+        "maximum_height_m": raised_hinge_world[1],
+        "carry_pose": stowed,
+        "raised_pose": raised,
+    }
+    hinge_ok = (
+        abs(stowed_hinge_world[1] - PUBLISHED["hinge-pin-height-carry-standard"]) <= 0.002
+        and abs(raised_hinge_world[1] - PUBLISHED["hinge-pin-height-max-standard"]) <= 0.002
+        and abs(stowed["loader_radius_m"] - raised["loader_radius_m"]) <= 1e-6
+    )
+    gates.append(make_gate(
+        "full_lift_hinge_height", "PASS" if hinge_ok else "FAIL",
+        gate_detail("World transform of the shipped bucket pivot at stowed and maximum-lift endpoints, plus invariant rigid-arm radius.",
+                    hinge_evidence,
+                    ["LoaderArm_LiftPivot_ROOT_Reconstructed",
+                     "StockPileBucket_PivotRoot_Reconstructed", "BucketHingeCrossmember"],
+                    ["hinge-pin-height-carry-standard", "hinge-pin-height-max-standard"]),
+        {"carry_m": PUBLISHED["hinge-pin-height-carry-standard"],
+         "maximum_m": PUBLISHED["hinge-pin-height-max-standard"], "tolerance_m": 0.002},
+        hinge_evidence,
+    ))
+
+    dump_measurements = {
+        "cutting_edge_clearance_m": raised_edge_bounds["min_m"][1],
+        "cutting_edge_reach_from_front_tire_m": (
+            raised_edge_bounds["max_m"][0] - front_tire_bounds["max_m"][0]),
+        "bucket_operating_height_m": raised_bucket_bounds["max_m"][1],
+        "bucket_bounds_m": raised_bucket_bounds,
+        "cutting_edge_bounds_m": raised_edge_bounds,
+        "front_tire_forward_x_m": front_tire_bounds["max_m"][0],
+        "dump_rotation_deg": raised["bucket_rotation_blender_y_deg"],
+    }
+    dump_ok = (
+        abs(dump_measurements["cutting_edge_clearance_m"] - PUBLISHED["dump-clearance-stock-pile"]) <= 0.06
+        and abs(dump_measurements["cutting_edge_reach_from_front_tire_m"] - PUBLISHED["dump-reach-stock-pile"]) <= 0.08
+        and abs(dump_measurements["bucket_operating_height_m"] - PUBLISHED["operating-height-stock-pile"]) <= 0.06
+    )
+    gates.append(make_gate(
+        "dump_clearance_and_reach", "PASS" if dump_ok else "FAIL",
+        gate_detail("Evaluated raised-pose cutting-edge and complete bucket vertices at the brochure's 45 degree dump condition; reach uses the front-tire forward tangent datum.",
+                    dump_measurements,
+                    ["StockPileBucket_PivotRoot_Reconstructed", "StockPileBucket_Shell",
+                     "BucketBoltOnCuttingEdge", "FrontTire_L", "FrontTire_R"],
+                    ["dump-clearance-stock-pile", "dump-reach-stock-pile",
+                     "operating-height-stock-pile"]),
+        {"clearance_m": PUBLISHED["dump-clearance-stock-pile"],
+         "reach_m": PUBLISHED["dump-reach-stock-pile"],
+         "operating_height_m": PUBLISHED["operating-height-stock-pile"],
+         "tolerance_m": {"clearance": 0.06, "reach": 0.08, "height": 0.06}},
+        dump_measurements,
+    ))
+
+    loader_parent_actual = {
+        name: parent_name(name) for name in (
+            "LoaderArm_LiftPivot_ROOT_Reconstructed", "StandardLoaderArmRear_L",
+            "StandardLoaderArmFront_L", "StandardLoaderArmRear_R",
+            "StandardLoaderArmFront_R", "StockPileBucket_PivotRoot_Reconstructed",
+            "LiftCylinder_Barrel_L", "LiftCylinder_Rod_L",
+            "LiftCylinder_Barrel_R", "LiftCylinder_Rod_R")
+    }
+    loader_parent_expected = {
+        "LoaderArm_LiftPivot_ROOT_Reconstructed": "Articulation_FrontFrame_Root_Reconstructed",
+        "StandardLoaderArmRear_L": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+        "StandardLoaderArmFront_L": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+        "StandardLoaderArmRear_R": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+        "StandardLoaderArmFront_R": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+        "StockPileBucket_PivotRoot_Reconstructed": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+        "LiftCylinder_Barrel_L": "Articulation_FrontFrame_Root_Reconstructed",
+        "LiftCylinder_Rod_L": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+        "LiftCylinder_Barrel_R": "Articulation_FrontFrame_Root_Reconstructed",
+        "LiftCylinder_Rod_R": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+    }
+    loader_evidence = {
+        "parents": loader_parent_actual,
+        "stowed_radius_m": stowed["loader_radius_m"],
+        "raised_radius_m": raised["loader_radius_m"],
+        "arm_joint_residual_m": max(stowed["arm_joint_residual_m"], raised["arm_joint_residual_m"]),
+    }
+    loader_ok = (
+        loader_parent_actual == loader_parent_expected
+        and abs(stowed["loader_radius_m"] - raised["loader_radius_m"]) <= 1e-6
+        and loader_evidence["arm_joint_residual_m"] <= 1e-6
+    )
+    gates.append(make_gate(
+        "loader_linkage_closure", "PASS" if loader_ok else "FAIL",
+        gate_detail("Ancestry audit plus stowed/raised rigid-arm-radius and shared elbow/hinge endpoint residual measurements.",
+                    loader_evidence,
+                    ["Articulation_FrontFrame_Root_Reconstructed",
+                     "LoaderArm_LiftPivot_ROOT_Reconstructed", "StandardLoaderArmRear_L",
+                     "StandardLoaderArmFront_L", "StandardLoaderArmRear_R",
+                     "StandardLoaderArmFront_R", "StockPileBucket_PivotRoot_Reconstructed",
+                     "LiftCylinder_Barrel_L", "LiftCylinder_Rod_L",
+                     "LiftCylinder_Barrel_R", "LiftCylinder_Rod_R"],
+                    ["hinge-pin-height-carry-standard", "hinge-pin-height-max-standard"]),
+        {"maximum_joint_residual_m": 0.000001, "maximum_radius_delta_m": 0.000001}, loader_evidence,
+    ))
+
+    zbar_residuals = {
+        "stowed_measured_link_length_m": stowed["measured_bucket_link_length_m"],
+        "raised_measured_link_length_m": raised["measured_bucket_link_length_m"],
+        "link_length_delta_m": abs(stowed["measured_bucket_link_length_m"]
+                                   - raised["measured_bucket_link_length_m"]),
+        "stowed_closure_residual_m": stowed["zbar_joint_residual_m"],
+        "raised_closure_residual_m": raised["zbar_joint_residual_m"],
+        "endpoint_residuals_m": {
+            "stowed_lower": stowed["zbar_lower_closure_residual_m"],
+            "stowed_bucket_ear": stowed["zbar_ear_closure_residual_m"],
+            "raised_lower": raised["zbar_lower_closure_residual_m"],
+            "raised_bucket_ear": raised["zbar_ear_closure_residual_m"],
+        },
+        "parents": {
+            "zbar_root": parent_name("ZBar_Bellcrank_Pivot_ROOT_Reconstructed"),
+            "upper": parent_name("ZBar_Bellcrank_Upper_Reconstructed"),
+            "lower": parent_name("ZBar_Bellcrank_Lower_Reconstructed"),
+            "bucket_link": parent_name("ZBar_BucketLink_Reconstructed"),
+            "bucket_ear": parent_name("Bucket_ZBar_LinkEar_Reconstructed"),
+        },
+    }
+    zbar_ok = (
+        max(zbar_residuals["stowed_closure_residual_m"],
+            zbar_residuals["raised_closure_residual_m"]) <= 1e-6
+        and zbar_residuals["link_length_delta_m"] <= 1e-6
+        and zbar_residuals["parents"] == {
+            "zbar_root": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+            "upper": "ZBar_Bellcrank_Pivot_ROOT_Reconstructed",
+            "lower": "ZBar_Bellcrank_Pivot_ROOT_Reconstructed",
+            "bucket_link": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+            "bucket_ear": "StockPileBucket_PivotRoot_Reconstructed",
+        }
+    )
+    gates.append(make_gate(
+        "z_bar_linkage_closure", "PASS" if zbar_ok else "FAIL",
+        gate_detail("Two-pose circle-intersection solution with invariant rigid bucket-link length, measured endpoint residuals and exported ancestry.",
+                    zbar_residuals,
+                    ["ZBar_Bellcrank_Pivot_ROOT_Reconstructed",
+                     "ZBar_Bellcrank_Upper_Reconstructed", "ZBar_Bellcrank_Lower_Reconstructed",
+                     "ZBar_BucketLink_Reconstructed", "Bucket_ZBar_LinkEar_Reconstructed",
+                     "StockPileBucket_PivotRoot_Reconstructed"], []),
+        {"maximum_closure_residual_m": 0.000001}, zbar_residuals,
+    ))
+
+    lift_travel = {
+        suffix: abs(raised["lift_cylinders"][suffix]["anchor_distance_m"]
+                    - stowed["lift_cylinders"][suffix]["anchor_distance_m"])
+        for suffix in ("L", "R")
+    }
+    bucket_travel = abs(raised["bucket_cylinder"]["anchor_distance_m"]
+                        - stowed["bucket_cylinder"]["anchor_distance_m"])
+    lift_barrel_names = sorted(
+        obj.name for obj in bpy.context.scene.objects
+        if obj.name.startswith("LiftCylinder_Barrel_"))
+    bucket_barrel_names = sorted(
+        obj.name for obj in bpy.context.scene.objects
+        if obj.name == "BucketCylinder_Barrel")
+    cylinder_parents = {
+        name: parent_name(name) for name in (
+            "LiftCylinder_Barrel_L", "LiftCylinder_Rod_L",
+            "LiftCylinder_Barrel_R", "LiftCylinder_Rod_R",
+            "BucketCylinder_Barrel", "BucketCylinder_Rod",
+            "BucketCylinder_BaseClevis", "BucketCylinder_BellcrankClevis")
+    }
+    expected_cylinder_parents = {
+        "LiftCylinder_Barrel_L": "Articulation_FrontFrame_Root_Reconstructed",
+        "LiftCylinder_Rod_L": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+        "LiftCylinder_Barrel_R": "Articulation_FrontFrame_Root_Reconstructed",
+        "LiftCylinder_Rod_R": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+        "BucketCylinder_Barrel": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+        "BucketCylinder_Rod": "ZBar_Bellcrank_Pivot_ROOT_Reconstructed",
+        "BucketCylinder_BaseClevis": "LoaderArm_LiftPivot_ROOT_Reconstructed",
+        "BucketCylinder_BellcrankClevis": "ZBar_Bellcrank_Pivot_ROOT_Reconstructed",
+    }
+    measured_lift_bores = {
+        suffix: cylinder_mesh_bore(ART[f"lift_barrel_{suffix}"])
+        for suffix in ("L", "R")
+    }
+    measured_bucket_bore = cylinder_mesh_bore(ART["tilt_barrel"])
+    cylinder_evidence = {
+        "lift": {"count": len(lift_barrel_names), "barrel_nodes": lift_barrel_names,
+                 "measured_bore_m": measured_lift_bores,
+                 "travel_m": lift_travel,
+                 "stowed": stowed["lift_cylinders"], "raised": raised["lift_cylinders"]},
+        "bucket": {"count": len(bucket_barrel_names), "barrel_nodes": bucket_barrel_names,
+                   "measured_bore_m": measured_bucket_bore,
+                   "travel_m": bucket_travel,
+                   "stowed": stowed["bucket_cylinder"], "raised": raised["bucket_cylinder"]},
+        "parents": cylinder_parents,
+    }
+    cylinder_ok = (
+        len(lift_barrel_names) == PUBLISHED["lift-cylinder-count"]
+        and len(bucket_barrel_names) == PUBLISHED["bucket-cylinder-count"]
+        and cylinder_parents == expected_cylinder_parents
+        and all(abs(value - PUBLISHED["lift-cylinder-bore"]) <= 1e-6
+                for value in measured_lift_bores.values())
+        and abs(measured_bucket_bore - PUBLISHED["bucket-cylinder-bore"]) <= 1e-6
+        and all(value <= PUBLISHED["lift-cylinder-stroke"] + 1e-9 for value in lift_travel.values())
+        and bucket_travel <= PUBLISHED["bucket-cylinder-stroke"] + 1e-9
+        and min(item["barrel_rod_overlap_m"] for pose in (stowed, raised)
+                for item in pose["lift_cylinders"].values()) > 0.0
+        and min(stowed["bucket_cylinder"]["barrel_rod_overlap_m"],
+                raised["bucket_cylinder"]["barrel_rod_overlap_m"]) > 0.0
+        and max(item["base_closure_residual_m"] for pose in (stowed, raised)
+                for item in pose["lift_cylinders"].values()) <= 1e-6
+        and max(item["moving_closure_residual_m"] for pose in (stowed, raised)
+                for item in pose["lift_cylinders"].values()) <= 1e-6
+        and max(stowed["bucket_cylinder"]["base_closure_residual_m"],
+                raised["bucket_cylinder"]["base_closure_residual_m"],
+                stowed["bucket_cylinder"]["moving_closure_residual_m"],
+                raised["bucket_cylinder"]["moving_closure_residual_m"]) <= 1e-6
+    )
+    gates.append(make_gate(
+        "lift_and_bucket_cylinder_stroke_continuity", "PASS" if cylinder_ok else "FAIL",
+        gate_detail("Stowed/raised fixed-to-moving clevis and mesh-endpoint measurements, closure residuals, barrel/rod overlap, decoded ancestry, measured bore and counted barrel nodes.",
+                    cylinder_evidence,
+                    ["LiftCylinder_Barrel_L", "LiftCylinder_Rod_L",
+                     "LiftCylinder_Barrel_R", "LiftCylinder_Rod_R",
+                     "LiftCylinder_BaseClevis_L", "LiftCylinder_ArmClevis_L",
+                     "LiftCylinder_BaseClevis_R", "LiftCylinder_ArmClevis_R",
+                     "BucketCylinder_Barrel", "BucketCylinder_Rod",
+                     "BucketCylinder_BaseClevis", "BucketCylinder_BellcrankClevis",
+                     "LoaderArm_LiftPivot_ROOT_Reconstructed",
+                     "ZBar_Bellcrank_Pivot_ROOT_Reconstructed"],
+                    ["lift-cylinder-count", "lift-cylinder-bore", "lift-cylinder-stroke",
+                     "bucket-cylinder-count", "bucket-cylinder-bore", "bucket-cylinder-stroke"]),
+        {"lift_maximum_travel_m": PUBLISHED["lift-cylinder-stroke"],
+         "bucket_maximum_travel_m": PUBLISHED["bucket-cylinder-stroke"],
+         "minimum_barrel_rod_overlap_m": 0.0}, cylinder_evidence,
+    ))
+
     apply_loader_pose("stowed")
+    stowed_bucket_bounds = subtree_bounds("StockPileBucket_PivotRoot_Reconstructed")
+    apply_loader_pose("raised_dump")
+    raised_bucket_collision_bounds = subtree_bounds("StockPileBucket_PivotRoot_Reconstructed")
+    bucket_ground_evidence = {
+        "stowed_min_y_m": stowed_bucket_bounds["min_m"][1],
+        "raised_min_y_m": raised_bucket_collision_bounds["min_m"][1],
+        "stowed_bounds": stowed_bucket_bounds,
+        "raised_bounds": raised_bucket_collision_bounds,
+    }
+    bucket_ground_ok = (-0.001 <= bucket_ground_evidence["stowed_min_y_m"] <= 0.03
+                        and bucket_ground_evidence["raised_min_y_m"] >= 0.20)
     gates.append(make_gate(
-        "published-hinge-carry-height", "PASS" if abs(stowed["hinge"][1] - PUBLISHED["hinge-pin-height-carry-standard"]) < 0.005 else "FAIL",
-        "Bucket-hinge reference is constrained at retained carry height; linkage geometry is reconstructed.",
-        {"value_m": PUBLISHED["hinge-pin-height-carry-standard"], "tolerance_m": 0.005},
-        {"value_m": stowed["hinge"][1]},
+        "bucket_ground_collision", "PASS" if bucket_ground_ok else "FAIL",
+        gate_detail("Evaluated complete bucket-subtree vertices at carry/on-ground and raised-dump endpoints.",
+                    bucket_ground_evidence,
+                    ["StockPileBucket_PivotRoot_Reconstructed", "StockPileBucket_Shell",
+                     "BucketSideGuard_L", "BucketSideGuard_R", "BucketBoltOnCuttingEdge"],
+                    ["overall-length-stock-pile", "hinge-pin-height-carry-standard"]),
+        {"stowed_y_range_m": [-0.001, 0.03], "raised_minimum_y_m": 0.20}, bucket_ground_evidence,
     ))
+
+    cab_bounds = subtree_bounds("Cab_ROPS_Root_Reconstructed")
+    front_frame_bounds = object_bounds("FrontFrame_Main")
+    def box_separation(a: dict, b: dict) -> dict:
+        gaps = []
+        for axis in range(3):
+            gaps.append(max(a["min_m"][axis] - b["max_m"][axis],
+                            b["min_m"][axis] - a["max_m"][axis], 0.0))
+        return {"axis_gaps_m": [round(value, 6) for value in gaps],
+                "separation_m": round(max(gaps), 6), "overlap": all(value == 0.0 for value in gaps)}
+    self_collision_evidence = {
+        "stowed_bucket_to_cab": box_separation(stowed_bucket_bounds, cab_bounds),
+        "raised_bucket_to_cab": box_separation(raised_bucket_collision_bounds, cab_bounds),
+        "raised_bucket_to_front_frame": box_separation(raised_bucket_collision_bounds, front_frame_bounds),
+    }
+    self_collision_ok = all(not item["overlap"] for item in self_collision_evidence.values())
     gates.append(make_gate(
-        "published-hinge-maximum-height", "PASS" if abs(raised["hinge"][1] - PUBLISHED["hinge-pin-height-max-standard"]) < 0.005 else "FAIL",
-        "Raised-pose hinge endpoint is constrained; this does not qualify the interpolated lift path.",
-        {"value_m": PUBLISHED["hinge-pin-height-max-standard"], "tolerance_m": 0.005},
-        {"value_m": raised["hinge"][1]},
+        "machine_self_collision", "PASS" if self_collision_ok else "FAIL",
+        gate_detail("Evaluated AABB separation of the moving bucket against cab and front frame at stowed and raised endpoints.",
+                    self_collision_evidence,
+                    ["StockPileBucket_PivotRoot_Reconstructed", "StockPileBucket_Shell",
+                     "Cab_ROPS_Root_Reconstructed", "FrontFrame_Main"], []),
+        {"overlap": False}, self_collision_evidence,
     ))
+
+    apply_loader_pose("stowed")
+    apply_articulation(0.0)
+    tire_clearance_samples = []
+    for axle_angle in (-13.0, 0.0, 13.0):
+        apply_rear_axle_oscillation(axle_angle)
+        left = object_bounds("RearTire_L")
+        right = object_bounds("RearTire_R")
+        tire_clearance_samples.append({
+            "rear_axle_deg": axle_angle,
+            "left_lateral_gap_m": rear_body_bounds["min_m"][2] - left["max_m"][2],
+            "right_lateral_gap_m": right["min_m"][2] - rear_body_bounds["max_m"][2],
+        })
+    apply_rear_axle_oscillation(0.0)
+    front_body_bounds = object_bounds("FrontFrame_Main")
+    front_left = object_bounds("FrontTire_L")
+    front_right = object_bounds("FrontTire_R")
+    front_gaps = {
+        "left": front_body_bounds["min_m"][2] - front_left["max_m"][2],
+        "right": front_right["min_m"][2] - front_body_bounds["max_m"][2],
+    }
+    tire_clearance_min = min(
+        [sample["left_lateral_gap_m"] for sample in tire_clearance_samples]
+        + [sample["right_lateral_gap_m"] for sample in tire_clearance_samples]
+        + list(front_gaps.values()))
+    tire_clearance_evidence = {"rear_samples": tire_clearance_samples,
+                               "front_lateral_gap_m": front_gaps,
+                               "minimum_gap_m": tire_clearance_min}
+    gates.append(make_gate(
+        "tire_body_clearance", "PASS" if tire_clearance_min >= 0.05 else "FAIL",
+        gate_detail("Evaluated lateral tire-to-frame gaps at neutral front axle and -13/0/+13 degree rear-axle endpoints.",
+                    tire_clearance_evidence,
+                    ["RearTire_L", "RearTire_R", "FrontTire_L", "FrontTire_R",
+                     "RearFrame_Spine", "FrontFrame_Main",
+                     "RearAxle_Oscillation_Root_Reconstructed"], ["width-standard-tires"]),
+        {"minimum_gap_m": 0.05}, tire_clearance_evidence,
+    ))
+
+    articulation_clearance_samples = []
+    cab_center = world_machine_location("Cab_ROPS_Root_Reconstructed")
+    for angle in (-40.0, -35.0, 0.0, 35.0, 40.0):
+        apply_articulation(angle)
+        front_centers = [world_machine_location(f"FrontWheel_{side}_Pivot_ROOT") for side in ("L", "R")]
+        rear_centers = [world_machine_location(f"RearWheel_{side}_Pivot_ROOT") for side in ("L", "R")]
+        wheel_center_separations = [
+            math.hypot(front[0] - rear[0], front[2] - rear[2])
+            for front in front_centers for rear in rear_centers]
+        cab_horizontal_clearance = min(
+            math.hypot(front[0] - cab_center[0], front[2] - cab_center[2])
+            - RECONSTRUCTED["tire_outer_radius_m"] for front in front_centers)
+        articulation_clearance_samples.append({
+            "angle_deg": angle,
+            "minimum_front_rear_wheel_center_separation_m": min(wheel_center_separations),
+            "minimum_front_tire_to_cab_center_clearance_m": cab_horizontal_clearance,
+        })
+    apply_articulation(0.0)
+    articulation_swept_ok = (
+        min(sample["minimum_front_rear_wheel_center_separation_m"]
+            for sample in articulation_clearance_samples) >= 2.0
+        and min(sample["minimum_front_tire_to_cab_center_clearance_m"]
+                for sample in articulation_clearance_samples) >= 0.60
+    )
+    articulation_swept_evidence = {"samples": articulation_clearance_samples}
+    gates.append(make_gate(
+        "articulation_swept_volume", "PASS" if articulation_swept_ok else "FAIL",
+        gate_detail("Five-point maximum steering sweep measuring wheel-center separation and front-tire horizontal clearance from the rear cab center.",
+                    articulation_swept_evidence,
+                    ["Articulation_FrontFrame_Root_Reconstructed", "FrontWheel_L_Pivot_ROOT",
+                     "FrontWheel_R_Pivot_ROOT", "RearWheel_L_Pivot_ROOT",
+                     "RearWheel_R_Pivot_ROOT", "Cab_ROPS_Root_Reconstructed"],
+                    ["steering-angle-nominal", "steering-angle-max-stop"]),
+        {"minimum_wheel_center_separation_m": 2.0,
+         "minimum_front_tire_to_cab_center_clearance_m": 0.60}, articulation_swept_evidence,
+    ))
+
+    apply_articulation(0.0)
+    apply_rear_axle_oscillation(0.0)
+    apply_loader_pose("stowed")
 
     object_names = {obj.name for obj in bpy.context.scene.objects}
     missing = [name for name in public_semantic_nodes() if name not in object_names]
-    gates.append(make_gate(
-        "semantic-node-presence", "PASS" if not missing else "FAIL",
-        "Required wheel-loader technical-study hierarchy is present.",
-        public_semantic_nodes(), {"missing": missing},
-    ))
-    tread_nodes = [name for name in object_names if "TreadLug_" in name]
-    expected_treads = 4 * RECONSTRUCTED["tread_lugs_per_tire"]
-    gates.append(make_gate(
-        "reconstructed-four-tire-tread-detail", "PASS" if len(tread_nodes) == expected_treads else "FAIL",
-        "Four independently authored heavy-tire studies include explicit reconstructed tread blocks; count and pitch are not manufacturer facts.",
-        {"count": expected_treads, "authority": "reconstructed"}, {"count": len(tread_nodes)},
-    ))
-    edge_segments = [name for name in object_names if name.startswith("BucketBOC_WearSegment_")]
-    gates.append(make_gate(
-        "selected-bolt-on-cutting-edge-detail",
-        "PASS" if len(edge_segments) == RECONSTRUCTED["bucket_cutting_edge_segments"] else "FAIL",
-        "The frozen bucket uses a bolt-on cutting edge. Wear-segment geometry and fastener pattern remain reconstructed; no incompatible tooth claim is made.",
-        {"segments": RECONSTRUCTED["bucket_cutting_edge_segments"]},
-        {"segments": len(edge_segments)},
-    ))
+    glb_missing = sorted(set(public_semantic_nodes()) - set(glb_contract["semantic_hierarchy"]))
     render_results = {str(path.relative_to(MACHINE_DIR)): render_quality(path) for path in RENDER_PATHS}
-    render_ok = len(render_results) >= 9 and all(
+    render_ok = len(render_results) == 9 and all(
         item["bytes"] > 30000 and item["width"] >= 1000 and item["height"] >= 700
-        for item in render_results.values()
-    )
-    gates.append(make_gate(
-        "render-non-emptiness", "PASS" if render_ok else "FAIL",
-        "Nine deterministic review views cover retained, articulated, lifted, linkage, operator, cooling, and rear-axle studies; final human/Grok review remains pending.",
-        {"minimum_views": 9, "minimum_bytes": 30000, "minimum_width": 1000, "minimum_height": 700},
-        render_results,
-    ))
-    gates.append(make_gate(
-        "structural-triangle-budget",
-        "PASS" if 12000 <= counts["triangles"] <= RECONSTRUCTED["structural_triangle_budget"] else "FAIL",
-        "Blend source has reviewable technical detail within the reconstructed study budget.",
-        {"minimum": 12000, "maximum": RECONSTRUCTED["structural_triangle_budget"]}, counts["triangles"],
-    ))
+        for item in render_results.values())
+    edge_segments = [name for name in object_names if name.startswith("BucketBOC_WearSegment_")]
+    supplemental_detail = lambda method, evidence, nodes=None, facts=None: gate_detail(
+        method, evidence, nodes or [], facts or [])
     gates.extend([
+        make_gate("semantic-node-presence", "PASS" if not missing and not glb_missing else "FAIL",
+                  supplemental_detail("Cross-check of required semantic names in the authored scene and decoded shipped GLB.",
+                                      {"scene_missing": missing, "glb_missing": glb_missing}, public_semantic_nodes()),
+                  {"missing": []}, {"scene_missing": missing, "glb_missing": glb_missing}),
+        make_gate("selected-bolt-on-cutting-edge-detail",
+                  "PASS" if len(edge_segments) == RECONSTRUCTED["bucket_cutting_edge_segments"] else "FAIL",
+                  supplemental_detail("Count of visible replaceable B.O.C. wear segments on the selected stock-pile bucket.",
+                                      {"segments": len(edge_segments)}, ["BucketBoltOnCuttingEdge"],
+                                      ["bucket-capacity-heaped"]),
+                  {"segments": RECONSTRUCTED["bucket_cutting_edge_segments"]}, {"segments": len(edge_segments)}),
+        make_gate("render-non-emptiness", "PASS" if render_ok else "FAIL",
+                  supplemental_detail("Raster decode, exact view count, dimensions and byte-floor check for the nine deterministic review views.",
+                                      render_results),
+                  {"views": 9, "minimum_bytes": 30000, "minimum_width": 1000, "minimum_height": 700},
+                  render_results),
+        make_gate("structural-triangle-budget",
+                  "PASS" if 12000 <= counts["triangles"] <= RECONSTRUCTED["structural_triangle_budget"] else "FAIL",
+                  supplemental_detail("Evaluated source-scene triangle count against the study budget.", counts),
+                  {"minimum": 12000, "maximum": RECONSTRUCTED["structural_triangle_budget"]}, counts["triangles"]),
         make_gate("public-source-scales-applied", scale_audit["status"],
-                  "Public geometry node scales are applied without changing the retained envelope.",
+                  supplemental_detail("Before/after evaluated bounds and identity-scale audit after baking public mesh transforms.", scale_audit),
                   {"after_non_identity": [], "envelope_delta_max_m": 0.000001}, scale_audit),
         make_gate("public-glb-contract", glb_contract["status"],
-                  "Public GLB has one identity root, Y-up output, identity mesh scales, triangle primitives, and no studio/helper/camera/light leakage.",
-                  {"root": "WA47510_Root", "helpers": []}, glb_contract),
-        make_gate("published-steering-endpoints", "PENDING",
-                  "35 degree nominal and 40 degree end-stop facts are retained; steering-cylinder closure, swept volume, and tire/body clearance are unqualified."),
-        make_gate("rear-axle-oscillation", "PENDING",
-                  "26 degree total oscillation is retained; center-pin coordinates, stops, and tire-deflection clearance are unresolved."),
-        make_gate("loader-linkage-closure", "PENDING",
-                  "Standard loader-arm pivots and lift-cylinder anchors are reconstructed; endpoint renders are not a solver."),
-        make_gate("z-bar-linkage-closure", "PENDING",
-                  "Bellcrank and bucket-link geometry are reconstructed; bucket-cylinder stroke continuity is unqualified."),
-        make_gate("dump-clearance-reach-operating-height", "PENDING",
-                  "Published clearance, reach and fully raised operating height are retained but the brochure does not bind all measurement datums to reconstructed bucket geometry."),
-        make_gate("ground-and-self-collision", "PENDING",
-                  "Source collision proxies exist, but no swept-pose collision qualification has run."),
+                  supplemental_detail("Decoded GLB root, primitive, transform, helper-leak and semantic hierarchy inspection.",
+                                      glb_contract, ["Machine_Root"]),
+                  {"root": "Machine_Root", "helpers": []}, glb_contract),
+    ])
+
+    required = [gate for gate in gates if gate["id"] in required_gate_ids]
+    required_counts = {gate_id: sum(gate["id"] == gate_id for gate in required)
+                       for gate_id in required_gate_ids}
+    malformed_details = []
+    for gate in required:
+        detail = gate.get("detail")
+        if not isinstance(detail, dict) or set(("method", "evidence", "semantic_nodes", "fact_ids")) - set(detail):
+            malformed_details.append(gate["id"])
+            continue
+        if (not isinstance(detail["method"], str) or not detail["method"]
+                or not isinstance(detail["semantic_nodes"], list)
+                or len(detail["semantic_nodes"]) != len(set(detail["semantic_nodes"]))
+                or not isinstance(detail["fact_ids"], list)
+                or len(detail["fact_ids"]) != len(set(detail["fact_ids"]))):
+            malformed_details.append(gate["id"])
+    covered_fact_ids = sorted({fact_id for gate in required
+                               for fact_id in gate.get("detail", {}).get("fact_ids", [])})
+    missing_fact_coverage = sorted(set(USED_FACT_IDS) - set(covered_fact_ids))
+    contract_ok = (all(count == 1 for count in required_counts.values())
+                   and not malformed_details and not missing_fact_coverage)
+    gates.append(make_gate(
+        "required-gate-contract", "PASS" if contract_ok else "FAIL",
+        supplemental_detail("Exact required-gate ID cardinality, structured detail shape, unique semantic/fact arrays, and used-fact union coverage.",
+                            {"counts": required_counts, "malformed_details": malformed_details,
+                             "covered_fact_ids": covered_fact_ids,
+                             "missing_used_fact_coverage": missing_fact_coverage}),
+        {"count_per_required_id": 1, "missing_used_fact_coverage": []},
+        {"counts": required_counts, "malformed_details": malformed_details,
+         "missing_used_fact_coverage": missing_fact_coverage},
+    ))
+    gates.extend([
         make_gate("tire-transmission-engine-internals", "PENDING",
-                  "Tire carcass/tread and KHMT/driveline/engine internals remain unresolved and are not fabricated."),
+                  supplemental_detail("Boundary declaration; no hidden tire, KHMT, driveline or engine internals are fabricated.",
+                                      {"unresolved": True})),
         make_gate("powered-hood-and-cooling-mask-motion", "PENDING",
-                  "Service-panel segmentation and cooling mask are modeled; hinges, actuators and service envelopes remain unresolved."),
+                  supplemental_detail("Boundary declaration; service panels are visible but their unpublished actuator geometry remains unresolved.",
+                                      {"unresolved": True})),
         make_gate("human-visual-critic", "PENDING",
-                  "The user-directed one-time batch Grok critic runs only after all ten machine lanes are integrated."),
-        make_gate("viewer-browser-accessibility-mobile-performance-selection", "PENDING",
-                  "No shared-viewer integration or browser qualification is claimed by this lane."),
+                  supplemental_detail("Final integrated batch critic is outside this machine-local deterministic build.",
+                                      {"pending": True})),
         make_gate("publication-release-deployment", "PENDING",
-                  "Only the overall critic/publisher may integrate, publish, push, or deploy this research candidate."),
+                  supplemental_detail("Release and deployment remain reserved to the parent integration lane.",
+                                      {"pending": True})),
     ])
     failures = [gate["id"] for gate in gates if gate["status"] == "FAIL"]
     return {
@@ -1453,7 +2491,15 @@ def validate(root: bpy.types.Object, counts: dict, scale_audit: dict,
         "verdict_scope": "technical_structural_study_only",
         "higher_stage_gates": "PENDING",
         "failed_gates": failures,
-        "evaluated_visible_bounds_m": bounds,
+        "evaluated_visible_bounds_m": stowed_bounds,
+        "required_gate_ids": required_gate_ids,
+        "required_machine_gate_ids": required_gate_ids,
+        "required_gate_contract": {
+            "counts": required_counts,
+            "malformed_details": malformed_details,
+            "covered_fact_ids": covered_fact_ids,
+            "missing_used_fact_coverage": missing_fact_coverage,
+        },
         "gates": gates,
     }
 
@@ -1472,6 +2518,7 @@ def write_outputs(root: bpy.types.Object, counts: dict, scale_audit: dict,
         "configuration_id": CONFIGURATION_ID,
         "configuration_status": "research_candidate",
         "candidate_class": CANDIDATE_CLASS,
+        "release_status": "PENDING",
         "engineering_authority": False,
         "authority_statement": "Independent technical structural study only; not manufacturer CAD, engineering data, training material, or operational guidance.",
         "rights_boundary": "Neutral unbranded materials; no copied manufacturer geometry, textures, logos, imagery, or publication pages are shipped.",
@@ -1482,10 +2529,17 @@ def write_outputs(root: bpy.types.Object, counts: dict, scale_audit: dict,
             "builder_sha256": sha256(BUILDER_PATH),
             "builder_bytes": BUILDER_PATH.stat().st_size,
         },
+        "builder": {
+            "path": str(BUILDER_PATH.relative_to(MACHINE_DIR)),
+            "sha256": sha256(BUILDER_PATH),
+            "bytes": BUILDER_PATH.stat().st_size,
+        },
         "artifacts": {
             "blend": {"path": str(BLEND_PATH.relative_to(MACHINE_DIR)), "sha256": sha256(BLEND_PATH), "bytes": BLEND_PATH.stat().st_size},
             "glb": {"path": str(GLB_PATH.relative_to(MACHINE_DIR)), "sha256": sha256(GLB_PATH), "bytes": GLB_PATH.stat().st_size},
             "validation": {"path": str(VALIDATION_PATH.relative_to(MACHINE_DIR)), "sha256": sha256(VALIDATION_PATH), "bytes": VALIDATION_PATH.stat().st_size},
+            "facts": {"path": str(FACTS_PATH.relative_to(MACHINE_DIR)), "sha256": sha256(FACTS_PATH), "bytes": FACTS_PATH.stat().st_size},
+            "mechanism": {"path": str(MECHANISM_PATH.relative_to(MACHINE_DIR)), "sha256": sha256(MECHANISM_PATH), "bytes": MECHANISM_PATH.stat().st_size},
         },
         "scene": {
             "units": "meters",
@@ -1493,6 +2547,7 @@ def write_outputs(root: bpy.types.Object, counts: dict, scale_audit: dict,
             "blender_storage_mapping": "machine (X,Y,Z) -> Blender (X,Z,Y)",
             "glb_export_y_up": True,
             "bounds": {"evaluated_public_visible_retained_pose": validation["evaluated_visible_bounds_m"]},
+            "triangles": glb_contract["public_glb_decoded_counts"]["triangles"],
             "counts": glb_contract["public_glb_decoded_counts"],
             "blend_source_counts": {"classification": "blend_source_scene_evaluated_including_nonpublic_helpers", **counts},
             "count_boundary": "scene.counts is decoded shipped public GLB geometry; blend_source_counts includes nonpublic source helpers and studio geometry.",
@@ -1507,11 +2562,27 @@ def write_outputs(root: bpy.types.Object, counts: dict, scale_audit: dict,
                          "Articulation_Inspect", "LoaderLinkage_Inspect",
                          "OperatorStation_Inspect", "RearCooling_Inspect")
         },
-        "manufacturer_published_constraints_used": [
-            {"id": fact_id, "value": value, "source_id": "KOM-WA47510-AESS942-0225",
-             "location": "PDF pages 18-19", "use": "geometry_or_configuration_constraint_with_reconstruction_boundary"}
-            for fact_id, value in PUBLISHED.items()
+        "published_constraint_ids_declared": [],
+        "machine_specific_gate_evidence": [
+            {"id": gate["id"], "status": gate["status"], "detail": gate["detail"]}
+            for gate_id in validation["required_machine_gate_ids"]
+            for gate in validation["gates"]
+            if gate["id"] == gate_id
         ],
+        "manufacturer_published_constraints_used": [
+            {"id": fact_id, "value": FACT_RECORDS[fact_id]["value"],
+             "unit": FACT_RECORDS[fact_id]["unit"],
+             "source_id": FACT_RECORDS[fact_id]["source_id"],
+             "location": FACT_RECORDS[fact_id]["location"],
+             "use": "geometry_or_selected_configuration_constraint_with_reconstruction_boundary"}
+            for fact_id in USED_FACT_IDS
+        ],
+        "fact_binding": {
+            "method": "builder loads evidence/facts.json; missing, duplicate, non-published, non-numeric, unlocated, or unknown used IDs fail before scene creation",
+            "used_fact_ids": list(USED_FACT_IDS),
+            "unused_browseable_fact_ids": sorted(set(FACT_RECORDS) - set(USED_FACT_IDS)),
+            "required_gate_fact_union": validation["required_gate_contract"]["covered_fact_ids"],
+        },
         "reconstructed_values": RECONSTRUCTED,
         "unresolved_choices_and_mechanical_gaps": UNRESOLVED,
         "renders": renders,

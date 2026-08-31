@@ -35,7 +35,7 @@
       "retired_official_asset_url": "https://www.jcb.com/globalassets/digizuite/53520-29846-fastrac-4000-8000-series-e-spec-fr-fr-issue-1-lr/",
       "pages": 8,
       "admission": "reference_only",
-      "applicability": "The current live JCB 8000-series page is the landing authority. Static dimensions, suspension cylinder size, selected tire basis, transmission, capacities, 540E/1000 PTO modes, steering topology, and linkage presentation context were transcribed from JCB's eight-page 2022 French technical-data publication while its direct asset URL was live; that direct asset now returns 404 and is retained only as a retired-official-asset locator. Its 335/348 hp calibration is not applied to the US power facts, and no Category 3N fact or geometry is claimed in the public package."
+      "applicability": "Rejected for configuration and geometry authority: the retired PDF locator returns 404 and the retained live locator resolves to landing HTML rather than the claimed technical PDF. Historical transcriptions are kept only as unresolved reference notes. They do not establish US tire availability, track centers, wheelbase, ground clearance, suspension-cylinder size, PTO modes, envelope, option code, or linkage geometry."
     }
   ]
 }

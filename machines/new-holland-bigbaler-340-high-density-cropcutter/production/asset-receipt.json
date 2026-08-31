@@ -16,8 +16,8 @@
   },
   "builder": {
     "path": "source/blender/build_new_holland_bigbaler_340_high_density_cropcutter.py",
-    "sha256": "688cd40f77404f6e77989946577b7d4bc1b3087abeb785eba95c411436cd4430",
-    "bytes": 694,
+    "sha256": "be853d80973eb4101ebf2e5bdaf689ae3f009d6184cf66c214b7af9926fee171",
+    "bytes": 45888,
     "deterministic": true,
     "network_used": false,
     "downloaded_geometry_used": false,
@@ -27,30 +27,30 @@
   },
   "shared_generator": {
     "path": "../../scripts/fleet/build_machine.py",
-    "sha256": "02b99250651741b462b3dae8b2471db723beb689dfe89e1c7e251d7402fe0f55",
-    "bytes": 78579
+    "sha256": "9e36599f0c9bbac097422a8766e3ef1c81e6fc9432f024d99a24b79da18264df",
+    "bytes": 81778
   },
   "design": {
     "path": "source/design.json",
-    "sha256": "7913fb48c593ed1b2bc2394475230f6fbbf5b0a4530d61766a258980ccc56589",
-    "bytes": 2200,
+    "sha256": "8cae5ede46aca29133285a69afa30e93744474b8e8221f0b586dfce1a1f3fd39",
+    "bytes": 2313,
     "schema_version": "1.0.0"
   },
   "artifacts": {
     "blend": {
       "path": "source/blender/new-holland-bigbaler-340-high-density-cropcutter-structural-study.blend",
-      "sha256": "492827f2768f5bced063cd433f316b1f8a437eeb4e3712ce58eb7c1613b148d9",
-      "bytes": 224746
+      "sha256": "1051492332e686dfb5ba930b27df1d88e9c68f026221e4a65048171ac88cdc47",
+      "bytes": 364008
     },
     "glb": {
       "path": "assets/new-holland-bigbaler-340-high-density-cropcutter-structural-study.glb",
-      "sha256": "9f8d8cc05ae47423a9a335c21298bc8d747ea86735258ba4aff31003123a6321",
-      "bytes": 1654784
+      "sha256": "97074fc353c309260e8d69e77f0cb772c70eec07ca6c7349622597380f1c02c1",
+      "bytes": 3185716
     },
     "validation": {
       "path": "production/validation.json",
-      "sha256": "38883a40f24f7439a61575533966fdedfff4e3aac3ecb8ce92ded46f4f850d1a",
-      "bytes": 8312
+      "sha256": "84b214b7a78d99e317123e38a45fb2969e7b0ebde320d538b3e62000bc5a9422",
+      "bytes": 86948
     }
   },
   "scene": {
@@ -62,7 +62,7 @@
     },
     "bounds": {
       "min_m": [
-        -4.467999,
+        -4.468,
         0.0,
         -1.4935
       ],
@@ -82,10 +82,10 @@
       3.454,
       2.987
     ],
-    "objects": 207,
-    "meshes": 190,
-    "triangles": 32512,
-    "materials": 4
+    "objects": 452,
+    "meshes": 399,
+    "triangles": 61344,
+    "materials": 7
   },
   "glb_contract": {
     "glb_version": "2.0",
@@ -94,21 +94,21 @@
     "root_name": "Machine_Root",
     "root_record": {},
     "identity_root": true,
-    "nodes": 207,
-    "mesh_nodes": 190,
-    "mesh_definitions": 190,
-    "materials": 4,
-    "triangles": 32512,
+    "nodes": 452,
+    "mesh_nodes": 399,
+    "mesh_definitions": 399,
+    "materials": 7,
+    "triangles": 61344,
     "cameras": 0,
     "punctual_lights": false,
     "images": 0,
     "textures": 0,
     "nonidentity_mesh_scales": {},
     "helper_like_mesh_nodes": [],
-    "semantic_motion_nodes": 16,
+    "semantic_motion_nodes": 52,
     "bounds": {
       "min_m": [
-        -4.467999,
+        -4.468,
         0.0,
         -1.4935
       ],
@@ -129,16 +129,42 @@
     "Fixed_Structure_ROOT": true,
     "Running_Gear_ROOT": true,
     "Hydraulics_ROOT": true,
-    "Service_Detail_ROOT": true,
     "Drawbar_Yaw_Pivot": true,
     "Drawbar_ROOT": true,
     "Pickup_Lift_Pivot": true,
     "Pickup_ROOT": true,
     "Plunger_ROOT": true,
     "Bale_Chute_Pivot": true,
-    "Bale_Chute_ROOT": true
+    "Bale_Chute_ROOT": true,
+    "Front_Tandem_Axle_ROOT": true,
+    "Rear_Tandem_Axle_ROOT": true,
+    "Tandem_FL_Suspension_ROOT": true,
+    "Tandem_FR_Suspension_ROOT": true,
+    "Tandem_RL_Suspension_ROOT": true,
+    "Tandem_RR_Suspension_ROOT": true,
+    "Tandem_FL_Steering_Pivot": true,
+    "Tandem_FR_Steering_Pivot": true,
+    "Tandem_RL_Steering_Pivot": true,
+    "Tandem_RR_Steering_Pivot": true,
+    "PTO_ROOT": true,
+    "Flywheel_ROOT": true,
+    "Pickup_Reel_ROOT": true,
+    "CropCutter_Rotor_ROOT": true,
+    "CropCutter_Knife_Drawer_ROOT": true,
+    "Stuffer_Fork_ROOT": true,
+    "Density_Door_ROOT": true,
+    "Knotter_Deck_ROOT": true,
+    "Knotter_01_ROOT": true,
+    "Knotter_02_ROOT": true,
+    "Knotter_03_ROOT": true,
+    "Knotter_04_ROOT": true,
+    "Knotter_05_ROOT": true,
+    "Knotter_06_ROOT": true,
+    "Bale_Chamber_ROOT": true,
+    "Hydraulic_Manifold_ROOT": true
   },
-  "manufacturer_published_constraints_used": [
+  "semantic_node_roles": {},
+  "published_constraint_ids_declared": [
     "public-envelope-x",
     "public-envelope-y",
     "public-envelope-z",
@@ -150,30 +176,475 @@
     "bale-width",
     "bale-height"
   ],
+  "machine_specific_gate_evidence": [
+    {
+      "id": "frozen_cropcutter_configuration",
+      "status": "PASS",
+      "detail": {
+        "method": "Match the frozen identity to publication-constrained pickup, CropCutter, bale-section, knotter and tandem topology.",
+        "evidence": {
+          "configuration_id": "NH-BB340HD-NAM-CROPCUTTER120X90-29K-TANDEM600-CANDIDATE",
+          "measured_glb_xyz_m": [
+            8.936,
+            3.454,
+            2.987
+          ],
+          "visible_tine_bars": 5,
+          "visible_double_tines": 85,
+          "visible_knives": 29,
+          "visible_knotters": 6,
+          "nominal_bale_section_m": [
+            1.2,
+            0.9
+          ],
+          "boundary": "Counts and outer dimensions are constrained; profiles and every hidden coordinate remain reconstructed."
+        },
+        "semantic_nodes": [
+          "Pickup_Reel_ROOT",
+          "CropCutter_Rotor_ROOT",
+          "CropCutter_Knife_Drawer_ROOT",
+          "Bale_Chamber_ROOT",
+          "Knotter_Deck_ROOT"
+        ],
+        "fact_ids": [
+          "pickup-width",
+          "pickup-tine-bars",
+          "pickup-double-tines",
+          "cropcutter-rotor-width",
+          "cropcutter-knives",
+          "bale-width",
+          "bale-height"
+        ]
+      }
+    },
+    {
+      "id": "single_identity_root",
+      "status": "PASS",
+      "detail": {
+        "method": "Inspect the exported GLB root and its fixed, running-gear and hydraulic branches.",
+        "evidence": {
+          "scene_root_count": 1,
+          "root_name": "Machine_Root",
+          "major_branches": [
+            "Fixed_Structure_ROOT",
+            "Running_Gear_ROOT",
+            "Hydraulics_ROOT"
+          ]
+        },
+        "semantic_nodes": [
+          "Machine_Root",
+          "Fixed_Structure_ROOT",
+          "Running_Gear_ROOT",
+          "Hydraulics_ROOT"
+        ],
+        "fact_ids": [
+          "public-envelope-x"
+        ]
+      }
+    },
+    {
+      "id": "four_tire_contact",
+      "status": "PASS",
+      "detail": {
+        "method": "Measure four tire carcasses on two tandem axle roots in neutral pose.",
+        "evidence": {
+          "tire_count": 4,
+          "axle_count": 2,
+          "tires": [
+            {
+              "node": "Tandem_FL_Tire",
+              "minimum_y_m": 0.0,
+              "diameter_x_m": 1.2,
+              "diameter_y_m": 1.2
+            },
+            {
+              "node": "Tandem_FR_Tire",
+              "minimum_y_m": 0.0,
+              "diameter_x_m": 1.2,
+              "diameter_y_m": 1.2
+            },
+            {
+              "node": "Tandem_RL_Tire",
+              "minimum_y_m": 0.0,
+              "diameter_x_m": 1.2,
+              "diameter_y_m": 1.2
+            },
+            {
+              "node": "Tandem_RR_Tire",
+              "minimum_y_m": 0.0,
+              "diameter_x_m": 1.2,
+              "diameter_y_m": 1.2
+            }
+          ],
+          "reconstructed_axle_centers_x_m": [
+            -0.58,
+            -1.92
+          ]
+        },
+        "semantic_nodes": [
+          "Tandem_FL_Wheel_ROOT",
+          "Tandem_FR_Wheel_ROOT",
+          "Tandem_RL_Wheel_ROOT",
+          "Tandem_RR_Wheel_ROOT"
+        ],
+        "fact_ids": [
+          "tandem-steering-angle",
+          "public-envelope-z"
+        ]
+      }
+    },
+    {
+      "id": "drawbar_and_PTO_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "Measure exact forward extent, twin drawbar arms, guarded PTO nesting and flywheel diameter cue.",
+        "evidence": {
+          "measured_forward_extent_m": 4.468,
+          "target_forward_extent_m": 4.468,
+          "guarded_pto_radial_clearance_m": 0.045,
+          "measured_flywheel_diameter_m": 1.08,
+          "twin_drawbar_arm_count": 2
+        },
+        "semantic_nodes": [
+          "Drawbar_ROOT",
+          "PTO_ROOT",
+          "Flywheel_ROOT"
+        ],
+        "fact_ids": [
+          "pto-speed",
+          "flywheel-diameter",
+          "flywheel-weight"
+        ]
+      }
+    },
+    {
+      "id": "pickup_rotor_knife_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "Measure pickup and rotor widths, count five bars, 85 double-tine meshes and 29 knife meshes, and inspect ordered crop-path centers.",
+        "evidence": {
+          "measured_pickup_width_m": 2.35,
+          "measured_rotor_width_m": 1.2,
+          "tine_bar_count": 5,
+          "double_tine_count": 85,
+          "knife_count": 29,
+          "ordered_crop_path_centers_x_m": [
+            2.28,
+            1.42,
+            0.7,
+            0.28
+          ],
+          "functional_adjacency_excluded_from_collision_claim": true
+        },
+        "semantic_nodes": [
+          "Pickup_Reel_ROOT",
+          "CropCutter_Rotor_ROOT",
+          "CropCutter_Knife_Drawer_ROOT"
+        ],
+        "fact_ids": [
+          "pickup-width",
+          "pickup-tine-bars",
+          "pickup-double-tines",
+          "cropcutter-rotor-width",
+          "cropcutter-knives"
+        ]
+      }
+    },
+    {
+      "id": "stuffer_plunger_phase_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "Count six stuffer tines and sample the full published plunger presentation span.",
+        "evidence": {
+          "visible_stuffer_tines": 6,
+          "published_stuffer_cycles_per_min": 48,
+          "published_plunger_strokes_per_min": 48,
+          "sampled_presentation_stroke_m": 0.748,
+          "phase_authority": "reconstructed explanatory choreography"
+        },
+        "semantic_nodes": [
+          "Stuffer_Fork_ROOT",
+          "Plunger_ROOT",
+          "Bale_Chamber_ROOT"
+        ],
+        "fact_ids": [
+          "stuffer-rate",
+          "plunger-rate",
+          "plunger-stroke"
+        ]
+      }
+    },
+    {
+      "id": "density_door_cylinder_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "Traverse three density doors and seven cylinder cues from one compound motion root.",
+        "evidence": {
+          "visible_density_doors": [
+            "Density_Ring_Top_Door",
+            "Density_Ring_L_Door",
+            "Density_Ring_R_Door"
+          ],
+          "visible_density_cylinders": [
+            "Density_Cylinder_01",
+            "Density_Cylinder_02",
+            "Density_Cylinder_03",
+            "Density_Cylinder_04",
+            "Density_Cylinder_05",
+            "Density_Cylinder_06",
+            "Density_Cylinder_07"
+          ],
+          "cylinder_count": 7,
+          "hydraulic_response_simulated": false
+        },
+        "semantic_nodes": [
+          "Density_Door_ROOT",
+          "Hydraulic_Manifold_ROOT",
+          "Bale_Chamber_ROOT"
+        ],
+        "fact_ids": [
+          "density-cylinders",
+          "bale-width",
+          "bale-height"
+        ]
+      }
+    },
+    {
+      "id": "knotter_containment",
+      "status": "PASS",
+      "detail": {
+        "method": "Count six motion roots and three fan cues inside the top knotter deck.",
+        "evidence": {
+          "knotter_roots": [
+            "Knotter_01_ROOT",
+            "Knotter_02_ROOT",
+            "Knotter_03_ROOT",
+            "Knotter_04_ROOT",
+            "Knotter_05_ROOT",
+            "Knotter_06_ROOT"
+          ],
+          "electric_fans": [
+            "Knotter_Fan_01",
+            "Knotter_Fan_02",
+            "Knotter_Fan_03"
+          ],
+          "deck_guard_z_bounds_m": [
+            -0.78,
+            0.78
+          ],
+          "patented_linkage_and_twine_path_resolved": false
+        },
+        "semantic_nodes": [
+          "Knotter_Deck_ROOT",
+          "Knotter_01_ROOT",
+          "Knotter_06_ROOT"
+        ],
+        "fact_ids": [
+          "knotter-twines",
+          "knotter-fans"
+        ]
+      }
+    },
+    {
+      "id": "tandem_steering_and_suspension_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "Traverse four suspension roots through four steering pivots to four tires and sample the published 14 degree maximum.",
+        "evidence": {
+          "axle_roots": [
+            "Front_Tandem_Axle_ROOT",
+            "Rear_Tandem_Axle_ROOT"
+          ],
+          "suspension_roots": [
+            "Tandem_FL_Suspension_ROOT",
+            "Tandem_FR_Suspension_ROOT",
+            "Tandem_RL_Suspension_ROOT",
+            "Tandem_RR_Suspension_ROOT"
+          ],
+          "steering_roots": [
+            "Tandem_FL_Steering_Pivot",
+            "Tandem_FR_Steering_Pivot",
+            "Tandem_RL_Steering_Pivot",
+            "Tandem_RR_Steering_Pivot"
+          ],
+          "sampled_steering_range_deg": [
+            -14.0,
+            14.0
+          ],
+          "sampled_suspension_lift_m": [
+            0.0,
+            0.025
+          ],
+          "geometry_and_load_response_authority": "reconstructed"
+        },
+        "semantic_nodes": [
+          "Front_Tandem_Axle_ROOT",
+          "Rear_Tandem_Axle_ROOT",
+          "Tandem_FL_Suspension_ROOT",
+          "Tandem_RR_Steering_Pivot"
+        ],
+        "fact_ids": [
+          "tandem-steering-angle",
+          "public-envelope-z"
+        ]
+      }
+    },
+    {
+      "id": "chute_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "Traverse and sample the closed transport chute above ground and clear of tire carcasses.",
+        "evidence": {
+          "measured_transport_chute_min_x_m": -4.468,
+          "sampled_hinge_range_rad": [
+            -0.08,
+            0.06
+          ],
+          "sampled_auto_path": {
+            "duration_seconds": 18,
+            "sample_count": 73,
+            "sample_interval_seconds": 0.25,
+            "minimum_public_y_m": 8e-06,
+            "forbidden_tire_collision_count": 0,
+            "first_forbidden_collisions": [],
+            "scope": "Exact viewer target path sampled against ground and four tire carcasses; intended crop-path adjacency is excluded.",
+            "boundary": "Discrete AABB evidence only; not continuous collision detection, crop simulation, hydraulic response or an operating limit."
+          }
+        },
+        "semantic_nodes": [
+          "Bale_Chute_Pivot",
+          "Bale_Chute_ROOT",
+          "Rear_Tandem_Axle_ROOT"
+        ],
+        "fact_ids": [
+          "transport-length",
+          "public-envelope-x"
+        ]
+      }
+    },
+    {
+      "id": "ground_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "Sample every public mesh at 0.25 second intervals over the exact 18 second Auto path.",
+        "evidence": {
+          "neutral_minimum_y_m": 0.0,
+          "sampled_auto_path": {
+            "duration_seconds": 18,
+            "sample_count": 73,
+            "sample_interval_seconds": 0.25,
+            "minimum_public_y_m": 8e-06,
+            "forbidden_tire_collision_count": 0,
+            "first_forbidden_collisions": [],
+            "scope": "Exact viewer target path sampled against ground and four tire carcasses; intended crop-path adjacency is excluded.",
+            "boundary": "Discrete AABB evidence only; not continuous collision detection, crop simulation, hydraulic response or an operating limit."
+          },
+          "tolerance_m": -0.002
+        },
+        "semantic_nodes": [
+          "Tandem_FL_Wheel_ROOT",
+          "Tandem_FR_Wheel_ROOT",
+          "Tandem_RL_Wheel_ROOT",
+          "Tandem_RR_Wheel_ROOT"
+        ],
+        "fact_ids": [
+          "public-envelope-y"
+        ]
+      }
+    },
+    {
+      "id": "self_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "Sample representative moving attachment AABBs against all four tire carcasses.",
+        "evidence": {
+          "sampled_auto_path": {
+            "duration_seconds": 18,
+            "sample_count": 73,
+            "sample_interval_seconds": 0.25,
+            "minimum_public_y_m": 8e-06,
+            "forbidden_tire_collision_count": 0,
+            "first_forbidden_collisions": [],
+            "scope": "Exact viewer target path sampled against ground and four tire carcasses; intended crop-path adjacency is excluded.",
+            "boundary": "Discrete AABB evidence only; not continuous collision detection, crop simulation, hydraulic response or an operating limit."
+          },
+          "forbidden_target_nodes": [
+            "Tandem_FL_Tire",
+            "Tandem_FR_Tire",
+            "Tandem_RL_Tire",
+            "Tandem_RR_Tire"
+          ],
+          "intended_internal_crop_path_overlap_excluded": true
+        },
+        "semantic_nodes": [
+          "Drawbar_Yaw_Pivot",
+          "Pickup_Lift_Pivot",
+          "Density_Door_ROOT",
+          "Bale_Chute_Pivot"
+        ],
+        "fact_ids": [
+          "public-envelope-z",
+          "bale-width",
+          "bale-height"
+        ]
+      }
+    },
+    {
+      "id": "swept_volume_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "Combine the 73-point ground and forbidden-tire results with an explicit discrete-solver boundary.",
+        "evidence": {
+          "sampled_auto_path": {
+            "duration_seconds": 18,
+            "sample_count": 73,
+            "sample_interval_seconds": 0.25,
+            "minimum_public_y_m": 8e-06,
+            "forbidden_tire_collision_count": 0,
+            "first_forbidden_collisions": [],
+            "scope": "Exact viewer target path sampled against ground and four tire carcasses; intended crop-path adjacency is excluded.",
+            "boundary": "Discrete AABB evidence only; not continuous collision detection, crop simulation, hydraulic response or an operating limit."
+          },
+          "continuous_solver": false,
+          "scope": "Exact viewer target path versus ground and tire carcasses only."
+        },
+        "semantic_nodes": [
+          "Plunger_ROOT",
+          "CropCutter_Knife_Drawer_ROOT",
+          "Tandem_FL_Steering_Pivot",
+          "Bale_Chute_Pivot"
+        ],
+        "fact_ids": [
+          "plunger-stroke",
+          "tandem-steering-angle"
+        ]
+      }
+    }
+  ],
   "reconstructed_values": {
     "transport_pose": "Chute closed and handrails up define the retained manufacturer-published envelope.",
     "crop_path": "Pickup, CropCutter, stuffer, plunger, knotter and bale chamber volumes are schematic visual cues without crop simulation.",
-    "running_gear": "Tandem running gear is abstracted to the generic square-baler archetype; tire identity remains unresolved because the brochure labels conflict.",
-    "materials": "Neutral unbranded sand, graphite, steel and rubber with no logos, decals or copied trade dress.",
+    "running_gear": "Four visible tires on two reconstructed tandem axles encode the published Auto-Steer feature; tire make, exact order label, tread, suspension centers and linkage remain unresolved because the brochure labels conflict.",
+    "materials": "Neutral unbranded slate, graphite, steel and rubber with restrained amber visibility cues and no logos, decals or copied trade dress.",
     "hidden_geometry": "PTO driveline, flywheel, stuffer crank, plunger crank, knotters, density doors and steering joints are reconstructed.",
     "animation_ranges": "Plunger presentation displacement uses the published 0.748 m stroke span; phase, speed and every other range remain reconstructed.",
     "generic_archetype_geometry": "square_baler proportions and visible detail are independently reconstructed for this technical study.",
     "visible_envelope_calibration": {
-      "classification": "reconstructed_visible_envelope_calibration",
+      "classification": "authored_visible_envelope_measurement",
       "source_bounds_m": {
         "min_m": [
-          -4.296456,
+          -4.468,
           0.0,
           -1.4935
         ],
         "max_m": [
-          4.384041,
-          2.7632,
+          4.468,
+          3.454,
           1.4935
         ],
         "size_m": [
-          8.680498,
-          2.7632,
+          8.936,
+          3.454,
           2.987
         ]
       },
@@ -195,13 +666,13 @@
         ]
       },
       "axis_scale_factors": [
-        1.029434068,
-        1.250000088,
-        1.000000004
+        1.0,
+        1.0,
+        1.0
       ],
       "calibrated_bounds_m": {
         "min_m": [
-          -4.467999,
+          -4.468,
           0.0,
           -1.4935
         ],
@@ -216,7 +687,7 @@
           2.987
         ]
       },
-      "authority": "reconstructed_not_machine_specific_engineering"
+      "authority": "independently_measured_from_authored_geometry"
     }
   },
   "unresolved_choices": [
@@ -237,33 +708,33 @@
   "renders": [
     {
       "path": "review/renders/new-holland-bigbaler-340-high-density-cropcutter-operator-side.png",
-      "sha256": "ddfb42d83fb1c4e5d894a88b87c283a0ceaf26dd674d3849066af50118298828",
-      "bytes": 235804
+      "sha256": "2122ac9dec0d1e7ba8a1b2111fc4be4bc5c0288a32e37ba4c642926584db5005",
+      "bytes": 267401
     },
     {
       "path": "review/renders/new-holland-bigbaler-340-high-density-cropcutter-front-three-quarter.png",
-      "sha256": "ec4a47ab4484524b21c7160544b31db09107ab76cce431bc4e855a3eb20b7579",
-      "bytes": 279513
+      "sha256": "df800124ac6cbe4b7185bf93347344f40e952aea92b7deb3dd195fa84adcede1",
+      "bytes": 371606
     },
     {
       "path": "review/renders/new-holland-bigbaler-340-high-density-cropcutter-rear-three-quarter.png",
-      "sha256": "b14f0488f0586ac66238f91f0690853920957d52c91f24bd94e2a33b1bcf777b",
-      "bytes": 266447
+      "sha256": "b9252e899abe7ba0b895b28583c27a071413cdf29c6deae8ffbc70e2bc0bf0a9",
+      "bytes": 351306
     },
     {
       "path": "review/renders/new-holland-bigbaler-340-high-density-cropcutter-elevated-technical.png",
-      "sha256": "6e551c71717af0aabbd9ca66e9a9c5e26198e4650e964e9a78c04d98257ac9a3",
-      "bytes": 329802
+      "sha256": "d67de4326533e70a9e6e73feb3d7d60fb9ed11a2a32200e18b25a90896478bbf",
+      "bytes": 380613
     },
     {
       "path": "review/renders/new-holland-bigbaler-340-high-density-cropcutter-articulation-detail.png",
-      "sha256": "a60c6334bd5f8b51bd1a933345c454d626c183a0e85edf574c1709cbb58818f0",
-      "bytes": 288720
+      "sha256": "9c0122e53c92a3d0f216a46ad29e4bec3ce9f5160c2c2d4c406e5e765802302b",
+      "bytes": 443556
     },
     {
       "path": "review/renders/new-holland-bigbaler-340-high-density-cropcutter-right-side.png",
-      "sha256": "5c066cd399e76b79d375801ad80ee21bf86915a08de7ef568e89d8b79da06863",
-      "bytes": 232296
+      "sha256": "28df645bedd50fcf6b0d970f5947a737b102ff7df7d576842f286c286148fa24",
+      "bytes": 257898
     }
   ],
   "build_verdict": "PASS",

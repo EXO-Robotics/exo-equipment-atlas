@@ -10,43 +10,43 @@
   "release_status": "PENDING",
   "bounds": {
     "min_m": [
-      -5.315001,
+      -5.315,
       0.0,
       -5.35
     ],
     "max_m": [
-      5.315,
+      5.32,
       3.99,
       5.35
     ],
     "size_m": [
-      10.630001,
+      10.635,
       3.99,
       10.7
     ]
   },
   "counts": {
-    "objects": 210,
-    "meshes": 190,
-    "triangles": 27040,
-    "materials": 7
+    "objects": 288,
+    "meshes": 244,
+    "triangles": 33060,
+    "materials": 9
   },
   "envelope_fit": {
-    "classification": "reconstructed_visible_envelope_calibration",
+    "classification": "authored_visible_envelope_measurement",
     "source_bounds_m": {
       "min_m": [
-        -4.895328,
-        -0.003432,
+        -5.315,
+        0.0,
         -5.35
       ],
       "max_m": [
-        5.7402,
+        5.32,
         3.99,
         5.35
       ],
       "size_m": [
-        10.635527,
-        3.993432,
+        10.635,
+        3.99,
         10.7
       ]
     },
@@ -68,28 +68,28 @@
       ]
     },
     "axis_scale_factors": [
-      0.999480314,
-      0.999140699,
-      1.000000018
+      1.0,
+      1.0,
+      1.0
     ],
     "calibrated_bounds_m": {
       "min_m": [
-        -5.315001,
+        -5.315,
         0.0,
         -5.35
       ],
       "max_m": [
-        5.315,
+        5.32,
         3.99,
         5.35
       ],
       "size_m": [
-        10.630001,
+        10.635,
         3.99,
         10.7
       ]
     },
-    "authority": "reconstructed_not_machine_specific_engineering"
+    "authority": "independently_measured_from_authored_geometry"
   },
   "glb_contract": {
     "glb_version": "2.0",
@@ -98,41 +98,67 @@
     "root_name": "Machine_Root",
     "root_record": {},
     "identity_root": true,
-    "nodes": 210,
-    "mesh_nodes": 190,
-    "mesh_definitions": 190,
-    "materials": 7,
-    "triangles": 27040,
+    "nodes": 288,
+    "mesh_nodes": 244,
+    "mesh_definitions": 244,
+    "materials": 9,
+    "triangles": 33060,
     "cameras": 0,
     "punctual_lights": false,
     "images": 0,
     "textures": 0,
     "nonidentity_mesh_scales": {},
     "helper_like_mesh_nodes": [],
-    "semantic_motion_nodes": 19,
+    "semantic_motion_nodes": 43,
     "bounds": {
       "min_m": [
-        -5.315001,
+        -5.315,
         0.0,
         -5.35
       ],
       "max_m": [
-        5.315,
+        5.32,
         3.99,
         5.35
       ],
       "size_m": [
-        10.630001,
+        10.635,
         3.99,
         10.7
       ]
     }
   },
+  "required_machine_gate_ids": [
+    "carrier_length_without_header",
+    "selected_carrier_width",
+    "carrier_height",
+    "selected_powerflow_header_span",
+    "header_lift_endpoint_clearance",
+    "header_roll_compensation_range",
+    "crop_elevator_cylinder_continuity",
+    "rear_steering_continuity",
+    "trakride_belt_path_and_phase_continuity",
+    "reel_belt_and_intake_rotation_continuity",
+    "unloading_auger_swing_fold_and_spout_clearance",
+    "dual_helix_and_rotorfeeder_clearance",
+    "active_spread_disk_and_swingflow_clearance",
+    "airsense_fan_clearance",
+    "ladder_clearance",
+    "ground_collision",
+    "header_self_collision",
+    "carrier_self_collision",
+    "neutral_material_and_branding_review"
+  ],
   "gates": [
     {
       "id": "builder-execution",
       "status": "PASS",
       "detail": "Factory-startup background builder reached validation generation."
+    },
+    {
+      "id": "machine-specific-builder",
+      "status": "PASS",
+      "detail": "Machine-local subclass owns the selected machine topology."
     },
     {
       "id": "candidate-class-boundary",
@@ -158,27 +184,1097 @@
       "id": "required-semantic-nodes",
       "status": "PASS",
       "detail": {
-        "Machine_Root": true,
-        "Fixed_Structure_ROOT": true,
-        "Running_Gear_ROOT": true,
-        "Hydraulics_ROOT": true,
-        "Service_Detail_ROOT": true,
-        "Header_Lift_Pivot": true,
-        "Header_ROOT": true,
-        "Reel_Pivot": true,
-        "Reel_ROOT": true,
-        "Feederhouse_ROOT": true,
-        "Unloader_Swing_Pivot": true,
-        "Unloader_ROOT": true,
-        "Track_L_ROOT": true,
-        "Track_R_ROOT": true
+        "Machine_Root": {
+          "present": true,
+          "role": "identity_root",
+          "visible_mesh_descendants": [
+            "ActiveSpread_L_Disk",
+            "ActiveSpread_L_Vane_1",
+            "ActiveSpread_L_Vane_2",
+            "ActiveSpread_L_Vane_3",
+            "ActiveSpread_L_Vane_4",
+            "ActiveSpread_R_Disk",
+            "ActiveSpread_R_Vane_1",
+            "ActiveSpread_R_Vane_2",
+            "ActiveSpread_R_Vane_3",
+            "ActiveSpread_R_Vane_4",
+            "AirSense_Fan_Blade_1",
+            "AirSense_Fan_Blade_2",
+            "AirSense_Fan_Blade_3",
+            "AirSense_Fan_Blade_4",
+            "AirSense_Fan_Blade_5",
+            "AirSense_Fan_Blade_6",
+            "AirSense_Fan_Blade_7",
+            "AirSense_Fan_Blade_8",
+            "AirSense_Fan_Hub",
+            "Carrier_Front_End_Structure",
+            "Carrier_Height_Roof",
+            "Carrier_Lateral_Structure_L",
+            "Carrier_Lateral_Structure_R",
+            "Carrier_Longitudinal_Frame",
+            "Carrier_Rear_End_Structure",
+            "Dual_Helix_Cutaway_Guard",
+            "Dual_Helix_L_Bar_1",
+            "Dual_Helix_L_Bar_10",
+            "Dual_Helix_L_Bar_2",
+            "Dual_Helix_L_Bar_3",
+            "Dual_Helix_L_Bar_4",
+            "Dual_Helix_L_Bar_5",
+            "Dual_Helix_L_Bar_6",
+            "Dual_Helix_L_Bar_7",
+            "Dual_Helix_L_Bar_8",
+            "Dual_Helix_L_Bar_9",
+            "Dual_Helix_L_Drum",
+            "Dual_Helix_R_Bar_1",
+            "Dual_Helix_R_Bar_10",
+            "Dual_Helix_R_Bar_2",
+            "Dual_Helix_R_Bar_3",
+            "Dual_Helix_R_Bar_4",
+            "Dual_Helix_R_Bar_5",
+            "Dual_Helix_R_Bar_6",
+            "Dual_Helix_R_Bar_7",
+            "Dual_Helix_R_Bar_8",
+            "Dual_Helix_R_Bar_9",
+            "Dual_Helix_R_Drum",
+            "Engine_Bay_Lower_Mass",
+            "Grain_Tank",
+            "Feeder_Chain_Path_1",
+            "Feeder_Chain_Path_2",
+            "Feeder_Chain_Path_3",
+            "Feeder_Chain_Path_4",
+            "Feeder_Header_Coupler",
+            "Feederhouse_Casing",
+            "Cutterbar",
+            "Header_Backbone",
+            "Header_Coupler",
+            "Header_Crop_Divider_L",
+            "Header_Crop_Divider_R",
+            "Header_Intake_Auger",
+            "PowerFlow_Belt_1",
+            "PowerFlow_Belt_2",
+            "PowerFlow_Belt_3",
+            "PowerFlow_Belt_4",
+            "PowerFlow_Belt_5",
+            "PowerFlow_Belt_6",
+            "PowerFlow_Reel_Axle",
+            "PowerFlow_Reel_Bat_1",
+            "PowerFlow_Reel_Bat_2",
+            "PowerFlow_Reel_Bat_3",
+            "PowerFlow_Reel_Bat_4",
+            "PowerFlow_Reel_Bat_5",
+            "PowerFlow_Reel_Bat_6",
+            "Lift_Feeder_Bracket_L",
+            "Lift_Feeder_Bracket_R",
+            "Lift_Frame_Bracket_L",
+            "Lift_Frame_Bracket_R",
+            "Cab_Floor",
+            "Cab_Front_Glass",
+            "Cab_L_Glass",
+            "Cab_L_Post_F",
+            "Cab_L_Post_R",
+            "Cab_R_Glass",
+            "Cab_R_Post_F",
+            "Cab_R_Post_R",
+            "Cab_Rear_Glass",
+            "Cab_Roof",
+            "Operator_Seat",
+            "PowerFold_Ladder_Rail_L",
+            "PowerFold_Ladder_Rail_R",
+            "PowerFold_Ladder_Step_1",
+            "PowerFold_Ladder_Step_2",
+            "PowerFold_Ladder_Step_3",
+            "PowerFold_Ladder_Step_4",
+            "PowerFold_Ladder_Step_5",
+            "RotorFeeder_Drum",
+            "Separator_Main_House",
+            "Service_Access_Platform",
+            "ShortCut_Rotor",
+            "SwingFlow_Vane_1",
+            "SwingFlow_Vane_2",
+            "SwingFlow_Vane_3",
+            "SwingFlow_Vane_4",
+            "SwingFlow_Vane_5",
+            "SwingFlow_Vane_6",
+            "SwingFlow_Vane_7",
+            "Unloader_Base_Collar",
+            "Unloader_Outer_Tube",
+            "Unloader_Spout",
+            "Unloader_Inner_Tube",
+            "Header_Lift_Cylinder_L",
+            "Header_Lift_Cylinder_R",
+            "Hydraulic_Manifold_Line",
+            "Rear_Steering_Axle_Beam",
+            "Rear_L_Hub",
+            "Rear_L_Lug_01",
+            "Rear_L_Lug_02",
+            "Rear_L_Lug_03",
+            "Rear_L_Lug_04",
+            "Rear_L_Lug_05",
+            "Rear_L_Lug_06",
+            "Rear_L_Lug_07",
+            "Rear_L_Lug_08",
+            "Rear_L_Rim",
+            "Rear_L_Tire",
+            "Rear_L_Tread_01",
+            "Rear_L_Tread_02",
+            "Rear_L_Tread_03",
+            "Rear_L_Tread_04",
+            "Rear_L_Tread_05",
+            "Rear_L_Tread_06",
+            "Rear_L_Tread_07",
+            "Rear_L_Tread_08",
+            "Rear_L_Tread_09",
+            "Rear_L_Tread_10",
+            "Rear_L_Tread_11",
+            "Rear_L_Tread_12",
+            "Rear_L_Tread_13",
+            "Rear_L_Tread_14",
+            "Rear_R_Hub",
+            "Rear_R_Lug_01",
+            "Rear_R_Lug_02",
+            "Rear_R_Lug_03",
+            "Rear_R_Lug_04",
+            "Rear_R_Lug_05",
+            "Rear_R_Lug_06",
+            "Rear_R_Lug_07",
+            "Rear_R_Lug_08",
+            "Rear_R_Rim",
+            "Rear_R_Tire",
+            "Rear_R_Tread_01",
+            "Rear_R_Tread_02",
+            "Rear_R_Tread_03",
+            "Rear_R_Tread_04",
+            "Rear_R_Tread_05",
+            "Rear_R_Tread_06",
+            "Rear_R_Tread_07",
+            "Rear_R_Tread_08",
+            "Rear_R_Tread_09",
+            "Rear_R_Tread_10",
+            "Rear_R_Tread_11",
+            "Rear_R_Tread_12",
+            "Rear_R_Tread_13",
+            "Rear_R_Tread_14",
+            "Track_L_Drive_Sprocket",
+            "Track_L_Frame",
+            "Track_L_Front_Wheel",
+            "Track_L_Pad_01",
+            "Track_L_Pad_02",
+            "Track_L_Pad_03",
+            "Track_L_Pad_04",
+            "Track_L_Pad_05",
+            "Track_L_Pad_06",
+            "Track_L_Pad_07",
+            "Track_L_Pad_08",
+            "Track_L_Pad_09",
+            "Track_L_Pad_10",
+            "Track_L_Pad_11",
+            "Track_L_Pad_12",
+            "Track_L_Pad_13",
+            "Track_L_Pad_14",
+            "Track_L_Pad_15",
+            "Track_L_Pad_16",
+            "Track_L_Pad_17",
+            "Track_L_Pad_18",
+            "Track_L_Pad_19",
+            "Track_L_Pad_20",
+            "Track_L_Pad_21",
+            "Track_L_Pad_22",
+            "Track_L_Pad_23",
+            "Track_L_Pad_24",
+            "Track_L_Pad_25",
+            "Track_L_Pad_26",
+            "Track_L_Pad_27",
+            "Track_L_Pad_28",
+            "Track_L_Pad_29",
+            "Track_L_Pad_30",
+            "Track_L_Rear_Wheel",
+            "Track_L_Roller_01",
+            "Track_L_Roller_02",
+            "Track_L_Roller_03",
+            "Track_L_Roller_04",
+            "Track_L_Roller_05",
+            "Track_R_Drive_Sprocket",
+            "Track_R_Frame",
+            "Track_R_Front_Wheel",
+            "Track_R_Pad_01",
+            "Track_R_Pad_02",
+            "Track_R_Pad_03",
+            "Track_R_Pad_04",
+            "Track_R_Pad_05",
+            "Track_R_Pad_06",
+            "Track_R_Pad_07",
+            "Track_R_Pad_08",
+            "Track_R_Pad_09",
+            "Track_R_Pad_10",
+            "Track_R_Pad_11",
+            "Track_R_Pad_12",
+            "Track_R_Pad_13",
+            "Track_R_Pad_14",
+            "Track_R_Pad_15",
+            "Track_R_Pad_16",
+            "Track_R_Pad_17",
+            "Track_R_Pad_18",
+            "Track_R_Pad_19",
+            "Track_R_Pad_20",
+            "Track_R_Pad_21",
+            "Track_R_Pad_22",
+            "Track_R_Pad_23",
+            "Track_R_Pad_24",
+            "Track_R_Pad_25",
+            "Track_R_Pad_26",
+            "Track_R_Pad_27",
+            "Track_R_Pad_28",
+            "Track_R_Pad_29",
+            "Track_R_Pad_30",
+            "Track_R_Rear_Wheel",
+            "Track_R_Roller_01",
+            "Track_R_Roller_02",
+            "Track_R_Roller_03",
+            "Track_R_Roller_04",
+            "Track_R_Roller_05"
+          ]
+        },
+        "Fixed_Structure_ROOT": {
+          "present": true,
+          "role": "fixed_structure_root",
+          "visible_mesh_descendants": [
+            "ActiveSpread_L_Disk",
+            "ActiveSpread_L_Vane_1",
+            "ActiveSpread_L_Vane_2",
+            "ActiveSpread_L_Vane_3",
+            "ActiveSpread_L_Vane_4",
+            "ActiveSpread_R_Disk",
+            "ActiveSpread_R_Vane_1",
+            "ActiveSpread_R_Vane_2",
+            "ActiveSpread_R_Vane_3",
+            "ActiveSpread_R_Vane_4",
+            "AirSense_Fan_Blade_1",
+            "AirSense_Fan_Blade_2",
+            "AirSense_Fan_Blade_3",
+            "AirSense_Fan_Blade_4",
+            "AirSense_Fan_Blade_5",
+            "AirSense_Fan_Blade_6",
+            "AirSense_Fan_Blade_7",
+            "AirSense_Fan_Blade_8",
+            "AirSense_Fan_Hub",
+            "Carrier_Front_End_Structure",
+            "Carrier_Height_Roof",
+            "Carrier_Lateral_Structure_L",
+            "Carrier_Lateral_Structure_R",
+            "Carrier_Longitudinal_Frame",
+            "Carrier_Rear_End_Structure",
+            "Dual_Helix_Cutaway_Guard",
+            "Dual_Helix_L_Bar_1",
+            "Dual_Helix_L_Bar_10",
+            "Dual_Helix_L_Bar_2",
+            "Dual_Helix_L_Bar_3",
+            "Dual_Helix_L_Bar_4",
+            "Dual_Helix_L_Bar_5",
+            "Dual_Helix_L_Bar_6",
+            "Dual_Helix_L_Bar_7",
+            "Dual_Helix_L_Bar_8",
+            "Dual_Helix_L_Bar_9",
+            "Dual_Helix_L_Drum",
+            "Dual_Helix_R_Bar_1",
+            "Dual_Helix_R_Bar_10",
+            "Dual_Helix_R_Bar_2",
+            "Dual_Helix_R_Bar_3",
+            "Dual_Helix_R_Bar_4",
+            "Dual_Helix_R_Bar_5",
+            "Dual_Helix_R_Bar_6",
+            "Dual_Helix_R_Bar_7",
+            "Dual_Helix_R_Bar_8",
+            "Dual_Helix_R_Bar_9",
+            "Dual_Helix_R_Drum",
+            "Engine_Bay_Lower_Mass",
+            "Grain_Tank",
+            "Feeder_Chain_Path_1",
+            "Feeder_Chain_Path_2",
+            "Feeder_Chain_Path_3",
+            "Feeder_Chain_Path_4",
+            "Feeder_Header_Coupler",
+            "Feederhouse_Casing",
+            "Cutterbar",
+            "Header_Backbone",
+            "Header_Coupler",
+            "Header_Crop_Divider_L",
+            "Header_Crop_Divider_R",
+            "Header_Intake_Auger",
+            "PowerFlow_Belt_1",
+            "PowerFlow_Belt_2",
+            "PowerFlow_Belt_3",
+            "PowerFlow_Belt_4",
+            "PowerFlow_Belt_5",
+            "PowerFlow_Belt_6",
+            "PowerFlow_Reel_Axle",
+            "PowerFlow_Reel_Bat_1",
+            "PowerFlow_Reel_Bat_2",
+            "PowerFlow_Reel_Bat_3",
+            "PowerFlow_Reel_Bat_4",
+            "PowerFlow_Reel_Bat_5",
+            "PowerFlow_Reel_Bat_6",
+            "Lift_Feeder_Bracket_L",
+            "Lift_Feeder_Bracket_R",
+            "Lift_Frame_Bracket_L",
+            "Lift_Frame_Bracket_R",
+            "Cab_Floor",
+            "Cab_Front_Glass",
+            "Cab_L_Glass",
+            "Cab_L_Post_F",
+            "Cab_L_Post_R",
+            "Cab_R_Glass",
+            "Cab_R_Post_F",
+            "Cab_R_Post_R",
+            "Cab_Rear_Glass",
+            "Cab_Roof",
+            "Operator_Seat",
+            "PowerFold_Ladder_Rail_L",
+            "PowerFold_Ladder_Rail_R",
+            "PowerFold_Ladder_Step_1",
+            "PowerFold_Ladder_Step_2",
+            "PowerFold_Ladder_Step_3",
+            "PowerFold_Ladder_Step_4",
+            "PowerFold_Ladder_Step_5",
+            "RotorFeeder_Drum",
+            "Separator_Main_House",
+            "Service_Access_Platform",
+            "ShortCut_Rotor",
+            "SwingFlow_Vane_1",
+            "SwingFlow_Vane_2",
+            "SwingFlow_Vane_3",
+            "SwingFlow_Vane_4",
+            "SwingFlow_Vane_5",
+            "SwingFlow_Vane_6",
+            "SwingFlow_Vane_7",
+            "Unloader_Base_Collar",
+            "Unloader_Outer_Tube",
+            "Unloader_Spout",
+            "Unloader_Inner_Tube"
+          ]
+        },
+        "Running_Gear_ROOT": {
+          "present": true,
+          "role": "running_gear_root",
+          "visible_mesh_descendants": [
+            "Rear_Steering_Axle_Beam",
+            "Rear_L_Hub",
+            "Rear_L_Lug_01",
+            "Rear_L_Lug_02",
+            "Rear_L_Lug_03",
+            "Rear_L_Lug_04",
+            "Rear_L_Lug_05",
+            "Rear_L_Lug_06",
+            "Rear_L_Lug_07",
+            "Rear_L_Lug_08",
+            "Rear_L_Rim",
+            "Rear_L_Tire",
+            "Rear_L_Tread_01",
+            "Rear_L_Tread_02",
+            "Rear_L_Tread_03",
+            "Rear_L_Tread_04",
+            "Rear_L_Tread_05",
+            "Rear_L_Tread_06",
+            "Rear_L_Tread_07",
+            "Rear_L_Tread_08",
+            "Rear_L_Tread_09",
+            "Rear_L_Tread_10",
+            "Rear_L_Tread_11",
+            "Rear_L_Tread_12",
+            "Rear_L_Tread_13",
+            "Rear_L_Tread_14",
+            "Rear_R_Hub",
+            "Rear_R_Lug_01",
+            "Rear_R_Lug_02",
+            "Rear_R_Lug_03",
+            "Rear_R_Lug_04",
+            "Rear_R_Lug_05",
+            "Rear_R_Lug_06",
+            "Rear_R_Lug_07",
+            "Rear_R_Lug_08",
+            "Rear_R_Rim",
+            "Rear_R_Tire",
+            "Rear_R_Tread_01",
+            "Rear_R_Tread_02",
+            "Rear_R_Tread_03",
+            "Rear_R_Tread_04",
+            "Rear_R_Tread_05",
+            "Rear_R_Tread_06",
+            "Rear_R_Tread_07",
+            "Rear_R_Tread_08",
+            "Rear_R_Tread_09",
+            "Rear_R_Tread_10",
+            "Rear_R_Tread_11",
+            "Rear_R_Tread_12",
+            "Rear_R_Tread_13",
+            "Rear_R_Tread_14",
+            "Track_L_Drive_Sprocket",
+            "Track_L_Frame",
+            "Track_L_Front_Wheel",
+            "Track_L_Pad_01",
+            "Track_L_Pad_02",
+            "Track_L_Pad_03",
+            "Track_L_Pad_04",
+            "Track_L_Pad_05",
+            "Track_L_Pad_06",
+            "Track_L_Pad_07",
+            "Track_L_Pad_08",
+            "Track_L_Pad_09",
+            "Track_L_Pad_10",
+            "Track_L_Pad_11",
+            "Track_L_Pad_12",
+            "Track_L_Pad_13",
+            "Track_L_Pad_14",
+            "Track_L_Pad_15",
+            "Track_L_Pad_16",
+            "Track_L_Pad_17",
+            "Track_L_Pad_18",
+            "Track_L_Pad_19",
+            "Track_L_Pad_20",
+            "Track_L_Pad_21",
+            "Track_L_Pad_22",
+            "Track_L_Pad_23",
+            "Track_L_Pad_24",
+            "Track_L_Pad_25",
+            "Track_L_Pad_26",
+            "Track_L_Pad_27",
+            "Track_L_Pad_28",
+            "Track_L_Pad_29",
+            "Track_L_Pad_30",
+            "Track_L_Rear_Wheel",
+            "Track_L_Roller_01",
+            "Track_L_Roller_02",
+            "Track_L_Roller_03",
+            "Track_L_Roller_04",
+            "Track_L_Roller_05",
+            "Track_R_Drive_Sprocket",
+            "Track_R_Frame",
+            "Track_R_Front_Wheel",
+            "Track_R_Pad_01",
+            "Track_R_Pad_02",
+            "Track_R_Pad_03",
+            "Track_R_Pad_04",
+            "Track_R_Pad_05",
+            "Track_R_Pad_06",
+            "Track_R_Pad_07",
+            "Track_R_Pad_08",
+            "Track_R_Pad_09",
+            "Track_R_Pad_10",
+            "Track_R_Pad_11",
+            "Track_R_Pad_12",
+            "Track_R_Pad_13",
+            "Track_R_Pad_14",
+            "Track_R_Pad_15",
+            "Track_R_Pad_16",
+            "Track_R_Pad_17",
+            "Track_R_Pad_18",
+            "Track_R_Pad_19",
+            "Track_R_Pad_20",
+            "Track_R_Pad_21",
+            "Track_R_Pad_22",
+            "Track_R_Pad_23",
+            "Track_R_Pad_24",
+            "Track_R_Pad_25",
+            "Track_R_Pad_26",
+            "Track_R_Pad_27",
+            "Track_R_Pad_28",
+            "Track_R_Pad_29",
+            "Track_R_Pad_30",
+            "Track_R_Rear_Wheel",
+            "Track_R_Roller_01",
+            "Track_R_Roller_02",
+            "Track_R_Roller_03",
+            "Track_R_Roller_04",
+            "Track_R_Roller_05"
+          ]
+        },
+        "Hydraulics_ROOT": {
+          "present": true,
+          "role": "hydraulics_root",
+          "visible_mesh_descendants": [
+            "Header_Lift_Cylinder_L",
+            "Header_Lift_Cylinder_R",
+            "Hydraulic_Manifold_Line"
+          ]
+        },
+        "Header_Lift_Pivot": {
+          "present": true,
+          "role": "pivot",
+          "visible_mesh_descendants": [
+            "Feeder_Chain_Path_1",
+            "Feeder_Chain_Path_2",
+            "Feeder_Chain_Path_3",
+            "Feeder_Chain_Path_4",
+            "Feeder_Header_Coupler",
+            "Feederhouse_Casing",
+            "Cutterbar",
+            "Header_Backbone",
+            "Header_Coupler",
+            "Header_Crop_Divider_L",
+            "Header_Crop_Divider_R",
+            "Header_Intake_Auger",
+            "PowerFlow_Belt_1",
+            "PowerFlow_Belt_2",
+            "PowerFlow_Belt_3",
+            "PowerFlow_Belt_4",
+            "PowerFlow_Belt_5",
+            "PowerFlow_Belt_6",
+            "PowerFlow_Reel_Axle",
+            "PowerFlow_Reel_Bat_1",
+            "PowerFlow_Reel_Bat_2",
+            "PowerFlow_Reel_Bat_3",
+            "PowerFlow_Reel_Bat_4",
+            "PowerFlow_Reel_Bat_5",
+            "PowerFlow_Reel_Bat_6",
+            "Lift_Feeder_Bracket_L",
+            "Lift_Feeder_Bracket_R"
+          ]
+        },
+        "Header_ROOT": {
+          "present": true,
+          "role": "motion_root",
+          "visible_mesh_descendants": [
+            "Cutterbar",
+            "Header_Backbone",
+            "Header_Coupler",
+            "Header_Crop_Divider_L",
+            "Header_Crop_Divider_R",
+            "Header_Intake_Auger",
+            "PowerFlow_Belt_1",
+            "PowerFlow_Belt_2",
+            "PowerFlow_Belt_3",
+            "PowerFlow_Belt_4",
+            "PowerFlow_Belt_5",
+            "PowerFlow_Belt_6",
+            "PowerFlow_Reel_Axle",
+            "PowerFlow_Reel_Bat_1",
+            "PowerFlow_Reel_Bat_2",
+            "PowerFlow_Reel_Bat_3",
+            "PowerFlow_Reel_Bat_4",
+            "PowerFlow_Reel_Bat_5",
+            "PowerFlow_Reel_Bat_6"
+          ]
+        },
+        "Reel_Pivot": {
+          "present": true,
+          "role": "pivot",
+          "visible_mesh_descendants": [
+            "PowerFlow_Reel_Axle",
+            "PowerFlow_Reel_Bat_1",
+            "PowerFlow_Reel_Bat_2",
+            "PowerFlow_Reel_Bat_3",
+            "PowerFlow_Reel_Bat_4",
+            "PowerFlow_Reel_Bat_5",
+            "PowerFlow_Reel_Bat_6"
+          ]
+        },
+        "Reel_ROOT": {
+          "present": true,
+          "role": "rotary_root",
+          "visible_mesh_descendants": [
+            "PowerFlow_Reel_Axle",
+            "PowerFlow_Reel_Bat_1",
+            "PowerFlow_Reel_Bat_2",
+            "PowerFlow_Reel_Bat_3",
+            "PowerFlow_Reel_Bat_4",
+            "PowerFlow_Reel_Bat_5",
+            "PowerFlow_Reel_Bat_6"
+          ]
+        },
+        "Feederhouse_ROOT": {
+          "present": true,
+          "role": "motion_root",
+          "visible_mesh_descendants": [
+            "Feeder_Chain_Path_1",
+            "Feeder_Chain_Path_2",
+            "Feeder_Chain_Path_3",
+            "Feeder_Chain_Path_4",
+            "Feeder_Header_Coupler",
+            "Feederhouse_Casing",
+            "Cutterbar",
+            "Header_Backbone",
+            "Header_Coupler",
+            "Header_Crop_Divider_L",
+            "Header_Crop_Divider_R",
+            "Header_Intake_Auger",
+            "PowerFlow_Belt_1",
+            "PowerFlow_Belt_2",
+            "PowerFlow_Belt_3",
+            "PowerFlow_Belt_4",
+            "PowerFlow_Belt_5",
+            "PowerFlow_Belt_6",
+            "PowerFlow_Reel_Axle",
+            "PowerFlow_Reel_Bat_1",
+            "PowerFlow_Reel_Bat_2",
+            "PowerFlow_Reel_Bat_3",
+            "PowerFlow_Reel_Bat_4",
+            "PowerFlow_Reel_Bat_5",
+            "PowerFlow_Reel_Bat_6",
+            "Lift_Feeder_Bracket_L",
+            "Lift_Feeder_Bracket_R"
+          ]
+        },
+        "Unloader_Swing_Pivot": {
+          "present": true,
+          "role": "pivot",
+          "visible_mesh_descendants": [
+            "Unloader_Base_Collar",
+            "Unloader_Outer_Tube",
+            "Unloader_Spout",
+            "Unloader_Inner_Tube"
+          ]
+        },
+        "Unloader_ROOT": {
+          "present": true,
+          "role": "motion_root",
+          "visible_mesh_descendants": [
+            "Unloader_Base_Collar",
+            "Unloader_Outer_Tube",
+            "Unloader_Spout",
+            "Unloader_Inner_Tube"
+          ]
+        },
+        "Track_L_ROOT": {
+          "present": true,
+          "role": "track_root",
+          "visible_mesh_descendants": [
+            "Track_L_Drive_Sprocket",
+            "Track_L_Frame",
+            "Track_L_Front_Wheel",
+            "Track_L_Pad_01",
+            "Track_L_Pad_02",
+            "Track_L_Pad_03",
+            "Track_L_Pad_04",
+            "Track_L_Pad_05",
+            "Track_L_Pad_06",
+            "Track_L_Pad_07",
+            "Track_L_Pad_08",
+            "Track_L_Pad_09",
+            "Track_L_Pad_10",
+            "Track_L_Pad_11",
+            "Track_L_Pad_12",
+            "Track_L_Pad_13",
+            "Track_L_Pad_14",
+            "Track_L_Pad_15",
+            "Track_L_Pad_16",
+            "Track_L_Pad_17",
+            "Track_L_Pad_18",
+            "Track_L_Pad_19",
+            "Track_L_Pad_20",
+            "Track_L_Pad_21",
+            "Track_L_Pad_22",
+            "Track_L_Pad_23",
+            "Track_L_Pad_24",
+            "Track_L_Pad_25",
+            "Track_L_Pad_26",
+            "Track_L_Pad_27",
+            "Track_L_Pad_28",
+            "Track_L_Pad_29",
+            "Track_L_Pad_30",
+            "Track_L_Rear_Wheel",
+            "Track_L_Roller_01",
+            "Track_L_Roller_02",
+            "Track_L_Roller_03",
+            "Track_L_Roller_04",
+            "Track_L_Roller_05"
+          ]
+        },
+        "Track_R_ROOT": {
+          "present": true,
+          "role": "track_root",
+          "visible_mesh_descendants": [
+            "Track_R_Drive_Sprocket",
+            "Track_R_Frame",
+            "Track_R_Front_Wheel",
+            "Track_R_Pad_01",
+            "Track_R_Pad_02",
+            "Track_R_Pad_03",
+            "Track_R_Pad_04",
+            "Track_R_Pad_05",
+            "Track_R_Pad_06",
+            "Track_R_Pad_07",
+            "Track_R_Pad_08",
+            "Track_R_Pad_09",
+            "Track_R_Pad_10",
+            "Track_R_Pad_11",
+            "Track_R_Pad_12",
+            "Track_R_Pad_13",
+            "Track_R_Pad_14",
+            "Track_R_Pad_15",
+            "Track_R_Pad_16",
+            "Track_R_Pad_17",
+            "Track_R_Pad_18",
+            "Track_R_Pad_19",
+            "Track_R_Pad_20",
+            "Track_R_Pad_21",
+            "Track_R_Pad_22",
+            "Track_R_Pad_23",
+            "Track_R_Pad_24",
+            "Track_R_Pad_25",
+            "Track_R_Pad_26",
+            "Track_R_Pad_27",
+            "Track_R_Pad_28",
+            "Track_R_Pad_29",
+            "Track_R_Pad_30",
+            "Track_R_Rear_Wheel",
+            "Track_R_Roller_01",
+            "Track_R_Roller_02",
+            "Track_R_Roller_03",
+            "Track_R_Roller_04",
+            "Track_R_Roller_05"
+          ]
+        },
+        "Header_Roll_Pivot": {
+          "present": true,
+          "role": "pivot",
+          "visible_mesh_descendants": [
+            "Cutterbar",
+            "Header_Backbone",
+            "Header_Coupler",
+            "Header_Crop_Divider_L",
+            "Header_Crop_Divider_R",
+            "Header_Intake_Auger",
+            "PowerFlow_Belt_1",
+            "PowerFlow_Belt_2",
+            "PowerFlow_Belt_3",
+            "PowerFlow_Belt_4",
+            "PowerFlow_Belt_5",
+            "PowerFlow_Belt_6",
+            "PowerFlow_Reel_Axle",
+            "PowerFlow_Reel_Bat_1",
+            "PowerFlow_Reel_Bat_2",
+            "PowerFlow_Reel_Bat_3",
+            "PowerFlow_Reel_Bat_4",
+            "PowerFlow_Reel_Bat_5",
+            "PowerFlow_Reel_Bat_6"
+          ]
+        },
+        "PowerFlow_Belts_ROOT": {
+          "present": true,
+          "role": "linear_motion_root",
+          "visible_mesh_descendants": [
+            "PowerFlow_Belt_1",
+            "PowerFlow_Belt_2",
+            "PowerFlow_Belt_3",
+            "PowerFlow_Belt_4",
+            "PowerFlow_Belt_5",
+            "PowerFlow_Belt_6"
+          ]
+        },
+        "Header_Intake_Auger_ROOT": {
+          "present": true,
+          "role": "rotary_root",
+          "visible_mesh_descendants": [
+            "Header_Intake_Auger"
+          ]
+        },
+        "Rear_Axle_ROOT": {
+          "present": true,
+          "role": "steering_axle_root",
+          "visible_mesh_descendants": [
+            "Rear_Steering_Axle_Beam",
+            "Rear_L_Hub",
+            "Rear_L_Lug_01",
+            "Rear_L_Lug_02",
+            "Rear_L_Lug_03",
+            "Rear_L_Lug_04",
+            "Rear_L_Lug_05",
+            "Rear_L_Lug_06",
+            "Rear_L_Lug_07",
+            "Rear_L_Lug_08",
+            "Rear_L_Rim",
+            "Rear_L_Tire",
+            "Rear_L_Tread_01",
+            "Rear_L_Tread_02",
+            "Rear_L_Tread_03",
+            "Rear_L_Tread_04",
+            "Rear_L_Tread_05",
+            "Rear_L_Tread_06",
+            "Rear_L_Tread_07",
+            "Rear_L_Tread_08",
+            "Rear_L_Tread_09",
+            "Rear_L_Tread_10",
+            "Rear_L_Tread_11",
+            "Rear_L_Tread_12",
+            "Rear_L_Tread_13",
+            "Rear_L_Tread_14",
+            "Rear_R_Hub",
+            "Rear_R_Lug_01",
+            "Rear_R_Lug_02",
+            "Rear_R_Lug_03",
+            "Rear_R_Lug_04",
+            "Rear_R_Lug_05",
+            "Rear_R_Lug_06",
+            "Rear_R_Lug_07",
+            "Rear_R_Lug_08",
+            "Rear_R_Rim",
+            "Rear_R_Tire",
+            "Rear_R_Tread_01",
+            "Rear_R_Tread_02",
+            "Rear_R_Tread_03",
+            "Rear_R_Tread_04",
+            "Rear_R_Tread_05",
+            "Rear_R_Tread_06",
+            "Rear_R_Tread_07",
+            "Rear_R_Tread_08",
+            "Rear_R_Tread_09",
+            "Rear_R_Tread_10",
+            "Rear_R_Tread_11",
+            "Rear_R_Tread_12",
+            "Rear_R_Tread_13",
+            "Rear_R_Tread_14"
+          ]
+        },
+        "Rear_Steering_L_Pivot": {
+          "present": true,
+          "role": "steering_pivot",
+          "visible_mesh_descendants": [
+            "Rear_L_Hub",
+            "Rear_L_Lug_01",
+            "Rear_L_Lug_02",
+            "Rear_L_Lug_03",
+            "Rear_L_Lug_04",
+            "Rear_L_Lug_05",
+            "Rear_L_Lug_06",
+            "Rear_L_Lug_07",
+            "Rear_L_Lug_08",
+            "Rear_L_Rim",
+            "Rear_L_Tire",
+            "Rear_L_Tread_01",
+            "Rear_L_Tread_02",
+            "Rear_L_Tread_03",
+            "Rear_L_Tread_04",
+            "Rear_L_Tread_05",
+            "Rear_L_Tread_06",
+            "Rear_L_Tread_07",
+            "Rear_L_Tread_08",
+            "Rear_L_Tread_09",
+            "Rear_L_Tread_10",
+            "Rear_L_Tread_11",
+            "Rear_L_Tread_12",
+            "Rear_L_Tread_13",
+            "Rear_L_Tread_14"
+          ]
+        },
+        "Rear_Steering_R_Pivot": {
+          "present": true,
+          "role": "steering_pivot",
+          "visible_mesh_descendants": [
+            "Rear_R_Hub",
+            "Rear_R_Lug_01",
+            "Rear_R_Lug_02",
+            "Rear_R_Lug_03",
+            "Rear_R_Lug_04",
+            "Rear_R_Lug_05",
+            "Rear_R_Lug_06",
+            "Rear_R_Lug_07",
+            "Rear_R_Lug_08",
+            "Rear_R_Rim",
+            "Rear_R_Tire",
+            "Rear_R_Tread_01",
+            "Rear_R_Tread_02",
+            "Rear_R_Tread_03",
+            "Rear_R_Tread_04",
+            "Rear_R_Tread_05",
+            "Rear_R_Tread_06",
+            "Rear_R_Tread_07",
+            "Rear_R_Tread_08",
+            "Rear_R_Tread_09",
+            "Rear_R_Tread_10",
+            "Rear_R_Tread_11",
+            "Rear_R_Tread_12",
+            "Rear_R_Tread_13",
+            "Rear_R_Tread_14"
+          ]
+        },
+        "Track_L_Drive_Wheel_ROOT": {
+          "present": true,
+          "role": "rotary_root",
+          "visible_mesh_descendants": [
+            "Track_L_Drive_Sprocket"
+          ]
+        },
+        "Track_R_Drive_Wheel_ROOT": {
+          "present": true,
+          "role": "rotary_root",
+          "visible_mesh_descendants": [
+            "Track_R_Drive_Sprocket"
+          ]
+        },
+        "Header_Lift_Cylinder_L_ROOT": {
+          "present": true,
+          "role": "hydraulic_root",
+          "visible_mesh_descendants": [
+            "Header_Lift_Cylinder_L"
+          ]
+        },
+        "Header_Lift_Cylinder_R_ROOT": {
+          "present": true,
+          "role": "hydraulic_root",
+          "visible_mesh_descendants": [
+            "Header_Lift_Cylinder_R"
+          ]
+        },
+        "Unloader_Fold_Pivot": {
+          "present": true,
+          "role": "pivot",
+          "visible_mesh_descendants": [
+            "Unloader_Outer_Tube",
+            "Unloader_Spout"
+          ]
+        },
+        "Unloader_Outer_ROOT": {
+          "present": true,
+          "role": "motion_root",
+          "visible_mesh_descendants": [
+            "Unloader_Outer_Tube",
+            "Unloader_Spout"
+          ]
+        },
+        "Unloader_Spout_Pivot": {
+          "present": true,
+          "role": "pivot",
+          "visible_mesh_descendants": [
+            "Unloader_Spout"
+          ]
+        },
+        "Unloader_Spout_ROOT": {
+          "present": true,
+          "role": "motion_root",
+          "visible_mesh_descendants": [
+            "Unloader_Spout"
+          ]
+        },
+        "Dual_Helix_L_ROOT": {
+          "present": true,
+          "role": "rotary_root",
+          "visible_mesh_descendants": [
+            "Dual_Helix_L_Bar_1",
+            "Dual_Helix_L_Bar_10",
+            "Dual_Helix_L_Bar_2",
+            "Dual_Helix_L_Bar_3",
+            "Dual_Helix_L_Bar_4",
+            "Dual_Helix_L_Bar_5",
+            "Dual_Helix_L_Bar_6",
+            "Dual_Helix_L_Bar_7",
+            "Dual_Helix_L_Bar_8",
+            "Dual_Helix_L_Bar_9",
+            "Dual_Helix_L_Drum"
+          ]
+        },
+        "Dual_Helix_R_ROOT": {
+          "present": true,
+          "role": "rotary_root",
+          "visible_mesh_descendants": [
+            "Dual_Helix_R_Bar_1",
+            "Dual_Helix_R_Bar_10",
+            "Dual_Helix_R_Bar_2",
+            "Dual_Helix_R_Bar_3",
+            "Dual_Helix_R_Bar_4",
+            "Dual_Helix_R_Bar_5",
+            "Dual_Helix_R_Bar_6",
+            "Dual_Helix_R_Bar_7",
+            "Dual_Helix_R_Bar_8",
+            "Dual_Helix_R_Bar_9",
+            "Dual_Helix_R_Drum"
+          ]
+        },
+        "RotorFeeder_ROOT": {
+          "present": true,
+          "role": "rotary_root",
+          "visible_mesh_descendants": [
+            "RotorFeeder_Drum"
+          ]
+        },
+        "ShortCut_ROOT": {
+          "present": true,
+          "role": "rotary_process_root",
+          "visible_mesh_descendants": [
+            "ShortCut_Rotor"
+          ]
+        },
+        "ActiveSpread_L_ROOT": {
+          "present": true,
+          "role": "rotary_root",
+          "visible_mesh_descendants": [
+            "ActiveSpread_L_Disk",
+            "ActiveSpread_L_Vane_1",
+            "ActiveSpread_L_Vane_2",
+            "ActiveSpread_L_Vane_3",
+            "ActiveSpread_L_Vane_4"
+          ]
+        },
+        "ActiveSpread_R_ROOT": {
+          "present": true,
+          "role": "rotary_root",
+          "visible_mesh_descendants": [
+            "ActiveSpread_R_Disk",
+            "ActiveSpread_R_Vane_1",
+            "ActiveSpread_R_Vane_2",
+            "ActiveSpread_R_Vane_3",
+            "ActiveSpread_R_Vane_4"
+          ]
+        },
+        "SwingFlow_ROOT": {
+          "present": true,
+          "role": "oscillating_root",
+          "visible_mesh_descendants": [
+            "SwingFlow_Vane_1",
+            "SwingFlow_Vane_2",
+            "SwingFlow_Vane_3",
+            "SwingFlow_Vane_4",
+            "SwingFlow_Vane_5",
+            "SwingFlow_Vane_6",
+            "SwingFlow_Vane_7"
+          ]
+        },
+        "AirSense_Fan_ROOT": {
+          "present": true,
+          "role": "rotary_root",
+          "visible_mesh_descendants": [
+            "AirSense_Fan_Blade_1",
+            "AirSense_Fan_Blade_2",
+            "AirSense_Fan_Blade_3",
+            "AirSense_Fan_Blade_4",
+            "AirSense_Fan_Blade_5",
+            "AirSense_Fan_Blade_6",
+            "AirSense_Fan_Blade_7",
+            "AirSense_Fan_Blade_8",
+            "AirSense_Fan_Hub"
+          ]
+        },
+        "PowerFold_Ladder_Pivot": {
+          "present": true,
+          "role": "pivot",
+          "visible_mesh_descendants": [
+            "PowerFold_Ladder_Rail_L",
+            "PowerFold_Ladder_Rail_R",
+            "PowerFold_Ladder_Step_1",
+            "PowerFold_Ladder_Step_2",
+            "PowerFold_Ladder_Step_3",
+            "PowerFold_Ladder_Step_4",
+            "PowerFold_Ladder_Step_5"
+          ]
+        },
+        "PowerFold_Ladder_ROOT": {
+          "present": true,
+          "role": "motion_root",
+          "visible_mesh_descendants": [
+            "PowerFold_Ladder_Rail_L",
+            "PowerFold_Ladder_Rail_R",
+            "PowerFold_Ladder_Step_1",
+            "PowerFold_Ladder_Step_2",
+            "PowerFold_Ladder_Step_3",
+            "PowerFold_Ladder_Step_4",
+            "PowerFold_Ladder_Step_5"
+          ]
+        }
       }
     },
     {
       "id": "semantic-motion-hierarchy",
       "status": "PASS",
       "detail": {
-        "semantic_motion_nodes": 19
+        "semantic_motion_nodes": 43
       }
     },
     {
@@ -214,24 +1310,24 @@
       "id": "node-density",
       "status": "PASS",
       "detail": {
-        "actual": 210,
-        "minimum": 200
+        "actual": 288,
+        "minimum": 80
       }
     },
     {
       "id": "mesh-density",
       "status": "PASS",
       "detail": {
-        "actual": 190,
-        "minimum": 180
+        "actual": 244,
+        "minimum": 60
       }
     },
     {
       "id": "triangle-density",
       "status": "PASS",
       "detail": {
-        "actual": 27040,
-        "minimum": 10000
+        "actual": 33060,
+        "minimum": 5000
       }
     },
     {
@@ -239,17 +1335,17 @@
       "status": "PASS",
       "detail": {
         "min_m": [
-          -5.315001,
+          -5.315,
           0.0,
           -5.35
         ],
         "max_m": [
-          5.315,
+          5.32,
           3.99,
           5.35
         ],
         "size_m": [
-          10.630001,
+          10.635,
           3.99,
           10.7
         ]
@@ -260,7 +1356,7 @@
       "status": "PASS",
       "detail": {
         "actual_size_m": [
-          10.630001,
+          10.635,
           3.99,
           10.7
         ],
@@ -279,27 +1375,27 @@
       "detail": [
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/fendt-ideal-10t/review/renders/fendt-ideal-10t-operator-side.png",
-          "bytes": 234718
+          "bytes": 239598
         },
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/fendt-ideal-10t/review/renders/fendt-ideal-10t-front-three-quarter.png",
-          "bytes": 255124
+          "bytes": 240398
         },
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/fendt-ideal-10t/review/renders/fendt-ideal-10t-rear-three-quarter.png",
-          "bytes": 251182
+          "bytes": 265842
         },
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/fendt-ideal-10t/review/renders/fendt-ideal-10t-elevated-technical.png",
-          "bytes": 348014
+          "bytes": 339171
         },
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/fendt-ideal-10t/review/renders/fendt-ideal-10t-articulation-detail.png",
-          "bytes": 267705
+          "bytes": 298600
         },
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/fendt-ideal-10t/review/renders/fendt-ideal-10t-right-side.png",
-          "bytes": 238705
+          "bytes": 240767
         }
       ]
     },
@@ -307,6 +1403,453 @@
       "id": "neutral-unbranded-materials",
       "status": "PASS",
       "detail": "Neutral palette and procedural materials only; no manufacturer marks or textures."
+    },
+    {
+      "id": "carrier_length_without_header",
+      "status": "PASS",
+      "detail": {
+        "method": "named carrier-only mesh-union X AABB",
+        "evidence": {
+          "measured_m": 10.63,
+          "authored_target_m": 10.63,
+          "header_and_unloader_excluded": true,
+          "tolerance_m": 0.004
+        },
+        "semantic_nodes": [
+          "Carrier_Rear_End_Structure",
+          "Carrier_Front_End_Structure"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "selected_carrier_width",
+      "status": "PASS",
+      "detail": {
+        "method": "named carrier-only mesh-union Z AABB",
+        "evidence": {
+          "measured_m": 3.49,
+          "authored_target_m": 3.49,
+          "source_authority": "unresolved",
+          "tolerance_m": 0.004
+        },
+        "semantic_nodes": [
+          "Carrier_Lateral_Structure_L",
+          "Carrier_Lateral_Structure_R"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "carrier_height",
+      "status": "PASS",
+      "detail": {
+        "method": "named roof/carrier mesh-union Y AABB",
+        "evidence": {
+          "measured_max_y_m": 3.99,
+          "authored_target_m": 3.99,
+          "source_authority": "unresolved",
+          "tolerance_m": 0.004
+        },
+        "semantic_nodes": [
+          "Carrier_Height_Roof"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "selected_powerflow_header_span",
+      "status": "PASS",
+      "detail": {
+        "method": "header-subtree world Z AABB",
+        "evidence": {
+          "measured_m": 10.7,
+          "authored_target_m": 10.7,
+          "source_authority": "unresolved",
+          "tolerance_m": 0.004
+        },
+        "semantic_nodes": [
+          "Header_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "header_lift_endpoint_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "two-endpoint Feederhouse_ROOT rotation with cutterbar world minimum",
+        "evidence": {
+          "minimum_y_samples_m": [
+            0.83,
+            1.271827
+          ],
+          "raised_authored_target_m": 1.27,
+          "lift_angle_rad": 0.151,
+          "tolerance_m": 0.03
+        },
+        "semantic_nodes": [
+          "Feederhouse_ROOT",
+          "Cutterbar"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "header_roll_compensation_range",
+      "status": "PASS",
+      "detail": {
+        "method": "lifted-pose Header_Roll_Pivot endpoint sweep",
+        "evidence": {
+          "range_deg": [
+            -8.0,
+            8.0
+          ],
+          "minimum_y_by_pose_m": {
+            "-8.0": 0.553885,
+            "0.0": 1.271827,
+            "8.0": 0.553885
+          }
+        },
+        "semantic_nodes": [
+          "Header_Roll_Pivot",
+          "Header_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "crop_elevator_cylinder_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "paired cylinder-to-frame and cylinder-to-feeder AABB overlap",
+        "evidence": {
+          "visual_diameter_m": 0.092,
+          "overlap_xyz_m": {
+            "L": {
+              "frame": [
+                0.12818,
+                0.195168,
+                0.116173
+              ],
+              "feeder": [
+                0.11818,
+                0.155168,
+                0.116173
+              ]
+            },
+            "R": {
+              "frame": [
+                0.12818,
+                0.195168,
+                0.116173
+              ],
+              "feeder": [
+                0.11818,
+                0.155168,
+                0.116173
+              ]
+            }
+          }
+        },
+        "semantic_nodes": [
+          "Header_Lift_Cylinder_L_ROOT",
+          "Header_Lift_Cylinder_R_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "rear_steering_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "wheel-pivot ownership and visible steering-root hierarchy",
+        "evidence": {
+          "wheel_pivot_parents": {
+            "L": "Rear_Steering_L_Pivot",
+            "R": "Rear_Steering_R_Pivot"
+          },
+          "viewer_nodes": [
+            "Rear_Steering_L_Pivot",
+            "Rear_Steering_R_Pivot"
+          ]
+        },
+        "semantic_nodes": [
+          "Rear_Steering_L_Pivot",
+          "Rear_Steering_R_Pivot"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "trakride_belt_path_and_phase_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "left/right track component inventory and distinct drive-root ownership",
+        "evidence": {
+          "inventory": {
+            "L": {
+              "pads": 30,
+              "rollers": 5,
+              "visible_meshes": 39
+            },
+            "R": {
+              "pads": 30,
+              "rollers": 5,
+              "visible_meshes": 39
+            }
+          },
+          "belt_visual_width_m": 0.762,
+          "drive_roots_in_viewer": [
+            "Track_L_Drive_Wheel_ROOT",
+            "Track_R_Drive_Wheel_ROOT"
+          ]
+        },
+        "semantic_nodes": [
+          "Track_L_ROOT",
+          "Track_R_ROOT",
+          "Track_L_Drive_Wheel_ROOT",
+          "Track_R_Drive_Wheel_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "reel_belt_and_intake_rotation_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "visible-subtree and viewer ownership scan",
+        "evidence": {
+          "visible_meshes": {
+            "Reel_ROOT": 7,
+            "PowerFlow_Belts_ROOT": 6,
+            "Header_Intake_Auger_ROOT": 1
+          },
+          "viewer_nodes_present": [
+            "Header_Intake_Auger_ROOT",
+            "PowerFlow_Belts_ROOT",
+            "Reel_ROOT"
+          ]
+        },
+        "semantic_nodes": [
+          "Reel_ROOT",
+          "PowerFlow_Belts_ROOT",
+          "Header_Intake_Auger_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "unloading_auger_swing_fold_and_spout_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "centerline sum plus deployed swing/fold world-transform sample",
+        "evidence": {
+          "inner_m": 3.6,
+          "outer_m": 4.8,
+          "total_m": 8.4,
+          "deployed_spout_y_m": 4.95,
+          "authored_spout_target_m": 4.95,
+          "deployed_minimum_y_m": 2.91
+        },
+        "semantic_nodes": [
+          "Unloader_ROOT",
+          "Unloader_Outer_ROOT",
+          "Unloader_Spout_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "dual_helix_and_rotorfeeder_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "named internal rotary-root centers and visible-subtree inventory",
+        "evidence": {
+          "dual_helix_centers_xyz_m": {
+            "L": [
+              -0.55,
+              2.42,
+              -0.43
+            ],
+            "R": [
+              -0.55,
+              2.42,
+              0.43
+            ]
+          },
+          "rotorfeeder_visible_meshes": 1
+        },
+        "semantic_nodes": [
+          "Dual_Helix_L_ROOT",
+          "Dual_Helix_R_ROOT",
+          "RotorFeeder_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "active_spread_disk_and_swingflow_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "named spread-root centers, guide-vane inventory, and viewer ownership",
+        "evidence": {
+          "disk_centers_xyz_m": {
+            "L": [
+              -4.18,
+              1.12,
+              -0.52
+            ],
+            "R": [
+              -4.18,
+              1.12,
+              0.52
+            ]
+          },
+          "swingflow_vanes": 7,
+          "viewer_nodes_present": [
+            "ActiveSpread_L_ROOT",
+            "ActiveSpread_R_ROOT",
+            "SwingFlow_ROOT"
+          ]
+        },
+        "semantic_nodes": [
+          "ActiveSpread_L_ROOT",
+          "ActiveSpread_R_ROOT",
+          "SwingFlow_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "airsense_fan_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "visible fan-subtree inventory and viewer ownership",
+        "evidence": {
+          "visible_meshes": 9,
+          "authored_diameter_m": 0.95,
+          "viewer_owned": true
+        },
+        "semantic_nodes": [
+          "AirSense_Fan_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "ladder_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "visible ladder-subtree inventory and viewer ownership",
+        "evidence": {
+          "visible_meshes": 7,
+          "viewer_owned": true
+        },
+        "semantic_nodes": [
+          "PowerFold_Ladder_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "ground_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "rest AABB plus lifted roll/unloader endpoint minima",
+        "evidence": {
+          "rest_minimum_y_m": 0.0,
+          "lift_minimum_y_m": 0.83,
+          "roll_minimum_y_m": 0.553885,
+          "deployed_unloader_minimum_y_m": 2.91
+        },
+        "semantic_nodes": [
+          "Track_L_ROOT",
+          "Track_R_ROOT",
+          "Rear_Axle_ROOT",
+          "Feederhouse_ROOT",
+          "Unloader_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "header_self_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "feeder-coupler/header-coupler three-axis rest overlap plus hierarchy",
+        "evidence": {
+          "coupler_overlap_xyz_m": [
+            0.13,
+            0.48,
+            1.46
+          ],
+          "header_parent": "Header_Roll_Pivot",
+          "lift_owner": "Header_Lift_Pivot"
+        },
+        "semantic_nodes": [
+          "Feederhouse_ROOT",
+          "Header_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "carrier_self_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "longitudinal-frame/separator-house continuity overlap and carrier-only envelope",
+        "evidence": {
+          "frame_house_overlap_xyz_m": [
+            6.18971,
+            0.02,
+            1.28
+          ],
+          "carrier_size_xyz_m": [
+            10.63,
+            3.08,
+            3.49
+          ]
+        },
+        "semantic_nodes": [
+          "Fixed_Structure_ROOT",
+          "Carrier_Longitudinal_Frame"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "neutral_material_and_branding_review",
+      "status": "PASS",
+      "detail": {
+        "method": "procedural material rights-tag scan",
+        "evidence": {
+          "material_count": 10,
+          "all_neutral_unbranded": true,
+          "images_or_textures": 0
+        },
+        "semantic_nodes": [],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
     },
     {
       "id": "configuration-freeze",

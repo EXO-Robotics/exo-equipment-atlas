@@ -26,27 +26,27 @@
     ]
   },
   "counts": {
-    "objects": 211,
-    "meshes": 190,
-    "triangles": 29924,
-    "materials": 7
+    "objects": 300,
+    "meshes": 273,
+    "triangles": 38592,
+    "materials": 8
   },
   "envelope_fit": {
-    "classification": "reconstructed_visible_envelope_calibration",
+    "classification": "authored_visible_envelope_measurement",
     "source_bounds_m": {
       "min_m": [
-        -3.882,
-        -0.01058,
+        -4.8525,
+        0.0,
         -1.54
       ],
       "max_m": [
-        5.427608,
-        3.313583,
+        4.8525,
+        3.135,
         1.54
       ],
       "size_m": [
-        9.309608,
-        3.324163,
+        9.705,
+        3.135,
         3.08
       ]
     },
@@ -68,9 +68,9 @@
       ]
     },
     "axis_scale_factors": [
-      1.042471393,
-      0.943094537,
-      1.000000025
+      1.0,
+      1.0,
+      1.0
     ],
     "calibrated_bounds_m": {
       "min_m": [
@@ -89,7 +89,7 @@
         3.08
       ]
     },
-    "authority": "reconstructed_not_machine_specific_engineering"
+    "authority": "independently_measured_from_authored_geometry"
   },
   "glb_contract": {
     "glb_version": "2.0",
@@ -98,18 +98,18 @@
     "root_name": "Machine_Root",
     "root_record": {},
     "identity_root": true,
-    "nodes": 211,
-    "mesh_nodes": 190,
-    "mesh_definitions": 190,
-    "materials": 7,
-    "triangles": 29924,
+    "nodes": 300,
+    "mesh_nodes": 273,
+    "mesh_definitions": 273,
+    "materials": 8,
+    "triangles": 38592,
     "cameras": 0,
     "punctual_lights": false,
     "images": 0,
     "textures": 0,
     "nonidentity_mesh_scales": {},
     "helper_like_mesh_nodes": [],
-    "semantic_motion_nodes": 20,
+    "semantic_motion_nodes": 27,
     "bounds": {
       "min_m": [
         -4.8525,
@@ -128,11 +128,30 @@
       ]
     }
   },
+  "required_machine_gate_ids": [
+    "published_transport_envelope",
+    "track_gauge_and_shoe_width",
+    "undercarriage_ground_contact",
+    "upper_swing_clearance",
+    "boom_arm_bucket_hierarchy",
+    "boom_and_arm_length_constraints",
+    "bucket_linkage_visual_closure",
+    "published_working_range_endpoints",
+    "hydraulic_cylinder_visual_closure",
+    "ground_collision",
+    "self_collision",
+    "swept_volume_collision"
+  ],
   "gates": [
     {
       "id": "builder-execution",
       "status": "PASS",
       "detail": "Factory-startup background builder reached validation generation."
+    },
+    {
+      "id": "machine-specific-builder",
+      "status": "PASS",
+      "detail": "Machine-local subclass owns the selected machine topology."
     },
     {
       "id": "candidate-class-boundary",
@@ -158,32 +177,1298 @@
       "id": "required-semantic-nodes",
       "status": "PASS",
       "detail": {
-        "Machine_Root": true,
-        "Fixed_Structure_ROOT": true,
-        "Running_Gear_ROOT": true,
-        "Hydraulics_ROOT": true,
-        "Service_Detail_ROOT": true,
-        "Track_L_ROOT": true,
-        "Track_R_ROOT": true,
-        "Upper_Swing_Pivot": true,
-        "Upper_ROOT": true,
-        "Boom_Pivot": true,
-        "Boom_ROOT": true,
-        "Stick_Pivot": true,
-        "Stick_ROOT": true,
-        "Bucket_Pivot": true,
-        "Bucket_ROOT": true,
-        "Arm_Crowd_Actuator_ROOT": true,
-        "Bucket_Curl_Actuator_ROOT": true,
-        "Bucket_H_Link_ROOT": true,
-        "Bucket_Dogbone_ROOT": true
+        "Machine_Root": {
+          "present": true,
+          "role": "identity_root",
+          "visible_mesh_descendants": [
+            "Carbody",
+            "Carbody_X_Frame_Front_L",
+            "Carbody_X_Frame_Front_R",
+            "Carbody_X_Frame_Rear_L",
+            "Carbody_X_Frame_Rear_R",
+            "L_Travel_Motor_Housing",
+            "L_Travel_Motor_Hub",
+            "R_Travel_Motor_Housing",
+            "R_Travel_Motor_Hub",
+            "Swing_Bearing",
+            "Track_L_Front_End_Shoe",
+            "Track_L_Front_Sprocket_Tooth_01",
+            "Track_L_Front_Sprocket_Tooth_02",
+            "Track_L_Front_Sprocket_Tooth_03",
+            "Track_L_Front_Sprocket_Tooth_04",
+            "Track_L_Front_Sprocket_Tooth_05",
+            "Track_L_Front_Sprocket_Tooth_06",
+            "Track_L_Front_Sprocket_Tooth_07",
+            "Track_L_Front_Sprocket_Tooth_08",
+            "Track_L_Front_Sprocket_Tooth_09",
+            "Track_L_Front_Sprocket_Tooth_10",
+            "Track_L_Front_Wheel",
+            "Track_L_Pad_Bottom_01",
+            "Track_L_Pad_Bottom_02",
+            "Track_L_Pad_Bottom_03",
+            "Track_L_Pad_Bottom_04",
+            "Track_L_Pad_Bottom_05",
+            "Track_L_Pad_Bottom_06",
+            "Track_L_Pad_Bottom_07",
+            "Track_L_Pad_Bottom_08",
+            "Track_L_Pad_Bottom_09",
+            "Track_L_Pad_Bottom_10",
+            "Track_L_Pad_Bottom_11",
+            "Track_L_Pad_Bottom_12",
+            "Track_L_Pad_Bottom_13",
+            "Track_L_Pad_Bottom_14",
+            "Track_L_Pad_Bottom_15",
+            "Track_L_Pad_Top_01",
+            "Track_L_Pad_Top_02",
+            "Track_L_Pad_Top_03",
+            "Track_L_Pad_Top_04",
+            "Track_L_Pad_Top_05",
+            "Track_L_Pad_Top_06",
+            "Track_L_Pad_Top_07",
+            "Track_L_Pad_Top_08",
+            "Track_L_Pad_Top_09",
+            "Track_L_Pad_Top_10",
+            "Track_L_Pad_Top_11",
+            "Track_L_Pad_Top_12",
+            "Track_L_Pad_Top_13",
+            "Track_L_Pad_Top_14",
+            "Track_L_Pad_Top_15",
+            "Track_L_Rear_End_Shoe",
+            "Track_L_Rear_Sprocket_Tooth_01",
+            "Track_L_Rear_Sprocket_Tooth_02",
+            "Track_L_Rear_Sprocket_Tooth_03",
+            "Track_L_Rear_Sprocket_Tooth_04",
+            "Track_L_Rear_Sprocket_Tooth_05",
+            "Track_L_Rear_Sprocket_Tooth_06",
+            "Track_L_Rear_Sprocket_Tooth_07",
+            "Track_L_Rear_Sprocket_Tooth_08",
+            "Track_L_Rear_Sprocket_Tooth_09",
+            "Track_L_Rear_Sprocket_Tooth_10",
+            "Track_L_Rear_Wheel",
+            "Track_L_Roller_01",
+            "Track_L_Roller_02",
+            "Track_L_Roller_03",
+            "Track_L_Roller_04",
+            "Track_L_Roller_05",
+            "Track_L_Roller_06",
+            "Track_L_Roller_07",
+            "Track_L_Track_Frame",
+            "Track_R_Front_End_Shoe",
+            "Track_R_Front_Sprocket_Tooth_01",
+            "Track_R_Front_Sprocket_Tooth_02",
+            "Track_R_Front_Sprocket_Tooth_03",
+            "Track_R_Front_Sprocket_Tooth_04",
+            "Track_R_Front_Sprocket_Tooth_05",
+            "Track_R_Front_Sprocket_Tooth_06",
+            "Track_R_Front_Sprocket_Tooth_07",
+            "Track_R_Front_Sprocket_Tooth_08",
+            "Track_R_Front_Sprocket_Tooth_09",
+            "Track_R_Front_Sprocket_Tooth_10",
+            "Track_R_Front_Wheel",
+            "Track_R_Pad_Bottom_01",
+            "Track_R_Pad_Bottom_02",
+            "Track_R_Pad_Bottom_03",
+            "Track_R_Pad_Bottom_04",
+            "Track_R_Pad_Bottom_05",
+            "Track_R_Pad_Bottom_06",
+            "Track_R_Pad_Bottom_07",
+            "Track_R_Pad_Bottom_08",
+            "Track_R_Pad_Bottom_09",
+            "Track_R_Pad_Bottom_10",
+            "Track_R_Pad_Bottom_11",
+            "Track_R_Pad_Bottom_12",
+            "Track_R_Pad_Bottom_13",
+            "Track_R_Pad_Bottom_14",
+            "Track_R_Pad_Bottom_15",
+            "Track_R_Pad_Top_01",
+            "Track_R_Pad_Top_02",
+            "Track_R_Pad_Top_03",
+            "Track_R_Pad_Top_04",
+            "Track_R_Pad_Top_05",
+            "Track_R_Pad_Top_06",
+            "Track_R_Pad_Top_07",
+            "Track_R_Pad_Top_08",
+            "Track_R_Pad_Top_09",
+            "Track_R_Pad_Top_10",
+            "Track_R_Pad_Top_11",
+            "Track_R_Pad_Top_12",
+            "Track_R_Pad_Top_13",
+            "Track_R_Pad_Top_14",
+            "Track_R_Pad_Top_15",
+            "Track_R_Rear_End_Shoe",
+            "Track_R_Rear_Sprocket_Tooth_01",
+            "Track_R_Rear_Sprocket_Tooth_02",
+            "Track_R_Rear_Sprocket_Tooth_03",
+            "Track_R_Rear_Sprocket_Tooth_04",
+            "Track_R_Rear_Sprocket_Tooth_05",
+            "Track_R_Rear_Sprocket_Tooth_06",
+            "Track_R_Rear_Sprocket_Tooth_07",
+            "Track_R_Rear_Sprocket_Tooth_08",
+            "Track_R_Rear_Sprocket_Tooth_09",
+            "Track_R_Rear_Sprocket_Tooth_10",
+            "Track_R_Rear_Wheel",
+            "Track_R_Roller_01",
+            "Track_R_Roller_02",
+            "Track_R_Roller_03",
+            "Track_R_Roller_04",
+            "Track_R_Roller_05",
+            "Track_R_Roller_06",
+            "Track_R_Roller_07",
+            "Track_R_Track_Frame",
+            "Boom_Cylinder_L_Barrel",
+            "Boom_Cylinder_L_Base_Clevis_L",
+            "Boom_Cylinder_L_Base_Clevis_R",
+            "Boom_Cylinder_L_Base_Pin",
+            "Boom_Cylinder_R_Barrel",
+            "Boom_Cylinder_R_Base_Clevis_L",
+            "Boom_Cylinder_R_Base_Clevis_R",
+            "Boom_Cylinder_R_Base_Pin",
+            "Arm_Crowd_Cylinder_Barrel",
+            "Arm_Crowd_Cylinder_Base_Clevis_L",
+            "Arm_Crowd_Cylinder_Base_Clevis_R",
+            "Arm_Crowd_Cylinder_Base_Pin",
+            "Boom_Box_Girder",
+            "Boom_Cylinder_L_Rod",
+            "Boom_Cylinder_L_Rod_End_Clevis_L",
+            "Boom_Cylinder_L_Rod_End_Clevis_R",
+            "Boom_Cylinder_L_Rod_End_Pin",
+            "Boom_Cylinder_R_Rod",
+            "Boom_Cylinder_R_Rod_End_Clevis_L",
+            "Boom_Cylinder_R_Rod_End_Clevis_R",
+            "Boom_Cylinder_R_Rod_End_Pin",
+            "Boom_Foot_Gusset_L",
+            "Boom_Foot_Gusset_R",
+            "Boom_Foot_Pin",
+            "Boom_Hydraulic_Line_L_01",
+            "Boom_Hydraulic_Line_L_02",
+            "Boom_Hydraulic_Line_L_03",
+            "Boom_Hydraulic_Line_R_01",
+            "Boom_Hydraulic_Line_R_02",
+            "Boom_Hydraulic_Line_R_03",
+            "Boom_Main",
+            "Boom_Side_Plate_L",
+            "Boom_Side_Plate_R",
+            "Boom_Web_Plate_L",
+            "Boom_Web_Plate_R",
+            "Arm_Crowd_Cylinder_Rod",
+            "Arm_Crowd_Cylinder_Rod_End_Clevis_L",
+            "Arm_Crowd_Cylinder_Rod_End_Clevis_R",
+            "Arm_Crowd_Cylinder_Rod_End_Pin",
+            "Boom_Stick_Pin",
+            "Bucket_Curl_Cylinder_Barrel",
+            "Bucket_Curl_Cylinder_Base_Clevis_L",
+            "Bucket_Curl_Cylinder_Base_Clevis_R",
+            "Bucket_Curl_Cylinder_Base_Pin",
+            "Bucket_Bellcrank_Plate_L",
+            "Bucket_Bellcrank_Plate_R",
+            "Bucket_Curl_Cylinder_Rod",
+            "Bucket_Curl_Cylinder_Rod_End_Clevis_L",
+            "Bucket_Curl_Cylinder_Rod_End_Clevis_R",
+            "Bucket_Curl_Cylinder_Rod_End_Pin",
+            "Bucket_Dogbone_End_Pin",
+            "Bucket_Dogbone_L",
+            "Bucket_Dogbone_R",
+            "Bucket_H_Link_Cylinder_Pin",
+            "Bucket_H_Link_L",
+            "Bucket_H_Link_Lower_Cross_Pin",
+            "Bucket_H_Link_Pivot_Pin",
+            "Bucket_H_Link_R",
+            "Bucket_Cheek_L",
+            "Bucket_Cheek_R",
+            "Bucket_Cutting_Edge",
+            "Bucket_Ear_Cross_Pin",
+            "Bucket_Heel_Rib_L",
+            "Bucket_Heel_Rib_R",
+            "Bucket_Linkage_Ear_L",
+            "Bucket_Linkage_Ear_R",
+            "Bucket_Shell",
+            "Bucket_Tooth_01",
+            "Bucket_Tooth_02",
+            "Bucket_Tooth_03",
+            "Bucket_Tooth_04",
+            "Bucket_Tooth_05",
+            "Bucket_Torque_Tube",
+            "Stick_Bucket_Pin",
+            "Stick_Box_Girder",
+            "Stick_Hydraulic_Line_L_01",
+            "Stick_Hydraulic_Line_L_02",
+            "Stick_Hydraulic_Line_R_01",
+            "Stick_Hydraulic_Line_R_02",
+            "Stick_Main",
+            "Stick_Side_Plate_L",
+            "Stick_Side_Plate_R",
+            "Stick_Web_Plate_L",
+            "Stick_Web_Plate_R",
+            "Counterweight_Main",
+            "Counterweight_Rear_Bumper",
+            "Engine_Hood_Operator_Panel",
+            "Engine_Hood_Operator_Upper_Seam",
+            "Engine_Hood_Service_Panel",
+            "Engine_Hood_Service_Upper_Seam",
+            "Engine_House",
+            "Engine_Vent_01",
+            "Engine_Vent_02",
+            "Engine_Vent_03",
+            "Engine_Vent_04",
+            "Engine_Vent_05",
+            "Engine_Vent_06",
+            "Engine_Vent_07",
+            "Engine_Vent_08",
+            "Engine_Vent_09",
+            "Fuel_Tank_Step",
+            "Fuel_Tank_Step_Tread_01",
+            "Fuel_Tank_Step_Tread_02",
+            "Fuel_Tank_Step_Tread_03",
+            "Handrail_L_Post_01",
+            "Handrail_L_Post_02",
+            "Handrail_L_Post_03",
+            "Handrail_L_Post_04",
+            "Handrail_R_Post_01",
+            "Handrail_R_Post_02",
+            "Handrail_R_Post_03",
+            "Handrail_R_Post_04",
+            "Handrail_Top_Rail_L",
+            "Handrail_Top_Rail_R",
+            "Hydraulic_Distribution_Block",
+            "Cab_Door_Handle",
+            "Cab_Door_Lower_Rail",
+            "Cab_Door_Upper_Rail",
+            "Cab_Floor",
+            "Cab_Front_Glass",
+            "Cab_Front_Wiper",
+            "Cab_L_Front_Post",
+            "Cab_L_Glass",
+            "Cab_L_Rear_Post",
+            "Cab_R_Front_Post",
+            "Cab_R_Glass",
+            "Cab_R_Rear_Post",
+            "Cab_Rear_Glass",
+            "Cab_Roof",
+            "Cab_Roof_Beacon",
+            "Control_Console",
+            "Operator_Seat",
+            "Rear_Radiator_Slot_01",
+            "Rear_Radiator_Slot_02",
+            "Rear_Radiator_Slot_03",
+            "Rear_Radiator_Slot_04",
+            "Rear_Radiator_Slot_05",
+            "Rear_Radiator_Slot_06",
+            "Upper_Main_Deck"
+          ]
+        },
+        "Fixed_Structure_ROOT": {
+          "present": true,
+          "role": "fixed_structure_root",
+          "visible_mesh_descendants": [
+            "Carbody",
+            "Carbody_X_Frame_Front_L",
+            "Carbody_X_Frame_Front_R",
+            "Carbody_X_Frame_Rear_L",
+            "Carbody_X_Frame_Rear_R",
+            "L_Travel_Motor_Housing",
+            "L_Travel_Motor_Hub",
+            "R_Travel_Motor_Housing",
+            "R_Travel_Motor_Hub",
+            "Swing_Bearing"
+          ]
+        },
+        "Running_Gear_ROOT": {
+          "present": true,
+          "role": "running_gear_root",
+          "visible_mesh_descendants": [
+            "Track_L_Front_End_Shoe",
+            "Track_L_Front_Sprocket_Tooth_01",
+            "Track_L_Front_Sprocket_Tooth_02",
+            "Track_L_Front_Sprocket_Tooth_03",
+            "Track_L_Front_Sprocket_Tooth_04",
+            "Track_L_Front_Sprocket_Tooth_05",
+            "Track_L_Front_Sprocket_Tooth_06",
+            "Track_L_Front_Sprocket_Tooth_07",
+            "Track_L_Front_Sprocket_Tooth_08",
+            "Track_L_Front_Sprocket_Tooth_09",
+            "Track_L_Front_Sprocket_Tooth_10",
+            "Track_L_Front_Wheel",
+            "Track_L_Pad_Bottom_01",
+            "Track_L_Pad_Bottom_02",
+            "Track_L_Pad_Bottom_03",
+            "Track_L_Pad_Bottom_04",
+            "Track_L_Pad_Bottom_05",
+            "Track_L_Pad_Bottom_06",
+            "Track_L_Pad_Bottom_07",
+            "Track_L_Pad_Bottom_08",
+            "Track_L_Pad_Bottom_09",
+            "Track_L_Pad_Bottom_10",
+            "Track_L_Pad_Bottom_11",
+            "Track_L_Pad_Bottom_12",
+            "Track_L_Pad_Bottom_13",
+            "Track_L_Pad_Bottom_14",
+            "Track_L_Pad_Bottom_15",
+            "Track_L_Pad_Top_01",
+            "Track_L_Pad_Top_02",
+            "Track_L_Pad_Top_03",
+            "Track_L_Pad_Top_04",
+            "Track_L_Pad_Top_05",
+            "Track_L_Pad_Top_06",
+            "Track_L_Pad_Top_07",
+            "Track_L_Pad_Top_08",
+            "Track_L_Pad_Top_09",
+            "Track_L_Pad_Top_10",
+            "Track_L_Pad_Top_11",
+            "Track_L_Pad_Top_12",
+            "Track_L_Pad_Top_13",
+            "Track_L_Pad_Top_14",
+            "Track_L_Pad_Top_15",
+            "Track_L_Rear_End_Shoe",
+            "Track_L_Rear_Sprocket_Tooth_01",
+            "Track_L_Rear_Sprocket_Tooth_02",
+            "Track_L_Rear_Sprocket_Tooth_03",
+            "Track_L_Rear_Sprocket_Tooth_04",
+            "Track_L_Rear_Sprocket_Tooth_05",
+            "Track_L_Rear_Sprocket_Tooth_06",
+            "Track_L_Rear_Sprocket_Tooth_07",
+            "Track_L_Rear_Sprocket_Tooth_08",
+            "Track_L_Rear_Sprocket_Tooth_09",
+            "Track_L_Rear_Sprocket_Tooth_10",
+            "Track_L_Rear_Wheel",
+            "Track_L_Roller_01",
+            "Track_L_Roller_02",
+            "Track_L_Roller_03",
+            "Track_L_Roller_04",
+            "Track_L_Roller_05",
+            "Track_L_Roller_06",
+            "Track_L_Roller_07",
+            "Track_L_Track_Frame",
+            "Track_R_Front_End_Shoe",
+            "Track_R_Front_Sprocket_Tooth_01",
+            "Track_R_Front_Sprocket_Tooth_02",
+            "Track_R_Front_Sprocket_Tooth_03",
+            "Track_R_Front_Sprocket_Tooth_04",
+            "Track_R_Front_Sprocket_Tooth_05",
+            "Track_R_Front_Sprocket_Tooth_06",
+            "Track_R_Front_Sprocket_Tooth_07",
+            "Track_R_Front_Sprocket_Tooth_08",
+            "Track_R_Front_Sprocket_Tooth_09",
+            "Track_R_Front_Sprocket_Tooth_10",
+            "Track_R_Front_Wheel",
+            "Track_R_Pad_Bottom_01",
+            "Track_R_Pad_Bottom_02",
+            "Track_R_Pad_Bottom_03",
+            "Track_R_Pad_Bottom_04",
+            "Track_R_Pad_Bottom_05",
+            "Track_R_Pad_Bottom_06",
+            "Track_R_Pad_Bottom_07",
+            "Track_R_Pad_Bottom_08",
+            "Track_R_Pad_Bottom_09",
+            "Track_R_Pad_Bottom_10",
+            "Track_R_Pad_Bottom_11",
+            "Track_R_Pad_Bottom_12",
+            "Track_R_Pad_Bottom_13",
+            "Track_R_Pad_Bottom_14",
+            "Track_R_Pad_Bottom_15",
+            "Track_R_Pad_Top_01",
+            "Track_R_Pad_Top_02",
+            "Track_R_Pad_Top_03",
+            "Track_R_Pad_Top_04",
+            "Track_R_Pad_Top_05",
+            "Track_R_Pad_Top_06",
+            "Track_R_Pad_Top_07",
+            "Track_R_Pad_Top_08",
+            "Track_R_Pad_Top_09",
+            "Track_R_Pad_Top_10",
+            "Track_R_Pad_Top_11",
+            "Track_R_Pad_Top_12",
+            "Track_R_Pad_Top_13",
+            "Track_R_Pad_Top_14",
+            "Track_R_Pad_Top_15",
+            "Track_R_Rear_End_Shoe",
+            "Track_R_Rear_Sprocket_Tooth_01",
+            "Track_R_Rear_Sprocket_Tooth_02",
+            "Track_R_Rear_Sprocket_Tooth_03",
+            "Track_R_Rear_Sprocket_Tooth_04",
+            "Track_R_Rear_Sprocket_Tooth_05",
+            "Track_R_Rear_Sprocket_Tooth_06",
+            "Track_R_Rear_Sprocket_Tooth_07",
+            "Track_R_Rear_Sprocket_Tooth_08",
+            "Track_R_Rear_Sprocket_Tooth_09",
+            "Track_R_Rear_Sprocket_Tooth_10",
+            "Track_R_Rear_Wheel",
+            "Track_R_Roller_01",
+            "Track_R_Roller_02",
+            "Track_R_Roller_03",
+            "Track_R_Roller_04",
+            "Track_R_Roller_05",
+            "Track_R_Roller_06",
+            "Track_R_Roller_07",
+            "Track_R_Track_Frame"
+          ]
+        },
+        "Hydraulics_ROOT": {
+          "present": true,
+          "role": "hydraulics_root",
+          "visible_mesh_descendants": [
+            "Hydraulic_Distribution_Block"
+          ]
+        },
+        "Track_L_ROOT": {
+          "present": true,
+          "role": "track_root",
+          "visible_mesh_descendants": [
+            "Track_L_Front_End_Shoe",
+            "Track_L_Front_Sprocket_Tooth_01",
+            "Track_L_Front_Sprocket_Tooth_02",
+            "Track_L_Front_Sprocket_Tooth_03",
+            "Track_L_Front_Sprocket_Tooth_04",
+            "Track_L_Front_Sprocket_Tooth_05",
+            "Track_L_Front_Sprocket_Tooth_06",
+            "Track_L_Front_Sprocket_Tooth_07",
+            "Track_L_Front_Sprocket_Tooth_08",
+            "Track_L_Front_Sprocket_Tooth_09",
+            "Track_L_Front_Sprocket_Tooth_10",
+            "Track_L_Front_Wheel",
+            "Track_L_Pad_Bottom_01",
+            "Track_L_Pad_Bottom_02",
+            "Track_L_Pad_Bottom_03",
+            "Track_L_Pad_Bottom_04",
+            "Track_L_Pad_Bottom_05",
+            "Track_L_Pad_Bottom_06",
+            "Track_L_Pad_Bottom_07",
+            "Track_L_Pad_Bottom_08",
+            "Track_L_Pad_Bottom_09",
+            "Track_L_Pad_Bottom_10",
+            "Track_L_Pad_Bottom_11",
+            "Track_L_Pad_Bottom_12",
+            "Track_L_Pad_Bottom_13",
+            "Track_L_Pad_Bottom_14",
+            "Track_L_Pad_Bottom_15",
+            "Track_L_Pad_Top_01",
+            "Track_L_Pad_Top_02",
+            "Track_L_Pad_Top_03",
+            "Track_L_Pad_Top_04",
+            "Track_L_Pad_Top_05",
+            "Track_L_Pad_Top_06",
+            "Track_L_Pad_Top_07",
+            "Track_L_Pad_Top_08",
+            "Track_L_Pad_Top_09",
+            "Track_L_Pad_Top_10",
+            "Track_L_Pad_Top_11",
+            "Track_L_Pad_Top_12",
+            "Track_L_Pad_Top_13",
+            "Track_L_Pad_Top_14",
+            "Track_L_Pad_Top_15",
+            "Track_L_Rear_End_Shoe",
+            "Track_L_Rear_Sprocket_Tooth_01",
+            "Track_L_Rear_Sprocket_Tooth_02",
+            "Track_L_Rear_Sprocket_Tooth_03",
+            "Track_L_Rear_Sprocket_Tooth_04",
+            "Track_L_Rear_Sprocket_Tooth_05",
+            "Track_L_Rear_Sprocket_Tooth_06",
+            "Track_L_Rear_Sprocket_Tooth_07",
+            "Track_L_Rear_Sprocket_Tooth_08",
+            "Track_L_Rear_Sprocket_Tooth_09",
+            "Track_L_Rear_Sprocket_Tooth_10",
+            "Track_L_Rear_Wheel",
+            "Track_L_Roller_01",
+            "Track_L_Roller_02",
+            "Track_L_Roller_03",
+            "Track_L_Roller_04",
+            "Track_L_Roller_05",
+            "Track_L_Roller_06",
+            "Track_L_Roller_07",
+            "Track_L_Track_Frame"
+          ]
+        },
+        "Track_R_ROOT": {
+          "present": true,
+          "role": "track_root",
+          "visible_mesh_descendants": [
+            "Track_R_Front_End_Shoe",
+            "Track_R_Front_Sprocket_Tooth_01",
+            "Track_R_Front_Sprocket_Tooth_02",
+            "Track_R_Front_Sprocket_Tooth_03",
+            "Track_R_Front_Sprocket_Tooth_04",
+            "Track_R_Front_Sprocket_Tooth_05",
+            "Track_R_Front_Sprocket_Tooth_06",
+            "Track_R_Front_Sprocket_Tooth_07",
+            "Track_R_Front_Sprocket_Tooth_08",
+            "Track_R_Front_Sprocket_Tooth_09",
+            "Track_R_Front_Sprocket_Tooth_10",
+            "Track_R_Front_Wheel",
+            "Track_R_Pad_Bottom_01",
+            "Track_R_Pad_Bottom_02",
+            "Track_R_Pad_Bottom_03",
+            "Track_R_Pad_Bottom_04",
+            "Track_R_Pad_Bottom_05",
+            "Track_R_Pad_Bottom_06",
+            "Track_R_Pad_Bottom_07",
+            "Track_R_Pad_Bottom_08",
+            "Track_R_Pad_Bottom_09",
+            "Track_R_Pad_Bottom_10",
+            "Track_R_Pad_Bottom_11",
+            "Track_R_Pad_Bottom_12",
+            "Track_R_Pad_Bottom_13",
+            "Track_R_Pad_Bottom_14",
+            "Track_R_Pad_Bottom_15",
+            "Track_R_Pad_Top_01",
+            "Track_R_Pad_Top_02",
+            "Track_R_Pad_Top_03",
+            "Track_R_Pad_Top_04",
+            "Track_R_Pad_Top_05",
+            "Track_R_Pad_Top_06",
+            "Track_R_Pad_Top_07",
+            "Track_R_Pad_Top_08",
+            "Track_R_Pad_Top_09",
+            "Track_R_Pad_Top_10",
+            "Track_R_Pad_Top_11",
+            "Track_R_Pad_Top_12",
+            "Track_R_Pad_Top_13",
+            "Track_R_Pad_Top_14",
+            "Track_R_Pad_Top_15",
+            "Track_R_Rear_End_Shoe",
+            "Track_R_Rear_Sprocket_Tooth_01",
+            "Track_R_Rear_Sprocket_Tooth_02",
+            "Track_R_Rear_Sprocket_Tooth_03",
+            "Track_R_Rear_Sprocket_Tooth_04",
+            "Track_R_Rear_Sprocket_Tooth_05",
+            "Track_R_Rear_Sprocket_Tooth_06",
+            "Track_R_Rear_Sprocket_Tooth_07",
+            "Track_R_Rear_Sprocket_Tooth_08",
+            "Track_R_Rear_Sprocket_Tooth_09",
+            "Track_R_Rear_Sprocket_Tooth_10",
+            "Track_R_Rear_Wheel",
+            "Track_R_Roller_01",
+            "Track_R_Roller_02",
+            "Track_R_Roller_03",
+            "Track_R_Roller_04",
+            "Track_R_Roller_05",
+            "Track_R_Roller_06",
+            "Track_R_Roller_07",
+            "Track_R_Track_Frame"
+          ]
+        },
+        "Upper_Swing_Pivot": {
+          "present": true,
+          "role": "pivot",
+          "visible_mesh_descendants": [
+            "Boom_Cylinder_L_Barrel",
+            "Boom_Cylinder_L_Base_Clevis_L",
+            "Boom_Cylinder_L_Base_Clevis_R",
+            "Boom_Cylinder_L_Base_Pin",
+            "Boom_Cylinder_R_Barrel",
+            "Boom_Cylinder_R_Base_Clevis_L",
+            "Boom_Cylinder_R_Base_Clevis_R",
+            "Boom_Cylinder_R_Base_Pin",
+            "Arm_Crowd_Cylinder_Barrel",
+            "Arm_Crowd_Cylinder_Base_Clevis_L",
+            "Arm_Crowd_Cylinder_Base_Clevis_R",
+            "Arm_Crowd_Cylinder_Base_Pin",
+            "Boom_Box_Girder",
+            "Boom_Cylinder_L_Rod",
+            "Boom_Cylinder_L_Rod_End_Clevis_L",
+            "Boom_Cylinder_L_Rod_End_Clevis_R",
+            "Boom_Cylinder_L_Rod_End_Pin",
+            "Boom_Cylinder_R_Rod",
+            "Boom_Cylinder_R_Rod_End_Clevis_L",
+            "Boom_Cylinder_R_Rod_End_Clevis_R",
+            "Boom_Cylinder_R_Rod_End_Pin",
+            "Boom_Foot_Gusset_L",
+            "Boom_Foot_Gusset_R",
+            "Boom_Foot_Pin",
+            "Boom_Hydraulic_Line_L_01",
+            "Boom_Hydraulic_Line_L_02",
+            "Boom_Hydraulic_Line_L_03",
+            "Boom_Hydraulic_Line_R_01",
+            "Boom_Hydraulic_Line_R_02",
+            "Boom_Hydraulic_Line_R_03",
+            "Boom_Main",
+            "Boom_Side_Plate_L",
+            "Boom_Side_Plate_R",
+            "Boom_Web_Plate_L",
+            "Boom_Web_Plate_R",
+            "Arm_Crowd_Cylinder_Rod",
+            "Arm_Crowd_Cylinder_Rod_End_Clevis_L",
+            "Arm_Crowd_Cylinder_Rod_End_Clevis_R",
+            "Arm_Crowd_Cylinder_Rod_End_Pin",
+            "Boom_Stick_Pin",
+            "Bucket_Curl_Cylinder_Barrel",
+            "Bucket_Curl_Cylinder_Base_Clevis_L",
+            "Bucket_Curl_Cylinder_Base_Clevis_R",
+            "Bucket_Curl_Cylinder_Base_Pin",
+            "Bucket_Bellcrank_Plate_L",
+            "Bucket_Bellcrank_Plate_R",
+            "Bucket_Curl_Cylinder_Rod",
+            "Bucket_Curl_Cylinder_Rod_End_Clevis_L",
+            "Bucket_Curl_Cylinder_Rod_End_Clevis_R",
+            "Bucket_Curl_Cylinder_Rod_End_Pin",
+            "Bucket_Dogbone_End_Pin",
+            "Bucket_Dogbone_L",
+            "Bucket_Dogbone_R",
+            "Bucket_H_Link_Cylinder_Pin",
+            "Bucket_H_Link_L",
+            "Bucket_H_Link_Lower_Cross_Pin",
+            "Bucket_H_Link_Pivot_Pin",
+            "Bucket_H_Link_R",
+            "Bucket_Cheek_L",
+            "Bucket_Cheek_R",
+            "Bucket_Cutting_Edge",
+            "Bucket_Ear_Cross_Pin",
+            "Bucket_Heel_Rib_L",
+            "Bucket_Heel_Rib_R",
+            "Bucket_Linkage_Ear_L",
+            "Bucket_Linkage_Ear_R",
+            "Bucket_Shell",
+            "Bucket_Tooth_01",
+            "Bucket_Tooth_02",
+            "Bucket_Tooth_03",
+            "Bucket_Tooth_04",
+            "Bucket_Tooth_05",
+            "Bucket_Torque_Tube",
+            "Stick_Bucket_Pin",
+            "Stick_Box_Girder",
+            "Stick_Hydraulic_Line_L_01",
+            "Stick_Hydraulic_Line_L_02",
+            "Stick_Hydraulic_Line_R_01",
+            "Stick_Hydraulic_Line_R_02",
+            "Stick_Main",
+            "Stick_Side_Plate_L",
+            "Stick_Side_Plate_R",
+            "Stick_Web_Plate_L",
+            "Stick_Web_Plate_R",
+            "Counterweight_Main",
+            "Counterweight_Rear_Bumper",
+            "Engine_Hood_Operator_Panel",
+            "Engine_Hood_Operator_Upper_Seam",
+            "Engine_Hood_Service_Panel",
+            "Engine_Hood_Service_Upper_Seam",
+            "Engine_House",
+            "Engine_Vent_01",
+            "Engine_Vent_02",
+            "Engine_Vent_03",
+            "Engine_Vent_04",
+            "Engine_Vent_05",
+            "Engine_Vent_06",
+            "Engine_Vent_07",
+            "Engine_Vent_08",
+            "Engine_Vent_09",
+            "Fuel_Tank_Step",
+            "Fuel_Tank_Step_Tread_01",
+            "Fuel_Tank_Step_Tread_02",
+            "Fuel_Tank_Step_Tread_03",
+            "Handrail_L_Post_01",
+            "Handrail_L_Post_02",
+            "Handrail_L_Post_03",
+            "Handrail_L_Post_04",
+            "Handrail_R_Post_01",
+            "Handrail_R_Post_02",
+            "Handrail_R_Post_03",
+            "Handrail_R_Post_04",
+            "Handrail_Top_Rail_L",
+            "Handrail_Top_Rail_R",
+            "Hydraulic_Distribution_Block",
+            "Cab_Door_Handle",
+            "Cab_Door_Lower_Rail",
+            "Cab_Door_Upper_Rail",
+            "Cab_Floor",
+            "Cab_Front_Glass",
+            "Cab_Front_Wiper",
+            "Cab_L_Front_Post",
+            "Cab_L_Glass",
+            "Cab_L_Rear_Post",
+            "Cab_R_Front_Post",
+            "Cab_R_Glass",
+            "Cab_R_Rear_Post",
+            "Cab_Rear_Glass",
+            "Cab_Roof",
+            "Cab_Roof_Beacon",
+            "Control_Console",
+            "Operator_Seat",
+            "Rear_Radiator_Slot_01",
+            "Rear_Radiator_Slot_02",
+            "Rear_Radiator_Slot_03",
+            "Rear_Radiator_Slot_04",
+            "Rear_Radiator_Slot_05",
+            "Rear_Radiator_Slot_06",
+            "Upper_Main_Deck"
+          ]
+        },
+        "Upper_ROOT": {
+          "present": true,
+          "role": "motion_root",
+          "visible_mesh_descendants": [
+            "Boom_Cylinder_L_Barrel",
+            "Boom_Cylinder_L_Base_Clevis_L",
+            "Boom_Cylinder_L_Base_Clevis_R",
+            "Boom_Cylinder_L_Base_Pin",
+            "Boom_Cylinder_R_Barrel",
+            "Boom_Cylinder_R_Base_Clevis_L",
+            "Boom_Cylinder_R_Base_Clevis_R",
+            "Boom_Cylinder_R_Base_Pin",
+            "Arm_Crowd_Cylinder_Barrel",
+            "Arm_Crowd_Cylinder_Base_Clevis_L",
+            "Arm_Crowd_Cylinder_Base_Clevis_R",
+            "Arm_Crowd_Cylinder_Base_Pin",
+            "Boom_Box_Girder",
+            "Boom_Cylinder_L_Rod",
+            "Boom_Cylinder_L_Rod_End_Clevis_L",
+            "Boom_Cylinder_L_Rod_End_Clevis_R",
+            "Boom_Cylinder_L_Rod_End_Pin",
+            "Boom_Cylinder_R_Rod",
+            "Boom_Cylinder_R_Rod_End_Clevis_L",
+            "Boom_Cylinder_R_Rod_End_Clevis_R",
+            "Boom_Cylinder_R_Rod_End_Pin",
+            "Boom_Foot_Gusset_L",
+            "Boom_Foot_Gusset_R",
+            "Boom_Foot_Pin",
+            "Boom_Hydraulic_Line_L_01",
+            "Boom_Hydraulic_Line_L_02",
+            "Boom_Hydraulic_Line_L_03",
+            "Boom_Hydraulic_Line_R_01",
+            "Boom_Hydraulic_Line_R_02",
+            "Boom_Hydraulic_Line_R_03",
+            "Boom_Main",
+            "Boom_Side_Plate_L",
+            "Boom_Side_Plate_R",
+            "Boom_Web_Plate_L",
+            "Boom_Web_Plate_R",
+            "Arm_Crowd_Cylinder_Rod",
+            "Arm_Crowd_Cylinder_Rod_End_Clevis_L",
+            "Arm_Crowd_Cylinder_Rod_End_Clevis_R",
+            "Arm_Crowd_Cylinder_Rod_End_Pin",
+            "Boom_Stick_Pin",
+            "Bucket_Curl_Cylinder_Barrel",
+            "Bucket_Curl_Cylinder_Base_Clevis_L",
+            "Bucket_Curl_Cylinder_Base_Clevis_R",
+            "Bucket_Curl_Cylinder_Base_Pin",
+            "Bucket_Bellcrank_Plate_L",
+            "Bucket_Bellcrank_Plate_R",
+            "Bucket_Curl_Cylinder_Rod",
+            "Bucket_Curl_Cylinder_Rod_End_Clevis_L",
+            "Bucket_Curl_Cylinder_Rod_End_Clevis_R",
+            "Bucket_Curl_Cylinder_Rod_End_Pin",
+            "Bucket_Dogbone_End_Pin",
+            "Bucket_Dogbone_L",
+            "Bucket_Dogbone_R",
+            "Bucket_H_Link_Cylinder_Pin",
+            "Bucket_H_Link_L",
+            "Bucket_H_Link_Lower_Cross_Pin",
+            "Bucket_H_Link_Pivot_Pin",
+            "Bucket_H_Link_R",
+            "Bucket_Cheek_L",
+            "Bucket_Cheek_R",
+            "Bucket_Cutting_Edge",
+            "Bucket_Ear_Cross_Pin",
+            "Bucket_Heel_Rib_L",
+            "Bucket_Heel_Rib_R",
+            "Bucket_Linkage_Ear_L",
+            "Bucket_Linkage_Ear_R",
+            "Bucket_Shell",
+            "Bucket_Tooth_01",
+            "Bucket_Tooth_02",
+            "Bucket_Tooth_03",
+            "Bucket_Tooth_04",
+            "Bucket_Tooth_05",
+            "Bucket_Torque_Tube",
+            "Stick_Bucket_Pin",
+            "Stick_Box_Girder",
+            "Stick_Hydraulic_Line_L_01",
+            "Stick_Hydraulic_Line_L_02",
+            "Stick_Hydraulic_Line_R_01",
+            "Stick_Hydraulic_Line_R_02",
+            "Stick_Main",
+            "Stick_Side_Plate_L",
+            "Stick_Side_Plate_R",
+            "Stick_Web_Plate_L",
+            "Stick_Web_Plate_R",
+            "Counterweight_Main",
+            "Counterweight_Rear_Bumper",
+            "Engine_Hood_Operator_Panel",
+            "Engine_Hood_Operator_Upper_Seam",
+            "Engine_Hood_Service_Panel",
+            "Engine_Hood_Service_Upper_Seam",
+            "Engine_House",
+            "Engine_Vent_01",
+            "Engine_Vent_02",
+            "Engine_Vent_03",
+            "Engine_Vent_04",
+            "Engine_Vent_05",
+            "Engine_Vent_06",
+            "Engine_Vent_07",
+            "Engine_Vent_08",
+            "Engine_Vent_09",
+            "Fuel_Tank_Step",
+            "Fuel_Tank_Step_Tread_01",
+            "Fuel_Tank_Step_Tread_02",
+            "Fuel_Tank_Step_Tread_03",
+            "Handrail_L_Post_01",
+            "Handrail_L_Post_02",
+            "Handrail_L_Post_03",
+            "Handrail_L_Post_04",
+            "Handrail_R_Post_01",
+            "Handrail_R_Post_02",
+            "Handrail_R_Post_03",
+            "Handrail_R_Post_04",
+            "Handrail_Top_Rail_L",
+            "Handrail_Top_Rail_R",
+            "Hydraulic_Distribution_Block",
+            "Cab_Door_Handle",
+            "Cab_Door_Lower_Rail",
+            "Cab_Door_Upper_Rail",
+            "Cab_Floor",
+            "Cab_Front_Glass",
+            "Cab_Front_Wiper",
+            "Cab_L_Front_Post",
+            "Cab_L_Glass",
+            "Cab_L_Rear_Post",
+            "Cab_R_Front_Post",
+            "Cab_R_Glass",
+            "Cab_R_Rear_Post",
+            "Cab_Rear_Glass",
+            "Cab_Roof",
+            "Cab_Roof_Beacon",
+            "Control_Console",
+            "Operator_Seat",
+            "Rear_Radiator_Slot_01",
+            "Rear_Radiator_Slot_02",
+            "Rear_Radiator_Slot_03",
+            "Rear_Radiator_Slot_04",
+            "Rear_Radiator_Slot_05",
+            "Rear_Radiator_Slot_06",
+            "Upper_Main_Deck"
+          ]
+        },
+        "Boom_Pivot": {
+          "present": true,
+          "role": "pivot",
+          "visible_mesh_descendants": [
+            "Arm_Crowd_Cylinder_Barrel",
+            "Arm_Crowd_Cylinder_Base_Clevis_L",
+            "Arm_Crowd_Cylinder_Base_Clevis_R",
+            "Arm_Crowd_Cylinder_Base_Pin",
+            "Boom_Box_Girder",
+            "Boom_Cylinder_L_Rod",
+            "Boom_Cylinder_L_Rod_End_Clevis_L",
+            "Boom_Cylinder_L_Rod_End_Clevis_R",
+            "Boom_Cylinder_L_Rod_End_Pin",
+            "Boom_Cylinder_R_Rod",
+            "Boom_Cylinder_R_Rod_End_Clevis_L",
+            "Boom_Cylinder_R_Rod_End_Clevis_R",
+            "Boom_Cylinder_R_Rod_End_Pin",
+            "Boom_Foot_Gusset_L",
+            "Boom_Foot_Gusset_R",
+            "Boom_Foot_Pin",
+            "Boom_Hydraulic_Line_L_01",
+            "Boom_Hydraulic_Line_L_02",
+            "Boom_Hydraulic_Line_L_03",
+            "Boom_Hydraulic_Line_R_01",
+            "Boom_Hydraulic_Line_R_02",
+            "Boom_Hydraulic_Line_R_03",
+            "Boom_Main",
+            "Boom_Side_Plate_L",
+            "Boom_Side_Plate_R",
+            "Boom_Web_Plate_L",
+            "Boom_Web_Plate_R",
+            "Arm_Crowd_Cylinder_Rod",
+            "Arm_Crowd_Cylinder_Rod_End_Clevis_L",
+            "Arm_Crowd_Cylinder_Rod_End_Clevis_R",
+            "Arm_Crowd_Cylinder_Rod_End_Pin",
+            "Boom_Stick_Pin",
+            "Bucket_Curl_Cylinder_Barrel",
+            "Bucket_Curl_Cylinder_Base_Clevis_L",
+            "Bucket_Curl_Cylinder_Base_Clevis_R",
+            "Bucket_Curl_Cylinder_Base_Pin",
+            "Bucket_Bellcrank_Plate_L",
+            "Bucket_Bellcrank_Plate_R",
+            "Bucket_Curl_Cylinder_Rod",
+            "Bucket_Curl_Cylinder_Rod_End_Clevis_L",
+            "Bucket_Curl_Cylinder_Rod_End_Clevis_R",
+            "Bucket_Curl_Cylinder_Rod_End_Pin",
+            "Bucket_Dogbone_End_Pin",
+            "Bucket_Dogbone_L",
+            "Bucket_Dogbone_R",
+            "Bucket_H_Link_Cylinder_Pin",
+            "Bucket_H_Link_L",
+            "Bucket_H_Link_Lower_Cross_Pin",
+            "Bucket_H_Link_Pivot_Pin",
+            "Bucket_H_Link_R",
+            "Bucket_Cheek_L",
+            "Bucket_Cheek_R",
+            "Bucket_Cutting_Edge",
+            "Bucket_Ear_Cross_Pin",
+            "Bucket_Heel_Rib_L",
+            "Bucket_Heel_Rib_R",
+            "Bucket_Linkage_Ear_L",
+            "Bucket_Linkage_Ear_R",
+            "Bucket_Shell",
+            "Bucket_Tooth_01",
+            "Bucket_Tooth_02",
+            "Bucket_Tooth_03",
+            "Bucket_Tooth_04",
+            "Bucket_Tooth_05",
+            "Bucket_Torque_Tube",
+            "Stick_Bucket_Pin",
+            "Stick_Box_Girder",
+            "Stick_Hydraulic_Line_L_01",
+            "Stick_Hydraulic_Line_L_02",
+            "Stick_Hydraulic_Line_R_01",
+            "Stick_Hydraulic_Line_R_02",
+            "Stick_Main",
+            "Stick_Side_Plate_L",
+            "Stick_Side_Plate_R",
+            "Stick_Web_Plate_L",
+            "Stick_Web_Plate_R"
+          ]
+        },
+        "Boom_ROOT": {
+          "present": true,
+          "role": "motion_root",
+          "visible_mesh_descendants": [
+            "Arm_Crowd_Cylinder_Barrel",
+            "Arm_Crowd_Cylinder_Base_Clevis_L",
+            "Arm_Crowd_Cylinder_Base_Clevis_R",
+            "Arm_Crowd_Cylinder_Base_Pin",
+            "Boom_Box_Girder",
+            "Boom_Cylinder_L_Rod",
+            "Boom_Cylinder_L_Rod_End_Clevis_L",
+            "Boom_Cylinder_L_Rod_End_Clevis_R",
+            "Boom_Cylinder_L_Rod_End_Pin",
+            "Boom_Cylinder_R_Rod",
+            "Boom_Cylinder_R_Rod_End_Clevis_L",
+            "Boom_Cylinder_R_Rod_End_Clevis_R",
+            "Boom_Cylinder_R_Rod_End_Pin",
+            "Boom_Foot_Gusset_L",
+            "Boom_Foot_Gusset_R",
+            "Boom_Foot_Pin",
+            "Boom_Hydraulic_Line_L_01",
+            "Boom_Hydraulic_Line_L_02",
+            "Boom_Hydraulic_Line_L_03",
+            "Boom_Hydraulic_Line_R_01",
+            "Boom_Hydraulic_Line_R_02",
+            "Boom_Hydraulic_Line_R_03",
+            "Boom_Main",
+            "Boom_Side_Plate_L",
+            "Boom_Side_Plate_R",
+            "Boom_Web_Plate_L",
+            "Boom_Web_Plate_R",
+            "Arm_Crowd_Cylinder_Rod",
+            "Arm_Crowd_Cylinder_Rod_End_Clevis_L",
+            "Arm_Crowd_Cylinder_Rod_End_Clevis_R",
+            "Arm_Crowd_Cylinder_Rod_End_Pin",
+            "Boom_Stick_Pin",
+            "Bucket_Curl_Cylinder_Barrel",
+            "Bucket_Curl_Cylinder_Base_Clevis_L",
+            "Bucket_Curl_Cylinder_Base_Clevis_R",
+            "Bucket_Curl_Cylinder_Base_Pin",
+            "Bucket_Bellcrank_Plate_L",
+            "Bucket_Bellcrank_Plate_R",
+            "Bucket_Curl_Cylinder_Rod",
+            "Bucket_Curl_Cylinder_Rod_End_Clevis_L",
+            "Bucket_Curl_Cylinder_Rod_End_Clevis_R",
+            "Bucket_Curl_Cylinder_Rod_End_Pin",
+            "Bucket_Dogbone_End_Pin",
+            "Bucket_Dogbone_L",
+            "Bucket_Dogbone_R",
+            "Bucket_H_Link_Cylinder_Pin",
+            "Bucket_H_Link_L",
+            "Bucket_H_Link_Lower_Cross_Pin",
+            "Bucket_H_Link_Pivot_Pin",
+            "Bucket_H_Link_R",
+            "Bucket_Cheek_L",
+            "Bucket_Cheek_R",
+            "Bucket_Cutting_Edge",
+            "Bucket_Ear_Cross_Pin",
+            "Bucket_Heel_Rib_L",
+            "Bucket_Heel_Rib_R",
+            "Bucket_Linkage_Ear_L",
+            "Bucket_Linkage_Ear_R",
+            "Bucket_Shell",
+            "Bucket_Tooth_01",
+            "Bucket_Tooth_02",
+            "Bucket_Tooth_03",
+            "Bucket_Tooth_04",
+            "Bucket_Tooth_05",
+            "Bucket_Torque_Tube",
+            "Stick_Bucket_Pin",
+            "Stick_Box_Girder",
+            "Stick_Hydraulic_Line_L_01",
+            "Stick_Hydraulic_Line_L_02",
+            "Stick_Hydraulic_Line_R_01",
+            "Stick_Hydraulic_Line_R_02",
+            "Stick_Main",
+            "Stick_Side_Plate_L",
+            "Stick_Side_Plate_R",
+            "Stick_Web_Plate_L",
+            "Stick_Web_Plate_R"
+          ]
+        },
+        "Stick_Pivot": {
+          "present": true,
+          "role": "pivot",
+          "visible_mesh_descendants": [
+            "Arm_Crowd_Cylinder_Rod",
+            "Arm_Crowd_Cylinder_Rod_End_Clevis_L",
+            "Arm_Crowd_Cylinder_Rod_End_Clevis_R",
+            "Arm_Crowd_Cylinder_Rod_End_Pin",
+            "Boom_Stick_Pin",
+            "Bucket_Curl_Cylinder_Barrel",
+            "Bucket_Curl_Cylinder_Base_Clevis_L",
+            "Bucket_Curl_Cylinder_Base_Clevis_R",
+            "Bucket_Curl_Cylinder_Base_Pin",
+            "Bucket_Bellcrank_Plate_L",
+            "Bucket_Bellcrank_Plate_R",
+            "Bucket_Curl_Cylinder_Rod",
+            "Bucket_Curl_Cylinder_Rod_End_Clevis_L",
+            "Bucket_Curl_Cylinder_Rod_End_Clevis_R",
+            "Bucket_Curl_Cylinder_Rod_End_Pin",
+            "Bucket_Dogbone_End_Pin",
+            "Bucket_Dogbone_L",
+            "Bucket_Dogbone_R",
+            "Bucket_H_Link_Cylinder_Pin",
+            "Bucket_H_Link_L",
+            "Bucket_H_Link_Lower_Cross_Pin",
+            "Bucket_H_Link_Pivot_Pin",
+            "Bucket_H_Link_R",
+            "Bucket_Cheek_L",
+            "Bucket_Cheek_R",
+            "Bucket_Cutting_Edge",
+            "Bucket_Ear_Cross_Pin",
+            "Bucket_Heel_Rib_L",
+            "Bucket_Heel_Rib_R",
+            "Bucket_Linkage_Ear_L",
+            "Bucket_Linkage_Ear_R",
+            "Bucket_Shell",
+            "Bucket_Tooth_01",
+            "Bucket_Tooth_02",
+            "Bucket_Tooth_03",
+            "Bucket_Tooth_04",
+            "Bucket_Tooth_05",
+            "Bucket_Torque_Tube",
+            "Stick_Bucket_Pin",
+            "Stick_Box_Girder",
+            "Stick_Hydraulic_Line_L_01",
+            "Stick_Hydraulic_Line_L_02",
+            "Stick_Hydraulic_Line_R_01",
+            "Stick_Hydraulic_Line_R_02",
+            "Stick_Main",
+            "Stick_Side_Plate_L",
+            "Stick_Side_Plate_R",
+            "Stick_Web_Plate_L",
+            "Stick_Web_Plate_R"
+          ]
+        },
+        "Stick_ROOT": {
+          "present": true,
+          "role": "motion_root",
+          "visible_mesh_descendants": [
+            "Arm_Crowd_Cylinder_Rod",
+            "Arm_Crowd_Cylinder_Rod_End_Clevis_L",
+            "Arm_Crowd_Cylinder_Rod_End_Clevis_R",
+            "Arm_Crowd_Cylinder_Rod_End_Pin",
+            "Boom_Stick_Pin",
+            "Bucket_Curl_Cylinder_Barrel",
+            "Bucket_Curl_Cylinder_Base_Clevis_L",
+            "Bucket_Curl_Cylinder_Base_Clevis_R",
+            "Bucket_Curl_Cylinder_Base_Pin",
+            "Bucket_Bellcrank_Plate_L",
+            "Bucket_Bellcrank_Plate_R",
+            "Bucket_Curl_Cylinder_Rod",
+            "Bucket_Curl_Cylinder_Rod_End_Clevis_L",
+            "Bucket_Curl_Cylinder_Rod_End_Clevis_R",
+            "Bucket_Curl_Cylinder_Rod_End_Pin",
+            "Bucket_Dogbone_End_Pin",
+            "Bucket_Dogbone_L",
+            "Bucket_Dogbone_R",
+            "Bucket_H_Link_Cylinder_Pin",
+            "Bucket_H_Link_L",
+            "Bucket_H_Link_Lower_Cross_Pin",
+            "Bucket_H_Link_Pivot_Pin",
+            "Bucket_H_Link_R",
+            "Bucket_Cheek_L",
+            "Bucket_Cheek_R",
+            "Bucket_Cutting_Edge",
+            "Bucket_Ear_Cross_Pin",
+            "Bucket_Heel_Rib_L",
+            "Bucket_Heel_Rib_R",
+            "Bucket_Linkage_Ear_L",
+            "Bucket_Linkage_Ear_R",
+            "Bucket_Shell",
+            "Bucket_Tooth_01",
+            "Bucket_Tooth_02",
+            "Bucket_Tooth_03",
+            "Bucket_Tooth_04",
+            "Bucket_Tooth_05",
+            "Bucket_Torque_Tube",
+            "Stick_Bucket_Pin",
+            "Stick_Box_Girder",
+            "Stick_Hydraulic_Line_L_01",
+            "Stick_Hydraulic_Line_L_02",
+            "Stick_Hydraulic_Line_R_01",
+            "Stick_Hydraulic_Line_R_02",
+            "Stick_Main",
+            "Stick_Side_Plate_L",
+            "Stick_Side_Plate_R",
+            "Stick_Web_Plate_L",
+            "Stick_Web_Plate_R"
+          ]
+        },
+        "Bucket_Pivot": {
+          "present": true,
+          "role": "pivot",
+          "visible_mesh_descendants": [
+            "Bucket_Cheek_L",
+            "Bucket_Cheek_R",
+            "Bucket_Cutting_Edge",
+            "Bucket_Ear_Cross_Pin",
+            "Bucket_Heel_Rib_L",
+            "Bucket_Heel_Rib_R",
+            "Bucket_Linkage_Ear_L",
+            "Bucket_Linkage_Ear_R",
+            "Bucket_Shell",
+            "Bucket_Tooth_01",
+            "Bucket_Tooth_02",
+            "Bucket_Tooth_03",
+            "Bucket_Tooth_04",
+            "Bucket_Tooth_05",
+            "Bucket_Torque_Tube",
+            "Stick_Bucket_Pin"
+          ]
+        },
+        "Bucket_ROOT": {
+          "present": true,
+          "role": "motion_root",
+          "visible_mesh_descendants": [
+            "Bucket_Cheek_L",
+            "Bucket_Cheek_R",
+            "Bucket_Cutting_Edge",
+            "Bucket_Ear_Cross_Pin",
+            "Bucket_Heel_Rib_L",
+            "Bucket_Heel_Rib_R",
+            "Bucket_Linkage_Ear_L",
+            "Bucket_Linkage_Ear_R",
+            "Bucket_Shell",
+            "Bucket_Tooth_01",
+            "Bucket_Tooth_02",
+            "Bucket_Tooth_03",
+            "Bucket_Tooth_04",
+            "Bucket_Tooth_05",
+            "Bucket_Torque_Tube",
+            "Stick_Bucket_Pin"
+          ]
+        },
+        "Boom_Cylinder_L_ROOT": {
+          "present": true,
+          "role": "hydraulic_fixed_half_root",
+          "visible_mesh_descendants": [
+            "Boom_Cylinder_L_Barrel",
+            "Boom_Cylinder_L_Base_Clevis_L",
+            "Boom_Cylinder_L_Base_Clevis_R",
+            "Boom_Cylinder_L_Base_Pin"
+          ]
+        },
+        "Boom_Cylinder_L_Rod_ROOT": {
+          "present": true,
+          "role": "hydraulic_moving_half_root",
+          "visible_mesh_descendants": [
+            "Boom_Cylinder_L_Rod",
+            "Boom_Cylinder_L_Rod_End_Clevis_L",
+            "Boom_Cylinder_L_Rod_End_Clevis_R",
+            "Boom_Cylinder_L_Rod_End_Pin"
+          ]
+        },
+        "Boom_Cylinder_R_ROOT": {
+          "present": true,
+          "role": "hydraulic_fixed_half_root",
+          "visible_mesh_descendants": [
+            "Boom_Cylinder_R_Barrel",
+            "Boom_Cylinder_R_Base_Clevis_L",
+            "Boom_Cylinder_R_Base_Clevis_R",
+            "Boom_Cylinder_R_Base_Pin"
+          ]
+        },
+        "Boom_Cylinder_R_Rod_ROOT": {
+          "present": true,
+          "role": "hydraulic_moving_half_root",
+          "visible_mesh_descendants": [
+            "Boom_Cylinder_R_Rod",
+            "Boom_Cylinder_R_Rod_End_Clevis_L",
+            "Boom_Cylinder_R_Rod_End_Clevis_R",
+            "Boom_Cylinder_R_Rod_End_Pin"
+          ]
+        },
+        "Arm_Crowd_Actuator_ROOT": {
+          "present": true,
+          "role": "hydraulic_fixed_half_root",
+          "visible_mesh_descendants": [
+            "Arm_Crowd_Cylinder_Barrel",
+            "Arm_Crowd_Cylinder_Base_Clevis_L",
+            "Arm_Crowd_Cylinder_Base_Clevis_R",
+            "Arm_Crowd_Cylinder_Base_Pin"
+          ]
+        },
+        "Arm_Crowd_Rod_ROOT": {
+          "present": true,
+          "role": "hydraulic_moving_half_root",
+          "visible_mesh_descendants": [
+            "Arm_Crowd_Cylinder_Rod",
+            "Arm_Crowd_Cylinder_Rod_End_Clevis_L",
+            "Arm_Crowd_Cylinder_Rod_End_Clevis_R",
+            "Arm_Crowd_Cylinder_Rod_End_Pin"
+          ]
+        },
+        "Bucket_Curl_Actuator_ROOT": {
+          "present": true,
+          "role": "hydraulic_fixed_half_root",
+          "visible_mesh_descendants": [
+            "Bucket_Curl_Cylinder_Barrel",
+            "Bucket_Curl_Cylinder_Base_Clevis_L",
+            "Bucket_Curl_Cylinder_Base_Clevis_R",
+            "Bucket_Curl_Cylinder_Base_Pin"
+          ]
+        },
+        "Bucket_Curl_Rod_ROOT": {
+          "present": true,
+          "role": "hydraulic_moving_half_root",
+          "visible_mesh_descendants": [
+            "Bucket_Curl_Cylinder_Rod",
+            "Bucket_Curl_Cylinder_Rod_End_Clevis_L",
+            "Bucket_Curl_Cylinder_Rod_End_Clevis_R",
+            "Bucket_Curl_Cylinder_Rod_End_Pin"
+          ]
+        },
+        "Bucket_H_Link_ROOT": {
+          "present": true,
+          "role": "bucket_linkage_motion_root",
+          "visible_mesh_descendants": [
+            "Bucket_Bellcrank_Plate_L",
+            "Bucket_Bellcrank_Plate_R",
+            "Bucket_Curl_Cylinder_Rod",
+            "Bucket_Curl_Cylinder_Rod_End_Clevis_L",
+            "Bucket_Curl_Cylinder_Rod_End_Clevis_R",
+            "Bucket_Curl_Cylinder_Rod_End_Pin",
+            "Bucket_Dogbone_End_Pin",
+            "Bucket_Dogbone_L",
+            "Bucket_Dogbone_R",
+            "Bucket_H_Link_Cylinder_Pin",
+            "Bucket_H_Link_L",
+            "Bucket_H_Link_Lower_Cross_Pin",
+            "Bucket_H_Link_Pivot_Pin",
+            "Bucket_H_Link_R"
+          ]
+        },
+        "Bucket_Dogbone_ROOT": {
+          "present": true,
+          "role": "bucket_linkage_root",
+          "visible_mesh_descendants": [
+            "Bucket_Dogbone_End_Pin",
+            "Bucket_Dogbone_L",
+            "Bucket_Dogbone_R"
+          ]
+        }
       }
     },
     {
       "id": "semantic-motion-hierarchy",
       "status": "PASS",
       "detail": {
-        "semantic_motion_nodes": 20
+        "semantic_motion_nodes": 27
       }
     },
     {
@@ -219,24 +1504,24 @@
       "id": "node-density",
       "status": "PASS",
       "detail": {
-        "actual": 211,
-        "minimum": 200
+        "actual": 300,
+        "minimum": 80
       }
     },
     {
       "id": "mesh-density",
       "status": "PASS",
       "detail": {
-        "actual": 190,
-        "minimum": 180
+        "actual": 273,
+        "minimum": 60
       }
     },
     {
       "id": "triangle-density",
       "status": "PASS",
       "detail": {
-        "actual": 29924,
-        "minimum": 10000
+        "actual": 38592,
+        "minimum": 5000
       }
     },
     {
@@ -284,27 +1569,27 @@
       "detail": [
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/komatsu-pc210lc-11/review/renders/komatsu-pc210lc-11-operator-side.png",
-          "bytes": 227513
+          "bytes": 302672
         },
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/komatsu-pc210lc-11/review/renders/komatsu-pc210lc-11-front-three-quarter.png",
-          "bytes": 261663
+          "bytes": 307948
         },
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/komatsu-pc210lc-11/review/renders/komatsu-pc210lc-11-rear-three-quarter.png",
-          "bytes": 248179
+          "bytes": 302383
         },
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/komatsu-pc210lc-11/review/renders/komatsu-pc210lc-11-elevated-technical.png",
-          "bytes": 342964
+          "bytes": 307969
         },
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/komatsu-pc210lc-11/review/renders/komatsu-pc210lc-11-articulation-detail.png",
-          "bytes": 275123
+          "bytes": 304790
         },
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/komatsu-pc210lc-11/review/renders/komatsu-pc210lc-11-right-side.png",
-          "bytes": 225861
+          "bytes": 301130
         }
       ]
     },
@@ -314,42 +1599,777 @@
       "detail": "Neutral palette and procedural materials only; no manufacturer marks or textures."
     },
     {
-      "id": "komatsu-visible-actuation-chain",
+      "id": "published_transport_envelope",
       "status": "PASS",
       "detail": {
-        "scope": "reconstructed static visual closure only; not a solved linkage",
-        "parent_hierarchy": {
-          "Boom_Cylinder": "Upper_ROOT",
-          "Arm_Crowd_Actuator_ROOT": "Boom_ROOT",
-          "Arm_Crowd_Cylinder_Barrel": "Arm_Crowd_Actuator_ROOT",
-          "Arm_Crowd_Cylinder_Rod": "Arm_Crowd_Actuator_ROOT",
-          "Arm_Crowd_Cylinder_Base_Pin": "Arm_Crowd_Actuator_ROOT",
-          "Arm_Crowd_Cylinder_Rod_End_Pin": "Arm_Crowd_Actuator_ROOT",
-          "Arm_Crowd_Boom_Base_Clevis": "Arm_Crowd_Actuator_ROOT",
-          "Bucket_Curl_Actuator_ROOT": "Stick_ROOT",
-          "Bucket_Curl_Cylinder_Barrel": "Bucket_Curl_Actuator_ROOT",
-          "Bucket_Curl_Cylinder_Rod": "Bucket_Curl_Actuator_ROOT",
-          "Bucket_Curl_Cylinder_Base_Pin": "Bucket_Curl_Actuator_ROOT",
-          "Bucket_Curl_Cylinder_Rod_End_Pin": "Bucket_Curl_Actuator_ROOT",
-          "Bucket_H_Link_ROOT": "Stick_ROOT",
-          "Bucket_H_Link_L": "Bucket_H_Link_ROOT",
-          "Bucket_H_Link_R": "Bucket_H_Link_ROOT",
-          "Bucket_H_Link_Upper_Cross_Pin": "Bucket_H_Link_ROOT",
-          "Bucket_H_Link_Lower_Cross_Pin": "Bucket_H_Link_ROOT",
-          "Bucket_Dogbone_ROOT": "Stick_ROOT",
-          "Bucket_Dogbone_L": "Bucket_Dogbone_ROOT",
-          "Bucket_Dogbone_R": "Bucket_Dogbone_ROOT",
-          "Bucket_Dogbone_End_Pin": "Bucket_Dogbone_ROOT",
-          "Bucket_Linkage_Ear_L": "Bucket_ROOT",
-          "Bucket_Linkage_Ear_R": "Bucket_ROOT"
+        "method": "Decode all public GLB POSITION accessors through node transforms and compare the visible AABB with brochure page 21 dimensions A, D/N, and F.",
+        "evidence": {
+          "measured_xyz_m": [
+            9.705,
+            3.135,
+            3.08
+          ],
+          "required_xyz_m": [
+            9.705,
+            3.135,
+            3.08
+          ],
+          "absolute_tolerance_m": 0.003,
+          "minimum_y_m": 0.0
         },
-        "barrel_rod_overlap_local_m": {
-          "Arm_Crowd_Cylinder_Barrel": 0.103455,
-          "Arm_Crowd_Cylinder_Rod": 0.103455,
-          "Bucket_Curl_Cylinder_Barrel": 0.089661,
-          "Bucket_Curl_Cylinder_Rod": 0.089661
+        "semantic_nodes": [
+          "Counterweight_Rear_Bumper",
+          "Bucket_Tooth_03",
+          "Handrail_Top_Rail_L",
+          "Track_L_ROOT",
+          "Track_R_ROOT"
+        ],
+        "fact_ids": [
+          "public-envelope-x",
+          "public-envelope-y",
+          "public-envelope-z"
+        ]
+      }
+    },
+    {
+      "id": "track_gauge_and_shoe_width",
+      "status": "PASS",
+      "detail": {
+        "method": "Measure both complete track mesh subtrees, one physical shoe, and lateral track-root separation in world metres after modifiers.",
+        "evidence": {
+          "left_track_length_m": 4.45,
+          "right_track_length_m": 4.45,
+          "shoe_width_m": 0.7,
+          "track_gauge_m": 2.38,
+          "required_m": {
+            "track_length": 4.45,
+            "shoe_width": 0.7,
+            "track_gauge": 2.38
+          }
         },
-        "fixed_boom_cylinder_retained": true
+        "semantic_nodes": [
+          "Track_L_ROOT",
+          "Track_R_ROOT",
+          "Track_L_Pad_Bottom_01"
+        ],
+        "fact_ids": [
+          "track-length",
+          "shoe-width",
+          "track-gauge"
+        ]
+      }
+    },
+    {
+      "id": "undercarriage_ground_contact",
+      "status": "PASS",
+      "detail": {
+        "method": "Measure the minimum world-Y vertex of each complete authored track subtree.",
+        "evidence": {
+          "left_min_y_m": 0.0,
+          "right_min_y_m": 0.0,
+          "ground_y_m": 0.0
+        },
+        "semantic_nodes": [
+          "Track_L_ROOT",
+          "Track_R_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "upper_swing_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "Subtract measured Carbody maximum Y from Upper_Main_Deck minimum Y in the neutral pose.",
+        "evidence": {
+          "carbody_max_y_m": 0.94,
+          "upper_deck_min_y_m": 1.06,
+          "clearance_m": 0.12,
+          "minimum_m": 0.05
+        },
+        "semantic_nodes": [
+          "Upper_Swing_Pivot",
+          "Upper_ROOT",
+          "Upper_Main_Deck",
+          "Carbody",
+          "Swing_Bearing"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "boom_arm_bucket_hierarchy",
+      "status": "PASS",
+      "detail": {
+        "method": "Resolve actual parent ownership for carrier, front equipment, actuator halves, H-link, dogbones, and bucket ears before export.",
+        "evidence": {
+          "parents": {
+            "Track_L_ROOT": {
+              "expected": "Running_Gear_ROOT",
+              "actual": "Running_Gear_ROOT"
+            },
+            "Track_R_ROOT": {
+              "expected": "Running_Gear_ROOT",
+              "actual": "Running_Gear_ROOT"
+            },
+            "Upper_Swing_Pivot": {
+              "expected": "Machine_Root",
+              "actual": "Machine_Root"
+            },
+            "Upper_ROOT": {
+              "expected": "Upper_Swing_Pivot",
+              "actual": "Upper_Swing_Pivot"
+            },
+            "Hydraulics_ROOT": {
+              "expected": "Upper_ROOT",
+              "actual": "Upper_ROOT"
+            },
+            "Boom_Pivot": {
+              "expected": "Upper_ROOT",
+              "actual": "Upper_ROOT"
+            },
+            "Boom_ROOT": {
+              "expected": "Boom_Pivot",
+              "actual": "Boom_Pivot"
+            },
+            "Stick_Pivot": {
+              "expected": "Boom_ROOT",
+              "actual": "Boom_ROOT"
+            },
+            "Stick_ROOT": {
+              "expected": "Stick_Pivot",
+              "actual": "Stick_Pivot"
+            },
+            "Bucket_Pivot": {
+              "expected": "Stick_ROOT",
+              "actual": "Stick_ROOT"
+            },
+            "Bucket_ROOT": {
+              "expected": "Bucket_Pivot",
+              "actual": "Bucket_Pivot"
+            },
+            "Boom_Cylinder_L_ROOT": {
+              "expected": "Upper_ROOT",
+              "actual": "Upper_ROOT"
+            },
+            "Boom_Cylinder_L_Rod_ROOT": {
+              "expected": "Boom_ROOT",
+              "actual": "Boom_ROOT"
+            },
+            "Boom_Cylinder_R_ROOT": {
+              "expected": "Upper_ROOT",
+              "actual": "Upper_ROOT"
+            },
+            "Boom_Cylinder_R_Rod_ROOT": {
+              "expected": "Boom_ROOT",
+              "actual": "Boom_ROOT"
+            },
+            "Arm_Crowd_Actuator_ROOT": {
+              "expected": "Boom_ROOT",
+              "actual": "Boom_ROOT"
+            },
+            "Arm_Crowd_Rod_ROOT": {
+              "expected": "Stick_ROOT",
+              "actual": "Stick_ROOT"
+            },
+            "Bucket_H_Link_ROOT": {
+              "expected": "Stick_ROOT",
+              "actual": "Stick_ROOT"
+            },
+            "Bucket_Dogbone_ROOT": {
+              "expected": "Bucket_H_Link_ROOT",
+              "actual": "Bucket_H_Link_ROOT"
+            },
+            "Bucket_Curl_Actuator_ROOT": {
+              "expected": "Stick_ROOT",
+              "actual": "Stick_ROOT"
+            },
+            "Bucket_Curl_Rod_ROOT": {
+              "expected": "Bucket_H_Link_ROOT",
+              "actual": "Bucket_H_Link_ROOT"
+            },
+            "Boom_Cylinder_L_Barrel": {
+              "expected": "Boom_Cylinder_L_ROOT",
+              "actual": "Boom_Cylinder_L_ROOT"
+            },
+            "Boom_Cylinder_L_Rod": {
+              "expected": "Boom_Cylinder_L_Rod_ROOT",
+              "actual": "Boom_Cylinder_L_Rod_ROOT"
+            },
+            "Boom_Cylinder_R_Barrel": {
+              "expected": "Boom_Cylinder_R_ROOT",
+              "actual": "Boom_Cylinder_R_ROOT"
+            },
+            "Boom_Cylinder_R_Rod": {
+              "expected": "Boom_Cylinder_R_Rod_ROOT",
+              "actual": "Boom_Cylinder_R_Rod_ROOT"
+            },
+            "Arm_Crowd_Cylinder_Barrel": {
+              "expected": "Arm_Crowd_Actuator_ROOT",
+              "actual": "Arm_Crowd_Actuator_ROOT"
+            },
+            "Arm_Crowd_Cylinder_Rod": {
+              "expected": "Arm_Crowd_Rod_ROOT",
+              "actual": "Arm_Crowd_Rod_ROOT"
+            },
+            "Bucket_Curl_Cylinder_Barrel": {
+              "expected": "Bucket_Curl_Actuator_ROOT",
+              "actual": "Bucket_Curl_Actuator_ROOT"
+            },
+            "Bucket_Curl_Cylinder_Rod": {
+              "expected": "Bucket_Curl_Rod_ROOT",
+              "actual": "Bucket_Curl_Rod_ROOT"
+            },
+            "Bucket_H_Link_L": {
+              "expected": "Bucket_H_Link_ROOT",
+              "actual": "Bucket_H_Link_ROOT"
+            },
+            "Bucket_H_Link_R": {
+              "expected": "Bucket_H_Link_ROOT",
+              "actual": "Bucket_H_Link_ROOT"
+            },
+            "Bucket_Dogbone_L": {
+              "expected": "Bucket_Dogbone_ROOT",
+              "actual": "Bucket_Dogbone_ROOT"
+            },
+            "Bucket_Dogbone_R": {
+              "expected": "Bucket_Dogbone_ROOT",
+              "actual": "Bucket_Dogbone_ROOT"
+            },
+            "Bucket_Linkage_Ear_L": {
+              "expected": "Bucket_ROOT",
+              "actual": "Bucket_ROOT"
+            },
+            "Bucket_Linkage_Ear_R": {
+              "expected": "Bucket_ROOT",
+              "actual": "Bucket_ROOT"
+            }
+          }
+        },
+        "semantic_nodes": [
+          "Upper_ROOT",
+          "Boom_ROOT",
+          "Stick_ROOT",
+          "Bucket_ROOT",
+          "Arm_Crowd_Actuator_ROOT",
+          "Bucket_H_Link_ROOT",
+          "Bucket_Dogbone_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "boom_and_arm_length_constraints",
+      "status": "PASS",
+      "detail": {
+        "method": "Measure semantic pivot chords and physical Bucket_Shell lateral width in world metres; compare with brochure pages 20-21.",
+        "evidence": {
+          "boom_chord_m": 5.7,
+          "arm_chord_m": 2.925,
+          "bucket_width_m": 0.914,
+          "required_m": {
+            "boom": 5.7,
+            "arm": 2.925,
+            "bucket_width": 0.914
+          },
+          "tolerance_m": 0.003
+        },
+        "semantic_nodes": [
+          "Boom_Pivot",
+          "Stick_Pivot",
+          "Bucket_Pivot",
+          "Bucket_Shell"
+        ],
+        "fact_ids": [
+          "boom-length",
+          "arm-length",
+          "selected-bucket-width"
+        ]
+      }
+    },
+    {
+      "id": "bucket_linkage_visual_closure",
+      "status": "PASS",
+      "detail": {
+        "method": "Solve the reconstructed H-link/dogbone circle intersection at three bucket angles and directly compare neutral dogbone-end and bucket-ear pin centers.",
+        "evidence": {
+          "neutral_pin_gap_m": 0.0,
+          "samples": [
+            {
+              "bucket_angle_rad": 0.0,
+              "solved_h_link_delta_rad": -0.0,
+              "dogbone_closure_residual_m": 5.8e-08,
+              "bucket_cylinder_pin_distance_m": 0.880568
+            },
+            {
+              "bucket_angle_rad": 0.125,
+              "solved_h_link_delta_rad": -0.033993,
+              "dogbone_closure_residual_m": 3.7e-08,
+              "bucket_cylinder_pin_distance_m": 0.884524
+            },
+            {
+              "bucket_angle_rad": 0.25,
+              "solved_h_link_delta_rad": -0.163998,
+              "dogbone_closure_residual_m": 3.7e-08,
+              "bucket_cylinder_pin_distance_m": 0.899907
+            }
+          ],
+          "maximum_residual_m": 1e-07
+        },
+        "semantic_nodes": [
+          "Bucket_H_Link_ROOT",
+          "Bucket_H_Link_L",
+          "Bucket_H_Link_R",
+          "Bucket_Dogbone_ROOT",
+          "Bucket_Dogbone_L",
+          "Bucket_Dogbone_R",
+          "Bucket_Linkage_Ear_L",
+          "Bucket_Linkage_Ear_R",
+          "Bucket_Ear_Cross_Pin"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "published_working_range_endpoints",
+      "status": "PASS",
+      "detail": {
+        "method": "Solve a conservative two-link radial reachability equation for brochure page 22 A/B/C/G using exact authored link lengths and boom-pivot offset; this is geometric reachability, not manufacturer anchor or force proof.",
+        "evidence": {
+          "source_locator": "EN-PC210LCi-11BR02-0225-V2 page 22, Working Range A/B/C/G",
+          "effective_bucket_tip_radius_m": 1.670533,
+          "solutions": {
+            "maximum_digging_height_m": {
+              "target_from_swing_center_xy_m": [
+                0.0,
+                9.97
+              ],
+              "target_distance_from_boom_pivot_m": 9.492107,
+              "solved_internal_angle_rad": 2.341363,
+              "radial_residual_m": 0.0,
+              "reachable": true
+            },
+            "maximum_dumping_height_m": {
+              "target_from_swing_center_xy_m": [
+                0.0,
+                7.11
+              ],
+              "target_distance_from_boom_pivot_m": 6.633016,
+              "solved_internal_angle_rad": 1.386277,
+              "radial_residual_m": 0.0,
+              "reachable": true
+            },
+            "maximum_digging_depth_m": {
+              "target_from_swing_center_xy_m": [
+                0.0,
+                -6.62
+              ],
+              "target_distance_from_boom_pivot_m": 7.102816,
+              "solved_internal_angle_rad": 1.510462,
+              "radial_residual_m": 0.0,
+              "reachable": true
+            },
+            "maximum_ground_reach_m": {
+              "target_from_swing_center_xy_m": [
+                9.7,
+                0.0
+              ],
+              "target_distance_from_boom_pivot_m": 9.512119,
+              "solved_internal_angle_rad": 2.35153,
+              "radial_residual_m": 0.0,
+              "reachable": true
+            }
+          }
+        },
+        "semantic_nodes": [
+          "Upper_Swing_Pivot",
+          "Boom_Pivot",
+          "Stick_Pivot",
+          "Bucket_Pivot",
+          "Bucket_Tooth_03"
+        ],
+        "fact_ids": [
+          "maximum-digging-height",
+          "maximum-dumping-height",
+          "maximum-digging-depth",
+          "maximum-ground-reach"
+        ]
+      }
+    },
+    {
+      "id": "hydraulic_cylinder_visual_closure",
+      "status": "PASS",
+      "detail": {
+        "method": "Transform barrel-mouth and rod-start centerline points from their separate fixed/moving parents, require neutral overlap, and sample declared joint ranges against brochure page 20 strokes.",
+        "evidence": {
+          "neutral_pairs": {
+            "boom_left": {
+              "barrel_rod_axial_overlap_m": 0.12,
+              "rod_start_centerline_residual_m": 0.0,
+              "neutral_pin_span_m": 2.534317,
+              "published_stroke_m": 1.334
+            },
+            "boom_right": {
+              "barrel_rod_axial_overlap_m": 0.12,
+              "rod_start_centerline_residual_m": 0.0,
+              "neutral_pin_span_m": 2.534317,
+              "published_stroke_m": 1.334
+            },
+            "arm": {
+              "barrel_rod_axial_overlap_m": 0.12,
+              "rod_start_centerline_residual_m": 0.0,
+              "neutral_pin_span_m": 2.720547,
+              "published_stroke_m": 1.49
+            },
+            "bucket": {
+              "barrel_rod_axial_overlap_m": 0.12,
+              "rod_start_centerline_residual_m": 0.0,
+              "neutral_pin_span_m": 0.880568,
+              "published_stroke_m": 1.105
+            }
+          },
+          "sampled_stroke_use_m": {
+            "boom_m": 0.002151,
+            "arm_m": 0.176354,
+            "bucket_m": 0.019339
+          },
+          "published_strokes_m": {
+            "boom_each": 1.334,
+            "arm": 1.49,
+            "bucket": 1.105
+          },
+          "boom_cylinder_count": 2
+        },
+        "semantic_nodes": [
+          "Boom_Cylinder_L_ROOT",
+          "Boom_Cylinder_L_Rod_ROOT",
+          "Boom_Cylinder_R_ROOT",
+          "Boom_Cylinder_R_Rod_ROOT",
+          "Arm_Crowd_Actuator_ROOT",
+          "Arm_Crowd_Rod_ROOT",
+          "Bucket_Curl_Actuator_ROOT",
+          "Bucket_Curl_Rod_ROOT"
+        ],
+        "fact_ids": [
+          "boom-cylinder-stroke",
+          "arm-cylinder-stroke",
+          "bucket-cylinder-stroke"
+        ]
+      }
+    },
+    {
+      "id": "ground_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "Decode the complete rebuilt public GLB AABB and require no visible vertex below Y=0 in the authored transport pose.",
+        "evidence": {
+          "public_glb_min_y_m": 0.0,
+          "ground_y_m": 0.0,
+          "tolerance_m": 1e-06
+        },
+        "semantic_nodes": [
+          "Machine_Root",
+          "Track_L_ROOT",
+          "Track_R_ROOT",
+          "Bucket_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "self_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "Measure neutral non-adjacent bucket-to-track longitudinal separation and inner-face separation of the two complete track subtrees.",
+        "evidence": {
+          "bucket_track_clearance_m": 2.153579,
+          "track_inner_gap_m": 1.68,
+          "minimums_m": {
+            "bucket_track": 1.5,
+            "track_inner_gap": 1.0
+          }
+        },
+        "semantic_nodes": [
+          "Bucket_ROOT",
+          "Track_L_ROOT",
+          "Track_R_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "swept_volume_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "Evaluate 27 boom/arm/bucket endpoint combinations and both swing extremes; require the physical tooth-bottom point above ground and conservatively forward of the track-front plane.",
+        "evidence": {
+          "front_pose_count": 27,
+          "swing_samples_rad": [
+            -0.32,
+            0.0,
+            0.32
+          ],
+          "minimum_tooth_bottom_y_m": 0.038515,
+          "minimum_bucket_track_clearance_m": 3.044223,
+          "limits_m": {
+            "tooth_bottom_y": 0.005,
+            "bucket_track_clearance": 1.0
+          },
+          "front_samples": [
+            {
+              "boom_rad": 0.0,
+              "arm_rad": -0.18,
+              "bucket_rad": 0.0,
+              "physical_tooth_bottom_xy_m": [
+                4.347116,
+                0.039788
+              ]
+            },
+            {
+              "boom_rad": 0.0,
+              "arm_rad": -0.18,
+              "bucket_rad": 0.125,
+              "physical_tooth_bottom_xy_m": [
+                4.392554,
+                0.243817
+              ]
+            },
+            {
+              "boom_rad": 0.0,
+              "arm_rad": -0.18,
+              "bucket_rad": 0.25,
+              "physical_tooth_bottom_xy_m": [
+                4.412201,
+                0.45192
+              ]
+            },
+            {
+              "boom_rad": 0.0,
+              "arm_rad": -0.09,
+              "bucket_rad": 0.0,
+              "physical_tooth_bottom_xy_m": [
+                4.600263,
+                0.038515
+              ]
+            },
+            {
+              "boom_rad": 0.0,
+              "arm_rad": -0.09,
+              "bucket_rad": 0.125,
+              "physical_tooth_bottom_xy_m": [
+                4.62718,
+                0.245803
+              ]
+            },
+            {
+              "boom_rad": 0.0,
+              "arm_rad": -0.09,
+              "bucket_rad": 0.25,
+              "physical_tooth_bottom_xy_m": [
+                4.628043,
+                0.454828
+              ]
+            },
+            {
+              "boom_rad": 0.0,
+              "arm_rad": 0.0,
+              "bucket_rad": 0.0,
+              "physical_tooth_bottom_xy_m": [
+                4.8525,
+                0.06
+              ]
+            },
+            {
+              "boom_rad": 0.0,
+              "arm_rad": 0.0,
+              "bucket_rad": 0.125,
+              "physical_tooth_bottom_xy_m": [
+                4.860677,
+                0.268868
+              ]
+            },
+            {
+              "boom_rad": 0.0,
+              "arm_rad": 0.0,
+              "bucket_rad": 0.25,
+              "physical_tooth_bottom_xy_m": [
+                4.84275,
+                0.477125
+              ]
+            },
+            {
+              "boom_rad": 0.09,
+              "arm_rad": -0.18,
+              "bucket_rad": 0.0,
+              "physical_tooth_bottom_xy_m": [
+                4.456513,
+                0.530783
+              ]
+            },
+            {
+              "boom_rad": 0.09,
+              "arm_rad": -0.18,
+              "bucket_rad": 0.125,
+              "physical_tooth_bottom_xy_m": [
+                4.48343,
+                0.738071
+              ]
+            },
+            {
+              "boom_rad": 0.09,
+              "arm_rad": -0.18,
+              "bucket_rad": 0.25,
+              "physical_tooth_bottom_xy_m": [
+                4.484293,
+                0.947096
+              ]
+            },
+            {
+              "boom_rad": 0.09,
+              "arm_rad": -0.09,
+              "bucket_rad": 0.0,
+              "physical_tooth_bottom_xy_m": [
+                4.708751,
+                0.552268
+              ]
+            },
+            {
+              "boom_rad": 0.09,
+              "arm_rad": -0.09,
+              "bucket_rad": 0.125,
+              "physical_tooth_bottom_xy_m": [
+                4.716928,
+                0.761136
+              ]
+            },
+            {
+              "boom_rad": 0.09,
+              "arm_rad": -0.09,
+              "bucket_rad": 0.25,
+              "physical_tooth_bottom_xy_m": [
+                4.699001,
+                0.969393
+              ]
+            },
+            {
+              "boom_rad": 0.09,
+              "arm_rad": 0.0,
+              "bucket_rad": 0.0,
+              "physical_tooth_bottom_xy_m": [
+                4.958036,
+                0.596336
+              ]
+            },
+            {
+              "boom_rad": 0.09,
+              "arm_rad": 0.0,
+              "bucket_rad": 0.125,
+              "physical_tooth_bottom_xy_m": [
+                4.947408,
+                0.805094
+              ]
+            },
+            {
+              "boom_rad": 0.09,
+              "arm_rad": 0.0,
+              "bucket_rad": 0.25,
+              "physical_tooth_bottom_xy_m": [
+                4.910835,
+                1.010897
+              ]
+            },
+            {
+              "boom_rad": 0.18,
+              "arm_rad": -0.18,
+              "bucket_rad": 0.0,
+              "physical_tooth_bottom_xy_m": [
+                4.521339,
+                1.029624
+              ]
+            },
+            {
+              "boom_rad": 0.18,
+              "arm_rad": -0.18,
+              "bucket_rad": 0.125,
+              "physical_tooth_bottom_xy_m": [
+                4.529517,
+                1.238491
+              ]
+            },
+            {
+              "boom_rad": 0.18,
+              "arm_rad": -0.18,
+              "bucket_rad": 0.25,
+              "physical_tooth_bottom_xy_m": [
+                4.51159,
+                1.446748
+              ]
+            },
+            {
+              "boom_rad": 0.18,
+              "arm_rad": -0.09,
+              "bucket_rad": 0.0,
+              "physical_tooth_bottom_xy_m": [
+                4.770625,
+                1.073692
+              ]
+            },
+            {
+              "boom_rad": 0.18,
+              "arm_rad": -0.09,
+              "bucket_rad": 0.125,
+              "physical_tooth_bottom_xy_m": [
+                4.759996,
+                1.282449
+              ]
+            },
+            {
+              "boom_rad": 0.18,
+              "arm_rad": -0.09,
+              "bucket_rad": 0.25,
+              "physical_tooth_bottom_xy_m": [
+                4.723424,
+                1.488252
+              ]
+            },
+            {
+              "boom_rad": 0.18,
+              "arm_rad": 0.0,
+              "bucket_rad": 0.0,
+              "physical_tooth_bottom_xy_m": [
+                5.01494,
+                1.139987
+              ]
+            },
+            {
+              "boom_rad": 0.18,
+              "arm_rad": 0.0,
+              "bucket_rad": 0.125,
+              "physical_tooth_bottom_xy_m": [
+                4.985592,
+                1.346944
+              ]
+            },
+            {
+              "boom_rad": 0.18,
+              "arm_rad": 0.0,
+              "bucket_rad": 0.25,
+              "physical_tooth_bottom_xy_m": [
+                4.93067,
+                1.548628
+              ]
+            }
+          ]
+        },
+        "semantic_nodes": [
+          "Upper_ROOT",
+          "Boom_ROOT",
+          "Stick_ROOT",
+          "Bucket_ROOT",
+          "Track_L_ROOT",
+          "Track_R_ROOT"
+        ],
+        "fact_ids": []
       }
     },
     {

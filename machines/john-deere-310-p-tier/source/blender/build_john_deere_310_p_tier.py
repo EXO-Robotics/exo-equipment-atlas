@@ -30,6 +30,10 @@ CONFIGURATION_ID = "JD-310P-NAM-FT4-MFWD-STD-DIPPER-CANDIDATE"
 CANDIDATE_CLASS = "technical_structural_study"
 BUILDER_REL = "machines/john-deere-310-p-tier/source/blender/build_john_deere_310_p_tier.py"
 MACHINE_REL = Path("machines/john-deere-310-p-tier")
+BUILD_INPUT_REL = MACHINE_REL / "source/build-input.json"
+SOURCE_MANIFEST_REL = MACHINE_REL / "evidence/source-manifest.json"
+DESIGN_REL = MACHINE_REL / "source/design.json"
+MECHANISM_REL = MACHINE_REL / "mechanism.json"
 BLEND_REL = MACHINE_REL / "source/blender/john-deere-310-p-tier-structural-study.blend"
 GLB_REL = MACHINE_REL / "assets/john-deere-310-p-tier-structural-study.glb"
 RECEIPT_REL = MACHINE_REL / "production/asset-receipt.json"
@@ -40,6 +44,7 @@ RENDER_RELS = [
     MACHINE_REL / "review/renders/technical-side.png",
     MACHINE_REL / "review/renders/articulated-inspection.png",
     MACHINE_REL / "review/renders/linkage-stabilizer-detail.png",
+    MACHINE_REL / "review/renders/front-loader-hydraulic-detail.png",
 ]
 
 PUBLISHED = {
@@ -101,6 +106,7 @@ UNRESOLVED = [
     "tire selection and tread pattern",
     "loader auxiliary hydraulics",
     "backhoe pilot control options",
+    "operator station canopy versus optional fully enclosed cab",
     "all hidden pivots, linkage dimensions, and cylinder anchors",
     "public material and branding authorization",
 ]
@@ -111,6 +117,37 @@ GLTF_CONTRACT = {}
 
 def repo_root() -> Path:
     return Path(__file__).resolve().parents[4]
+
+
+def load_build_input() -> dict:
+    payload = json.loads(abs_path(BUILD_INPUT_REL).read_text(encoding="utf-8"))
+    if payload.get("machine_id") != MACHINE_ID or payload.get("configuration_id") != CONFIGURATION_ID:
+        raise RuntimeError("build-input identity does not match builder identity")
+    if not payload.get("export_pivots_world_xyz_m") or not payload.get("viewer_motion_nodes"):
+        raise RuntimeError("build-input must bind pivots and viewer motion nodes")
+    return payload
+
+
+def rebase_export_pivot(obj, world_xyz) -> None:
+    """Give an exported pivot real local TRS while preserving every child in world space."""
+    child_world = {child: child.matrix_world.copy() for child in obj.children}
+    target_world = Matrix.Translation(Vector(world_xyz))
+    parent_world = obj.parent.matrix_world.copy() if obj.parent else Matrix.Identity(4)
+    obj.matrix_parent_inverse = Matrix.Identity(4)
+    obj.matrix_basis = parent_world.inverted() @ target_world
+    bpy.context.view_layer.update()
+    for child, world in child_world.items():
+        child.matrix_parent_inverse = Matrix.Identity(4)
+        child.matrix_basis = target_world.inverted() @ world
+    bpy.context.view_layer.update()
+
+
+def prepare_export_pivots(build_input: dict) -> None:
+    for name, world_xyz in build_input["export_pivots_world_xyz_m"].items():
+        obj = bpy.data.objects.get(name)
+        if obj is None:
+            raise RuntimeError(f"build-input pivot is absent: {name}")
+        rebase_export_pivot(obj, world_xyz)
 
 
 ROOT = repo_root()
@@ -718,6 +755,7 @@ def render_views(camera):
         ((-0.50, 3.30, -13.0), (-0.50, 1.30, 0), 58),
         ((-7.4, 4.10, -6.6), (-1.55, 1.55, 0), 58),
         ((-7.2, 3.00, 0.0), (-1.58, 0.55, 0.0), 48),
+        ((4.6, 2.4, -3.4), (1.20, 1.10, -0.35), 72),
     ]
     for idx, (rel, (location, target, lens)) in enumerate(zip(RENDER_RELS, views)):
         if idx == 3:
@@ -812,11 +850,16 @@ def inspect_glb_contract(path: Path):
     bounds_max = Vector((-math.inf, -math.inf, -math.inf))
     mesh_node_count = 0
     non_identity_mesh_scales = []
+    world_translation_by_name = {}
+    child_count_by_name = {}
 
     def visit(node_index, parent_matrix):
         nonlocal mesh_node_count
         node = nodes[node_index]
         world = parent_matrix @ local_matrix(node)
+        name = node.get("name", f"node-{node_index}")
+        world_translation_by_name[name] = [round(world[row][3], 6) for row in range(3)]
+        child_count_by_name[name] = len(node.get("children", []))
         if "mesh" in node:
             mesh_node_count += 1
             node_scale = node.get("scale", [1.0, 1.0, 1.0])
@@ -885,6 +928,9 @@ def inspect_glb_contract(path: Path):
         "camera_count": len(document.get("cameras", [])),
         "light_extension_present": "KHR_lights_punctual" in document.get("extensions", {}),
         "mesh_node_count": mesh_node_count,
+        "node_count": len(nodes),
+        "mesh_resource_count": len(document.get("meshes", [])),
+        "material_count": len(document.get("materials", [])),
         "primitive_count": primitive_count,
         "decoded_shipped_triangle_count": decoded_triangles,
         "unsupported_primitive_modes": sorted(set(unsupported_primitive_modes)),
@@ -892,6 +938,8 @@ def inspect_glb_contract(path: Path):
         "visible_aabb_min_xyz_m": [round(v, 4) for v in bounds_min],
         "visible_aabb_max_xyz_m": [round(v, 4) for v in bounds_max],
         "visible_aabb_dimensions_xyz_m": dimensions,
+        "node_world_translation_xyz_m": world_translation_by_name,
+        "node_child_count": child_count_by_name,
     }
 
 
@@ -999,6 +1047,20 @@ def file_entry(rel):
 
 
 def write_receipts():
+    build_input = load_build_input()
+    design = json.loads(abs_path(DESIGN_REL).read_text(encoding="utf-8"))
+    mechanism = json.loads(abs_path(MECHANISM_REL).read_text(encoding="utf-8"))
+    retained_fact_ids = build_input["retained_fact_ids"]
+    if (len(retained_fact_ids) != len(set(retained_fact_ids))
+            or retained_fact_ids != design["published_constraints_used"]
+            or set(retained_fact_ids) != set(PUBLISHED)):
+        raise RuntimeError("build-input, design, and PUBLISHED constraints differ")
+    source_manifest = json.loads(abs_path(SOURCE_MANIFEST_REL).read_text(encoding="utf-8"))
+    source_binding_ok = any(
+        source.get("admission") == "primary"
+        and source.get("sha256") == build_input["primary_source_sha256"]
+        for source in source_manifest["sources"]
+    )
     stats = mesh_stats()
     semantic_nodes = required_nodes()
     authoring_helpers = authoring_helper_nodes()
@@ -1036,6 +1098,31 @@ def write_receipts():
         and abs(actual_dims[1] - 3.39) <= 0.01
         and abs(actual_dims[2] - 2.20) <= 0.01
     )
+    pivot_actual = {
+        name: GLTF_CONTRACT.get("node_world_translation_xyz_m", {}).get(name)
+        for name in build_input["export_pivots_world_xyz_m"]
+    }
+    pivot_errors = {
+        name: max(abs(actual[axis] - expected[axis]) for axis in range(3))
+        for name, expected in build_input["export_pivots_world_xyz_m"].items()
+        for actual in [pivot_actual.get(name)] if actual is not None
+    }
+    pivots_ok = len(pivot_errors) == len(build_input["export_pivots_world_xyz_m"]) and max(pivot_errors.values(), default=math.inf) <= 1e-5
+    motion_nodes = build_input["viewer_motion_nodes"]
+    motion_nodes_ok = all(name in GLTF_CONTRACT.get("node_world_translation_xyz_m", {}) for name in motion_nodes)
+    hierarchy_ok = all(GLTF_CONTRACT.get("node_child_count", {}).get(name, 0) > 0 for name in build_input["export_pivots_world_xyz_m"])
+    decoded_counts_ok = (
+        GLTF_CONTRACT.get("node_count", 0) > 0
+        and GLTF_CONTRACT.get("mesh_resource_count", 0) > 0
+        and GLTF_CONTRACT.get("mesh_node_count", 0) > 0
+        and GLTF_CONTRACT.get("material_count", 0) > 0
+    )
+    decoded_dimensions = GLTF_CONTRACT.get("visible_aabb_dimensions_xyz_m", [])
+    decoded_envelope_ok = (
+        len(decoded_dimensions) == 3
+        and all(abs(actual - expected) <= 0.01
+                for actual, expected in zip(decoded_dimensions, [7.24, 3.39, 2.20]))
+    )
 
     # Transport bounds are validated against explicit reconstructed witness extents,
     # while visible-mesh bounds are reported independently for critic inspection.
@@ -1048,11 +1135,17 @@ def write_receipts():
         {"id": "platform-gltf-y-up-single-root", "status": "PASS" if gltf_frame_ok else "FAIL", "detail": GLTF_CONTRACT},
         {"id": "public-glb-mesh-identity-scales", "status": "PASS" if public_mesh_scales_ok else "FAIL", "detail": {"mesh_node_count": GLTF_CONTRACT.get("mesh_node_count"), "non_identity_mesh_scales": GLTF_CONTRACT.get("non_identity_public_mesh_scales", []), "tolerance": 1e-6}},
         {"id": "shipped-glb-triangle-accounting", "status": "PASS" if shipped_triangle_decode_ok else "FAIL", "detail": {"decoded_triangle_count": shipped_triangle_count, "primitive_count": GLTF_CONTRACT.get("primitive_count"), "unsupported_primitive_modes": GLTF_CONTRACT.get("unsupported_primitive_modes", []), "basis": "independent GLB JSON accessor/index decoding"}},
-        {"id": "published-transport-length-witness", "status": "PASS", "detail": {"expected_m": 7.24, "reconstructed_endpoints_m": [-4.125, 3.115]}},
-        {"id": "published-width-witness", "status": "PASS", "detail": {"expected_m": 2.20, "reconstructed_tire_outer_planes_m": [-1.10, 1.10]}},
-        {"id": "published-cab-height-witness", "status": "PASS", "detail": {"expected_m": 2.81, "ground_y_m": 0.0, "roof_top_y_m": 2.81}},
-        {"id": "published-mfwd-wheelbase", "status": "PASS", "detail": {"expected_m": 2.19, "front_axle_x_m": 1.095, "rear_axle_x_m": -1.095}},
+        {"id": "published-transport-length-witness", "status": "PENDING", "detail": {"expected_m": 7.24, "reconstructed_endpoints_m": [-4.125, 3.115], "qualification": "design witness only; decoded public envelope is the qualifying gate"}},
+        {"id": "published-width-witness", "status": "PENDING", "detail": {"expected_m": 2.20, "reconstructed_tire_outer_planes_m": [-1.10, 1.10], "qualification": "design witness only; decoded public envelope is the qualifying gate"}},
+        {"id": "published-cab-height-witness", "status": "PENDING", "detail": {"expected_m": 2.81, "ground_y_m": 0.0, "roof_top_y_m": 2.81, "qualification": "reconstructed datum; not independently decoded in this gate"}},
+        {"id": "published-mfwd-wheelbase", "status": "PENDING", "detail": {"expected_m": 2.19, "front_axle_x_m": 1.095, "rear_axle_x_m": -1.095, "qualification": "design witness only; decoded pivot gate is the qualifying evidence"}},
         {"id": "visible-mesh-transport-envelope", "status": "PASS" if envelope_ok else "FAIL", "detail": {"expected_xyz_m": [7.24, 3.39, 2.20], "actual_xyz_m": actual_dims, "tolerance_m": 0.01, "height_basis": "published standard-backhoe transport height; cab roof separately constrained to 2.81 m"}},
+        {"id": "decoded_public_transport_envelope", "status": "PASS" if decoded_envelope_ok else "FAIL", "detail": {"method": "Decode shipped-GLB accessor bounds and compose all reachable node transforms before comparing the visible transport AABB.", "evidence": {"expected_xyz_m": [7.24, 3.39, 2.20], "decoded_actual_xyz_m": decoded_dimensions, "tolerance_m": 0.01}, "semantic_nodes": ["ROOT_310P_CANDIDATE"], "fact_ids": ["overall-length", "overall-width", "backhoe-transport-height"]}},
+        {"id": "decoded_public_pivot_world_positions", "status": "PASS" if pivots_ok else "FAIL", "detail": {"method": "Compose shipped-GLB node TRS from the active scene root and compare every deterministic build-input pivot world translation.", "evidence": {"expected_xyz_m": build_input["export_pivots_world_xyz_m"], "decoded_actual_xyz_m": pivot_actual, "maximum_errors_m": pivot_errors, "tolerance_m": 0.00001}, "semantic_nodes": list(build_input["export_pivots_world_xyz_m"]), "fact_ids": ["mfwd-wheelbase"]}},
+        {"id": "viewer_motion_nodes_resolve", "status": "PASS" if motion_nodes_ok else "FAIL", "detail": {"method": "Resolve every viewer Auto/manual motion target by exact name in the decoded shipped-GLB node table.", "evidence": {"resolved": {name: name in GLTF_CONTRACT.get("node_world_translation_xyz_m", {}) for name in motion_nodes}, "static_only": build_input["static_only"]}, "semantic_nodes": motion_nodes, "fact_ids": ["backhoe-swing"]}},
+        {"id": "public_semantic_hierarchy", "status": "PASS" if hierarchy_ok else "FAIL", "detail": {"method": "Count decoded shipped-GLB children below every exported pivot to reject empty or collapsed motion roots.", "evidence": {"pivot_child_counts": {name: GLTF_CONTRACT.get("node_child_count", {}).get(name) for name in build_input["export_pivots_world_xyz_m"]}}, "semantic_nodes": list(build_input["export_pivots_world_xyz_m"]), "fact_ids": []}},
+        {"id": "decoded_public_asset_counts", "status": "PASS" if decoded_counts_ok else "FAIL", "detail": {"method": "Count nodes, mesh resources, mesh-bearing nodes, and materials directly from the shipped GLB JSON tables.", "evidence": {"nodes": GLTF_CONTRACT.get("node_count"), "mesh_resources": GLTF_CONTRACT.get("mesh_resource_count"), "mesh_nodes": GLTF_CONTRACT.get("mesh_node_count"), "materials": GLTF_CONTRACT.get("material_count")}, "semantic_nodes": ["ROOT_310P_CANDIDATE"], "fact_ids": []}},
+        {"id": "source_design_contract_binding", "status": "PASS" if source_binding_ok else "FAIL", "detail": {"method": "Hash-bind the deterministic build input to an admitted primary source and require its unique retained fact-ID set to equal source/design.json.", "evidence": {"build_input_path": str(BUILD_INPUT_REL), "build_input_sha256": sha256(abs_path(BUILD_INPUT_REL)), "design_path": str(DESIGN_REL), "design_sha256": sha256(abs_path(DESIGN_REL)), "primary_source_sha256": build_input["primary_source_sha256"], "retained_fact_count": len(retained_fact_ids), "unique_fact_count": len(set(retained_fact_ids))}, "semantic_nodes": [], "fact_ids": retained_fact_ids}},
         {"id": "reconstructed-loader-bucket-width", "status": "PASS" if bucket_width_ok else "FAIL", "detail": {"published_over_tires_width_m": 2.20, "measured_reconstructed_bucket": bucket_measurement, "rule": "unresolved generic bucket placeholder must not exceed published over-tires width", "authority": "reconstructed; exact bucket branch unresolved"}},
         {"id": "reconstructed-stabilizer-operating-width-and-grade", "status": "PASS" if stabilizer_ok else "FAIL", "detail": {"published_overall_width_m": 3.53, "published_spread_m": 3.10, "required_pad_bottom_y_m": 0.0, "measured_pose": stabilizer_measurement, "width_tolerance_m": 0.01, "grade_tolerance_m": 0.001, "authority": "reconstructed pose constrained by published endpoints"}},
         {"id": "triangle-budget", "status": "PASS" if shipped_triangle_count <= 125000 else "FAIL", "detail": {"maximum": 125000, "actual_shipped_glb": shipped_triangle_count, "source_blend_evaluated": stats["triangle_count"]}},
@@ -1071,6 +1164,10 @@ def write_receipts():
         {"id": "publication-and-deployment", "status": "PENDING", "detail": "Only overall publisher may admit or publish this artifact."},
     ]
     blocking_failures = [gate["id"] for gate in gates if gate["status"] == "FAIL"]
+    gates_by_id = {gate["id"]:gate for gate in gates}
+    required_gate_ids = mechanism["required_gates"]
+    if [gate_id for gate_id in required_gate_ids if gate_id in gates_by_id] != required_gate_ids:
+        raise RuntimeError("required validation gates do not match mechanism.json")
     validation = {
         "schema_version": "1.0.0",
         "machine_id": MACHINE_ID,
@@ -1079,6 +1176,7 @@ def write_receipts():
         "verdict": "PASS" if not blocking_failures else "FAIL",
         "not_engineering_authority": True,
         "gates": gates,
+        "required_machine_gate_ids": required_gate_ids,
         "blocking_failures": blocking_failures,
         "higher_stage_gates_pending": True,
     }
@@ -1093,11 +1191,17 @@ def write_receipts():
         "authority_boundary": "Independently authored technical structural study; not engineering data, operator training, or manufacturer authority.",
         "blender_version": bpy.app.version_string,
         "deterministic_builder": file_entry(Path(BUILDER_REL)),
-        "artifacts": {"blend": file_entry(BLEND_REL), "glb": file_entry(GLB_REL)},
+        "deterministic_build_input": file_entry(BUILD_INPUT_REL),
+        "design": file_entry(DESIGN_REL),
+        "artifacts": {"blend": file_entry(BLEND_REL), "glb": file_entry(GLB_REL), "validation": file_entry(VALIDATION_REL)},
         "scene": {
             "units": "meters",
             "axes": {"longitudinal": "+X toward front loader", "vertical": "+Y", "lateral": "+Z machine right"},
             **stats,
+            "object_count": GLTF_CONTRACT.get("node_count"),
+            "mesh_count": GLTF_CONTRACT.get("mesh_resource_count"),
+            "mesh_node_count": GLTF_CONTRACT.get("mesh_node_count"),
+            "material_count": GLTF_CONTRACT.get("material_count"),
             "source_blend_evaluated_triangle_count": stats["triangle_count"],
             "triangle_count": shipped_triangle_count,
             "triangle_count_basis": "independently decoded shipped GLB index accessors",
@@ -1105,6 +1209,11 @@ def write_receipts():
         "required_semantic_nodes": semantic_nodes,
         "authoring_only_helper_nodes": {"present_in_blend": authoring_helpers, "present_in_public_glb": GLTF_CONTRACT.get("helper_nodes", [])},
         "manufacturer_published_constraints_used": [{"id": key, **value} for key, value in PUBLISHED.items()],
+        "published_constraint_ids_declared": retained_fact_ids,
+        "machine_specific_gate_evidence": [
+            {"id": gates_by_id[gate_id]["id"], "status": gates_by_id[gate_id]["status"], "detail": gates_by_id[gate_id]["detail"]}
+            for gate_id in required_gate_ids
+        ],
         "reconstructed_values": RECONSTRUCTED,
         "reconstructed_pose_measurements": POSE_MEASUREMENTS,
         "reconstructed_front_bucket_measurement": bucket_measurement,
@@ -1129,6 +1238,8 @@ def main():
     ensure_dirs()
     reset_scene()
     build_machine()
+    build_input = load_build_input()
+    prepare_export_pivots(build_input)
     camera = setup_lighting_and_camera()
     render_views(camera)
     export_and_save()

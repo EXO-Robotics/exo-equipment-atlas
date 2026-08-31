@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "cat-320",
+  "display_name": "Cat 320",
+  "configuration_id": "CAT-320-07H-NAM-RB57-R29-HD119-LU-TG790-CW42-CANDIDATE",
+  "archetype": "excavator",
+  "dimensions_m": {
+    "length": 9.53,
+    "width": 3.17,
+    "height": 3.16
+  },
+  "palette": "neutral_slate_graphite",
+  "published_constraints_used": [
+    "stick-length",
+    "transport-length",
+    "transport-height",
+    "undercarriage-width",
+    "upperframe-width",
+    "tail-swing-radius",
+    "counterweight-clearance",
+    "ground-clearance",
+    "track-length",
+    "roller-center-length",
+    "track-gauge",
+    "track-shoes-per-side",
+    "track-rollers-per-side",
+    "carrier-rollers-per-side",
+    "top-cab-height",
+    "bucket-tip-radius"
+  ],
+  "sourced_but_not_design_bound": [
+    "boom-length",
+    "boom-cylinder-stroke",
+    "stick-cylinder-stroke",
+    "bucket-cylinder-stroke",
+    "maximum-digging-depth",
+    "maximum-ground-reach"
+  ],
+  "reconstructed_values": {
+    "hidden_geometry": "Boom, stick, bucket and slew centers other than the published 2.9 m stick span; all hydraulic anchors; linkage topology; track pitch and phase; and internal structure are independently reconstructed.",
+    "physical_joint_study": "All four visible hydraulic assemblies have measured barrel-to-rod overlap, endpoint eyes and structural pins. The dogbone terminates at visible bellcrank and bucket-root lug ears and pins.",
+    "pose_scope": "Stowed transport and articulated review poses are independently measured. Continuous manufacturer motion limits, cylinder travel, swept collision, load, safety and operating behavior remain unclaimed.",
+    "bucket_tip_witness": "An exported mesh apex under Bucket_ROOT coincides with the farthest bucket-tooth planar point at the published 1.570 m radius.",
+    "track_loop": "Each 49-shoe reconstructed loop is normalized to a measured 4.450 m subtree length while preserving the 3.650 m sprocket/idler center separation and 2.380 m gauge."
+  },
+  "unresolved_choices": [
+    "exact serial or order family",
+    "quick coupler selection",
+    "thumb selection",
+    "cab OPG selection",
+    "grade-control and camera options",
+    "public material and branding authorization"
+  ],
+  "mechanical_gaps": [
+    "No manufacturer-authoritative boom, bucket, slew, hydraulic-anchor or linkage pivot coordinates",
+    "No continuous manufacturer motion-limit, cylinder-stroke, collision, load, stability or safety solver",
+    "No authoritative track pitch, sprocket phase or individual roller center geometry"
+  ]
+}

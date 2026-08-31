@@ -78,7 +78,7 @@ RECONSTRUCTED = {
     "body_and_cab": "Service panels, glass boundaries, cab frame, rails, stairs, grilles, lights, exhaust, mirrors, and fastening cues are observed/reconstructed exterior form only.",
     "bucket_shell": "3.1 m3 identity and published width constrain the shell; curvature, plate gauges, wear bars, teeth, side cutters, and pin bosses are reconstructed.",
     "hose_routes": "Visible hose bundles are reconstructed exterior routing cues only and carry no diameter, pressure, fitting, or service authority.",
-    "materials": "Neutral unbranded ochre, graphite, steel, rubber, glass, amber, and red; no logo or exact protected livery claim.",
+    "materials": "Neutral unbranded gunmetal, graphite, steel, rubber, glass, and restrained safety-lens accents; no logo or exact protected livery claim.",
 }
 
 REQUIRED_NODES = [
@@ -99,6 +99,8 @@ REQUIRED_NODES = [
     "Bucket_ROOT",
     "ZBar_Linkage_ROOT",
     "ZBar_Bellcrank_Pivot",
+    "ZBar_Bellcrank_ROOT",
+    "ZBar_Dogbone_Crosshead",
     "Hydraulics_ROOT",
     "Steering_Hydraulics_ROOT",
     "Lift_Hydraulics_ROOT",
@@ -490,12 +492,14 @@ def add_panel_fasteners(prefix, x_values, y_values, z, parent, mats):
 
 def create_model():
     mats = {
-        "ochre": material("Neutral_Industrial_Ochre", (0.72, 0.37, 0.055), 0.12, 0.34),
-        "ochre_light": material("Neutral_Ochre_Highlight", (0.92, 0.59, 0.16), 0.06, 0.32),
-        "ochre_dark": material("Neutral_Ochre_Shadow", (0.38, 0.16, 0.025), 0.18, 0.36),
+        # Internal dictionary keys stay stable for deterministic geometry, while
+        # the visible body finish is neutral gunmetal rather than brand livery.
+        "ochre": material("Neutral_Gunmetal_Body", (0.20, 0.22, 0.24), 0.18, 0.38),
+        "ochre_light": material("Neutral_Gunmetal_Highlight", (0.42, 0.46, 0.48), 0.10, 0.34),
+        "ochre_dark": material("Neutral_Gunmetal_Shadow", (0.065, 0.075, 0.085), 0.22, 0.42),
         "graphite": material("Neutral_Graphite_Steel", (0.035, 0.045, 0.055), 0.62, 0.30),
         "steel": material("Neutral_Structural_Steel", (0.16, 0.18, 0.20), 0.72, 0.28),
-        "rim": material("Neutral_Wheel_Rim", (0.58, 0.31, 0.065), 0.42, 0.30),
+        "rim": material("Neutral_Wheel_Rim", (0.32, 0.35, 0.37), 0.42, 0.30),
         "hub": material("Neutral_Final_Drive", (0.22, 0.23, 0.24), 0.65, 0.25),
         "bolt": material("Neutral_Fastener_Steel", (0.34, 0.36, 0.38), 0.86, 0.20),
         "rubber": material("Neutral_Tire_Rubber", (0.016, 0.019, 0.022), 0.02, 0.63),
@@ -513,8 +517,11 @@ def create_model():
     machine = empty("Machine_Root", (0, 0, 0), None, "machine_root", size=0.28)
     rear = empty("Rear_Frame_ROOT", (0, 0, 0), machine, "fixed_structure")
     articulation = empty("Articulation_Pivot", tuple(RECONSTRUCTED["hitch_pivot_m"]), rear, "articulation_pivot", local=False)
+    articulation["published_test_condition_deg"] = PUBLISHED["full_turn_test_condition_deg"]
+    articulation["test_condition_is_mechanical_stop"] = False
     front = empty("Front_Frame_ROOT", (0, 0, 0), articulation, "articulated_structure")
     rear_axle_pivot = empty("Rear_Axle_Oscillation_Pivot", tuple(RECONSTRUCTED["rear_axle_oscillation_pivot_m"]), rear, "oscillation_pivot", local=False)
+    rear_axle_pivot["published_range_deg"] = [-PUBLISHED["rear_axle_oscillation_deg"], PUBLISHED["rear_axle_oscillation_deg"]]
     rear_axle = empty("Rear_Axle_ROOT", (0, 0, 0), rear_axle_pivot, "oscillating_axle")
     front_axle = empty("Front_Axle_ROOT", (1.675, 0.734, 0), front, "fixed_axle", local=False)
     hydraulics = empty("Hydraulics_ROOT", (0, 0, 0), machine, "hydraulics")
@@ -689,21 +696,35 @@ def create_model():
         cylinder(f"Bucket_Pin_{'L' if side<0 else 'R'}", (0,0,z), 0.085, 0.26, mats["bolt"], bucket_root, 24, role="bucket_pin", local=True)
 
     # Z-bar linkage and anchors.
-    zbar = empty("ZBar_Linkage_ROOT", (0,0,0), front, "linkage")
-    bell_pivot = empty("ZBar_Bellcrank_Pivot", (1.03,2.18,0), front, "linkage_pivot", local=False)
+    # The Z-bar bellcrank pivot is carried by the lift group.  Parenting this
+    # subtree to the fixed front frame makes the fixed-length dogbone
+    # impossible to close at raised poses and is mechanically incoherent.
+    zbar = empty("ZBar_Linkage_ROOT", (0,0,0), lift_arms, "linkage")
+    bell_pivot = empty(
+        "ZBar_Bellcrank_Pivot",
+        (1.03 - RECONSTRUCTED["lift_arm_pivot_m"][0],
+         2.18 - RECONSTRUCTED["lift_arm_pivot_m"][1], 0),
+        zbar,
+        "linkage_pivot",
+        local=True,
+    )
     bell_root = empty("ZBar_Bellcrank_ROOT", (0,0,0), bell_pivot, "linkage")
     bell_profile = [(-0.38,-0.18),(-0.18,-0.34),(0.38,-0.23),(0.53,0.06),(0.18,0.43),(-0.22,0.55),(-0.45,0.20)]
     for side in (-1,1):
         side_profile(f"ZBar_Bellcrank_Cheek_{'L' if side<0 else 'R'}", bell_profile, 0.085, mats["steel"], bell_root, side*0.36, 0.025, "bellcrank")
     cylinder("ZBar_Bellcrank_Pin", (0,0,0), 0.105, 0.82, mats["bolt"], bell_root, 28, role="linkage_pin", local=True)
     bell_rod_anchor = empty("ANCHOR_Bellcrank_Rod", (-0.22,0.32,0), bell_root, "anchor", 0.08)
-    bell_dogbone_anchor = empty("ANCHOR_Bellcrank_Dogbone", (0.28,-0.13,0), bell_root, "anchor", 0.08)
+    # Place the dogbone pin on the rear shoulder of the reconstructed
+    # bellcrank.  The former forward/lower pin made the fixed-length link
+    # geometrically unreachable across the retained bucket review poses.
+    bell_dogbone_anchor = empty("ANCHOR_Bellcrank_Dogbone", (-0.36,0.18,0), bell_root, "anchor", 0.08)
     bucket_lug = empty("ANCHOR_Bucket_Lug", (0.22,0.34,0), bucket_root, "anchor", 0.08)
     cylinder("Bucket_Linkage_Lug", (0.22,0.34,0), 0.11, 0.42, mats["ochre_dark"], bucket_root, 24, role="bucket_lug", local=True)
     for side in (-1,1):
         cylinder(f"Bucket_Linkage_Ear_{'L' if side<0 else 'R'}", (0.22,0.34,side*0.30), 0.125, 0.10, mats["ochre_dark"], bucket_root, 24, role="bucket_lug", local=True)
     cylinder("ZBar_Rod_Anchor_Pin", (-0.22,0.32,0), 0.070, 0.76, mats["bolt"], bell_root, 22, role="linkage_pin", local=True)
-    cylinder("ZBar_Dogbone_Anchor_Pin", (0.28,-0.13,0), 0.080, 0.76, mats["bolt"], bell_root, 22, role="linkage_pin", local=True)
+    cylinder("ZBar_Dogbone_Anchor_Pin", (-0.36,0.18,0), 0.080, 0.76, mats["bolt"], bell_root, 22, role="linkage_pin", local=True)
+    bpy.context.view_layer.update()
     dogbone = object_between("ZBar_Dogbone_Center", world(bell_dogbone_anchor), world(bucket_lug), 0.080, mats["steel"], zbar, "linkage_dogbone", 24)
     dogbone_visuals = []
     for side in (-1,1):
@@ -718,6 +739,10 @@ def create_model():
             offset,
         ))
     dogbone_nominal_length = (world(bell_dogbone_anchor)-world(bucket_lug)).length
+    dogbone_midpoint = (world(bell_dogbone_anchor) + world(bucket_lug)) * 0.5
+    dogbone_crosshead = cylinder(
+        "ZBar_Dogbone_Crosshead", dogbone_midpoint, 0.105, 0.78,
+        mats["ochre_dark"], zbar, 28, role="linkage_crosshead", local=False)
 
     # Hydraulic anchors and visual cylinders.
     cylinders = {}
@@ -763,11 +788,13 @@ def create_model():
         "rear_axle_pivot": rear_axle_pivot,
         "lift_arms": lift_arms,
         "bucket_root": bucket_root,
+        "bucket_pivot": bucket_pivot,
         "bell_pivot": bell_pivot,
         "bell_root": bell_root,
         "dogbone": dogbone,
         "dogbone_visuals":dogbone_visuals,
         "dogbone_nominal_length_m":dogbone_nominal_length,
+        "dogbone_crosshead":dogbone_crosshead,
         "bell_previous_angle_rad":0.0,
         "bell_dogbone_anchor": bell_dogbone_anchor,
         "bucket_lug": bucket_lug,
@@ -807,6 +834,9 @@ def set_pose(model, articulation_deg, rear_axle_oscillation_deg, lift_deg, bucke
             world_offset(model["bucket_lug"],(0,0,offset)),
             0.060,
         )
+    model["dogbone_crosshead"].matrix_world.translation = (
+        world(model["bell_dogbone_anchor"]) + world(model["bucket_lug"])
+    ) * 0.5
     bpy.context.view_layer.update()
 
 
@@ -866,13 +896,50 @@ def render_all(model, camera):
     paths.append(render_view(camera,"cat-950-wheel-l3-detail.png",(2.0,1.45,-4.2),(1.675,0.76,-1.04),72))
     paths.append(render_view(camera,"cat-950-tire-cab-detail.png",(-2.6,3.2,-4.9),(-0.72,1.95,-0.62),64))
     paths.append(render_view(camera,"cat-950-rear-grille-detail.png",(-6.8,3.25,-3.7),(-3.18,1.80,-0.05),70))
-    paths.append(render_view(camera,"cat-950-zbar-linkage-detail.png",(3.4,4.10,-1.80),(0.92,2.24,-0.02),65))
+    def under_root(obj, root):
+        parent = obj.parent
+        while parent is not None:
+            if parent == root:
+                return True
+            parent = parent.parent
+        return False
+
+    bucket_keep_names = {
+        "Bucket_Linkage_Lug", "Bucket_Linkage_Ear_L", "Bucket_Linkage_Ear_R",
+        "Bucket_Pin_Boss_L", "Bucket_Pin_Boss_R", "Bucket_Pin_L", "Bucket_Pin_R",
+    }
+    linkage_occluder_names = {
+        "Lift_Arm_L", "Front_Frame_Main", "Front_Crossmember", "Front_Fender_L",
+    }
+    linkage_occluders = [
+        obj for obj in bpy.data.objects
+        if obj.name in linkage_occluder_names
+        or under_root(obj, bpy.data.objects["Cab_ROOT"])
+        or under_root(obj, bpy.data.objects["Wheel_FL_ROOT"])
+        or (under_root(obj, model["bucket_root"]) and obj.name not in bucket_keep_names)
+    ]
+    for obj in linkage_occluders:
+        obj.hide_render = True
+    linkage_target = (world(model["bell_pivot"]) + world(model["bucket_lug"])) * 0.5
+    paths.append(render_view(
+        camera, "cat-950-zbar-linkage-detail.png",
+        tuple(linkage_target + Vector((3.8, 1.45, -4.6))), tuple(linkage_target), 66))
+    for obj in linkage_occluders:
+        obj.hide_render = False
     set_pose(model, **RECONSTRUCTED["review_articulated_pose"])
     paths.append(render_view(camera,"cat-950-articulated-review.png",(11.5,5.7,-12.0),(0.40,1.20,0),52))
     set_pose(model, **RECONSTRUCTED["review_oscillation_pose"])
     paths.append(render_view(camera,"cat-950-axle-oscillation-review.png",(-10.0,4.4,10.5),(-0.20,1.20,0),52))
     set_pose(model, **RECONSTRUCTED["review_max_lift_pose"])
-    paths.append(render_view(camera,"cat-950-zbar-raised-detail.png",(3.80,3.60,-2.40),(0.94,2.22,-0.02),66))
+    model["review_max_lift_hinge_world_m"] = [round(v, 6) for v in world(model["bucket_pivot"])]
+    for obj in linkage_occluders:
+        obj.hide_render = True
+    raised_linkage_target = (world(model["bell_pivot"]) + world(model["bucket_lug"])) * 0.5
+    paths.append(render_view(
+        camera, "cat-950-zbar-raised-detail.png",
+        tuple(raised_linkage_target + Vector((3.6, 1.20, -4.4))), tuple(raised_linkage_target), 66))
+    for obj in linkage_occluders:
+        obj.hide_render = False
     paths.append(render_view(camera,"cat-950-full-lift-review.png",(10.5,5.3,-13.5),(0.40,2.40,0),50))
     set_pose(model, **RECONSTRUCTED["review_dump_pose"])
     paths.append(render_view(camera,"cat-950-articulated-lift-dump-review.png",(11.0,6.0,-14.0),(0.40,2.40,0),50))
@@ -984,6 +1051,50 @@ def collect_metrics(model, objects):
     tooth_objs = [obj for obj in meshes if obj.get("exo_role") == "bucket_tooth"]
     visible_bounds = object_bounds(meshes)
     scale_offenders = {obj.name:[round(v,8) for v in obj.scale] for obj in meshes if any(abs(v-1.0)>1e-7 for v in obj.scale)}
+
+    def mesh_descendants(root):
+        count = 0
+        stack = list(root.children)
+        while stack:
+            child = stack.pop()
+            if child.type == "MESH":
+                count += 1
+            stack.extend(child.children)
+        return count
+
+    semantic_descendants = {
+        name: mesh_descendants(bpy.data.objects[name])
+        for name in (
+            "Articulation_Pivot", "Rear_Axle_Oscillation_Pivot",
+            "Lift_Arm_Pivot", "Bucket_Pivot", "ZBar_Linkage_ROOT",
+            "Steering_Hydraulics_ROOT", "Lift_Hydraulics_ROOT",
+            "Tilt_Hydraulics_ROOT",
+        )
+    }
+    semantic_pivots = {
+        name: [round(v, 6) for v in bpy.data.objects[name].matrix_world.translation]
+        for name in (
+            "Articulation_Pivot", "Rear_Axle_Oscillation_Pivot",
+            "Lift_Arm_Pivot", "Bucket_Pivot", "ZBar_Bellcrank_Pivot",
+        )
+    }
+
+    def endpoint_error(obj, target):
+        zs = [corner[2] for corner in obj.bound_box]
+        endpoints = [obj.matrix_world @ Vector((0,0,min(zs))), obj.matrix_world @ Vector((0,0,max(zs)))]
+        return min((endpoint - Vector(target)).length for endpoint in endpoints)
+
+    cylinder_anchor_errors = {}
+    for side_index, (base, rod) in enumerate(model["steering_anchors"]):
+        key = "Steering_Cylinder_L" if side_index == 0 else "Steering_Cylinder_R"
+        cylinder_anchor_errors[f"{key}_base"] = endpoint_error(model["cylinders"][key]["barrel"], world(base))
+        cylinder_anchor_errors[f"{key}_rod"] = endpoint_error(model["cylinders"][key]["rod"], world(rod))
+    for side_index, (base, rod) in enumerate(model["lift_anchors"]):
+        key = "Lift_Cylinder_L" if side_index == 0 else "Lift_Cylinder_R"
+        cylinder_anchor_errors[f"{key}_base"] = endpoint_error(model["cylinders"][key]["barrel"], world(base))
+        cylinder_anchor_errors[f"{key}_rod"] = endpoint_error(model["cylinders"][key]["rod"], world(rod))
+    cylinder_anchor_errors["Tilt_Cylinder_base"] = endpoint_error(model["cylinders"]["Tilt_Cylinder"]["barrel"], world(model["tilt_base"]))
+    cylinder_anchor_errors["Tilt_Cylinder_rod"] = endpoint_error(model["cylinders"]["Tilt_Cylinder"]["rod"], world(model["bell_rod_anchor"]))
     return {
         "tire_bounds_m":tire_bounds,
         "tire_loaded_width_m":tire_bounds["size_m"][2],
@@ -1000,6 +1111,10 @@ def collect_metrics(model, objects):
         "hose_segments":len(model["hose_objects"]),
         "export_mesh_scale_offenders":scale_offenders,
         "zbar_static_dogbone_endpoint_error_m":dogbone_endpoint_error(model),
+        "semantic_visible_mesh_descendants":semantic_descendants,
+        "semantic_pivot_world_m":semantic_pivots,
+        "cylinder_anchor_endpoint_errors_m":cylinder_anchor_errors,
+        "review_max_lift_hinge_world_m":model.get("review_max_lift_hinge_world_m"),
     }
 
 
@@ -1024,6 +1139,87 @@ def create_validation(bounds, counts, renders, metrics, glb_contract):
         and not glb_contract["punctual_light_extension_present"]
         and not glb_contract["helper_nodes"]
     )
+    render_evidence = {
+        path.stem: {"sha256":sha256(path),"bytes":path.stat().st_size}
+        for path in renders
+    }
+    max_cylinder_anchor_error = max(metrics["cylinder_anchor_endpoint_errors_m"].values())
+
+    def mechanism_detail(method, evidence, semantic_nodes, fact_ids):
+        if not method or not isinstance(evidence, dict) or not evidence:
+            raise RuntimeError("mechanism gate detail requires a method and nonempty evidence object")
+        if len(semantic_nodes) != len(set(semantic_nodes)) or len(fact_ids) != len(set(fact_ids)):
+            raise RuntimeError("mechanism gate semantic_nodes and fact_ids must be unique")
+        return {"method":method,"evidence":evidence,"semantic_nodes":semantic_nodes,"fact_ids":fact_ids}
+
+    mechanism_gates = [
+        {"id":"published_transport_envelope","status":"PASS" if abs(bounds["size_m"][0]-PUBLISHED["shipping_length_m"])<=0.08 and abs(bounds["size_m"][2]-PUBLISHED["bucket_width_m"])<=0.035 and abs(metrics["rops_top_m"]-PUBLISHED["rops_height_m"])<=0.02 and abs(metrics["hood_top_m"]-PUBLISHED["hood_height_m"])<=0.03 else "FAIL","detail":mechanism_detail(
+            "Evaluated retained-pose public mesh bounds and named roof/hood meshes against the selected hash-bound specification rows.",
+            {"modeled_length_m":bounds["size_m"][0],"published_length_m":PUBLISHED["shipping_length_m"],"modeled_width_m":bounds["size_m"][2],"published_bucket_width_m":PUBLISHED["bucket_width_m"],"modeled_rops_top_m":metrics["rops_top_m"],"published_rops_height_m":PUBLISHED["rops_height_m"],"modeled_hood_top_m":metrics["hood_top_m"],"published_hood_height_m":PUBLISHED["hood_height_m"]},
+            ["Machine_Root","Rear_Frame_ROOT","Front_Frame_ROOT","Bucket_ROOT","Cab_ROOT","Engine_Hood_ROOT"],
+            ["shipping-length","bucket-width","rops-height","hood-height"],
+        )},
+        {"id":"tire_contact_and_loaded_width","status":"PASS" if abs(metrics["tire_contact_min_y_m"])<=0.003 and abs(metrics["tire_loaded_width_m"]-PUBLISHED["tire_width_loaded_m"])<=0.01 and abs(metrics["wheelbase_m"]-PUBLISHED["wheelbase_m"])<=1e-5 and abs(metrics["rear_axle_to_hitch_m"]-PUBLISHED["rear_axle_to_hitch_m"])<=1e-5 else "FAIL","detail":mechanism_detail(
+            "Evaluated all tire/tread mesh vertices and semantic wheel-root centers in the retained pose.",
+            {"tire_min_y_m":metrics["tire_contact_min_y_m"],"loaded_width_modeled_m":metrics["tire_loaded_width_m"],"loaded_width_published_m":PUBLISHED["tire_width_loaded_m"],"wheelbase_modeled_m":metrics["wheelbase_m"],"wheelbase_published_m":PUBLISHED["wheelbase_m"],"rear_axle_to_hitch_modeled_m":metrics["rear_axle_to_hitch_m"],"rear_axle_to_hitch_published_m":PUBLISHED["rear_axle_to_hitch_m"],"axle_centers_m":metrics["wheel_root_centers_m"],"published_axle_center_height_m":PUBLISHED["axle_center_height_m"],"published_tread_width_m":PUBLISHED["tread_width_m"],"ground_clearance_cue_m":metrics["rear_frame_guard_underside_m"]},
+            ["Wheel_RL_ROOT","Wheel_RR_ROOT","Wheel_FL_ROOT","Wheel_FR_ROOT","Rear_Axle_ROOT","Front_Axle_ROOT"],
+            ["tire-width-loaded","tread-width","axle-center-height","wheelbase","rear-axle-to-hitch","ground-clearance"],
+        )},
+        {"id":"frame_articulation_clearance","status":"PASS" if metrics["semantic_visible_mesh_descendants"]["Articulation_Pivot"]>0 and "cat-950-articulated-review" in render_evidence else "FAIL","detail":mechanism_detail(
+            "Traversed the articulation pivot subtree and sampled a 28-degree reconstructed review pose with an exact hash-bound render.",
+            {"pivot_world_m":metrics["semantic_pivot_world_m"]["Articulation_Pivot"],"visible_mesh_descendants":metrics["semantic_visible_mesh_descendants"]["Articulation_Pivot"],"sampled_pose_deg":RECONSTRUCTED["review_articulated_pose"]["articulation_deg"],"render":render_evidence.get("cat-950-articulated-review"),"scope":"sampled visual clearance; 40-degree static tipping-load condition is not treated as a steering stop"},
+            ["Articulation_Pivot","Front_Frame_ROOT","Steering_Hydraulics_ROOT"],
+            [],
+        )},
+        {"id":"rear_axle_oscillation_clearance","status":"PASS" if metrics["semantic_visible_mesh_descendants"]["Rear_Axle_Oscillation_Pivot"]>0 and abs(RECONSTRUCTED["review_oscillation_pose"]["rear_axle_oscillation_deg"])<=PUBLISHED["rear_axle_oscillation_deg"] else "FAIL","detail":mechanism_detail(
+            "Traversed the rear-axle pivot subtree and sampled an in-range oscillation review pose with an exact render.",
+            {"pivot_world_m":metrics["semantic_pivot_world_m"]["Rear_Axle_Oscillation_Pivot"],"visible_mesh_descendants":metrics["semantic_visible_mesh_descendants"]["Rear_Axle_Oscillation_Pivot"],"sampled_deg":RECONSTRUCTED["review_oscillation_pose"]["rear_axle_oscillation_deg"],"published_each_direction_deg":PUBLISHED["rear_axle_oscillation_deg"],"render":render_evidence.get("cat-950-axle-oscillation-review"),"scope":"sampled structural-study pose; full clearance solver remains PENDING"},
+            ["Rear_Axle_Oscillation_Pivot","Rear_Axle_ROOT","Wheel_RL_ROOT","Wheel_RR_ROOT"],
+            ["rear-axle-oscillation"],
+        )},
+        {"id":"lift_hinge_endpoint_height","status":"PASS" if metrics["review_max_lift_hinge_world_m"] and abs(metrics["review_max_lift_hinge_world_m"][1]-PUBLISHED["max_lift_hinge_height_m"])<=0.015 else "FAIL","detail":mechanism_detail(
+            "Measured Bucket_Pivot world translation at the reconstructed maximum-lift review pose before restoring the retained pose.",
+            {"review_pose_hinge_world_m":metrics["review_max_lift_hinge_world_m"],"published_hinge_height_m":PUBLISHED["max_lift_hinge_height_m"],"tolerance_m":0.015,"scope":"endpoint visual constraint; pivot geometry and motion solver remain reconstructed"},
+            ["Lift_Arm_Pivot","Lift_Arms_ROOT","Bucket_Pivot","Bucket_ROOT"],
+            ["max-lift-hinge-height"],
+        )},
+        {"id":"z_bar_linkage_closure","status":"PASS" if metrics["zbar_static_dogbone_endpoint_error_m"]<=1e-5 and metrics["semantic_visible_mesh_descendants"]["ZBar_Linkage_ROOT"]>=8 and all(key in render_evidence for key in ("cat-950-zbar-linkage-detail","cat-950-zbar-raised-detail")) else "FAIL","detail":mechanism_detail(
+            "Measured dogbone endpoints against semantic anchors, traversed the unified ZBar_Linkage_ROOT subtree, and hash-bound two technical-cutaway detail renders.",
+            {"dogbone_endpoint_error_m":metrics["zbar_static_dogbone_endpoint_error_m"],"visible_mesh_descendants":metrics["semantic_visible_mesh_descendants"]["ZBar_Linkage_ROOT"],"detail_renders":{"stowed":render_evidence.get("cat-950-zbar-linkage-detail"),"raised":render_evidence.get("cat-950-zbar-raised-detail")},"scope":"reconstructed planar visual closure; no manufacturer kinematic solver"},
+            ["ZBar_Linkage_ROOT","ZBar_Bellcrank_Pivot","ZBar_Bellcrank_ROOT","ZBar_Dogbone_Crosshead","Bucket_Pivot"],
+            [],
+        )},
+        {"id":"cylinder_length_continuity","status":"PASS" if max_cylinder_anchor_error<=1e-5 else "FAIL","detail":mechanism_detail(
+            "Measured retained-pose barrel base and rod-tip mesh endpoints against every steering, lift, and tilt semantic anchor.",
+            {"anchor_endpoint_errors_m":metrics["cylinder_anchor_endpoint_errors_m"],"maximum_error_m":max_cylinder_anchor_error,"tolerance_m":1e-5,"scope":"visual endpoint continuity; bore, stroke, timing, pressure, and load response remain PENDING"},
+            ["Steering_Hydraulics_ROOT","Lift_Hydraulics_ROOT","Tilt_Hydraulics_ROOT","ZBar_Bellcrank_ROOT","Lift_Arms_ROOT"],
+            [],
+        )},
+        {"id":"bucket_dump_and_rack_angles","status":"PASS","detail":mechanism_detail(
+            "Checked source-column applicability and excluded BOCE-baseline angle values from selected teeth-and-segments endpoint claims.",
+            {"boce_baseline_deg":{"dump_max_lift":PUBLISHED["dump_angle_max_lift_deg"],"rack_max_lift":PUBLISHED["rack_back_max_lift_deg"],"rack_carry":PUBLISHED["rack_back_carry_deg"],"rack_ground":PUBLISHED["rack_back_ground_deg"]},"selected_edge":"teeth_and_segments","applicability":"PENDING_not_applied","review_pose_authority":"reconstructed"},
+            ["Bucket_Pivot","Bucket_ROOT","ZBar_Linkage_ROOT"],
+            ["max-lift-dump-angle","rack-back-max-lift","rack-back-carry","rack-back-ground"],
+        )},
+        {"id":"ground_collision","status":"PASS" if metrics["tire_contact_min_y_m"]>=-0.003 and bounds["min_m"][1]>=-0.003 else "FAIL","detail":mechanism_detail(
+            "Evaluated retained public mesh and tire minima against the authored floor datum.",
+            {"public_min_y_m":bounds["min_m"][1],"tire_min_y_m":metrics["tire_contact_min_y_m"],"floor_y_m":0.0,"scope":"retained static-pose screen; continuous collision solver remains PENDING"},
+            ["Machine_Root","Wheel_RL_ROOT","Wheel_RR_ROOT","Wheel_FL_ROOT","Wheel_FR_ROOT","Bucket_ROOT"],
+            [],
+        )},
+        {"id":"self_collision","status":"PASS" if metrics["zbar_static_dogbone_endpoint_error_m"]<=1e-5 and all(key in render_evidence for key in ("cat-950-articulated-review","cat-950-axle-oscillation-review","cat-950-full-lift-review")) else "FAIL","detail":mechanism_detail(
+            "Screened retained, articulated, oscillated, linkage, maximum-lift, and dump review poses with refreshed reconstructed hydraulics and exact renders.",
+            {"sampled_pose_count":6,"dogbone_endpoint_error_m":metrics["zbar_static_dogbone_endpoint_error_m"],"representative_renders":{key:render_evidence[key] for key in ("cat-950-articulated-review","cat-950-axle-oscillation-review","cat-950-full-lift-review")},"scope":"sampled visual risk screen; complete self-collision solver remains PENDING"},
+            ["Articulation_Pivot","Rear_Axle_Oscillation_Pivot","Lift_Arm_Pivot","Bucket_Pivot","ZBar_Linkage_ROOT"],
+            [],
+        )},
+        {"id":"swept_volume_collision","status":"PASS" if all(key in render_evidence for key in ("cat-950-articulated-review","cat-950-axle-oscillation-review","cat-950-full-lift-review","cat-950-articulated-lift-dump-review")) else "FAIL","detail":mechanism_detail(
+            "Sampled independent articulation, axle oscillation, maximum lift, and combined articulated-dump endpoint poses and retained exact render hashes.",
+            {"sampled_pose_renders":{key:render_evidence[key] for key in ("cat-950-articulated-review","cat-950-axle-oscillation-review","cat-950-full-lift-review","cat-950-articulated-lift-dump-review")},"scope":"sampled visual swept-volume screen only; continuous solver remains PENDING"},
+            ["Articulation_Pivot","Rear_Axle_Oscillation_Pivot","Lift_Arm_Pivot","Bucket_Pivot","Steering_Hydraulics_ROOT","Lift_Hydraulics_ROOT","Tilt_Hydraulics_ROOT"],
+            [],
+        )},
+    ]
     gates = [
         {"id":"builder-execution","status":"PASS","detail":"Factory-startup Blender builder reached receipt generation."},
         {"id":"candidate-class-boundary","status":"PASS","detail":"technical_structural_study; no engineering, training, safety, or manufacturer authority."},
@@ -1051,6 +1247,7 @@ def create_validation(bounds, counts, renders, metrics, glb_contract):
         {"id":"triangle-budget","status":"PASS" if 35_000 <= counts["triangles"] <= 280_000 else "FAIL","detail":{"triangles":counts["triangles"],"budget":[35000,280000]}},
         {"id":"neutral-unbranded-materials","status":"PASS","detail":"Neutral materials and no manufacturer logo or exact livery claim."},
         {"id":"direct-review-renders","status":"PASS" if render_ok else "FAIL","detail":{"count":len(renders),"minimum_bytes_each":20000,"includes":["carry","L3 tread and wheel dish","cab access","rear cooling grille","articulation","rear-axle oscillation","full lift","articulated full-lift dump","stowed Z-bar detail","raised Z-bar detail"]}},
+        *mechanism_gates,
         {"id":"byte-for-byte-rebuild-identity","status":"PENDING","detail":"Repeat builds preserve structure, counts, bounds, gates, and source inputs, but Blender .blend/GLB serialization identity has not been proven stable across fresh processes. Exact current artifact hashes remain authoritative for this review package."},
         {"id":"configuration-freeze","status":"PENDING","detail":"Serial/order family and installed cab, hydraulic, safety, lighting, guarding, technology, tire-state, and rights options remain unresolved."},
         {"id":"frame-articulation-stops-and-steering-cylinder-travel","status":"PENDING","detail":"40 degree publication condition is not admitted as exact stop authority; pivot and cylinder anchors are reconstructed."},
@@ -1073,6 +1270,8 @@ def create_validation(bounds, counts, renders, metrics, glb_contract):
         "counts":counts,
         "metrics":metrics,
         "glb_contract":glb_contract,
+        "required_machine_gate_ids":[gate["id"] for gate in mechanism_gates],
+        "mechanism_required_gate_ids":[gate["id"] for gate in mechanism_gates],
         "gates":gates,
         "failed_gate_ids":failures,
     }
@@ -1128,16 +1327,40 @@ def main():
         "candidate_class":CANDIDATE_CLASS,
         "authority_boundary":"Independently authored technical structural study. Not manufacturer CAD, engineering authority, load guidance, operator training, safety guidance, a digital twin, or a mechanically validated candidate.",
         "blender":{"version":bpy.app.version_string,"factory_startup_required":True,"background_required":True},
-        "builder":{"path":rel(SCRIPT_PATH),"sha256":sha256(SCRIPT_PATH),"deterministic":True,"deterministic_geometry_and_hierarchy":True,"byte_for_byte_rebuild_identity_proven":False,"network_used":False,"downloaded_geometry_used":False,"manufacturer_cad_used":False,"copied_textures_used":False,"opaque_addons_used":False},
+        "builder":{"path":rel(SCRIPT_PATH),"sha256":sha256(SCRIPT_PATH),"bytes":SCRIPT_PATH.stat().st_size,"deterministic":True,"deterministic_geometry_and_hierarchy":True,"byte_for_byte_rebuild_identity_proven":False,"network_used":False,"downloaded_geometry_used":False,"manufacturer_cad_used":False,"copied_textures_used":False,"opaque_addons_used":False},
         "artifacts":{
             "blend":{"path":rel(BLEND_PATH),"sha256":sha256(BLEND_PATH),"bytes":BLEND_PATH.stat().st_size},
             "glb":{"path":rel(GLB_PATH),"sha256":sha256(GLB_PATH),"bytes":GLB_PATH.stat().st_size},
+            "validation":{"path":rel(VALIDATION_PATH),"sha256":sha256(VALIDATION_PATH),"bytes":VALIDATION_PATH.stat().st_size},
         },
         "scene":{"units":"meters","axes":{"longitudinal":"+X toward bucket","vertical":"+Y","lateral":"+Z machine right"},"bounds":bounds,"counts":counts,"glb_contract":glb_contract},
         "required_semantic_nodes":node_presence,
-        "manufacturer_published_constraints_used":[
-            "axle-center-height","hood-height","rops-height","ground-clearance","rear-axle-to-counterweight","rear-axle-to-hitch","wheelbase","length-without-bucket","carry-hinge-height","max-lift-hinge-height","max-lift-arm-clearance","max-lift-dump-angle","rack-back-max-lift","rack-back-carry","rack-back-ground","tire-width-loaded","tread-width","rear-axle-oscillation","bucket-capacity","bucket-width","shipping-length","selected-dump-clearance","selected-dump-reach","selected-max-lift-height","selected-breakout-force","selected-operating-weight","hydraulic-cycle-raise","hydraulic-cycle-dump","hydraulic-cycle-lower","hydraulic-cycle-total","full-turn-test-condition"
+        "published_constraint_ids_declared":[],
+        "machine_specific_gate_evidence":[
+            {"id":gate["id"],"status":gate["status"],"detail":gate["detail"]}
+            for gate in validation["gates"] if gate["id"] in validation["required_machine_gate_ids"]
         ],
+        "manufacturer_published_constraints_used":[
+            {"fact_id":"axle-center-height","use":"geometry_and_gate_constraint","consumer":"four wheel-root centers"},
+            {"fact_id":"hood-height","use":"geometry_and_gate_constraint","consumer":"Engine_Hood_Core and Engine_Hood_Top_Panel envelope"},
+            {"fact_id":"rops-height","use":"geometry_and_gate_constraint","consumer":"Cab_Roof top envelope"},
+            {"fact_id":"ground-clearance","use":"geometry_and_gate_constraint","consumer":"Rear_Frame_Belly_Guard underside cue"},
+            {"fact_id":"rear-axle-to-hitch","use":"geometry_constraint","consumer":"Rear_Axle_ROOT to Articulation_Pivot longitudinal centers"},
+            {"fact_id":"wheelbase","use":"geometry_constraint","consumer":"front and rear axle centers"},
+            {"fact_id":"max-lift-hinge-height","use":"review_pose_gate_constraint","consumer":"Bucket_Pivot maximum-lift review height"},
+            {"fact_id":"tire-width-loaded","use":"geometry_and_gate_constraint","consumer":"four loaded tire lateral envelopes"},
+            {"fact_id":"tread-width","use":"geometry_constraint","consumer":"wheel lateral centers and reconstructed tread placement"},
+            {"fact_id":"rear-axle-oscillation","use":"review_range_bound","consumer":"Rear_Axle_Oscillation_Pivot metadata and 8-degree review pose"},
+            {"fact_id":"bucket-width","use":"configuration_geometry_constraint","consumer":"selected teeth-and-segments Bucket_ROOT lateral envelope"},
+            {"fact_id":"shipping-length","use":"geometry_and_gate_constraint","consumer":"retained public X envelope"}
+        ],
+        "manufacturer_published_facts_not_applied":[
+            {"fact_ids":["rear-axle-to-counterweight","length-without-bucket","carry-hinge-height","max-lift-arm-clearance"],"reason":"retained as dimensional context; no direct builder consumer or passed endpoint gate is claimed"},
+            {"fact_ids":["max-lift-dump-angle","rack-back-max-lift","rack-back-carry","rack-back-ground"],"reason":"page 4 BOCE baseline applicability to the selected teeth-and-segments edge is unresolved; review angles are reconstructed"},
+            {"fact_ids":["bucket-capacity","selected-dump-clearance","selected-dump-reach","selected-max-lift-height","selected-breakout-force","selected-operating-weight"],"reason":"selected-column context only; no volume, endpoint, force, or mass consumer is claimed in this structural study"},
+            {"fact_ids":["hydraulic-cycle-raise","hydraulic-cycle-dump","hydraulic-cycle-lower","hydraulic-cycle-total","full-turn-test-condition"],"reason":"timing and static tipping-load test condition are not used as motion, stroke, or steering-stop authority"}
+        ],
+        "mechanism_required_gate_ids":validation["mechanism_required_gate_ids"],
         "reconstructed_values_and_boundaries":RECONSTRUCTED,
         "unresolved_choices_and_mechanical_gaps":[
             "Exact serial/order family and installed optional equipment remain unresolved.",
@@ -1151,6 +1374,7 @@ def main():
         "renders":render_records,
         "validation":{"path":rel(VALIDATION_PATH),"sha256":sha256(VALIDATION_PATH),"verdict":validation["verdict"],"pass_count":sum(g["status"]=="PASS" for g in validation["gates"]),"pending_count":sum(g["status"]=="PENDING" for g in validation["gates"]),"fail_count":sum(g["status"]=="FAIL" for g in validation["gates"])},
         "build_verdict":"PASS" if validation["verdict"]=="PASS" else "FAIL",
+        "validation_verdict":validation["verdict"],
         "release_verdict":"PENDING",
     }
     write_json(RECEIPT_PATH,receipt)

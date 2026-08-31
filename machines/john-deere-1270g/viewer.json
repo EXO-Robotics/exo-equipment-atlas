@@ -26,5 +26,17 @@
     "elevation": 0.32,
     "distance": 1.54
   },
-  "accent": "#b8a65f"
+  "accent": "#b8a65f",
+  "motion": {
+    "autoplay": true,
+    "durationSeconds": 18,
+    "mode": "sine",
+    "damping": 8,
+    "channels": [
+      {"id":"frame-steer","mechanismJointId":"frame_steer","label":"Frame steer presentation - published range, reconstructed pivot","nodes":["FrameSteer_Pivot_Reconstructed"],"property":"rotation.y","from":-0.12,"to":0.12,"phase":0.0,"mode":"offset","autoplay":"sine"},
+      {"id":"front-bogie","mechanismJointId":"front_balanced_bogie","label":"Balanced front bogie inspection motion - reconstructed, ground-safe presentation range","nodes":["FrontBalancedBogie_Pivot_Reconstructed"],"property":"rotation.z","from":-0.035,"to":0.035,"phase":0.25,"mode":"offset","autoplay":"sine"},
+      {"id":"cab-yaw","mechanismJointId":"cab_rotation_leveling","label":"Rotating cab presentation - published range, reconstructed mechanism","nodes":["CabRotation_Root_Reconstructed"],"property":"rotation.y","from":-0.24,"to":0.24,"phase":0.5,"mode":"offset","autoplay":"sine"},
+      {"id":"crane-slew","mechanismJointId":"ch7_boom","label":"CH7 slew presentation - lift/fold/telescope remain static","nodes":["CH7_Slew_Root_Reconstructed"],"property":"rotation.y","from":-0.28,"to":0.28,"phase":0.75,"mode":"offset","autoplay":"sine"}
+    ]
+  }
 }

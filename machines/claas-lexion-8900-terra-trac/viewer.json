@@ -32,10 +32,11 @@
     "autoplay": true,
     "durationSeconds": 18,
     "mode": "sine",
-    "damping": 5.6,
+    "damping": 8,
     "channels": [
       {
         "id": "header-lift",
+        "mechanismJointId": "header_lift",
         "label": "Header lift - reconstructed linkage",
         "nodes": ["Header_Lift_Pivot"],
         "property": "rotation.z",
@@ -47,7 +48,161 @@
         "autoplay": "sine"
       },
       {
+        "id": "header-flex",
+        "mechanismJointId": "header_tilt_and_float",
+        "label": "CONVIO FLEX vertical study",
+        "nodes": [
+          "Header_L_Flex_ROOT",
+          "Header_R_Flex_ROOT"
+        ],
+        "property": "position.y",
+        "from": -0.225,
+        "to": 0,
+        "phase": 0.16,
+        "direction": 1,
+        "mode": "offset",
+        "autoplay": "sine"
+      },
+      {
+        "id": "header-reel",
+        "mechanismJointId": "header_reel",
+        "label": "CONVIO reel study",
+        "nodes": [
+          "Reel_ROOT"
+        ],
+        "property": "rotation.z",
+        "from": -0.8,
+        "to": 0.8,
+        "phase": 0.26,
+        "direction": 1,
+        "mode": "offset",
+        "autoplay": "sine"
+      },
+      {
+        "id": "draper-belts",
+        "mechanismJointId": "header_draper_belts",
+        "label": "Three-section draper study",
+        "nodes": [
+          "CONVIO_Center_Draper_ROOT",
+          "CONVIO_L_Draper_ROOT",
+          "CONVIO_R_Draper_ROOT"
+        ],
+        "property": "position.x",
+        "from": -0.08,
+        "to": 0.08,
+        "phase": 0.34,
+        "direction": 1,
+        "mode": "offset",
+        "autoplay": "sine"
+      },
+      {
+        "id": "left-track",
+        "mechanismJointId": "left_track_belt",
+        "label": "Left TERRA TRAC phase",
+        "nodes": [
+          "Track_L_Rear_Wheel",
+          "Track_L_Front_Wheel",
+          "Track_L_Roller_01",
+          "Track_L_Roller_02",
+          "Track_L_Roller_03",
+          "Track_L_Roller_04",
+          "Track_L_Roller_05"
+        ],
+        "property": "rotation.z",
+        "from": -0.8,
+        "to": 0.8,
+        "phase": 0.44,
+        "direction": 1,
+        "mode": "offset",
+        "autoplay": "sine"
+      },
+      {
+        "id": "right-track",
+        "mechanismJointId": "right_track_belt",
+        "label": "Right TERRA TRAC phase",
+        "nodes": [
+          "Track_R_Rear_Wheel",
+          "Track_R_Front_Wheel",
+          "Track_R_Roller_01",
+          "Track_R_Roller_02",
+          "Track_R_Roller_03",
+          "Track_R_Roller_04",
+          "Track_R_Roller_05"
+        ],
+        "property": "rotation.z",
+        "from": -0.8,
+        "to": 0.8,
+        "phase": 0.44,
+        "direction": 1,
+        "mode": "offset",
+        "autoplay": "sine"
+      },
+      {
+        "id": "rear-steering",
+        "mechanismJointId": "rear_steering",
+        "label": "Rear steering - reconstructed",
+        "nodes": [
+          "Rear_Steering_L_Pivot",
+          "Rear_Steering_R_Pivot"
+        ],
+        "property": "rotation.y",
+        "from": -0.3142,
+        "to": 0.3142,
+        "phase": 0.54,
+        "direction": 1,
+        "mode": "offset",
+        "autoplay": "sine"
+      },
+      {
+        "id": "aps-drum",
+        "mechanismJointId": "threshing_drum",
+        "label": "APS SYNFLOW HYBRID drum cutaway",
+        "nodes": [
+          "APS_Threshing_Drum_ROOT"
+        ],
+        "property": "rotation.z",
+        "from": -0.75,
+        "to": 0.75,
+        "phase": 0.64,
+        "direction": 1,
+        "mode": "offset",
+        "autoplay": "sine"
+      },
+      {
+        "id": "roto-plus",
+        "mechanismJointId": "dual_roto_plus_rotors",
+        "label": "Twin ROTO PLUS cutaway",
+        "nodes": [
+          "ROTO_PLUS_L_ROOT",
+          "ROTO_PLUS_R_ROOT"
+        ],
+        "property": "rotation.x",
+        "from": -0.65,
+        "to": 0.65,
+        "phase": 0.7,
+        "direction": 1,
+        "mode": "offset",
+        "autoplay": "sine"
+      },
+      {
+        "id": "power-spreader",
+        "mechanismJointId": "power_spreader",
+        "label": "Power spreader study",
+        "nodes": [
+          "Power_Spreader_L_ROOT",
+          "Power_Spreader_R_ROOT"
+        ],
+        "property": "rotation.y",
+        "from": -0.8,
+        "to": 0.8,
+        "phase": 0.76,
+        "direction": 1,
+        "mode": "offset",
+        "autoplay": "sine"
+      },
+      {
         "id": "unloader-swing",
+        "mechanismJointId": "unloading_auger_swing",
         "label": "Unloader swing - 105 deg published envelope",
         "nodes": ["Unloader_Swing_Pivot"],
         "property": "rotation.y",

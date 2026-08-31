@@ -10,25 +10,44 @@
     "facts": "machines/krone-big-m-450-cv/evidence/facts.json",
     "receipt": "machines/krone-big-m-450-cv/production/asset-receipt.json",
     "validation": "machines/krone-big-m-450-cv/production/validation.json",
-    "poster": "machines/krone-big-m-450-cv/review/renders/krone-big-m-450-cv-operator-side.png"
+    "poster": "machines/krone-big-m-450-cv/review/renders/krone-big-m-450-cv-front-three-quarter.png"
   },
   "evidence": {
-    "boundary": "Neutral technical structural study; mower hinges, DuoGrip geometry, disc/conditioner phasing, auger drives and hidden construction are reconstructed.",
-    "lede": "The CV conditioner, optional swath-merger bundle and exact brochure transport envelope are frozen without borrowing CR roller geometry.",
-    "factIds": ["public-envelope-x","public-envelope-y","public-envelope-z","working-width","maximum-power","steering-angle","running-gear-height-change","conditioner-choice"]
+    "boundary": "Neutral technical structural study; mower hinges, DuoGrip geometry, disc and conditioner phasing, selected auger drives, guards and hidden construction are reconstructed.",
+    "lede": "The five-disc front and two six-disc side mowers use 0.64 m CV steel-tine conditioners. The optional independent augers, front side shift and hydraulic end curtains are explicitly selected.",
+    "factIds": [
+      "public-envelope-x",
+      "public-envelope-y",
+      "public-envelope-z",
+      "working-width",
+      "maximum-power",
+      "steering-angle",
+      "running-gear-height-change",
+      "conditioner-choice"
+    ]
   },
-  "camera": {"azimuth":-0.74,"elevation":0.38,"distance":14.0},
+  "camera": {"azimuth": -0.74, "elevation": 0.38, "distance": 14.0},
   "accent": "#789b63",
   "motion": {
     "autoplay": true,
-    "durationSeconds": 15,
+    "durationSeconds": 18,
     "mode": "sine",
-    "damping": 6.0,
+    "damping": 8,
     "channels": [
-      {"id":"front-mower-lift","label":"Front mower lift","nodes":["Header_ROOT"],"property":"rotation.z","from":-0.06,"to":0.18,"phase":0.0},
-      {"id":"left-mower-fold","label":"Left mower transport fold","nodes":["Deck_L_ROOT"],"property":"rotation.x","from":0.0,"to":1.12,"phase":0.18},
-      {"id":"right-mower-fold","label":"Right mower transport fold","nodes":["Deck_R_ROOT"],"property":"rotation.x","from":0.0,"to":-1.12,"phase":0.18},
-      {"id":"cv-conditioner","label":"CV conditioner rotation study","nodes":["Conditioner_ROOT"],"property":"rotation.z","from":-0.8,"to":0.8,"phase":0.62}
+      {"id":"front-mower-lift","mechanismJointId":"front_mower_raise_lower","label":"Front mower lift","nodes":["Header_ROOT"],"property":"rotation.z","from":-0.06,"to":0.18,"phase":0.0},
+      {"id":"front-side-shift","mechanismJointId":"front_mower_side_shift","label":"Selected front mower side shift","nodes":["Front_SideShift_ROOT"],"property":"position.z","from":-0.18,"to":0.18,"phase":0.08},
+      {"id":"left-mower-fold","mechanismJointId":"left_side_mower_fold","label":"Left mower compound transport fold","nodes":["Deck_L_ROOT"],"property":"rotation.x","from":0.0,"to":1.01,"phase":0.18},
+      {"id":"left-mower-fold-inward","mechanismJointId":"left_side_mower_inward_guide","label":"Left mower reconstructed inward guide","nodes":["Deck_L_Inward_Guide_ROOT"],"property":"position.z","from":0.0,"to":2.10,"phase":0.18},
+      {"id":"right-mower-fold","mechanismJointId":"right_side_mower_fold","label":"Right mower compound transport fold","nodes":["Deck_R_ROOT"],"property":"rotation.x","from":0.0,"to":-1.01,"phase":0.18},
+      {"id":"right-mower-fold-inward","mechanismJointId":"right_side_mower_inward_guide","label":"Right mower reconstructed inward guide","nodes":["Deck_R_Inward_Guide_ROOT"],"property":"position.z","from":0.0,"to":-2.10,"phase":0.18},
+      {"id":"left-end-guard","mechanismJointId":"left_side_guard_fold","label":"Hydraulic left end curtain","nodes":["Deck_L_Guard_ROOT"],"property":"rotation.x","from":0.0,"to":0.55,"phase":0.26},
+      {"id":"right-end-guard","mechanismJointId":"right_side_guard_fold","label":"Hydraulic right end curtain","nodes":["Deck_R_Guard_ROOT"],"property":"rotation.x","from":0.0,"to":-0.55,"phase":0.26},
+      {"id":"mower-discs","mechanismJointId":"mower_disc_rotation","label":"Five plus six plus six cutter discs","nodes":["Front_Disc_01_ROOT","Front_Disc_02_ROOT","Front_Disc_03_ROOT","Front_Disc_04_ROOT","Front_Disc_05_ROOT","Deck_L_Disc_01_ROOT","Deck_L_Disc_02_ROOT","Deck_L_Disc_03_ROOT","Deck_L_Disc_04_ROOT","Deck_L_Disc_05_ROOT","Deck_L_Disc_06_ROOT","Deck_R_Disc_01_ROOT","Deck_R_Disc_02_ROOT","Deck_R_Disc_03_ROOT","Deck_R_Disc_04_ROOT","Deck_R_Disc_05_ROOT","Deck_R_Disc_06_ROOT"],"property":"rotation.y","from":-0.9,"to":0.9,"phase":0.42},
+      {"id":"cv-conditioners","mechanismJointId":"cv_conditioner_rotation","label":"Three 0.64 m CV conditioner rotors","nodes":["Conditioner_ROOT","Deck_L_Conditioner_ROOT","Deck_R_Conditioner_ROOT"],"property":"rotation.z","from":-0.8,"to":0.8,"phase":0.58},
+      {"id":"left-swath-auger","mechanismJointId":"left_swath_auger_rotation","label":"Selected left swath auger","nodes":["Deck_L_Auger_ROOT"],"property":"rotation.z","from":-0.8,"to":0.8,"phase":0.66},
+      {"id":"right-swath-auger","mechanismJointId":"right_swath_auger_rotation","label":"Selected right swath auger","nodes":["Deck_R_Auger_ROOT"],"property":"rotation.z","from":0.8,"to":-0.8,"phase":0.66},
+      {"id":"rear-steering","mechanismJointId":"rear_wheel_steering","label":"Rear steering source-variance study","nodes":["Rear_Steering_L_Pivot","Rear_Steering_R_Pivot"],"property":"rotation.y","from":-0.35,"to":0.35,"phase":0.76},
+      {"id":"running-gear-height","mechanismJointId":"running_gear_height","label":"Hydropneumatic running-gear height","nodes":["Running_Gear_ROOT"],"property":"position.y","from":0.0,"to":0.15,"phase":0.84}
     ]
   }
 }

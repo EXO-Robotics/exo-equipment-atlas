@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "liebherr-ltm-1100-5-3",
+  "display_name": "Liebherr LTM 1100-5.3",
+  "configuration_id": "LIEBHERR-LTM1100-5.3-GLOBAL-445-R25-10X6X10-T62-TRANSPORT-CANDIDATE",
+  "archetype": "wheeled_tractor",
+  "dimensions_m": {"length": 14.932, "width": 2.55, "height": 4.0},
+  "palette": "slate",
+  "published_constraints_used": [
+    "transport-width",
+    "transport-height-445",
+    "carrier-overall-length",
+    "transport-boom-head-length",
+    "axle-count",
+    "drive-steering-standard",
+    "axle-spacing-1-2",
+    "axle-spacing-2-3",
+    "axle-spacing-3-4",
+    "axle-spacing-4-5",
+    "telescopic-boom-retracted",
+    "boom-section-topology",
+    "telescopic-boom-maximum",
+    "outrigger-full-support-width",
+    "outrigger-longitudinal-span"
+  ],
+  "reconstructed_values": {
+    "schema_archetype_boundary": "wheeled_tractor is only the nearest admitted carrier-envelope schema token; the machine-local public topology is a five-axle all-terrain mobile crane.",
+    "boom_model_range": "The neutral nested sections terminate at a 12.57 m head pivot and the retained head sheaves complete the nominal 13 m visible boom identity; the direct deployed review pose reaches 27.8 m. The published 62 m value remains product-maximum identity and is not modeled as geometry.",
+    "boom_staging": "One base plus five independently visible telescope volumes reproduce the published section topology; profiles, lengths, overlaps and synchronization are reconstructed.",
+    "rigging": "A continuous neutral winch lead, boom run, three head falls, compact hook block and safety latch remain generic visual rigging with no reeving or load authority.",
+    "viewer_motion": "Common 18-second Auto motion is a conservative inspection path for all-wheel steering, slew, luff and five-stage telescope cues."
+  },
+  "unresolved_choices": [
+    "serial and delivery-market configuration",
+    "counterweight and VarioBallast selection",
+    "tire manufacturer and wheel offset",
+    "winch, rope, fall and hook-block selection",
+    "public material and branding authorization"
+  ],
+  "mechanical_gaps": [
+    "No load chart, radius, wind, support force, stability, lift plan, telescope synchronization, hydraulic or continuous collision solver is claimed.",
+    "Boom profiles, heel pin, luff anchors, slew bearing, outrigger internals, suspension, driveline and steering ratios remain reconstructed.",
+    "The 27.8 m direct review is a visual topology study, not a published operating configuration or a safe lifting instruction."
+  ]
+}

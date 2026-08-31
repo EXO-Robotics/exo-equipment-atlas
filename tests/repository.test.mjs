@@ -69,6 +69,14 @@ test("public-envelope declarations fail closed and admit only explicit partial c
 
   assert.ok(validate({ public_envelope: [] }).length > 0);
   assert.ok(validate({ public_envelope: {} }).length > 0);
+  assert.deepEqual(
+    validate({
+      public_envelope: {},
+      public_envelope_coverage: "unresolved",
+      public_envelope_reason: "No configuration-applicable first-party overall dimension is frozen."
+    }),
+    []
+  );
   assert.ok(validate({ public_envelope: { q: { factId: "published-length", toleranceM: 0 } } }).length > 0);
   assert.ok(validate({ public_envelope: { x: { factId: "published-length", toleranceM: -1 } } }).length > 0);
   assert.ok(validate({ public_envelope: { z: { factId: "reconstructed-width", toleranceM: 0 } }, public_envelope_coverage: "partial" }).length > 0);
@@ -91,14 +99,15 @@ test("technical structural studies match their receipts and exported GLBs", asyn
   assert.ok(result.summary.glb_nodes >= catalogIds.length);
   assert.ok(result.summary.glb_mesh_nodes > 0);
   assert.ok(result.summary.glb_triangles > 0);
+  assert.ok(result.summary.motion_samples >= catalogIds.length * 39);
   assert.deepEqual(Object.keys(result.summary.glb_contracts).sort(), catalogIds);
   for (const contract of Object.values(result.summary.glb_contracts)) {
     assert.ok(contract.root_name);
     assert.ok(contract.nodes >= PRODUCTION_STUDY_MINIMUMS.nodes);
     assert.ok(contract.mesh_nodes >= PRODUCTION_STUDY_MINIMUMS.mesh_nodes);
     assert.ok(
-      Number.isInteger(contract.decoded_triangles) &&
-      contract.decoded_triangles >= PRODUCTION_STUDY_MINIMUMS.decoded_triangles
+      Number.isInteger(contract.unique_decoded_triangles) &&
+      contract.unique_decoded_triangles >= PRODUCTION_STUDY_MINIMUMS.decoded_triangles
     );
     assert.ok(contract.review_renders >= PRODUCTION_STUDY_MINIMUMS.review_renders);
     assert.equal(contract.visible_bounds_m.size.length, 3);

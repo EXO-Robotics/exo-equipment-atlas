@@ -10,9 +10,18 @@
       "configuration_status": "research_candidate",
       "release_status": "not_started",
       "public_envelope": {
-        "x": { "factId": "transport-length", "toleranceM": 0.08 },
-        "y": { "factId": "transport-height", "toleranceM": 0.05 },
-        "z": { "factId": "undercarriage-width", "toleranceM": 0.04 }
+        "x": {
+          "factId": "transport-length",
+          "toleranceM": 0.08
+        },
+        "y": {
+          "factId": "transport-height",
+          "toleranceM": 0.05
+        },
+        "z": {
+          "factId": "undercarriage-width",
+          "toleranceM": 0.04
+        }
       }
     },
     {
@@ -23,8 +32,14 @@
       "release_status": "not_started",
       "public_envelope_coverage": "partial",
       "public_envelope": {
-        "x": { "factId": "length-foundry-bucket", "toleranceM": 0.06 },
-        "y": { "factId": "rops-height", "toleranceM": 0.04 }
+        "x": {
+          "factId": "length-foundry-bucket",
+          "toleranceM": 0.06
+        },
+        "y": {
+          "factId": "rops-height",
+          "toleranceM": 0.04
+        }
       }
     },
     {
@@ -34,9 +49,18 @@
       "configuration_status": "research_candidate",
       "release_status": "not_started",
       "public_envelope": {
-        "x": { "factId": "overall-length", "toleranceM": 0.06 },
-        "y": { "factId": "backhoe-transport-height", "toleranceM": 0.05 },
-        "z": { "factId": "overall-width", "toleranceM": 0.04 }
+        "x": {
+          "factId": "overall-length",
+          "toleranceM": 0.06
+        },
+        "y": {
+          "factId": "backhoe-transport-height",
+          "toleranceM": 0.05
+        },
+        "z": {
+          "factId": "overall-width",
+          "toleranceM": 0.04
+        }
       }
     },
     {
@@ -46,9 +70,18 @@
       "configuration_status": "research_candidate",
       "release_status": "not_started",
       "public_envelope": {
-        "x": { "factId": "shipping-length", "toleranceM": 0.05 },
-        "y": { "factId": "rops-height", "toleranceM": 0.025 },
-        "z": { "factId": "bucket-width", "toleranceM": 0.025 }
+        "x": {
+          "factId": "shipping-length",
+          "toleranceM": 0.05
+        },
+        "y": {
+          "factId": "rops-height",
+          "toleranceM": 0.025
+        },
+        "z": {
+          "factId": "bucket-width",
+          "toleranceM": 0.025
+        }
       }
     },
     {
@@ -58,9 +91,18 @@
       "configuration_status": "research_candidate",
       "release_status": "not_started",
       "public_envelope": {
-        "x": { "factId": "machine-length-blade-straight", "toleranceM": 0.035 },
-        "y": { "factId": "machine-height", "toleranceM": 0.025 },
-        "z": { "factId": "blade-width-end-bits", "toleranceM": 0.025 }
+        "x": {
+          "factId": "machine-length-blade-straight",
+          "toleranceM": 0.035
+        },
+        "y": {
+          "factId": "machine-height",
+          "toleranceM": 0.025
+        },
+        "z": {
+          "factId": "blade-width-end-bits",
+          "toleranceM": 0.025
+        }
       }
     },
     {
@@ -70,9 +112,18 @@
       "configuration_status": "research_candidate",
       "release_status": "not_started",
       "public_envelope": {
-        "x": { "factId": "overall-length", "toleranceM": 0.05 },
-        "y": { "factId": "height-transport-position", "toleranceM": 0.035 },
-        "z": { "factId": "overall-width", "toleranceM": 0.025 }
+        "x": {
+          "factId": "overall-length",
+          "toleranceM": 0.05
+        },
+        "y": {
+          "factId": "height-transport-position",
+          "toleranceM": 0.035
+        },
+        "z": {
+          "factId": "overall-width",
+          "toleranceM": 0.025
+        }
       }
     },
     {
@@ -82,9 +133,18 @@
       "configuration_status": "research_candidate",
       "release_status": "not_started",
       "public_envelope": {
-        "x": { "factId": "push-plate-to-ripper-length", "toleranceM": 0.035 },
-        "y": { "factId": "cab-height", "toleranceM": 0.025 },
-        "z": { "factId": "moldboard-width", "toleranceM": 0.025 }
+        "x": {
+          "factId": "push-plate-to-ripper-length",
+          "toleranceM": 0.035
+        },
+        "y": {
+          "factId": "cab-height",
+          "toleranceM": 0.025
+        },
+        "z": {
+          "factId": "moldboard-width",
+          "toleranceM": 0.025
+        }
       }
     },
     {
@@ -95,7 +155,10 @@
       "release_status": "not_started",
       "public_envelope_coverage": "partial",
       "public_envelope": {
-        "z": { "factId": "minimum-width-600", "toleranceM": 0.07 }
+        "z": {
+          "factId": "minimum-width-600",
+          "toleranceM": 0.07
+        }
       }
     },
     {
@@ -105,9 +168,18 @@
       "configuration_status": "research_candidate",
       "release_status": "not_started",
       "public_envelope": {
-        "x": { "factId": "overall-length", "toleranceM": 0.04 },
-        "y": { "factId": "overall-height", "toleranceM": 0.03 },
-        "z": { "factId": "overall-width-operating", "toleranceM": 0.03 }
+        "x": {
+          "factId": "overall-length",
+          "toleranceM": 0.04
+        },
+        "y": {
+          "factId": "overall-height",
+          "toleranceM": 0.03
+        },
+        "z": {
+          "factId": "overall-width-operating",
+          "toleranceM": 0.03
+        }
       }
     },
     {
@@ -117,9 +189,18 @@
       "configuration_status": "research_candidate",
       "release_status": "not_started",
       "public_envelope": {
-        "x": { "factId": "length-standard-bucket", "toleranceM": 0.035 },
-        "y": { "factId": "overall-height", "toleranceM": 0.025 },
-        "z": { "factId": "bucket-width", "toleranceM": 0.025 }
+        "x": {
+          "factId": "length-standard-bucket",
+          "toleranceM": 0.035
+        },
+        "y": {
+          "factId": "overall-height",
+          "toleranceM": 0.025
+        },
+        "z": {
+          "factId": "bucket-width",
+          "toleranceM": 0.025
+        }
       }
     },
     {
@@ -129,9 +210,18 @@
       "configuration_status": "research_candidate",
       "release_status": "not_started",
       "public_envelope": {
-        "x": { "factId": "overall-length-stock-pile", "toleranceM": 0.04 },
-        "y": { "factId": "height-roof-rail", "toleranceM": 0.025 },
-        "z": { "factId": "bucket-width-stock-pile", "toleranceM": 0.025 }
+        "x": {
+          "factId": "overall-length-stock-pile",
+          "toleranceM": 0.04
+        },
+        "y": {
+          "factId": "height-roof-rail",
+          "toleranceM": 0.025
+        },
+        "z": {
+          "factId": "bucket-width-stock-pile",
+          "toleranceM": 0.025
+        }
       }
     },
     {
@@ -141,9 +231,18 @@
       "configuration_status": "research_candidate",
       "release_status": "not_started",
       "public_envelope": {
-        "x": { "factId": "overall-length", "toleranceM": 0.025 },
-        "y": { "factId": "overall-height", "toleranceM": 0.025 },
-        "z": { "factId": "overall-width", "toleranceM": 0.025 }
+        "x": {
+          "factId": "overall-length",
+          "toleranceM": 0.025
+        },
+        "y": {
+          "factId": "overall-height",
+          "toleranceM": 0.025
+        },
+        "z": {
+          "factId": "overall-width",
+          "toleranceM": 0.025
+        }
       }
     },
     {
@@ -153,9 +252,18 @@
       "configuration_status": "research_candidate",
       "release_status": "not_started",
       "public_envelope": {
-        "x": { "factId": "transport-boom-head-length", "toleranceM": 0.16 },
-        "y": { "factId": "transport-height-445", "toleranceM": 0.025 },
-        "z": { "factId": "transport-width", "toleranceM": 0.025 }
+        "x": {
+          "factId": "transport-boom-head-length",
+          "toleranceM": 0.16
+        },
+        "y": {
+          "factId": "transport-height-445",
+          "toleranceM": 0.025
+        },
+        "z": {
+          "factId": "transport-width",
+          "toleranceM": 0.025
+        }
       }
     },
     {
@@ -164,10 +272,9 @@
       "role": "farm_expansion_batch_20",
       "configuration_status": "research_candidate",
       "release_status": "not_started",
-      "public_envelope_coverage": "partial",
-      "public_envelope": {
-        "x": { "factId": "public-envelope-x", "toleranceM": 0.03 }
-      }
+      "public_envelope_coverage": "unresolved",
+      "public_envelope_reason": "No configuration-applicable primary source in the freeze publishes overall length, width, or height for the selected MY2024 North American ILS configuration; the 6.636 m presentation length is reconstructed from a reference-only Latin America page.",
+      "public_envelope": {}
     },
     {
       "id": "john-deere-9rx-640",
@@ -177,7 +284,10 @@
       "release_status": "not_started",
       "public_envelope_coverage": "partial",
       "public_envelope": {
-        "x": { "factId": "public-envelope-x", "toleranceM": 0.03 }
+        "x": {
+          "factId": "public-envelope-x",
+          "toleranceM": 0.03
+        }
       }
     },
     {
@@ -186,10 +296,9 @@
       "role": "farm_expansion_batch_20",
       "configuration_status": "research_candidate",
       "release_status": "not_started",
-      "public_envelope_coverage": "partial",
-      "public_envelope": {
-        "z": { "factId": "public-envelope-z", "toleranceM": 0.03 }
-      }
+      "public_envelope": {},
+      "public_envelope_coverage": "unresolved",
+      "public_envelope_reason": "The modeled sprayer envelope remains reconstructed because the admitted primary evidence does not bind one complete static transport envelope for this exact boom, tire, and clearance configuration."
     },
     {
       "id": "john-deere-9900-spfh",
@@ -197,10 +306,9 @@
       "role": "farm_expansion_batch_20",
       "configuration_status": "research_candidate",
       "release_status": "not_started",
-      "public_envelope_coverage": "partial",
-      "public_envelope": {
-        "z": { "factId": "public-envelope-z", "toleranceM": 0.03 }
-      }
+      "public_envelope": {},
+      "public_envelope_coverage": "unresolved",
+      "public_envelope_reason": "The modeled sprayer envelope remains reconstructed because the admitted primary evidence does not bind one complete static transport envelope for this exact boom, tire, and clearance configuration."
     },
     {
       "id": "john-deere-r4045",
@@ -208,10 +316,9 @@
       "role": "farm_expansion_batch_20",
       "configuration_status": "research_candidate",
       "release_status": "not_started",
-      "public_envelope_coverage": "partial",
-      "public_envelope": {
-        "z": { "factId": "public-envelope-z", "toleranceM": 0.03 }
-      }
+      "public_envelope_coverage": "unresolved",
+      "public_envelope": {},
+      "public_envelope_reason": "The modeled sprayer envelope remains reconstructed because the admitted primary evidence does not bind one complete static transport envelope for this exact boom, tire, and clearance configuration."
     },
     {
       "id": "case-ih-steiger-715-quadtrac",
@@ -219,11 +326,9 @@
       "role": "farm_expansion_batch_20",
       "configuration_status": "research_candidate",
       "release_status": "not_started",
-      "public_envelope": {
-        "x": { "factId": "public-envelope-x", "toleranceM": 0.03 },
-        "y": { "factId": "public-envelope-y", "toleranceM": 0.03 },
-        "z": { "factId": "public-envelope-z", "toleranceM": 0.03 }
-      }
+      "public_envelope": {},
+      "public_envelope_coverage": "unresolved",
+      "public_envelope_reason": "The admitted current US source does not publish applicable overall dimensions for this selected configuration, and the retired French locator is reference-only; the modeled envelope remains reconstructed."
     },
     {
       "id": "case-ih-axial-flow-8250",
@@ -233,8 +338,14 @@
       "release_status": "not_started",
       "public_envelope_coverage": "partial",
       "public_envelope": {
-        "y": { "factId": "public-envelope-y", "toleranceM": 0.03 },
-        "z": { "factId": "public-envelope-z", "toleranceM": 0.03 }
+        "y": {
+          "factId": "public-envelope-y",
+          "toleranceM": 0.03
+        },
+        "z": {
+          "factId": "public-envelope-z",
+          "toleranceM": 0.03
+        }
       }
     },
     {
@@ -243,11 +354,9 @@
       "role": "farm_expansion_batch_20",
       "configuration_status": "research_candidate",
       "release_status": "not_started",
-      "public_envelope": {
-        "x": { "factId": "public-envelope-x", "toleranceM": 0.03 },
-        "y": { "factId": "public-envelope-y", "toleranceM": 0.03 },
-        "z": { "factId": "public-envelope-z", "toleranceM": 0.03 }
-      }
+      "public_envelope": {},
+      "public_envelope_coverage": "unresolved",
+      "public_envelope_reason": "The admitted current US source does not publish applicable overall dimensions for this selected configuration, and the retired French locator is reference-only; the modeled envelope remains reconstructed."
     },
     {
       "id": "new-holland-cr11",
@@ -255,11 +364,9 @@
       "role": "farm_expansion_batch_20",
       "configuration_status": "research_candidate",
       "release_status": "not_started",
-      "public_envelope": {
-        "x": { "factId": "public-envelope-x", "toleranceM": 0.03 },
-        "y": { "factId": "public-envelope-y", "toleranceM": 0.03 },
-        "z": { "factId": "public-envelope-z", "toleranceM": 0.03 }
-      }
+      "public_envelope": {},
+      "public_envelope_coverage": "unresolved",
+      "public_envelope_reason": "The admitted current US source does not publish applicable overall dimensions for this selected configuration, and the retired French locator is reference-only; the modeled envelope remains reconstructed."
     },
     {
       "id": "new-holland-bigbaler-340-high-density-cropcutter",
@@ -268,9 +375,18 @@
       "configuration_status": "research_candidate",
       "release_status": "not_started",
       "public_envelope": {
-        "x": { "factId": "public-envelope-x", "toleranceM": 0.03 },
-        "y": { "factId": "public-envelope-y", "toleranceM": 0.03 },
-        "z": { "factId": "public-envelope-z", "toleranceM": 0.03 }
+        "x": {
+          "factId": "public-envelope-x",
+          "toleranceM": 0.03
+        },
+        "y": {
+          "factId": "public-envelope-y",
+          "toleranceM": 0.03
+        },
+        "z": {
+          "factId": "public-envelope-z",
+          "toleranceM": 0.03
+        }
       }
     },
     {
@@ -280,9 +396,18 @@
       "configuration_status": "research_candidate",
       "release_status": "not_started",
       "public_envelope": {
-        "x": { "factId": "public-envelope-x", "toleranceM": 0.03 },
-        "y": { "factId": "public-envelope-y", "toleranceM": 0.03 },
-        "z": { "factId": "public-envelope-z", "toleranceM": 0.03 }
+        "x": {
+          "factId": "public-envelope-x",
+          "toleranceM": 0.03
+        },
+        "y": {
+          "factId": "public-envelope-y",
+          "toleranceM": 0.03
+        },
+        "z": {
+          "factId": "public-envelope-z",
+          "toleranceM": 0.03
+        }
       }
     },
     {
@@ -291,11 +416,9 @@
       "role": "farm_expansion_batch_20",
       "configuration_status": "research_candidate",
       "release_status": "not_started",
-      "public_envelope": {
-        "x": { "factId": "carrier-length-without-header", "toleranceM": 0.03 },
-        "y": { "factId": "public-envelope-y", "toleranceM": 0.03 },
-        "z": { "factId": "public-envelope-z", "toleranceM": 0.03 }
-      }
+      "public_envelope": {},
+      "public_envelope_coverage": "unresolved",
+      "public_envelope_reason": "The admitted Fendt GB technical source supports the selected MotionShift transmission configuration but does not publish applicable overall carrier dimensions; the modeled envelope remains reconstructed."
     },
     {
       "id": "claas-lexion-8900-terra-trac",
@@ -305,7 +428,10 @@
       "release_status": "not_started",
       "public_envelope_coverage": "partial",
       "public_envelope": {
-        "z": { "factId": "public-envelope-z", "toleranceM": 0.03 }
+        "z": {
+          "factId": "public-envelope-z",
+          "toleranceM": 0.03
+        }
       }
     },
     {
@@ -314,11 +440,9 @@
       "role": "farm_expansion_batch_20",
       "configuration_status": "research_candidate",
       "release_status": "not_started",
-      "public_envelope": {
-        "x": { "factId": "public-envelope-x", "toleranceM": 0.03 },
-        "y": { "factId": "public-envelope-y", "toleranceM": 0.03 },
-        "z": { "factId": "public-envelope-z", "toleranceM": 0.03 }
-      }
+      "public_envelope": {},
+      "public_envelope_coverage": "unresolved",
+      "public_envelope_reason": "The admitted current US source does not publish applicable overall dimensions for this selected configuration, and the retired French locator is reference-only; the modeled envelope remains reconstructed."
     },
     {
       "id": "kubota-m8-201",
@@ -328,7 +452,10 @@
       "release_status": "not_started",
       "public_envelope_coverage": "partial",
       "public_envelope": {
-        "y": { "factId": "public-envelope-y", "toleranceM": 0.03 }
+        "y": {
+          "factId": "public-envelope-y",
+          "toleranceM": 0.03
+        }
       }
     },
     {
@@ -337,11 +464,9 @@
       "role": "farm_expansion_batch_20",
       "configuration_status": "research_candidate",
       "release_status": "not_started",
-      "public_envelope": {
-        "x": { "factId": "public-envelope-x", "toleranceM": 0.03 },
-        "y": { "factId": "public-envelope-y", "toleranceM": 0.03 },
-        "z": { "factId": "public-envelope-z", "toleranceM": 0.03 }
-      }
+      "public_envelope": {},
+      "public_envelope_coverage": "unresolved",
+      "public_envelope_reason": "The admitted current US source does not publish applicable overall dimensions for this selected configuration, and the retired French locator is reference-only; the modeled envelope remains reconstructed."
     },
     {
       "id": "krone-big-m-450-cv",
@@ -350,9 +475,18 @@
       "configuration_status": "research_candidate",
       "release_status": "not_started",
       "public_envelope": {
-        "x": { "factId": "public-envelope-x", "toleranceM": 0.03 },
-        "y": { "factId": "public-envelope-y", "toleranceM": 0.03 },
-        "z": { "factId": "public-envelope-z", "toleranceM": 0.03 }
+        "x": {
+          "factId": "public-envelope-x",
+          "toleranceM": 0.03
+        },
+        "y": {
+          "factId": "public-envelope-y",
+          "toleranceM": 0.03
+        },
+        "z": {
+          "factId": "public-envelope-z",
+          "toleranceM": 0.03
+        }
       }
     },
     {
@@ -362,9 +496,18 @@
       "configuration_status": "research_candidate",
       "release_status": "not_started",
       "public_envelope": {
-        "x": { "factId": "public-envelope-x", "toleranceM": 0.03 },
-        "y": { "factId": "public-envelope-y", "toleranceM": 0.03 },
-        "z": { "factId": "public-envelope-z", "toleranceM": 0.03 }
+        "x": {
+          "factId": "public-envelope-x",
+          "toleranceM": 0.03
+        },
+        "y": {
+          "factId": "public-envelope-y",
+          "toleranceM": 0.03
+        },
+        "z": {
+          "factId": "public-envelope-z",
+          "toleranceM": 0.03
+        }
       }
     },
     {
@@ -374,9 +517,18 @@
       "configuration_status": "research_candidate",
       "release_status": "not_started",
       "public_envelope": {
-        "x": { "factId": "public-envelope-x", "toleranceM": 0.03 },
-        "y": { "factId": "public-envelope-y", "toleranceM": 0.03 },
-        "z": { "factId": "public-envelope-z", "toleranceM": 0.03 }
+        "x": {
+          "factId": "public-envelope-x",
+          "toleranceM": 0.03
+        },
+        "y": {
+          "factId": "public-envelope-y",
+          "toleranceM": 0.03
+        },
+        "z": {
+          "factId": "public-envelope-z",
+          "toleranceM": 0.03
+        }
       }
     },
     {
@@ -386,9 +538,18 @@
       "configuration_status": "research_candidate",
       "release_status": "not_started",
       "public_envelope": {
-        "x": { "factId": "public-envelope-x", "toleranceM": 0.03 },
-        "y": { "factId": "public-envelope-y", "toleranceM": 0.03 },
-        "z": { "factId": "public-envelope-z", "toleranceM": 0.03 }
+        "x": {
+          "factId": "public-envelope-x",
+          "toleranceM": 0.03
+        },
+        "y": {
+          "factId": "public-envelope-y",
+          "toleranceM": 0.03
+        },
+        "z": {
+          "factId": "public-envelope-z",
+          "toleranceM": 0.03
+        }
       }
     }
   ]

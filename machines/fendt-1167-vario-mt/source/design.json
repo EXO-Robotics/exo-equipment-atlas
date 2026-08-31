@@ -35,6 +35,10 @@
     "rear_hitch_visual_reach_m": 0.76,
     "rear_hitch_pivot_height_ratio": 0.28,
     "drawbar_pivot_height_ratio": 0.24,
+    "track_wheelbase_authored_m": 3.0,
+    "track_belt_authored_width_m": 0.762,
+    "ground_clearance_datum_m": 0.359,
+    "motion_ground_safety": "Ground-contacting belt roots remain static during suspension demonstrations. Independent hardbar and SmartRide motion is carried by visible reconstructed linkage roots above the belt plane.",
     "rear_interface_attachment_note": "Machine-local reconstructed rest-pose continuity calibration. The hitch and drawbar meshes overlap the chassis and each other in the retained pose; these height ratios are visualization choices, not manufacturer-published pivot coordinates or operating limits.",
     "neutral_material_policy": "matte slate body, dark rubber, graphite running gear, clear neutral glazing, no logos or decals"
   },

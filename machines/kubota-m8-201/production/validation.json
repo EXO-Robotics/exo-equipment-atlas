@@ -26,13 +26,13 @@
     ]
   },
   "counts": {
-    "objects": 212,
-    "meshes": 190,
-    "triangles": 27848,
-    "materials": 6
+    "objects": 186,
+    "meshes": 161,
+    "triangles": 21700,
+    "materials": 8
   },
   "envelope_fit": {
-    "classification": "reconstructed_visible_envelope_calibration",
+    "classification": "authored_visible_envelope_measurement",
     "source_bounds_m": {
       "min_m": [
         -2.875,
@@ -69,8 +69,8 @@
     },
     "axis_scale_factors": [
       1.0,
-      0.999999927,
-      0.999999964
+      1.0,
+      1.0
     ],
     "calibrated_bounds_m": {
       "min_m": [
@@ -89,7 +89,7 @@
         2.65
       ]
     },
-    "authority": "reconstructed_not_machine_specific_engineering"
+    "authority": "independently_measured_from_authored_geometry"
   },
   "glb_contract": {
     "glb_version": "2.0",
@@ -98,18 +98,18 @@
     "root_name": "Machine_Root",
     "root_record": {},
     "identity_root": true,
-    "nodes": 212,
-    "mesh_nodes": 190,
-    "mesh_definitions": 190,
-    "materials": 6,
-    "triangles": 27848,
+    "nodes": 186,
+    "mesh_nodes": 161,
+    "mesh_definitions": 161,
+    "materials": 8,
+    "triangles": 21700,
     "cameras": 0,
     "punctual_lights": false,
     "images": 0,
     "textures": 0,
     "nonidentity_mesh_scales": {},
     "helper_like_mesh_nodes": [],
-    "semantic_motion_nodes": 21,
+    "semantic_motion_nodes": 24,
     "bounds": {
       "min_m": [
         -2.875,
@@ -128,11 +128,29 @@
       ]
     }
   },
+  "required_machine_gate_ids": [
+    "published_height_and_wheelbase",
+    "four_tire_ground_contact",
+    "front_steering_continuity",
+    "front_suspension_continuity",
+    "rear_hitch_linkage_continuity",
+    "pto_axis_continuity",
+    "steering_tire_fender_clearance",
+    "rear_hitch_chassis_clearance",
+    "ground_collision",
+    "self_collision",
+    "swept_volume_collision"
+  ],
   "gates": [
     {
       "id": "builder-execution",
       "status": "PASS",
       "detail": "Factory-startup background builder reached validation generation."
+    },
+    {
+      "id": "machine-specific-builder",
+      "status": "PASS",
+      "detail": "Machine-local subclass owns the selected machine topology."
     },
     {
       "id": "candidate-class-boundary",
@@ -158,25 +176,706 @@
       "id": "required-semantic-nodes",
       "status": "PASS",
       "detail": {
-        "Machine_Root": true,
-        "Fixed_Structure_ROOT": true,
-        "Running_Gear_ROOT": true,
-        "Hydraulics_ROOT": true,
-        "Service_Detail_ROOT": true,
-        "Front_Axle_Oscillation_Pivot": true,
-        "Front_Axle_ROOT": true,
-        "Steering_L_Pivot": true,
-        "Steering_R_Pivot": true,
-        "Rear_Hitch_Pivot": true,
-        "Rear_Hitch_ROOT": true,
-        "PTO_ROOT": true
+        "Machine_Root": {
+          "present": true,
+          "role": "identity_root",
+          "visible_mesh_descendants": [
+            "Engine_Hood",
+            "Front_End_Structure",
+            "Front_Frame_Extension",
+            "Front_L_Fender",
+            "Front_L_Suspension_Frame_Bracket",
+            "Front_R_Fender",
+            "Front_R_Suspension_Frame_Bracket",
+            "Hood_Vent_01",
+            "Hood_Vent_02",
+            "Hood_Vent_03",
+            "Hood_Vent_04",
+            "Hood_Vent_05",
+            "Hood_Vent_06",
+            "Hood_Vent_07",
+            "Hood_Vent_08",
+            "Hood_Vent_09",
+            "Cab_Floor",
+            "Cab_Front_Glass",
+            "Cab_L_Glass",
+            "Cab_L_Post_F",
+            "Cab_L_Post_R",
+            "Cab_R_Glass",
+            "Cab_R_Post_F",
+            "Cab_R_Post_R",
+            "Cab_Rear_Glass",
+            "Cab_Roof",
+            "Operator_Seat",
+            "PTO_Frame_Housing",
+            "PTO_Guard",
+            "PTO_Shaft",
+            "Published_Height_Roof",
+            "Rear_End_Structure",
+            "Rear_Frame_Extension",
+            "Rear_Hitch_Chassis_Mount",
+            "Rear_Hitch_Coupler",
+            "Rear_Hitch_Drawbar",
+            "Rear_Hitch_L_Lower_Link",
+            "Rear_Hitch_R_Lower_Link",
+            "Rear_Hitch_Top_Link",
+            "Reconstructed_Ground_Clearance_Datum",
+            "Service_Access_Step",
+            "Tractor_Main_Frame",
+            "Hydraulic_Valve_Line",
+            "Front_Axle_Beam",
+            "Front_Differential_Housing",
+            "Front_L_Suspension_Strut",
+            "Front_R_Suspension_Strut",
+            "Front_L_Hub",
+            "Front_L_Lug_01",
+            "Front_L_Lug_02",
+            "Front_L_Lug_03",
+            "Front_L_Lug_04",
+            "Front_L_Lug_05",
+            "Front_L_Lug_06",
+            "Front_L_Lug_07",
+            "Front_L_Lug_08",
+            "Front_L_Rim",
+            "Front_L_Tire",
+            "Front_L_Tread_01",
+            "Front_L_Tread_02",
+            "Front_L_Tread_03",
+            "Front_L_Tread_04",
+            "Front_L_Tread_05",
+            "Front_L_Tread_06",
+            "Front_L_Tread_07",
+            "Front_L_Tread_08",
+            "Front_L_Tread_09",
+            "Front_L_Tread_10",
+            "Front_L_Tread_11",
+            "Front_L_Tread_12",
+            "Front_L_Tread_13",
+            "Front_L_Tread_14",
+            "Front_L_Tread_15",
+            "Front_L_Tread_16",
+            "Front_R_Hub",
+            "Front_R_Lug_01",
+            "Front_R_Lug_02",
+            "Front_R_Lug_03",
+            "Front_R_Lug_04",
+            "Front_R_Lug_05",
+            "Front_R_Lug_06",
+            "Front_R_Lug_07",
+            "Front_R_Lug_08",
+            "Front_R_Rim",
+            "Front_R_Tire",
+            "Front_R_Tread_01",
+            "Front_R_Tread_02",
+            "Front_R_Tread_03",
+            "Front_R_Tread_04",
+            "Front_R_Tread_05",
+            "Front_R_Tread_06",
+            "Front_R_Tread_07",
+            "Front_R_Tread_08",
+            "Front_R_Tread_09",
+            "Front_R_Tread_10",
+            "Front_R_Tread_11",
+            "Front_R_Tread_12",
+            "Front_R_Tread_13",
+            "Front_R_Tread_14",
+            "Front_R_Tread_15",
+            "Front_R_Tread_16",
+            "Rear_Bar_Axle",
+            "Rear_Differential_Housing",
+            "Rear_L_Hub",
+            "Rear_L_Lug_01",
+            "Rear_L_Lug_02",
+            "Rear_L_Lug_03",
+            "Rear_L_Lug_04",
+            "Rear_L_Lug_05",
+            "Rear_L_Lug_06",
+            "Rear_L_Lug_07",
+            "Rear_L_Lug_08",
+            "Rear_L_Rim",
+            "Rear_L_Tire",
+            "Rear_L_Tread_01",
+            "Rear_L_Tread_02",
+            "Rear_L_Tread_03",
+            "Rear_L_Tread_04",
+            "Rear_L_Tread_05",
+            "Rear_L_Tread_06",
+            "Rear_L_Tread_07",
+            "Rear_L_Tread_08",
+            "Rear_L_Tread_09",
+            "Rear_L_Tread_10",
+            "Rear_L_Tread_11",
+            "Rear_L_Tread_12",
+            "Rear_L_Tread_13",
+            "Rear_L_Tread_14",
+            "Rear_L_Tread_15",
+            "Rear_L_Tread_16",
+            "Rear_L_Tread_17",
+            "Rear_L_Tread_18",
+            "Rear_R_Hub",
+            "Rear_R_Lug_01",
+            "Rear_R_Lug_02",
+            "Rear_R_Lug_03",
+            "Rear_R_Lug_04",
+            "Rear_R_Lug_05",
+            "Rear_R_Lug_06",
+            "Rear_R_Lug_07",
+            "Rear_R_Lug_08",
+            "Rear_R_Rim",
+            "Rear_R_Tire",
+            "Rear_R_Tread_01",
+            "Rear_R_Tread_02",
+            "Rear_R_Tread_03",
+            "Rear_R_Tread_04",
+            "Rear_R_Tread_05",
+            "Rear_R_Tread_06",
+            "Rear_R_Tread_07",
+            "Rear_R_Tread_08",
+            "Rear_R_Tread_09",
+            "Rear_R_Tread_10",
+            "Rear_R_Tread_11",
+            "Rear_R_Tread_12",
+            "Rear_R_Tread_13",
+            "Rear_R_Tread_14",
+            "Rear_R_Tread_15",
+            "Rear_R_Tread_16",
+            "Rear_R_Tread_17",
+            "Rear_R_Tread_18"
+          ]
+        },
+        "Fixed_Structure_ROOT": {
+          "present": true,
+          "role": "fixed_structure_root",
+          "visible_mesh_descendants": [
+            "Engine_Hood",
+            "Front_End_Structure",
+            "Front_Frame_Extension",
+            "Front_L_Fender",
+            "Front_L_Suspension_Frame_Bracket",
+            "Front_R_Fender",
+            "Front_R_Suspension_Frame_Bracket",
+            "Hood_Vent_01",
+            "Hood_Vent_02",
+            "Hood_Vent_03",
+            "Hood_Vent_04",
+            "Hood_Vent_05",
+            "Hood_Vent_06",
+            "Hood_Vent_07",
+            "Hood_Vent_08",
+            "Hood_Vent_09",
+            "Cab_Floor",
+            "Cab_Front_Glass",
+            "Cab_L_Glass",
+            "Cab_L_Post_F",
+            "Cab_L_Post_R",
+            "Cab_R_Glass",
+            "Cab_R_Post_F",
+            "Cab_R_Post_R",
+            "Cab_Rear_Glass",
+            "Cab_Roof",
+            "Operator_Seat",
+            "PTO_Frame_Housing",
+            "PTO_Guard",
+            "PTO_Shaft",
+            "Published_Height_Roof",
+            "Rear_End_Structure",
+            "Rear_Frame_Extension",
+            "Rear_Hitch_Chassis_Mount",
+            "Rear_Hitch_Coupler",
+            "Rear_Hitch_Drawbar",
+            "Rear_Hitch_L_Lower_Link",
+            "Rear_Hitch_R_Lower_Link",
+            "Rear_Hitch_Top_Link",
+            "Reconstructed_Ground_Clearance_Datum",
+            "Service_Access_Step",
+            "Tractor_Main_Frame"
+          ]
+        },
+        "Running_Gear_ROOT": {
+          "present": true,
+          "role": "running_gear_root",
+          "visible_mesh_descendants": [
+            "Front_Axle_Beam",
+            "Front_Differential_Housing",
+            "Front_L_Suspension_Strut",
+            "Front_R_Suspension_Strut",
+            "Front_L_Hub",
+            "Front_L_Lug_01",
+            "Front_L_Lug_02",
+            "Front_L_Lug_03",
+            "Front_L_Lug_04",
+            "Front_L_Lug_05",
+            "Front_L_Lug_06",
+            "Front_L_Lug_07",
+            "Front_L_Lug_08",
+            "Front_L_Rim",
+            "Front_L_Tire",
+            "Front_L_Tread_01",
+            "Front_L_Tread_02",
+            "Front_L_Tread_03",
+            "Front_L_Tread_04",
+            "Front_L_Tread_05",
+            "Front_L_Tread_06",
+            "Front_L_Tread_07",
+            "Front_L_Tread_08",
+            "Front_L_Tread_09",
+            "Front_L_Tread_10",
+            "Front_L_Tread_11",
+            "Front_L_Tread_12",
+            "Front_L_Tread_13",
+            "Front_L_Tread_14",
+            "Front_L_Tread_15",
+            "Front_L_Tread_16",
+            "Front_R_Hub",
+            "Front_R_Lug_01",
+            "Front_R_Lug_02",
+            "Front_R_Lug_03",
+            "Front_R_Lug_04",
+            "Front_R_Lug_05",
+            "Front_R_Lug_06",
+            "Front_R_Lug_07",
+            "Front_R_Lug_08",
+            "Front_R_Rim",
+            "Front_R_Tire",
+            "Front_R_Tread_01",
+            "Front_R_Tread_02",
+            "Front_R_Tread_03",
+            "Front_R_Tread_04",
+            "Front_R_Tread_05",
+            "Front_R_Tread_06",
+            "Front_R_Tread_07",
+            "Front_R_Tread_08",
+            "Front_R_Tread_09",
+            "Front_R_Tread_10",
+            "Front_R_Tread_11",
+            "Front_R_Tread_12",
+            "Front_R_Tread_13",
+            "Front_R_Tread_14",
+            "Front_R_Tread_15",
+            "Front_R_Tread_16",
+            "Rear_Bar_Axle",
+            "Rear_Differential_Housing",
+            "Rear_L_Hub",
+            "Rear_L_Lug_01",
+            "Rear_L_Lug_02",
+            "Rear_L_Lug_03",
+            "Rear_L_Lug_04",
+            "Rear_L_Lug_05",
+            "Rear_L_Lug_06",
+            "Rear_L_Lug_07",
+            "Rear_L_Lug_08",
+            "Rear_L_Rim",
+            "Rear_L_Tire",
+            "Rear_L_Tread_01",
+            "Rear_L_Tread_02",
+            "Rear_L_Tread_03",
+            "Rear_L_Tread_04",
+            "Rear_L_Tread_05",
+            "Rear_L_Tread_06",
+            "Rear_L_Tread_07",
+            "Rear_L_Tread_08",
+            "Rear_L_Tread_09",
+            "Rear_L_Tread_10",
+            "Rear_L_Tread_11",
+            "Rear_L_Tread_12",
+            "Rear_L_Tread_13",
+            "Rear_L_Tread_14",
+            "Rear_L_Tread_15",
+            "Rear_L_Tread_16",
+            "Rear_L_Tread_17",
+            "Rear_L_Tread_18",
+            "Rear_R_Hub",
+            "Rear_R_Lug_01",
+            "Rear_R_Lug_02",
+            "Rear_R_Lug_03",
+            "Rear_R_Lug_04",
+            "Rear_R_Lug_05",
+            "Rear_R_Lug_06",
+            "Rear_R_Lug_07",
+            "Rear_R_Lug_08",
+            "Rear_R_Rim",
+            "Rear_R_Tire",
+            "Rear_R_Tread_01",
+            "Rear_R_Tread_02",
+            "Rear_R_Tread_03",
+            "Rear_R_Tread_04",
+            "Rear_R_Tread_05",
+            "Rear_R_Tread_06",
+            "Rear_R_Tread_07",
+            "Rear_R_Tread_08",
+            "Rear_R_Tread_09",
+            "Rear_R_Tread_10",
+            "Rear_R_Tread_11",
+            "Rear_R_Tread_12",
+            "Rear_R_Tread_13",
+            "Rear_R_Tread_14",
+            "Rear_R_Tread_15",
+            "Rear_R_Tread_16",
+            "Rear_R_Tread_17",
+            "Rear_R_Tread_18"
+          ]
+        },
+        "Hydraulics_ROOT": {
+          "present": true,
+          "role": "hydraulics_root",
+          "visible_mesh_descendants": [
+            "Hydraulic_Valve_Line"
+          ]
+        },
+        "Front_Axle_Oscillation_Pivot": {
+          "present": true,
+          "role": "pivot",
+          "visible_mesh_descendants": [
+            "Front_Axle_Beam",
+            "Front_Differential_Housing",
+            "Front_L_Suspension_Strut",
+            "Front_R_Suspension_Strut",
+            "Front_L_Hub",
+            "Front_L_Lug_01",
+            "Front_L_Lug_02",
+            "Front_L_Lug_03",
+            "Front_L_Lug_04",
+            "Front_L_Lug_05",
+            "Front_L_Lug_06",
+            "Front_L_Lug_07",
+            "Front_L_Lug_08",
+            "Front_L_Rim",
+            "Front_L_Tire",
+            "Front_L_Tread_01",
+            "Front_L_Tread_02",
+            "Front_L_Tread_03",
+            "Front_L_Tread_04",
+            "Front_L_Tread_05",
+            "Front_L_Tread_06",
+            "Front_L_Tread_07",
+            "Front_L_Tread_08",
+            "Front_L_Tread_09",
+            "Front_L_Tread_10",
+            "Front_L_Tread_11",
+            "Front_L_Tread_12",
+            "Front_L_Tread_13",
+            "Front_L_Tread_14",
+            "Front_L_Tread_15",
+            "Front_L_Tread_16",
+            "Front_R_Hub",
+            "Front_R_Lug_01",
+            "Front_R_Lug_02",
+            "Front_R_Lug_03",
+            "Front_R_Lug_04",
+            "Front_R_Lug_05",
+            "Front_R_Lug_06",
+            "Front_R_Lug_07",
+            "Front_R_Lug_08",
+            "Front_R_Rim",
+            "Front_R_Tire",
+            "Front_R_Tread_01",
+            "Front_R_Tread_02",
+            "Front_R_Tread_03",
+            "Front_R_Tread_04",
+            "Front_R_Tread_05",
+            "Front_R_Tread_06",
+            "Front_R_Tread_07",
+            "Front_R_Tread_08",
+            "Front_R_Tread_09",
+            "Front_R_Tread_10",
+            "Front_R_Tread_11",
+            "Front_R_Tread_12",
+            "Front_R_Tread_13",
+            "Front_R_Tread_14",
+            "Front_R_Tread_15",
+            "Front_R_Tread_16"
+          ]
+        },
+        "Front_Axle_ROOT": {
+          "present": true,
+          "role": "motion_root",
+          "visible_mesh_descendants": [
+            "Front_Axle_Beam",
+            "Front_Differential_Housing",
+            "Front_L_Suspension_Strut",
+            "Front_R_Suspension_Strut",
+            "Front_L_Hub",
+            "Front_L_Lug_01",
+            "Front_L_Lug_02",
+            "Front_L_Lug_03",
+            "Front_L_Lug_04",
+            "Front_L_Lug_05",
+            "Front_L_Lug_06",
+            "Front_L_Lug_07",
+            "Front_L_Lug_08",
+            "Front_L_Rim",
+            "Front_L_Tire",
+            "Front_L_Tread_01",
+            "Front_L_Tread_02",
+            "Front_L_Tread_03",
+            "Front_L_Tread_04",
+            "Front_L_Tread_05",
+            "Front_L_Tread_06",
+            "Front_L_Tread_07",
+            "Front_L_Tread_08",
+            "Front_L_Tread_09",
+            "Front_L_Tread_10",
+            "Front_L_Tread_11",
+            "Front_L_Tread_12",
+            "Front_L_Tread_13",
+            "Front_L_Tread_14",
+            "Front_L_Tread_15",
+            "Front_L_Tread_16",
+            "Front_R_Hub",
+            "Front_R_Lug_01",
+            "Front_R_Lug_02",
+            "Front_R_Lug_03",
+            "Front_R_Lug_04",
+            "Front_R_Lug_05",
+            "Front_R_Lug_06",
+            "Front_R_Lug_07",
+            "Front_R_Lug_08",
+            "Front_R_Rim",
+            "Front_R_Tire",
+            "Front_R_Tread_01",
+            "Front_R_Tread_02",
+            "Front_R_Tread_03",
+            "Front_R_Tread_04",
+            "Front_R_Tread_05",
+            "Front_R_Tread_06",
+            "Front_R_Tread_07",
+            "Front_R_Tread_08",
+            "Front_R_Tread_09",
+            "Front_R_Tread_10",
+            "Front_R_Tread_11",
+            "Front_R_Tread_12",
+            "Front_R_Tread_13",
+            "Front_R_Tread_14",
+            "Front_R_Tread_15",
+            "Front_R_Tread_16"
+          ]
+        },
+        "Steering_L_Pivot": {
+          "present": true,
+          "role": "steering_pivot",
+          "visible_mesh_descendants": [
+            "Front_L_Hub",
+            "Front_L_Lug_01",
+            "Front_L_Lug_02",
+            "Front_L_Lug_03",
+            "Front_L_Lug_04",
+            "Front_L_Lug_05",
+            "Front_L_Lug_06",
+            "Front_L_Lug_07",
+            "Front_L_Lug_08",
+            "Front_L_Rim",
+            "Front_L_Tire",
+            "Front_L_Tread_01",
+            "Front_L_Tread_02",
+            "Front_L_Tread_03",
+            "Front_L_Tread_04",
+            "Front_L_Tread_05",
+            "Front_L_Tread_06",
+            "Front_L_Tread_07",
+            "Front_L_Tread_08",
+            "Front_L_Tread_09",
+            "Front_L_Tread_10",
+            "Front_L_Tread_11",
+            "Front_L_Tread_12",
+            "Front_L_Tread_13",
+            "Front_L_Tread_14",
+            "Front_L_Tread_15",
+            "Front_L_Tread_16"
+          ]
+        },
+        "Steering_R_Pivot": {
+          "present": true,
+          "role": "steering_pivot",
+          "visible_mesh_descendants": [
+            "Front_R_Hub",
+            "Front_R_Lug_01",
+            "Front_R_Lug_02",
+            "Front_R_Lug_03",
+            "Front_R_Lug_04",
+            "Front_R_Lug_05",
+            "Front_R_Lug_06",
+            "Front_R_Lug_07",
+            "Front_R_Lug_08",
+            "Front_R_Rim",
+            "Front_R_Tire",
+            "Front_R_Tread_01",
+            "Front_R_Tread_02",
+            "Front_R_Tread_03",
+            "Front_R_Tread_04",
+            "Front_R_Tread_05",
+            "Front_R_Tread_06",
+            "Front_R_Tread_07",
+            "Front_R_Tread_08",
+            "Front_R_Tread_09",
+            "Front_R_Tread_10",
+            "Front_R_Tread_11",
+            "Front_R_Tread_12",
+            "Front_R_Tread_13",
+            "Front_R_Tread_14",
+            "Front_R_Tread_15",
+            "Front_R_Tread_16"
+          ]
+        },
+        "Rear_Hitch_Pivot": {
+          "present": true,
+          "role": "pivot",
+          "visible_mesh_descendants": [
+            "Rear_Hitch_Coupler",
+            "Rear_Hitch_Drawbar",
+            "Rear_Hitch_L_Lower_Link",
+            "Rear_Hitch_R_Lower_Link",
+            "Rear_Hitch_Top_Link"
+          ]
+        },
+        "Rear_Hitch_ROOT": {
+          "present": true,
+          "role": "motion_root",
+          "visible_mesh_descendants": [
+            "Rear_Hitch_Coupler",
+            "Rear_Hitch_Drawbar",
+            "Rear_Hitch_L_Lower_Link",
+            "Rear_Hitch_R_Lower_Link",
+            "Rear_Hitch_Top_Link"
+          ]
+        },
+        "PTO_ROOT": {
+          "present": true,
+          "role": "rotary_root",
+          "visible_mesh_descendants": [
+            "PTO_Frame_Housing",
+            "PTO_Guard",
+            "PTO_Shaft"
+          ]
+        },
+        "Rear_Axle_ROOT": {
+          "present": true,
+          "role": "fixed_axle_root",
+          "visible_mesh_descendants": [
+            "Rear_Bar_Axle",
+            "Rear_Differential_Housing",
+            "Rear_L_Hub",
+            "Rear_L_Lug_01",
+            "Rear_L_Lug_02",
+            "Rear_L_Lug_03",
+            "Rear_L_Lug_04",
+            "Rear_L_Lug_05",
+            "Rear_L_Lug_06",
+            "Rear_L_Lug_07",
+            "Rear_L_Lug_08",
+            "Rear_L_Rim",
+            "Rear_L_Tire",
+            "Rear_L_Tread_01",
+            "Rear_L_Tread_02",
+            "Rear_L_Tread_03",
+            "Rear_L_Tread_04",
+            "Rear_L_Tread_05",
+            "Rear_L_Tread_06",
+            "Rear_L_Tread_07",
+            "Rear_L_Tread_08",
+            "Rear_L_Tread_09",
+            "Rear_L_Tread_10",
+            "Rear_L_Tread_11",
+            "Rear_L_Tread_12",
+            "Rear_L_Tread_13",
+            "Rear_L_Tread_14",
+            "Rear_L_Tread_15",
+            "Rear_L_Tread_16",
+            "Rear_L_Tread_17",
+            "Rear_L_Tread_18",
+            "Rear_R_Hub",
+            "Rear_R_Lug_01",
+            "Rear_R_Lug_02",
+            "Rear_R_Lug_03",
+            "Rear_R_Lug_04",
+            "Rear_R_Lug_05",
+            "Rear_R_Lug_06",
+            "Rear_R_Lug_07",
+            "Rear_R_Lug_08",
+            "Rear_R_Rim",
+            "Rear_R_Tire",
+            "Rear_R_Tread_01",
+            "Rear_R_Tread_02",
+            "Rear_R_Tread_03",
+            "Rear_R_Tread_04",
+            "Rear_R_Tread_05",
+            "Rear_R_Tread_06",
+            "Rear_R_Tread_07",
+            "Rear_R_Tread_08",
+            "Rear_R_Tread_09",
+            "Rear_R_Tread_10",
+            "Rear_R_Tread_11",
+            "Rear_R_Tread_12",
+            "Rear_R_Tread_13",
+            "Rear_R_Tread_14",
+            "Rear_R_Tread_15",
+            "Rear_R_Tread_16",
+            "Rear_R_Tread_17",
+            "Rear_R_Tread_18"
+          ]
+        },
+        "Rear_Bar_Axle": {
+          "present": true,
+          "role": "rear_bar_axle",
+          "visible_mesh_descendants": [
+            "Rear_Bar_Axle"
+          ]
+        },
+        "Front_L_Suspension_Strut": {
+          "present": true,
+          "role": "suspension_strut",
+          "visible_mesh_descendants": [
+            "Front_L_Suspension_Strut"
+          ]
+        },
+        "Front_R_Suspension_Strut": {
+          "present": true,
+          "role": "suspension_strut",
+          "visible_mesh_descendants": [
+            "Front_R_Suspension_Strut"
+          ]
+        },
+        "Rear_Hitch_Coupler": {
+          "present": true,
+          "role": "hitch_coupler",
+          "visible_mesh_descendants": [
+            "Rear_Hitch_Coupler"
+          ]
+        },
+        "Rear_Hitch_L_Lower_Link": {
+          "present": true,
+          "role": "hitch_link",
+          "visible_mesh_descendants": [
+            "Rear_Hitch_L_Lower_Link"
+          ]
+        },
+        "Rear_Hitch_R_Lower_Link": {
+          "present": true,
+          "role": "hitch_link",
+          "visible_mesh_descendants": [
+            "Rear_Hitch_R_Lower_Link"
+          ]
+        },
+        "Rear_Hitch_Top_Link": {
+          "present": true,
+          "role": "hitch_link",
+          "visible_mesh_descendants": [
+            "Rear_Hitch_Top_Link"
+          ]
+        },
+        "PTO_Shaft_ROTATION_ROOT": {
+          "present": true,
+          "role": "rotary_root",
+          "visible_mesh_descendants": [
+            "PTO_Shaft"
+          ]
+        }
       }
     },
     {
       "id": "semantic-motion-hierarchy",
       "status": "PASS",
       "detail": {
-        "semantic_motion_nodes": 21
+        "semantic_motion_nodes": 24
       }
     },
     {
@@ -212,24 +911,24 @@
       "id": "node-density",
       "status": "PASS",
       "detail": {
-        "actual": 212,
-        "minimum": 200
+        "actual": 186,
+        "minimum": 80
       }
     },
     {
       "id": "mesh-density",
       "status": "PASS",
       "detail": {
-        "actual": 190,
-        "minimum": 180
+        "actual": 161,
+        "minimum": 60
       }
     },
     {
       "id": "triangle-density",
       "status": "PASS",
       "detail": {
-        "actual": 27848,
-        "minimum": 10000
+        "actual": 21700,
+        "minimum": 5000
       }
     },
     {
@@ -277,27 +976,27 @@
       "detail": [
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/kubota-m8-201/review/renders/kubota-m8-201-operator-side.png",
-          "bytes": 304694
+          "bytes": 299482
         },
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/kubota-m8-201/review/renders/kubota-m8-201-front-three-quarter.png",
-          "bytes": 347060
+          "bytes": 338628
         },
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/kubota-m8-201/review/renders/kubota-m8-201-rear-three-quarter.png",
-          "bytes": 338077
+          "bytes": 333148
         },
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/kubota-m8-201/review/renders/kubota-m8-201-elevated-technical.png",
-          "bytes": 402486
+          "bytes": 390949
         },
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/kubota-m8-201/review/renders/kubota-m8-201-articulation-detail.png",
-          "bytes": 377537
+          "bytes": 375317
         },
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/kubota-m8-201/review/renders/kubota-m8-201-right-side.png",
-          "bytes": 292670
+          "bytes": 293013
         }
       ]
     },
@@ -305,6 +1004,311 @@
       "id": "neutral-unbranded-materials",
       "status": "PASS",
       "detail": "Neutral palette and procedural materials only; no manufacturer marks or textures."
+    },
+    {
+      "id": "published_height_and_wheelbase",
+      "status": "PASS",
+      "detail": {
+        "method": "decoded height, axle-center subtraction, and rear bar-axle AABB span",
+        "evidence": {
+          "height_m": 3.25,
+          "height_target_m": 3.25,
+          "wheelbase_m": 2.895,
+          "wheelbase_target_m": 2.895,
+          "rear_bar_axle_span_m": 2.489,
+          "rear_bar_axle_target_m": 2.489,
+          "tolerance_m": 0.003
+        },
+        "semantic_nodes": [
+          "Published_Height_Roof",
+          "Front_Axle_Oscillation_Pivot",
+          "Rear_Axle_ROOT"
+        ],
+        "fact_ids": [
+          "public-envelope-y",
+          "wheelbase",
+          "standard-rear-bar-axle-length"
+        ],
+        "authority": "Computed reconstructed-study evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "four_tire_ground_contact",
+      "status": "PASS",
+      "detail": {
+        "method": "evaluated wheel-subtree minimum Y after axle grounding plus identity-transform audit",
+        "evidence": {
+          "minimum_y_m": {
+            "Front_L_Wheel_ROOT": 0.0,
+            "Front_R_Wheel_ROOT": 0.0,
+            "Rear_L_Wheel_ROOT": 0.0,
+            "Rear_R_Wheel_ROOT": 0.0
+          },
+          "wheel_root_scale_xyz": {
+            "Front_L_Wheel_ROOT": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Front_R_Wheel_ROOT": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Rear_L_Wheel_ROOT": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "Rear_R_Wheel_ROOT": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "tolerance_m": 0.003
+        },
+        "semantic_nodes": [
+          "Front_L_Wheel_ROOT",
+          "Front_R_Wheel_ROOT",
+          "Rear_L_Wheel_ROOT",
+          "Rear_R_Wheel_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "front_steering_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "parent-child topology and paired visible wheel descendants",
+        "evidence": {
+          "left_parent": "Front_Axle_ROOT",
+          "right_parent": "Front_Axle_ROOT",
+          "viewer_owned": true
+        },
+        "semantic_nodes": [
+          "Steering_L_Pivot",
+          "Steering_R_Pivot"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "front_suspension_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "three-position axle sweep with strut-to-bracket AABB overlap",
+        "evidence": {
+          "axle_minimum_y_samples_m": [
+            0.0,
+            0.02,
+            0.04
+          ],
+          "strut_bracket_minimum_overlap_m": [
+            {
+              "L": 0.185975,
+              "R": 0.185975
+            },
+            {
+              "L": 0.185975,
+              "R": 0.185975
+            },
+            {
+              "L": 0.185975,
+              "R": 0.185975
+            }
+          ]
+        },
+        "semantic_nodes": [
+          "Front_Axle_ROOT",
+          "Front_L_Suspension_Strut",
+          "Front_R_Suspension_Strut"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "rear_hitch_linkage_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "three-axis mount/frame and link/coupler overlap chain",
+        "evidence": {
+          "mount_frame_overlap_xyz_m": [
+            0.2775,
+            0.213313,
+            1.02
+          ],
+          "left_coupler_overlap_xyz_m": [
+            0.100829,
+            0.263123,
+            0.202838
+          ],
+          "right_coupler_overlap_xyz_m": [
+            0.101661,
+            0.261059,
+            0.202838
+          ],
+          "top_coupler_overlap_xyz_m": [
+            0.097113,
+            0.08932,
+            0.099661
+          ]
+        },
+        "semantic_nodes": [
+          "Rear_Hitch_Pivot",
+          "Rear_Hitch_ROOT",
+          "Rear_Hitch_Coupler"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "pto_axis_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "fixed housing/frame and shaft/guard AABB overlap plus motion ownership",
+        "evidence": {
+          "housing_frame_overlap_xyz_m": [
+            0.1875,
+            0.013313,
+            0.34
+          ],
+          "shaft_guard_overlap_xyz_m": [
+            0.132875,
+            0.1625,
+            0.1625
+          ],
+          "rotating_node": "PTO_Shaft_ROTATION_ROOT",
+          "guard_rotates": false
+        },
+        "semantic_nodes": [
+          "PTO_ROOT",
+          "PTO_Shaft_ROTATION_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "steering_tire_fender_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "rest tire/fender vertical AABB separation",
+        "evidence": {
+          "clearance_m": {
+            "L": 0.06,
+            "R": 0.06
+          },
+          "viewer_range_rad": [
+            -0.48,
+            0.48
+          ]
+        },
+        "semantic_nodes": [
+          "Steering_L_Pivot",
+          "Steering_R_Pivot"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "rear_hitch_chassis_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "three-position hitch ground sweep and central tire-gap calculation",
+        "evidence": {
+          "minimum_y_samples_m": [
+            0.73,
+            0.769214,
+            0.770458
+          ],
+          "coupler_to_inner_tire_clearance_m": 0.355
+        },
+        "semantic_nodes": [
+          "Rear_Hitch_ROOT",
+          "Rear_Hitch_Coupler"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "ground_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "rest public AABB and all moving-subtree endpoint minima",
+        "evidence": {
+          "rest_minimum_y_m": 0.0,
+          "front_axle_minimum_y_m": 0.0,
+          "rear_hitch_minimum_y_m": 0.73
+        },
+        "semantic_nodes": [
+          "Front_Axle_ROOT",
+          "Rear_Axle_ROOT",
+          "Rear_Hitch_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "self_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "measured hitch/tire separation and fixed PTO guard ownership",
+        "evidence": {
+          "hitch_to_rear_tire_clearance_m": 0.355,
+          "pto_guard_fixed": true
+        },
+        "semantic_nodes": [
+          "Rear_Hitch_ROOT",
+          "PTO_ROOT",
+          "Rear_Axle_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not engineering or operating authority."
+      }
+    },
+    {
+      "id": "swept_volume_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "combined front-axle and rear-hitch endpoint sampling",
+        "evidence": {
+          "front_offsets_m": [
+            0.0,
+            0.02,
+            0.04
+          ],
+          "front_minimum_y_m": [
+            0.0,
+            0.02,
+            0.04
+          ],
+          "hitch_angles_rad": [
+            0.0,
+            -0.09,
+            -0.18
+          ],
+          "hitch_minimum_y_m": [
+            0.73,
+            0.769214,
+            0.770458
+          ]
+        },
+        "semantic_nodes": [
+          "Front_Axle_ROOT",
+          "Rear_Hitch_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not engineering or operating authority."
+      }
     },
     {
       "id": "configuration-freeze",

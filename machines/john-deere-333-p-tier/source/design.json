@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "machine_id": "john-deere-333-p-tier",
+  "display_name": "John Deere 333 P-Tier",
+  "configuration_id": "JD-333P-NAM-STD-T450-FB-CANDIDATE",
+  "archetype": "compact_track_loader",
+  "published_constraints_used": [
+    "length-no-bucket", "length-foundry-bucket", "width-450-track", "rops-height",
+    "hinge-pin-height", "dump-height", "dump-reach", "ground-clearance",
+    "dump-angle", "rollback-angle", "departure-angle", "front-turn-radius",
+    "track-rollers-per-side", "track-idlers-per-side"
+  ],
+  "reconstructed_values": {
+    "export_pivot_contract": "source/build-input.json",
+    "bucket_visual_basis": "generic foundry-bucket study; exact part unresolved",
+    "motion_scope": "paired drive-sprocket inspection cue only"
+  },
+  "unresolved_choices": [
+    "Exact foundry bucket, quick attachment, cab/light package, undercarriage option, counterweights, and hidden linkage geometry"
+  ],
+  "mechanical_gaps": [
+    "Coupled lift, bucket linkage, hydraulic endpoint solve, track phase, and swept collision remain static or unresolved."
+  ]
+}

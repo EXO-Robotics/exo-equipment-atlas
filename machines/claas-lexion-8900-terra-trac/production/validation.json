@@ -11,7 +11,7 @@
   "bounds": {
     "min_m": [
       -5.375,
-      0.0,
+      -0.003559,
       -7.65
     ],
     "max_m": [
@@ -21,33 +21,33 @@
     ],
     "size_m": [
       10.75,
-      4.0,
-      15.3
+      4.003559,
+      15.299999
     ]
   },
   "counts": {
-    "objects": 210,
-    "meshes": 190,
-    "triangles": 27040,
-    "materials": 7
+    "objects": 246,
+    "meshes": 208,
+    "triangles": 27280,
+    "materials": 8
   },
   "envelope_fit": {
-    "classification": "reconstructed_visible_envelope_calibration",
+    "classification": "authored_visible_envelope_measurement",
     "source_bounds_m": {
       "min_m": [
-        -4.950493,
-        -0.003502,
+        -5.375,
+        -0.003559,
         -7.65
       ],
       "max_m": [
-        5.805,
+        5.375,
         4.0,
         7.65
       ],
       "size_m": [
-        10.755494,
-        4.003502,
-        15.3
+        10.75,
+        4.003559,
+        15.299999
       ]
     },
     "target_bounds_m": {
@@ -68,14 +68,14 @@
       ]
     },
     "axis_scale_factors": [
-      0.999489225,
-      0.999125181,
-      0.999999988
+      1.0,
+      1.0,
+      1.0
     ],
     "calibrated_bounds_m": {
       "min_m": [
         -5.375,
-        0.0,
+        -0.003559,
         -7.65
       ],
       "max_m": [
@@ -85,11 +85,11 @@
       ],
       "size_m": [
         10.75,
-        4.0,
-        15.3
+        4.003559,
+        15.299999
       ]
     },
-    "authority": "reconstructed_not_machine_specific_engineering"
+    "authority": "independently_measured_from_authored_geometry"
   },
   "glb_contract": {
     "glb_version": "2.0",
@@ -98,22 +98,22 @@
     "root_name": "Machine_Root",
     "root_record": {},
     "identity_root": true,
-    "nodes": 210,
-    "mesh_nodes": 190,
-    "mesh_definitions": 190,
-    "materials": 7,
-    "triangles": 27040,
+    "nodes": 246,
+    "mesh_nodes": 208,
+    "mesh_definitions": 208,
+    "materials": 8,
+    "triangles": 27280,
     "cameras": 0,
     "punctual_lights": false,
     "images": 0,
     "textures": 0,
     "nonidentity_mesh_scales": {},
     "helper_like_mesh_nodes": [],
-    "semantic_motion_nodes": 19,
+    "semantic_motion_nodes": 37,
     "bounds": {
       "min_m": [
         -5.375,
-        0.0,
+        -0.003559,
         -7.65
       ],
       "max_m": [
@@ -123,16 +123,35 @@
       ],
       "size_m": [
         10.75,
-        4.0,
-        15.3
+        4.003559,
+        15.299999
       ]
     }
   },
+  "required_machine_gate_ids": [
+    "configuration_and_header_identity",
+    "published_header_span",
+    "header_lift_visual_closure",
+    "header_to_feederhouse_clearance",
+    "track_phase_continuity",
+    "track_frame_ground_following_clearance",
+    "rear_steering_tire_clearance",
+    "unloading_auger_stowed_and_deployed_clearance",
+    "cutaway_only_internal_mechanism_labeling",
+    "ground_collision",
+    "self_collision",
+    "neutral_unbranded_materials"
+  ],
   "gates": [
     {
       "id": "builder-execution",
       "status": "PASS",
       "detail": "Factory-startup background builder reached validation generation."
+    },
+    {
+      "id": "machine-specific-builder",
+      "status": "PASS",
+      "detail": "Machine-local subclass owns the selected machine topology."
     },
     {
       "id": "candidate-class-boundary",
@@ -158,27 +177,921 @@
       "id": "required-semantic-nodes",
       "status": "PASS",
       "detail": {
-        "Machine_Root": true,
-        "Fixed_Structure_ROOT": true,
-        "Running_Gear_ROOT": true,
-        "Hydraulics_ROOT": true,
-        "Service_Detail_ROOT": true,
-        "Header_Lift_Pivot": true,
-        "Header_ROOT": true,
-        "Reel_Pivot": true,
-        "Reel_ROOT": true,
-        "Feederhouse_ROOT": true,
-        "Unloader_Swing_Pivot": true,
-        "Unloader_ROOT": true,
-        "Track_L_ROOT": true,
-        "Track_R_ROOT": true
+        "Machine_Root": {
+          "present": true,
+          "role": "identity_root",
+          "visible_mesh_descendants": [
+            "APS_1700x755_Drum",
+            "APS_Drum_RaspBar_01",
+            "APS_Drum_RaspBar_02",
+            "APS_Drum_RaspBar_03",
+            "APS_Drum_RaspBar_04",
+            "APS_Drum_RaspBar_05",
+            "APS_Drum_RaspBar_06",
+            "APS_Drum_RaspBar_07",
+            "APS_Drum_RaspBar_08",
+            "APS_Drum_RaspBar_09",
+            "APS_Drum_RaspBar_10",
+            "Carrier_Frame",
+            "Feederhouse",
+            "CONVIO_Center_Back_Frame",
+            "CONVIO_Center_Cutterbar",
+            "CONVIO_Center_Draper_Belt",
+            "CONVIO_Center_Draper_Slat_01",
+            "CONVIO_Center_Draper_Slat_02",
+            "CONVIO_Center_Draper_Slat_03",
+            "CONVIO_Center_Draper_Slat_04",
+            "CONVIO_Center_Draper_Slat_05",
+            "CONVIO_Center_Draper_Slat_06",
+            "CONVIO_Center_Draper_Slat_07",
+            "CONVIO_Center_Draper_Slat_08",
+            "CONVIO_Center_Draper_Slat_09",
+            "CONVIO_L_Back_Frame",
+            "CONVIO_L_Cutterbar",
+            "CONVIO_L_Draper_Belt",
+            "CONVIO_L_Draper_Slat_01",
+            "CONVIO_L_Draper_Slat_02",
+            "CONVIO_L_Draper_Slat_03",
+            "CONVIO_L_Draper_Slat_04",
+            "CONVIO_L_Draper_Slat_05",
+            "CONVIO_L_Draper_Slat_06",
+            "CONVIO_L_Draper_Slat_07",
+            "CONVIO_L_Draper_Slat_08",
+            "CONVIO_L_Draper_Slat_09",
+            "Header_L_Flex_Cylinder_Rod",
+            "Header_Lift_Cylinder_Rod",
+            "CONVIO_R_Back_Frame",
+            "CONVIO_R_Cutterbar",
+            "CONVIO_R_Draper_Belt",
+            "CONVIO_R_Draper_Slat_01",
+            "CONVIO_R_Draper_Slat_02",
+            "CONVIO_R_Draper_Slat_03",
+            "CONVIO_R_Draper_Slat_04",
+            "CONVIO_R_Draper_Slat_05",
+            "CONVIO_R_Draper_Slat_06",
+            "CONVIO_R_Draper_Slat_07",
+            "CONVIO_R_Draper_Slat_08",
+            "CONVIO_R_Draper_Slat_09",
+            "Header_R_Flex_Cylinder_Rod",
+            "CONVIO_Reel_Axle",
+            "CONVIO_Reel_Bat_01",
+            "CONVIO_Reel_Bat_02",
+            "CONVIO_Reel_Bat_03",
+            "CONVIO_Reel_Bat_04",
+            "CONVIO_Reel_Bat_05",
+            "CONVIO_Reel_Bat_06",
+            "Grain_Tank",
+            "Cab_Floor",
+            "Cab_Front_Glass",
+            "Cab_L_Glass",
+            "Cab_L_Post_F",
+            "Cab_L_Post_R",
+            "Cab_R_Glass",
+            "Cab_R_Post_F",
+            "Cab_R_Post_R",
+            "Cab_Rear_Glass",
+            "Cab_Roof",
+            "Operator_Seat",
+            "Power_Spreader_L_Disc",
+            "Power_Spreader_L_Vane_01",
+            "Power_Spreader_L_Vane_02",
+            "Power_Spreader_L_Vane_03",
+            "Power_Spreader_L_Vane_04",
+            "Power_Spreader_L_Vane_05",
+            "Power_Spreader_L_Vane_06",
+            "Power_Spreader_R_Disc",
+            "Power_Spreader_R_Vane_01",
+            "Power_Spreader_R_Vane_02",
+            "Power_Spreader_R_Vane_03",
+            "Power_Spreader_R_Vane_04",
+            "Power_Spreader_R_Vane_05",
+            "Power_Spreader_R_Vane_06",
+            "Rear_Terminal_Bumper",
+            "ROTO_PLUS_L_445x4200",
+            "ROTO_PLUS_L_Paddle_01",
+            "ROTO_PLUS_L_Paddle_02",
+            "ROTO_PLUS_L_Paddle_03",
+            "ROTO_PLUS_L_Paddle_04",
+            "ROTO_PLUS_L_Paddle_05",
+            "ROTO_PLUS_L_Paddle_06",
+            "ROTO_PLUS_L_Paddle_07",
+            "ROTO_PLUS_L_Paddle_08",
+            "ROTO_PLUS_L_Paddle_09",
+            "ROTO_PLUS_L_Paddle_10",
+            "ROTO_PLUS_L_Paddle_11",
+            "ROTO_PLUS_L_Paddle_12",
+            "ROTO_PLUS_R_445x4200",
+            "ROTO_PLUS_R_Paddle_01",
+            "ROTO_PLUS_R_Paddle_02",
+            "ROTO_PLUS_R_Paddle_03",
+            "ROTO_PLUS_R_Paddle_04",
+            "ROTO_PLUS_R_Paddle_05",
+            "ROTO_PLUS_R_Paddle_06",
+            "ROTO_PLUS_R_Paddle_07",
+            "ROTO_PLUS_R_Paddle_08",
+            "ROTO_PLUS_R_Paddle_09",
+            "ROTO_PLUS_R_Paddle_10",
+            "ROTO_PLUS_R_Paddle_11",
+            "ROTO_PLUS_R_Paddle_12",
+            "Schematic_Crop_Path_01",
+            "Schematic_Crop_Path_02",
+            "Schematic_Crop_Path_03",
+            "Schematic_Crop_Path_04",
+            "Schematic_Crop_Path_05",
+            "Schematic_Crop_Path_06",
+            "Separator_Lower_Rail",
+            "Separator_Rear_Bulkhead",
+            "Separator_Right_Shell",
+            "Separator_Top_Cover",
+            "Unloader_Auger",
+            "Unloader_Base_Collar",
+            "Unloader_Visible_Flight",
+            "Header_L_Flex_Cylinder_Barrel",
+            "Header_Lift_Cylinder_Barrel",
+            "Header_R_Flex_Cylinder_Barrel",
+            "Rear_L_Rim",
+            "Rear_L_Tire",
+            "Rear_R_Rim",
+            "Rear_R_Tire",
+            "Track_L_Frame",
+            "Track_L_Front_Wheel",
+            "Track_L_Pad_01",
+            "Track_L_Pad_02",
+            "Track_L_Pad_03",
+            "Track_L_Pad_04",
+            "Track_L_Pad_05",
+            "Track_L_Pad_06",
+            "Track_L_Pad_07",
+            "Track_L_Pad_08",
+            "Track_L_Pad_09",
+            "Track_L_Pad_10",
+            "Track_L_Pad_11",
+            "Track_L_Pad_12",
+            "Track_L_Pad_13",
+            "Track_L_Pad_14",
+            "Track_L_Pad_15",
+            "Track_L_Pad_16",
+            "Track_L_Pad_17",
+            "Track_L_Pad_18",
+            "Track_L_Pad_19",
+            "Track_L_Pad_20",
+            "Track_L_Pad_21",
+            "Track_L_Pad_22",
+            "Track_L_Pad_23",
+            "Track_L_Pad_24",
+            "Track_L_Pad_25",
+            "Track_L_Pad_26",
+            "Track_L_Pad_27",
+            "Track_L_Pad_28",
+            "Track_L_Pad_29",
+            "Track_L_Pad_30",
+            "Track_L_Rear_Wheel",
+            "Track_L_Roller_01",
+            "Track_L_Roller_02",
+            "Track_L_Roller_03",
+            "Track_L_Roller_04",
+            "Track_L_Roller_05",
+            "Track_R_Frame",
+            "Track_R_Front_Wheel",
+            "Track_R_Pad_01",
+            "Track_R_Pad_02",
+            "Track_R_Pad_03",
+            "Track_R_Pad_04",
+            "Track_R_Pad_05",
+            "Track_R_Pad_06",
+            "Track_R_Pad_07",
+            "Track_R_Pad_08",
+            "Track_R_Pad_09",
+            "Track_R_Pad_10",
+            "Track_R_Pad_11",
+            "Track_R_Pad_12",
+            "Track_R_Pad_13",
+            "Track_R_Pad_14",
+            "Track_R_Pad_15",
+            "Track_R_Pad_16",
+            "Track_R_Pad_17",
+            "Track_R_Pad_18",
+            "Track_R_Pad_19",
+            "Track_R_Pad_20",
+            "Track_R_Pad_21",
+            "Track_R_Pad_22",
+            "Track_R_Pad_23",
+            "Track_R_Pad_24",
+            "Track_R_Pad_25",
+            "Track_R_Pad_26",
+            "Track_R_Pad_27",
+            "Track_R_Pad_28",
+            "Track_R_Pad_29",
+            "Track_R_Pad_30",
+            "Track_R_Rear_Wheel",
+            "Track_R_Roller_01",
+            "Track_R_Roller_02",
+            "Track_R_Roller_03",
+            "Track_R_Roller_04",
+            "Track_R_Roller_05"
+          ]
+        },
+        "Fixed_Structure_ROOT": {
+          "present": true,
+          "role": "fixed_structure_root",
+          "visible_mesh_descendants": [
+            "APS_1700x755_Drum",
+            "APS_Drum_RaspBar_01",
+            "APS_Drum_RaspBar_02",
+            "APS_Drum_RaspBar_03",
+            "APS_Drum_RaspBar_04",
+            "APS_Drum_RaspBar_05",
+            "APS_Drum_RaspBar_06",
+            "APS_Drum_RaspBar_07",
+            "APS_Drum_RaspBar_08",
+            "APS_Drum_RaspBar_09",
+            "APS_Drum_RaspBar_10",
+            "Carrier_Frame",
+            "Feederhouse",
+            "CONVIO_Center_Back_Frame",
+            "CONVIO_Center_Cutterbar",
+            "CONVIO_Center_Draper_Belt",
+            "CONVIO_Center_Draper_Slat_01",
+            "CONVIO_Center_Draper_Slat_02",
+            "CONVIO_Center_Draper_Slat_03",
+            "CONVIO_Center_Draper_Slat_04",
+            "CONVIO_Center_Draper_Slat_05",
+            "CONVIO_Center_Draper_Slat_06",
+            "CONVIO_Center_Draper_Slat_07",
+            "CONVIO_Center_Draper_Slat_08",
+            "CONVIO_Center_Draper_Slat_09",
+            "CONVIO_L_Back_Frame",
+            "CONVIO_L_Cutterbar",
+            "CONVIO_L_Draper_Belt",
+            "CONVIO_L_Draper_Slat_01",
+            "CONVIO_L_Draper_Slat_02",
+            "CONVIO_L_Draper_Slat_03",
+            "CONVIO_L_Draper_Slat_04",
+            "CONVIO_L_Draper_Slat_05",
+            "CONVIO_L_Draper_Slat_06",
+            "CONVIO_L_Draper_Slat_07",
+            "CONVIO_L_Draper_Slat_08",
+            "CONVIO_L_Draper_Slat_09",
+            "Header_L_Flex_Cylinder_Rod",
+            "Header_Lift_Cylinder_Rod",
+            "CONVIO_R_Back_Frame",
+            "CONVIO_R_Cutterbar",
+            "CONVIO_R_Draper_Belt",
+            "CONVIO_R_Draper_Slat_01",
+            "CONVIO_R_Draper_Slat_02",
+            "CONVIO_R_Draper_Slat_03",
+            "CONVIO_R_Draper_Slat_04",
+            "CONVIO_R_Draper_Slat_05",
+            "CONVIO_R_Draper_Slat_06",
+            "CONVIO_R_Draper_Slat_07",
+            "CONVIO_R_Draper_Slat_08",
+            "CONVIO_R_Draper_Slat_09",
+            "Header_R_Flex_Cylinder_Rod",
+            "CONVIO_Reel_Axle",
+            "CONVIO_Reel_Bat_01",
+            "CONVIO_Reel_Bat_02",
+            "CONVIO_Reel_Bat_03",
+            "CONVIO_Reel_Bat_04",
+            "CONVIO_Reel_Bat_05",
+            "CONVIO_Reel_Bat_06",
+            "Grain_Tank",
+            "Cab_Floor",
+            "Cab_Front_Glass",
+            "Cab_L_Glass",
+            "Cab_L_Post_F",
+            "Cab_L_Post_R",
+            "Cab_R_Glass",
+            "Cab_R_Post_F",
+            "Cab_R_Post_R",
+            "Cab_Rear_Glass",
+            "Cab_Roof",
+            "Operator_Seat",
+            "Power_Spreader_L_Disc",
+            "Power_Spreader_L_Vane_01",
+            "Power_Spreader_L_Vane_02",
+            "Power_Spreader_L_Vane_03",
+            "Power_Spreader_L_Vane_04",
+            "Power_Spreader_L_Vane_05",
+            "Power_Spreader_L_Vane_06",
+            "Power_Spreader_R_Disc",
+            "Power_Spreader_R_Vane_01",
+            "Power_Spreader_R_Vane_02",
+            "Power_Spreader_R_Vane_03",
+            "Power_Spreader_R_Vane_04",
+            "Power_Spreader_R_Vane_05",
+            "Power_Spreader_R_Vane_06",
+            "Rear_Terminal_Bumper",
+            "ROTO_PLUS_L_445x4200",
+            "ROTO_PLUS_L_Paddle_01",
+            "ROTO_PLUS_L_Paddle_02",
+            "ROTO_PLUS_L_Paddle_03",
+            "ROTO_PLUS_L_Paddle_04",
+            "ROTO_PLUS_L_Paddle_05",
+            "ROTO_PLUS_L_Paddle_06",
+            "ROTO_PLUS_L_Paddle_07",
+            "ROTO_PLUS_L_Paddle_08",
+            "ROTO_PLUS_L_Paddle_09",
+            "ROTO_PLUS_L_Paddle_10",
+            "ROTO_PLUS_L_Paddle_11",
+            "ROTO_PLUS_L_Paddle_12",
+            "ROTO_PLUS_R_445x4200",
+            "ROTO_PLUS_R_Paddle_01",
+            "ROTO_PLUS_R_Paddle_02",
+            "ROTO_PLUS_R_Paddle_03",
+            "ROTO_PLUS_R_Paddle_04",
+            "ROTO_PLUS_R_Paddle_05",
+            "ROTO_PLUS_R_Paddle_06",
+            "ROTO_PLUS_R_Paddle_07",
+            "ROTO_PLUS_R_Paddle_08",
+            "ROTO_PLUS_R_Paddle_09",
+            "ROTO_PLUS_R_Paddle_10",
+            "ROTO_PLUS_R_Paddle_11",
+            "ROTO_PLUS_R_Paddle_12",
+            "Schematic_Crop_Path_01",
+            "Schematic_Crop_Path_02",
+            "Schematic_Crop_Path_03",
+            "Schematic_Crop_Path_04",
+            "Schematic_Crop_Path_05",
+            "Schematic_Crop_Path_06",
+            "Separator_Lower_Rail",
+            "Separator_Rear_Bulkhead",
+            "Separator_Right_Shell",
+            "Separator_Top_Cover",
+            "Unloader_Auger",
+            "Unloader_Base_Collar",
+            "Unloader_Visible_Flight"
+          ]
+        },
+        "Running_Gear_ROOT": {
+          "present": true,
+          "role": "running_gear_root",
+          "visible_mesh_descendants": [
+            "Rear_L_Rim",
+            "Rear_L_Tire",
+            "Rear_R_Rim",
+            "Rear_R_Tire",
+            "Track_L_Frame",
+            "Track_L_Front_Wheel",
+            "Track_L_Pad_01",
+            "Track_L_Pad_02",
+            "Track_L_Pad_03",
+            "Track_L_Pad_04",
+            "Track_L_Pad_05",
+            "Track_L_Pad_06",
+            "Track_L_Pad_07",
+            "Track_L_Pad_08",
+            "Track_L_Pad_09",
+            "Track_L_Pad_10",
+            "Track_L_Pad_11",
+            "Track_L_Pad_12",
+            "Track_L_Pad_13",
+            "Track_L_Pad_14",
+            "Track_L_Pad_15",
+            "Track_L_Pad_16",
+            "Track_L_Pad_17",
+            "Track_L_Pad_18",
+            "Track_L_Pad_19",
+            "Track_L_Pad_20",
+            "Track_L_Pad_21",
+            "Track_L_Pad_22",
+            "Track_L_Pad_23",
+            "Track_L_Pad_24",
+            "Track_L_Pad_25",
+            "Track_L_Pad_26",
+            "Track_L_Pad_27",
+            "Track_L_Pad_28",
+            "Track_L_Pad_29",
+            "Track_L_Pad_30",
+            "Track_L_Rear_Wheel",
+            "Track_L_Roller_01",
+            "Track_L_Roller_02",
+            "Track_L_Roller_03",
+            "Track_L_Roller_04",
+            "Track_L_Roller_05",
+            "Track_R_Frame",
+            "Track_R_Front_Wheel",
+            "Track_R_Pad_01",
+            "Track_R_Pad_02",
+            "Track_R_Pad_03",
+            "Track_R_Pad_04",
+            "Track_R_Pad_05",
+            "Track_R_Pad_06",
+            "Track_R_Pad_07",
+            "Track_R_Pad_08",
+            "Track_R_Pad_09",
+            "Track_R_Pad_10",
+            "Track_R_Pad_11",
+            "Track_R_Pad_12",
+            "Track_R_Pad_13",
+            "Track_R_Pad_14",
+            "Track_R_Pad_15",
+            "Track_R_Pad_16",
+            "Track_R_Pad_17",
+            "Track_R_Pad_18",
+            "Track_R_Pad_19",
+            "Track_R_Pad_20",
+            "Track_R_Pad_21",
+            "Track_R_Pad_22",
+            "Track_R_Pad_23",
+            "Track_R_Pad_24",
+            "Track_R_Pad_25",
+            "Track_R_Pad_26",
+            "Track_R_Pad_27",
+            "Track_R_Pad_28",
+            "Track_R_Pad_29",
+            "Track_R_Pad_30",
+            "Track_R_Rear_Wheel",
+            "Track_R_Roller_01",
+            "Track_R_Roller_02",
+            "Track_R_Roller_03",
+            "Track_R_Roller_04",
+            "Track_R_Roller_05"
+          ]
+        },
+        "Hydraulics_ROOT": {
+          "present": true,
+          "role": "hydraulics_root",
+          "visible_mesh_descendants": [
+            "Header_L_Flex_Cylinder_Barrel",
+            "Header_Lift_Cylinder_Barrel",
+            "Header_R_Flex_Cylinder_Barrel"
+          ]
+        },
+        "Header_Lift_Pivot": {
+          "present": true,
+          "role": "pivot",
+          "visible_mesh_descendants": [
+            "CONVIO_Center_Back_Frame",
+            "CONVIO_Center_Cutterbar",
+            "CONVIO_Center_Draper_Belt",
+            "CONVIO_Center_Draper_Slat_01",
+            "CONVIO_Center_Draper_Slat_02",
+            "CONVIO_Center_Draper_Slat_03",
+            "CONVIO_Center_Draper_Slat_04",
+            "CONVIO_Center_Draper_Slat_05",
+            "CONVIO_Center_Draper_Slat_06",
+            "CONVIO_Center_Draper_Slat_07",
+            "CONVIO_Center_Draper_Slat_08",
+            "CONVIO_Center_Draper_Slat_09",
+            "CONVIO_L_Back_Frame",
+            "CONVIO_L_Cutterbar",
+            "CONVIO_L_Draper_Belt",
+            "CONVIO_L_Draper_Slat_01",
+            "CONVIO_L_Draper_Slat_02",
+            "CONVIO_L_Draper_Slat_03",
+            "CONVIO_L_Draper_Slat_04",
+            "CONVIO_L_Draper_Slat_05",
+            "CONVIO_L_Draper_Slat_06",
+            "CONVIO_L_Draper_Slat_07",
+            "CONVIO_L_Draper_Slat_08",
+            "CONVIO_L_Draper_Slat_09",
+            "Header_L_Flex_Cylinder_Rod",
+            "Header_Lift_Cylinder_Rod",
+            "CONVIO_R_Back_Frame",
+            "CONVIO_R_Cutterbar",
+            "CONVIO_R_Draper_Belt",
+            "CONVIO_R_Draper_Slat_01",
+            "CONVIO_R_Draper_Slat_02",
+            "CONVIO_R_Draper_Slat_03",
+            "CONVIO_R_Draper_Slat_04",
+            "CONVIO_R_Draper_Slat_05",
+            "CONVIO_R_Draper_Slat_06",
+            "CONVIO_R_Draper_Slat_07",
+            "CONVIO_R_Draper_Slat_08",
+            "CONVIO_R_Draper_Slat_09",
+            "Header_R_Flex_Cylinder_Rod",
+            "CONVIO_Reel_Axle",
+            "CONVIO_Reel_Bat_01",
+            "CONVIO_Reel_Bat_02",
+            "CONVIO_Reel_Bat_03",
+            "CONVIO_Reel_Bat_04",
+            "CONVIO_Reel_Bat_05",
+            "CONVIO_Reel_Bat_06"
+          ]
+        },
+        "Header_ROOT": {
+          "present": true,
+          "role": "motion_root",
+          "visible_mesh_descendants": [
+            "CONVIO_Center_Back_Frame",
+            "CONVIO_Center_Cutterbar",
+            "CONVIO_Center_Draper_Belt",
+            "CONVIO_Center_Draper_Slat_01",
+            "CONVIO_Center_Draper_Slat_02",
+            "CONVIO_Center_Draper_Slat_03",
+            "CONVIO_Center_Draper_Slat_04",
+            "CONVIO_Center_Draper_Slat_05",
+            "CONVIO_Center_Draper_Slat_06",
+            "CONVIO_Center_Draper_Slat_07",
+            "CONVIO_Center_Draper_Slat_08",
+            "CONVIO_Center_Draper_Slat_09",
+            "CONVIO_L_Back_Frame",
+            "CONVIO_L_Cutterbar",
+            "CONVIO_L_Draper_Belt",
+            "CONVIO_L_Draper_Slat_01",
+            "CONVIO_L_Draper_Slat_02",
+            "CONVIO_L_Draper_Slat_03",
+            "CONVIO_L_Draper_Slat_04",
+            "CONVIO_L_Draper_Slat_05",
+            "CONVIO_L_Draper_Slat_06",
+            "CONVIO_L_Draper_Slat_07",
+            "CONVIO_L_Draper_Slat_08",
+            "CONVIO_L_Draper_Slat_09",
+            "Header_L_Flex_Cylinder_Rod",
+            "Header_Lift_Cylinder_Rod",
+            "CONVIO_R_Back_Frame",
+            "CONVIO_R_Cutterbar",
+            "CONVIO_R_Draper_Belt",
+            "CONVIO_R_Draper_Slat_01",
+            "CONVIO_R_Draper_Slat_02",
+            "CONVIO_R_Draper_Slat_03",
+            "CONVIO_R_Draper_Slat_04",
+            "CONVIO_R_Draper_Slat_05",
+            "CONVIO_R_Draper_Slat_06",
+            "CONVIO_R_Draper_Slat_07",
+            "CONVIO_R_Draper_Slat_08",
+            "CONVIO_R_Draper_Slat_09",
+            "Header_R_Flex_Cylinder_Rod",
+            "CONVIO_Reel_Axle",
+            "CONVIO_Reel_Bat_01",
+            "CONVIO_Reel_Bat_02",
+            "CONVIO_Reel_Bat_03",
+            "CONVIO_Reel_Bat_04",
+            "CONVIO_Reel_Bat_05",
+            "CONVIO_Reel_Bat_06"
+          ]
+        },
+        "Reel_Pivot": {
+          "present": true,
+          "role": "pivot",
+          "visible_mesh_descendants": [
+            "CONVIO_Reel_Axle",
+            "CONVIO_Reel_Bat_01",
+            "CONVIO_Reel_Bat_02",
+            "CONVIO_Reel_Bat_03",
+            "CONVIO_Reel_Bat_04",
+            "CONVIO_Reel_Bat_05",
+            "CONVIO_Reel_Bat_06"
+          ]
+        },
+        "Reel_ROOT": {
+          "present": true,
+          "role": "rotary_root",
+          "visible_mesh_descendants": [
+            "CONVIO_Reel_Axle",
+            "CONVIO_Reel_Bat_01",
+            "CONVIO_Reel_Bat_02",
+            "CONVIO_Reel_Bat_03",
+            "CONVIO_Reel_Bat_04",
+            "CONVIO_Reel_Bat_05",
+            "CONVIO_Reel_Bat_06"
+          ]
+        },
+        "Feederhouse_ROOT": {
+          "present": true,
+          "role": "motion_root",
+          "visible_mesh_descendants": [
+            "Feederhouse",
+            "CONVIO_Center_Back_Frame",
+            "CONVIO_Center_Cutterbar",
+            "CONVIO_Center_Draper_Belt",
+            "CONVIO_Center_Draper_Slat_01",
+            "CONVIO_Center_Draper_Slat_02",
+            "CONVIO_Center_Draper_Slat_03",
+            "CONVIO_Center_Draper_Slat_04",
+            "CONVIO_Center_Draper_Slat_05",
+            "CONVIO_Center_Draper_Slat_06",
+            "CONVIO_Center_Draper_Slat_07",
+            "CONVIO_Center_Draper_Slat_08",
+            "CONVIO_Center_Draper_Slat_09",
+            "CONVIO_L_Back_Frame",
+            "CONVIO_L_Cutterbar",
+            "CONVIO_L_Draper_Belt",
+            "CONVIO_L_Draper_Slat_01",
+            "CONVIO_L_Draper_Slat_02",
+            "CONVIO_L_Draper_Slat_03",
+            "CONVIO_L_Draper_Slat_04",
+            "CONVIO_L_Draper_Slat_05",
+            "CONVIO_L_Draper_Slat_06",
+            "CONVIO_L_Draper_Slat_07",
+            "CONVIO_L_Draper_Slat_08",
+            "CONVIO_L_Draper_Slat_09",
+            "Header_L_Flex_Cylinder_Rod",
+            "Header_Lift_Cylinder_Rod",
+            "CONVIO_R_Back_Frame",
+            "CONVIO_R_Cutterbar",
+            "CONVIO_R_Draper_Belt",
+            "CONVIO_R_Draper_Slat_01",
+            "CONVIO_R_Draper_Slat_02",
+            "CONVIO_R_Draper_Slat_03",
+            "CONVIO_R_Draper_Slat_04",
+            "CONVIO_R_Draper_Slat_05",
+            "CONVIO_R_Draper_Slat_06",
+            "CONVIO_R_Draper_Slat_07",
+            "CONVIO_R_Draper_Slat_08",
+            "CONVIO_R_Draper_Slat_09",
+            "Header_R_Flex_Cylinder_Rod",
+            "CONVIO_Reel_Axle",
+            "CONVIO_Reel_Bat_01",
+            "CONVIO_Reel_Bat_02",
+            "CONVIO_Reel_Bat_03",
+            "CONVIO_Reel_Bat_04",
+            "CONVIO_Reel_Bat_05",
+            "CONVIO_Reel_Bat_06"
+          ]
+        },
+        "Unloader_Swing_Pivot": {
+          "present": true,
+          "role": "pivot",
+          "visible_mesh_descendants": [
+            "Unloader_Auger",
+            "Unloader_Base_Collar",
+            "Unloader_Visible_Flight"
+          ]
+        },
+        "Unloader_ROOT": {
+          "present": true,
+          "role": "motion_root",
+          "visible_mesh_descendants": [
+            "Unloader_Auger",
+            "Unloader_Base_Collar",
+            "Unloader_Visible_Flight"
+          ]
+        },
+        "Track_L_ROOT": {
+          "present": true,
+          "role": "track_root",
+          "visible_mesh_descendants": [
+            "Track_L_Frame",
+            "Track_L_Front_Wheel",
+            "Track_L_Pad_01",
+            "Track_L_Pad_02",
+            "Track_L_Pad_03",
+            "Track_L_Pad_04",
+            "Track_L_Pad_05",
+            "Track_L_Pad_06",
+            "Track_L_Pad_07",
+            "Track_L_Pad_08",
+            "Track_L_Pad_09",
+            "Track_L_Pad_10",
+            "Track_L_Pad_11",
+            "Track_L_Pad_12",
+            "Track_L_Pad_13",
+            "Track_L_Pad_14",
+            "Track_L_Pad_15",
+            "Track_L_Pad_16",
+            "Track_L_Pad_17",
+            "Track_L_Pad_18",
+            "Track_L_Pad_19",
+            "Track_L_Pad_20",
+            "Track_L_Pad_21",
+            "Track_L_Pad_22",
+            "Track_L_Pad_23",
+            "Track_L_Pad_24",
+            "Track_L_Pad_25",
+            "Track_L_Pad_26",
+            "Track_L_Pad_27",
+            "Track_L_Pad_28",
+            "Track_L_Pad_29",
+            "Track_L_Pad_30",
+            "Track_L_Rear_Wheel",
+            "Track_L_Roller_01",
+            "Track_L_Roller_02",
+            "Track_L_Roller_03",
+            "Track_L_Roller_04",
+            "Track_L_Roller_05"
+          ]
+        },
+        "Track_R_ROOT": {
+          "present": true,
+          "role": "track_root",
+          "visible_mesh_descendants": [
+            "Track_R_Frame",
+            "Track_R_Front_Wheel",
+            "Track_R_Pad_01",
+            "Track_R_Pad_02",
+            "Track_R_Pad_03",
+            "Track_R_Pad_04",
+            "Track_R_Pad_05",
+            "Track_R_Pad_06",
+            "Track_R_Pad_07",
+            "Track_R_Pad_08",
+            "Track_R_Pad_09",
+            "Track_R_Pad_10",
+            "Track_R_Pad_11",
+            "Track_R_Pad_12",
+            "Track_R_Pad_13",
+            "Track_R_Pad_14",
+            "Track_R_Pad_15",
+            "Track_R_Pad_16",
+            "Track_R_Pad_17",
+            "Track_R_Pad_18",
+            "Track_R_Pad_19",
+            "Track_R_Pad_20",
+            "Track_R_Pad_21",
+            "Track_R_Pad_22",
+            "Track_R_Pad_23",
+            "Track_R_Pad_24",
+            "Track_R_Pad_25",
+            "Track_R_Pad_26",
+            "Track_R_Pad_27",
+            "Track_R_Pad_28",
+            "Track_R_Pad_29",
+            "Track_R_Pad_30",
+            "Track_R_Rear_Wheel",
+            "Track_R_Roller_01",
+            "Track_R_Roller_02",
+            "Track_R_Roller_03",
+            "Track_R_Roller_04",
+            "Track_R_Roller_05"
+          ]
+        },
+        "Header_L_Flex_Pivot": {
+          "present": true,
+          "role": "pivot",
+          "visible_mesh_descendants": [
+            "CONVIO_L_Back_Frame",
+            "CONVIO_L_Cutterbar",
+            "CONVIO_L_Draper_Belt",
+            "CONVIO_L_Draper_Slat_01",
+            "CONVIO_L_Draper_Slat_02",
+            "CONVIO_L_Draper_Slat_03",
+            "CONVIO_L_Draper_Slat_04",
+            "CONVIO_L_Draper_Slat_05",
+            "CONVIO_L_Draper_Slat_06",
+            "CONVIO_L_Draper_Slat_07",
+            "CONVIO_L_Draper_Slat_08",
+            "CONVIO_L_Draper_Slat_09",
+            "Header_L_Flex_Cylinder_Rod"
+          ]
+        },
+        "Header_L_Flex_ROOT": {
+          "present": true,
+          "role": "motion_root",
+          "visible_mesh_descendants": [
+            "CONVIO_L_Back_Frame",
+            "CONVIO_L_Cutterbar",
+            "CONVIO_L_Draper_Belt",
+            "CONVIO_L_Draper_Slat_01",
+            "CONVIO_L_Draper_Slat_02",
+            "CONVIO_L_Draper_Slat_03",
+            "CONVIO_L_Draper_Slat_04",
+            "CONVIO_L_Draper_Slat_05",
+            "CONVIO_L_Draper_Slat_06",
+            "CONVIO_L_Draper_Slat_07",
+            "CONVIO_L_Draper_Slat_08",
+            "CONVIO_L_Draper_Slat_09",
+            "Header_L_Flex_Cylinder_Rod"
+          ]
+        },
+        "Header_R_Flex_Pivot": {
+          "present": true,
+          "role": "pivot",
+          "visible_mesh_descendants": [
+            "CONVIO_R_Back_Frame",
+            "CONVIO_R_Cutterbar",
+            "CONVIO_R_Draper_Belt",
+            "CONVIO_R_Draper_Slat_01",
+            "CONVIO_R_Draper_Slat_02",
+            "CONVIO_R_Draper_Slat_03",
+            "CONVIO_R_Draper_Slat_04",
+            "CONVIO_R_Draper_Slat_05",
+            "CONVIO_R_Draper_Slat_06",
+            "CONVIO_R_Draper_Slat_07",
+            "CONVIO_R_Draper_Slat_08",
+            "CONVIO_R_Draper_Slat_09",
+            "Header_R_Flex_Cylinder_Rod"
+          ]
+        },
+        "Header_R_Flex_ROOT": {
+          "present": true,
+          "role": "motion_root",
+          "visible_mesh_descendants": [
+            "CONVIO_R_Back_Frame",
+            "CONVIO_R_Cutterbar",
+            "CONVIO_R_Draper_Belt",
+            "CONVIO_R_Draper_Slat_01",
+            "CONVIO_R_Draper_Slat_02",
+            "CONVIO_R_Draper_Slat_03",
+            "CONVIO_R_Draper_Slat_04",
+            "CONVIO_R_Draper_Slat_05",
+            "CONVIO_R_Draper_Slat_06",
+            "CONVIO_R_Draper_Slat_07",
+            "CONVIO_R_Draper_Slat_08",
+            "CONVIO_R_Draper_Slat_09",
+            "Header_R_Flex_Cylinder_Rod"
+          ]
+        },
+        "CONVIO_Center_Draper_ROOT": {
+          "present": true,
+          "role": "linear_process_root",
+          "visible_mesh_descendants": [
+            "CONVIO_Center_Draper_Belt",
+            "CONVIO_Center_Draper_Slat_01",
+            "CONVIO_Center_Draper_Slat_02",
+            "CONVIO_Center_Draper_Slat_03",
+            "CONVIO_Center_Draper_Slat_04",
+            "CONVIO_Center_Draper_Slat_05",
+            "CONVIO_Center_Draper_Slat_06",
+            "CONVIO_Center_Draper_Slat_07",
+            "CONVIO_Center_Draper_Slat_08",
+            "CONVIO_Center_Draper_Slat_09"
+          ]
+        },
+        "APS_Threshing_Drum_ROOT": {
+          "present": true,
+          "role": "rotary_process_root",
+          "visible_mesh_descendants": [
+            "APS_1700x755_Drum",
+            "APS_Drum_RaspBar_01",
+            "APS_Drum_RaspBar_02",
+            "APS_Drum_RaspBar_03",
+            "APS_Drum_RaspBar_04",
+            "APS_Drum_RaspBar_05",
+            "APS_Drum_RaspBar_06",
+            "APS_Drum_RaspBar_07",
+            "APS_Drum_RaspBar_08",
+            "APS_Drum_RaspBar_09",
+            "APS_Drum_RaspBar_10"
+          ]
+        },
+        "ROTO_PLUS_L_ROOT": {
+          "present": true,
+          "role": "rotary_process_root",
+          "visible_mesh_descendants": [
+            "ROTO_PLUS_L_445x4200",
+            "ROTO_PLUS_L_Paddle_01",
+            "ROTO_PLUS_L_Paddle_02",
+            "ROTO_PLUS_L_Paddle_03",
+            "ROTO_PLUS_L_Paddle_04",
+            "ROTO_PLUS_L_Paddle_05",
+            "ROTO_PLUS_L_Paddle_06",
+            "ROTO_PLUS_L_Paddle_07",
+            "ROTO_PLUS_L_Paddle_08",
+            "ROTO_PLUS_L_Paddle_09",
+            "ROTO_PLUS_L_Paddle_10",
+            "ROTO_PLUS_L_Paddle_11",
+            "ROTO_PLUS_L_Paddle_12"
+          ]
+        },
+        "ROTO_PLUS_R_ROOT": {
+          "present": true,
+          "role": "rotary_process_root",
+          "visible_mesh_descendants": [
+            "ROTO_PLUS_R_445x4200",
+            "ROTO_PLUS_R_Paddle_01",
+            "ROTO_PLUS_R_Paddle_02",
+            "ROTO_PLUS_R_Paddle_03",
+            "ROTO_PLUS_R_Paddle_04",
+            "ROTO_PLUS_R_Paddle_05",
+            "ROTO_PLUS_R_Paddle_06",
+            "ROTO_PLUS_R_Paddle_07",
+            "ROTO_PLUS_R_Paddle_08",
+            "ROTO_PLUS_R_Paddle_09",
+            "ROTO_PLUS_R_Paddle_10",
+            "ROTO_PLUS_R_Paddle_11",
+            "ROTO_PLUS_R_Paddle_12"
+          ]
+        },
+        "Power_Spreader_ROOT": {
+          "present": true,
+          "role": "rotary_process_root",
+          "visible_mesh_descendants": [
+            "Power_Spreader_L_Disc",
+            "Power_Spreader_L_Vane_01",
+            "Power_Spreader_L_Vane_02",
+            "Power_Spreader_L_Vane_03",
+            "Power_Spreader_L_Vane_04",
+            "Power_Spreader_L_Vane_05",
+            "Power_Spreader_L_Vane_06",
+            "Power_Spreader_R_Disc",
+            "Power_Spreader_R_Vane_01",
+            "Power_Spreader_R_Vane_02",
+            "Power_Spreader_R_Vane_03",
+            "Power_Spreader_R_Vane_04",
+            "Power_Spreader_R_Vane_05",
+            "Power_Spreader_R_Vane_06"
+          ]
+        },
+        "Schematic_Crop_Path_ROOT": {
+          "present": true,
+          "role": "process_path_root",
+          "visible_mesh_descendants": [
+            "Schematic_Crop_Path_01",
+            "Schematic_Crop_Path_02",
+            "Schematic_Crop_Path_03",
+            "Schematic_Crop_Path_04",
+            "Schematic_Crop_Path_05",
+            "Schematic_Crop_Path_06"
+          ]
+        }
       }
     },
     {
       "id": "semantic-motion-hierarchy",
       "status": "PASS",
       "detail": {
-        "semantic_motion_nodes": 19
+        "semantic_motion_nodes": 37
       }
     },
     {
@@ -214,24 +1127,24 @@
       "id": "node-density",
       "status": "PASS",
       "detail": {
-        "actual": 210,
-        "minimum": 200
+        "actual": 246,
+        "minimum": 80
       }
     },
     {
       "id": "mesh-density",
       "status": "PASS",
       "detail": {
-        "actual": 190,
-        "minimum": 180
+        "actual": 208,
+        "minimum": 60
       }
     },
     {
       "id": "triangle-density",
       "status": "PASS",
       "detail": {
-        "actual": 27040,
-        "minimum": 10000
+        "actual": 27280,
+        "minimum": 5000
       }
     },
     {
@@ -240,7 +1153,7 @@
       "detail": {
         "min_m": [
           -5.375,
-          0.0,
+          -0.003559,
           -7.65
         ],
         "max_m": [
@@ -250,8 +1163,8 @@
         ],
         "size_m": [
           10.75,
-          4.0,
-          15.3
+          4.003559,
+          15.299999
         ]
       }
     },
@@ -261,8 +1174,8 @@
       "detail": {
         "actual_size_m": [
           10.75,
-          4.0,
-          15.3
+          4.003559,
+          15.299999
         ],
         "expected_size_m": [
           10.75,
@@ -270,7 +1183,7 @@
           15.3
         ],
         "absolute_tolerance_m": 0.03,
-        "minimum_y_m": 0.0
+        "minimum_y_m": -0.003559
       }
     },
     {
@@ -279,27 +1192,27 @@
       "detail": [
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/claas-lexion-8900-terra-trac/review/renders/claas-lexion-8900-terra-trac-operator-side.png",
-          "bytes": 230574
+          "bytes": 237876
         },
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/claas-lexion-8900-terra-trac/review/renders/claas-lexion-8900-terra-trac-front-three-quarter.png",
-          "bytes": 219802
+          "bytes": 220902
         },
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/claas-lexion-8900-terra-trac/review/renders/claas-lexion-8900-terra-trac-rear-three-quarter.png",
-          "bytes": 243126
+          "bytes": 243622
         },
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/claas-lexion-8900-terra-trac/review/renders/claas-lexion-8900-terra-trac-elevated-technical.png",
-          "bytes": 331318
+          "bytes": 336480
         },
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/claas-lexion-8900-terra-trac/review/renders/claas-lexion-8900-terra-trac-articulation-detail.png",
-          "bytes": 264431
+          "bytes": 267786
         },
         {
           "path": "/private/tmp/exo-equipment-atlas-20/machines/claas-lexion-8900-terra-trac/review/renders/claas-lexion-8900-terra-trac-right-side.png",
-          "bytes": 232536
+          "bytes": 231772
         }
       ]
     },
@@ -307,6 +1220,254 @@
       "id": "neutral-unbranded-materials",
       "status": "PASS",
       "detail": "Neutral palette and procedural materials only; no manufacturer marks or textures."
+    },
+    {
+      "id": "configuration_and_header_identity",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local hierarchy assertion and metric endpoint measurement",
+        "evidence": {
+          "configuration_id": "CLAAS-L8900TT-NA25-CF1530-GT510-UL51-CANDIDATE",
+          "header": "CONVIO FLEX 1530",
+          "running_gear": "TERRA TRAC"
+        },
+        "semantic_nodes": [
+          "Header_ROOT",
+          "Track_L_ROOT",
+          "Track_R_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "published_header_span",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local hierarchy assertion and metric endpoint measurement",
+        "evidence": {
+          "measured_span_m": 15.299999,
+          "published_span_m": 15.3,
+          "draper_sections": 3
+        },
+        "semantic_nodes": [
+          "Header_ROOT",
+          "Header_L_Flex_ROOT",
+          "Header_R_Flex_ROOT"
+        ],
+        "fact_ids": [
+          "header-working-width",
+          "public-envelope-z",
+          "header-flex-range"
+        ]
+      }
+    },
+    {
+      "id": "header_lift_visual_closure",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local hierarchy assertion and metric endpoint measurement",
+        "evidence": {
+          "closure": "fixed barrel plus moving rod",
+          "authority": "reconstructed visual linkage"
+        },
+        "semantic_nodes": [
+          "Header_Lift_Pivot",
+          "Header_ROOT",
+          "Hydraulics_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "header_to_feederhouse_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local hierarchy assertion and metric endpoint measurement",
+        "evidence": {
+          "hierarchy": "Feederhouse_ROOT to Header_Lift_Pivot to Header_ROOT",
+          "continuous_crop_path_segments": 6
+        },
+        "semantic_nodes": [
+          "Feederhouse_ROOT",
+          "Header_Lift_Pivot",
+          "Header_ROOT",
+          "Schematic_Crop_Path_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "track_phase_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local hierarchy assertion and metric endpoint measurement",
+        "evidence": {
+          "track_pad_counts": {
+            "L": 30,
+            "R": 30
+          },
+          "viewer_motion": "independent left/right track roots"
+        },
+        "semantic_nodes": [
+          "Track_L_ROOT",
+          "Track_R_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "track_frame_ground_following_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local hierarchy assertion and metric endpoint measurement",
+        "evidence": {
+          "minimum_visible_y_m": -0.003559,
+          "track_frame_pose": "neutral"
+        },
+        "semantic_nodes": [
+          "Track_L_ROOT",
+          "Track_R_ROOT",
+          "Running_Gear_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "rear_steering_tire_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local hierarchy assertion and metric endpoint measurement",
+        "evidence": {
+          "steering_roots": [
+            "Rear_Steering_L_Pivot",
+            "Rear_Steering_R_Pivot"
+          ],
+          "presentation_range_deg": [
+            -18,
+            18
+          ],
+          "authority": "reconstructed"
+        },
+        "semantic_nodes": [
+          "Rear_Steering_L_Pivot",
+          "Rear_Steering_R_Pivot"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "unloading_auger_stowed_and_deployed_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local hierarchy assertion and metric endpoint measurement",
+        "evidence": {
+          "viewer_sweep_deg": 105.000246,
+          "published_swing_deg": 105.0,
+          "scope": "reconstructed endpoint clearance"
+        },
+        "semantic_nodes": [
+          "Unloader_Swing_Pivot",
+          "Unloader_ROOT"
+        ],
+        "fact_ids": [
+          "unloading-auger-swing"
+        ]
+      }
+    },
+    {
+      "id": "cutaway_only_internal_mechanism_labeling",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local hierarchy assertion and metric endpoint measurement",
+        "evidence": {
+          "threshing_drum_width_m": 1.7,
+          "threshing_drum_diameter_m": 0.755,
+          "roto_plus_count": 2,
+          "each_rotor_diameter_m": 0.445,
+          "each_rotor_length_m": 4.2,
+          "power_spreader_present": true,
+          "classification": "schematic cutaway with hidden centers reconstructed"
+        },
+        "semantic_nodes": [
+          "APS_Threshing_Drum_ROOT",
+          "ROTO_PLUS_L_ROOT",
+          "ROTO_PLUS_R_ROOT",
+          "Power_Spreader_ROOT"
+        ],
+        "fact_ids": [
+          "threshing-drum-width",
+          "threshing-drum-diameter"
+        ]
+      }
+    },
+    {
+      "id": "ground_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local hierarchy assertion and metric endpoint measurement",
+        "evidence": {
+          "minimum_visible_y_m": -0.003559,
+          "ground_y_m": 0.0
+        },
+        "semantic_nodes": [
+          "Running_Gear_ROOT",
+          "Header_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "self_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local hierarchy assertion and metric endpoint measurement",
+        "evidence": {
+          "neutral_header_min_y_m": 0.34,
+          "process_measurements": {
+            "threshing_drum_width_m": 1.7,
+            "threshing_drum_diameter_m": 0.755,
+            "roto_plus_count": 2,
+            "each_rotor_diameter_m": 0.445,
+            "each_rotor_length_m": 4.2,
+            "power_spreader_present": true
+          },
+          "scope": "neutral structural pose; not an operating safety claim"
+        },
+        "semantic_nodes": [
+          "Header_ROOT",
+          "Feederhouse_ROOT",
+          "APS_Threshing_Drum_ROOT",
+          "ROTO_PLUS_L_ROOT",
+          "ROTO_PLUS_R_ROOT",
+          "Unloader_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "neutral_unbranded_materials",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local hierarchy assertion and metric endpoint measurement",
+        "evidence": {
+          "materials": [
+            "Neutral_Body",
+            "Neutral_Body_Shadow",
+            "Neutral_Glass",
+            "Neutral_Graphite",
+            "Neutral_Rod",
+            "Neutral_Rubber",
+            "Neutral_Steel",
+            "Neutral_Visibility_Cue"
+          ],
+          "images": 0,
+          "textures": 0
+        },
+        "semantic_nodes": [
+          "Machine_Root"
+        ],
+        "fact_ids": []
+      }
     },
     {
       "id": "configuration-freeze",

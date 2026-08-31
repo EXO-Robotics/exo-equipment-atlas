@@ -26,5 +26,26 @@
     "elevation": 0.27,
     "distance": 1.5
   },
-  "accent": "#d2a153"
+  "accent": "#8a7965",
+  "motion": {
+    "autoplay": true,
+    "durationSeconds": 18,
+    "mode": "sine",
+    "damping": 8,
+    "channels": [
+      {"id":"axle-1-steering","mechanismJointId":"carrier_all_wheel_steering","label":"Axle 1 steering cue - reconstructed","nodes":["Axle_1_L_Steering_Kingpin","Axle_1_R_Steering_Kingpin"],"property":"rotation.y","from":-0.12,"to":0.12,"phase":0.0,"mode":"offset","autoplay":"sine"},
+      {"id":"axle-2-steering","mechanismJointId":"carrier_all_wheel_steering","label":"Axle 2 steering cue - reconstructed","nodes":["Axle_2_L_Steering_Kingpin","Axle_2_R_Steering_Kingpin"],"property":"rotation.y","from":-0.08,"to":0.08,"phase":0.0,"mode":"offset","autoplay":"sine"},
+      {"id":"axle-3-steering","mechanismJointId":"carrier_all_wheel_steering","label":"Axle 3 steering cue - reconstructed","nodes":["Axle_3_L_Steering_Kingpin","Axle_3_R_Steering_Kingpin"],"property":"rotation.y","from":-0.03,"to":0.03,"phase":0.0,"mode":"offset","autoplay":"sine"},
+      {"id":"axle-4-steering","mechanismJointId":"carrier_all_wheel_steering","label":"Axle 4 counter-steering cue - reconstructed","nodes":["Axle_4_L_Steering_Kingpin","Axle_4_R_Steering_Kingpin"],"property":"rotation.y","from":0.08,"to":-0.08,"phase":0.0,"mode":"offset","autoplay":"sine"},
+      {"id":"axle-5-steering","mechanismJointId":"carrier_all_wheel_steering","label":"Axle 5 counter-steering cue - reconstructed","nodes":["Axle_5_L_Steering_Kingpin","Axle_5_R_Steering_Kingpin"],"property":"rotation.y","from":0.12,"to":-0.12,"phase":0.0,"mode":"offset","autoplay":"sine"},
+      {"id":"superstructure-slew","mechanismJointId":"superstructure_slew","label":"Bounded superstructure slew inspection","nodes":["Slew_Pivot"],"property":"rotation.y","from":-0.04,"to":0.04,"phase":0.18,"mode":"offset","autoplay":"sine"},
+      {"id":"boom-luff","mechanismJointId":"telescopic_boom_luff","label":"Bounded boom luff inspection","nodes":["Boom_Luff_Pivot"],"property":"rotation.z","from":0.05235987755982989,"to":0.1223598775598299,"phase":0.34,"mode":"absolute","autoplay":"sine"},
+      {"id":"telescope-1","mechanismJointId":"telescope_sections","label":"Telescope stage 1 inspection","nodes":["Boom_Telescope_1"],"property":"position.x","from":0.0,"to":0.12,"phase":0.52,"mode":"offset","autoplay":"sine"},
+      {"id":"telescope-2","mechanismJointId":"telescope_sections","label":"Telescope stage 2 inspection","nodes":["Boom_Telescope_2"],"property":"position.x","from":0.0,"to":0.24,"phase":0.52,"mode":"offset","autoplay":"sine"},
+      {"id":"telescope-3","mechanismJointId":"telescope_sections","label":"Telescope stage 3 inspection","nodes":["Boom_Telescope_3"],"property":"position.x","from":0.0,"to":0.36,"phase":0.52,"mode":"offset","autoplay":"sine"},
+      {"id":"telescope-4","mechanismJointId":"telescope_sections","label":"Telescope stage 4 inspection","nodes":["Boom_Telescope_4"],"property":"position.x","from":0.0,"to":0.48,"phase":0.52,"mode":"offset","autoplay":"sine"},
+      {"id":"telescope-5","mechanismJointId":"telescope_sections","label":"Telescope stage 5 inspection","nodes":["Boom_Telescope_5"],"property":"position.x","from":0.0,"to":0.60,"phase":0.52,"mode":"offset","autoplay":"sine"},
+      {"id":"boom-head-staging","mechanismJointId":"telescope_sections","label":"Boom head follows bounded staged inspection","nodes":["Boom_Head_ROOT"],"property":"position.x","from":0.0,"to":0.60,"phase":0.52,"mode":"offset","autoplay":"sine"}
+    ]
+  }
 }

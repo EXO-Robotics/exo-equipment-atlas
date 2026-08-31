@@ -14,26 +14,37 @@
     "width": 5.512,
     "height": 4.013
   },
-  "attachment_span_m": 5.512,
+  "attachment_span_m": 1.885,
   "palette": "sage",
   "published_constraints_used": [
     "public-envelope-x",
     "public-envelope-y",
     "public-envelope-z",
+    "dual-wheelbase",
+    "feeder-cradle-width",
+    "dynamic-feed-roll-diameter",
+    "feeder-chain-count",
+    "feeder-slat-count",
     "rotor-count",
     "rotor-diameter",
     "rotor-length",
+    "standard-rasp-bars-per-rotor",
+    "hx-rasp-bars-per-rotor",
+    "spiked-rasp-bars-per-rotor",
+    "twinclean-two-stage-topology",
     "grain-tank-capacity",
+    "grain-tank-cover-control",
     "unloading-rate",
-    "unloading-auger-swivel"
+    "unloading-auger-swivel",
+    "selected-spreader-topology"
   ],
   "reconstructed_values": {
     "transport_pose": "Rigid-unloader length, grain-tank-closed height and 710/70 R42 dual width define the retained published envelope.",
-    "header_interface": "Generic narrow feeder/header interface cue only; no named header or harvesting width claim.",
-    "running_gear": "Wheeled dual-front 2WD carrier cue; rim offset, loaded radius and rear tire selection are reconstructed.",
+    "header_interface": "Published 1.885 m feeder cradle, four chain paths, 33 slat cues and 0.45 m Dynamic Feed Roll terminate at a coupler interface; no named header, cutterbar or reel is fitted.",
+    "running_gear": "Selected 710/70 R42 dual-front 2WD carrier with six tire contacts, 5.512 m published transport width and 4.039 m published wheelbase; rim offset, loaded radius and rear tire selection remain reconstructed.",
     "materials": "Neutral unbranded sage, graphite, steel, rubber and glass with no logos, decals or copied trade dress.",
-    "hidden_geometry": "Twin rotors, Dynamic Feed Roll, TwinClean links, auger hinges and residue drives are reconstructed.",
-    "animation_ranges": "Conservative presentation ranges only; not machine-specific operating limits."
+    "hidden_geometry": "Twin-rotor centerlines, Dynamic Feed Roll axis, TwinClean links, auger hinges and residue drives are reconstructed around published sizes and topology.",
+    "animation_ranges": "The unloader swivel is bounded to the published 105 degrees. All other presentation endpoints are conservative reconstructed ranges and not operating limits."
   },
   "unresolved_choices": [
     "exact serial number and dealer order code",
@@ -45,7 +56,7 @@
     "public material and branding authorization"
   ],
   "mechanical_gaps": [
-    "feeder lift cylinder anchors and attachment coupler authority",
+    "feeder lift cylinder anchors and attachment coupler operating authority",
     "twin rotor axes, crop-flow geometry and component phase",
     "TwinClean side-shake linkage and slope-response solver",
     "unloading auger hinge, fold joint and swept clearance",

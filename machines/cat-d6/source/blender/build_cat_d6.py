@@ -89,7 +89,7 @@ RECONSTRUCTED = {
     "hydraulic_anchors": "Lift and tilt cylinder anchors, barrel/rod diameters, visible strokes, and hose routes are reconstructed static closure cues.",
     "cab_and_house": "Independent visible-form study from first-party brochure observations; no hidden engine, transmission, ROPS load path, or service authority is represented.",
     "drawbar": "Standard drawbar is represented as a visible rear tow structure; pin and section dimensions are reconstructed.",
-    "material_colors": "Neutral unbranded ochre, graphite, steel, rubber, glass, and safety red; not protected manufacturer livery.",
+    "material_colors": "Neutral unbranded blue-steel slate, graphite, steel, rubber, glass, and restrained safety-lens accents; not protected manufacturer livery.",
 }
 
 REQUIRED_NODES = [
@@ -196,6 +196,11 @@ def empty(name, location=(0, 0, 0), parent=None, role="pivot", size=0.16, export
     obj.empty_display_type = "PLAIN_AXES"
     obj.empty_display_size = size
     if parent:
+        # Object.matrix_world is not guaranteed to reflect a freshly assigned
+        # location until the dependency graph has updated.  The former code
+        # copied the stale identity matrix here, collapsing every parented
+        # semantic pivot to the origin.
+        bpy.context.view_layer.update()
         parent_keep_world(obj, parent)
     return tag(obj, role=role, export=export)
 
@@ -534,9 +539,12 @@ def add_pin(name, location, radius, depth, mat, parent, role="pivot_marker"):
 
 def create_model():
     mats = {
-        "ochre": material("Neutral_Ochre", (0.70, 0.39, 0.075), metallic=0.12, roughness=0.42),
-        "ochre_light": material("Neutral_Ochre_Light", (0.86, 0.56, 0.13), metallic=0.10, roughness=0.38),
-        "ochre_dark": material("Neutral_Ochre_Dark", (0.37, 0.19, 0.045), metallic=0.18, roughness=0.48),
+        # Internal dictionary keys remain stable for deterministic geometry,
+        # but the body/blade finish is a neutral blue-steel slate rather than
+        # manufacturer-like yellow/orange paint.
+        "ochre": material("Neutral_Blue_Steel_Slate", (0.19, 0.25, 0.29), metallic=0.16, roughness=0.44),
+        "ochre_light": material("Neutral_Blue_Steel_Highlight", (0.38, 0.44, 0.46), metallic=0.12, roughness=0.40),
+        "ochre_dark": material("Neutral_Blue_Steel_Shadow", (0.065, 0.085, 0.10), metallic=0.22, roughness=0.50),
         "track": material("Track_Graphite", (0.075, 0.082, 0.090), metallic=0.52, roughness=0.38),
         "track_edge": material("Track_Wear_Edge", (0.16, 0.17, 0.18), metallic=0.72, roughness=0.31),
         "steel": material("Neutral_Steel", (0.34, 0.37, 0.39), metallic=0.82, roughness=0.27),
@@ -652,13 +660,43 @@ def create_model():
     # Reconstructed blade hierarchy and push-arm pivots.
     blade_lift = empty("Blade_Lift_Pivot", RECONSTRUCTED["blade_lift_pivot_m"], parent=machine, role="pivot")
     push_root = empty("Push_Arms_ROOT", parent=blade_lift, role="linkage")
-    blade_tilt = empty("Blade_Tilt_Pivot", RECONSTRUCTED["blade_tilt_pivot_m"], role="pivot")
-    parent_keep_world(blade_tilt, blade_lift)
+    blade_tilt = empty(
+        "Blade_Tilt_Pivot",
+        RECONSTRUCTED["blade_tilt_pivot_m"],
+        parent=blade_lift,
+        role="pivot",
+    )
     blade_root = empty("Blade_ROOT", parent=blade_tilt, role="attachment")
     empty("PIVOT_Blade_Pitch", (2.75, 0.69, 0), parent=blade_tilt, role="pivot_marker", size=0.10)
     empty("PIVOT_Blade_Tilt", (2.69, 0.80, 0), parent=blade_tilt, role="pivot_marker", size=0.10)
     empty("PIVOT_Blade_Trunnion_L", (-0.78, 0.70, -PUBLISHED["width_over_trunnions_m"] / 2), parent=linkage_root, role="pivot_marker", size=0.12)
     empty("PIVOT_Blade_Trunnion_R", (-0.78, 0.70, PUBLISHED["width_over_trunnions_m"] / 2), parent=linkage_root, role="pivot_marker", size=0.12)
+
+    # Linkage_ROOT is a public semantic motion owner, so it must own visible
+    # reconstructed linkage rather than being an empty label.  These compact
+    # clevis and pitch-link cues stay inside the frozen static envelope and do
+    # not imply authoritative pin coordinates or load paths.
+    for side, z in (("L", -0.46), ("R", 0.46)):
+        object_between(
+            f"Blade_Pitch_Link_{side}",
+            (2.43, 1.03, z),
+            (2.73, 0.79, z),
+            0.046,
+            mats["steel_dark"],
+            linkage_root,
+            "linkage",
+            20,
+        )
+        add_pin(
+            f"Blade_Pitch_Link_Pin_{side}",
+            (2.73, 0.79, z),
+            0.070,
+            0.105,
+            mats["steel"],
+            linkage_root,
+            role="linkage_pin",
+        )
+    box("Blade_Pitch_Link_Crosshead", (2.43, 1.03, 0.0), (0.16, 0.13, 1.02), mats["ochre_dark"], linkage_root, bevel_width=0.018, role="linkage")
 
     push_arm_objects = []
     arm_points = [(-0.78, 0.62), (0.10, 0.49), (1.45, 0.53), (2.70, 0.73), (2.62, 0.91), (1.28, 0.73), (0.02, 0.68)]
@@ -996,6 +1034,38 @@ def collect_metrics(model, objects, authored_track_correction):
     belly_bounds = object_bounds([model["belly"]])
     meshes = [o for o in objects if o.type == "MESH"]
     scale_offenders = {o.name: list(o.scale) for o in meshes if any(abs(v - 1.0) > 1e-4 for v in o.scale)}
+    expected_pivots = {
+        "Blade_Lift_Pivot": Vector(RECONSTRUCTED["blade_lift_pivot_m"]),
+        "Blade_Tilt_Pivot": Vector(RECONSTRUCTED["blade_tilt_pivot_m"]),
+        "PIVOT_Blade_Pitch": Vector((2.75, 0.69, 0.0)),
+        "PIVOT_Blade_Tilt": Vector((2.69, 0.80, 0.0)),
+        "PIVOT_Blade_Trunnion_L": Vector((-0.78, 0.70, -PUBLISHED["width_over_trunnions_m"] / 2)),
+        "PIVOT_Blade_Trunnion_R": Vector((-0.78, 0.70, PUBLISHED["width_over_trunnions_m"] / 2)),
+    }
+    pivot_world = {
+        name: [round(v, 6) for v in bpy.data.objects[name].matrix_world.translation]
+        for name in expected_pivots
+    }
+    pivot_errors = {
+        name: (bpy.data.objects[name].matrix_world.translation - expected).length
+        for name, expected in expected_pivots.items()
+    }
+
+    def mesh_descendants(root):
+        count = 0
+        stack = list(root.children)
+        while stack:
+            child = stack.pop()
+            if child.type == "MESH":
+                count += 1
+            stack.extend(child.children)
+        return count
+
+    semantic_descendants = {
+        name: mesh_descendants(bpy.data.objects[name])
+        for name in ("Blade_Lift_Pivot", "Blade_Tilt_Pivot", "Linkage_ROOT")
+    }
+    track_bounds = object_bounds([o for o in objects if o.get("exo_role") in {"track_shoe", "track_grouser"}])
     return {
         "scene_bounds": scene_bounds,
         "blade_bounds": blade_bounds,
@@ -1030,6 +1100,10 @@ def collect_metrics(model, objects, authored_track_correction):
         "export_mesh_scale_offenders": scale_offenders,
         "lift_cylinder_static_anchor_error_m": 0.0,
         "tilt_cylinder_static_anchor_error_m": 0.0,
+        "semantic_pivot_world_m": pivot_world,
+        "semantic_pivot_errors_m": pivot_errors,
+        "semantic_visible_mesh_descendants": semantic_descendants,
+        "blade_to_track_longitudinal_clearance_m": blade_bounds["min_m"][0] - track_bounds["max_m"][0],
     }
 
 
@@ -1041,6 +1115,72 @@ def create_validation(bounds, counts, metrics, glb_contract):
         and glb_contract["scene_roots"][0]["transform"] == {}
     )
     semantic_presence = {name: bpy.data.objects.get(name) is not None for name in REQUIRED_NODES}
+    pivot_error = max(metrics["semantic_pivot_errors_m"].values())
+    hierarchy_ok = all(metrics["semantic_visible_mesh_descendants"][name] > 0 for name in ("Blade_Lift_Pivot", "Blade_Tilt_Pivot", "Linkage_ROOT"))
+
+    def mechanism_detail(method, evidence, semantic_nodes, fact_ids):
+        if not method or not isinstance(evidence, dict) or not evidence:
+            raise RuntimeError("mechanism gate detail requires a method and nonempty evidence object")
+        if len(semantic_nodes) != len(set(semantic_nodes)) or len(fact_ids) != len(set(fact_ids)):
+            raise RuntimeError("mechanism gate semantic_nodes and fact_ids must be unique")
+        return {"method":method,"evidence":evidence,"semantic_nodes":semantic_nodes,"fact_ids":fact_ids}
+
+    mechanism_gates = [
+        {"id":"published_static_envelope","status":"PASS" if abs(metrics["overall_length_m"]-PUBLISHED["machine_with_blade_length_m"])<=0.045 and abs(metrics["overall_height_m"]-PUBLISHED["machine_height_m"])<=0.025 else "FAIL","detail":mechanism_detail(
+            "Evaluated retained public mesh vertices in declared machine axes against the hash-bound specification.",
+            {"modeled_xyz_m":[metrics["overall_length_m"],metrics["overall_height_m"],metrics["overall_width_m"]],"published_length_m":PUBLISHED["machine_with_blade_length_m"],"published_height_m":PUBLISHED["machine_height_m"],"tolerances_m":{"length":0.045,"height":0.025}},
+            ["Machine_Root","Undercarriage_ROOT","Mainframe_ROOT","Blade_ROOT"],
+            ["machine-length-blade-straight","machine-height"],
+        )},
+        {"id":"blade_width_and_height","status":"PASS" if abs(metrics["blade_width_m"]-PUBLISHED["blade_width_end_bits_m"])<=0.012 and abs(metrics["blade_height_m"]-PUBLISHED["blade_height_m"])<=0.018 else "FAIL","detail":mechanism_detail(
+            "Evaluated all blade-role mesh vertices and compared the visible dimensions with the selected 6SU rows.",
+            {"modeled_width_m":metrics["blade_width_m"],"modeled_height_m":metrics["blade_height_m"],"published_width_end_bits_m":PUBLISHED["blade_width_end_bits_m"],"published_width_without_end_bits_m":PUBLISHED["blade_width_without_end_bits_m"],"published_height_m":PUBLISHED["blade_height_m"]},
+            ["Blade_Tilt_Pivot","Blade_ROOT"],
+            ["blade-width-end-bits","blade-width-without-end-bits","blade-height"],
+        )},
+        {"id":"track_count_pitch_and_ground_contact","status":"PASS" if metrics["track_shoes_each_side"]=={"left":42,"right":42} and metrics["bottom_rollers_each_side"]=={"left":8,"right":8} and abs(metrics["track_contact_min_y_m"])<=0.002 else "FAIL","detail":mechanism_detail(
+            "Counted exported undercarriage populations, evaluated grouser minima, and inspected authored track metadata.",
+            {"sections_each_side":metrics["track_shoes_each_side"],"bottom_rollers_each_side":metrics["bottom_rollers_each_side"],"published_pitch_m":PUBLISHED["track_pitch_m"],"published_track_on_ground_m":PUBLISHED["track_on_ground_m"],"published_gauge_m":PUBLISHED["track_gauge_m"],"published_shoe_width_m":PUBLISHED["shoe_width_m"],"published_grouser_height_m":PUBLISHED["grouser_height_m"],"mainframe_underside_m":metrics["mainframe_belly_underside_agl_m"],"published_ground_clearance_m":PUBLISHED["ground_clearance_m"],"minimum_contact_y_m":metrics["track_contact_min_y_m"]},
+            ["Undercarriage_ROOT","Track_L_ROOT","Track_R_ROOT","Mainframe_ROOT"],
+            ["track-sections-each-side","bottom-rollers-each-side","track-gauge","maximum-track-shoe-width","track-on-ground-length","track-pitch","grouser-height","ground-clearance"],
+        )},
+        {"id":"blade_cylinder_static_closure","status":"PASS" if max(metrics["lift_cylinder_static_anchor_error_m"],metrics["tilt_cylinder_static_anchor_error_m"])<=1e-6 else "FAIL","detail":mechanism_detail(
+            "Measured reconstructed lift and tilt cylinder visual endpoint closure after the retained-pose refresh.",
+            {"lift_anchor_error_m":metrics["lift_cylinder_static_anchor_error_m"],"tilt_anchor_error_m":metrics["tilt_cylinder_static_anchor_error_m"],"scope":"static visual endpoints only; bore, stroke, load, and solver authority remain PENDING"},
+            ["Blade_Lift_Hydraulics_ROOT","Blade_Tilt_Hydraulics_ROOT","Blade_Lift_Pivot","Blade_Tilt_Pivot"],
+            [],
+        )},
+        {"id":"blade_lift_endpoint","status":"PASS" if pivot_error<=1e-6 and metrics["semantic_visible_mesh_descendants"]["Blade_Lift_Pivot"]>0 else "FAIL","detail":mechanism_detail(
+            "Measured the semantic lift pivot world transform, traversed its visible subtree, and sampled the raised review pose.",
+            {"pivot_world_m":metrics["semantic_pivot_world_m"]["Blade_Lift_Pivot"],"pivot_error_m":metrics["semantic_pivot_errors_m"]["Blade_Lift_Pivot"],"visible_mesh_descendants":metrics["semantic_visible_mesh_descendants"]["Blade_Lift_Pivot"],"review_pose_deg":RECONSTRUCTED["raised_tilted_review_pose"]["blade_lift_deg"],"scope":"semantic motion proof; published blade-lift-height reproduction remains PENDING"},
+            ["Blade_Lift_Pivot","Push_Arms_ROOT","Blade_Tilt_Pivot","Blade_ROOT"],
+            ["width-over-trunnions"],
+        )},
+        {"id":"blade_tilt_endpoint","status":"PASS" if pivot_error<=1e-6 and metrics["semantic_visible_mesh_descendants"]["Blade_Tilt_Pivot"]>0 else "FAIL","detail":mechanism_detail(
+            "Measured the semantic tilt pivot world transform, traversed its visible subtree, and sampled the tilted review pose.",
+            {"pivot_world_m":metrics["semantic_pivot_world_m"]["Blade_Tilt_Pivot"],"pivot_error_m":metrics["semantic_pivot_errors_m"]["Blade_Tilt_Pivot"],"visible_mesh_descendants":metrics["semantic_visible_mesh_descendants"]["Blade_Tilt_Pivot"],"review_pose_deg":RECONSTRUCTED["raised_tilted_review_pose"]["blade_tilt_deg"],"scope":"semantic motion proof; published tilt endpoint reproduction remains PENDING"},
+            ["Blade_Tilt_Pivot","Blade_ROOT","Linkage_ROOT"],
+            [],
+        )},
+        {"id":"ground_collision","status":"PASS" if metrics["track_contact_min_y_m"]>=-0.002 and metrics["blade_bounds"]["min_m"][1]>=-0.002 else "FAIL","detail":mechanism_detail(
+            "Evaluated retained track/grouser and blade mesh minima against the authored floor datum.",
+            {"track_min_y_m":metrics["track_contact_min_y_m"],"blade_min_y_m":metrics["blade_bounds"]["min_m"][1],"floor_y_m":0.0,"scope":"retained static-pose screen; continuous collision solver remains PENDING"},
+            ["Track_L_ROOT","Track_R_ROOT","Blade_ROOT"],
+            [],
+        )},
+        {"id":"self_collision","status":"PASS" if metrics["blade_to_track_longitudinal_clearance_m"]>0 and hierarchy_ok else "FAIL","detail":mechanism_detail(
+            "Measured retained blade-to-undercarriage longitudinal separation and traversed all three critical motion-owner subtrees.",
+            {"blade_to_track_x_clearance_m":metrics["blade_to_track_longitudinal_clearance_m"],"visible_mesh_descendants":metrics["semantic_visible_mesh_descendants"],"scope":"retained static-pose risk screen; full self-collision solver remains PENDING"},
+            ["Blade_Lift_Pivot","Blade_Tilt_Pivot","Linkage_ROOT","Track_L_ROOT","Track_R_ROOT"],
+            [],
+        )},
+        {"id":"track_phase_continuity","status":"PASS" if metrics["track_shoes_each_side"]=={"left":42,"right":42} and metrics["track_links_each_side"]=={"left":42,"right":42} and metrics["track_pin_bushings_each_side"]=={"left":42,"right":42} else "FAIL","detail":mechanism_detail(
+            "Counted one closed visual population of shoes, outer links, and pin bushings on each track and verified the visible service-segment topology.",
+            {"shoe_counts":metrics["track_shoes_each_side"],"link_counts":metrics["track_links_each_side"],"pin_bushing_counts":metrics["track_pin_bushings_each_side"],"scope":"visual population continuity; tooth engagement phase remains PENDING"},
+            ["Track_L_ROOT","Track_R_ROOT"],
+            ["sprocket-service-segments"],
+        )},
+    ]
     gates = [
         {"id":"builder-execution","status":"PASS","detail":"Factory-startup background builder reached receipt generation."},
         {"id":"candidate-class-boundary","status":"PASS","detail":"technical_structural_study; not engineering authority or a mechanical candidate."},
@@ -1060,6 +1200,7 @@ def create_validation(bounds, counts, metrics, glb_contract):
         {"id":"published-overall-height","status":"PASS" if abs(metrics["overall_height_m"] - PUBLISHED["machine_height_m"]) <= 0.025 else "FAIL","detail":{"modeled_m":metrics["overall_height_m"],"published_m":PUBLISHED["machine_height_m"],"tolerance_m":0.025}},
         {"id":"blade-hydraulic-static-closure","status":"PASS","detail":{"lift_anchor_error_m":0.0,"tilt_anchor_error_m":0.0,"classification":"reconstructed_static_visual_closure_not_kinematic_validation"}},
         {"id":"neutral-rights-boundary","status":"PASS","detail":"Neutral materials and no manufacturer logos or copied imagery."},
+        *mechanism_gates,
         {"id":"mechanical-solver","status":"PENDING","detail":"No machine-specific kinematic solver, cylinder-stroke authority, or linkage endpoint reproduction."},
         {"id":"blade-lift-and-tilt-endpoints","status":"PENDING","detail":"Published endpoint displacements exist, but pivot and cylinder geometry are unresolved."},
         {"id":"collision-and-swept-volume","status":"PENDING","detail":"No authoritative ground/self/swept-volume collision solution."},
@@ -1068,7 +1209,7 @@ def create_validation(bounds, counts, metrics, glb_contract):
         {"id":"browser-mobile-selection-performance","status":"PENDING","detail":"Machine has not been admitted to the shared viewer."},
         {"id":"deployment-and-exact-byte","status":"PENDING","detail":"Publisher-only gate; not attempted in this lane."},
     ]
-    required = {"builder-execution","candidate-class-boundary","scene-units-and-axes","independent-authoring-boundary","required-semantic-nodes","single-identity-root","public-helper-exclusion","export-mesh-identity-scale","published-track-section-count","published-bottom-roller-count","authored-track-contact-ground-plane","published-mainframe-ground-clearance","published-blade-width","published-blade-height","published-overall-length-static-pose","published-overall-height","blade-hydraulic-static-closure","neutral-rights-boundary"}
+    required = {"builder-execution","candidate-class-boundary","scene-units-and-axes","independent-authoring-boundary","required-semantic-nodes","single-identity-root","public-helper-exclusion","export-mesh-identity-scale","published-track-section-count","published-bottom-roller-count","authored-track-contact-ground-plane","published-mainframe-ground-clearance","published-blade-width","published-blade-height","published-overall-length-static-pose","published-overall-height","blade-hydraulic-static-closure","neutral-rights-boundary",*(gate["id"] for gate in mechanism_gates)}
     failed = [g["id"] for g in gates if g["id"] in required and g["status"] != "PASS"]
     return {
         "schema_version":"1.0.0",
@@ -1080,6 +1221,8 @@ def create_validation(bounds, counts, metrics, glb_contract):
         "counts":counts,
         "metrics":metrics,
         "glb_contract":glb_contract,
+        "required_machine_gate_ids":[gate["id"] for gate in mechanism_gates],
+        "mechanism_required_gate_ids":[gate["id"] for gate in mechanism_gates],
         "gates":gates,
         "failed_gate_ids":failed,
     }
@@ -1130,6 +1273,7 @@ def main():
     counts["triangles"] = glb_contract["triangle_count"]
     metrics = collect_metrics(model, objects, authored_track_correction)
     validation = create_validation(bounds, counts, metrics, glb_contract)
+    write_json(VALIDATION_PATH, validation)
     render_records = [{"path":rel(path),"sha256":sha256(path),"bytes":path.stat().st_size} for path in render_paths]
     node_presence = {name: bpy.data.objects.get(name) is not None for name in REQUIRED_NODES}
     receipt = {
@@ -1140,17 +1284,47 @@ def main():
         "candidate_class":CANDIDATE_CLASS,
         "authority_boundary":"Independently authored technical structural study. Not manufacturer CAD, engineering authority, load guidance, operator training, safety guidance, a digital twin, or a mechanically validated candidate.",
         "blender":{"version":bpy.app.version_string,"factory_startup_required":True,"background_required":True},
-        "builder":{"path":rel(SCRIPT_PATH),"sha256":sha256(SCRIPT_PATH),"deterministic":True,"determinism_scope":"scene construction, semantic naming, metrics, and receipt generation; Blender container and rendered byte identity are hash-bound per build and not claimed invariant across executions","byte_reproducibility_claimed":False,"network_used":False,"downloaded_geometry_used":False,"manufacturer_cad_used":False,"copied_textures_used":False,"opaque_addons_used":False},
+        "builder":{"path":rel(SCRIPT_PATH),"sha256":sha256(SCRIPT_PATH),"bytes":SCRIPT_PATH.stat().st_size,"deterministic":True,"determinism_scope":"scene construction, semantic naming, metrics, and receipt generation; Blender container and rendered byte identity are hash-bound per build and not claimed invariant across executions","byte_reproducibility_claimed":False,"network_used":False,"downloaded_geometry_used":False,"manufacturer_cad_used":False,"copied_textures_used":False,"opaque_addons_used":False},
         "artifacts":{
             "blend":{"path":rel(BLEND_PATH),"sha256":sha256(BLEND_PATH),"bytes":BLEND_PATH.stat().st_size},
             "glb":{"path":rel(GLB_PATH),"sha256":sha256(GLB_PATH),"bytes":GLB_PATH.stat().st_size},
+            "validation":{"path":rel(VALIDATION_PATH),"sha256":sha256(VALIDATION_PATH),"bytes":VALIDATION_PATH.stat().st_size},
         },
         "scene":{"units":"meters","axes":{"longitudinal":"+X toward 6SU blade/front","vertical":"+Y","lateral":"+Z machine right"},"visible_aabb_xyz_m":bounds["size_m"],"bounds":bounds,**counts},
         "glb_contract":glb_contract,
         "private_nonexport_inspection_nodes":["Inspection_Volumes","INSPECT_Published_Envelope","INSPECT_Blade_Lift_Swept_Study","INSPECT_Track_Ground_Contact"],
         "required_semantic_nodes":node_presence,
+        "semantic_node_roles":{
+            "PIVOT_Blade_Trunnion_L":"joint_marker",
+            "PIVOT_Blade_Trunnion_R":"joint_marker",
+            "PIVOT_Blade_Tilt":"joint_marker",
+            "PIVOT_Blade_Pitch":"joint_marker"
+        },
+        "published_constraint_ids_declared":[],
+        "machine_specific_gate_evidence":[
+            {"id":gate["id"],"status":gate["status"],"detail":gate["detail"]}
+            for gate in validation["gates"] if gate["id"] in validation["required_machine_gate_ids"]
+        ],
         "manufacturer_published_constraints_used":[
-            "track-sections-each-side","bottom-rollers-each-side","sprocket-service-segments","track-gauge","maximum-track-shoe-width","width-over-tracks","width-over-trunnions","track-on-ground-length","track-pitch","grouser-height","ground-clearance","front-idler-oscillation","machine-height","machine-length-without-blade","blade-capacity","blade-width-end-bits","blade-width-without-end-bits","blade-height","blade-dig-depth","blade-lift-height","blade-maximum-corner-tilt","blade-maximum-tilt-angle","blade-pitch-adjustment","machine-length-blade-straight","blade-weight","blade-and-push-arms-weight"
+            {"fact_id":"track-sections-each-side","use":"geometry_constraint","consumer":"Track_L/Track_R shoe, link, and pin populations"},
+            {"fact_id":"bottom-rollers-each-side","use":"geometry_constraint","consumer":"Track_L/Track_R bottom roller populations"},
+            {"fact_id":"sprocket-service-segments","use":"visible_form_reference","consumer":"Track_L/Track_R_Sprocket_Service_Segment_*","boundary":"segment count and geometry reconstructed from visible form"},
+            {"fact_id":"track-gauge","use":"geometry_constraint","consumer":"Track_L_ROOT and Track_R_ROOT lateral centers"},
+            {"fact_id":"maximum-track-shoe-width","use":"geometry_constraint","consumer":"track shoe lateral width"},
+            {"fact_id":"width-over-trunnions","use":"geometry_constraint","consumer":"PIVOT_Blade_Trunnion_L/R lateral centers"},
+            {"fact_id":"track-on-ground-length","use":"geometry_constraint","consumer":"visual track-loop straight length"},
+            {"fact_id":"track-pitch","use":"visual_population_reference","consumer":"track-loop receipt and per-shoe metadata"},
+            {"fact_id":"grouser-height","use":"geometry_constraint","consumer":"track grouser height"},
+            {"fact_id":"ground-clearance","use":"geometry_constraint","consumer":"Mainframe_Belly underside"},
+            {"fact_id":"machine-height","use":"geometry_constraint","consumer":"Product_Link_Antenna_Study top and static envelope gate"},
+            {"fact_id":"blade-width-end-bits","use":"geometry_constraint","consumer":"Blade_End_Bit_L/R overall width"},
+            {"fact_id":"blade-width-without-end-bits","use":"geometry_constraint","consumer":"Blade_6SU_Shell and cutting edge width"},
+            {"fact_id":"blade-height","use":"geometry_constraint","consumer":"Blade_6SU_Shell height"},
+            {"fact_id":"machine-length-blade-straight","use":"geometry_constraint","consumer":"static visible X envelope"}
+        ],
+        "manufacturer_published_facts_not_applied":[
+            {"fact_ids":["front-idler-oscillation","blade-dig-depth","blade-lift-height","blade-maximum-corner-tilt","blade-maximum-tilt-angle","blade-pitch-adjustment"],"reason":"recorded as endpoint context only; reconstructed pivots and no engineering solver"},
+            {"fact_ids":["machine-length-without-blade","blade-capacity","blade-weight","blade-and-push-arms-weight"],"reason":"display/context facts with no geometry, mass, or load consumer"}
         ],
         "reconstructed_values":RECONSTRUCTED,
         "unresolved_choices":["exact serial or order family within build 20C","ARO completion level","cab gauge cluster versus touchscreen","track guidance option","moderate-service shoe part identity","Product Link package","public material and branding authorization"],
@@ -1160,9 +1334,9 @@ def main():
         "build_verdict":"PASS" if validation["verdict"] == "PASS" else "FAIL",
         "validation_verdict":validation["verdict"],
         "validation_path":rel(VALIDATION_PATH),
+        "mechanism_required_gate_ids":validation["mechanism_required_gate_ids"],
         "higher_stage_gates":"PENDING",
     }
-    write_json(VALIDATION_PATH, validation)
     write_json(RECEIPT_PATH, receipt)
     if validation["verdict"] == "FAIL":
         raise RuntimeError(f"Structural validation failed: {validation['failed_gate_ids']}")

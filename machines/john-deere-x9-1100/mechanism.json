@@ -65,5 +65,5 @@
     "Autoplay must avoid maximum feeder/header lift and maximum auger swing simultaneously."
   ],
   "required_gates": ["selected_header_span_envelope", "carrier_length_unresolved", "carrier_height_unresolved", "wheeled_running_gear", "feederhouse_continuity", "header_attachment_continuity", "reel_axis_continuity", "unloader_hinge_continuity", "auger_header_clearance", "ground_collision", "self_collision", "neutral_unbranded_material_review"],
-  "release_state": "no_geometry_no_solver_no_claim"
+  "release_state": "technical_structural_study_built_solver_unverified"
 }

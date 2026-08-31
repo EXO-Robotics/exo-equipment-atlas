@@ -7,7 +7,7 @@
     "source_binaries_committed": false,
     "manufacturer_geometry_committed": false,
     "manual_illustrations_are_scale_drawings": false,
-    "verification": "The parent release lane will download the canonical primary PDF into research/private and replace the pending digest and byte declaration before repository admission."
+    "verification": "The admitted private PDF is present and bound to the declared SHA-256, byte count, and 42 physical pages."
   },
   "sources": [
     {
@@ -22,8 +22,9 @@
       "local_path": "research/private/claas-jaguar-990/primary-source.pdf",
       "sha256": "2fbd89a28cce4ccd57b4eba9d3b03597220ad62599c6e445ba60ecd9349f05aa",
       "bytes": 14359206,
+      "pages": 42,
       "admission": "primary",
-      "note": "Canonical private-binary identity will be sealed by the parent release lane."
+      "note": "Exact 42-page admitted Stage V brochure binary. The historical stable-media URL currently returns 404; this hash-bound local PDF controls every retained technical constraint."
     },
     {
       "id": "CLAAS-J900-US-PRODUCT",
@@ -42,12 +43,12 @@
       "kind": "official_product_brochure",
       "title": "JAGUAR 900 forage harvesters",
       "publication": "LRC / 203012001024 NO LC 1124",
-      "market": "International",
+      "market": "North America family reference",
       "pages": 41,
       "retrieved": "2026-08-29",
       "official_url": "https://www.claas.com/caas/claas/media/stable/66736",
       "admission": "reference_only",
-      "note": "Current product-page linked brochure inspected for visible option matrices and shared topology; the parent canonical PDF remains the configuration authority."
+      "note": "Current North American product-page linked brochure inspected only as family reference; it does not replace the hash-bound Stage V configuration authority."
     }
   ]
 }

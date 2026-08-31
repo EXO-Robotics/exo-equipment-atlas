@@ -13,21 +13,9 @@
     "poster": "machines/fendt-ideal-10t/review/renders/fendt-ideal-10t-front-three-quarter.png"
   },
   "evidence": {
-    "boundary": "Unofficial neutral structural study. Published sources bind the named configuration, selected envelope facts, capacities, and visible functional topology. Geometry, hidden pivots, anchors, motion arcs, timing, track phase, collision behavior, materials, and choreography are reconstructed presentation choices, not manufacturer CAD, operational guidance, or a digital twin.",
-    "lede": "International Stage V IDEAL 10T presentation freeze with front TrakRide tracks, rear steering tyres, a 10.70 m PowerFlow header, Streamer 210 grain system, 8.4 m folding unloader, and standard ActiveSpread SwingFlow.",
-    "factIds": [
-      "maximum-power",
-      "carrier-length-without-header",
-      "selected-carrier-width",
-      "carrier-height",
-      "selected-powerflow-width",
-      "header-raised-ground-clearance",
-      "header-tilt-compensation",
-      "streamer-210-capacity",
-      "streamer-210-rate",
-      "selected-discharge-tube",
-      "active-spread-swingflow-standard"
-    ]
+    "boundary": "Unofficial neutral structural study. Only the two-step MotionShift fact is admitted from the hash-bound GB source. All visible dimensions, option selections, topology, hidden pivots, anchors, motion arcs, timing, track phase, collision behavior, materials, and choreography are reconstructed and unresolved, not manufacturer CAD, operational guidance, or a digital twin.",
+    "lede": "Reconstructed IDEAL 10T mechanism study with tracked-front running gear, wide belt header, folding unloader, crop-path internals, spread system, cooling fan, and entry ladder; none of those visible choices is asserted as an admitted order configuration.",
+    "factIds": ["motion-shift-gears"]
   },
   "camera": {
     "azimuth": -0.72,
@@ -39,51 +27,28 @@
     "autoplay": true,
     "durationSeconds": 18,
     "mode": "sine",
-    "damping": 5.5,
+    "damping": 8,
     "channels": [
-      {
-        "id": "running-gear-inspection",
-        "label": "Tracked running gear inspection",
-        "nodes": [
-          "Track_L_Front_Wheel",
-          "Track_L_Rear_Wheel",
-          "Track_L_Roller_01",
-          "Track_L_Roller_02",
-          "Track_L_Roller_03",
-          "Track_L_Roller_04",
-          "Track_L_Roller_05",
-          "Track_R_Front_Wheel",
-          "Track_R_Rear_Wheel",
-          "Track_R_Roller_01",
-          "Track_R_Roller_02",
-          "Track_R_Roller_03",
-          "Track_R_Roller_04",
-          "Track_R_Roller_05",
-          "Rear_L_Wheel_ROOT",
-          "Rear_R_Wheel_ROOT"
-        ],
-        "property": "rotation.z",
-        "from": 0,
-        "to": 1.25,
-        "phase": 0,
-        "direction": 1,
-        "mode": "offset",
-        "autoplay": "sine"
-      },
+      {"id":"left-trakride","mechanismJointId":"left_trakride_belt","label":"Left tracked-drive study","nodes":["Track_L_Drive_Wheel_ROOT"],"property":"rotation.z","from":0,"to":6.283185307179586,"phase":0,"mode":"offset","autoplay":"sine"},
+      {"id":"right-trakride","mechanismJointId":"right_trakride_belt","label":"Right tracked-drive study","nodes":["Track_R_Drive_Wheel_ROOT"],"property":"rotation.z","from":0,"to":6.283185307179586,"phase":0.5,"mode":"offset","autoplay":"sine"},
+      {"id":"rear-steering","mechanismJointId":"rear_steering_axle","label":"Rear steering study","nodes":["Rear_Steering_L_Pivot","Rear_Steering_R_Pivot"],"property":"rotation.y","from":-0.32,"to":0.32,"phase":0.18,"mode":"offset","autoplay":"sine"},
       {
         "id": "header-lift",
+        "mechanismJointId": "crop_elevator_lift",
         "label": "Crop-elevator header lift",
-        "nodes": ["Header_ROOT"],
+        "nodes": ["Feederhouse_ROOT"],
         "property": "rotation.z",
         "from": 0,
-        "to": -0.22,
+        "to": 0.151,
         "phase": 0.12,
         "direction": 1,
         "mode": "offset",
         "autoplay": "sine"
       },
+      {"id":"header-roll","mechanismJointId":"crop_elevator_roll_compensation","label":"Header roll-compensation study","nodes":["Header_Roll_Pivot"],"property":"rotation.x","from":-0.13962634015954636,"to":0.13962634015954636,"phase":0.38,"mode":"offset","autoplay":"sine"},
       {
         "id": "reel-inspection",
+        "mechanismJointId": "powerflow_reel",
         "label": "PowerFlow reel inspection rotation",
         "nodes": ["Reel_ROOT"],
         "property": "rotation.z",
@@ -94,8 +59,11 @@
         "mode": "offset",
         "autoplay": "sine"
       },
+      {"id":"powerflow-belts","mechanismJointId":"powerflow_belts","label":"PowerFlow belt translation study","nodes":["PowerFlow_Belts_ROOT"],"property":"position.x","from":0,"to":0.08,"phase":0.31,"mode":"offset","autoplay":"sine"},
+      {"id":"header-intake","mechanismJointId":"header_intake_auger","label":"Header intake-auger study","nodes":["Header_Intake_Auger_ROOT"],"property":"rotation.z","from":0,"to":6.283185307179586,"phase":0.44,"mode":"offset","autoplay":"sine"},
       {
         "id": "unloader-deploy",
+        "mechanismJointId": "unloading_auger_swing",
         "label": "Unloading-auger presentation sweep",
         "nodes": ["Unloader_ROOT"],
         "property": "rotation.y",
@@ -106,6 +74,16 @@
         "mode": "offset",
         "autoplay": "sine"
       }
+      ,{"id":"unloader-fold","mechanismJointId":"unloading_auger_fold","label":"Unloader outer-fold study","nodes":["Unloader_Outer_ROOT"],"property":"rotation.z","from":0,"to":-0.407268,"phase":0.58,"mode":"offset","autoplay":"sine"}
+      ,{"id":"unloader-spout","mechanismJointId":"unloading_spout_flap","label":"Unloader spout-flap study","nodes":["Unloader_Spout_ROOT"],"property":"rotation.z","from":0,"to":0.42,"phase":0.66,"mode":"offset","autoplay":"sine"}
+      ,{"id":"left-dual-helix","mechanismJointId":"left_dual_helix_rotor","label":"Left Dual Helix study","nodes":["Dual_Helix_L_ROOT"],"property":"rotation.x","from":0,"to":6.283185307179586,"phase":0.12,"mode":"offset","autoplay":"sine"}
+      ,{"id":"right-dual-helix","mechanismJointId":"right_dual_helix_rotor","label":"Right Dual Helix study","nodes":["Dual_Helix_R_ROOT"],"property":"rotation.x","from":0,"to":-6.283185307179586,"phase":0.62,"mode":"offset","autoplay":"sine"}
+      ,{"id":"rotorfeeder","mechanismJointId":"rotor_feeder","label":"RotorFeeder study","nodes":["RotorFeeder_ROOT"],"property":"rotation.z","from":0,"to":6.283185307179586,"phase":0.28,"mode":"offset","autoplay":"sine"}
+      ,{"id":"active-spread-left","mechanismJointId":"active_spread_left_disk","label":"Left spread-disk study","nodes":["ActiveSpread_L_ROOT"],"property":"rotation.y","from":0,"to":6.283185307179586,"phase":0.22,"mode":"offset","autoplay":"sine"}
+      ,{"id":"active-spread-right","mechanismJointId":"active_spread_right_disk","label":"Right spread-disk study","nodes":["ActiveSpread_R_ROOT"],"property":"rotation.y","from":0,"to":-6.283185307179586,"phase":0.72,"mode":"offset","autoplay":"sine"}
+      ,{"id":"swingflow","mechanismJointId":"swingflow_guide_vanes","label":"SwingFlow guide-vane study","nodes":["SwingFlow_ROOT"],"property":"rotation.z","from":-0.10,"to":0.10,"phase":0.52,"mode":"offset","autoplay":"sine"}
+      ,{"id":"airsense","mechanismJointId":"airsense_reversible_fan","label":"AirSense reversible-fan study","nodes":["AirSense_Fan_ROOT"],"property":"rotation.y","from":-6.283185307179586,"to":6.283185307179586,"phase":0.34,"mode":"offset","autoplay":"sine"}
+      ,{"id":"powerfold-ladder","mechanismJointId":"powerfold_entry_ladder","label":"PowerFold ladder study","nodes":["PowerFold_Ladder_ROOT"],"property":"rotation.z","from":0,"to":-0.52,"phase":0.76,"mode":"offset","autoplay":"sine"}
     ]
   }
 }

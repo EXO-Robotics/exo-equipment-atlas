@@ -45,6 +45,7 @@
   "mechanical_gaps": [
     "Header lift and any fold cue are bounded visual articulations without hydraulic, terrain, crop or collision physics.",
     "Feedroll and spout motion are reconstructed and exclude crop flow, load, rate, trajectory and validated swept-volume closure.",
-    "Powertrain, cooling, aftertreatment, crop processor, cutterhead and hydraulic internals are not modeled as engineering assemblies."
+    "The exposed four-feedroll, 40-station cutterhead, accelerator and crop-path geometry is a schematic technical cutaway, not an engineering assembly, crop-flow simulation, load model or service reference.",
+    "Powertrain, cooling, aftertreatment, kernel processor and hydraulic internals remain outside the public structural study."
   ]
 }

@@ -19,7 +19,7 @@
       "market": "United States",
       "retrieved": "2026-08-29",
       "official_url": "https://www.kubotausa.com/products/tractors/agriculture/m8-series",
-      "admission": "primary_current_identity",
+      "admission": "reference_only",
       "applicability": "Current M8-181 and M8-201 model identity, current M8-201 200 hp listing, KVT and semi-powershift option descriptions, and current North American product positioning."
     },
     {
@@ -49,7 +49,7 @@
       "published": "2019-07-31",
       "retrieved": "2026-08-29",
       "official_url": "https://www.kubota.com/news/2019/20190731.html",
-      "admission": "historical_context_only",
+      "admission": "reference_only",
       "applicability": "Historical M8 launch lineage only. It does not override the current Kubota USA M8-201 identity and supplies no active configuration facts."
     }
   ]

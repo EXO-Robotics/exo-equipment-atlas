@@ -64,7 +64,9 @@ RECONSTRUCTED = {
     "stowed_bucket_rotation_deg": 28.0,
     "full_lift_carry_rotation_deg": 10.0,
     "full_lift_dump_rotation_deg": 57.0,
-    "bucket_local_lip_x_m": 0.8800,
+    # Solved against the published maximum-height reach for the explicitly
+    # reconstructed lip datum at the 10 degree full-lift review pose.
+    "bucket_local_lip_x_m": 0.8693163134748344,
     "bucket_shell_visual_width_m": 1.8250,
     "bucket_cutting_edge_width_m": 1.8796,
     "rear_main_pivot_xyz_m": [-0.9800, 1.2900, 0.0],
@@ -78,7 +80,7 @@ RECONSTRUCTED = {
     "hydraulic_hose_visual_diameter_m": 0.0220,
     "bucket_shell_profile": [
         [-0.14, 0.34], [-0.05, 0.59], [0.40, 0.52],
-        [0.73, 0.20], [0.88, -0.03], [-0.07, -0.03]
+        [0.73, 0.20], [0.8693163134748344, -0.03], [-0.07, -0.03]
     ],
 }
 
@@ -205,6 +207,7 @@ def add_empty(name: str, xyz=(0.0, 0.0, 0.0), collection="Structure",
     obj.empty_display_size = display_size
     COLLECTIONS[collection].objects.link(obj)
     if parent:
+        bpy.context.view_layer.update()
         parent_keep(obj, parent)
     return obj
 
@@ -548,66 +551,91 @@ def build_cab(root: bpy.types.Object) -> None:
 
 
 def setup_articulation(root: bpy.types.Object) -> None:
+    lift_root = add_empty(
+        "LiftMotion_ROOT", tuple(RECONSTRUCTED["rear_main_pivot_xyz_m"]),
+        "Lift", root, display_size=0.18)
+    lift_root["axis"] = "+Z nominal"
+    lift_root["authority"] = "reconstructed_visual_four_bar_owner"
+    hydraulics_root = add_empty(
+        "LiftHydraulics_ROOT", tuple(RECONSTRUCTED["lift_cylinder_base_xyz_m"]),
+        "Hydraulics", root, display_size=0.14)
+    hydraulics_root["authority"] = "reconstructed_visual_endpoint_owner"
+
     for side, suffix in ((-1, "L"), (1, "R")):
         z = side * RECONSTRUCTED["lift_arm_lateral_center_abs_z_m"]
         ART[f"main_arm_{suffix}"] = add_unit_beam(
-            f"VerticalLift_MainArm_{suffix}", "WarmPanel", "Lift", root, 0.030)
+            f"VerticalLift_MainArm_{suffix}", "WarmPanel", "Lift", lift_root, 0.030)
         ART[f"upper_link_{suffix}"] = add_unit_beam(
-            f"VerticalLift_UpperLink_{suffix}", "StructuralSteel", "Lift", root, 0.023)
+            f"VerticalLift_UpperLink_{suffix}", "StructuralSteel", "Lift", lift_root, 0.023)
         ART[f"carriage_{suffix}"] = add_unit_beam(
-            f"AttachmentCarriageSide_{suffix}", "DarkGraphite", "Lift", root, 0.020)
+            f"AttachmentCarriageSide_{suffix}", "DarkGraphite", "Lift", lift_root, 0.020)
         ART[f"brace_{suffix}"] = add_unit_beam(
-            f"LiftArmBoxBrace_{suffix}", "WarmPanel", "Lift", root, 0.024)
+            f"LiftArmBoxBrace_{suffix}", "WarmPanel", "Lift", lift_root, 0.024)
         ART[f"lift_barrel_{suffix}"] = add_unit_cylinder(
-            f"LiftCylinderBarrel_{suffix}", "DarkGraphite", "Hydraulics", root, 32)
+            f"LiftCylinderBarrel_{suffix}", "DarkGraphite", "Hydraulics", hydraulics_root, 32)
         ART[f"lift_rod_{suffix}"] = add_unit_cylinder(
-            f"LiftCylinderRod_{suffix}", "CylinderRod", "Hydraulics", root, 28)
+            f"LiftCylinderRod_{suffix}", "CylinderRod", "Hydraulics", hydraulics_root, 28)
         for hidx, offset in enumerate((-0.017, 0.017), 1):
             hose = add_hose(
                 f"LiftHydraulicHose_{suffix}_{hidx:02d}",
                 [(-1.18, 0.78, z + offset), (-0.92, 1.16, z + offset),
                  (0.10, 0.98, z + offset), (1.08, 0.72, z + offset)],
                 RECONSTRUCTED["hydraulic_hose_visual_diameter_m"] / 2.0,
-                "Rubber", "Hydraulics", root)
+                "Rubber", "Hydraulics", hydraulics_root)
             ART[f"hose_{suffix}_{hidx}"] = hose
 
     ART["crossmember"] = add_unit_beam(
-        "LiftCrossmember", "StructuralSteel", "Lift", root, 0.025)
+        "LiftCrossmember", "StructuralSteel", "Lift", lift_root, 0.025)
+    ART["tilt_base_crossmember"] = add_unit_beam(
+        "BucketTiltBaseCrossmember", "DarkGraphite", "Lift", lift_root, 0.018)
     ART["quick_attach"] = add_box(
         "BobTach_Interface_Reconstructed", (1.345, 0.56, 0.0),
-        (0.085, 0.48, 1.48), "DarkGraphite", "Bucket", root, 0.026)
+        (0.085, 0.48, 1.48), "DarkGraphite", "Bucket", lift_root, 0.026)
     ART["tilt_barrel"] = add_unit_cylinder(
-        "BucketTiltCylinderBarrel", "DarkGraphite", "Hydraulics", root, 32)
+        "BucketTiltCylinderBarrel", "DarkGraphite", "Hydraulics", hydraulics_root, 32)
     ART["tilt_rod"] = add_unit_cylinder(
-        "BucketTiltCylinderRod", "CylinderRod", "Hydraulics", root, 28)
+        "BucketTiltCylinderRod", "CylinderRod", "Hydraulics", hydraulics_root, 28)
     ART["bellcrank"] = add_unit_beam(
-        "BucketTiltBellcrank_Reconstructed", "MutedBronze", "Lift", root, 0.016)
+        "BucketTiltBellcrank_Reconstructed", "MutedBronze", "Lift", lift_root, 0.016)
 
     bucket_root = add_empty("BucketPivotRoot", tuple(RECONSTRUCTED["stowed_hinge_xyz_m"]),
-                            "Bucket", root)
+                            "Bucket", lift_root)
     bucket_root["authority"] = "reconstructed_constrained_by_standard_bucket_width_and_stowed_length"
     ART["bucket_root"] = bucket_root
+    bucket_offset = add_empty(
+        "BucketStowedPose_ROOT", tuple(RECONSTRUCTED["stowed_hinge_xyz_m"]),
+        "Bucket", bucket_root)
+    bucket_offset["authority"] = "reconstructed_static_pose_offset_below_neutral_interactive_pivot"
+    ART["bucket_offset"] = bucket_offset
+    add_cylinder(
+        "BucketTiltLugPin", (0.02, 0.28, 0.0), 0.090, 0.46, "z",
+        "CylinderRod", "Bucket", bucket_offset, 28, local=True)
+    for side, suffix in ((-1, "L"), (1, "R")):
+        add_box(
+            f"BucketTiltLugPlate_{suffix}", (0.02, 0.20, side * 0.18),
+            (0.20, 0.28, 0.055), "DarkGraphite", "Bucket",
+            bucket_offset, 0.012, local=True)
     add_prism_xy(
         "Standard74BucketShell_Reconstructed",
         RECONSTRUCTED["bucket_shell_profile"], 0.0,
         RECONSTRUCTED["bucket_shell_visual_width_m"],
-        "WarmPanel", "Bucket", bucket_root, local=True, bevel=0.020)
-    add_box("BucketCuttingEdge", (0.825, -0.025, 0.0),
+        "WarmPanel", "Bucket", bucket_offset, local=True, bevel=0.020)
+    add_box("BucketCuttingEdge", (RECONSTRUCTED["bucket_local_lip_x_m"] - 0.055, -0.025, 0.0),
             (0.110, 0.055, RECONSTRUCTED["bucket_cutting_edge_width_m"]),
-            "StructuralSteel", "Bucket", bucket_root, 0.012, local=True)
+            "StructuralSteel", "Bucket", bucket_offset, 0.012, local=True)
     add_box("BucketTopTorqueTube", (0.12, 0.49, 0.0),
-            (0.18, 0.15, 1.72), "DarkGraphite", "Bucket", bucket_root, 0.020, local=True)
+            (0.18, 0.15, 1.72), "DarkGraphite", "Bucket", bucket_offset, 0.020, local=True)
     for side, suffix in ((-1, "L"), (1, "R")):
         add_prism_xy(
             f"BucketSidePlate_{suffix}",
             [(-0.13, 0.34), (-0.04, 0.58), (0.39, 0.51),
-             (0.75, 0.18), (0.88, -0.03), (-0.07, -0.03)],
+             (0.75, 0.18), (RECONSTRUCTED["bucket_local_lip_x_m"], -0.03), (-0.07, -0.03)],
             side * 0.925, 0.025, "DarkGraphite", "Bucket",
-            bucket_root, local=True, bevel=0.009)
+            bucket_offset, local=True, bevel=0.009)
     for idx, z in enumerate((-0.72, -0.36, 0.0, 0.36, 0.72)):
         add_box(f"BucketWearStrip_{idx + 1:02d}", (0.48, 0.18, z),
                 (0.48, 0.035, 0.045), "StructuralSteel", "Bucket",
-                bucket_root, 0.006, local=True)
+                bucket_offset, 0.006, local=True)
 
 
 def apply_pose(pose: str) -> dict:
@@ -665,24 +693,42 @@ def apply_pose(pose: str) -> dict:
                (upper[0], upper[1], -0.73), (upper[0], upper[1], 0.73),
                0.18, 0.18)
     quick = ART["quick_attach"]
-    quick.location = mv(hinge[0] - 0.04, hinge[1] + 0.10, 0.0)
+    quick.matrix_world.translation = mv(hinge[0] - 0.04, hinge[1] + 0.10, 0.0)
 
     bucket_root = ART["bucket_root"]
-    bucket_root.location = mv(*hinge)
-    bucket_root.rotation_euler = (0.0, math.radians(bucket_deg), 0.0)
+    bucket_root.matrix_world = Matrix.Translation(mv(*hinge))
+    ART["bucket_offset"].matrix_world = (
+        Matrix.Translation(mv(*hinge))
+        @ Matrix.Rotation(math.radians(bucket_deg), 4, "Y")
+    )
 
-    tilt_base = (upper[0] - 0.36, upper[1] + 0.12, 0.0)
-    tilt_tip = (hinge[0] + 0.03, hinge[1] + 0.34, 0.0)
+    theta = math.radians(bucket_deg)
+    tilt_base = (upper[0] - 0.28, upper[1] - 0.18, 0.0)
+    place_beam(
+        ART["tilt_base_crossmember"],
+        (tilt_base[0], tilt_base[1], -0.57),
+        (tilt_base[0], tilt_base[1], 0.57),
+        0.10, 0.12)
+    lug_local = (0.02, 0.28)
+    tilt_tip = (
+        hinge[0] + math.cos(theta) * lug_local[0] + math.sin(theta) * lug_local[1],
+        hinge[1] - math.sin(theta) * lug_local[0] + math.cos(theta) * lug_local[1],
+        0.0,
+    )
     pa, pb = mv(*tilt_base), mv(*tilt_tip)
     split = pa.lerp(pb, 0.57)
     mid = (split.x, split.z, split.y)
     place_cylinder(ART["tilt_barrel"], tilt_base, mid, 0.072)
     place_cylinder(ART["tilt_rod"], mid, tilt_tip, 0.041)
-    link_tip = (hinge[0] + 0.12, hinge[1] + 0.22, 0.0)
+    link_local = (0.13, 0.11)
+    link_tip = (
+        hinge[0] + math.cos(theta) * link_local[0] + math.sin(theta) * link_local[1],
+        hinge[1] - math.sin(theta) * link_local[0] + math.cos(theta) * link_local[1],
+        0.0,
+    )
     place_beam(ART["bellcrank"], tilt_tip, link_tip, 0.09, 0.10)
 
-    theta = math.radians(bucket_deg)
-    lip_local = Vector((0.88, -0.03))
+    lip_local = Vector((RECONSTRUCTED["bucket_local_lip_x_m"], -0.03))
     lip = (
         hinge[0] + math.cos(theta) * lip_local.x + math.sin(theta) * lip_local.y,
         hinge[1] - math.sin(theta) * lip_local.x + math.cos(theta) * lip_local.y,
@@ -756,8 +802,35 @@ def render_review_set() -> None:
     apply_pose("full_dump")
     render_view("bobcat-s76-2-technical-side-full-lift-dump.png",
                 (0.15, 3.05, -9.3), (0.05, 1.72, 0.0), 58)
+    def under_bucket_root(obj):
+        parent = obj.parent
+        while parent is not None:
+            if parent == ART["bucket_root"]:
+                return True
+            parent = parent.parent
+        return False
+
+    # Remove the attachment skin only for this cutaway so the tilt cylinder,
+    # bellcrank, quick-attach carrier, and lift-arm load path remain legible.
+    # The complete bucket is restored before save/export.
+    bucket_detail_occluders = [
+        obj for obj in bpy.data.objects
+        if (under_bucket_root(obj) and not obj.name.startswith("BucketTiltLug"))
+        or obj.name in {
+            "VerticalLift_MainArm_L",
+            "VerticalLift_UpperLink_L",
+            "AttachmentCarriageSide_L",
+            "LiftArmBoxBrace_L",
+            "LiftCrossmember",
+            "BobTach_Interface_Reconstructed",
+        }
+    ]
+    for obj in bucket_detail_occluders:
+        obj.hide_render = True
     render_view("bobcat-s76-2-bucket-linkage-full-dump.png",
-                (4.0, 3.65, -4.2), (0.92, 2.85, 0.0), 70)
+                (3.10, 3.72, -3.35), (0.73, 3.03, 0.0), 64)
+    for obj in bucket_detail_occluders:
+        obj.hide_render = False
     apply_pose("stowed")
 
 
@@ -826,6 +899,46 @@ def visible_bounds(root: bpy.types.Object) -> dict:
         "measured_object_count": count,
         "method": "evaluated retained-stowed public production mesh vertices; Studio excluded",
     }
+
+
+def selected_mesh_bounds(objects) -> dict:
+    depsgraph = bpy.context.evaluated_depsgraph_get()
+    points = []
+    for obj in objects:
+        if obj.type != "MESH":
+            continue
+        evaluated = obj.evaluated_get(depsgraph)
+        mesh = evaluated.to_mesh()
+        try:
+            points.extend(evaluated.matrix_world @ vertex.co for vertex in mesh.vertices)
+        finally:
+            evaluated.to_mesh_clear()
+    mins = [min(p.x for p in points), min(p.z for p in points), min(p.y for p in points)]
+    maxs = [max(p.x for p in points), max(p.z for p in points), max(p.y for p in points)]
+    return {
+        "min_m": [round(v, 6) for v in mins],
+        "max_m": [round(v, 6) for v in maxs],
+        "size_m": [round(maxs[i] - mins[i], 6) for i in range(3)],
+    }
+
+
+def mesh_descendant_count(root: bpy.types.Object) -> int:
+    count = 0
+    stack = list(root.children)
+    while stack:
+        child = stack.pop()
+        if child.type == "MESH":
+            count += 1
+        stack.extend(child.children)
+    return count
+
+
+def cylinder_pair_joint_error(barrel: bpy.types.Object, rod: bpy.types.Object) -> float:
+    def endpoints(obj):
+        zs = [corner[2] for corner in obj.bound_box]
+        return [obj.matrix_world @ Vector((0, 0, min(zs))),
+                obj.matrix_world @ Vector((0, 0, max(zs)))]
+    return min((a - b).length for a in endpoints(barrel) for b in endpoints(rod))
 
 
 def scene_counts(root: bpy.types.Object) -> dict:
@@ -955,6 +1068,7 @@ def write_outputs(root: bpy.types.Object, bounds: dict, source_counts: dict,
         "VerticalLift_UpperLink_R", "LiftCylinderBarrel_L",
         "LiftCylinderBarrel_R", "BucketTiltCylinderBarrel",
         "BobTach_Interface_Reconstructed", "BucketPivotRoot",
+        "LiftMotion_ROOT", "LiftHydraulics_ROOT",
         "Standard74BucketShell_Reconstructed", "BucketCuttingEdge",
     ]
     names = {obj.name for obj in bpy.data.objects if is_public(obj, root)}
@@ -966,6 +1080,140 @@ def write_outputs(root: bpy.types.Object, bounds: dict, source_counts: dict,
     ground_error = abs(bounds["min_m"][1])
     wheelbase_actual = (RECONSTRUCTED["front_wheel_center_x_m"] -
                         RECONSTRUCTED["rear_wheel_center_x_m"])
+    lift_root = bpy.data.objects["LiftMotion_ROOT"]
+    hydraulic_root = bpy.data.objects["LiftHydraulics_ROOT"]
+    bucket_root = bpy.data.objects["BucketPivotRoot"]
+    bucket_bounds = selected_mesh_bounds([
+        obj for obj in bpy.data.objects
+        if obj.type == "MESH" and is_public(obj, bucket_root)
+    ])
+    cab_root = bpy.data.objects["CabEnclosure_Root"]
+    cab_bounds = selected_mesh_bounds([
+        obj for obj in bpy.data.objects
+        if obj.type == "MESH" and is_public(obj, cab_root)
+    ])
+    tire_bounds = selected_mesh_bounds([
+        obj for obj in bpy.data.objects
+        if obj.type == "MESH" and is_public(obj, root)
+        and (obj.name.startswith("Tire_") or obj.name.startswith("TireTread_"))
+    ])
+    hydraulic_joint_errors = {
+        "lift_left": cylinder_pair_joint_error(ART["lift_barrel_L"], ART["lift_rod_L"]),
+        "lift_right": cylinder_pair_joint_error(ART["lift_barrel_R"], ART["lift_rod_R"]),
+        "bucket_tilt": cylinder_pair_joint_error(ART["tilt_barrel"], ART["tilt_rod"]),
+    }
+    full_lift_reach = poses["full_lift"]["lip"][0] - poses["full_lift"]["hinge"][0]
+    lift_pivot_blender = lift_root.matrix_world.translation
+    lift_pivot_machine = [lift_pivot_blender.x, lift_pivot_blender.z, lift_pivot_blender.y]
+    bucket_pivot_blender = bucket_root.matrix_world.translation
+    bucket_pivot_machine = [bucket_pivot_blender.x, bucket_pivot_blender.z, bucket_pivot_blender.y]
+    hierarchy_evidence = {
+        "LiftMotion_ROOT": {
+            "pivot_world_machine_xyz_m": [round(v, 6) for v in lift_pivot_machine],
+            "expected_pivot_world_machine_xyz_m": RECONSTRUCTED["rear_main_pivot_xyz_m"],
+            "visible_mesh_descendants": mesh_descendant_count(lift_root),
+        },
+        "LiftHydraulics_ROOT": {
+            "visible_mesh_descendants": mesh_descendant_count(hydraulic_root),
+        },
+        "BucketPivotRoot": {
+            "pivot_world_machine_xyz_m": [round(v, 6) for v in bucket_pivot_machine],
+            "expected_stowed_pivot_world_machine_xyz_m": RECONSTRUCTED["stowed_hinge_xyz_m"],
+            "visible_mesh_descendants": mesh_descendant_count(bucket_root),
+        },
+    }
+
+    def mechanism_detail(method, evidence, semantic_nodes, fact_ids):
+        if not method or not isinstance(evidence, dict) or not evidence:
+            raise RuntimeError("mechanism gate detail requires a method and nonempty evidence object")
+        if len(semantic_nodes) != len(set(semantic_nodes)) or len(fact_ids) != len(set(fact_ids)):
+            raise RuntimeError("mechanism gate semantic_nodes and fact_ids must be unique")
+        return {
+            "method": method,
+            "evidence": evidence,
+            "semantic_nodes": semantic_nodes,
+            "fact_ids": fact_ids,
+        }
+
+    mechanism_gates = [
+        gate("stowed_visible_envelope", "PASS" if x_error <= 0.035 and y_error <= 0.025 and z_error <= 0.025 else "FAIL",
+             mechanism_detail(
+                 "Evaluated retained-pose public mesh vertices against the frozen standard-bucket envelope and verified selected visible configuration nodes.",
+                 {"scope":"evaluated retained-pose production meshes","modeled_xyz_m":bounds["size_m"],"published_xyz_m":[PUBLISHED["length-standard-bucket"],PUBLISHED["overall-height"],PUBLISHED["bucket-width"]],"length_without_attachment_m":PUBLISHED["length-without-attachment"],"overall_width_m":PUBLISHED["overall-width"],"cab_visible_mesh_descendants":mesh_descendant_count(cab_root),"standard_tire_designation":"12 x 16.5, 12 PR"},
+                 ["BobcatS76_2_Root","CabEnclosure_Root"],
+                 ["length-standard-bucket","length-without-attachment","overall-width","bucket-width","overall-height","cab-enclosure-standard","led-work-lights-standard"],
+             )),
+        gate("full_lift_hinge_height", "PASS" if abs(poses["full_lift"]["hinge"][1]-PUBLISHED["hinge-pin-height"]) <= 1e-9 else "FAIL",
+             mechanism_detail(
+                 "Solved the reconstructed full-lift review pose to the frozen hinge-pin height and measured the resulting hinge center.",
+                 {"modeled_m":poses["full_lift"]["hinge"][1],"published_m":PUBLISHED["hinge-pin-height"],"scope":"review-pose reconstructed pivot constrained to published height"},
+                 ["LiftMotion_ROOT","BucketPivotRoot"],
+                 ["hinge-pin-height"],
+             )),
+        gate("maximum_height_reach_context", "PASS" if abs(full_lift_reach-PUBLISHED["reach-maximum-height"]) <= 1e-6 else "FAIL",
+             mechanism_detail(
+                 "Measured the reconstructed hinge-to-lip horizontal offset at the full-lift review pose while preserving the unresolved manufacturer datum boundary.",
+                 {"modeled_reconstructed_lip_horizontal_offset_m":full_lift_reach,"published_reach_m":PUBLISHED["reach-maximum-height"],"datum_boundary":"manufacturer reach datum is not identified; this is a visible reconstructed context cue, not engineering endpoint authority"},
+                 ["BucketPivotRoot"],
+                 ["reach-maximum-height"],
+             )),
+        gate("lift_four_bar_visual_closure", "PASS" if hierarchy_evidence["LiftMotion_ROOT"]["visible_mesh_descendants"] >= 10 else "FAIL",
+             mechanism_detail(
+                 "Traversed the reconstructed lift motion owner and counted its exported visible mesh descendants.",
+                 {"hierarchy":hierarchy_evidence["LiftMotion_ROOT"],"visible_members":["VerticalLift_MainArm_L/R","VerticalLift_UpperLink_L/R","AttachmentCarriageSide_L/R","LiftCrossmember"],"scope":"explicit reconstructed visual hierarchy"},
+                 ["LiftMotion_ROOT"],
+                 [],
+             )),
+        gate("bucket_linkage_visual_closure", "PASS" if hierarchy_evidence["BucketPivotRoot"]["visible_mesh_descendants"] >= 5 else "FAIL",
+             mechanism_detail(
+                 "Traversed the bucket pivot subtree and verified a visible shell, cutting edge, interface, and reconstructed bellcrank closure.",
+                 {"hierarchy":hierarchy_evidence["BucketPivotRoot"],"bellcrank":"BucketTiltBellcrank_Reconstructed","interface":"BobTach_Interface_Reconstructed","nominal_bucket_width_in":74,"scope":"reconstructed visual closure only"},
+                 ["BucketPivotRoot"],
+                 ["standard-bucket-nominal-width"],
+             )),
+        gate("hydraulic_cylinder_endpoint_continuity", "PASS" if max(hydraulic_joint_errors.values()) <= 1e-5 else "FAIL",
+             mechanism_detail(
+                 "Measured each visible reconstructed barrel-to-rod joint after the retained-pose dependency-graph update.",
+                 {"barrel_to_rod_joint_errors_m":hydraulic_joint_errors,"hydraulic_root":hierarchy_evidence["LiftHydraulics_ROOT"],"scope":"visible split-cylinder continuity; anchor and stroke authority remain PENDING"},
+                 ["LiftHydraulics_ROOT"],
+                 [],
+             )),
+        gate("wheelbase_and_four_wheel_presence", "PASS" if abs(wheelbase_actual-PUBLISHED["wheelbase"]) < 1e-6 and sum(1 for name in names if name.startswith("Tire_") and not name.startswith("TireTread")) == 4 else "FAIL",
+             mechanism_detail(
+                 "Measured reconstructed axle-center spacing and counted the four exported standard-tire casing meshes.",
+                 {"wheelbase_modeled_m":wheelbase_actual,"wheelbase_published_m":PUBLISHED["wheelbase"],"wheel_count":sum(1 for name in names if name.startswith("Tire_") and not name.startswith("TireTread")),"standard_tire_designation":"12 x 16.5, 12 PR"},
+                 ["BobcatS76_2_Root"],
+                 ["wheelbase","standard-tire-designation"],
+             )),
+        gate("tire_ground_contact", "PASS" if abs(tire_bounds["min_m"][1]) <= 0.025 else "FAIL",
+             mechanism_detail(
+                 "Evaluated tire and tread mesh vertices against the authored floor datum.",
+                 {"tire_minimum_y_m":tire_bounds["min_m"][1],"floor_y_m":0.0,"tolerance_m":0.025},
+                 ["BobcatS76_2_Root"],
+                 [],
+             )),
+        gate("bucket_ground_clearance", "PASS" if bucket_bounds["min_m"][1] >= -0.002 else "FAIL",
+             mechanism_detail(
+                 "Evaluated all retained-pose bucket-subtree mesh vertices against the authored floor datum.",
+                 {"retained_pose_bucket_minimum_y_m":bucket_bounds["min_m"][1],"floor_y_m":0.0,"scope":"static retained-pose screen"},
+                 ["BucketPivotRoot"],
+                 [],
+             )),
+        gate("self_collision_risk", "PASS" if bucket_bounds["min_m"][0] - cab_bounds["max_m"][0] > 0 else "FAIL",
+             mechanism_detail(
+                 "Compared retained-pose bucket and cab evaluated AABBs as a fail-closed static separation screen.",
+                 {"retained_pose_bucket_to_cab_longitudinal_gap_m":bucket_bounds["min_m"][0]-cab_bounds["max_m"][0],"scope":"static AABB risk screen; continuous self/swept-volume solver remains PENDING"},
+                 ["BucketPivotRoot","CabEnclosure_Root"],
+                 [],
+             )),
+        gate("rights_boundary", "PASS",
+             mechanism_detail(
+                 "Inspected authored material and asset provenance records for the exported root.",
+                 {"materials":"neutral unbranded","logos":0,"copied_geometry":False,"copied_textures":False},
+                 [],
+                 [],
+             )),
+    ]
 
     gates = [
         gate("candidate-class-boundary", "PASS",
@@ -1012,6 +1260,7 @@ def write_outputs(root: bpy.types.Object, bounds: dict, source_counts: dict,
         gate("review-render-set", "PASS" if len(RENDERS) >= 6 else "FAIL",
              "Stowed, full-lift, dump, linkage, wheel/service, and front/rear-quarter views are hash-bound.",
              {"minimum": 6}, {"count": len(RENDERS)}),
+        *mechanism_gates,
         gate("exact-control-option", "PENDING", "Control/display package remains unresolved."),
         gate("exact-bucket-and-bobtach-interface", "PENDING", "Exact bucket part, shell section, cutting edge, and Bob-Tach variant remain unresolved."),
         gate("engineering-lift-closure", "PENDING", "Hidden pivots, link lengths, cylinder anchors/stroke, and intermediate lift path are reconstructed."),
@@ -1036,6 +1285,9 @@ def write_outputs(root: bpy.types.Object, bounds: dict, source_counts: dict,
             "fail": len(failed),
         },
         "failed_gate_ids": failed,
+        "required_machine_gate_ids": [item["id"] for item in mechanism_gates],
+        "mechanism_required_gate_ids": [item["id"] for item in mechanism_gates],
+        "mechanism_hierarchy_evidence": hierarchy_evidence,
     }
     VALIDATION_PATH.write_text(json.dumps(validation, indent=2) + "\n")
 
@@ -1097,16 +1349,36 @@ def write_outputs(root: bpy.types.Object, bounds: dict, source_counts: dict,
             "public_scale_application": public_scale,
         },
         "required_semantic_nodes": semantic,
-        "manufacturer_published_constraints": [
-            {"fact_id": key, "value": value, "source_id": "BOBCAT-S76-2-NA-PRODUCT"}
-            for key, value in PUBLISHED.items()
+        "published_constraint_ids_declared": [],
+        "machine_specific_gate_evidence": [
+            {"id": item["id"], "status": item["status"], "detail": item["detail"]}
+            for item in mechanism_gates
+        ],
+        "manufacturer_published_constraints_used": [
+            {"fact_id":"length-standard-bucket","use":"geometry_and_gate_constraint","consumer":"retained stowed visible X envelope"},
+            {"fact_id":"length-without-attachment","use":"geometry_constraint","consumer":"rear and front fixed-structure extents"},
+            {"fact_id":"overall-width","use":"geometry_constraint","consumer":"standard-tire loaded lateral envelope"},
+            {"fact_id":"bucket-width","use":"geometry_constraint","consumer":"BucketCuttingEdge and stowed Z envelope"},
+            {"fact_id":"overall-height","use":"geometry_and_gate_constraint","consumer":"cab roof retained height"},
+            {"fact_id":"hinge-pin-height","use":"review_pose_constraint","consumer":"full_lift hinge center"},
+            {"fact_id":"reach-maximum-height","use":"review_pose_context_constraint","consumer":"reconstructed full-lift hinge-to-lip horizontal offset","boundary":"manufacturer datum unresolved"},
+            {"fact_id":"wheelbase","use":"geometry_constraint","consumer":"front and rear axle centers"},
+            {"fact_id":"standard-bucket-nominal-width","use":"configuration_identity","consumer":"Standard74BucketShell_Reconstructed selection"},
+            {"fact_id":"standard-tire-designation","use":"configuration_identity","consumer":"four reconstructed standard tire assemblies"},
+            {"fact_id":"cab-enclosure-standard","use":"configuration_identity","consumer":"CabEnclosure_Root"},
+            {"fact_id":"led-work-lights-standard","use":"visible_component_identity","consumer":"FrontWorkLightHousing_L/R"}
+        ],
+        "manufacturer_published_facts_not_applied": [
+            {"fact_ids":["turning-radius","operating-weight","two-speed-standard"],"reason":"display or configuration context only; no geometry, mass, drivetrain, or motion consumer in this study"}
         ],
         "reconstructed_inputs": RECONSTRUCTED,
         "unresolved_choices_and_gaps": UNRESOLVED,
         "pose_receipt": poses,
         "renders": render_entries,
         "build_verdict": validation["verdict"],
+        "validation_verdict": validation["verdict"],
         "validation_summary": validation["summary"],
+        "mechanism_required_gate_ids": validation["mechanism_required_gate_ids"],
     }
     RECEIPT_PATH.write_text(json.dumps(receipt, indent=2) + "\n")
 

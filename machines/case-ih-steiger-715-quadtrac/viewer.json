@@ -13,22 +13,26 @@
     "poster": "machines/case-ih-steiger-715-quadtrac/review/renders/case-ih-steiger-715-quadtrac-operator-side.png"
   },
   "evidence": {
-    "boundary": "Neutral Steiger 715 Quadtrac HDS structural study. Published worldwide 30-inch-track dimensions constrain the envelope; articulation, suspension, hitch linkage and motion limits remain reconstructed.",
-    "lede": "Official Case IH sources publish the 8.290 x 2.997 x 3.918 m envelope, 715 power, four-track topology, 154-inch wheelbase and seven-inch HDS travel without establishing manufacturer CAD or kinematic authority.",
-    "factIds": ["public-envelope-x", "public-envelope-y", "public-envelope-z", "rated-engine-power", "quadtrac-topology", "hds-total-travel"]
+    "boundary": "Neutral cross-market Steiger 715 Quadtrac technical study. The worldwide 30-inch-track publication constrains the visible envelope, while the North American brochure separately constrains the HDS and Category 4N cues. It is not a dealer-order claim; articulation, suspension, hitch linkage and motion limits remain reconstructed.",
+    "lede": "Official Case IH sources separately establish the 8.290 x 2.997 x 3.918 m worldwide 30-inch-track envelope and the North American 154-inch wheelbase, four-track topology, seven-inch HDS travel and Category 4N reference without establishing CAD, cross-market ordering or kinematic authority.",
+    "factIds": ["public-envelope-x", "public-envelope-y", "public-envelope-z", "selected-track-width", "wheelbase", "quadtrac-topology", "hds-total-travel", "hitch-category"]
   },
   "camera": {"azimuth": 0.64, "elevation": 0.31, "distance": 1.52},
   "accent": "#b46543",
   "motion": {
     "autoplay": true,
-    "durationSeconds": 14,
+    "durationSeconds": 18,
     "mode": "sine",
-    "damping": 6.5,
+    "damping": 8,
     "channels": [
-      {"id":"chassis-articulation","label":"Center articulation - reconstructed","nodes":["Chassis_Yaw_Pivot"],"property":"rotation.y","from":-0.12,"to":0.12,"phase":0.0,"mode":"offset"},
-      {"id":"left-track-oscillation","label":"Left track oscillation - reconstructed","nodes":["Track_FL_ROOT","Track_RL_ROOT"],"property":"rotation.z","from":-0.035,"to":0.035,"phase":0.18,"mode":"offset"},
-      {"id":"right-track-oscillation","label":"Right track oscillation - reconstructed","nodes":["Track_FR_ROOT","Track_RR_ROOT"],"property":"rotation.z","from":-0.035,"to":0.035,"phase":0.68,"direction":-1,"mode":"offset"},
-      {"id":"drawbar-sweep","label":"Drawbar trim - reconstructed","nodes":["Drawbar_Pivot"],"property":"rotation.y","from":-0.08,"to":0.08,"phase":0.5,"mode":"offset"}
+      {"id":"chassis-articulation","label":"Center articulation - reconstructed","mechanismJointId":"chassis_articulation","nodes":["Chassis_Yaw_Pivot"],"property":"rotation.y","from":-0.12,"to":0.12,"phase":0.0,"mode":"offset"},
+      {"id":"front-frame-oscillation","label":"Front-frame oscillation - reconstructed","mechanismJointId":"front_frame_oscillation","nodes":["Front_Frame_Oscillation_Pivot"],"property":"rotation.x","from":-0.0002,"to":0.0002,"phase":0.12,"mode":"offset"},
+      {"id":"left-track-oscillation","label":"Left track oscillation - reconstructed","mechanismJointId":"track_module_oscillation_four","nodes":["Track_FL_ROOT","Track_RL_ROOT"],"property":"rotation.z","from":-0.0005,"to":0.0005,"phase":0.18,"mode":"offset"},
+      {"id":"right-track-oscillation","label":"Right track oscillation - reconstructed","mechanismJointId":"track_module_oscillation_four","nodes":["Track_FR_ROOT","Track_RR_ROOT"],"property":"rotation.z","from":-0.0005,"to":0.0005,"phase":0.68,"direction":-1,"mode":"offset"},
+      {"id":"hds-compression","label":"HDS four-corner travel cue - reconstructed","mechanismJointId":"hds_double_axis_roller_suspension","nodes":["HDS_FL_ROOT","HDS_FR_ROOT","HDS_RL_ROOT","HDS_RR_ROOT"],"property":"position.y","from":0.0,"to":0.018,"phase":0.32,"mode":"offset"},
+      {"id":"belt-drive-cue","label":"Positive-drive wheel phase cue - reconstructed","mechanismJointId":"track_belt_travel","nodes":["Track_FL_Drive_Pivot","Track_FR_Drive_Pivot","Track_RL_Drive_Pivot","Track_RR_Drive_Pivot"],"property":"rotation.z","from":-0.42,"to":0.42,"phase":0.24,"mode":"offset"},
+      {"id":"rear-hitch-lift","label":"Category 4N hitch lift - reconstructed","mechanismJointId":"rear_three_point_hitch","nodes":["Rear_Hitch_Pivot"],"property":"rotation.z","from":-0.06,"to":0.08,"phase":0.44,"mode":"offset"},
+      {"id":"drawbar-sweep","label":"Drawbar trim - reconstructed","mechanismJointId":"drawbar_yaw","nodes":["Drawbar_Pivot"],"property":"rotation.y","from":-0.08,"to":0.08,"phase":0.5,"mode":"offset"}
     ]
   }
 }

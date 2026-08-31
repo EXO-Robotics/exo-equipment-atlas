@@ -26,5 +26,37 @@
     "elevation": 0.33,
     "distance": 1.52
   },
-  "accent": "#d6943d"
+  "accent": "#d6943d",
+  "motion": {
+    "autoplay": true,
+    "durationSeconds": 18,
+    "mode": "sine",
+    "damping": 8,
+    "channels": [
+      {
+        "id": "frame-articulation-inspection",
+        "mechanismJointId": "frame_articulation",
+        "label": "Frame articulation inspection - reconstructed",
+        "nodes": ["Articulation_Pivot"],
+        "property": "rotation.y",
+        "from": -0.16,
+        "to": 0.16,
+        "phase": 0.0,
+        "mode": "offset",
+        "autoplay": "sine"
+      },
+      {
+        "id": "rear-axle-oscillation-inspection",
+        "mechanismJointId": "rear_axle_oscillation",
+        "label": "Rear axle oscillation inspection - reconstructed",
+        "nodes": ["Rear_Axle_Oscillation_Pivot"],
+        "property": "rotation.x",
+        "from": -0.02,
+        "to": 0.02,
+        "phase": 0.36,
+        "mode": "offset",
+        "autoplay": "sine"
+      }
+    ]
+  }
 }

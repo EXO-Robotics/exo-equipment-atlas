@@ -21,14 +21,22 @@
   "accent": "#687d8a",
   "motion": {
     "autoplay": true,
-    "durationSeconds": 20,
+    "durationSeconds": 18,
     "mode": "sine",
-    "damping": 6.2,
+    "damping": 8,
     "channels": [
-      {"id":"header-lift","label":"772 header lift - reconstructed linkage","nodes":["Header_Lift_Pivot"],"property":"rotation.z","from":-0.04,"to":0.14,"phase":0.0,"mode":"offset","autoplay":"ping-pong"},
-      {"id":"feedroll-cue","label":"Four-feedroll crop-flow cue","nodes":["Feedroll_ROOT"],"property":"rotation.z","from":0,"to":6.283185,"phase":0.24,"mode":"offset"},
-      {"id":"spout-yaw","label":"High-arch spout sweep - 210 deg published turn","nodes":["Spout_Yaw_Pivot"],"property":"rotation.y","from":-1.45,"to":1.45,"phase":0.48,"mode":"offset","autoplay":"sine"},
-      {"id":"spout-tip","label":"Outlet flap trim - reconstructed","nodes":["Spout_Tip_Pivot"],"property":"rotation.z","from":-0.18,"to":0.12,"phase":0.74,"mode":"offset","autoplay":"sine"}
+      {"id":"header-lift","mechanismJointId":"header-lift","label":"772 header raise - reconstructed linkage","nodes":["Header_Lift_Pivot"],"property":"rotation.z","from":0,"to":0.14,"phase":0.0,"mode":"offset","autoplay":"ping-pong"},
+      {"id":"left-header-fold","mechanismJointId":"header-fold","label":"772 left outer gatherer fold - reconstructed","nodes":["772_L_Wing_ROOT"],"property":"rotation.x","from":0,"to":1.02,"phase":0.10,"mode":"offset","autoplay":"ping-pong"},
+      {"id":"right-header-fold","mechanismJointId":"header-fold","label":"772 right outer gatherer fold - reconstructed","nodes":["772_R_Wing_ROOT"],"property":"rotation.x","from":0,"to":-1.02,"phase":0.10,"mode":"offset","autoplay":"ping-pong"},
+      {"id":"gatherer-bank-a","mechanismJointId":"header-cutting-and-gathering","label":"772 first counter-rotating gatherer bank","nodes":["772_Center_Gatherer_01_ROOT","772_L_Gatherer_01_ROOT","772_R_Gatherer_01_ROOT","772_Center_Cutting_Rotor_01_ROOT","772_L_Cutting_Rotor_01_ROOT","772_R_Cutting_Rotor_01_ROOT"],"property":"rotation.y","from":0,"to":6.283185,"phase":0.16,"mode":"offset"},
+      {"id":"gatherer-bank-b","mechanismJointId":"header-cutting-and-gathering","label":"772 second counter-rotating gatherer bank","nodes":["772_Center_Gatherer_02_ROOT","772_L_Gatherer_02_ROOT","772_R_Gatherer_02_ROOT","772_Center_Cutting_Rotor_02_ROOT","772_L_Cutting_Rotor_02_ROOT","772_R_Cutting_Rotor_02_ROOT"],"property":"rotation.y","from":0,"to":-6.283185,"phase":0.16,"mode":"offset"},
+      {"id":"upper-feedrolls","mechanismJointId":"feedrolls","label":"Two upper feedrolls","nodes":["Feedroll_Upper_Front_ROOT","Feedroll_Upper_Rear_ROOT"],"property":"rotation.z","from":0,"to":6.283185,"phase":0.24,"mode":"offset"},
+      {"id":"lower-feedrolls","mechanismJointId":"feedrolls","label":"Two lower feedrolls counter cue","nodes":["Feedroll_Lower_Front_ROOT","Feedroll_Lower_Rear_ROOT"],"property":"rotation.z","from":0,"to":-6.283185,"phase":0.24,"mode":"offset"},
+      {"id":"dura-drum","mechanismJointId":"dura-drum-cutterhead","label":"40-station Dura-Drum cutaway cue","nodes":["Dura_Drum_Cutterhead_ROOT"],"property":"rotation.z","from":0,"to":6.283185,"phase":0.36,"mode":"offset"},
+      {"id":"crop-accelerator","mechanismJointId":"crop-accelerator","label":"Crop accelerator cutaway cue","nodes":["Crop_Accelerator_ROOT"],"property":"rotation.z","from":0,"to":-6.283185,"phase":0.42,"mode":"offset"},
+      {"id":"spout-yaw","mechanismJointId":"high-arch-spout-yaw","label":"High-arch spout sweep - 210 deg published turn","nodes":["Spout_Yaw_Pivot"],"property":"rotation.y","from":-1.8325957146,"to":1.8325957146,"phase":0.55,"mode":"offset","autoplay":"sine"},
+      {"id":"spout-tip","mechanismJointId":"spout-outlet-flap","label":"Outlet flap trim - reconstructed","nodes":["Spout_Tip_Pivot"],"property":"rotation.z","from":-0.18,"to":0.12,"phase":0.72,"mode":"offset","autoplay":"sine"},
+      {"id":"rear-steering","mechanismJointId":"rear-steering","label":"Paired rear-steering cue - reconstructed","nodes":["Rear_Steering_L_Pivot","Rear_Steering_R_Pivot"],"property":"rotation.y","from":-0.18,"to":0.18,"phase":0.86,"mode":"offset","autoplay":"sine"}
     ]
   }
 }

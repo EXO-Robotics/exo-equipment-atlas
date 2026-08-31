@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "machine_id": "john-deere-8r-410",
-  "configuration_id": "JD-8R410-MY2024-NA-JD9-E23-ILS-CAT4N3-CANDIDATE",
+  "configuration_id": "JD-8R410-MY2024-NA-POWERTECH9L-E23-ILS-CAT4N3-CANDIDATE",
   "coordinate_system": {
     "longitudinal": "+X forward",
     "vertical": "+Y",
@@ -9,13 +9,22 @@
   },
   "joints": [
     {
-      "id": "ils_front_axle_oscillation",
-      "type": "independent_link_suspension_visible_articulation",
+      "id": "ils_left_suspension_visual",
+      "type": "independent_link_suspension_left_visible_articulation",
       "axis": "+X",
       "authority": "reconstructed",
       "published_constraints": {"axle_clearance_m": 0.59, "wheelbase_m": 3.05},
       "source_ids": ["JD-8-SERIES-TRACTOR-2024"],
-      "unresolved": ["upper and lower arm pivots", "cylinder anchors and stroke", "wheel travel, damping and stops", "coupling between axle roll, independent wheel travel and steering"]
+      "unresolved": ["upper and lower arm pivots", "cylinder anchors and stroke", "wheel travel, damping and stops", "coupling between independent wheel travel and steering"]
+    },
+    {
+      "id": "ils_right_suspension_visual",
+      "type": "independent_link_suspension_right_visible_articulation",
+      "axis": "+X",
+      "authority": "reconstructed",
+      "published_constraints": {"axle_clearance_m": 0.59, "wheelbase_m": 3.05},
+      "source_ids": ["JD-8-SERIES-TRACTOR-2024"],
+      "unresolved": ["upper and lower arm pivots", "cylinder anchors and stroke", "wheel travel, damping and stops", "coupling between independent wheel travel and steering"]
     },
     {
       "id": "front_left_steering",
@@ -47,18 +56,19 @@
       "type": "continuous_rotation",
       "axis": "+X",
       "authority": "reconstructed",
+      "published_constraints": {"shaft_diameter_mm": 44.45, "spline_count": 20, "speed_rpm": 1000},
       "source_ids": ["JD-8-SERIES-TRACTOR-2024"],
       "unresolved": ["shaft spline and guard geometry", "exact axis location", "speed state, driveline connection and load behavior"]
     }
   ],
   "motion_constraints": [
-    "ILS roll is a slow visual articulation and must not imply a validated suspension solver or travel envelope.",
+    "Left and right ILS roots are slow, separately phased visual articulations and must not imply a validated suspension solver or travel envelope.",
     "Left and right steering remain synchronized presentation channels; no Ackermann, tyre scrub or terrain solver is claimed.",
     "Rear hitch motion must remain clear of the static drawbar and PTO guard in all autoplay poses.",
     "Autoplay must phase suspension, steering, hitch and PTO demonstrations so extreme poses do not occur together."
   ],
   "required_gates": [
-    "published_length_envelope",
+    "reconstructed_cross_market_length_reference",
     "configuration_specific_width_unresolved",
     "configuration_specific_height_unresolved",
     "wheelbase_and_ground_clearance",
@@ -70,5 +80,5 @@
     "self_collision",
     "neutral_unbranded_material_review"
   ],
-  "release_state": "no_geometry_no_solver_no_claim"
+  "release_state": "technical_structural_study_built_solver_unverified"
 }

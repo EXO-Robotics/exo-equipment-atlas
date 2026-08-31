@@ -71,17 +71,14 @@
     }
   ],
   "required_gates": [
-    "published_transport_envelope",
-    "published_operating_width",
-    "boom_arm_identity",
+    "decoded_public_transport_envelope",
+    "decoded_public_pivot_world_positions",
+    "viewer_motion_nodes_resolve",
+    "static_bucket_linkage_components_present",
     "published_roller_and_shoe_counts",
-    "cylinder_anchor_continuity",
-    "bucket_linkage_closure",
-    "upper_to_undercarriage_clearance",
-    "ground_collision",
-    "self_collision",
-    "track_phase_continuity",
-    "identity_root_and_applied_scales"
+    "identity_root_and_applied_scales",
+    "source_design_contract_binding"
   ],
-  "release_state": "no_geometry_no_solver_no_claim"
+  "static_only_limits": ["boom, arm and bucket articulation", "hydraulic cylinder length solve", "variable-gauge travel", "track phase and rolling", "ground and self collision"],
+  "release_state": "technical_structural_study_built_solver_unverified"
 }

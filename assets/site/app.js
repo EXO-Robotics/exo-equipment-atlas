@@ -20,6 +20,13 @@ const MOTION_PROPERTIES = new Set([
   "position.y",
   "position.z"
 ]);
+const AUTHORITY_LABELS = Object.freeze({
+  manufacturer_published: "Manufacturer published",
+  evidence_derived: "Evidence derived",
+  reconstructed: "Reconstructed",
+  observed: "Observed",
+  unresolved: "Unresolved"
+});
 
 const dom = {
   scene: document.querySelector("#scene"),
@@ -172,7 +179,8 @@ function formatNumber(value) {
 function valueWithUnit(fact) {
   if (!fact) return "Pending";
   const units = { m: "m", deg: "°", count: "" };
-  return `${fact.value}${units[fact.unit] ?? ` ${fact.unit}`}`;
+  const authority = AUTHORITY_LABELS[fact.authority] ?? "Authority unclassified";
+  return `${fact.value}${units[fact.unit] ?? ` ${fact.unit}`} · ${authority}`;
 }
 
 function isSafePublicPath(value) {
@@ -255,6 +263,7 @@ function normalizeMotion(value) {
     channels.push({
       id: channel.id,
       label: channel.label,
+      mechanismJointId: channel.mechanismJointId,
       nodes,
       property: channel.property,
       from: channel.from,

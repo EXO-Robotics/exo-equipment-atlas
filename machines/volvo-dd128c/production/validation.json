@@ -7,7 +7,24 @@
   "verdict": "PASS",
   "verdict_scope": "technical_structural_study_only",
   "higher_stage_gates": "PENDING",
+  "required_machine_gate_ids": [
+    "published_straight_envelope",
+    "drum_width_and_diameter",
+    "drum_center_distance",
+    "spray_bar_and_nozzle_counts",
+    "scraper_count",
+    "articulation_endpoint",
+    "oscillation_endpoint",
+    "steering_cylinder_visual_continuity",
+    "articulation_clearance",
+    "oscillation_clearance",
+    "drum_ground_contact",
+    "self_collision",
+    "eccentric_phase_continuity",
+    "public_glb_contract"
+  ],
   "failed_gates": [],
+  "failed_gate_ids": [],
   "evaluated_visible_bounds_m": {
     "axis_order": [
       "machine_X_longitudinal",
@@ -16,7 +33,7 @@
     ],
     "min_m": [
       -2.9865,
-      -0.0,
+      0.0,
       -1.109
     ],
     "max_m": [
@@ -38,9 +55,13 @@
       "status": "PASS",
       "detail": "Required structural-study hierarchy exists.",
       "expected": [
-        "VOLVODD128C_Root",
+        "Machine_Root",
         "ArticulationSteer_Root_Reconstructed",
         "FrontOscillation_Root_Reconstructed",
+        "FrontDrum_Rotation_ROOT",
+        "RearDrum_Rotation_ROOT",
+        "FrontEccentric_Rotation_ROOT",
+        "RearEccentric_Rotation_ROOT",
         "FrontDrum_Shell_2000mm",
         "RearDrum_Shell_2000mm",
         "FrontDrum_Hub_L",
@@ -54,8 +75,8 @@
         "SteeringCylinder_Rod_L_Reconstructed",
         "SteeringCylinder_Barrel_R_Reconstructed",
         "SteeringCylinder_Rod_R_Reconstructed",
-        "FrontWaterTank_640L_Reconstructed",
-        "RearWaterTank_640L_Reconstructed",
+        "FrontWaterTank_Exterior_Reconstructed",
+        "RearWaterTank_Exterior_Reconstructed",
         "FrontSprayBar_01",
         "FrontSprayBar_02",
         "RearSprayBar_01",
@@ -187,18 +208,18 @@
         "steer_deg": 40.0,
         "oscillation_deg": 0,
         "steering_visual_lengths_m": {
-          "L": 1.54479,
-          "R": 1.19321
+          "L": 1.1694,
+          "R": 0.63629
         },
         "front_anchors_xyz_m": {
           "L": [
             0.6183884739875793,
-            0.11999999731779099,
+            1.1649999618530273,
             0.009780704975128174
           ],
           "R": [
             0.11701416969299316,
-            0.11999999731779099,
+            1.1649999618530273,
             0.6072953343391418
           ]
         }
@@ -215,18 +236,18 @@
         "steer_deg": 0,
         "oscillation_deg": 10.0,
         "steering_visual_lengths_m": {
-          "L": 1.44473,
-          "R": 1.34672
+          "L": 0.96074,
+          "R": 0.96566
         },
         "front_anchors_xyz_m": {
           "L": [
             0.47999998927116394,
-            0.05045413225889206,
+            1.0954540967941284,
             -0.4049127697944641
           ],
           "R": [
             0.47999998927116394,
-            0.18589970469474792,
+            1.230899691581726,
             0.363237202167511
           ]
         }
@@ -241,12 +262,12 @@
       },
       "actual": {
         "straight": {
-          "L": 1.39345,
-          "R": 1.39345
+          "L": 0.96064,
+          "R": 0.96064
         },
         "articulated": {
-          "L": 1.54479,
-          "R": 1.19321
+          "L": 1.1694,
+          "R": 0.63629
         }
       }
     },
@@ -258,7 +279,7 @@
         "minimum": 12000,
         "maximum": 140000
       },
-      "actual": 61772
+      "actual": 61780
     },
     {
       "id": "render-non-emptiness",
@@ -271,49 +292,49 @@
       },
       "actual": {
         "review/renders/dd128c-straight-technical-side.png": {
-          "bytes": 623713,
+          "bytes": 641047,
           "sampled_luminance_min": 0.0,
           "sampled_luminance_max": 0.999166,
           "sampled_luminance_range": 0.999166
         },
         "review/renders/dd128c-straight-front-quarter.png": {
-          "bytes": 669175,
+          "bytes": 670482,
           "sampled_luminance_min": 0.003088,
-          "sampled_luminance_max": 0.970882,
-          "sampled_luminance_range": 0.967794
+          "sampled_luminance_max": 0.967459,
+          "sampled_luminance_range": 0.964371
         },
         "review/renders/dd128c-rear-quarter.png": {
-          "bytes": 671360,
-          "sampled_luminance_min": 0.003088,
-          "sampled_luminance_max": 0.988786,
-          "sampled_luminance_range": 0.985698
+          "bytes": 688433,
+          "sampled_luminance_min": 0.0,
+          "sampled_luminance_max": 0.988518,
+          "sampled_luminance_range": 0.988518
         },
         "review/renders/dd128c-drum-water-spray-detail.png": {
-          "bytes": 554421,
+          "bytes": 565918,
           "sampled_luminance_min": 0.0,
           "sampled_luminance_max": 0.999717,
           "sampled_luminance_range": 0.999717
         },
         "review/renders/dd128c-drum-hub-scraper-detail.png": {
-          "bytes": 792927,
-          "sampled_luminance_min": 0.003638,
-          "sampled_luminance_max": 0.86081,
-          "sampled_luminance_range": 0.857172
+          "bytes": 944658,
+          "sampled_luminance_min": 0.0,
+          "sampled_luminance_max": 0.868937,
+          "sampled_luminance_range": 0.868937
         },
         "review/renders/dd128c-operator-station.png": {
-          "bytes": 750623,
+          "bytes": 750531,
           "sampled_luminance_min": 0.003088,
           "sampled_luminance_max": 0.962504,
           "sampled_luminance_range": 0.959416
         },
         "review/renders/dd128c-articulated-steer-study.png": {
-          "bytes": 652865,
+          "bytes": 666681,
           "sampled_luminance_min": 0.003088,
-          "sampled_luminance_max": 1.0,
-          "sampled_luminance_range": 0.996912
+          "sampled_luminance_max": 0.9863,
+          "sampled_luminance_range": 0.983213
         },
         "review/renders/dd128c-oscillation-study.png": {
-          "bytes": 789651,
+          "bytes": 742435,
           "sampled_luminance_min": 0.0,
           "sampled_luminance_max": 0.999717,
           "sampled_luminance_range": 0.999717
@@ -382,6 +403,339 @@
       "detail": "Only the overall critic/publisher may advance or deploy this research candidate."
     },
     {
+      "id": "published_straight_envelope",
+      "status": "PASS",
+      "detail": {
+        "method": "Measure the retained public visible world-space AABB in machine-axis order and compare all three axes with brochure dimensions A, C, and E.",
+        "evidence": {
+          "measured_size_m": [
+            5.973,
+            3.177,
+            2.218
+          ],
+          "published_size_m": [
+            5.973,
+            3.177,
+            2.218
+          ],
+          "absolute_tolerance_m": 0.025
+        },
+        "semantic_nodes": [
+          "Machine_Root",
+          "FrontBumper_Extent",
+          "RearBumper_Extent",
+          "ROPS_Canopy_TopExtent",
+          "FrontDrumGuard_L",
+          "FrontDrumGuard_R"
+        ],
+        "fact_ids": [
+          "overall-length",
+          "overall-height",
+          "overall-width"
+        ]
+      }
+    },
+    {
+      "id": "drum_width_and_diameter",
+      "status": "PASS",
+      "detail": {
+        "method": "Inspect the authored annular-tube mesh parameters for both drums and compare outer diameter, axial width, inner radius, and material thickness with the brochure.",
+        "evidence": {
+          "front": {
+            "outer_diameter_m": 1.4,
+            "width_m": 2.0,
+            "inner_radius_m": 0.68,
+            "wall_thickness_m": 0.02
+          },
+          "rear": {
+            "outer_diameter_m": 1.4,
+            "width_m": 2.0,
+            "inner_radius_m": 0.68,
+            "wall_thickness_m": 0.02
+          },
+          "construction": "closed annular tube; not a capped solid cylinder"
+        },
+        "semantic_nodes": [
+          "FrontDrum_Shell_2000mm",
+          "RearDrum_Shell_2000mm"
+        ],
+        "fact_ids": [
+          "drum-width",
+          "drum-diameter",
+          "drum-shell-thickness"
+        ]
+      }
+    },
+    {
+      "id": "drum_center_distance",
+      "status": "PASS",
+      "detail": {
+        "method": "Subtract the explicitly authored front and rear drum rotation-root X coordinates.",
+        "evidence": {
+          "front_center_x_m": 1.775,
+          "rear_center_x_m": -1.775,
+          "measured_center_distance_m": 3.55
+        },
+        "semantic_nodes": [
+          "FrontDrum_Rotation_ROOT",
+          "RearDrum_Rotation_ROOT"
+        ],
+        "fact_ids": [
+          "drum-center-distance"
+        ]
+      }
+    },
+    {
+      "id": "spray_bar_and_nozzle_counts",
+      "status": "PASS",
+      "detail": {
+        "method": "Count named public spray-bar, nozzle-body, and visible tip meshes, and inspect the exterior-tank volume boundary metadata.",
+        "evidence": {
+          "spray_bars": 4,
+          "nozzle_bodies": 40,
+          "visible_tips": 40,
+          "published_combined_capacity_l": 1280,
+          "modeled_exterior_gross_volume_l": {
+            "front": 1560.813,
+            "rear": 1675.788
+          },
+          "internal_split_or_capacity_claimed": false
+        },
+        "semantic_nodes": [
+          "FrontWaterTank_Exterior_Reconstructed",
+          "RearWaterTank_Exterior_Reconstructed",
+          "FrontSprayBar_01",
+          "FrontSprayNozzle_01_01",
+          "RearSprayBar_02",
+          "RearSprayNozzle_02_10"
+        ],
+        "fact_ids": [
+          "water-capacity",
+          "spray-bars-per-drum",
+          "nozzles-per-spray-bar"
+        ]
+      }
+    },
+    {
+      "id": "scraper_count",
+      "status": "PASS",
+      "detail": {
+        "method": "Count the public front and rear wiper blades at both drums.",
+        "evidence": {
+          "measured_wiper_count": 4,
+          "expected_count": 4,
+          "nodes": [
+            "FrontDrumWiper_Front",
+            "FrontDrumWiper_Rear",
+            "RearDrumWiper_Front",
+            "RearDrumWiper_Rear"
+          ]
+        },
+        "semantic_nodes": [
+          "FrontDrumWiper_Front",
+          "FrontDrumWiper_Rear",
+          "RearDrumWiper_Front",
+          "RearDrumWiper_Rear"
+        ],
+        "fact_ids": [
+          "drum-wipers"
+        ]
+      }
+    },
+    {
+      "id": "articulation_endpoint",
+      "status": "PASS",
+      "detail": {
+        "method": "Rotate the reconstructed vertical articulation root to the brochure endpoint and measure finite world bounds and paired steering-cylinder endpoint closure.",
+        "evidence": {
+          "endpoint_deg": 40.0,
+          "endpoint_bounds_m": [
+            5.841811,
+            3.177,
+            3.756151
+          ],
+          "steering_visual_lengths_m": {
+            "L": 1.1694,
+            "R": 0.63629
+          },
+          "authority_boundary": "Endpoint reachability only; not a swept-volume or steering-force qualification."
+        },
+        "semantic_nodes": [
+          "ArticulationSteer_Root_Reconstructed",
+          "FrontOscillation_Root_Reconstructed",
+          "SteeringCylinder_Barrel_L_Reconstructed",
+          "SteeringCylinder_Rod_L_Reconstructed",
+          "SteeringCylinder_Barrel_R_Reconstructed",
+          "SteeringCylinder_Rod_R_Reconstructed"
+        ],
+        "fact_ids": [
+          "articulation-limit"
+        ]
+      }
+    },
+    {
+      "id": "oscillation_endpoint",
+      "status": "PASS",
+      "detail": {
+        "method": "Rotate the nested front-frame oscillation root about machine +X to the published endpoint and record the transformed public envelope.",
+        "evidence": {
+          "endpoint_deg": 10.0,
+          "endpoint_bounds_m": [
+            5.973,
+            3.334772,
+            2.369848
+          ],
+          "flat_grade_boundary": "The full suspension endpoint represents terrain conformity and is not a flat-grade viewer pose."
+        },
+        "semantic_nodes": [
+          "FrontOscillation_Root_Reconstructed",
+          "FrontFrame_YokeCore",
+          "FrontDrum_Rotation_ROOT"
+        ],
+        "fact_ids": [
+          "oscillation-limit"
+        ]
+      }
+    },
+    {
+      "id": "steering_cylinder_visual_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "Recompute both reconstructed barrel/rod spans from fixed rear anchors to transformed front anchors at neutral and full steering poses.",
+        "evidence": {
+          "straight_lengths_m": {
+            "L": 0.96064,
+            "R": 0.96064
+          },
+          "endpoint_lengths_m": {
+            "L": 1.1694,
+            "R": 0.63629
+          },
+          "minimum_accepted_m": 0.2
+        },
+        "semantic_nodes": [
+          "SteeringCylinder_Barrel_L_Reconstructed",
+          "SteeringCylinder_Rod_L_Reconstructed",
+          "SteeringCylinder_Barrel_R_Reconstructed",
+          "SteeringCylinder_Rod_R_Reconstructed"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "articulation_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "Measure the transformed public minimum Y at the full vertical-axis articulation endpoint; yaw must preserve both drum ground planes.",
+        "evidence": {
+          "endpoint_minimum_y_m": 0.0,
+          "tolerance_m": -0.001,
+          "joint_center_xyz_m": [
+            0.0,
+            1.045,
+            0.0
+          ]
+        },
+        "semantic_nodes": [
+          "ArticulationSteer_Root_Reconstructed",
+          "ArticulationBearing_Reconstructed",
+          "FrontDrum_Shell_2000mm",
+          "RearDrum_Shell_2000mm"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "oscillation_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "Sample the exact bounded viewer oscillation channel together with every other Auto channel across the common 18-second cycle.",
+        "evidence": {
+          "duration_seconds": 18,
+          "sample_count": 37,
+          "minimum_public_y_m": -0.017616,
+          "allowed_minimum_y_m": -0.03,
+          "boundary": "Discrete exact-viewer-channel sample; not terrain response, continuous collision detection, compaction physics, or an operator limit."
+        },
+        "semantic_nodes": [
+          "FrontOscillation_Root_Reconstructed",
+          "FrontDrum_Shell_2000mm",
+          "RearDrum_Shell_2000mm"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "drum_ground_contact",
+      "status": "PASS",
+      "detail": {
+        "method": "Measure the neutral public AABB against the zero grade plane and verify both 0.700 m-radius drum centers are authored at Y=0.700 m.",
+        "evidence": {
+          "neutral_public_minimum_y_m": 0.0,
+          "front_center_y_m": 0.7,
+          "rear_center_y_m": 0.7,
+          "outer_radius_m": 0.7
+        },
+        "semantic_nodes": [
+          "FrontDrum_Shell_2000mm",
+          "RearDrum_Shell_2000mm"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "self_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "Measure drum-envelope separation and confirm distinct front/rear frame ownership; this is a major-volume topology check, not continuous contact mechanics.",
+        "evidence": {
+          "drum_center_distance_m": 3.55,
+          "combined_drum_radius_m": 1.4,
+          "drum_surface_gap_m": 2.15,
+          "front_parent": "FrontOscillation_Root_Reconstructed",
+          "rear_parent": "Machine_Root"
+        },
+        "semantic_nodes": [
+          "FrontFrame_YokeCore",
+          "RearFrame_YokeCore",
+          "FrontDrum_Shell_2000mm",
+          "RearDrum_Shell_2000mm"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "eccentric_phase_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "Verify separate visible eccentric roots inside both drum-rotation roots and bind opposed viewer phases to the corresponding documented joints.",
+        "evidence": {
+          "front_weight_count": 2,
+          "rear_weight_count": 2,
+          "viewer_target_rad": {
+            "front": [
+              -0.8,
+              0.8
+            ],
+            "rear": [
+              0.8,
+              -0.8
+            ]
+          },
+          "authority_boundary": "Visible counter-rotation cue only; mass, amplitude, bearings, and vibration forces are unresolved."
+        },
+        "semantic_nodes": [
+          "FrontEccentric_Rotation_ROOT",
+          "FrontEccentricShaft_Reconstructed",
+          "RearEccentric_Rotation_ROOT",
+          "RearEccentricShaft_Reconstructed"
+        ],
+        "fact_ids": [
+          "auto-reversing-eccentrics"
+        ]
+      }
+    },
+    {
       "id": "public-source-export-scales-applied",
       "status": "PASS",
       "detail": "Every public mesh/curve source object has applied scale without envelope drift.",
@@ -441,22 +795,22 @@
           "SteeringCylinder_Barrel_L_Reconstructed": [
             0.075,
             0.075,
-            0.4041001
+            0.278585
           ],
           "SteeringCylinder_Barrel_R_Reconstructed": [
             0.075,
             0.075,
-            0.4041001
+            0.278585
           ],
           "SteeringCylinder_Rod_L_Reconstructed": [
             0.042,
             0.042,
-            0.2926243
+            0.201734
           ],
           "SteeringCylinder_Rod_R_Reconstructed": [
             0.042,
             0.042,
-            0.2926243
+            0.201734
           ],
           "FrontGuardInnerArm_L": [
             0.4530452,
@@ -508,7 +862,7 @@
           ],
           "min_m": [
             -2.9865,
-            -0.0,
+            0.0,
             -1.109
           ],
           "max_m": [
@@ -532,7 +886,7 @@
           ],
           "min_m": [
             -2.9865,
-            -0.0,
+            0.0,
             -1.109
           ],
           "max_m": [
@@ -586,12 +940,12 @@
       },
       "actual": {
         "classification": "public_glb_decoded_geometry",
-        "nodes": 328,
+        "nodes": 332,
         "mesh_nodes": 325,
         "mesh_resources": 325,
         "primitives": 325,
-        "position_vertices": 118052,
-        "triangles": 62024,
+        "position_vertices": 117540,
+        "triangles": 62032,
         "triangle_method": "decoded glTF accessor element counts"
       }
     },
@@ -600,7 +954,7 @@
       "status": "PASS",
       "detail": "Y-up GLB has one identity root and no reference, collision, inspection, studio, camera, or light helpers.",
       "expected": {
-        "root_name": "VOLVODD128C_Root",
+        "root_name": "Machine_Root",
         "root_identity_trs": true,
         "helper_nodes_present": []
       },
@@ -609,10 +963,10 @@
         "asset_version": "2.0",
         "scene_direct_root_count": 1,
         "scene_direct_root_names": [
-          "VOLVODD128C_Root"
+          "Machine_Root"
         ],
         "root_identity_trs": true,
-        "node_count": 328,
+        "node_count": 332,
         "helper_nodes_present": [],
         "public_mesh_node_scale_status": "PASS",
         "public_mesh_node_count": 325,
@@ -621,14 +975,43 @@
         "glb_y_up": true,
         "public_glb_decoded_counts": {
           "classification": "public_glb_decoded_geometry",
-          "nodes": 328,
+          "nodes": 332,
           "mesh_nodes": 325,
           "mesh_resources": 325,
           "primitives": 325,
-          "position_vertices": 118052,
-          "triangles": 62024,
+          "position_vertices": 117540,
+          "triangles": 62032,
           "triangle_method": "decoded glTF accessor element counts"
         }
+      }
+    },
+    {
+      "id": "public_glb_contract",
+      "status": "PASS",
+      "detail": {
+        "method": "Decode the shipped GLB JSON and accessor contract; require one identity Machine_Root, Y-up meters, no helper nodes, supported primitives, and identity public mesh scales.",
+        "evidence": {
+          "scene_direct_root_names": [
+            "Machine_Root"
+          ],
+          "root_identity_trs": true,
+          "helper_nodes_present": [],
+          "public_mesh_node_scale_status": "PASS",
+          "decoded_counts": {
+            "classification": "public_glb_decoded_geometry",
+            "nodes": 332,
+            "mesh_nodes": 325,
+            "mesh_resources": 325,
+            "primitives": 325,
+            "position_vertices": 117540,
+            "triangles": 62032,
+            "triangle_method": "decoded glTF accessor element counts"
+          }
+        },
+        "semantic_nodes": [
+          "Machine_Root"
+        ],
+        "fact_ids": []
       }
     }
   ]

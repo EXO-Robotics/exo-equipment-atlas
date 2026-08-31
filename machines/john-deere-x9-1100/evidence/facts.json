@@ -9,6 +9,7 @@
     {"id": "peak-engine-power", "subject": "peak engine power", "value": 515, "unit": "kW", "authority": "manufacturer_published", "source_id": "JD-X-SERIES-COMBINES-2024", "location": "PDF page 22, X9 1100 column"},
     {"id": "engine-displacement", "subject": "JD14 engine displacement", "value": 13.6, "unit": "L", "authority": "manufacturer_published", "source_id": "JD-X-SERIES-COMBINES-2024", "location": "PDF page 22, engine specifications"},
     {"id": "feederhouse-width", "subject": "feederhouse width", "value": 1.72, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-X-SERIES-COMBINES-2024", "location": "PDF page 22, feeding width"},
+    {"id": "feeder-chain-count", "subject": "feederhouse conveyor chains", "value": 4, "unit": "count", "authority": "manufacturer_published", "source_id": "JD-X-SERIES-COMBINES-2024", "location": "PDF page 22, feederhouse specifications"},
     {"id": "rotor-count", "subject": "separator rotor count", "value": 2, "unit": "count", "authority": "manufacturer_published", "source_id": "JD-X-SERIES-COMBINES-2024", "location": "PDF page 4 and page 22, dual rotor"},
     {"id": "rotor-length", "subject": "each rotor length", "value": 3.5, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-X-SERIES-COMBINES-2024", "location": "PDF page 22, threshing/separating"},
     {"id": "rotor-diameter", "subject": "each rotor diameter", "value": 0.6, "unit": "m", "authority": "manufacturer_published", "source_id": "JD-X-SERIES-COMBINES-2024", "location": "PDF page 22, threshing/separating"},

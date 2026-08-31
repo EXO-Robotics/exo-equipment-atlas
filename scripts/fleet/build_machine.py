@@ -33,7 +33,12 @@ if str(SCRIPT_PATH.parent) not in sys.path:
 from design_contract import DesignContractError, load_design  # noqa: E402
 
 
-MINIMUMS = {"nodes": 200, "mesh_nodes": 180, "triangles": 10_000, "renders": 5}
+# Complexity metrics are integrity floors, never fidelity scores.  Earlier
+# revisions padded generic archetypes to 190 meshes with cosmetic fasteners;
+# that made an intentionally low-detail reskin look "complete".  Machine
+# specificity and component coverage are now separate fail-closed gates, while
+# these deliberately modest floors catch only empty or broken exports.
+MINIMUMS = {"nodes": 80, "mesh_nodes": 60, "triangles": 5_000, "renders": 6}
 ROOT_NAME = "Machine_Root"
 AUTHORITY_BOUNDARY = (
     "Independently authored neutral technical structural study. Not manufacturer CAD, "
@@ -436,56 +441,13 @@ class FleetBuilder:
         return cab
 
     def add_service_detail_density(self):
-        # Real visible panel fasteners, vents, and tread cues raise structural readability.
-        current_meshes = sum(obj.type == "MESH" and self.is_public(obj) for obj in bpy.context.scene.objects)
-        needed = max(0, 190 - current_meshes)
-        if needed == 0:
-            return
-        radius = max(0.009, min(self.length, self.width, self.height) * 0.0042)
-        depth = radius * 0.72
-        candidates = [
-            obj for obj in bpy.context.scene.objects
-            if obj.type == "MESH" and self.is_public(obj) and obj.get("exo_role") in {
-                "engine_house", "separator_house", "processor_house", "power_module",
-                "bale_chamber", "round_bale_chamber", "upper_house", "grain_tank",
-                "solution_tank", "dump_bed", "chassis",
-            }
-        ]
-        if not candidates:
-            candidates = [obj for obj in bpy.context.scene.objects if obj.type == "MESH" and self.is_public(obj)]
-        bpy.context.view_layer.update()
-        def world_bounds(obj):
-            points = [obj.matrix_world @ Vector(corner) for corner in obj.bound_box]
-            return (
-                [min(point[axis] for point in points) for axis in range(3)],
-                [max(point[axis] for point in points) for axis in range(3)],
-            )
-        target = max(
-            candidates,
-            key=lambda obj: math.prod(
-                max(1e-6, world_bounds(obj)[1][axis] - world_bounds(obj)[0][axis])
-                for axis in range(3)
-            ),
-        )
-        target_min, target_max = world_bounds(target)
-        columns = 14
-        rows = math.ceil(needed / columns)
-        x_low = target_min[0] + (target_max[0] - target_min[0]) * 0.10
-        x_high = target_max[0] - (target_max[0] - target_min[0]) * 0.10
-        y_low = target_min[1] + (target_max[1] - target_min[1]) * 0.16
-        y_high = target_max[1] - (target_max[1] - target_min[1]) * 0.16
-        for index in range(needed):
-            column = index % columns
-            row = index // columns
-            x = x_low + (x_high - x_low) * (column + 0.5) / columns
-            y = y_low if rows == 1 else y_low + (y_high - y_low) * row / max(1, rows - 1)
-            side = -1 if index % 2 == 0 else 1
-            z = target_min[2] - depth / 2 if side < 0 else target_max[2] + depth / 2
-            self.cylinder(
-                f"Service_Fastener_{index + 1:03d}", (x, y, z), radius, depth,
-                self.materials["steel"], self.detail_root, vertices=16,
-                role="visible_service_fastener",
-            )
+        """Do not synthesize detail merely to satisfy a mesh-count threshold.
+
+        Machine-local builders may author evidence-supported fasteners, guards,
+        treads, hoses, and service structure where those parts improve technical
+        readability.  The shared generator deliberately contributes no padding.
+        """
+        return
 
     def build_common_roots(self):
         self.root = self.empty(ROOT_NAME, role="identity_root")
@@ -850,13 +812,14 @@ class FleetBuilder:
         bpy.ops.object.select_all(action="DESELECT")
 
     def normalize_visible_envelope(self):
-        """Bake the design envelope into vertices while preserving identity transforms.
+        """Measure the authored envelope without deforming the machine to fit it.
 
-        This is an explicit reconstructed calibration step, not an engineering claim.
-        It keeps semantic pivots and hierarchy intact, applies all visible modifiers,
-        and leaves every public mesh node at unit scale.
+        Non-uniform post-build normalization previously made unrelated archetypes
+        match published outer dimensions while corrupting wheel roundness, joint
+        centers, and component measurements.  A machine-local builder must now
+        author its geometry in metres.  The retained method name keeps older
+        subclasses source-compatible, but this operation is verification-only.
         """
-
         self.apply_public_modifiers()
         bpy.context.view_layer.update()
         source = self.mesh_world_bounds()
@@ -865,46 +828,8 @@ class FleetBuilder:
         target_size = [self.length, self.height, self.width]
         if any(value <= 1e-9 for value in source["size_m"]):
             raise RuntimeError(f"degenerate source envelope: {source}")
-        scales = [target_size[index] / source["size_m"][index] for index in range(3)]
-
-        def transform_point(point):
-            return Vector(tuple(
-                target_min[axis] + (point[axis] - source["min_m"][axis]) * scales[axis]
-                for axis in range(3)
-            ))
-
-        public = sorted(self.public_objects(), key=lambda item: (self.hierarchy_depth(item), item.name))
-        original_world = {obj: obj.matrix_world.copy() for obj in public}
-        target_world = {self.root: Matrix.Identity(4)}
-        for obj in public:
-            if obj == self.root:
-                continue
-            original = original_world[obj]
-            target_world[obj] = Matrix.LocRotScale(
-                transform_point(original.translation), original.to_quaternion().normalized(), (1, 1, 1)
-            )
-
-        for obj in public:
-            if obj.type != "MESH":
-                continue
-            if obj.data.users > 1:
-                obj.data = obj.data.copy()
-            source_matrix = original_world[obj]
-            inverse_target = target_world[obj].inverted()
-            original_vertices = [vertex.co.copy() for vertex in obj.data.vertices]
-            for vertex, coordinate in zip(obj.data.vertices, original_vertices):
-                vertex.co = inverse_target @ transform_point(source_matrix @ coordinate)
-            obj.data.update()
-
-        self.root.matrix_world = Matrix.Identity(4)
-        for obj in public:
-            if obj == self.root:
-                continue
-            obj.matrix_world = target_world[obj]
-        bpy.context.view_layer.update()
-        calibrated = self.mesh_world_bounds()
         return {
-            "classification": "reconstructed_visible_envelope_calibration",
+            "classification": "authored_visible_envelope_measurement",
             "source_bounds_m": {
                 "min_m": [round(value, 6) for value in source["min_m"]],
                 "max_m": [round(value, 6) for value in source["max_m"]],
@@ -913,13 +838,13 @@ class FleetBuilder:
             "target_bounds_m": {
                 "min_m": target_min, "max_m": target_max, "size_m": target_size,
             },
-            "axis_scale_factors": [round(value, 9) for value in scales],
+            "axis_scale_factors": [1.0, 1.0, 1.0],
             "calibrated_bounds_m": {
-                "min_m": [round(value, 6) for value in calibrated["min_m"]],
-                "max_m": [round(value, 6) for value in calibrated["max_m"]],
-                "size_m": [round(value, 6) for value in calibrated["size_m"]],
+                "min_m": [round(value, 6) for value in source["min_m"]],
+                "max_m": [round(value, 6) for value in source["max_m"]],
+                "size_m": [round(value, 6) for value in source["size_m"]],
             },
-            "authority": "reconstructed_not_machine_specific_engineering",
+            "authority": "independently_measured_from_authored_geometry",
         }
 
     def required_semantics(self):
@@ -933,6 +858,51 @@ class FleetBuilder:
         if self.archetype == "articulated_hauler" and self.design.get("tailgate", True):
             names.extend(["Tailgate_Pivot", "Tailgate_ROOT"])
         return names
+
+    def semantic_support(self, names):
+        """Measure whether each semantic owns exported visible geometry."""
+        support = {}
+        for name in names:
+            obj = bpy.data.objects.get(name)
+            descendants = [] if obj is None else list(obj.children_recursive)
+            visible_descendants = [
+                child.name for child in descendants
+                if child.type == "MESH" and self.is_public(child)
+            ]
+            if obj is not None and obj.type == "MESH" and self.is_public(obj):
+                visible_descendants.insert(0, obj.name)
+            support[name] = {
+                "present": obj is not None,
+                "role": obj.get("exo_role") if obj is not None else None,
+                "visible_mesh_descendants": visible_descendants,
+            }
+        return support
+
+    def mechanism_required_gates(self):
+        """Load the machine contract whose gate IDs must be represented exactly."""
+        path = self.output_dir / "mechanism.json"
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as error:
+            raise RuntimeError(f"cannot load mechanism gate contract {path}: {error}") from error
+        if payload.get("machine_id") != self.machine_id or payload.get("configuration_id") != self.configuration_id:
+            raise RuntimeError("mechanism gate contract identity does not match the design")
+        required = payload.get("required_gates")
+        if not isinstance(required, list) or not required or any(not isinstance(item, str) or not item for item in required):
+            raise RuntimeError("mechanism.required_gates must be a nonempty string array")
+        if len(required) != len(set(required)):
+            raise RuntimeError("mechanism.required_gates contains duplicate IDs")
+        return required
+
+    def machine_specific_validation_gates(self, contract):
+        """Return independently measured gate records supplied by a local subclass.
+
+        Base archetypes intentionally provide no machine-specific proof.  A local
+        builder may override this hook and return records whose IDs exactly match
+        mechanism.required_gates.  Unimplemented required gates remain explicit
+        PENDING records instead of disappearing from validation.
+        """
+        return []
 
     def is_public(self, obj) -> bool:
         current = obj
@@ -1114,15 +1084,27 @@ runpy.run_path(str(SHARED_GENERATOR), run_name="__main__")
 
     def create_validation(self,contract,render_paths,scale_audit):
         render_records=[{"path":str(path),"bytes":path.stat().st_size} for path in render_paths]
-        required=[ROOT_NAME,"Fixed_Structure_ROOT","Running_Gear_ROOT","Hydraulics_ROOT","Service_Detail_ROOT",*self.required_semantics()]
-        presence={name:name in contract["node_names"] for name in required}
+        required=[ROOT_NAME,"Fixed_Structure_ROOT","Running_Gear_ROOT","Hydraulics_ROOT",*self.required_semantics()]
+        semantic_support = self.semantic_support(required)
+        presence={name:record["present"] for name,record in semantic_support.items()}
+        supported_semantics = {
+            name: bool(record["visible_mesh_descendants"]) or record["role"] in {"datum_marker", "joint_marker", "identity_marker"}
+            for name, record in semantic_support.items()
+        }
         technical=[
             ("builder-execution",True,"Factory-startup background builder reached validation generation."),
+            (
+                "machine-specific-builder",
+                type(self) is not FleetBuilder,
+                "Machine-local subclass owns the selected machine topology."
+                if type(self) is not FleetBuilder
+                else "Direct shared-archetype output cannot qualify as a machine-specific technical build.",
+            ),
             ("candidate-class-boundary",True,"technical_structural_study only; not engineering authority."),
             ("scene-units-and-axes",True,"Meters; +X forward, +Y up, +Z machine right."),
             ("independent-authoring-boundary",True,"No downloaded geometry, CAD, copied textures, logos, or opaque add-ons."),
             ("one-identity-root",contract["scene_root_count"]==1 and contract["root_name"]==ROOT_NAME and contract["identity_root"],contract["root_record"]),
-            ("required-semantic-nodes",all(presence.values()),presence),
+            ("required-semantic-nodes",all(presence.values()) and all(supported_semantics.values()),semantic_support),
             ("semantic-motion-hierarchy",contract["semantic_motion_nodes"]>=len(self.required_semantics()),{"semantic_motion_nodes":contract["semantic_motion_nodes"]}),
             ("export-mesh-scales-applied",not scale_audit["residual"] and not contract["nonidentity_mesh_scales"],{"authoring_residual":scale_audit["residual"],"glb_residual":contract["nonidentity_mesh_scales"]}),
             ("public-glb-no-cameras-lights",contract["cameras"]==0 and not contract["punctual_lights"],{"cameras":contract["cameras"],"punctual_lights":contract["punctual_lights"]}),
@@ -1137,6 +1119,54 @@ runpy.run_path(str(SHARED_GENERATOR), run_name="__main__")
             ("neutral-unbranded-materials",True,"Neutral palette and procedural materials only; no manufacturer marks or textures."),
         ]
         gates=[{"id":gate_id,"status":"PASS" if ok else "FAIL","detail":detail} for gate_id,ok,detail in technical]
+        supplied = self.machine_specific_validation_gates(contract)
+        if not isinstance(supplied, list):
+            raise RuntimeError("machine_specific_validation_gates must return a list")
+        supplied_by_id = {}
+        for gate in supplied:
+            if not isinstance(gate, dict) or not isinstance(gate.get("id"), str):
+                raise RuntimeError("machine-specific gate records require an id")
+            if gate["id"] in supplied_by_id:
+                raise RuntimeError(f"duplicate machine-specific gate id {gate['id']}")
+            if gate.get("status") not in {"PASS", "FAIL", "PENDING"}:
+                raise RuntimeError(f"invalid machine-specific gate status for {gate['id']}")
+            detail = gate.get("detail")
+            if (
+                not isinstance(detail, dict)
+                or not isinstance(detail.get("method"), str)
+                or not detail["method"].strip()
+                or "evidence" not in detail
+                or not isinstance(detail.get("semantic_nodes"), list)
+                or not isinstance(detail.get("fact_ids"), list)
+                or any(not isinstance(name, str) or not name for name in detail["semantic_nodes"])
+                or any(not isinstance(fact_id, str) or not fact_id for fact_id in detail["fact_ids"])
+                or len(detail["semantic_nodes"]) != len(set(detail["semantic_nodes"]))
+                or len(detail["fact_ids"]) != len(set(detail["fact_ids"]))
+            ):
+                raise RuntimeError(
+                    f"machine-specific gate {gate['id']} requires detail.method, detail.evidence, "
+                    "and unique detail.semantic_nodes/detail.fact_ids arrays"
+                )
+            supplied_by_id[gate["id"]] = gate
+        required_gate_ids = self.mechanism_required_gates()
+        unexpected = sorted(set(supplied_by_id) - set(required_gate_ids))
+        if unexpected:
+            raise RuntimeError(f"machine-specific gates are not declared by mechanism.json: {', '.join(unexpected)}")
+        covered_fact_ids = {
+            fact_id for gate in supplied for fact_id in gate["detail"]["fact_ids"]
+        }
+        uncovered_constraints = sorted(set(self.design["published_constraints_used"]) - covered_fact_ids)
+        if uncovered_constraints:
+            raise RuntimeError(
+                "published_constraints_used lacks machine-gate evidence binding: "
+                + ", ".join(uncovered_constraints)
+            )
+        for gate_id in required_gate_ids:
+            gates.append(supplied_by_id.get(gate_id, {
+                "id": gate_id,
+                "status": "FAIL",
+                "detail": "Required by mechanism.json; no independently measured machine-local proof was supplied.",
+            }))
         gates.extend([
             {"id":"configuration-freeze","status":"PENDING","detail":"Research candidate retains unresolved exact configuration and options."},
             {"id":"machine-specific-mechanical-solver","status":"PENDING","detail":"Generic structural pivots do not establish evidence-bound limits, endpoints, or cylinder closure."},
@@ -1145,7 +1175,8 @@ runpy.run_path(str(SHARED_GENERATOR), run_name="__main__")
             {"id":"viewer-browser-accessibility-mobile-selection-performance","status":"PENDING","detail":"Viewer integration belongs to the publication lane."},
             {"id":"publication-and-deployment","status":"PENDING","detail":"Only the publisher may advance this research artifact to release."},
         ])
-        failed=[gate["id"] for gate in gates if gate["status"]=="FAIL"]
+        required_nonpass = [gate_id for gate_id in required_gate_ids if supplied_by_id.get(gate_id, {}).get("status") != "PASS"]
+        failed=sorted(set([gate["id"] for gate in gates if gate["status"]=="FAIL"] + required_nonpass))
         return {
             "schema_version":"1.0.0","machine_id":self.machine_id,"configuration_id":self.configuration_id,
             "archetype":self.archetype,"candidate_class":"technical_structural_study",
@@ -1154,11 +1185,13 @@ runpy.run_path(str(SHARED_GENERATOR), run_name="__main__")
             "bounds":contract["bounds"],"counts":{"objects":contract["nodes"],"meshes":contract["mesh_nodes"],"triangles":contract["triangles"],"materials":contract["materials"]},
             "envelope_fit":self.envelope_fit,
             "glb_contract":{key:value for key,value in contract.items() if key!="node_names"},
+            "required_machine_gate_ids":required_gate_ids,
             "gates":gates,"failed_gate_ids":failed,
         }
 
     def create_receipt(self,contract,render_paths,validation):
-        required=[ROOT_NAME,"Fixed_Structure_ROOT","Running_Gear_ROOT","Hydraulics_ROOT","Service_Detail_ROOT",*self.required_semantics()]
+        required=[ROOT_NAME,"Fixed_Structure_ROOT","Running_Gear_ROOT","Hydraulics_ROOT",*self.required_semantics()]
+        semantic_support = self.semantic_support(required)
         reconstructed=dict(self.design["reconstructed_values"])
         reconstructed.setdefault("hidden_geometry",HIDDEN_GEOMETRY_BOUNDARY)
         reconstructed.setdefault("generic_archetype_geometry",f"{self.archetype} proportions and visible detail are independently reconstructed for this technical study.")
@@ -1181,7 +1214,15 @@ runpy.run_path(str(SHARED_GENERATOR), run_name="__main__")
             "scene":{"units":"meters","axes":{"longitudinal":"+X forward","vertical":"+Y up","lateral":"+Z machine right"},"bounds":contract["bounds"],"visible_aabb_xyz_m":contract["bounds"]["size_m"],"objects":contract["nodes"],"meshes":contract["mesh_nodes"],"triangles":contract["triangles"],"materials":contract["materials"]},
             "glb_contract":{key:value for key,value in contract.items() if key!="node_names"},
             "required_semantic_nodes":{name:name in contract["node_names"] for name in required},
-            "manufacturer_published_constraints_used":self.design["published_constraints_used"],
+            "semantic_node_roles":{
+                name: record["role"] for name, record in semantic_support.items()
+                if not record["visible_mesh_descendants"] and record["role"] in {"datum_marker", "joint_marker", "identity_marker"}
+            },
+            "published_constraint_ids_declared":self.design["published_constraints_used"],
+            "machine_specific_gate_evidence":[
+                {"id": gate["id"], "status": gate["status"], "detail": gate["detail"]}
+                for gate in validation["gates"] if gate["id"] in validation["required_machine_gate_ids"]
+            ],
             "reconstructed_values":reconstructed,
             "unresolved_choices":self.design["unresolved_choices"],
             "mechanical_gaps":self.design["mechanical_gaps"],

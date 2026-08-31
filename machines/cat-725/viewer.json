@@ -26,5 +26,49 @@
     "elevation": 0.31,
     "distance": 1.55
   },
-  "accent": "#c9873b"
+  "accent": "#c9873b",
+  "motion": {
+    "autoplay": true,
+    "durationSeconds": 18,
+    "mode": "sine",
+    "damping": 8,
+    "channels": [
+      {
+        "id": "frame-articulation-inspection",
+        "mechanismJointId": "center_articulation_steer",
+        "label": "Frame articulation inspection - reconstructed",
+        "nodes": ["Rear_Articulation_Pivot"],
+        "property": "rotation.y",
+        "from": -0.18,
+        "to": 0.18,
+        "phase": 0.0,
+        "mode": "offset",
+        "autoplay": "sine"
+      },
+      {
+        "id": "front-axle-oscillation-inspection",
+        "mechanismJointId": "front_axle_oscillation",
+        "label": "Front axle oscillation inspection - reconstructed",
+        "nodes": ["Front_Axle_Oscillation_Pivot"],
+        "property": "rotation.x",
+        "from": -0.01,
+        "to": 0.01,
+        "phase": 0.3,
+        "mode": "offset",
+        "autoplay": "sine"
+      },
+      {
+        "id": "dump-body-inspection",
+        "mechanismJointId": "dump_body_hoist",
+        "label": "Dump body inspection motion - reconstructed",
+        "nodes": ["Dump_Body_Hinge"],
+        "property": "rotation.z",
+        "from": 0.0,
+        "to": 0.34,
+        "phase": 0.58,
+        "mode": "offset",
+        "autoplay": "sine"
+      }
+    ]
+  }
 }

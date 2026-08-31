@@ -9,18 +9,18 @@
       "type": "articulated_frame_yaw",
       "axis": "+Y",
       "authority": "reconstructed",
-      "published_constraints": {"maximum_articulation_deg": 36},
+      "cross_market_reference": {"market": "Australia and New Zealand", "maximum_articulation_deg": 36, "applicable_to_selected_na_configuration": false},
       "source_ids": ["JD-9-SERIES-AUNZ-2023"],
-      "unresolved": ["gudgeon center and bearing geometry", "steering cylinders, anchors and stroke", "hard stops and hose routing", "relationship between published total angle and per-side limit"]
+      "unresolved": ["selected North American articulation limit", "gudgeon center and bearing geometry", "steering cylinders, anchors and stroke", "hard stops and hose routing", "relationship between the cross-market total angle and any per-side limit"]
     },
     {
       "id": "center_chassis_oscillation",
       "type": "articulated_frame_roll",
       "axis": "+X",
       "authority": "reconstructed",
-      "published_constraints": {"oscillation_deg": 15},
+      "cross_market_reference": {"market": "Australia and New Zealand", "oscillation_deg": 15, "applicable_to_selected_na_configuration": false},
       "source_ids": ["JD-9-SERIES-AUNZ-2023"],
-      "unresolved": ["roll-pivot center", "front/rear frame transform ownership", "angle convention, damping and mechanical stops"]
+      "unresolved": ["selected North American chassis-oscillation limit", "roll-pivot center", "front/rear frame transform ownership", "cross-market angle convention, damping and mechanical stops"]
     },
     {
       "id": "four_track_propulsion",
@@ -35,9 +35,9 @@
       "type": "independent_track_pod_pitch",
       "axis": "+Z",
       "authority": "reconstructed",
-      "published_constraints": {"oscillation_deg": [-10, 10]},
+      "cross_market_reference": {"market": "Australia and New Zealand", "oscillation_deg": [-10, 10], "applicable_to_selected_na_configuration": false},
       "source_ids": ["JD-9-SERIES-AUNZ-2023"],
-      "unresolved": ["each pod pivot center", "travel convention and stops", "frame coupling, damping and belt clearance"]
+      "unresolved": ["selected North American undercarriage-oscillation limit", "each pod pivot center", "cross-market travel convention and stops", "frame coupling, damping and belt clearance"]
     },
     {
       "id": "category_five_drawbar",
@@ -55,5 +55,5 @@
     "No PTO or rear three-point linkage may appear in this less-PTO, less-hitch configuration."
   ],
   "required_gates": ["published_length_envelope", "overall_width_unresolved", "overall_height_unresolved", "four_track_identity", "track_spacing_and_belt_width", "articulation_continuity", "frame_oscillation_continuity", "independent_track_pod_continuity", "less_pto_less_hitch_configuration", "ground_collision", "self_collision", "neutral_unbranded_material_review"],
-  "release_state": "no_geometry_no_solver_no_claim"
+  "release_state": "technical_structural_study_built_solver_unverified"
 }

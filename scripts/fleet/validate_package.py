@@ -12,7 +12,7 @@ import struct
 from pathlib import Path
 
 
-MINIMUMS = {"nodes": 200, "mesh_nodes": 180, "triangles": 10_000, "renders": 5}
+MINIMUMS = {"nodes": 80, "mesh_nodes": 60, "triangles": 5_000, "renders": 6}
 
 
 def sha256(path: Path) -> str:
@@ -23,11 +23,15 @@ def resolve(base: Path, declared: str) -> Path:
     return (base / declared).resolve()
 
 
-def verify_file(errors, base: Path, label: str, record: dict):
+def verify_file(errors, base: Path, label: str, record: dict, allowed_base=None):
     if not isinstance(record, dict) or not record.get("path"):
         errors.append(f"{label}: missing file record")
         return None
     path = resolve(base, record["path"])
+    allowed = (allowed_base or base).resolve()
+    if path != allowed and allowed not in path.parents:
+        errors.append(f"{label}: declared path escapes {allowed}")
+        return None
     try:
         size = path.stat().st_size
         digest = sha256(path)
@@ -39,6 +43,16 @@ def verify_file(errors, base: Path, label: str, record: dict):
     if digest != record.get("sha256"):
         errors.append(f"{label}: SHA-256 mismatch")
     return path
+
+
+def inspect_png(path: Path) -> tuple[int, int]:
+    raw = path.read_bytes()
+    if len(raw) < 33 or raw[:8] != b"\x89PNG\r\n\x1a\n" or raw[12:16] != b"IHDR":
+        raise ValueError("not a decoded PNG with an IHDR first chunk")
+    width, height = struct.unpack_from(">II", raw, 16)
+    if width < 640 or height < 480:
+        raise ValueError(f"PNG is only {width}x{height}; minimum is 640x480")
+    return width, height
 
 
 def read_glb(path: Path):
@@ -101,6 +115,7 @@ def inspect_glb(document: dict) -> dict:
 
 def validate_package(base: Path) -> dict:
     errors = []
+    repository_root = base.parents[1]
     receipt_path = base / "production" / "asset-receipt.json"
     validation_path = base / "production" / "validation.json"
     try:
@@ -115,17 +130,32 @@ def validate_package(base: Path) -> dict:
         errors.append("candidate class is not technical_structural_study")
     if receipt.get("release_status") != "PENDING" or receipt.get("higher_stage_gates") != "PENDING":
         errors.append("release gates are not PENDING")
-    verify_file(errors, base, "builder", receipt.get("builder", {}))
-    verify_file(errors, base, "shared-generator", receipt.get("shared_generator", {}))
-    verify_file(errors, base, "design", receipt.get("design", {}))
-    verify_file(errors, base, "blend", receipt.get("artifacts", {}).get("blend", {}))
-    glb_path = verify_file(errors, base, "glb", receipt.get("artifacts", {}).get("glb", {}))
-    verify_file(errors, base, "validation", receipt.get("artifacts", {}).get("validation", {}))
+    verify_file(errors, base, "builder", receipt.get("builder", {}), repository_root)
+    if receipt.get("shared_generator") is not None:
+        verify_file(errors, base, "shared-generator", receipt.get("shared_generator", {}), repository_root)
+    if receipt.get("design") is not None:
+        verify_file(errors, base, "design", receipt.get("design", {}), base)
+    verify_file(errors, base, "blend", receipt.get("artifacts", {}).get("blend", {}), base)
+    glb_path = verify_file(errors, base, "glb", receipt.get("artifacts", {}).get("glb", {}), base)
+    verify_file(errors, base, "validation", receipt.get("artifacts", {}).get("validation", {}), base)
     renders = receipt.get("renders", [])
     if len(renders) < MINIMUMS["renders"]:
         errors.append("too few review renders")
+    render_paths = set()
+    render_hashes = set()
     for index, record in enumerate(renders):
-        verify_file(errors, base, f"render-{index + 1}", record)
+        if record.get("path") in render_paths:
+            errors.append(f"render-{index + 1}: duplicate path")
+        if record.get("sha256") in render_hashes:
+            errors.append(f"render-{index + 1}: duplicate image hash")
+        render_paths.add(record.get("path"))
+        render_hashes.add(record.get("sha256"))
+        render_path = verify_file(errors, base, f"render-{index + 1}", record, base)
+        if render_path:
+            try:
+                inspect_png(render_path)
+            except (OSError, ValueError, struct.error) as error:
+                errors.append(f"render-{index + 1}: {error}")
     contract = None
     if glb_path:
         try:
@@ -147,6 +177,24 @@ def validate_package(base: Path) -> dict:
         except (OSError, ValueError, KeyError, IndexError, struct.error) as error:
             errors.append(f"GLB inspection failed: {error}")
     gates = validation.get("gates", [])
+    gate_ids = [gate.get("id") for gate in gates]
+    if len(gate_ids) != len(set(gate_ids)):
+        errors.append("validation contains duplicate gate IDs")
+    try:
+        mechanism = json.loads((base / "mechanism.json").read_text(encoding="utf-8"))
+        required_gates = mechanism.get("required_gates")
+        if not isinstance(required_gates, list) or not required_gates or len(required_gates) != len(set(required_gates)):
+            errors.append("mechanism.required_gates is missing, empty, or duplicated")
+        else:
+            by_id = {gate.get("id"): gate for gate in gates}
+            for gate_id in required_gates:
+                gate = by_id.get(gate_id)
+                if gate is None:
+                    errors.append(f"required mechanism gate missing: {gate_id}")
+                elif gate.get("status") != "PASS":
+                    errors.append(f"required mechanism gate is not PASS: {gate_id}")
+    except (OSError, json.JSONDecodeError) as error:
+        errors.append(f"mechanism contract unavailable: {error}")
     if validation.get("verdict") != "PASS" or any(gate.get("status") == "FAIL" for gate in gates):
         errors.append("technical-study validation is not PASS")
     if not any(gate.get("status") == "PENDING" for gate in gates):

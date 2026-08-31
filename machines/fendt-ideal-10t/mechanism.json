@@ -20,6 +20,7 @@
     {
       "id": "left_trakride_belt",
       "type": "looped_visual",
+      "axis": "+Z",
       "authority": "reconstructed",
       "source_ids": ["FENDT-IDEAL-2301-TECHNICAL", "FENDT-IDEAL-MY2023-INNOVATIONS"],
       "unresolved": ["belt pitch and thickness", "drive-wheel phase", "roller coordinates", "tension geometry", "ground-conforming deformation"]
@@ -27,6 +28,7 @@
     {
       "id": "right_trakride_belt",
       "type": "looped_visual",
+      "axis": "+Z",
       "authority": "reconstructed",
       "source_ids": ["FENDT-IDEAL-2301-TECHNICAL", "FENDT-IDEAL-MY2023-INNOVATIONS"],
       "unresolved": ["belt pitch and thickness", "drive-wheel phase", "roller coordinates", "tension geometry", "ground-conforming deformation"]
@@ -36,10 +38,9 @@
       "type": "revolute_with_paired_cylinder_visual",
       "axis": "+Z",
       "authority": "reconstructed",
-      "published_constraints": {
-        "maximum_header_ground_clearance_m": 1.27,
-        "lift_capacity_t": 6.5,
-        "lift_cylinder_diameter_mm": 92
+      "reconstructed_visual_targets": {
+        "raised_cutterbar_minimum_y_m": 1.27,
+        "paired_cylinder_visual_diameter_mm": 92
       },
       "source_ids": ["FENDT-IDEAL-INT-PRODUCT"],
       "unresolved": ["pivot coordinates", "cylinder anchors and stroke", "header datum", "transport angle", "clearance and collision envelope", "load-dependent response"]
@@ -49,7 +50,7 @@
       "type": "revolute",
       "axis": "+X",
       "authority": "reconstructed",
-      "published_range_deg": [-8, 8],
+      "reconstructed_presentation_range_deg": [-8, 8],
       "source_ids": ["FENDT-IDEAL-INT-PRODUCT"],
       "unresolved": ["roll pivot", "compensation-cylinder anchors", "coupling to lift pose", "table-clearance limits", "control response"]
     },
@@ -58,16 +59,13 @@
       "type": "continuous_rotation_visual",
       "axis": "+Z",
       "authority": "reconstructed",
-      "published_constraints": {
-        "drive": "hydraulic",
-        "automatic_speed_adjustment": true
-      },
       "source_ids": ["FENDT-IDEAL-2301-TECHNICAL", "FENDT-IDEAL-INT-PRODUCT"],
       "unresolved": ["reel diameter", "bat and tine population", "phase", "rotation direction", "speed law", "fore-aft and height adjustment geometry"]
     },
     {
       "id": "powerflow_belts",
       "type": "looped_linear_visual",
+      "axis": "+X",
       "authority": "reconstructed",
       "source_ids": ["FENDT-IDEAL-INT-PRODUCT"],
       "unresolved": ["belt count", "belt pitch", "path and tension", "cleat geometry", "speed ratio to reel and intake auger"]
@@ -85,10 +83,9 @@
       "type": "revolute",
       "axis": "+Y",
       "authority": "reconstructed",
-      "published_constraints": {
-        "selected_tube": "8.4 m M folding",
-        "maximum_unloading_height_m": 4.95,
-        "streamer_rate_l_s": 210
+      "reconstructed_visual_targets": {
+        "folded_centerline_m": 8.4,
+        "deployed_spout_height_m": 4.95
       },
       "source_ids": ["FENDT-IDEAL-2301-TECHNICAL", "FENDT-IDEAL-GRAIN-DISCHARGE"],
       "unresolved": ["turret coordinates", "stowed and deployed angles", "support geometry", "driveline joints", "tube diameter and flighting", "collision envelope"]
@@ -96,6 +93,7 @@
     {
       "id": "unloading_auger_fold",
       "type": "revolute",
+      "axis": "+Z",
       "authority": "reconstructed",
       "source_ids": ["FENDT-IDEAL-2301-TECHNICAL"],
       "unresolved": ["fold hinge axis", "fold sequence", "actuator geometry", "driveline continuity", "stowed latch", "clearance envelope"]
@@ -103,6 +101,7 @@
     {
       "id": "unloading_spout_flap",
       "type": "revolute",
+      "axis": "+Z",
       "authority": "reconstructed",
       "source_ids": ["FENDT-IDEAL-GRAIN-DISCHARGE"],
       "unresolved": ["hinge axis", "hydraulic-cylinder geometry", "opening angle", "coupling to unload state"]
@@ -112,7 +111,7 @@
       "type": "continuous_internal_visual",
       "axis": "+X",
       "authority": "reconstructed",
-      "published_range_rpm": [280, 1160],
+      "reference_only_speed_transcription_rpm": [280, 1160],
       "source_ids": ["FENDT-IDEAL-2301-TECHNICAL", "FENDT-IDEAL-INT-PRODUCT"],
       "unresolved": ["rotation direction", "relative phase", "shaft center", "rasp-bar and tine geometry", "crop-dependent speed"]
     },
@@ -121,7 +120,7 @@
       "type": "continuous_internal_visual",
       "axis": "+X",
       "authority": "reconstructed",
-      "published_range_rpm": [280, 1160],
+      "reference_only_speed_transcription_rpm": [280, 1160],
       "source_ids": ["FENDT-IDEAL-2301-TECHNICAL", "FENDT-IDEAL-INT-PRODUCT"],
       "unresolved": ["rotation direction", "relative phase", "shaft center", "rasp-bar and tine geometry", "crop-dependent speed"]
     },
@@ -130,7 +129,7 @@
       "type": "continuous_internal_visual",
       "axis": "+Z",
       "authority": "reconstructed",
-      "published_range_rpm": [200, 828],
+      "reference_only_speed_transcription_rpm": [200, 828],
       "source_ids": ["FENDT-IDEAL-2301-TECHNICAL", "FENDT-IDEAL-INT-PRODUCT"],
       "unresolved": ["rotation direction", "phase", "shaft center", "flight geometry", "speed control relationship"]
     },
@@ -153,6 +152,7 @@
     {
       "id": "swingflow_guide_vanes",
       "type": "oscillating_distribution_visual",
+      "axis": "+Z",
       "authority": "reconstructed",
       "source_ids": ["FENDT-IDEAL-2301-TECHNICAL", "FENDT-IDEAL-INT-PRODUCT"],
       "unresolved": ["vane count and pivot axes", "oscillation range", "phase relationship", "wind and crop compensation logic"]
@@ -162,9 +162,8 @@
       "type": "continuous_reversible_visual",
       "axis": "+Y",
       "authority": "reconstructed",
-      "published_constraints": {
-        "fan_diameter_mm": 950,
-        "reverses_by_temperature_and_time": true
+      "reconstructed_visual_targets": {
+        "fan_diameter_mm": 950
       },
       "source_ids": ["FENDT-IDEAL-2301-TECHNICAL", "FENDT-IDEAL-INT-PRODUCT"],
       "unresolved": ["fan center and blade geometry", "normal and reverse speed", "reversal timing", "temperature control logic"]
@@ -172,6 +171,7 @@
     {
       "id": "powerfold_entry_ladder",
       "type": "revolute",
+      "axis": "+Z",
       "authority": "reconstructed",
       "source_ids": ["FENDT-IDEAL-2301-TECHNICAL"],
       "unresolved": ["hinge axis", "stowed and deployed angles", "actuator geometry", "interlocks and clearance"]
@@ -198,5 +198,5 @@
     "carrier_self_collision",
     "neutral_material_and_branding_review"
   ],
-  "release_state": "no_geometry_no_solver_no_claim"
+  "release_state": "technical_structural_study_built_solver_unverified"
 }

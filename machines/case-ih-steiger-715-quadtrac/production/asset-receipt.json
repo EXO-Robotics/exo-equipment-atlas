@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "machine_id": "case-ih-steiger-715-quadtrac",
-  "configuration_id": "CASEIH-STEIGER715-NAM-AG-QUADTRAC-PWRDRIVE-HDS-CAT4N-CANDIDATE",
+  "configuration_id": "CASEIH-STEIGER715-XMARKET-30IN-HDS-CAT4N-STUDY-CANDIDATE",
   "configuration_status": "research_candidate",
   "archetype": "tracked_tractor",
   "candidate_class": "technical_structural_study",
@@ -16,8 +16,8 @@
   },
   "builder": {
     "path": "source/blender/build_case_ih_steiger_715_quadtrac.py",
-    "sha256": "b9d4a1c50e5ee94e8226bd62f41ccfcdae7c5839f738b959d2c3288ead09346f",
-    "bytes": 674,
+    "sha256": "51c44948e9639d078a8099de957c0abece7695fc2057934f37db1c219920c043",
+    "bytes": 29799,
     "deterministic": true,
     "network_used": false,
     "downloaded_geometry_used": false,
@@ -27,30 +27,30 @@
   },
   "shared_generator": {
     "path": "../../scripts/fleet/build_machine.py",
-    "sha256": "02b99250651741b462b3dae8b2471db723beb689dfe89e1c7e251d7402fe0f55",
-    "bytes": 78579
+    "sha256": "9e36599f0c9bbac097422a8766e3ef1c81e6fc9432f024d99a24b79da18264df",
+    "bytes": 81778
   },
   "design": {
     "path": "source/design.json",
-    "sha256": "3dae576e4c29c4f075a61e9cd8fe8c4b31682231bdedac56b3619f56b66cf5b4",
-    "bytes": 1985,
+    "sha256": "c97d5b66f29c8526afe928f0b37892a953944b08cccff8e3a706c8ecee11f25b",
+    "bytes": 2101,
     "schema_version": "1.0.0"
   },
   "artifacts": {
     "blend": {
       "path": "source/blender/case-ih-steiger-715-quadtrac-structural-study.blend",
-      "sha256": "e031cf7085094fb6e9954d6ba66d5fbc534fbde22212b1188f89cc05879a6eb2",
-      "bytes": 219204
+      "sha256": "d31fbfd94d07ee0a9096540a42aee88c9ad39fda9e36237b7bac09a358767808",
+      "bytes": 280159
     },
     "glb": {
       "path": "assets/case-ih-steiger-715-quadtrac-structural-study.glb",
-      "sha256": "2b18b13ddb2b7f0fa75f039d265e4debaa9292925196232265616952068113d5",
-      "bytes": 1425680
+      "sha256": "a3797f766f68581477d0e5feb4a3aa66bbc213e395eb34d2e4d51dca0150a782",
+      "bytes": 2053224
     },
     "validation": {
       "path": "production/validation.json",
-      "sha256": "260ddabbe41528f11875fb3eac8ecde31d8898a1e410a231fa3ac702f4b45c29",
-      "bytes": 8079
+      "sha256": "673bc8ad1271d62e82e6871d6e43c03fe7068cc81db1b050629ccd4bedaa76b0",
+      "bytes": 85485
     }
   },
   "scene": {
@@ -63,7 +63,7 @@
     "bounds": {
       "min_m": [
         -4.145,
-        -0.0,
+        0.0,
         -1.4985
       ],
       "max_m": [
@@ -82,10 +82,10 @@
       3.918,
       2.997
     ],
-    "objects": 205,
-    "meshes": 190,
-    "triangles": 27544,
-    "materials": 5
+    "objects": 321,
+    "meshes": 287,
+    "triangles": 39124,
+    "materials": 7
   },
   "glb_contract": {
     "glb_version": "2.0",
@@ -94,22 +94,22 @@
     "root_name": "Machine_Root",
     "root_record": {},
     "identity_root": true,
-    "nodes": 205,
-    "mesh_nodes": 190,
-    "mesh_definitions": 190,
-    "materials": 5,
-    "triangles": 27544,
+    "nodes": 321,
+    "mesh_nodes": 287,
+    "mesh_definitions": 287,
+    "materials": 7,
+    "triangles": 39124,
     "cameras": 0,
     "punctual_lights": false,
     "images": 0,
     "textures": 0,
     "nonidentity_mesh_scales": {},
     "helper_like_mesh_nodes": [],
-    "semantic_motion_nodes": 14,
+    "semantic_motion_nodes": 33,
     "bounds": {
       "min_m": [
         -4.145,
-        -0.0,
+        0.0,
         -1.4985
       ],
       "max_m": [
@@ -129,7 +129,6 @@
     "Fixed_Structure_ROOT": true,
     "Running_Gear_ROOT": true,
     "Hydraulics_ROOT": true,
-    "Service_Detail_ROOT": true,
     "Chassis_Yaw_Pivot": true,
     "Front_Frame_ROOT": true,
     "Rear_Frame_ROOT": true,
@@ -137,41 +136,373 @@
     "Track_FR_ROOT": true,
     "Track_RL_ROOT": true,
     "Track_RR_ROOT": true,
-    "Drawbar_Pivot": true
+    "Drawbar_Pivot": true,
+    "Front_Frame_Oscillation_Pivot": true,
+    "Rear_Hitch_Pivot": true,
+    "Rear_Hitch_ROOT": true,
+    "HDS_FL_ROOT": true,
+    "HDS_FR_ROOT": true,
+    "HDS_RL_ROOT": true,
+    "HDS_RR_ROOT": true,
+    "Track_FL_Drive_Pivot": true,
+    "Track_FR_Drive_Pivot": true,
+    "Track_RL_Drive_Pivot": true,
+    "Track_RR_Drive_Pivot": true
   },
-  "manufacturer_published_constraints_used": [
+  "semantic_node_roles": {},
+  "published_constraint_ids_declared": [
     "public-envelope-x",
     "public-envelope-y",
     "public-envelope-z",
     "wheelbase",
+    "selected-track-width",
     "quadtrac-topology",
     "hds-total-travel",
     "hds-up-travel",
     "hds-down-travel",
     "hitch-category"
   ],
+  "machine_specific_gate_evidence": [
+    {
+      "id": "frozen_visible_configuration",
+      "status": "PASS",
+      "detail": {
+        "method": "Compare the exact configuration identity, GLB bounds, belt width and selected HDS / Category 4N component census with the two explicitly separated market-source roles.",
+        "evidence": {
+          "configuration_id": "CASEIH-STEIGER715-XMARKET-30IN-HDS-CAT4N-STUDY-CANDIDATE",
+          "measured_glb_xyz_m": [
+            8.29,
+            3.918,
+            2.997
+          ],
+          "published_visible_xyz_m": [
+            8.29,
+            3.918,
+            2.997
+          ],
+          "measured_belt_width_m": 0.762,
+          "published_belt_width_m": 0.762,
+          "applicability": "Worldwide 715/30-inch envelope with separately sourced North American HDS and Category 4N subsystem cues; no dealer-order claim."
+        },
+        "semantic_nodes": [
+          "Front_Nose_End_Plate",
+          "Track_FL_ROOT",
+          "HDS_FL_ROOT",
+          "Rear_Hitch_ROOT"
+        ],
+        "fact_ids": [
+          "public-envelope-x",
+          "public-envelope-y",
+          "public-envelope-z",
+          "selected-track-width",
+          "quadtrac-topology",
+          "hds-total-travel",
+          "hitch-category"
+        ]
+      }
+    },
+    {
+      "id": "single_identity_root",
+      "status": "PASS",
+      "detail": {
+        "method": "Inspect the exported root contract and traverse all four track, HDS, hitch and chassis branches from Machine_Root.",
+        "evidence": {
+          "scene_root_count": 1,
+          "identity_root": "Machine_Root",
+          "tracked_branches": [
+            "Track_FL_ROOT",
+            "Track_FR_ROOT",
+            "Track_RL_ROOT",
+            "Track_RR_ROOT"
+          ]
+        },
+        "semantic_nodes": [
+          "Machine_Root",
+          "Front_Frame_ROOT",
+          "Rear_Frame_ROOT"
+        ],
+        "fact_ids": [
+          "quadtrac-topology"
+        ]
+      }
+    },
+    {
+      "id": "four_track_contact",
+      "status": "PASS",
+      "detail": {
+        "method": "Measure every bottom-pad world AABB in the neutral pose and the exact four track-root centers.",
+        "evidence": {
+          "track_count": 4,
+          "neutral_contacts": [
+            {
+              "track": "FL",
+              "minimum_bottom_pad_y_m": 0.0
+            },
+            {
+              "track": "FR",
+              "minimum_bottom_pad_y_m": 0.0
+            },
+            {
+              "track": "RL",
+              "minimum_bottom_pad_y_m": 0.0
+            },
+            {
+              "track": "RR",
+              "minimum_bottom_pad_y_m": 0.0
+            }
+          ],
+          "contact_tolerance_m": 0.002
+        },
+        "semantic_nodes": [
+          "Track_FL_ROOT",
+          "Track_FR_ROOT",
+          "Track_RL_ROOT",
+          "Track_RR_ROOT"
+        ],
+        "fact_ids": [
+          "quadtrac-topology",
+          "selected-track-width"
+        ]
+      }
+    },
+    {
+      "id": "chassis_articulation_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "Inspect the rear-frame -> oscillation -> yaw -> front-frame hierarchy and measure the two 3.912 m track-center wheelbases.",
+        "evidence": {
+          "hierarchy": [
+            "Rear_Frame_ROOT",
+            "Front_Frame_Oscillation_Pivot",
+            "Chassis_Yaw_Pivot",
+            "Front_Frame_ROOT"
+          ],
+          "left_wheelbase_m": 3.912,
+          "right_wheelbase_m": 3.912,
+          "published_wheelbase_m": 3.912
+        },
+        "semantic_nodes": [
+          "Front_Frame_Oscillation_Pivot",
+          "Chassis_Yaw_Pivot",
+          "Front_Frame_ROOT",
+          "Rear_Frame_ROOT"
+        ],
+        "fact_ids": [
+          "wheelbase",
+          "quadtrac-topology"
+        ]
+      }
+    },
+    {
+      "id": "track_module_and_HDS_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "Count four independent track roots and the visible two-axis HDS link sets, then sample their exact viewer ranges for ground clearance.",
+        "evidence": {
+          "hds_root_count": 4,
+          "visible_double_axis_link_meshes": 16,
+          "published_travel_m": {
+            "total": 0.1778,
+            "up": 0.0762,
+            "down": 0.1016
+          },
+          "viewer_cue_travel_m": 0.018,
+          "sampled_auto_path": {
+            "duration_seconds": 18,
+            "sample_count": 73,
+            "sample_interval_seconds": 0.25,
+            "minimum_public_y_m": -0.000503,
+            "minimum_front_rear_track_center_separation_xz_m": 3.770952,
+            "boundary": "Discrete sampling of the exact viewer target ranges; not continuous collision detection, terrain response, belt deformation, suspension loading or a safety limit."
+          }
+        },
+        "semantic_nodes": [
+          "HDS_FL_ROOT",
+          "HDS_FR_ROOT",
+          "HDS_RL_ROOT",
+          "HDS_RR_ROOT",
+          "Track_FL_ROOT"
+        ],
+        "fact_ids": [
+          "hds-total-travel",
+          "hds-up-travel",
+          "hds-down-travel"
+        ]
+      }
+    },
+    {
+      "id": "belt_phase_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "Count and compare closed visible pad loops plus four independently rooted positive-drive wheels; belt deformation is deliberately not solved.",
+        "evidence": {
+          "total_visible_pad_meshes": 144,
+          "per_track_pad_meshes": {
+            "FL": 36,
+            "FR": 36,
+            "RL": 36,
+            "RR": 36
+          },
+          "positive_drive_roots": [
+            "Track_FL_Drive_Pivot",
+            "Track_FR_Drive_Pivot",
+            "Track_RL_Drive_Pivot",
+            "Track_RR_Drive_Pivot"
+          ],
+          "boundary": "Pad-loop and drive-root continuity only; no belt deformation, slip or traction solver."
+        },
+        "semantic_nodes": [
+          "Track_FL_Pad_Bottom_01",
+          "Track_FL_Drive_Pivot",
+          "Track_FR_Drive_Pivot",
+          "Track_RL_Drive_Pivot",
+          "Track_RR_Drive_Pivot"
+        ],
+        "fact_ids": [
+          "selected-track-width",
+          "quadtrac-topology"
+        ]
+      }
+    },
+    {
+      "id": "rear_hitch_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "Traverse the Category 4N hitch root and count paired lower links, top link, lift rods and ball-end cues.",
+        "evidence": {
+          "category": "4N",
+          "counted_primary_links": [
+            "Category4N_L_Lower_Link",
+            "Category4N_R_Lower_Link",
+            "Category4N_Top_Link"
+          ],
+          "lift_rod_count": 2,
+          "ball_end_count": 2
+        },
+        "semantic_nodes": [
+          "Rear_Hitch_Pivot",
+          "Rear_Hitch_ROOT",
+          "Category4N_Top_Link",
+          "Category4N_L_Lower_Link",
+          "Category4N_R_Lower_Link"
+        ],
+        "fact_ids": [
+          "hitch-category",
+          "hitch-lift-capacity"
+        ]
+      }
+    },
+    {
+      "id": "ground_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "Sample all public mesh AABBs at 0.25-second intervals across the exact 18-second Auto target path.",
+        "evidence": {
+          "neutral_minimum_y_m": 0.0,
+          "sampled_auto_path": {
+            "duration_seconds": 18,
+            "sample_count": 73,
+            "sample_interval_seconds": 0.25,
+            "minimum_public_y_m": -0.000503,
+            "minimum_front_rear_track_center_separation_xz_m": 3.770952,
+            "boundary": "Discrete sampling of the exact viewer target ranges; not continuous collision detection, terrain response, belt deformation, suspension loading or a safety limit."
+          },
+          "tolerance_m": -0.002
+        },
+        "semantic_nodes": [
+          "Track_FL_Pad_Bottom_01",
+          "Track_FR_Pad_Bottom_01",
+          "Track_RL_Pad_Bottom_01",
+          "Track_RR_Pad_Bottom_01"
+        ],
+        "fact_ids": [
+          "public-envelope-y",
+          "selected-track-width"
+        ]
+      }
+    },
+    {
+      "id": "self_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "Sample front-to-rear track-center separation across the declared yaw path and compare it with the reconstructed pod length.",
+        "evidence": {
+          "sampled_auto_path": {
+            "duration_seconds": 18,
+            "sample_count": 73,
+            "sample_interval_seconds": 0.25,
+            "minimum_public_y_m": -0.000503,
+            "minimum_front_rear_track_center_separation_xz_m": 3.770952,
+            "boundary": "Discrete sampling of the exact viewer target ranges; not continuous collision detection, terrain response, belt deformation, suspension loading or a safety limit."
+          },
+          "reconstructed_track_length_m": 2.34,
+          "required_center_separation_m": 2.6399999999999997
+        },
+        "semantic_nodes": [
+          "Chassis_Yaw_Pivot",
+          "Track_FL_ROOT",
+          "Track_FR_ROOT",
+          "Track_RL_ROOT",
+          "Track_RR_ROOT"
+        ],
+        "fact_ids": [
+          "wheelbase",
+          "public-envelope-z"
+        ]
+      }
+    },
+    {
+      "id": "swept_volume_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "Record the exact phased target-path sample count, ground minimum and track separation while preserving the solver boundary.",
+        "evidence": {
+          "sampled_auto_path": {
+            "duration_seconds": 18,
+            "sample_count": 73,
+            "sample_interval_seconds": 0.25,
+            "minimum_public_y_m": -0.000503,
+            "minimum_front_rear_track_center_separation_xz_m": 3.770952,
+            "boundary": "Discrete sampling of the exact viewer target ranges; not continuous collision detection, terrain response, belt deformation, suspension loading or a safety limit."
+          },
+          "continuous_solver": false,
+          "scope": "Declared viewer target-path ground and major front/rear track separation only."
+        },
+        "semantic_nodes": [
+          "Chassis_Yaw_Pivot",
+          "Front_Frame_Oscillation_Pivot",
+          "HDS_FL_ROOT",
+          "Rear_Hitch_Pivot"
+        ],
+        "fact_ids": [
+          "wheelbase",
+          "hds-total-travel"
+        ]
+      }
+    }
+  ],
   "reconstructed_values": {
-    "track_modules": "Four generic independently rooted positive-drive track studies; belt paths, roller centers, lugs and HDS linkage are reconstructed.",
-    "materials": "Neutral unbranded oxide, graphite, steel, rubber and glass with no logos, decals or copied trade dress.",
+    "track_modules": "Four independently rooted positive-drive track studies use the published 0.762 m belt width; belt paths, roller centers, lugs and HDS linkage are reconstructed.",
+    "materials": "Neutral unbranded slate, graphite, steel, rubber and glass with no logos, decals or copied trade dress.",
     "hidden_geometry": "Articulation center, track pivots, HDS anchors, hitch links and all internal structure are reconstructed visualization choices.",
     "animation_ranges": "Conservative presentation ranges only; not operating limits or suspension proof.",
     "generic_archetype_geometry": "tracked_tractor proportions and visible detail are independently reconstructed for this technical study.",
     "visible_envelope_calibration": {
-      "classification": "reconstructed_visible_envelope_calibration",
+      "classification": "authored_visible_envelope_measurement",
       "source_bounds_m": {
         "min_m": [
-          -4.0621,
-          -0.003487,
+          -4.145,
+          0.0,
           -1.4985
         ],
         "max_m": [
-          3.1502,
+          4.145,
           3.918,
           1.4985
         ],
         "size_m": [
-          7.2123,
-          3.921487,
+          8.29,
+          3.918,
           2.997
         ]
       },
@@ -193,14 +524,14 @@
         ]
       },
       "axis_scale_factors": [
-        1.149425315,
-        0.99911077,
-        0.999999927
+        1.0,
+        1.0,
+        1.0
       ],
       "calibrated_bounds_m": {
         "min_m": [
           -4.145,
-          -0.0,
+          0.0,
           -1.4985
         ],
         "max_m": [
@@ -214,14 +545,14 @@
           2.997
         ]
       },
-      "authority": "reconstructed_not_machine_specific_engineering"
+      "authority": "independently_measured_from_authored_geometry"
     }
   },
   "unresolved_choices": [
     "exact serial number and dealer order code",
-    "serial-bound confirmation that the worldwide 30-inch-track dimensional basis matches the selected North American HDS order",
+    "dealer-order compatibility between the worldwide 30-inch-track dimensional basis and the selected North American HDS / Category 4N subsystem references",
     "HDS production build date and regional availability",
-    "track width, carcass, tread and supplier",
+    "track carcass, tread and supplier beyond the published 30-inch nominal width",
     "hitch ball ends and implement connection",
     "cab trim and lighting package",
     "public material and branding authorization"
@@ -236,33 +567,33 @@
   "renders": [
     {
       "path": "review/renders/case-ih-steiger-715-quadtrac-operator-side.png",
-      "sha256": "bdd02348042872f9b6b3deb40a753ad178542113d2ca69c992daecb1048f11d8",
-      "bytes": 253592
+      "sha256": "51315bd5c60755d35695cc54774073db197b05b4c5f062d04fdd8a639ac2e641",
+      "bytes": 288327
     },
     {
       "path": "review/renders/case-ih-steiger-715-quadtrac-front-three-quarter.png",
-      "sha256": "312d008a61318c4d60c4c74e23dff33560129be9b81f43df011303ec111e803e",
-      "bytes": 316007
+      "sha256": "245a08f024ecd5fb6567986359604b95228aca629d3df3389e6930384ad58432",
+      "bytes": 377857
     },
     {
       "path": "review/renders/case-ih-steiger-715-quadtrac-rear-three-quarter.png",
-      "sha256": "083592d40cbe33ba57f4628630f8575842af79b2270f42c60f67c4e5b787832f",
-      "bytes": 292846
+      "sha256": "804576227957d4e4ac84ce8d738750f34133649d38614e60643cfcac04907eb0",
+      "bytes": 387330
     },
     {
       "path": "review/renders/case-ih-steiger-715-quadtrac-elevated-technical.png",
-      "sha256": "cd4bf64592c132d3d9293f1dd5a5eb20154eba04f6866fe8cea058d76158ed50",
-      "bytes": 353787
+      "sha256": "2eb30b0539505119dd3f087805f22e54d2a08637ccf4aa895f5b8b36582a5676",
+      "bytes": 373373
     },
     {
       "path": "review/renders/case-ih-steiger-715-quadtrac-articulation-detail.png",
-      "sha256": "591a93bb0f81ad431ac09c6700f2246fdb389adfd9a112e73e56c06234184531",
-      "bytes": 339162
+      "sha256": "fefde3d1b079cb6dfba389c83ac01129cb75eb1c235846b6708e9b1e9cd527bd",
+      "bytes": 422051
     },
     {
       "path": "review/renders/case-ih-steiger-715-quadtrac-right-side.png",
-      "sha256": "2bc2e746afd89699c55319e978e0f806c974ecf3c09c82977440ba7b7a313e9c",
-      "bytes": 253001
+      "sha256": "0274ce4998cd2e77028ea180bd40a76ea323c6f9b3231d3a6a621835f4e33dfb",
+      "bytes": 284752
     }
   ],
   "build_verdict": "PASS",

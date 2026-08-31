@@ -34,8 +34,8 @@
       "market": "North America, Europe, Australia-New Zealand, Japan",
       "retrieved": "2026-08-29",
       "official_url": "https://s7d2.scene7.com/is/content/Caterpillar/CM20250922-a0c2c-1ba04",
-      "admission": "primary",
-      "note": "Configuration applicability used for six 23.5R25 radial tires and selected standard visible equipment; binary hash is not asserted by this lane."
+      "admission": "reference_only",
+      "note": "Retained as a publication-index reference only because no local bytes were frozen. The six-tire fact is instead bound to the hash-verified AEXQ3698 page 9 standard-equipment table."
     },
     {
       "id": "CAT-725-188PR25-EU",
@@ -59,8 +59,8 @@
       "market": "United States",
       "retrieved": "2026-08-29",
       "official_url": "https://www.cat.com/en_US/products/new/equipment/articulated-trucks/three-axle-articulated-trucks/129340.html",
-      "admission": "primary",
-      "note": "Exact current product identity and visible-feature observations. Dynamic page bytes are not treated as a frozen publication binary."
+      "admission": "reference_only",
+      "note": "Exact current product identity and visible-feature reference. Dynamic page bytes were not frozen, so the plus/minus six-degree suspension statement is retained only as evidence-derived review context, not hash-bound manufacturer-published authority."
     }
   ]
 }

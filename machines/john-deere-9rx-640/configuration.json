@@ -17,19 +17,20 @@
     "transmission": "code 1492 e18 18F/6R PowerShift, 40 km/h",
     "tracks": "code 6829, four 762 mm Camso AG 3500 belts",
     "track_spacing": "code 6848, fixed 2.218 m center-to-center",
-    "rear_hitch": "code 4000, less rear three-point hitch",
+    "rear_hitch": "code 4000, less rear three-point hitch and coupler",
     "rear_pto": "code 3800, less rear PTO",
     "drawbar": "code 4325 Category 5, two-position, 70 mm pin",
     "public_geometry": "independently authored neutral unbranded structural study",
     "public_materials": "matte slate and graphite; no trade dress, logos, decals, copied textures or manufacturer geometry"
   },
   "unresolved_choices": [
-    "The admitted first-party sources publish overall length but not configuration-specific overall width or height; public-envelope Y and Z remain unresolved.",
+    "The official Canadian 9RX 640 page, within the declared North American market, publishes 8.309 m overall length with front weights, excluding three-point hitch and coupler. That boundary applies to the selected code 4000 less-hitch base; the separately selected Category 5 drawbar remains modeled. Configuration-specific overall width and height remain unresolved.",
     "The visible 2.980 m track envelope is evidence-derived from 2.218 m center spacing plus one 0.762 m belt width, not a manufacturer-published overall-width claim.",
     "Track pad, drive-lug, sprocket, idler, midroller, frame, tensioning, oscillation and axle geometry are not published.",
-    "Articulation gudgeon, oscillation pivot, cylinders, anchors, hard stops and cab-to-frame transforms are not published.",
+    "Selected North American articulation and oscillation limits are unresolved. The 36-degree articulation, 15-degree chassis oscillation and plus/minus 10-degree undercarriage values are retained only as cross-market AU/NZ references for conservative reconstructed comparator checks.",
+    "Articulation gudgeon, oscillation pivot, cylinders, anchors, hard stops and cab-to-frame transforms are not published for the selected configuration.",
     "Exact body panels, cab/glazing, cooling, aftertreatment, lighting, hoses, wiring, ballast and service hardware remain unresolved.",
     "Manufacturer colors, graphics, badges and decals are outside the public structural study."
   ],
-  "boundary": "MY2025 North American 9RX 640 code 9540RW candidate with JD14, e18, base 30-inch AG3500 tracks at 87-inch spacing, less PTO and less rear hitch. Official sources constrain identity, code selections, length, track belt and spacing, drawbar, wheelbase and articulated/oscillating topology. Overall width/height, belt mechanics and hidden articulation geometry remain derived, reconstructed or unresolved. Neutral unbranded visualization only; not manufacturer CAD, a traction model, an engineering solver, safety guidance or proof of one delivered serial-number machine."
+  "boundary": "MY2025 North American 9RX 640 code 9540RW candidate with JD14, e18, base 30-inch AG3500 tracks at 87-inch spacing, less PTO and less rear hitch. North American sources constrain identity, code selections, the Canadian model-page length excluding hitch, track belt and spacing, and the Category 5 drawbar. Articulated/oscillating topology and conservative visual ranges are reconstructed; AU/NZ motion figures are cross-market references only and do not establish selected North American limits. Longitudinal track-pod placement, overall width/height, belt mechanics and hidden articulation geometry remain derived, reconstructed or unresolved. Neutral unbranded visualization only; not manufacturer CAD, a traction model, an engineering solver, safety guidance or proof of one delivered serial-number machine."
 }

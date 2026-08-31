@@ -8,7 +8,7 @@
     "manufacturer_geometry_committed": false,
     "manufacturer_imagery_committed": false,
     "manual_illustrations_are_scale_drawings": false,
-    "verification": "The private PDF was retrieved and hash-bound; no first-party binary or image is redistributed in this package."
+    "verification": "Both private Deere PDFs were retrieved and hash-bound; no first-party binary or image is redistributed in this package."
   },
   "sources": [
     {
@@ -27,15 +27,19 @@
       "admission": "primary"
     },
     {
-      "id": "JD-1270G-8W-LA-PAGE",
+      "id": "JD-GSERIES-DKHVRFT4",
       "publisher": "John Deere",
-      "kind": "official_product_page",
-      "title": "1270G 8W Cosechadora con Ruedas",
-      "market": "Latin America",
-      "retrieved": "2026-08-29",
-      "official_url": "https://www.deere.com/latin-america/es/cosechadoras-con-ruedas/cosechadora-con-ruedas1270g-8-ruedas/",
-      "admission": "reference_only",
-      "use": "Corroborates 8x8, CH7, 8.6 m horizontal reach, 26.5-20 tires, 7.927 m base carrier, 2.746 m width and H480C reference head. Market-specific engine/emissions values are not mixed into the North American freeze."
+      "kind": "official_product_brochure_and_specification",
+      "title": "G-Series Wheeled Harvesters",
+      "publication": "DKHVRFT4",
+      "market": "Global English-language publication",
+      "pages": 24,
+      "retrieved": "2026-08-31",
+      "official_url": "https://www.deere.com/assets/pdfs/common/products/wheeled-harvesters/wheeled-harvesters-g-series-dkhvrft4.pdf",
+      "local_path": "research/private/john-deere-1270g/wheeled-harvesters-g-series-dkhvrft4.pdf",
+      "sha256": "8bd608e305e635d9f24226867e4c525571adb2bd280d3c724e63779ea9ba97e1",
+      "bytes": 12781692,
+      "admission": "primary"
     }
   ]
 }

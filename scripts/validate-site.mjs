@@ -41,7 +41,7 @@ async function requireFile(relativePath) {
   }
 }
 
-function parseGlbNodeNames(bytes, label) {
+function parseGlbStructure(bytes, label) {
   try {
     if (bytes.length < 20 || bytes.toString("utf8", 0, 4) !== "glTF") throw new Error("invalid GLB header");
     let offset = 12;
@@ -53,14 +53,34 @@ function parseGlbNodeNames(bytes, label) {
       if (end > bytes.length) throw new Error("truncated GLB chunk");
       if (type === 0x4e4f534a) {
         const document = JSON.parse(bytes.toString("utf8", start, end).replace(/\u0000+$/u, "").trim());
-        return new Set((document.nodes ?? []).map((node) => node.name).filter(Boolean));
+        const nodes = document.nodes ?? [];
+        const counts = new Map();
+        const indexByName = new Map();
+        for (const [index, node] of nodes.entries()) {
+          if (!node.name) continue;
+          counts.set(node.name, (counts.get(node.name) ?? 0) + 1);
+          indexByName.set(node.name, index);
+        }
+        const meshDescendants = new Set();
+        function subtreeHasMesh(index, visiting = new Set()) {
+          if (visiting.has(index)) return false;
+          visiting.add(index);
+          const node = nodes[index];
+          if (!node) return false;
+          if (node.mesh !== undefined) return true;
+          const result = (node.children ?? []).some((child) => subtreeHasMesh(child, visiting));
+          if (result && node.name) meshDescendants.add(node.name);
+          return result;
+        }
+        for (let index = 0; index < nodes.length; index += 1) subtreeHasMesh(index);
+        return { names: new Set(counts.keys()), counts, meshDescendants, nodes, indexByName };
       }
       offset = end;
     }
     throw new Error("missing GLB JSON chunk");
   } catch (error) {
     errors.push(`${label}: ${error.message}`);
-    return new Set();
+    return { names: new Set(), counts: new Map(), meshDescendants: new Set(), nodes: [], indexByName: new Map() };
   }
 }
 
@@ -99,9 +119,8 @@ function validateViewerShape(viewer, machineId, viewerPath) {
     errors.push(`${viewerPath}: assets.poster must be a safe path inside its machine package`);
   }
 
-  if (viewer.motion === undefined) return;
-  if (!viewer.motion || !Array.isArray(viewer.motion.channels)) {
-    errors.push(`${viewerPath}: motion.channels must be an array`);
+  if (!viewer.motion || !Array.isArray(viewer.motion.channels) || viewer.motion.channels.length === 0) {
+    errors.push(`${viewerPath}: every published machine requires at least one interactive motion channel`);
     return;
   }
   if (viewer.motion.autoplay !== undefined && typeof viewer.motion.autoplay !== "boolean") errors.push(`${viewerPath}: motion.autoplay must be boolean`);
@@ -112,6 +131,10 @@ function validateViewerShape(viewer, machineId, viewerPath) {
     errors.push(`${viewerPath}: motion.damping must be positive`);
   }
   if (viewer.motion.mode !== undefined && !["sine", "ping-pong"].includes(viewer.motion.mode)) errors.push(`${viewerPath}: unsupported motion.mode`);
+  if (viewer.motion.autoplay !== true) errors.push(`${viewerPath}: standardized Auto mode requires autoplay=true`);
+  if (viewer.motion.durationSeconds !== 18) errors.push(`${viewerPath}: standardized Auto cycle must be 18 seconds`);
+  if (viewer.motion.mode !== "sine") errors.push(`${viewerPath}: standardized Auto mode must use sine sequencing`);
+  if (viewer.motion.damping !== 8) errors.push(`${viewerPath}: standardized motion damping must be 8`);
   const channelIds = viewer.motion.channels.map((channel) => channel?.id);
   const duplicateIds = duplicateValues(channelIds);
   if (duplicateIds.length) errors.push(`${viewerPath}: duplicate motion channel ids ${duplicateIds.join(", ")}`);
@@ -120,6 +143,9 @@ function validateViewerShape(viewer, machineId, viewerPath) {
     const label = `${viewerPath}: motion channel ${channel?.id ?? index}`;
     if (typeof channel?.id !== "string" || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/u.test(channel.id)) errors.push(`${label} id must be a slug`);
     if (typeof channel?.label !== "string" || !channel.label.trim()) errors.push(`${label} label required`);
+    if (typeof channel?.mechanismJointId !== "string" || !/^[a-z0-9]+(?:[-_][a-z0-9]+)*$/u.test(channel.mechanismJointId)) {
+      errors.push(`${label} mechanismJointId must identify its mechanism.json joint`);
+    }
     if (!Array.isArray(channel?.nodes) || channel.nodes.length === 0 || channel.nodes.some((node) => typeof node !== "string" || !node)) {
       errors.push(`${label} nodes must be a non-empty string array`);
     } else {
@@ -133,6 +159,9 @@ function validateViewerShape(viewer, machineId, viewerPath) {
     }
     if (!MOTION_PROPERTIES.has(channel?.property)) errors.push(`${label} property is unsupported`);
     if (!Number.isFinite(channel?.from) || !Number.isFinite(channel?.to)) errors.push(`${label} from/to must be finite`);
+    if (Number.isFinite(channel?.from) && Number.isFinite(channel?.to) && channel.from === channel.to) {
+      errors.push(`${label} from/to must produce visible motion`);
+    }
     if (channel?.direction !== undefined && ![1, -1].includes(channel.direction)) errors.push(`${label} direction must be 1 or -1`);
     if (channel?.mode !== undefined && !["offset", "absolute"].includes(channel.mode)) errors.push(`${label} mode must be offset or absolute`);
     if (channel?.autoplay !== undefined && !["sine", "ping-pong"].includes(channel.autoplay)) errors.push(`${label} autoplay must be sine or ping-pong`);
@@ -197,10 +226,24 @@ for (const { id } of catalogMachines) {
   if ((viewer.motion?.channels?.length ?? 0) > 0 && isSafePublicPath(viewer.assets?.glb)) {
     try {
       const glb = await readFile(path.join(ROOT, viewer.assets.glb));
-      const nodeNames = parseGlbNodeNames(glb, viewer.assets.glb);
+      const structure = parseGlbStructure(glb, viewer.assets.glb);
       for (const channel of viewer.motion.channels) {
         for (const nodeName of channel.nodes ?? []) {
-          if (!nodeNames.has(nodeName)) errors.push(`${viewerPath}: motion node ${nodeName} is absent from the exported GLB`);
+          if (!structure.names.has(nodeName)) errors.push(`${viewerPath}: motion node ${nodeName} is absent from the exported GLB`);
+          else if (structure.counts.get(nodeName) !== 1) errors.push(`${viewerPath}: motion node ${nodeName} does not resolve uniquely`);
+          else {
+            const node = structure.nodes[structure.indexByName.get(nodeName)];
+            if (node?.mesh === undefined && !structure.meshDescendants.has(nodeName)) {
+              errors.push(`${viewerPath}: motion node ${nodeName} owns no visible mesh descendant`);
+            }
+            if (node?.matrix !== undefined) {
+              errors.push(`${viewerPath}: motion node ${nodeName} must use decomposed transforms, not matrix`);
+            }
+            const scale = node?.scale ?? [1, 1, 1];
+            if (!Array.isArray(scale) || scale.length !== 3 || scale.some((value) => !Number.isFinite(value) || Math.abs(value - 1) > 1e-7)) {
+              errors.push(`${viewerPath}: motion node ${nodeName} must have identity scale`);
+            }
+          }
         }
       }
     } catch (error) {
@@ -261,6 +304,7 @@ for (const token of [
   "history[`${mode}State`]",
   "renderCategoryFilters",
   "renderMachineIndex",
+  "AUTHORITY_LABELS",
   "MANUAL_OVERRIDE_MS",
   "updateMotion",
   "reducedMotionQuery",

@@ -16,8 +16,8 @@
   },
   "builder": {
     "path": "source/blender/build_fendt_ideal_10t.py",
-    "sha256": "385bfbde8363e26cd1c54af3999bd4c64214c660007563b5d4d1055652ad06d8",
-    "bytes": 661,
+    "sha256": "565fd4f20a9cb042d9bc00e870208a6c5c9075101dc7ac203058a3522b3adf80",
+    "bytes": 35256,
     "deterministic": true,
     "network_used": false,
     "downloaded_geometry_used": false,
@@ -27,30 +27,30 @@
   },
   "shared_generator": {
     "path": "../../scripts/fleet/build_machine.py",
-    "sha256": "02b99250651741b462b3dae8b2471db723beb689dfe89e1c7e251d7402fe0f55",
-    "bytes": 78579
+    "sha256": "9e36599f0c9bbac097422a8766e3ef1c81e6fc9432f024d99a24b79da18264df",
+    "bytes": 81778
   },
   "design": {
     "path": "source/design.json",
-    "sha256": "ceabf2977fd077edd1e2b060e969f9d33ae8ab30361e1287097de637f1743928",
-    "bytes": 3798,
+    "sha256": "dad0367936321b76d9f794e45fdf6534563b41ffa98b2e7e52b3075043a7ab1a",
+    "bytes": 3808,
     "schema_version": "1.0.0"
   },
   "artifacts": {
     "blend": {
       "path": "source/blender/fendt-ideal-10t-structural-study.blend",
-      "sha256": "f9859b513026e376c3e39fcc630da4af3a3a7fc2f88eae20cb88b5fd1f06efaa",
-      "bytes": 237177
+      "sha256": "056998a3dc35ca87b73a0387395f6dec72162bf70fd9929d73e44efd401a71ba",
+      "bytes": 286882
     },
     "glb": {
       "path": "assets/fendt-ideal-10t-structural-study.glb",
-      "sha256": "f328d9fc9f67ae15ee757fcdc6e81232a955407fa6ad6d05129e1fdf324ee724",
-      "bytes": 1415308
+      "sha256": "51c234920a06664bd65206321c665c9662c672afc6476762f33d8680a31fb4de",
+      "bytes": 1758760
     },
     "validation": {
       "path": "production/validation.json",
-      "sha256": "5abbb6e264a014811ce5a4713dd0dd7e83aec5c743746f6e5bac2d266268e7d7",
-      "bytes": 7928
+      "sha256": "9d6cc56acc92fe83834532986d721922b77b3635bf18e08a492965fb64872233",
+      "bytes": 54900
     }
   },
   "scene": {
@@ -62,30 +62,30 @@
     },
     "bounds": {
       "min_m": [
-        -5.315001,
+        -5.315,
         0.0,
         -5.35
       ],
       "max_m": [
-        5.315,
+        5.32,
         3.99,
         5.35
       ],
       "size_m": [
-        10.630001,
+        10.635,
         3.99,
         10.7
       ]
     },
     "visible_aabb_xyz_m": [
-      10.630001,
+      10.635,
       3.99,
       10.7
     ],
-    "objects": 210,
-    "meshes": 190,
-    "triangles": 27040,
-    "materials": 7
+    "objects": 288,
+    "meshes": 244,
+    "triangles": 33060,
+    "materials": 9
   },
   "glb_contract": {
     "glb_version": "2.0",
@@ -94,31 +94,31 @@
     "root_name": "Machine_Root",
     "root_record": {},
     "identity_root": true,
-    "nodes": 210,
-    "mesh_nodes": 190,
-    "mesh_definitions": 190,
-    "materials": 7,
-    "triangles": 27040,
+    "nodes": 288,
+    "mesh_nodes": 244,
+    "mesh_definitions": 244,
+    "materials": 9,
+    "triangles": 33060,
     "cameras": 0,
     "punctual_lights": false,
     "images": 0,
     "textures": 0,
     "nonidentity_mesh_scales": {},
     "helper_like_mesh_nodes": [],
-    "semantic_motion_nodes": 19,
+    "semantic_motion_nodes": 43,
     "bounds": {
       "min_m": [
-        -5.315001,
+        -5.315,
         0.0,
         -5.35
       ],
       "max_m": [
-        5.315,
+        5.32,
         3.99,
         5.35
       ],
       "size_m": [
-        10.630001,
+        10.635,
         3.99,
         10.7
       ]
@@ -129,7 +129,6 @@
     "Fixed_Structure_ROOT": true,
     "Running_Gear_ROOT": true,
     "Hydraulics_ROOT": true,
-    "Service_Detail_ROOT": true,
     "Header_Lift_Pivot": true,
     "Header_ROOT": true,
     "Reel_Pivot": true,
@@ -138,23 +137,486 @@
     "Unloader_Swing_Pivot": true,
     "Unloader_ROOT": true,
     "Track_L_ROOT": true,
-    "Track_R_ROOT": true
+    "Track_R_ROOT": true,
+    "Header_Roll_Pivot": true,
+    "PowerFlow_Belts_ROOT": true,
+    "Header_Intake_Auger_ROOT": true,
+    "Rear_Axle_ROOT": true,
+    "Rear_Steering_L_Pivot": true,
+    "Rear_Steering_R_Pivot": true,
+    "Track_L_Drive_Wheel_ROOT": true,
+    "Track_R_Drive_Wheel_ROOT": true,
+    "Header_Lift_Cylinder_L_ROOT": true,
+    "Header_Lift_Cylinder_R_ROOT": true,
+    "Unloader_Fold_Pivot": true,
+    "Unloader_Outer_ROOT": true,
+    "Unloader_Spout_Pivot": true,
+    "Unloader_Spout_ROOT": true,
+    "Dual_Helix_L_ROOT": true,
+    "Dual_Helix_R_ROOT": true,
+    "RotorFeeder_ROOT": true,
+    "ShortCut_ROOT": true,
+    "ActiveSpread_L_ROOT": true,
+    "ActiveSpread_R_ROOT": true,
+    "SwingFlow_ROOT": true,
+    "AirSense_Fan_ROOT": true,
+    "PowerFold_Ladder_Pivot": true,
+    "PowerFold_Ladder_ROOT": true
   },
-  "manufacturer_published_constraints_used": [
-    "carrier-length-without-header",
-    "selected-carrier-width",
-    "carrier-height",
-    "selected-powerflow-width",
-    "selected-track-width",
-    "selected-steering-axle-tyre",
-    "header-raised-ground-clearance",
-    "header-tilt-compensation",
-    "selected-discharge-tube",
-    "maximum-unloading-height",
-    "streamer-210-capacity"
+  "semantic_node_roles": {},
+  "published_constraint_ids_declared": [],
+  "machine_specific_gate_evidence": [
+    {
+      "id": "carrier_length_without_header",
+      "status": "PASS",
+      "detail": {
+        "method": "named carrier-only mesh-union X AABB",
+        "evidence": {
+          "measured_m": 10.63,
+          "authored_target_m": 10.63,
+          "header_and_unloader_excluded": true,
+          "tolerance_m": 0.004
+        },
+        "semantic_nodes": [
+          "Carrier_Rear_End_Structure",
+          "Carrier_Front_End_Structure"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "selected_carrier_width",
+      "status": "PASS",
+      "detail": {
+        "method": "named carrier-only mesh-union Z AABB",
+        "evidence": {
+          "measured_m": 3.49,
+          "authored_target_m": 3.49,
+          "source_authority": "unresolved",
+          "tolerance_m": 0.004
+        },
+        "semantic_nodes": [
+          "Carrier_Lateral_Structure_L",
+          "Carrier_Lateral_Structure_R"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "carrier_height",
+      "status": "PASS",
+      "detail": {
+        "method": "named roof/carrier mesh-union Y AABB",
+        "evidence": {
+          "measured_max_y_m": 3.99,
+          "authored_target_m": 3.99,
+          "source_authority": "unresolved",
+          "tolerance_m": 0.004
+        },
+        "semantic_nodes": [
+          "Carrier_Height_Roof"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "selected_powerflow_header_span",
+      "status": "PASS",
+      "detail": {
+        "method": "header-subtree world Z AABB",
+        "evidence": {
+          "measured_m": 10.7,
+          "authored_target_m": 10.7,
+          "source_authority": "unresolved",
+          "tolerance_m": 0.004
+        },
+        "semantic_nodes": [
+          "Header_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "header_lift_endpoint_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "two-endpoint Feederhouse_ROOT rotation with cutterbar world minimum",
+        "evidence": {
+          "minimum_y_samples_m": [
+            0.83,
+            1.271827
+          ],
+          "raised_authored_target_m": 1.27,
+          "lift_angle_rad": 0.151,
+          "tolerance_m": 0.03
+        },
+        "semantic_nodes": [
+          "Feederhouse_ROOT",
+          "Cutterbar"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "header_roll_compensation_range",
+      "status": "PASS",
+      "detail": {
+        "method": "lifted-pose Header_Roll_Pivot endpoint sweep",
+        "evidence": {
+          "range_deg": [
+            -8.0,
+            8.0
+          ],
+          "minimum_y_by_pose_m": {
+            "-8.0": 0.553885,
+            "0.0": 1.271827,
+            "8.0": 0.553885
+          }
+        },
+        "semantic_nodes": [
+          "Header_Roll_Pivot",
+          "Header_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "crop_elevator_cylinder_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "paired cylinder-to-frame and cylinder-to-feeder AABB overlap",
+        "evidence": {
+          "visual_diameter_m": 0.092,
+          "overlap_xyz_m": {
+            "L": {
+              "frame": [
+                0.12818,
+                0.195168,
+                0.116173
+              ],
+              "feeder": [
+                0.11818,
+                0.155168,
+                0.116173
+              ]
+            },
+            "R": {
+              "frame": [
+                0.12818,
+                0.195168,
+                0.116173
+              ],
+              "feeder": [
+                0.11818,
+                0.155168,
+                0.116173
+              ]
+            }
+          }
+        },
+        "semantic_nodes": [
+          "Header_Lift_Cylinder_L_ROOT",
+          "Header_Lift_Cylinder_R_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "rear_steering_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "wheel-pivot ownership and visible steering-root hierarchy",
+        "evidence": {
+          "wheel_pivot_parents": {
+            "L": "Rear_Steering_L_Pivot",
+            "R": "Rear_Steering_R_Pivot"
+          },
+          "viewer_nodes": [
+            "Rear_Steering_L_Pivot",
+            "Rear_Steering_R_Pivot"
+          ]
+        },
+        "semantic_nodes": [
+          "Rear_Steering_L_Pivot",
+          "Rear_Steering_R_Pivot"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "trakride_belt_path_and_phase_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "left/right track component inventory and distinct drive-root ownership",
+        "evidence": {
+          "inventory": {
+            "L": {
+              "pads": 30,
+              "rollers": 5,
+              "visible_meshes": 39
+            },
+            "R": {
+              "pads": 30,
+              "rollers": 5,
+              "visible_meshes": 39
+            }
+          },
+          "belt_visual_width_m": 0.762,
+          "drive_roots_in_viewer": [
+            "Track_L_Drive_Wheel_ROOT",
+            "Track_R_Drive_Wheel_ROOT"
+          ]
+        },
+        "semantic_nodes": [
+          "Track_L_ROOT",
+          "Track_R_ROOT",
+          "Track_L_Drive_Wheel_ROOT",
+          "Track_R_Drive_Wheel_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "reel_belt_and_intake_rotation_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "visible-subtree and viewer ownership scan",
+        "evidence": {
+          "visible_meshes": {
+            "Reel_ROOT": 7,
+            "PowerFlow_Belts_ROOT": 6,
+            "Header_Intake_Auger_ROOT": 1
+          },
+          "viewer_nodes_present": [
+            "Header_Intake_Auger_ROOT",
+            "PowerFlow_Belts_ROOT",
+            "Reel_ROOT"
+          ]
+        },
+        "semantic_nodes": [
+          "Reel_ROOT",
+          "PowerFlow_Belts_ROOT",
+          "Header_Intake_Auger_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "unloading_auger_swing_fold_and_spout_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "centerline sum plus deployed swing/fold world-transform sample",
+        "evidence": {
+          "inner_m": 3.6,
+          "outer_m": 4.8,
+          "total_m": 8.4,
+          "deployed_spout_y_m": 4.95,
+          "authored_spout_target_m": 4.95,
+          "deployed_minimum_y_m": 2.91
+        },
+        "semantic_nodes": [
+          "Unloader_ROOT",
+          "Unloader_Outer_ROOT",
+          "Unloader_Spout_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "dual_helix_and_rotorfeeder_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "named internal rotary-root centers and visible-subtree inventory",
+        "evidence": {
+          "dual_helix_centers_xyz_m": {
+            "L": [
+              -0.55,
+              2.42,
+              -0.43
+            ],
+            "R": [
+              -0.55,
+              2.42,
+              0.43
+            ]
+          },
+          "rotorfeeder_visible_meshes": 1
+        },
+        "semantic_nodes": [
+          "Dual_Helix_L_ROOT",
+          "Dual_Helix_R_ROOT",
+          "RotorFeeder_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "active_spread_disk_and_swingflow_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "named spread-root centers, guide-vane inventory, and viewer ownership",
+        "evidence": {
+          "disk_centers_xyz_m": {
+            "L": [
+              -4.18,
+              1.12,
+              -0.52
+            ],
+            "R": [
+              -4.18,
+              1.12,
+              0.52
+            ]
+          },
+          "swingflow_vanes": 7,
+          "viewer_nodes_present": [
+            "ActiveSpread_L_ROOT",
+            "ActiveSpread_R_ROOT",
+            "SwingFlow_ROOT"
+          ]
+        },
+        "semantic_nodes": [
+          "ActiveSpread_L_ROOT",
+          "ActiveSpread_R_ROOT",
+          "SwingFlow_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "airsense_fan_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "visible fan-subtree inventory and viewer ownership",
+        "evidence": {
+          "visible_meshes": 9,
+          "authored_diameter_m": 0.95,
+          "viewer_owned": true
+        },
+        "semantic_nodes": [
+          "AirSense_Fan_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "ladder_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "visible ladder-subtree inventory and viewer ownership",
+        "evidence": {
+          "visible_meshes": 7,
+          "viewer_owned": true
+        },
+        "semantic_nodes": [
+          "PowerFold_Ladder_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "ground_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "rest AABB plus lifted roll/unloader endpoint minima",
+        "evidence": {
+          "rest_minimum_y_m": 0.0,
+          "lift_minimum_y_m": 0.83,
+          "roll_minimum_y_m": 0.553885,
+          "deployed_unloader_minimum_y_m": 2.91
+        },
+        "semantic_nodes": [
+          "Track_L_ROOT",
+          "Track_R_ROOT",
+          "Rear_Axle_ROOT",
+          "Feederhouse_ROOT",
+          "Unloader_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "header_self_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "feeder-coupler/header-coupler three-axis rest overlap plus hierarchy",
+        "evidence": {
+          "coupler_overlap_xyz_m": [
+            0.13,
+            0.48,
+            1.46
+          ],
+          "header_parent": "Header_Roll_Pivot",
+          "lift_owner": "Header_Lift_Pivot"
+        },
+        "semantic_nodes": [
+          "Feederhouse_ROOT",
+          "Header_ROOT"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "carrier_self_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "longitudinal-frame/separator-house continuity overlap and carrier-only envelope",
+        "evidence": {
+          "frame_house_overlap_xyz_m": [
+            6.18971,
+            0.02,
+            1.28
+          ],
+          "carrier_size_xyz_m": [
+            10.63,
+            3.08,
+            3.49
+          ]
+        },
+        "semantic_nodes": [
+          "Fixed_Structure_ROOT",
+          "Carrier_Longitudinal_Frame"
+        ],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    },
+    {
+      "id": "neutral_material_and_branding_review",
+      "status": "PASS",
+      "detail": {
+        "method": "procedural material rights-tag scan",
+        "evidence": {
+          "material_count": 10,
+          "all_neutral_unbranded": true,
+          "images_or_textures": 0
+        },
+        "semantic_nodes": [],
+        "fact_ids": [],
+        "authority": "Computed reconstructed-study evidence only; not manufacturer or operating authority."
+      }
+    }
   ],
   "reconstructed_values": {
     "running_gear": "front_tracks_rear_wheels",
+    "source_freeze_boundary": "Only the two-step MotionShift fact is admitted from the hash-bound current GB table. Every visible dimension, selected option, mechanism topology and motion endpoint below is reconstructed and unresolved pending an applicable first-party technical freeze.",
     "carrier_width_m": 3.49,
     "header_width_m": 10.7,
     "header_visual_depth_m": 2.05,
@@ -184,25 +646,25 @@
       142
     ],
     "neutral_material_policy": "matte slate and graphite body volumes, dark neutral rubber, neutral steel, restrained amber visibility cues, clear neutral glazing, no manufacturer colors, logos, wordmarks, decals, or copied textures",
-    "geometry_boundary": "Only the cited carrier envelope, selected header span, running-gear designation, nominal track width, capacities, and named equipment are manufacturer-bound. Body surfacing, header depth, undercarriage proportions, tyre shape, hidden structure, pivots, anchors, clearances, and detail placement are independently authored visualization choices.",
+    "geometry_boundary": "No visible envelope, attachment span, running-gear dimension, capacity, or mechanism dimension is manufacturer-bound by the admitted freeze. Body surfacing, header depth, undercarriage proportions, tyre shape, hidden structure, pivots, anchors, clearances, and detail placement are independently authored visualization choices.",
     "hidden_geometry": "All hidden structure, pivot centers, anchors, linkage proportions, underbody volumes, and internal geometry are reconstructed visualization choices unless a design record explicitly identifies a manufacturer-published envelope constraint.",
     "generic_archetype_geometry": "combine proportions and visible detail are independently reconstructed for this technical study.",
     "visible_envelope_calibration": {
-      "classification": "reconstructed_visible_envelope_calibration",
+      "classification": "authored_visible_envelope_measurement",
       "source_bounds_m": {
         "min_m": [
-          -4.895328,
-          -0.003432,
+          -5.315,
+          0.0,
           -5.35
         ],
         "max_m": [
-          5.7402,
+          5.32,
           3.99,
           5.35
         ],
         "size_m": [
-          10.635527,
-          3.993432,
+          10.635,
+          3.99,
           10.7
         ]
       },
@@ -224,31 +686,32 @@
         ]
       },
       "axis_scale_factors": [
-        0.999480314,
-        0.999140699,
-        1.000000018
+        1.0,
+        1.0,
+        1.0
       ],
       "calibrated_bounds_m": {
         "min_m": [
-          -5.315001,
+          -5.315,
           0.0,
           -5.35
         ],
         "max_m": [
-          5.315,
+          5.32,
           3.99,
           5.35
         ],
         "size_m": [
-          10.630001,
+          10.635,
           3.99,
           10.7
         ]
       },
-      "authority": "reconstructed_not_machine_specific_engineering"
+      "authority": "independently_measured_from_authored_geometry"
     }
   },
   "unresolved_choices": [
+    "applicable first-party overall dimensions and selected-option technical matrix",
     "exact production serial, order code, country-road equipment, and dealer-installed options",
     "exact TrakRide belt, pad, guide-block, drive-wheel, roller, tensioner, and carrier-frame geometry",
     "exact 520/85R30 loaded radius, tread, rim, pressure, offset, and steering geometry",
@@ -267,33 +730,33 @@
   "renders": [
     {
       "path": "review/renders/fendt-ideal-10t-operator-side.png",
-      "sha256": "5f0a82a4268a66557091c7c4ff7354395bcfd3b515999d02105d0b75e7e07ea1",
-      "bytes": 234718
+      "sha256": "7114c904dd84c7effbf98a4654d4c58e0ad6e14f3c5c9029abfd9fbe08dea60a",
+      "bytes": 239598
     },
     {
       "path": "review/renders/fendt-ideal-10t-front-three-quarter.png",
-      "sha256": "0ea7ff946b6c59d79afb3bfabfba7b71cdf428fc578559a4f3d1aba1f68dd69d",
-      "bytes": 255124
+      "sha256": "efb3dedc4a8d233721aca04c26878da3c9a4a156455e8cd2b14a4120c7afcf9b",
+      "bytes": 240398
     },
     {
       "path": "review/renders/fendt-ideal-10t-rear-three-quarter.png",
-      "sha256": "b7118a003f3ddaa1aac4c5f582919d6e929df616247e101c8b498aeae9950dd3",
-      "bytes": 251182
+      "sha256": "a9c46d01589b25e49520df6ab122dde7d1c3e41329f82b276ba3b772fcffbd76",
+      "bytes": 265842
     },
     {
       "path": "review/renders/fendt-ideal-10t-elevated-technical.png",
-      "sha256": "60233b48f11c6decc98b36862a3c3d436fc6ae2323d7b92a0351021106885b4a",
-      "bytes": 348014
+      "sha256": "5f0ba6fa33c416342fcc38535b5a5c913ecfcacd83b57977ee184acb1ab6e2b2",
+      "bytes": 339171
     },
     {
       "path": "review/renders/fendt-ideal-10t-articulation-detail.png",
-      "sha256": "d676ee81fc4731bae80f2c7e46dcaeda9d4366f0f8d1a6a565adf26d3684d85f",
-      "bytes": 267705
+      "sha256": "9bd0ab099e1776eccc1ee2b2047c26c92ff4dcddded3a5a796785869cd47c9e0",
+      "bytes": 298600
     },
     {
       "path": "review/renders/fendt-ideal-10t-right-side.png",
-      "sha256": "89e73d24a2491da8028ac57f58c6da5394e49af2f946eec66509b7a2ddfe9846",
-      "bytes": 238705
+      "sha256": "16d59221e04fda62394e06df306d771f68a09906e60297c3ad6ca9e8edf1e0a8",
+      "bytes": 240767
     }
   ],
   "build_verdict": "PASS",

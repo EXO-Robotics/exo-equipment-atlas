@@ -50,13 +50,26 @@ geometry, manufacturer CAD, copied textures, and opaque add-ons are prohibited.
   mechanical nodes.
 - Parent each moving group at its intended pivot. A visual mesh translated
   around an unrelated origin does not count as articulation.
+- Author dimensions and pivots directly in metres. Non-uniform post-build
+  stretching to force an outer AABB is prohibited. Every exported hierarchy
+  node, not only mesh leaves, must remain free of scale and shear.
+- A semantic motion root must own visible mesh descendants. An empty node is
+  permitted only when the receipt classifies it explicitly as a datum, joint,
+  or identity marker; marker names cannot satisfy a motion gate.
+- Every `viewer.json` motion channel names its exact `mechanism.json` joint via
+  `mechanismJointId`. The viewer axis must agree with the declared joint axis;
+  rotational targets use a neutral base rotation and all targets use identity
+  scale so browser and independent motion sampling evaluate the same transform.
 - Keep manufacturer-published dimensions separate from reconstructed modeling
   values in both code and receipts.
 - Apply realistic bevels, thickness, fastening cues, glass boundaries, wheel or
   track construction, and service-panel segmentation where evidence supports
   the visible form. Do not fabricate hidden internal assemblies.
 - Public-facing materials remain neutral and unbranded unless written rights
-  approval is attached to the release.
+  approval is attached to the release. Independent decoded-surface auditing
+  limits bright chromatic material to restrained visibility cues (at most 8%
+  of modeled surface), so a signature body color cannot pass by calling itself
+  “neutral.”
 
 ## Required structural-study receipt
 
@@ -68,7 +81,8 @@ geometry, manufacturer CAD, copied textures, and opaque add-ons are prohibited.
 - `.blend` and GLB paths, SHA-256 hashes, and byte counts;
 - scene units, axes, bounds, object/mesh/triangle/material counts;
 - required semantic nodes and whether each is present;
-- manufacturer-published constraints used by id;
+- published constraint IDs declared by the design plus their machine-gate
+evidence bindings; do not label copied ID lists as constraints “used”;
 - every reconstructed dimension, pivot, anchor, or range used by the builder;
 - unresolved choices and mechanical gaps carried from the source contracts;
 - render paths and hashes;
@@ -77,6 +91,20 @@ geometry, manufacturer CAD, copied textures, and opaque add-ons are prohibited.
 `production/validation.json` must list individual gates with `PASS`, `FAIL`, or
 `PENDING`. A missing or inapplicable higher-stage gate is `PENDING`, never a
 synthetic pass.
+
+Every ID in `mechanism.json.required_gates` must appear exactly once and PASS
+for structural-study admission. Its detail object records an explicit method,
+measured evidence, semantic nodes, and source fact IDs. `PENDING` is acceptable
+for a later engineering/release gate, but never for a required structural gate.
+Every cited node and fact must resolve in the exact exported package, and the
+receipt's gate IDs, evidence objects, and verdicts must exactly match validation.
+
+All published viewers share the 600S presentation cadence: Auto enabled, an
+18-second sine cycle, and damping 8. Machine choreography remains specific to
+the documented mechanism. Independent production validation evaluates every
+channel endpoint plus 37 synchronized Auto samples against decoded GLB geometry
+and rejects ground-plane penetration; this presentation sweep is not a dynamics,
+load, stability, self-collision, or safety solver.
 
 ## Critic gate
 
@@ -89,13 +117,14 @@ candidate even when its scripts pass. Review includes:
 4. cylinder and linkage visual closure;
 5. ground, self, and swept-volume collision risks;
 6. recognizable silhouette and machine-specific construction;
-7. direct PNG inspection from multiple angles and at least one articulated
-   pose;
+7. direct inspection of at least six unique decoded PNGs from multiple angles,
+   including neutral and relevant articulated endpoints;
 8. neutral-rights boundary and absence of copied manufacturer assets;
 9. receipt completeness and exact artifact hashes.
 
-Geometry counts, screenshots, or an attractive render cannot substitute for
-mechanical review.
+Geometry counts are integrity floors only. Repeated fasteners, tread instances,
+duplicate renders, or an attractive screenshot cannot substitute for component
+coverage, sampled motion, source applicability, or mechanical review.
 
 ## Publication gate
 

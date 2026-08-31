@@ -21,13 +21,8 @@
     "header-working-width",
     "public-envelope-z",
     "header-flex-range",
-    "grain-tank-capacity",
-    "grain-unloading-rate",
     "threshing-drum-width",
-    "threshing-drum-diameter",
-    "rotor-count",
-    "rotor-diameter",
-    "rotor-length"
+    "threshing-drum-diameter"
   ],
   "reconstructed_values": {
     "running_gear": "front_terra_trac_rear_wheels",
@@ -53,7 +48,7 @@
     "track wheel centers, belt pitch, and terrain-following limits",
     "rear steering geometry",
     "unloading auger hinge and swept-volume clearance",
-    "internal drum, rotor, spreader, and fan centers and rates",
+    "internal drum, family-reference rotor, spreader, and fan centers and rates",
     "ground, self, and swept-volume collision solver"
   ]
 }

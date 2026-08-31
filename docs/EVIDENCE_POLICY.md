@@ -15,6 +15,12 @@ Manufacturer-published facts may constrain a reconstruction. They do not turn
 hidden pivot positions, anchor locations, mesh dimensions, or interpolation
 curves into manufacturer facts.
 
+When no configuration-applicable first-party overall dimension is frozen, the
+catalog must declare `public_envelope_coverage: "unresolved"`, provide a reason,
+and leave `public_envelope` empty. A cross-market or family reference may guide
+an explicitly reconstructed presentation envelope, but it is not promoted to a
+manufacturer-published constraint merely to make a dimensional gate pass.
+
 ## Source admission
 
 Each source records publisher, document identity, market/configuration scope,

@@ -26,5 +26,25 @@
     "elevation": 0.34,
     "distance": 1.48
   },
-  "accent": "#d6943d"
+  "accent": "#71838a",
+  "motion": {
+    "autoplay": true,
+    "durationSeconds": 18,
+    "mode": "sine",
+    "damping": 8,
+    "channels": [
+      {
+        "id": "upper-swing",
+        "mechanismJointId": "upper_swing",
+        "label": "Upper-structure inspection sweep - reconstructed center",
+        "nodes": ["Upper_Swing_Pivot"],
+        "property": "rotation.y",
+        "from": -0.24,
+        "to": 0.24,
+        "phase": 0.0,
+        "mode": "offset",
+        "autoplay": "sine"
+      }
+    ]
+  }
 }

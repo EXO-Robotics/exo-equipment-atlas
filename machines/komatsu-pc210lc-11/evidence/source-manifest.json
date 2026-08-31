@@ -19,7 +19,7 @@
       "retrieved": "2026-08-29",
       "official_url": "https://www.komatsu.com/en-nz/products/equipment/excavators/mid-size-excavators/pc210lc-11",
       "admission": "primary",
-      "applicability": "Current regional PC210LC-11 conventional identity, Tier 4 Final engine family, application class and hydraulic circuit topology."
+      "applicability": "Regional PC210LC-11 conventional identity and product-class anchor as retrieved 2026-08-29. No local immutable page capture is admitted, so no dimensional or configuration-equivalence fact depends on this URL-only source."
     },
     {
       "id": "KOMATSU-PC210LC11-BR02-0225-V2",
@@ -35,7 +35,7 @@
       "bytes": 28959740,
       "pages": 24,
       "admission": "primary",
-      "applicability": "The conventional PC210LC-11 column establishes engine, operating-weight range, 5.7 m boom, 2.925 m arm, 700 mm shoes, transport dimensions, working range, counterweight and compatible TL bucket. iMC hardware is excluded."
+      "applicability": "Pages 20-22 establish the cited engine specification, two-boom/one-arm/one-bucket cylinder topology and strokes, 5.7 m boom, 2.925 m arm, 700 mm shoes, transport dimensions, working range and compatible TL bucket. The pages 1-2 operating-weight range is explicitly brochure-family scope, not a conventional-only column. iMC hardware is excluded from the modeled candidate."
     }
   ]
 }

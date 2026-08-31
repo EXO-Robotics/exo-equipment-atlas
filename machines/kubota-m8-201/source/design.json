@@ -9,9 +9,11 @@
     "width": 2.65,
     "height": 3.25
   },
-  "palette": "amber",
+  "palette": "slate",
   "published_constraints_used": [
-    "public-envelope-y"
+    "public-envelope-y",
+    "wheelbase",
+    "standard-rear-bar-axle-length"
   ],
   "reconstructed_values": {
     "overall_length_m": 5.75,
@@ -21,6 +23,9 @@
     "front_suspension_presentation_travel_m": 0.10,
     "front_steering_presentation_limit_deg": 28,
     "rear_hitch_presentation_lift_deg": 24,
+    "wheelbase_authored_m": 2.895,
+    "rear_bar_axle_authored_m": 2.489,
+    "pto_motion_ownership": "The fixed guard remains under PTO_ROOT; only PTO_Shaft_ROTATION_ROOT rotates.",
     "geometry_boundary": "Overall length and width, tires, track, proportions, all pivots, anchors, suspension travel, hitch arcs, PTO shaft detail, materials, and hidden construction are independently authored visualization choices."
   },
   "unresolved_choices": [

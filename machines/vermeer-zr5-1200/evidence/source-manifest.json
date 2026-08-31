@@ -7,7 +7,7 @@
     "source_binaries_committed": false,
     "manufacturer_geometry_committed": false,
     "manual_illustrations_are_scale_drawings": false,
-    "verification": "Official Vermeer product and literature URLs are frozen. No manufacturer geometry, imagery, logo, or publication binary is included in the public package."
+    "verification": "The official Vermeer product HTML and two-page literature PDF are present under research/private and bound to declared hashes and byte counts."
   },
   "sources": [
     {
@@ -18,6 +18,9 @@
       "market": "North America",
       "retrieved": "2026-08-29",
       "official_url": "https://www.vermeer.com/na/self-propelled-balers/zr5",
+      "local_path": "research/private/vermeer-zr5-1200/vermeer-zr5-product.html",
+      "sha256": "6d938d8bb9a457cd24417f67b40826810136b46cbaabb8256d921d3f249726cf",
+      "bytes": 170801,
       "admission": "primary",
       "applicability": "Current identity, dimensions, engine, speeds, tires, suspension, steering, bale chamber, pickup, netwrap, ramp, automation and quarter-turn statements."
     },

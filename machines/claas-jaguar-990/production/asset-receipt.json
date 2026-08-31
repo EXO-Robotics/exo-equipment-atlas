@@ -16,8 +16,8 @@
   },
   "builder": {
     "path": "source/blender/build_claas_jaguar_990.py",
-    "sha256": "32882e2f5688a2e65996b037a33502222e656cd508cc32ad0cf000c4eb699253",
-    "bytes": 662,
+    "sha256": "4b360b5c2629242df98cba533f751cc669adb22d7684ef6db6148557eac7a97d",
+    "bytes": 27425,
     "deterministic": true,
     "network_used": false,
     "downloaded_geometry_used": false,
@@ -27,8 +27,8 @@
   },
   "shared_generator": {
     "path": "../../scripts/fleet/build_machine.py",
-    "sha256": "02b99250651741b462b3dae8b2471db723beb689dfe89e1c7e251d7402fe0f55",
-    "bytes": 78579
+    "sha256": "9e36599f0c9bbac097422a8766e3ef1c81e6fc9432f024d99a24b79da18264df",
+    "bytes": 81778
   },
   "design": {
     "path": "source/design.json",
@@ -39,18 +39,18 @@
   "artifacts": {
     "blend": {
       "path": "source/blender/claas-jaguar-990-structural-study.blend",
-      "sha256": "29f4d2ef18a94b43323a2d6c53f5350e283d11a96faca537e2e3d618607aa518",
-      "bytes": 233653
+      "sha256": "a8a8aef03b66878238340ced33e5c5aeb72ba2dacfc5c3397b5b5bca121443ea",
+      "bytes": 282256
     },
     "glb": {
       "path": "assets/claas-jaguar-990-structural-study.glb",
-      "sha256": "1bb9c0e9410797cb89974d79294a4a995bd737df180e9d4ce7debd498e6c2cd5",
-      "bytes": 1515228
+      "sha256": "bfb2346b05ba21b2f829e319848bfaed32e482fd4a43e97faa92f13af5a22825",
+      "bytes": 1850092
     },
     "validation": {
       "path": "production/validation.json",
-      "sha256": "4dc610046e3c727608293a433b7c45a78ac59eea12f365769722d00d56485897",
-      "bytes": 7880
+      "sha256": "4401dfd8a437e76657161720041203c700d8ffbd85b1da9ae136c9d7be615413",
+      "bytes": 59486
     }
   },
   "scene": {
@@ -82,10 +82,10 @@
       3.945,
       8.93
     ],
-    "objects": 212,
-    "meshes": 190,
-    "triangles": 29560,
-    "materials": 6
+    "objects": 309,
+    "meshes": 256,
+    "triangles": 34756,
+    "materials": 8
   },
   "glb_contract": {
     "glb_version": "2.0",
@@ -94,18 +94,18 @@
     "root_name": "Machine_Root",
     "root_record": {},
     "identity_root": true,
-    "nodes": 212,
-    "mesh_nodes": 190,
-    "mesh_definitions": 190,
-    "materials": 6,
-    "triangles": 29560,
+    "nodes": 309,
+    "mesh_nodes": 256,
+    "mesh_definitions": 256,
+    "materials": 8,
+    "triangles": 34756,
     "cameras": 0,
     "punctual_lights": false,
     "images": 0,
     "textures": 0,
     "nonidentity_mesh_scales": {},
     "helper_like_mesh_nodes": [],
-    "semantic_motion_nodes": 21,
+    "semantic_motion_nodes": 52,
     "bounds": {
       "min_m": [
         -3.2475,
@@ -129,16 +129,28 @@
     "Fixed_Structure_ROOT": true,
     "Running_Gear_ROOT": true,
     "Hydraulics_ROOT": true,
-    "Service_Detail_ROOT": true,
     "Header_Lift_Pivot": true,
     "Header_ROOT": true,
     "Feedroll_ROOT": true,
     "Spout_Yaw_Pivot": true,
     "Spout_ROOT": true,
     "Spout_Tip_Pivot": true,
-    "Spout_Tip_ROOT": true
+    "Spout_Tip_ROOT": true,
+    "ORBIS_L_Wing_Fold_Pivot": true,
+    "ORBIS_L_Wing_Nest_ROOT": true,
+    "ORBIS_L_Wing_ROOT": true,
+    "ORBIS_R_Wing_Fold_Pivot": true,
+    "ORBIS_R_Wing_Nest_ROOT": true,
+    "ORBIS_R_Wing_ROOT": true,
+    "Feedroll_Upper_ROOT": true,
+    "Feedroll_Lower_ROOT": true,
+    "VMAX42_Cylinder_ROOT": true,
+    "MCC_MAX_ROOT": true,
+    "Crop_Accelerator_ROOT": true,
+    "Schematic_Crop_Path_ROOT": true
   },
-  "manufacturer_published_constraints_used": [
+  "semantic_node_roles": {},
+  "published_constraint_ids_declared": [
     "public-envelope-x",
     "public-envelope-y",
     "public-envelope-z",
@@ -153,6 +165,286 @@
     "accelerator-width",
     "accelerator-diameter",
     "standard-chute-swing"
+  ],
+  "machine_specific_gate_evidence": [
+    {
+      "id": "configuration_attachment_and_crop_setup_identity",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local hierarchy assertion and metric endpoint measurement",
+        "evidence": {
+          "configuration_id": "CLAAS-J990-INT-STGV-WHEEL-ORBIS900-VMAX42-MCCMAX-M-CANDIDATE",
+          "crop_setup": "corn short LOC"
+        },
+        "semantic_nodes": [
+          "Header_ROOT",
+          "VMAX42_Cylinder_ROOT",
+          "MCC_MAX_ROOT"
+        ],
+        "fact_ids": [
+          "vmax42-knife-count",
+          "maximum-engine-power"
+        ]
+      }
+    },
+    {
+      "id": "published_orbis_working_span",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local hierarchy assertion and metric endpoint measurement",
+        "evidence": {
+          "measured_working_span_m": 8.93,
+          "published_m": 8.93
+        },
+        "semantic_nodes": [
+          "Header_ROOT",
+          "ORBIS_L_Wing_ROOT",
+          "ORBIS_R_Wing_ROOT"
+        ],
+        "fact_ids": [
+          "public-envelope-x",
+          "public-envelope-y",
+          "public-envelope-z",
+          "orbis-working-width"
+        ]
+      }
+    },
+    {
+      "id": "orbis_folded_transport_span",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local hierarchy assertion and metric endpoint measurement",
+        "evidence": {
+          "measured_folded_span_m": 3.0,
+          "folded_max_y_m": 3.915,
+          "pose": "reconstructed symmetric 90 degree wing fold"
+        },
+        "semantic_nodes": [
+          "ORBIS_L_Wing_Fold_Pivot",
+          "ORBIS_L_Wing_Nest_ROOT",
+          "ORBIS_L_Wing_ROOT",
+          "ORBIS_R_Wing_Fold_Pivot",
+          "ORBIS_R_Wing_Nest_ROOT",
+          "ORBIS_R_Wing_ROOT"
+        ],
+        "fact_ids": [
+          "orbis-transport-width"
+        ]
+      }
+    },
+    {
+      "id": "attachment_lift_visual_closure",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local hierarchy assertion and metric endpoint measurement",
+        "evidence": {
+          "closure": "fixed barrel plus moving rod",
+          "authority": "reconstructed visual linkage"
+        },
+        "semantic_nodes": [
+          "Header_Lift_Pivot",
+          "Header_ROOT",
+          "Hydraulics_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "attachment_to_feeder_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local hierarchy assertion and metric endpoint measurement",
+        "evidence": {
+          "continuous_schematic_segments": 6,
+          "feedroll_center": [
+            1.2,
+            1.18,
+            0
+          ]
+        },
+        "semantic_nodes": [
+          "Header_ROOT",
+          "Feedroll_ROOT",
+          "Schematic_Crop_Path_ROOT"
+        ],
+        "fact_ids": [
+          "feeder-width",
+          "feed-roller-count"
+        ]
+      }
+    },
+    {
+      "id": "rear_steering_tire_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local hierarchy assertion and metric endpoint measurement",
+        "evidence": {
+          "tire_nodes": [
+            "Rear_R_Tire",
+            "Front_R_Tire",
+            "Rear_L_Tire",
+            "Front_L_Tire"
+          ],
+          "presentation_steer_deg": 20.0,
+          "authority": "reconstructed clearance pose"
+        },
+        "semantic_nodes": [
+          "Running_Gear_ROOT",
+          "Rear_Steering_L_Pivot",
+          "Rear_Steering_R_Pivot"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "standard_chute_stowed_and_deployed_clearance",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local hierarchy assertion and metric endpoint measurement",
+        "evidence": {
+          "viewer_sweep_deg": 210.000491,
+          "published_deg": 210.0,
+          "endpoint_scope": "reconstructed yaw endpoints"
+        },
+        "semantic_nodes": [
+          "Spout_Yaw_Pivot",
+          "Spout_ROOT",
+          "Spout_Tip_Pivot",
+          "Spout_Tip_ROOT"
+        ],
+        "fact_ids": [
+          "standard-chute-swing"
+        ]
+      }
+    },
+    {
+      "id": "cutaway_only_internal_mechanism_labeling",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local hierarchy assertion and metric endpoint measurement",
+        "evidence": {
+          "feedroller_count": 4,
+          "feedroller_width_m": 0.73,
+          "vmax42_knife_stations": 42,
+          "chopper_width_m": 0.75,
+          "chopper_diameter_m": 0.63,
+          "mcc_max_diameter_m": 0.265,
+          "accelerator_width_m": 0.68,
+          "accelerator_diameter_m": 0.54,
+          "orbis_row_unit_roots": 10,
+          "classification": "schematic cutaway; hidden centers reconstructed"
+        },
+        "semantic_nodes": [
+          "Feedroll_ROOT",
+          "VMAX42_Cylinder_ROOT",
+          "MCC_MAX_ROOT",
+          "Crop_Accelerator_ROOT",
+          "Schematic_Crop_Path_ROOT"
+        ],
+        "fact_ids": [
+          "chopping-cylinder-width",
+          "chopping-cylinder-diameter",
+          "mcc-max-diameter",
+          "accelerator-width",
+          "accelerator-diameter"
+        ]
+      }
+    },
+    {
+      "id": "wheel_phase_continuity",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local hierarchy assertion and metric endpoint measurement",
+        "evidence": {
+          "tire_nodes": [
+            "Rear_R_Tire",
+            "Front_R_Tire",
+            "Rear_L_Tire",
+            "Front_L_Tire"
+          ],
+          "continuous_rotation": "viewer synchronized wheel roots"
+        },
+        "semantic_nodes": [
+          "Running_Gear_ROOT",
+          "Front_L_Wheel_ROOT",
+          "Front_R_Wheel_ROOT",
+          "Rear_L_Wheel_ROOT",
+          "Rear_R_Wheel_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "ground_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local hierarchy assertion and metric endpoint measurement",
+        "evidence": {
+          "minimum_visible_y_m": 0.0,
+          "ground_y_m": 0.0
+        },
+        "semantic_nodes": [
+          "Running_Gear_ROOT",
+          "Header_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "self_collision",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local hierarchy assertion and metric endpoint measurement",
+        "evidence": {
+          "component_measurements": {
+            "feedroller_count": 4,
+            "feedroller_width_m": 0.73,
+            "vmax42_knife_stations": 42,
+            "chopper_width_m": 0.75,
+            "chopper_diameter_m": 0.63,
+            "mcc_max_diameter_m": 0.265,
+            "accelerator_width_m": 0.68,
+            "accelerator_diameter_m": 0.54
+          },
+          "folded_header_max_y_m": 3.915,
+          "scope": "neutral and folded endpoint AABB checks; not an operating safety claim"
+        },
+        "semantic_nodes": [
+          "Header_ROOT",
+          "Feedroll_ROOT",
+          "VMAX42_Cylinder_ROOT",
+          "MCC_MAX_ROOT",
+          "Crop_Accelerator_ROOT",
+          "Spout_ROOT"
+        ],
+        "fact_ids": []
+      }
+    },
+    {
+      "id": "neutral_unbranded_materials",
+      "status": "PASS",
+      "detail": {
+        "method": "machine-local hierarchy assertion and metric endpoint measurement",
+        "evidence": {
+          "materials": [
+            "Neutral_Body",
+            "Neutral_Body_Shadow",
+            "Neutral_Glass",
+            "Neutral_Graphite",
+            "Neutral_Rod",
+            "Neutral_Rubber",
+            "Neutral_Steel",
+            "Neutral_Visibility_Cue"
+          ],
+          "images": 0,
+          "textures": 0
+        },
+        "semantic_nodes": [
+          "Machine_Root"
+        ],
+        "fact_ids": []
+      }
+    }
   ],
   "reconstructed_values": {
     "carrier_display_envelope_m": [
@@ -170,21 +462,21 @@
     "hidden_geometry": "All hidden structure, pivot centers, anchors, linkage proportions, underbody volumes, and internal geometry are reconstructed visualization choices unless a design record explicitly identifies a manufacturer-published envelope constraint.",
     "generic_archetype_geometry": "forage_harvester proportions and visible detail are independently reconstructed for this technical study.",
     "visible_envelope_calibration": {
-      "classification": "reconstructed_visible_envelope_calibration",
+      "classification": "authored_visible_envelope_measurement",
       "source_bounds_m": {
         "min_m": [
-          -2.4243,
+          -3.2475,
           0.0,
           -4.465
         ],
         "max_m": [
-          3.451005,
-          3.988627,
+          3.2475,
+          3.945,
           4.465
         ],
         "size_m": [
-          5.875305,
-          3.988627,
+          6.495,
+          3.945,
           8.93
         ]
       },
@@ -206,9 +498,9 @@
         ]
       },
       "axis_scale_factors": [
-        1.105474536,
-        0.989062221,
-        0.999999966
+        1.0,
+        1.0,
+        1.0
       ],
       "calibrated_bounds_m": {
         "min_m": [
@@ -227,7 +519,7 @@
           8.93
         ]
       },
-      "authority": "reconstructed_not_machine_specific_engineering"
+      "authority": "independently_measured_from_authored_geometry"
     }
   },
   "unresolved_choices": [
@@ -249,33 +541,33 @@
   "renders": [
     {
       "path": "review/renders/claas-jaguar-990-operator-side.png",
-      "sha256": "58f81f66c6a45fa87d0520f709add64a5b92810507a4a309cd5f63d2c1452d2c",
-      "bytes": 294355
+      "sha256": "895eececfabefb2af4c39ec75adac4e3d0fbf8f179dad0340362d539f5fddf93",
+      "bytes": 292420
     },
     {
       "path": "review/renders/claas-jaguar-990-front-three-quarter.png",
-      "sha256": "89ae6e4e737aa1a24b4ef1bc6dfdfee23dc374136cca100d835deb62e94e3e68",
-      "bytes": 266740
+      "sha256": "ce3fc529d8a9a4a81683832a62c20352fc27f7da6cbf5ac926910bf37cfc10f0",
+      "bytes": 269016
     },
     {
       "path": "review/renders/claas-jaguar-990-rear-three-quarter.png",
-      "sha256": "ea21083a99912c4aa7bda845fe2747d33cc0aa0bec7711f6a70bd58d15633b00",
-      "bytes": 293809
+      "sha256": "ef477ee8da48e0006862b57850ce8d1b571ad5d1806c9fc59f9b85c9bf06cea6",
+      "bytes": 290916
     },
     {
       "path": "review/renders/claas-jaguar-990-elevated-technical.png",
-      "sha256": "2b9962bca650ffa64b6fd447421cbf43ef43d921dfe1d7082d725410dac230be",
-      "bytes": 337589
+      "sha256": "3cd1406cc87902146fea0daa3ad8f0f6321ae9970c1720273986959932d50e3a",
+      "bytes": 342968
     },
     {
       "path": "review/renders/claas-jaguar-990-articulation-detail.png",
-      "sha256": "09dd2cdf50c2a2e8f3845bdddc6a29996d11b66953e7675693fafeba8bbd682e",
-      "bytes": 330639
+      "sha256": "120334f6467a7d7d2f97f05d36b70494ca99f94b5b0df7df31165a7831286018",
+      "bytes": 334561
     },
     {
       "path": "review/renders/claas-jaguar-990-right-side.png",
-      "sha256": "d1e25c6837acf051691a264f9840b9d1c4481ace46b0602bd2bde3c5ab8ad086",
-      "bytes": 292597
+      "sha256": "2bd6a67da61bf8c9a44d2bea731599d7ffb1dee3d705015f13304a5734134a5b",
+      "bytes": 290126
     }
   ],
   "build_verdict": "PASS",

@@ -200,6 +200,21 @@ const sharedRequiredFiles = [
 ];
 await Promise.all(sharedRequiredFiles.map(requireFile));
 
+const [sharedHtml, sharedStyles, sharedApp] = await Promise.all([
+  readFile(path.join(ROOT, "index.html"), "utf8"),
+  readFile(path.join(ROOT, "assets/site/styles.css"), "utf8"),
+  readFile(path.join(ROOT, "assets/site/app.js"), "utf8")
+]);
+if (!sharedHtml.includes('id="viewer-panel-toggle"') || !sharedHtml.includes('aria-controls="viewer-panel-content"')) {
+  errors.push("index.html: mobile viewer control drawer must expose an accessible toggle");
+}
+if (!sharedStyles.includes(".viewer-panel.is-collapsed .viewer-panel-content")) {
+  errors.push("assets/site/styles.css: mobile viewer control drawer requires a collapsed state");
+}
+if (!sharedApp.includes("setViewerPanelCollapsed(compactViewerQuery.matches)")) {
+  errors.push("assets/site/app.js: mobile viewer control drawer must default to the compact state");
+}
+
 for (const { id } of catalogMachines) {
   const viewerPath = `machines/${id}/viewer.json`;
   let viewer;

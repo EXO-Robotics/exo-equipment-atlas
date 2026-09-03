@@ -74,28 +74,41 @@
               <span>Explore</span>
               <h2 id="viewer-panel-title">Machine view</h2>
             </div>
+            <button
+              class="viewer-panel-toggle"
+              id="viewer-panel-toggle"
+              type="button"
+              aria-controls="viewer-panel-content"
+              aria-expanded="true"
+              aria-label="Hide machine controls"
+            >
+              <span id="viewer-panel-toggle-label">Hide controls</span>
+              <i aria-hidden="true"></i>
+            </button>
           </div>
 
-          <div class="viewer-status" role="status" aria-live="polite">
-            <span class="status-dot" aria-hidden="true"></span>
-            <span id="load-status">Loading machine catalog</span>
-          </div>
-
-          <div class="viewer-actions" aria-label="3D viewer controls">
-            <button id="orbit-toggle" class="text-button" type="button" aria-pressed="false">Auto orbit</button>
-            <button id="motion-toggle" class="text-button" type="button" aria-pressed="false" hidden>Auto motion</button>
-            <button id="technical-view" class="text-button" type="button">Technical side</button>
-            <button id="reset-view" class="text-button" type="button">Reset view</button>
-          </div>
-
-          <section class="motion-panel" id="motion-panel" aria-labelledby="motion-title" hidden>
-            <div class="motion-heading">
-              <h3 id="motion-title">Machine motion</h3>
-              <span id="motion-state">Automatic presentation</span>
+          <div class="viewer-panel-content" id="viewer-panel-content">
+            <div class="viewer-status" role="status" aria-live="polite">
+              <span class="status-dot" aria-hidden="true"></span>
+              <span id="load-status">Loading machine catalog</span>
             </div>
-            <div class="motion-channels" id="motion-channels"></div>
-            <p>Manual input holds auto mode for six seconds. Motion is a reconstructed presentation, not an operating envelope.</p>
-          </section>
+
+            <div class="viewer-actions" aria-label="3D viewer controls">
+              <button id="orbit-toggle" class="text-button" type="button" aria-pressed="false">Auto orbit</button>
+              <button id="motion-toggle" class="text-button" type="button" aria-pressed="false" hidden>Auto motion</button>
+              <button id="technical-view" class="text-button" type="button">Technical side</button>
+              <button id="reset-view" class="text-button" type="button">Reset view</button>
+            </div>
+
+            <section class="motion-panel" id="motion-panel" aria-labelledby="motion-title" hidden>
+              <div class="motion-heading">
+                <h3 id="motion-title">Machine motion</h3>
+                <span id="motion-state">Automatic presentation</span>
+              </div>
+              <div class="motion-channels" id="motion-channels"></div>
+              <p>Manual input holds auto mode for six seconds. Motion is a reconstructed presentation, not an operating envelope.</p>
+            </section>
+          </div>
         </section>
 
         <p class="gesture-hint" id="viewer-help">

@@ -49,6 +49,10 @@ const dom = {
   motionToggle: document.querySelector("#motion-toggle"),
   technicalView: document.querySelector("#technical-view"),
   resetView: document.querySelector("#reset-view"),
+  viewerPanel: document.querySelector(".viewer-panel"),
+  viewerPanelToggle: document.querySelector("#viewer-panel-toggle"),
+  viewerPanelToggleLabel: document.querySelector("#viewer-panel-toggle-label"),
+  viewerPanelContent: document.querySelector("#viewer-panel-content"),
   motionPanel: document.querySelector("#motion-panel"),
   motionState: document.querySelector("#motion-state"),
   motionChannels: document.querySelector("#motion-channels"),
@@ -63,6 +67,7 @@ const dom = {
 };
 
 const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+const compactViewerQuery = window.matchMedia("(max-width: 840px)");
 const definitions = new Map();
 let catalogEntries = [];
 let rows = [];
@@ -76,6 +81,15 @@ let currentTechnicalCamera = null;
 let activeLoadController = null;
 let loadToken = 0;
 let cameraAnimationToken = 0;
+
+function setViewerPanelCollapsed(collapsed) {
+  dom.viewerPanel.classList.toggle("is-collapsed", collapsed);
+  dom.viewerPanelToggle.setAttribute("aria-expanded", String(!collapsed));
+  dom.viewerPanelToggle.setAttribute("aria-label", collapsed ? "Show machine controls" : "Hide machine controls");
+  dom.viewerPanelToggleLabel.textContent = collapsed ? "Show controls" : "Hide controls";
+  dom.viewerPanelContent.setAttribute("aria-hidden", String(collapsed));
+  dom.viewerPanelContent.inert = collapsed;
+}
 
 let scene = null;
 let camera = null;
@@ -959,6 +973,19 @@ dom.search.addEventListener("keydown", (event) => {
   renderMachineIndex();
 });
 
+dom.viewerPanelToggle.addEventListener("click", () => {
+  const isExpanded = dom.viewerPanelToggle.getAttribute("aria-expanded") === "true";
+  setViewerPanelCollapsed(isExpanded);
+});
+
+dom.viewerPanel.addEventListener("keydown", (event) => {
+  if (event.key !== "Escape" || !compactViewerQuery.matches) return;
+  if (dom.viewerPanelToggle.getAttribute("aria-expanded") !== "true") return;
+  event.preventDefault();
+  setViewerPanelCollapsed(true);
+  dom.viewerPanelToggle.focus();
+});
+
 dom.orbitToggle.addEventListener("click", () => {
   if (!controls || reducedMotionQuery.matches) return;
   autoRotateRequested = !autoRotateRequested;
@@ -1013,6 +1040,7 @@ dom.scene.addEventListener("keydown", (event) => {
 });
 
 window.addEventListener("resize", resize);
+compactViewerQuery.addEventListener("change", (event) => setViewerPanelCollapsed(event.matches));
 window.addEventListener("popstate", () => {
   const machineId = new URL(window.location.href).searchParams.get("machine");
   if (definitions.has(machineId) && machineId !== currentMachineId) selectMachine(machineId, { historyMode: null });
@@ -1054,6 +1082,7 @@ function render(now = performance.now()) {
 
 async function boot() {
   makeScene();
+  setViewerPanelCollapsed(compactViewerQuery.matches);
   dom.orbitToggle.disabled = reducedMotionQuery.matches || !interactiveAvailable;
   dom.orbitToggle.setAttribute("aria-pressed", String(autoRotateRequested && interactiveAvailable));
   resize();

@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import {
   MANUAL_OVERRIDE_MS,
   ManualOverrideClock,
@@ -38,4 +39,18 @@ test("sine and ping-pong autoplay remain normalized and phaseable", () => {
   assert.equal(autoplayProgress(0, 8, 0, "ping-pong"), 0);
   assert.equal(autoplayProgress(4, 8, 0, "ping-pong"), 1);
   assert.ok(Math.abs(autoplayProgress(2, 8, 0, "sine") - 0.5) < 1e-12);
+});
+
+test("mobile machine controls expose an accessible collapsible drawer", async () => {
+  const [html, styles, app] = await Promise.all([
+    readFile(new URL("../index.html", import.meta.url), "utf8"),
+    readFile(new URL("../assets/site/styles.css", import.meta.url), "utf8"),
+    readFile(new URL("../assets/site/app.js", import.meta.url), "utf8")
+  ]);
+
+  assert.match(html, /id="viewer-panel-toggle"/u);
+  assert.match(html, /aria-controls="viewer-panel-content"/u);
+  assert.match(styles, /\.viewer-panel\.is-collapsed \.viewer-panel-content/u);
+  assert.match(app, /setViewerPanelCollapsed\(compactViewerQuery\.matches\)/u);
+  assert.match(app, /viewerPanelContent\.inert = collapsed/u);
 });
